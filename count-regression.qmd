@@ -1,0 +1,359 @@
+---
+title: "Models for Count Outcomes"
+subtitle: "(Poisson Regression and Variations)"
+author: "Ezra Morrison"
+date: last-modified
+date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
+format: 
+  revealjs:
+    theme: dark
+    html-math-method: mathjax
+    smaller: false
+    number-sections: true
+    slide-number: true
+    scrollable: true
+    echo: true
+    code-fold: true
+    code-link: true
+    code-summary: "[R code]"
+    code-overflow: scroll
+    # chalkboard: true
+    # fig-width: 7
+    # fig-height: 5
+    # out-width: "100%"
+  html:
+    toc: true
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    code-summary: "Show the code"
+    code-link: true
+  pdf:
+    toc: true
+    number-sections: true
+    code-link: true
+    code-overflow: wrap
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+::: hidden
+\def\cd{\cdot}
+\def\eqdef{\stackrel{\text{def}}{=}}
+\def\se{\text{SE}}
+\def\hse{\hat{\se}}
+\def\hb{\hat\beta}
+\def\za{z_{1 - \frac{\alpha}{2}}}
+\def\cirad{\za \cd \hse(\hb)}
+\def\ci{\hb {\color{red}\pm} \cirad}
+:::
+
+## Acknowledgements{.unnumbered}
+
+This content is adapted from:
+
+-   Dobson & Barnett 2018, "An Introduction to Generalized Linear Models", 4th edition, Chapter 9
+-   Vittinghoff et al 2012, "Regression Methods in Biostatistics", 2nd edition, Chapter 8
+
+::: {.content-hidden when-format="revealjs"}
+## Configuring R{.unnumbered}
+
+Functions from these packages will be used throughout this document:
+
+```{r packages, message = FALSE}
+library(pander) # format tables for markdown
+library(ggplot2) # graphics
+library(ggeasy) # help with graphics
+library(dplyr) # manipulate data
+library(haven) # import Stata files
+library(knitr) # format R output for markdown
+library(tidyr) # Tools to help to create tidy data
+library(plotly) # interactive graphics
+library(dobson) # datasets from Dobson and Barnett 2018
+library(parameters) # format model output tables for markdown
+library(conflicted) # check for conflicting function definitions
+```
+
+Here are some R settings I use in this document:
+```{r options, message=FALSE}
+rm(list = ls()) # delete any data that's already loaded into R
+knitr::opts_chunk$set(message = FALSE)
+pander::panderOptions("table.emphasize.rownames", FALSE)
+options('digits' = 4)
+```
+:::
+
+# Introduction
+
+## Examples of count outcomes
+
+* Cyclones per season
+* Seconds of tooth-brushing per session (if rounded)
+* Infections per person-year
+* Visits to ER per person-month
+* Car accidents per 1000 miles driven
+
+:::{.callout-note}
+
+In many count outcomes, there is some sense of "exposure magnitude" or "duration of observation": person-year, time at risk, session, miles driven, etc.
+
+:::
+
+## Poisson distribution
+
+$$P(Y=y) = \frac{\mu^y e^{-\mu}}{y!}$$
+
+### Properties
+
+* $\mathbb{E}[Y] = \mu$
+* $\text{Var}[Y] = \mu$
+
+## Accounting for exposure
+
+If the exposures/observation durations, denoted $T=t$, are not all equal, we model $$\mu = \lambda t$$
+
+$\lambda$ is interpreted as the "expected event rate per unit of exposure"; that is,
+
+$$\lambda = \frac{\mathbb E[Y|T=t]}{t}$$
+
+:::{.callout-important}
+
+The exposure magnitude, $T$, is *similar* to a covariate in linear or logistic regression. However, there is an important difference: in count regression, **there is no intercept corresponding to $\mathbb E[Y|T=0]$**. In other words, this model assumes that if there is no exposure, there can't be any events.
+
+:::
+
+## Adding covariates
+
+With covariates, $\lambda$ becomes a function of the covariates $\tilde X = (X_1, \dots,X_n)$, with a $\log()$ link function (and thus an $\exp()$ inverse-link). That is:
+
+$$
+\begin{aligned}
+\mathbb E[Y | \tilde X = \tilde x,T=t] 
+&= \mu(\tilde x,t)\\
+\mu(\tilde x,t) 
+&= \lambda(\tilde x)\cd t\\
+\lambda(\tilde x) 
+&= \exp(\eta(\tilde x))\\
+\eta(\tilde x) 
+&= \tilde x'\tilde \beta = \beta_0 + \beta_1 x_1 + \dots + \beta_p x_p
+\end{aligned}
+$$
+
+Therefore,
+$$
+\begin{aligned}
+\log \{\mathbb E[Y | \tilde X = \tilde x,T=t] \}
+&= \log \{\mu(\tilde x)\}\\
+&=\log  \{\lambda(\tilde x) \cd t \}\\
+&=\log\{\lambda(\tilde x)\} + \log\{ t \}\\
+&=\log\{\exp(\eta(\tilde x))\} + \log\{ t \}\\
+&=\eta(\tilde x) + \log\{t\}\\
+&=\tilde x'\tilde\beta + \log\{t\}\\
+&=(\beta_0 +\beta_1 x_1+\dots + \beta_p x_p) + \log\{t\}\\
+\end{aligned}
+$$
+
+In contrast with the $X$s, $T$ enters this expression with a $\log$ transformation and without a corresponding $\beta$ coefficient. 
+
+:::{.callout-note}
+Terms that enter the linear component of a model without a coefficient, such as $\log(t)$ here, are called **offsets**.
+:::
+
+## Rate ratios {.smaller}
+
+Differences on the log-rate scale become ratios on the rate scale.
+
+:::{.callout-tip}
+
+$$\exp\{a-b\} = \frac{\exp\{a\}}{\exp\{b\}}$$
+:::
+
+Therefore, according to this model, **differences of $\delta$ in covariate $x_j$ correspond to rate ratios of $\exp\{\beta_j\cd \delta\}$**.
+
+That is, letting $\tilde X_{-j}$ denote vector $\tilde X$ with element $j$ removed: 
+
+$$
+\begin{aligned}
+&{
+\left\{
+    \log\{\mathbb E[Y |{\color{red}{X_j = a}}, \tilde X_{-j}=\tilde x_{-j},T=t]\}
+    \atop 
+    {-\log\{\mathbb E[Y |{\color{red}{X_j = b}}, \tilde X_{-j}=\tilde x_{-j},T=t]\}}
+    \right\}
+}\\
+&= 
+{\left\{
+\log t + \beta_0 + \beta_1 x_1 + ... + {\color{red}{\beta_j (a)}} + ...+\beta_p x_p 
+\atop 
+{-\log t + \beta_0 + \beta_1 x_1 + ... + {\color{red}{\beta_j (b)}} + ...+\beta_p x_p}
+\right\}}\\
+&= \color{red}{\beta_j(a-b)}
+\end{aligned}
+$$
+
+And accordingly,
+
+$$
+\begin{aligned}
+\frac
+{\mathbb{E}[Y |{\color{red}{X_j = a}}, \tilde X_{-j} = \tilde x_{-j}, T = t]
+}
+{
+\mathbb E[Y |{\color{red}{X_j = b}}, \tilde X_{-j}=\tilde x_{-j},T=t]
+}
+= 
+\exp\{{\color{red}{\beta_j(a-b)}}\}
+\end{aligned}
+$$
+
+# Inference for count regression models
+
+## Confidence intervals for regression coefficients and rate ratios
+
+As usual:
+
+$$
+\beta \in \left[\ci \right]
+$$
+
+Rate ratios: exponentiate CI endpoints
+
+$$
+\exp\{\beta\} \in \left[\exp\left\{\ci\right\} \right]
+$$
+
+## Hypothesis tests for regression coefficients
+
+$$
+t = \frac{\hat \beta - \beta_0}{\hse(\hb)}
+$$
+
+Compare $t$ or $|t|$ to the tails of the standard Gaussian distribution, according to the null hypothesis.
+
+## Comparing nested models
+
+log(likelihood ratio) tests, as usual.
+
+# Prediction
+
+$$
+\begin{aligned}
+\hat y 
+&\eqdef \hat{\mathbb E}[Y|\tilde X= \tilde x,T=t]\\
+&=\hat\mu(\tilde x, t)\\
+&=\hat\lambda(\tilde x) \cd t\\
+&=\exp\{\hat\eta(\tilde x)\} \cd t\\
+&=\exp\{\tilde x'\hat{\boldsymbol{\beta}}\} \cd t
+\end{aligned}
+$$
+
+# Diagnostics
+
+## Residuals
+
+### Observation residuals
+
+$$e \eqdef y - \hat y$$
+
+### Pearson residuals
+
+$$r = \frac{e}{\hse(e)} \approx \frac{e}{\sqrt{\hat y}}$$
+
+### Standardized Pearson residuals
+
+$$r_p = \frac{r}{\sqrt{1-h}}$$
+where $h$ is the "leverage" (which we will continue to leave undefined).
+
+### Deviance residuals
+
+$$
+d_k = \text{sign}(y - \hat y)\left\{\sqrt{2[\ell_{\text{full}}(y) - \ell(\hat\beta; y)]}\right\}
+$$
+
+:::{.callout-note}
+
+$$\text{sign}(x) \eqdef \frac{x}{|x|}$$
+In other words:
+
+* $\text{sign}(x) = -1$ if $x < 0$
+* $\text{sign}(x) = 0$ if $x = 0$
+* $\text{sign}(x) = 1$ if $x > 0$
+
+::::{.content-hidden}
+
+```{r}
+plot(sign,xlim = c(-1,1), xlab = "x", ylab = "sign(x)")
+```
+
+::::
+
+:::
+
+
+# Zero-inflation
+
+## Models for zero-inflated counts
+
+We assume a latent (unobserved) binary variable, $Z$, which we model using logistic regression:
+
+$$P(Z=1|X=x) = \pi(x) = \text{expit}(\gamma_0 + \gamma_1x_1 +...)$$
+
+According to this model, if $Z=1$, then $Y$ will always be zero, regardless of $X$ and $T$:
+
+$$P(Y=0|Z=1,X=x,T=t) = 1$$
+
+Otherwise (if $Z=0$), $Y$ will have a Poisson distribution, conditional on $X$ and $T$, as above.
+
+Even though we never observe $Z$, we can estimate the parameters $\gamma_0$-$\gamma_p$, via maximum likelihood:
+
+$$
+\begin{aligned}
+P(Y=y|X=x,T=t) &= P(Y=y,Z=1|...) + P(Y=y,Z=0|...)
+\end{aligned}
+$$
+(by the Law of Total Probability)
+
+where 
+$$
+\begin{aligned}
+P(Y=y,Z=z|...) 
+&= P(Y=y|Z=z,...)P(Z=z|...)
+\end{aligned}
+$$
+
+### Exercise
+
+Expand $P(Y=0|X=x,T=t)$, $P(Y=1|X=x,T=t)$ and $P(Y=y|X=x,T=t)$ into expressions involving $P(Z=1|X=x,T=t)$ and $P(Y=y|Z=0,X=x,T=t)$.
+
+### Exercise
+
+Derive the expected value and variance of $Y$, conditional on $X$ and $T$, as functions of $P(Z=1|X=x,T=t)$ and $\mathbb E[Y|Z=0,X=x,T=t]$.
+
+# Over-dispersion
+
+## Negative binomial models
+
+The Poisson distribution model **forces** the variance to equal the mean. In practice, many count distributions will have a variance substantially larger than the mean (or occasionally smaller).
+
+When we encounter this, we can try to reduce the residual variance by adding more covariates. However, there are also alternatives to the Poisson model.
+
+Most notably, the negative binomial model:
+
+$$P(Y=y) = \frac{\mu^y}{y!} \cdot \frac{\Gamma(\rho + y)}{\Gamma(\rho) \cdot (\rho + \mu)^y} \cdot \left(1+\frac{\mu}{\rho}\right)^{-\rho}$$
+
+where $\rho$ is an overdispersion parameter and $\Gamma(x) = (x-1)!$ for integers $x$.
+
+You don't need to memorize or understand this expression, but as $\rho \rightarrow \infty$, the second term converges to 1 and the third term converges to $\exp\{-\mu\}$, which brings us back to the Poisson distribution.
+
+For this distribution, $\mathbb E[Y] = \mu$ and $\text{Var}(Y) = \mu + \frac{\mu^2}{\rho} > \mu$.
+
+We can still model $\mu$ as a function of $X$ and $T$ as before, and we can combine this model with zero-inflation by using it in place of the Poisson distribution for $P(Y=y|Z=0,X=x,T=t)$.
+
+## Quasipoisson
+
+An alternative to Negative binomial is the "quasipoisson" distribution. I've never used it, but it seems to be a method-of-moments type approach rather than maximum likelihood. It models the variance as $\text{Var}(Y) = \mu\theta$, and estimates $\theta$ accordingly.
+
+See `?quasipoisson` in R for more.

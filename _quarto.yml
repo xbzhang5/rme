@@ -7,9 +7,14 @@ book:
   date: "7/6/2023"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - intro-to-GLMs.qmd
     - Linear-models-overview.qmd
+    - logistic-regression.qmd
+    - count-regression.qmd
+    - intro-to-survival-analysis.qmd
+    - proportional-hazards-models.qmd
+    - coxph-model-building.qmd
+    - parametric-survival-models.qmd
     - references.qmd
 
 bibliography: references.bib
