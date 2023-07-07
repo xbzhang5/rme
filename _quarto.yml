@@ -5,6 +5,10 @@ book:
   title: "Regression Models for Epidemiology"
   author: "Ezra Morrison"
   date: "7/6/2023"
+  comments:
+    hypothesis:
+      theme: clean
+      openSidebar: false
   chapters:
     - index.qmd
     - intro-to-GLMs.qmd
