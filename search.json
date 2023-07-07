@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Regression Models for Epidemiology",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2"
+    "text": "Preface\nThis web-book is derived from my lecture slides for the Spring 2023 session of Epidemiology 204: “Quantitative Epidemiology III: Statistical Models”, at UC Davis.\nI have drawn these materials from many sources, including but not limited to:\n\nhttps://www.taylorfrancis.com/books/mono/10.1201/9781315182780/introduction-generalized-linear-models-adrian-barnett-annette-dobson\nhttps://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html\nhttps://link.springer.com/book/10.1007/978-1-4614-1353-0"
   },
   {
     "objectID": "intro.html",
