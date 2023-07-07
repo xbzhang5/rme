@@ -1,0 +1,15 @@
+project:
+  output-dir: _slides
+  render:
+    - index.qmd
+    - intro.qmd
+    - Linear-models-overview.qmd
+    - summary.qmd
+    - references.qmd
+
+title: "Regression Models for Epidemiology"
+author: "Ezra Morrison"
+date: "25/07/2022"
+bibliography: references.bib
+
+format: revealjs

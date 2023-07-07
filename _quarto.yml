@@ -1,0 +1,26 @@
+project:
+  type: book
+
+book:
+  title: "Regression Models for Epidemiology"
+  author: "Ezra Morrison"
+  date: "7/6/2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+       dark: darkly
+       light: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+editor: source
+
