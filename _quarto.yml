@@ -20,6 +20,7 @@ book:
     - coxph-model-building.qmd
     - parametric-survival-models.qmd
     - references.qmd
+  page-navigation: true
 
 bibliography: references.bib
 
@@ -31,6 +32,9 @@ format:
   pdf:
     documentclass: scrreprt
 
+execute:
+  cache: true
+  freeze: auto  # re-render only when source changes
 
 editor: source
 

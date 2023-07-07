@@ -33,11 +33,10 @@ editor_options:
 $$\def\eqdef{\stackrel{\text{def}}{=}}$$
 :::
 
-------------------------------------------------------------------------
 
-\[This content is adapted from Dobson & Barnett, An Introduction to Generalized Linear Models, 4th edition, Chapters 2-6\]
-
-------------------------------------------------------------------------
+:::{.callout-note}
+This content is adapted from Dobson & Barnett, An Introduction to Generalized Linear Models, 4th edition, Chapters 2-6\]
+:::
 
 ```{r setup, include = FALSE}
 options('digits' = 4)
@@ -657,7 +656,7 @@ $P(|\hat\beta_3| > |`r coef(bw_lm2)["sexmale:age"]`| \mid H_0)$ = ?
 
 R can give you Wald tests for single coefficients and corresponding CIs:
 
-```{r}
+```{r "wald tests bw_lm2"}
 
 bw_lm2 |> 
   parameters(ci_method = "wald") |> 

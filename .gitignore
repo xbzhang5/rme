@@ -2,8 +2,12 @@
 .Rhistory
 .RData
 .Ruserdata
-
 /.quarto/
 *.html
 *files/
 _*
+index.aux
+index.log
+index.pdf
+index.tex
+index.toc
