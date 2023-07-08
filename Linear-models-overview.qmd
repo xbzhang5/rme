@@ -1,6 +1,5 @@
 ---
 title: "Linear (Gaussian) Models"
-author: Ezra Morrison
 format: 
   pdf:
     toc: true

@@ -1,0 +1,7 @@
+---
+title: "Time to Event Models"
+---
+
+This section is adapted starting from the lecture notes by David Rocke from the 2021 edition of Epi 204:
+
+<http://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>

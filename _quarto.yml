@@ -20,10 +20,12 @@ book:
     - Linear-models-overview.qmd
     - logistic-regression.qmd
     - count-regression.qmd
-    - intro-to-survival-analysis.qmd
-    - proportional-hazards-models.qmd
-    - coxph-model-building.qmd
-    - parametric-survival-models.qmd
+    - part: time-to-event-models.qmd
+    chapters:
+       - intro-to-survival-analysis.qmd
+       - proportional-hazards-models.qmd
+       - coxph-model-building.qmd
+       - parametric-survival-models.qmd
     - references.qmd
   page-navigation: true
 

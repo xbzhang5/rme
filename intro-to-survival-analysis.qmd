@@ -1,6 +1,5 @@
 ---
 title: "Introduction to Survival Analysis"
-author: "Ezra Morrison"
 date: last-modified
 date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
 subject: "EPI 204 Spring 2023"

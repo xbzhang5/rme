@@ -1,7 +1,6 @@
 ---
 title: "Models for Count Outcomes"
 subtitle: "(Poisson Regression and Variations)"
-author: "Ezra Morrison"
 date: last-modified
 date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
 format: 
