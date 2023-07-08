@@ -1,0 +1,8 @@
+---
+title: "Generalized Linear Models"
+---
+
+This section is primarily adapted starting from the textbook "An Introduction to Generalized Linear Models" (4th edition, 2018)
+by Annette J. Dobson and Adrian G. Barnett:
+
+<https://www.routledge.com/An-Introduction-to-Generalized-Linear-Models/Dobson-Barnett/p/book/9781138741515>

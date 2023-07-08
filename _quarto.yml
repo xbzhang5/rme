@@ -17,11 +17,13 @@ book:
   chapters:
     - index.qmd
     - intro-to-GLMs.qmd
-    - Linear-models-overview.qmd
-    - logistic-regression.qmd
-    - count-regression.qmd
+    - part: glms.qmd
+      chapters:
+       - Linear-models-overview.qmd
+       - logistic-regression.qmd
+       - count-regression.qmd
     - part: time-to-event-models.qmd
-    chapters:
+      chapters:
        - intro-to-survival-analysis.qmd
        - proportional-hazards-models.qmd
        - coxph-model-building.qmd
