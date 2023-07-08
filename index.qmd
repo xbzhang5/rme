@@ -9,3 +9,9 @@ I have drawn these materials from many sources, including but not limited to:
 -   https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html
 
 -   https://link.springer.com/book/10.1007/978-1-4614-1353-0
+
+## License {.unnumbered}
+
+This book is licensed to you under [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+The code samples in this book are licensed under [Creative Commons CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/), i.e. public domain.
