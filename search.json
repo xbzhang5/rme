@@ -4,7 +4,14 @@
     "href": "index.html",
     "title": "Regression Models for Epidemiology",
     "section": "",
-    "text": "Preface\nThis web-book is derived from my lecture slides for the Spring 2023 session of Epidemiology 204: “Quantitative Epidemiology III: Statistical Models”, at UC Davis.\nI have drawn these materials from many sources, including but not limited to:\n\nhttps://www.taylorfrancis.com/books/mono/10.1201/9781315182780/introduction-generalized-linear-models-adrian-barnett-annette-dobson\nhttps://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html\nhttps://link.springer.com/book/10.1007/978-1-4614-1353-0"
+    "text": "Preface\nThis web-book is derived from my lecture slides for the Spring 2023 session of Epidemiology 204: “Quantitative Epidemiology III: Statistical Models”, at UC Davis.\nI have drawn these materials from many sources, including but not limited to:"
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Regression Models for Epidemiology",
+    "section": "License",
+    "text": "License\nThis book is licensed to you under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.\nThe code samples in this book are licensed under Creative Commons CC0 1.0 Universal (CC0 1.0), i.e. public domain."
   },
   {
     "objectID": "intro-to-GLMs.html",
