@@ -4,7 +4,12 @@ project:
 book:
   title: "Regression Models for Epidemiology"
   author: "Ezra Morrison"
-  date: "7/6/2023"
+  date: last-modified
+  date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
+  reader-mode: true
+  site-url: https://d-morrison.github.io/rme
+  repo-url: https://github.com/d-morrison/rme
+  repo-actions: [edit, issue]
   comments:
     hypothesis:
       theme: clean
@@ -29,8 +34,8 @@ format:
     theme:
        dark: darkly
        light: cosmo
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
 
 execute:
   cache: true
