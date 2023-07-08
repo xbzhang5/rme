@@ -73,13 +73,17 @@ Functions from these packages will be used throughout this document:
 ```{r packages, message = FALSE}
 library(pander) # format tables for markdown
 library(ggplot2) # graphics
+library(ggfortify) # help with graphics
 library(ggeasy) # help with graphics
+library(survminer) # survival analysis graphics
 library(dplyr) # manipulate data
 library(haven) # import Stata files
 library(knitr) # format R output for markdown
 library(tidyr) # Tools to help to create tidy data
 library(plotly) # interactive graphics
 library(dobson) # datasets from Dobson and Barnett 2018
+library(fs) # filesystem path manipulations
+library(KMsurv) # datasets from Klein and Moeschberger
 library(parameters) # format model output tables for markdown
 library(conflicted) # check for conflicting function definitions
 conflicts_prefer(dplyr::filter)
@@ -127,9 +131,7 @@ legend_text_size = 9
 ### Data
 
 ```{r}
-library(survival)
-library(KMsurv)
-data(hodg)
+data(hodg, package = "KMsurv")
 hodg2 = hodg |> 
   as_tibble() |> 
   mutate(
@@ -200,7 +202,6 @@ km_model = survfit(
   formula = surv ~ dtype + gtype,
   data = hodg2)
 
-library(ggfortify)
 km_model |> 
   autoplot(conf.int = FALSE) +
   theme_bw() +
@@ -608,7 +609,6 @@ print(hodg.zph)
 ### `gtype`
 
 ```{r}
-library(survminer)
 ggcoxzph(hodg.zph, var = "gtype")
 ```
 
@@ -1073,12 +1073,11 @@ Kleinbaum and Klein survival textbook (e.g., p281):
 
 ```{r}
 
-library(haven)
 anderson = 
   paste0(
     "http://web1.sph.emory.edu/dkleinb/allDatasets/",
     "surv2datasets/anderson.dta") |> 
-  read_dta() |> 
+  haven::read_dta() |> 
   mutate(
     status = status |> 
       case_match(
@@ -1112,7 +1111,6 @@ print(anderson)
 ## Cox semi-parametric proportional hazards model
 
 ```{r}
-library(survival)
 
 anderson.cox1 = coxph(
   formula = surv ~ rx + sex + logwbc,
@@ -1135,8 +1133,6 @@ cox.zph(anderson.cox1)
 anderson_km_model = survfit(
   formula = surv ~ sex,
   data = anderson)
-
-library(ggfortify)
 
 anderson_km_model |> 
   autoplot(conf.int = FALSE) +
@@ -1658,9 +1654,6 @@ related to cow tuberculosis.
     $\sqrt{2}=1.41$.
 
 ```{r}
-library(survival)
-library(haven)
-library(fs)
 bladder = 
   paste0(
     "http://web1.sph.emory.edu/dkleinb/allDatasets",
