@@ -48,6 +48,7 @@ editor:
 ---
 
 ::: hidden
+```{=tex}
 \def\cd{\cdot}
 \def\eqdef{\stackrel{\text{def}}{=}}
 \def\se{\text{SE}}
@@ -68,11 +69,11 @@ editor:
 \newcommand{\vc}[1]{\boldsymbol{#1}}
 \newcommand{\ind}[1]{\mathbb{1}_{#1}}
 \newcommand{\pr}{\text{p}}
+```
 :::
 
-
 ::: {.content-hidden when-format="revealjs"}
-## Configuring R{.unnumbered}
+## Configuring R {.unnumbered}
 
 Functions from these packages will be used throughout this document:
 
@@ -108,58 +109,72 @@ options('digits' = 4)
 
 ## Time to Event Data
 
-* Survival Analysis is a term for analyzing time-to-event data.
-* This is used in clinical trials, where the event is often death or
-recurrence of disease.
-* It is used in engineering reliability analysis, where the event is failure
-of a device or system.
-* It is used in insurance, particularly life insurance, where the event is death.
-
+-   Survival Analysis is a term for analyzing time-to-event data.
+-   This is used in clinical trials, where the event is often death or
+    recurrence of disease.
+-   It is used in engineering reliability analysis, where the event is
+    failure of a device or system.
+-   It is used in insurance, particularly life insurance, where the
+    event is death.
 
 ## Distributions of Time-to-Event Data
 
-* The distribution of event times is asymmetric and can be long-tailed, and starts at 0 (that is, $P(T<0) = 0$).
-* The base distribution is not normal, but exponential.
-* There are usually **censored** observations, which are ones in which the failure time is not observed.
-* Often, these are **right-censored**, meaning that we know that the event occurred after some known time $t$, but we don't know the actual event time, as when a patient
-is still alive at the end of the study.
-* Observations can also be **left-censored**, meaning we know the event has already happened at time $t$, or **interval-censored**, meaning that we only know
-that the event happened between times $t_1$ and $t_2$.
-* Analysis is difficult if censoring is associated with treatment.
+-   The distribution of event times is asymmetric and can be
+    long-tailed, and starts at 0 (that is, $P(T<0) = 0$).
+-   The base distribution is not normal, but exponential.
+-   There are usually **censored** observations, which are ones in which
+    the failure time is not observed.
+-   Often, these are **right-censored**, meaning that we know that the
+    event occurred after some known time $t$, but we don't know the
+    actual event time, as when a patient is still alive at the end of
+    the study.
+-   Observations can also be **left-censored**, meaning we know the
+    event has already happened at time $t$, or **interval-censored**,
+    meaning that we only know that the event happened between times
+    $t_1$ and $t_2$.
+-   Analysis is difficult if censoring is associated with treatment.
 
 ## Right Censoring
 
-* Patients are in a clinical trial for cancer, some on a new treatment and some on standard of care.
-* Some patients in each group have died by the end of the study. We know the survival time (measured for example from
-time of diagnosis---each person on their own clock).
-* Patients still alive at the end of the study are right censored.
-* Patients who are lost to follow-up or withdraw from the study may be right-censored.
+-   Patients are in a clinical trial for cancer, some on a new treatment
+    and some on standard of care.
+-   Some patients in each group have died by the end of the study. We
+    know the survival time (measured for example from time of
+    diagnosis---each person on their own clock).
+-   Patients still alive at the end of the study are right censored.
+-   Patients who are lost to follow-up or withdraw from the study may be
+    right-censored.
 
 ## Left and Interval Censoring
 
-* An individual tests positive for HIV.
-+ If the event is infection with HIV, then we only know that it has occurred before the testing time $t$, so this is left censored.
-+ If an individual has a negative HIV test at time $t_1$ and a positive HIV test
-at time $t_2$, then the infection event is interval censored.
+-   An individual tests positive for HIV.
+-   If the event is infection with HIV, then we only know that it has
+    occurred before the testing time $t$, so this is left censored.
+-   If an individual has a negative HIV test at time $t_1$ and a
+    positive HIV test at time $t_2$, then the infection event is
+    interval censored.
 
 ## Distribution functions for time-to-event variables
 
 ### The Probability Density Function (PDF)
 
-For a time-to-event variable $T$ with a continuous distribution, the **probability density function** is defined as usual:
+For a time-to-event variable $T$ with a continuous distribution, the
+**probability density function** is defined as usual:
 
-$$f(t)\eqdef p(t) \eqdef p(T=t)$$
+$$f(t)\stackrel{\text{def}}{=}p(t) \stackrel{\text{def}}{=}p(T=t)$$
 
-Typically, this density is assumed to be 0 for all $t<0$; that is, $f(t) = 0, \forall t<0$. In other words, the range of $T$ is typically $[0,\infty)$.
+Typically, this density is assumed to be 0 for all $t<0$; that is,
+$f(t) = 0, \forall t<0$. In other words, the range of $T$ is typically
+$[0,\infty)$.
 
 #### Example: exponential distribution
 
-Recall from Epi 202: the pdf of the exponential distribution family of models is:
+Recall from Epi 202: the pdf of the exponential distribution family of
+models is:
 
 $$
-p(T=t) = \ind{t \ge 0}\cdot \lambda  \e{-\lambda t}
-$$
-where $\lambda > 0$.
+p(T=t) = \mathbb{1}_{t \ge 0}\cdot \lambda  \text{e}^{-\lambda t}
+$$ where $\lambda > 0$.
 
 Here are some examples of exponential pdfs:
 
@@ -202,19 +217,19 @@ The **cumulative distribution function** is defined as:
 
 $$
 \begin{aligned}
-F(t) &\eqdef \Pr(T \le t)\\
+F(t) &\stackrel{\text{def}}{=}\Pr(T \le t)\\
 &=\int_{u=0}^t f(u) du
 \end{aligned}
 $$
 
 #### Example: exponential distribution
 
-Recall from Epi 202: the cdf of the exponential distribution family of models is:
+Recall from Epi 202: the cdf of the exponential distribution family of
+models is:
 
 $$
-P(T\le t) = \ind{t \ge 0}\cdot(1- \e{-\lambda t})
-$$
-where $\lambda > 0$.
+P(T\le t) = \mathbb{1}_{t \ge 0}\cdot(1- \text{e}^{-\lambda t})
+$$ where $\lambda > 0$.
 
 Here are some examples of exponential cdfs:
 
@@ -253,28 +268,30 @@ ggplot() +
 
 ### The Survival Function
 
-For survival data, a more important quantity is the **survival function**:
+For survival data, a more important quantity is the **survival
+function**:
 
 $$
 \begin{aligned}
-S(t) &\eqdef \Pr(T > t)\\
+S(t) &\stackrel{\text{def}}{=}\Pr(T > t)\\
 &=\int_{u=t}^\infty p(u) du\\
 &=1-F(t)\\
 \end{aligned}
 $$
 
-The survival function $S(t)$ is the probability that the event time is later than $t$.
-If the event in a clinical trial is death, then this is the expected fraction of the original population at
-time 0 that is still alive at time $t$; that is, the fraction surviving to time $t$.
+The survival function $S(t)$ is the probability that the event time is
+later than $t$. If the event in a clinical trial is death, then this is
+the expected fraction of the original population at time 0 that is still
+alive at time $t$; that is, the fraction surviving to time $t$.
 
 #### Example: exponential distribution
 
-Since $S(t) = 1 - F(t)$, the survival function of the exponential distribution family of models is:
+Since $S(t) = 1 - F(t)$, the survival function of the exponential
+distribution family of models is:
 
 $$
-P(T> t) = \ind{t \ge 0} \cdot \e{-\lambda t}
-$$
-where $\lambda > 0$.
+P(T> t) = \mathbb{1}_{t \ge 0} \cdot \text{e}^{-\lambda t}
+$$ where $\lambda > 0$.
 
 Here are some examples of exponential pdfs:
 
@@ -313,16 +330,17 @@ ggplot() +
 
 ### The Hazard Function
 
-Another important quantity is the **hazard function**, which represents the probability that the event will occur at time $t$, given that it has not occurred yet:
+Another important quantity is the **hazard function**, which represents
+the probability that the event will occur at time $t$, given that it has
+not occurred yet:
 
-$$h(t) \eqdef p(T=t|T\ge t)$$
+$$h(t) \stackrel{\text{def}}{=}p(T=t|T\ge t)$$
 
-:::{.callout-note}
+::: callout-note
 Recall from Epi 202: if $A\subseteq B$ then $p(A \cap B) = p(A)$.
-
 :::
 
-Now, $\{T=t\} \subseteq \{T\geq t\}$. So: 
+Now, $\{T=t\} \subseteq \{T\geq t\}$. So:
 
 $$
 \begin{aligned}
@@ -343,13 +361,12 @@ h(t) &=p(T=t|T\ge t)\\
 \end{aligned}
 $$
 
-
 #### Example: exponential distribution
 
 The hazard function of the exponential distribution family of models is:
 
 $$
-P(T> t) = \ind{t \ge 0}\cdot \lambda
+P(T> t) = \mathbb{1}_{t \ge 0}\cdot \lambda
 $$
 
 Here are some examples of exponential hazard functions:
@@ -384,21 +401,23 @@ ggplot() +
         hjust = 1))
 ```
 
-
 ### The Cumulative Hazard Function
 
 The **cumulative hazard function** $H(t)$ is defined as:
 
-$$H(t) \eqdef \int_{u=0}^t h(u) du$$
+$$H(t) \stackrel{\text{def}}{=}\int_{u=0}^t h(u) du$$
 
-As we will see below, $H(t)$ is tractable to estimate, and we can then derive an estimate the hazard function using an approximate derivative of the estimated cumulative hazard.
+As we will see below, $H(t)$ is tractable to estimate, and we can then
+derive an estimate the hazard function using an approximate derivative
+of the estimated cumulative hazard.
 
 #### Example: exponential distribution
 
-The cumulative hazard function of the exponential distribution family of models is:
+The cumulative hazard function of the exponential distribution family of
+models is:
 
 $$
-H(t) = \ind{t \ge 0}\cdot \lambda t
+H(t) = \mathbb{1}_{t \ge 0}\cdot \lambda t
 $$
 
 Here are some examples of exponential cumulative hazard functions:
@@ -438,17 +457,16 @@ ggplot() +
 $$
 \begin{aligned}
 S(t) &= 1 - F(t)\\
-&= \exp{-H(t)}\\
+&= \text{exp}\left\{-H(t)\right\}\\
 S'(t) &= -f(t)\\
-H(t) &= -\log{S(t)}\\
+H(t) &= -\text{log}\left\{S(t)\right\}\\
 H'(t) &= h(t)\\
 h(t) &= \frac{f(t)}{S(t)}\\
 f(t) &= h(t)\cdot S(t)\\
 \end{aligned}
 $$
 
-:::{.content-visible unless-format="revealjs"}
-
+::: {.content-visible unless-format="revealjs"}
 Some proofs (others left as exercises):
 
 $$
@@ -461,7 +479,7 @@ $$
 
 $$
 \begin{aligned}
-\frac{d}{dt}\log{S(t)} 
+\frac{d}{dt}\text{log}\left\{S(t)\right\} 
 &= \frac{S'(t)}{S(t)}\\
 &= -\frac{f(t)}{S(t)}\\
 &= -h(t)\\
@@ -471,21 +489,20 @@ $$
 $$
 \begin{aligned}
 H(t)
-&\eqdef \int_{u=0}^t h(u) du\\
-&= \int_0^t -\frac{d}{du}\log{S(u)} du\\
-&= \left[-\log{S(u)}\right]_{u=0}^{u=t}\\
-&= \left[\log{S(u)}\right]_{u=t}^{u=0}\\
-&= \log{S(0)} - \log{S(t)}\\
-&= \log{1} - \log{S(t)}\\
-&= 0 - \log{S(t)}\\
-&=-\log{S(t)}
+&\stackrel{\text{def}}{=}\int_{u=0}^t h(u) du\\
+&= \int_0^t -\frac{d}{du}\text{log}\left\{S(u)\right\} du\\
+&= \left[-\text{log}\left\{S(u)\right\}\right]_{u=0}^{u=t}\\
+&= \left[\text{log}\left\{S(u)\right\}\right]_{u=t}^{u=0}\\
+&= \text{log}\left\{S(0)\right\} - \text{log}\left\{S(t)\right\}\\
+&= \text{log}\left\{1\right\} - \text{log}\left\{S(t)\right\}\\
+&= 0 - \text{log}\left\{S(t)\right\}\\
+&=-\text{log}\left\{S(t)\right\}
 \end{aligned}
 $$
 
 Equivalently:
 
-$$S(t) = \exp{-H(t)}$$
-
+$$S(t) = \text{exp}\left\{-H(t)\right\}$$
 :::
 
 ### Example: Time to death the US in 2004
@@ -534,7 +551,6 @@ text(18,.00030,"Rest of First Week",col=3)
 text(18,.00015,"Rest of First month",col=4)
 ```
 
-
 #### Daily hazard rates for US Males and Females in 2004
 
 Exercise: hypothesize why these curves differ where they do?
@@ -554,10 +570,10 @@ legend(5,5e-6,c("Males","Females"),col=1:2,lwd=2)
 
 ```
 
-
 #### Survival curve for US females
 
-Exercise: compare and contrast this curve with the corresponding hazard curve.
+Exercise: compare and contrast this curve with the corresponding hazard
+curve.
 
 ```{r, echo = FALSE}
 #| fig-cap: "Survival Curve in 2004 for US Females"
@@ -573,45 +589,58 @@ plot(age2,exp(-cs2),type="l",lwd=2,xlab="Age",ylab="Survival")
 
 ```
 
-### Likelihood with censoring *
+### Likelihood with censoring \*
 
-:::{.callout-note}
-This subsection was not presented in class in 2023; it is not necessary to understand for the qualifying exam.
+::: callout-note
+This subsection was not presented in class in 2023; it is not necessary
+to understand for the qualifying exam.
 :::
 
-If an event time $T$ is observed exactly as $T=t$, then the likelihood of that observation is just its probability density function:
+If an event time $T$ is observed exactly as $T=t$, then the likelihood
+of that observation is just its probability density function:
 
 $$
 \begin{aligned}
 \mathcal L(t) 
 &= p(T=t)\\ 
-&\eqdef f_T(t)\\
+&\stackrel{\text{def}}{=}f_T(t)\\
 &= h_T(t)S_T(t)\\
 \ell(t) 
-&\eqdef \log{\mathcal L(t)}\\
-&= \log{h_T(t)S_T(t)}\\
-&= \log{h_T(t)} + \log{S_T(t)}\\
-&= \log{h_T(t)} - H_T(t)\\
+&\stackrel{\text{def}}{=}\text{log}\left\{\mathcal L(t)\right\}\\
+&= \text{log}\left\{h_T(t)S_T(t)\right\}\\
+&= \text{log}\left\{h_T(t)\right\} + \text{log}\left\{S_T(t)\right\}\\
+&= \text{log}\left\{h_T(t)\right\} - H_T(t)\\
 \end{aligned}
 $$
 
-If instead the event time $T$ is censored and only known to be after time $y$, then the likelihood of that censored observation is instead the survival function evaluated at the censoring time:
+If instead the event time $T$ is censored and only known to be after
+time $y$, then the likelihood of that censored observation is instead
+the survival function evaluated at the censoring time:
 
 $$
 \begin{aligned}
 \mathcal L(y) 
 &=p_T(T>y)\\
-&\eqdef S_T(y)\\
+&\stackrel{\text{def}}{=}S_T(y)\\
 \ell(y)
-&\eqdef \log{\mathcal L(y)}\\
-&=\log{S(y)}\\
+&\stackrel{\text{def}}{=}\text{log}\left\{\mathcal L(y)\right\}\\
+&=\text{log}\left\{S(y)\right\}\\
 &=-H(y)\\
 \end{aligned}
 $$
 
-What's written above is incomplete. We also observed whether or not the observation was censored. Let $C$ denote the time when censoring would occur (if the event did not occur first); let $f_C(y)$ and $S_C(y)$ be the corresponding density and survival functions for the censoring event.
+What's written above is incomplete. We also observed whether or not the
+observation was censored. Let $C$ denote the time when censoring would
+occur (if the event did not occur first); let $f_C(y)$ and $S_C(y)$ be
+the corresponding density and survival functions for the censoring
+event.
 
-Let $Y$ denote the time when observation ended (either by censoring or by the event of interest occurring), and let $D$ be an indicator variable for the event occurring at $Y$ (so $D=0$ represents a censored observation and $D=1$ represents an uncensored observation). In other words, let $Y \eqdef \min(T,C)$ and $D \eqdef \mathbb 1{\{T<=C\}}$.
+Let $Y$ denote the time when observation ended (either by censoring or
+by the event of interest occurring), and let $D$ be an indicator
+variable for the event occurring at $Y$ (so $D=0$ represents a censored
+observation and $D=1$ represents an uncensored observation). In other
+words, let $Y \stackrel{\text{def}}{=}\min(T,C)$ and
+$D \stackrel{\text{def}}{=}\mathbb 1{\{T<=C\}}$.
 
 Then the complete likelihood of the observed data $(Y,D)$ is:
 
@@ -624,10 +653,11 @@ $$
 \end{aligned}
 $$
 
+Typically, survival analyses assume that $C$ and $T$ are mutually
+independent; this assumption is called "non-informative" censoring.
 
-Typically, survival analyses assume that $C$ and $T$ are mutually independent; this assumption is called "non-informative" censoring. 
-
-Then the joint likelihood $p(Y,D)$ factors into the product $p(Y), p(D)$, and the likelihood reduces to:
+Then the joint likelihood $p(Y,D)$ factors into the product
+$p(Y), p(D)$, and the likelihood reduces to:
 
 $$
 \begin{aligned}
@@ -650,25 +680,25 @@ The corresponding log-likelihood is:
 $$
 \begin{aligned}
 \ell(y,d) 
-&= \log{\mathcal L(y,d) }\\
-&= \log{
+&= \text{log}\left\{\mathcal L(y,d) \right\}\\
+&= \text{log}\left\{
 \left(f_T(y)^d \cdot S_T(y)^{1-d}\right)\cdot 
 \left(f_C(y)^{1-d} \cdot S_C(y)^{d}\right)
-}\\
-&= \log{
+\right\}\\
+&= \text{log}\left\{
 f_T(y)^d \cdot S_T(y)^{1-d}
-} 
+\right\} 
 +
-\log{
+\text{log}\left\{
 f_C(y)^{1-d} \cdot S_C(y)^{d}
-}\\
+\right\}\\
 \end{aligned}
-$$
-Let 
+$$ Let
 
-* $\theta_T$ represent the parameters of $p_T(t)$, 
-* $\theta_C$ represent the parameters of $p_C(c)$, 
-* $\theta = (\theta_T, \theta_C)$ be the combined vector of all parameters.
+-   $\theta_T$ represent the parameters of $p_T(t)$,
+-   $\theta_C$ represent the parameters of $p_C(c)$,
+-   $\theta = (\theta_T, \theta_C)$ be the combined vector of all
+    parameters.
 
 Then corresponding score function is:
 
@@ -677,68 +707,69 @@ $$
 \ell'(y,d) 
 &= \frac{d}{d\theta} 
 \left[
-\log{
+\text{log}\left\{
 f_T(y)^d \cdot S_T(y)^{1-d}
-} 
+\right\} 
 +
-\log{
+\text{log}\left\{
 f_C(y)^{1-d} \cdot S_C(y)^{d}
-}
+\right\}
 \right]\\
 &= 
 \left(
 \frac{d}{d\theta} 
-\log{
+\text{log}\left\{
 f_T(y)^d \cdot S_T(y)^{1-d}
-}
+\right\}
 \right)
 +
 \left(
 \frac{d}{d\theta} 
-\log{
+\text{log}\left\{
 f_C(y)^{1-d} \cdot S_C(y)^{d}
-}
+\right\}
 \right)\\
 \end{aligned}
 $$
 
-As long as $\theta_C$ and $\theta_T$ don't share any parameters,
-then if censoring is non-informative, the partial derivative with respect to $\theta_T$ is:
+As long as $\theta_C$ and $\theta_T$ don't share any parameters, then if
+censoring is non-informative, the partial derivative with respect to
+$\theta_T$ is:
 
 $$
 \begin{aligned}
 \ell'_{\theta_T}(y,d)
-&\eqdef \frac{d}{d\theta_T}\ell(y,d)\\
+&\stackrel{\text{def}}{=}\frac{d}{d\theta_T}\ell(y,d)\\
 &= 
 \left(
 \frac{d}{d\theta_T} 
-\log{
+\text{log}\left\{
 f_T(y)^d \cdot S_T(y)^{1-d}
-}
+\right\}
 \right)
 +
 \left(
 \frac{d}{d\theta_T} 
-\log{
+\text{log}\left\{
 f_C(y)^{1-d} \cdot S_C(y)^{d}
-}
+\right\}
 \right)\\
 &= 
 \left(
 \frac{d}{d\theta_T} 
-\log{
+\text{log}\left\{
 f_T(y)^d \cdot S_T(y)^{1-d}
-}
+\right\}
 \right) + 0\\
 &= 
 \frac{d}{d\theta_T} 
-\log{
+\text{log}\left\{
 f_T(y)^d \cdot S_T(y)^{1-d}
-}\\
+\right\}\\
 \end{aligned}
-$$
-Thus, the MLE for $\theta_T$ won't depend on $\theta_C$, and 
-we can ignore the distribution of $C$ when estimating the parameters of $f_T(t)=p(T=t)$.
+$$ Thus, the MLE for $\theta_T$ won't depend on $\theta_C$, and we can
+ignore the distribution of $C$ when estimating the parameters of
+$f_T(t)=p(T=t)$.
 
 Then:
 
@@ -753,72 +784,78 @@ $$
 \end{aligned}
 $$
 
-That is, if the event occurred at time $y$  (i.e., if $d=1$), then the likelihood of $(Y,D) = (y,d)$ is equal to the hazard function at $y$ times the survival function at $y$. Otherwise, the likelihood is equal to just the survival function at $y$.
+That is, if the event occurred at time $y$ (i.e., if $d=1$), then the
+likelihood of $(Y,D) = (y,d)$ is equal to the hazard function at $y$
+times the survival function at $y$. Otherwise, the likelihood is equal
+to just the survival function at $y$.
 
 The corresponding log-likelihood is:
 
 $$
 \begin{aligned}
 \ell(y,d)
-&=\log{\mathcal L(y,d)}\\
-&= \log{S_T(y) \cdot h_T(y)^d}\\
-&= \log{S_T(y)} + \log{h_T(y)^d}\\
-&= \log{S_T(y)} + d\cdot \log{h_T(y)}\\
-&= -H_T(y) + d\cdot \log{h_T(y)}\\
+&=\text{log}\left\{\mathcal L(y,d)\right\}\\
+&= \text{log}\left\{S_T(y) \cdot h_T(y)^d\right\}\\
+&= \text{log}\left\{S_T(y)\right\} + \text{log}\left\{h_T(y)^d\right\}\\
+&= \text{log}\left\{S_T(y)\right\} + d\cdot \text{log}\left\{h_T(y)\right\}\\
+&= -H_T(y) + d\cdot \text{log}\left\{h_T(y)\right\}\\
 \end{aligned}
 $$
 
-In other words, the log-likelihood contribution from a single observation $(Y,D) = (y,d)$ is equal to the negative cumulative hazard at $y$, plus the log of the hazard at $y$ if the event occurred at time $y$.
+In other words, the log-likelihood contribution from a single
+observation $(Y,D) = (y,d)$ is equal to the negative cumulative hazard
+at $y$, plus the log of the hazard at $y$ if the event occurred at time
+$y$.
 
-:::{.callout-note}
+::: callout-note
 End of extra section.
 :::
-
 
 # Parametric Models for Time-to-Event Outcomes
 
 ## Exponential Distribution
-* The exponential distribution is the base distribution for survival analysis.
-* The distribution has a constant hazard $\lambda$
-* The mean survival time is $\lambda^{-1}$
 
+-   The exponential distribution is the base distribution for survival
+    analysis.
+-   The distribution has a constant hazard $\lambda$
+-   The mean survival time is $\lambda^{-1}$
 
 ### Mathematical details of exponential distribution
 
 $$
 \begin{aligned}
-f(t) &= \lambda \e{-\lambda t}\\
+f(t) &= \lambda \text{e}^{-\lambda t}\\
 E(t) &= \lambda^{-1}\\
 Var(t) &= \lambda^{-2}\\
-F(t) &= 1-\e{-\lambda x}\\
-S(t)&= \e{-\lambda x}\\
+F(t) &= 1-\text{e}^{-\lambda x}\\
+S(t)&= \text{e}^{-\lambda x}\\
 \ln(S(t))&=-\lambda x\\
-h(t) &= -\frac{f(t)}{S(t)} = -\frac{\lambda \e{-\lambda t}}{\e{-\lambda t}}=\lambda
+h(t) &= -\frac{f(t)}{S(t)} = -\frac{\lambda \text{e}^{-\lambda t}}{\text{e}^{-\lambda t}}=\lambda
 \end{aligned}
 $$
 
 ### Estimation of $\lambda$
-* Suppose we have $m$ exponential survival times of $t_1, t_2,\ldots,t_m$ and
-$k$ right-censored values at $u_1,u_2,\ldots,u_k$.
 
-* A survival time of $t_i=10$ means that
-subject $i$ died at time 10. A right-censored time $u_i=10$ means that at time 10, subject $i$ was still
-alive and that we have no further follow-up.
+-   Suppose we have $m$ exponential survival times of
+    $t_1, t_2,\ldots,t_m$ and $k$ right-censored values at
+    $u_1,u_2,\ldots,u_k$.
 
-* For the moment we will assume that the survival distribution is exponential and that all the subjects have
-the same parameter $\lambda$.
+-   A survival time of $t_i=10$ means that subject $i$ died at time 10.
+    A right-censored time $u_i=10$ means that at time 10, subject $i$
+    was still alive and that we have no further follow-up.
 
-We have $m$ exponential survival times of $t_1, t_2,\ldots,t_m$ and
-$k$ right-censored values at $u_1,u_2,\ldots,u_k$. The log-likelihood of an observed survival time
-$t_i$ is
-$$
-\log{\lambda \e{-\lambda t_i}} =
-\log{\lambda}-\lambda t_i
-$$
-and the likelihood of a censored value is the probability of
-that outcome (survival greater than $u_j$) so the log-likelihood is
-$$
-\log{\lambda \e{u_j}} =-\lambda u_j.
+-   For the moment we will assume that the survival distribution is
+    exponential and that all the subjects have the same parameter
+    $\lambda$.
+
+We have $m$ exponential survival times of $t_1, t_2,\ldots,t_m$ and $k$
+right-censored values at $u_1,u_2,\ldots,u_k$. The log-likelihood of an
+observed survival time $t_i$ is $$
+\text{log}\left\{\lambda \text{e}^{-\lambda t_i}\right\} =
+\text{log}\left\{\lambda\right\}-\lambda t_i
+$$ and the likelihood of a censored value is the probability of that
+outcome (survival greater than $u_j$) so the log-likelihood is $$
+\text{log}\left\{\lambda \text{e}^{u_j}\right\} =-\lambda u_j.
 $$
 
 Let $T=\sum t_i$ and $U=\sum u_j$. Then:
@@ -837,85 +874,103 @@ $$
 \end{aligned}
 $$
 
-
 ### Fisher Information and Standard Error
 
 $$
 \begin{aligned}
 E[-\ell'']
 & = m/\lambda^2\\
-\Var{\hat\lambda} 
-&\approx \inv{E[-\ell'']}\\
+\text{Var}\left(\hat\lambda\right) 
+&\approx \left(E[-\ell'']\right)^{-1}\\
 &=\lambda^2/m\\
-\SE{\hat\lambda} 
-&= \sqrt{\Var{\hat\lambda}}\\
+\text{SE}\left(\hat\lambda\right) 
+&= \sqrt{\text{Var}\left(\hat\lambda\right)}\\
 &\approx \lambda/\sqrt{m}
 \end{aligned}
 $$
 
-
-$\hat\lambda$ depends on the censoring times of the censored observations,
-but $\Var{\hat\lambda}$ only depends on the number of uncensored observations, $m$, and not on the number of censored observations ($k$).
+$\hat\lambda$ depends on the censoring times of the censored
+observations, but $\text{Var}\left(\hat\lambda\right)$ only depends on
+the number of uncensored observations, $m$, and not on the number of
+censored observations ($k$).
 
 ### Other Parametric Survival Distributions
 
-* Any density on $[0,\infty)$ can be a survival distribution, but the most useful ones are all skew right.
-* The commonest generalization of the exponential is the Weibull.
-* Other common choices are the gamma, log-normal, log-logistic, Gompertz, inverse Gaussian, and Pareto.
-* Most of what we do going forward is non-parametric or semi-parametric, but sometimes these parametric distributions provide
-a useful approach.
+-   Any density on $[0,\infty)$ can be a survival distribution, but the
+    most useful ones are all skew right.
+-   The commonest generalization of the exponential is the Weibull.
+-   Other common choices are the gamma, log-normal, log-logistic,
+    Gompertz, inverse Gaussian, and Pareto.
+-   Most of what we do going forward is non-parametric or
+    semi-parametric, but sometimes these parametric distributions
+    provide a useful approach.
 
 ## Weibull Distribution
 
 $$
 \begin{aligned}
-p(t)&= \alpha\lambda x^{\alpha-1}\e{-\lambda x^\alpha}\\
+p(t)&= \alpha\lambda x^{\alpha-1}\text{e}^{-\lambda x^\alpha}\\
 h(t)&=\alpha\lambda x^{\alpha-1}\\
-S(t)&=\e{-\lambda x^\alpha}\\
+S(t)&=\text{e}^{-\lambda x^\alpha}\\
 E(T)&= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 \end{aligned}
 $$
 
-When $\alpha=1$ this is the exponential. When $\alpha>1$ the hazard is increasing and
-when $\alpha < 1$ the hazard is decreasing. This provides more flexibility than the exponential.
+When $\alpha=1$ this is the exponential. When $\alpha>1$ the hazard is
+increasing and when $\alpha < 1$ the hazard is decreasing. This provides
+more flexibility than the exponential.
 
 We will see more of this distribution later.
 
 # Nonparametric Survival Analysis
 
 ## Basic ideas
-* Mostly, we work without a parametric model.
 
-* The first task is to estimate a survival function from data listing survival times, and censoring
-times for censored data.
+-   Mostly, we work without a parametric model.
 
-* For example one patient may have relapsed at 10 months. Another might have been followed for 32 months
-without a relapse having occurred (censored).
+-   The first task is to estimate a survival function from data listing
+    survival times, and censoring times for censored data.
 
-* The minimum information we need for each patient is a time and a censoring variable which is
-1 if the event occurred at the indicated time and 0 if this is a censoring time.
+-   For example one patient may have relapsed at 10 months. Another
+    might have been followed for 32 months without a relapse having
+    occurred (censored).
+
+-   The minimum information we need for each patient is a time and a
+    censoring variable which is 1 if the event occurred at the indicated
+    time and 0 if this is a censoring time.
 
 # Example: clinical trial for pediatric acute leukemia
 
 ## Overview of study
 
-This is from a clinical trial in 1963 for 6-MP  treatment vs. placebo for Acute Leukemia in 42 children. 
+This is from a clinical trial in 1963 for 6-MP treatment vs. placebo for
+Acute Leukemia in 42 children.
 
-* Pairs of children:
-  + matched by remission status at the time of treatment (`remstat`: `1` = partial, `2` = complete)
-  + randomized to 6-MP (exit times in `t2`) or placebo (exit times in `t1`)
+-   Pairs of children:
 
-* Followed until relapse or end of study.
+    -   matched by remission status at the time of treatment (`remstat`:
+        `1` = partial, `2` = complete)
+    -   randomized to 6-MP (exit times in `t2`) or placebo (exit times
+        in `t1`)
 
-* All of the placebo group relapsed, but some of the 6-MP group were censored (which means they were still in remission); indicated by `relapse` variable (`0` = censored, `1` = relapse).
+-   Followed until relapse or end of study.
 
-* 6-MP = 6-Mercaptopurine (Purinethol) is an anti-cancer ("antineoplastic" or "cytotoxic") chemotherapy drug used currently for Acute lymphoblastic leukemia (ALL). It is classified as an antimetabolite.
+-   All of the placebo group relapsed, but some of the 6-MP group were
+    censored (which means they were still in remission); indicated by
+    `relapse` variable (`0` = censored, `1` = relapse).
 
-## Study design{.smaller}
+-   6-MP = 6-Mercaptopurine (Purinethol) is an anti-cancer
+    ("antineoplastic" or "cytotoxic") chemotherapy drug used currently
+    for Acute lymphoblastic leukemia (ALL). It is classified as an
+    antimetabolite.
 
-Clinical trial in 1963 for 6-MP  treatment vs. placebo for Acute Leukemia in 42 children. Pairs of children matched
-by remission status at the time of treatment (1 = partial or 2 = complete) and randomized to 6-MP or placebo. Followed until relapse or end of study.
-All of the placebo group relapsed, but some of the 6-MP group were censored.
+## Study design {.smaller}
+
+Clinical trial in 1963 for 6-MP treatment vs. placebo for Acute Leukemia
+in 42 children. Pairs of children matched by remission status at the
+time of treatment (1 = partial or 2 = complete) and randomized to 6-MP
+or placebo. Followed until relapse or end of study. All of the placebo
+group relapsed, but some of the 6-MP group were censored.
 
 ```{r}
 library(KMsurv)
@@ -933,43 +988,58 @@ library(KMsurv)
 
 ## Descriptive Statistics
 
-* The average time in each group is not useful. Some of the 6-MP patients have not relapsed
-at the time recorded, while all of the placebo patients have relapsed.
-* The median time is not really useful either because so many of the 6-MP patients have not relapsed (12/21).
-* Both are biased down in the 6-MP group. Remember that lower times are worse since they indicate sooner recurrence.
-* We can compute the average hazard rate, which is the estimate of the exponential parameter:
-number of relapses divided by the sum of the times.
-* For the placebo, that is just the reciprocal of the mean time = 1/8.667 = 0.115.
-* For the 6-MP group this is 9/359 = 0.025
-* The estimated average hazard in the placebo group is 4.6 times as large (if the hazard is constant over time).
+-   The average time in each group is not useful. Some of the 6-MP
+    patients have not relapsed at the time recorded, while all of the
+    placebo patients have relapsed.
+-   The median time is not really useful either because so many of the
+    6-MP patients have not relapsed (12/21).
+-   Both are biased down in the 6-MP group. Remember that lower times
+    are worse since they indicate sooner recurrence.
+-   We can compute the average hazard rate, which is the estimate of the
+    exponential parameter: number of relapses divided by the sum of the
+    times.
+-   For the placebo, that is just the reciprocal of the mean time =
+    1/8.667 = 0.115.
+-   For the 6-MP group this is 9/359 = 0.025
+-   The estimated average hazard in the placebo group is 4.6 times as
+    large (if the hazard is constant over time).
 
 # The Kaplan-Meier Product Limit Estimator
 
-* The estimated survival function for the placebo patients is easy to compute. For any time $t$ in months,
-$S(t)$ is the fraction of patients with times greater than $t$.
+-   The estimated survival function for the placebo patients is easy to
+    compute. For any time $t$ in months, $S(t)$ is the fraction of
+    patients with times greater than $t$.
 
-* For the 6-MP patients, we cannot ignore the censored data because we know that the time to relapse
-is greater than the censoring time.
+-   For the 6-MP patients, we cannot ignore the censored data because we
+    know that the time to relapse is greater than the censoring time.
 
-* For any time $t$ in months, we know that 6-MP patients with times greater than $t$ have not relapsed, and those
-with relapse time less than $t$ have relapsed, but we don't know if patients with censored time less than $t$ have relapsed or not.
+-   For any time $t$ in months, we know that 6-MP patients with times
+    greater than $t$ have not relapsed, and those with relapse time less
+    than $t$ have relapsed, but we don't know if patients with censored
+    time less than $t$ have relapsed or not.
 
-* The procedure we usually use is the Kaplan-Meier product-limit estimator of the survival function.
+-   The procedure we usually use is the Kaplan-Meier product-limit
+    estimator of the survival function.
 
-* The Kaplan-Meier estimator is a step function (like the empirical cdf), which changes
-value only at the event times, not at the censoring times.
-* At each event time $t$, we compute the at-risk group size $Y$, which is all those observations
-whose event time or censoring time is at least $t$.
-* If $d$ of the observations have an event time (not a censoring time) of $t$, then the
-group of survivors immediately following time $t$ is reduced by the fraction
-$$\frac{Y-d}{Y}=1-\frac{d}{Y}$$
+-   The Kaplan-Meier estimator is a step function (like the empirical
+    cdf), which changes value only at the event times, not at the
+    censoring times.
 
-If the event times are $t_i$ with events per time of $d_i$ ($1\le i \le k$), then
-$$\hat S(t) = \prod_{t_i < t}[1-d_i/Y_i]$$
-where $Y_i$ is the set of observations whose time (event or censored) is $\ge t_i$, the group at risk at time $t_i$.
+-   At each event time $t$, we compute the at-risk group size $Y$, which
+    is all those observations whose event time or censoring time is at
+    least $t$.
 
-If there are no censored data, and there are $n$ data points, then just after (say) the third event time
-$$
+-   If $d$ of the observations have an event time (not a censoring time)
+    of $t$, then the group of survivors immediately following time $t$
+    is reduced by the fraction $$\frac{Y-d}{Y}=1-\frac{d}{Y}$$
+
+If the event times are $t_i$ with events per time of $d_i$
+($1\le i \le k$), then $$\hat S(t) = \prod_{t_i < t}[1-d_i/Y_i]$$ where
+$Y_i$ is the set of observations whose time (event or censored) is
+$\ge t_i$, the group at risk at time $t_i$.
+
+If there are no censored data, and there are $n$ data points, then just
+after (say) the third event time $$
 \begin{aligned}
 \hat S(t) 
 &= \prod_{t_i < t}[1-d_i/Y_i]\\
@@ -984,7 +1054,9 @@ where $\hat F(t)$ is the usual empirical CDF estimate.
 
 ## Kaplan-Meier curve for `drug6mp` data
 
-Here is the Kaplan-Meier estimated survival curve for the patients who received 6-MP in the `drug6mp` dataset (we will see code to produce figures like this one shortly):
+Here is the Kaplan-Meier estimated survival curve for the patients who
+received 6-MP in the `drug6mp` dataset (we will see code to produce
+figures like this one shortly):
 
 ```{r, echo = FALSE}
 #| fig-cap: "Kaplan-Meier Survival Curve for 6-MP Patients"
@@ -1009,7 +1081,7 @@ drug6mp_km_model1 |>
 
 ```
 
-## Kaplan-Meier calculations{.smaller}
+## Kaplan-Meier calculations {.smaller}
 
 Let's compute these estimates and build the chart by hand:
 
@@ -1065,21 +1137,25 @@ library(pander)
 pander(km.6mp)
 ```
 
-
 ### Summary
 
-For the 6-MP patients at time 6 months, there are 21 patients at risk. At $t=6$ there are 3 relapses and 1 censored observations.
+For the 6-MP patients at time 6 months, there are 21 patients at risk.
+At $t=6$ there are 3 relapses and 1 censored observations.
 
-The Kaplan-Meier factor is $(21-3)/21 = 0.857$. The number at risk for the next time ($t=7$) is $21-3-1=17$.
+The Kaplan-Meier factor is $(21-3)/21 = 0.857$. The number at risk for
+the next time ($t=7$) is $21-3-1=17$.
 
-At time 7 months, there are 17 patients at risk. At $t=7$ there is 1 relapse and 0 censored observations.
-The Kaplan-Meier factor is $(17-1)/17 = 0.941$. The Kaplan Meier estimate is
-$0.857\times0.941=0.807$. The number at risk for the next time ($t=9$) is $17-1=16$.
+At time 7 months, there are 17 patients at risk. At $t=7$ there is 1
+relapse and 0 censored observations. The Kaplan-Meier factor is
+$(17-1)/17 = 0.941$. The Kaplan Meier estimate is
+$0.857\times0.941=0.807$. The number at risk for the next time ($t=9$)
+is $17-1=16$.
 
 Now, let's graph this estimated survival curve using `ggplot()`:
 
-```{r}
+```{r "estimated survival curve"}
 library(ggplot2)
+conflicts_prefer(dplyr::filter)
 km.6mp |> 
   ggplot(aes(x = t2, y = `KM Survival Curve`)) +
   geom_step() +
@@ -1092,11 +1168,16 @@ km.6mp |>
 
 # Using the `survival` package in R
 
-We don't have to do these calculations by hand every time; the `survival` package and several others have functions available to automate many of these tasks (full list: <https://cran.r-project.org/web/views/Survival.html>).
+We don't have to do these calculations by hand every time; the
+`survival` package and several others have functions available to
+automate many of these tasks (full list:
+<https://cran.r-project.org/web/views/Survival.html>).
 
 ## The `Surv` function
 
-To use the `survival` package, the first step is telling R how to combine the exit time and exit reason (censoring versus event) columns. The `Surv()` function accomplishes this task.
+To use the `survival` package, the first step is telling R how to
+combine the exit time and exit reason (censoring versus event) columns.
+The `Surv()` function accomplishes this task.
 
 ### Example: `Surv()` with `drug6mp` data
 
@@ -1115,30 +1196,36 @@ print(drug6mp.v3)
 
 ```
 
-The output of `Surv()` is a vector of objects with class `Surv`. When we print this vector:
+The output of `Surv()` is a vector of objects with class `Surv`. When we
+print this vector:
 
-* observations where the event was observed are printed as the event time (for example, `surv2 = 10` on line 1)
+-   observations where the event was observed are printed as the event
+    time (for example, `surv2 = 10` on line 1)
 
-* observations where the event was right-censored are printed as the censoring time with a plus sign (`+`; for example, `surv2 = 32+` on line 3).
+-   observations where the event was right-censored are printed as the
+    censoring time with a plus sign (`+`; for example, `surv2 = 32+` on
+    line 3).
 
 ## The `survfit` function
 
-Once we have constructed our `Surv` variable, we can calculate the Kaplan-Meier estimate of the survival curve using the `survfit()` function.
+Once we have constructed our `Surv` variable, we can calculate the
+Kaplan-Meier estimate of the survival curve using the `survfit()`
+function.
 
-:::{.callout-note}
-The documentation for `?survfit` isn't too helpful; the `survfit.formula` documentation is better.
+::: callout-note
+The documentation for `?survfit` isn't too helpful; the
+`survfit.formula` documentation is better.
 
 ```{r, printr.help.sections = c("description", "usage")}
 #| include: false
 ?survfit.formula
 ```
-
 :::
-
 
 ### Example: `survfit()` with `drug6mp` data
 
-Here we use `survfit()` to create a `survfit` object, which contains the Kaplan-Meier estimate:
+Here we use `survfit()` to create a `survfit` object, which contains the
+Kaplan-Meier estimate:
 
 ```{r}
 #| code-fold: show
@@ -1185,7 +1272,8 @@ summary(
 
 ## Plotting estimated survival functions
 
-We can plot `survfit` objects with `plot()`, `autoplot()`, or `ggsurvplot()`:
+We can plot `survfit` objects with `plot()`, `autoplot()`, or
+`ggsurvplot()`:
 
 ```{r}
 #| code-fold: show
@@ -1215,7 +1303,6 @@ drug6mp.km_model |>
   relocate(p, .before = everything())
 ```
 
-
 ## Two-sample tests
 
 ### The `survdiff` function
@@ -1226,7 +1313,9 @@ drug6mp.km_model |>
 
 ### Example: `survdiff()` with `drug6mp` data
 
-Now we are going to compare the placebo and 6-MP data. We need to reshape the data to make it usable with the standard `survival` workflow:
+Now we are going to compare the placebo and 6-MP data. We need to
+reshape the data to make it usable with the standard `survival`
+workflow:
 
 ```{r}
 library(survival)
@@ -1256,7 +1345,8 @@ drug6mp.v4 =
   )
 ```
 
-Using this long data format, we can fit a Kaplan-Meier curve for each treatment group simultaneously:
+Using this long data format, we can fit a Kaplan-Meier curve for each
+treatment group simultaneously:
 
 ```{r}
 drug6mp.km_model2 = 
@@ -1271,7 +1361,7 @@ We can plot the curves in the same graph:
 drug6mp.km_model2 |> autoplot()
 ```
 
-We can also perform something like a t-test, where the null hypothesis 
+We can also perform something like a t-test, where the null hypothesis
 is that the curves are the same:
 
 ```{r}
@@ -1280,8 +1370,8 @@ survdiff(
   data = drug6mp.v4)
 ```
 
-By default, `survdiff()` ignores any pairing, but we can use `strata()` to perform
-something similar to a paired t-test:
+By default, `survdiff()` ignores any pairing, but we can use `strata()`
+to perform something similar to a paired t-test:
 
 ```{r}
 survdiff(
@@ -1290,32 +1380,34 @@ survdiff(
 
 ```
 
-Interestingly, accounting for pairing reduces the significant of the difference.
+Interestingly, accounting for pairing reduces the significant of the
+difference.
 
 # Example: Bone Marrow Transplant Data
 
 (Copelan et al., 1991)
 
-#### Treatment{.unnumbered}
+#### Treatment {.unnumbered}
 
-* **allogeneic** (from a donor) **bone marrow transplant therapy** 
+-   **allogeneic** (from a donor) **bone marrow transplant therapy**
 
-#### Inclusion criteria{.unnumbered}
+#### Inclusion criteria {.unnumbered}
 
-* **acute myeloid leukemia (AML)**
-* **acute lymphoblastic leukemia (ALL).**
+-   **acute myeloid leukemia (AML)**
+-   **acute lymphoblastic leukemia (ALL).**
 
-#### Possible intermediate events{.unnumbered}
+#### Possible intermediate events {.unnumbered}
 
-* **graft vs. host disease (GVHD)**: an immunological rejection response to the transplant
-* **platelet recovery**: a return of platelet count to normal levels. 
+-   **graft vs. host disease (GVHD)**: an immunological rejection
+    response to the transplant
+-   **platelet recovery**: a return of platelet count to normal levels.
 
 One or the other, both in either order, or neither may occur.
 
 #### End point events
 
-* relapse of the disease
-* death
+-   relapse of the disease
+-   death
 
 Any or all of these events may be censored.
 
@@ -1329,19 +1421,22 @@ library(KMsurv)
 
 ## Analysis plan
 
-* We concentrate for now on disease-free survival (`t2` and `d3`) for the three risk groups, ALL, AML Low Risk, and AML High Risk.
-* We will construct the Kaplan-Meier survival curves, compare them, and test for differences.
-* We will construct the cumulative hazard curves and compare them.
-* We will estimate the hazard functions, interpret, and compare them.
+-   We concentrate for now on disease-free survival (`t2` and `d3`) for
+    the three risk groups, ALL, AML Low Risk, and AML High Risk.
+-   We will construct the Kaplan-Meier survival curves, compare them,
+    and test for differences.
+-   We will construct the cumulative hazard curves and compare them.
+-   We will estimate the hazard functions, interpret, and compare them.
 
 ## Survival Function Estimate and Variance
 
-$$\hat S(t) = \prod_{t_i < t}\left[1-\frac{d_i}{Y_i}\right]$$
-where $Y_i$ is the group at risk at time $t_i$.
+$$\hat S(t) = \prod_{t_i < t}\left[1-\frac{d_i}{Y_i}\right]$$ where
+$Y_i$ is the group at risk at time $t_i$.
 
 The estimated variance of $\hat S(t)$ is (Greenwood's formula)
-$$\varh{\hat S (t)} = \hat S(t)^2\sum_{t_i <t}\frac{d_i}{Y_i(Y_i-d_i)}$$
-which we can use for confidence intervals for a survival function or a difference of survival functions.
+$$\hat{\text{Var}}\left(\hat S (t)\right) = \hat S(t)^2\sum_{t_i <t}\frac{d_i}{Y_i(Y_i-d_i)}$$
+which we can use for confidence intervals for a survival function or a
+difference of survival functions.
 
 #### Kaplan-Meier survival curves
 
@@ -1382,7 +1477,11 @@ autoplot(
 
 ### Understanding Greenwood's formula (optional)
 
-To see where Greenwood's formula comes from, let $x_i=Y_i-d_i$. We approximate the solution treating each time as independent, with $Y_i$ fixed and ignore randomness in times of failure and we treat $x_i$ as independent binomials $\text{Bin}(Y_i,p_i)$. Letting $S(t)$ be the "true" survival function
+To see where Greenwood's formula comes from, let $x_i=Y_i-d_i$. We
+approximate the solution treating each time as independent, with $Y_i$
+fixed and ignore randomness in times of failure and we treat $x_i$ as
+independent binomials $\text{Bin}(Y_i,p_i)$. Letting $S(t)$ be the
+"true" survival function
 
 $$
 \begin{aligned}
@@ -1402,20 +1501,21 @@ $$
 
 $$
 \begin{aligned}
-\Var{\frac{\hat S(t)}{S(t)}} 
-&\approx \Var{1+\sum_{t_i<t} \frac{\hat p_i-p_i}{p_i}} \\
+\text{Var}\left(\frac{\hat S(t)}{S(t)}\right) 
+&\approx \text{Var}\left(1+\sum_{t_i<t} \frac{\hat p_i-p_i}{p_i}\right) \\
 &=\sum_{t_i<t} \frac{1}{p_i^2}\frac{p_i(1-p_i)}{Y_i} \\
 &= \sum_{t_i<t} \frac{(1-p_i)}{p_iY_i}
 \approx\sum_{t_i<t} \frac{(1-x_i/Y_i)}{x_i}\\
 &=\sum_{t_i<t} \frac{Y_i-x_i}{x_iY_i}=\sum_{t_i<t} \frac{d_i}{Y_i(Y_i-d_i)}\\
-\Var{\hat S(t)}
+\text{Var}\left(\hat S(t)\right)
 &\approx \hat S(t)^2\sum_{t_i<t} \frac{d_i}{Y_i(Y_i-d_i)}
 \end{aligned}
 $$
 
 ## Test for differences among the disease groups
 
-Here we compute a chi-square test for assocation between disease group (`group`) and disease-free survival:
+Here we compute a chi-square test for assocation between disease group
+(`group`) and disease-free survival:
 
 ```{r}
 survdiff(surv ~ group, data = bmt)
@@ -1426,19 +1526,20 @@ survdiff(surv ~ group, data = bmt)
 $$
 \begin{aligned}
 h(t) 
-&\eqdef P(T=t|T\ge t)\\
+&\stackrel{\text{def}}{=}P(T=t|T\ge t)\\
 &= \frac{p(T=t)}{P(T\ge t)}\\
-&= -\frac{d}{dt}\log{S(t)}
+&= -\frac{d}{dt}\text{log}\left\{S(t)\right\}
 \end{aligned}
 $$
 
 The **cumulative hazard** (or **integrated hazard**) function is
 
-$$H(t)\eqdef \int_0^t h(t) dt$$
-Since $h(t) = -\frac{d}{dt}\log{S(t)}$ as shown above, we have:
+$$H(t)\stackrel{\text{def}}{=}\int_0^t h(t) dt$$ Since
+$h(t) = -\frac{d}{dt}\text{log}\left\{S(t)\right\}$ as shown above, we
+have:
 
 $$
-H(t)=-\log S(t)
+H(t)=-\text{log}\left\{S\right\}(t)
 $$
 
 So we can estimate $H(t)$ as:
@@ -1446,13 +1547,14 @@ So we can estimate $H(t)$ as:
 $$
 \begin{aligned}
 \hat H(t) 
-&= -\log{\hat S(t)}\\
-&= -\log{\prod_{t_i < t}\left[1-\frac{d_i}{Y_i}\right]}\\
-&= -\sum_{t_i < t}\log{1-\frac{d_i}{Y_i}}\\
+&= -\text{log}\left\{\hat S(t)\right\}\\
+&= -\text{log}\left\{\prod_{t_i < t}\left[1-\frac{d_i}{Y_i}\right]\right\}\\
+&= -\sum_{t_i < t}\text{log}\left\{1-\frac{d_i}{Y_i}\right\}\\
 \end{aligned}
 $$
 
-This is the **Kaplan-Meier (product-limit) estimate of cumulative hazard**.
+This is the **Kaplan-Meier (product-limit) estimate of cumulative
+hazard**.
 
 ### Example: Cumulative Hazard Curves for Bone-Marrow Transplant (`bmt`) data
 
@@ -1471,27 +1573,29 @@ autoplot(
 
 # Nelson-Aalen Estimates of Cumulative Hazard and Survival
 
-The point hazard at time $t_i$ can be estimated by $d_i/Y_i$, which leads to the **Nelson-Aalen estimator of the cumulative hazard**:
+The point hazard at time $t_i$ can be estimated by $d_i/Y_i$, which
+leads to the **Nelson-Aalen estimator of the cumulative hazard**:
 
-$$\hat H_{NA}(t) \eqdef \sum_{t_i < t}\frac{d_i}{Y_i}$$
+$$\hat H_{NA}(t) \stackrel{\text{def}}{=}\sum_{t_i < t}\frac{d_i}{Y_i}$$
 
-The variance of this estimator is approximately:
-$$
+The variance of this estimator is approximately: $$
 \begin{aligned}
-\varh{\hat H_{NA} (t)} 
+\hat{\text{Var}}\left(\hat H_{NA} (t)\right) 
 &= \sum_{t_i <t}\frac{(d_i/Y_i)(1-d_i/Y_i)}{Y_i}\\
 &\approx \sum_{t_i <t}\frac{d_i}{Y_i^2}
 \end{aligned}
 $$
 
-Since $S(t)=\exp{-H(t)}$, the Nelson-Aalen cumulative hazard estimate can be converted into an alternate estimate of the survival function:
+Since $S(t)=\text{exp}\left\{-H(t)\right\}$, the Nelson-Aalen cumulative
+hazard estimate can be converted into an alternate estimate of the
+survival function:
 
 $$
 \begin{aligned}
 \hat S_{NA}(t)
-&= \exp{-\hat H_{NA}(t)}\\
-&= \exp{-\sum_{t_i < t}\frac{d_i}{Y_i}}\\
-&= \prod_{t_i < t}\exp{-\frac{d_i}{Y_i}}\\
+&= \text{exp}\left\{-\hat H_{NA}(t)\right\}\\
+&= \text{exp}\left\{-\sum_{t_i < t}\frac{d_i}{Y_i}\right\}\\
+&= \prod_{t_i < t}\text{exp}\left\{-\frac{d_i}{Y_i}\right\}\\
 \end{aligned}
 $$
 
@@ -1499,15 +1603,17 @@ Compare these with the corresponding Kaplan-Meier estimates:
 
 $$
 \begin{aligned}
-\hat H_{KM}(t) &= -\sum_{t_i < t}\log{1-\frac{d_i}{Y_i}}\\
+\hat H_{KM}(t) &= -\sum_{t_i < t}\text{log}\left\{1-\frac{d_i}{Y_i}\right\}\\
 \hat S_{KM}(t) &= \prod_{t_i < t}\left[1-\frac{d_i}{Y_i}\right]
 \end{aligned}
 $$
 
-The product limit estimate and the Nelson-Aalen estimate often do not differ by much. 
-The latter is considered more accurate in small samples and also directly estimates the cumulative hazard. 
-The `"fleming-harrington"` method for `survfit()` reduces to Nelson-Aalen when the data are unweighted. 
-We can also estimate the cumulative hazard as the negative log of the KM survival function estimate.
+The product limit estimate and the Nelson-Aalen estimate often do not
+differ by much. The latter is considered more accurate in small samples
+and also directly estimates the cumulative hazard. The
+`"fleming-harrington"` method for `survfit()` reduces to Nelson-Aalen
+when the data are unweighted. We can also estimate the cumulative hazard
+as the negative log of the KM survival function estimate.
 
 ## Application to `bmt` dataset
 
@@ -1547,4 +1653,5 @@ km_and_na |>
 
 ```
 
-The Kaplan-Meier and Nelson-Aalen survival estimates are very similar for this dataset.
+The Kaplan-Meier and Nelson-Aalen survival estimates are very similar
+for this dataset.
