@@ -3,9 +3,20 @@ project:
 
 book:
   title: "Regression Models for Epidemiology"
-  author: "Ezra Morrison"
+  author:
+    - name: "Ezra Morrison"
+      url: demorrison.ucdavis.edu
+      affiliation: Department of Public Health Sciences, School of Medicine, University of California, Davis
+  page-footer:
+    background: light
+    left:
+      - text: "Copyright 2023, Douglas Ezra Morrison"
+    right:
+      - text: "License"
+        href: http://creativecommons.org/licenses/by-nc-nd/4.0/
   date: last-modified
   date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
+  google-analytics: "G-W625DGE908"
   reader-mode: true
   site-url: https://d-morrison.github.io/rme
   repo-url: https://github.com/d-morrison/rme
