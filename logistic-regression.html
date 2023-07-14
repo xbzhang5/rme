@@ -361,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-07-07: 17:12:39 (PM)</p>
+      <p class="date">Last modified: 2023-07-07: 20:12:39 (PM)</p>
     </div>
   </div>
   
@@ -2222,7 +2222,7 @@ Caution
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>pval1 <span class="ot">=</span> <span class="fu">pchisq</span>(X2, <span class="at">lower =</span> <span class="cn">FALSE</span>, <span class="at">df =</span> <span class="fu">nrow</span>(HL_table) <span class="sc">-</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Our statistic is <span class="math inline">\(X^2 = 1.11028711\)</span>; <span class="math inline">\(p(\chi^2(1) &gt; 1.11028711) = 0.29201955\)</span>, which is our p-value for detecting a lack of goodness of fit.</p>
+<p>Our statistic is <span class="math inline">\(X^2 = 1.1103\)</span>; <span class="math inline">\(p(\chi^2(1) &gt; 1.1103) = 0.292\)</span>, which is our p-value for detecting a lack of goodness of fit.</p>
 <p>Unfortunately that grouping plan left us with just three categories with any observations, so instead of grouping by 10% increments of predicted probability, typically analysts use deciles of the predicted probabilities:</p>
 <div class="cell" data-hash="logistic-regression_cache/html/unnamed-chunk-48_59efcb2e6041b5c215407110be4a7b77">
 <details>
@@ -2345,7 +2345,7 @@ Caution
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pval1 <span class="ot">=</span> <span class="fu">pchisq</span>(X2, <span class="at">lower =</span> <span class="cn">FALSE</span>, <span class="at">df =</span> <span class="fu">nrow</span>(HL_table) <span class="sc">-</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Now we have more evenly split categories. The p-value is <span class="math inline">\(0.56041994\)</span>, still not significant.</p>
+<p>Now we have more evenly split categories. The p-value is <span class="math inline">\(0.5604\)</span>, still not significant.</p>
 <p>Graphically, we have compared:</p>
 <div class="cell" data-hash="logistic-regression_cache/html/unnamed-chunk-49_56ef21077528c101f717eac3794d284f">
 <details>
@@ -2675,7 +2675,7 @@ X^2 = \sum_{k=1}^m X_k^2
 <span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> <span class="fu">length</span>(X) <span class="sc">-</span> <span class="fu">length</span>(<span class="fu">coef</span>(chd_glm_strat_grouped)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>For our CHD model, the p-value for this test is 0.26523556; no significant evidence of a lack of fit at the 0.05 level.</p>
+<p>For our CHD model, the p-value for this test is 0.2652; no significant evidence of a lack of fit at the 0.05 level.</p>
 <section id="standardized-pearson-residuals" class="level3" data-number="8.4.1">
 <h3 data-number="8.4.1" class="anchored" data-anchor-id="standardized-pearson-residuals"><span class="header-section-number">8.4.1</span> Standardized Pearson residuals</h3>
 <p>Especially for small data sets, we might want to adjust our residuals for leverage (since outliers in <span class="math inline">\(X\)</span> add extra variance to the residuals):</p>
