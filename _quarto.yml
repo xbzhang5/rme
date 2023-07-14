@@ -21,10 +21,6 @@ book:
   site-url: https://d-morrison.github.io/rme
   repo-url: https://github.com/d-morrison/rme
   repo-actions: [edit, issue]
-  comments:
-    hypothesis:
-      theme: clean
-      openSidebar: false
   chapters:
     - index.qmd
     - intro-to-GLMs.qmd
@@ -49,10 +45,20 @@ format:
     theme:
        light: cosmo
        dark: darkly
+    code-tools: true
+    code-fold: show
   # pdf:
   #   documentclass: scrreprt
 
+comments:
+  hypothesis:
+    theme: clean
+    openSidebar: false
+    enableExperimentalNewNoteButton: true
+
 execute:
+  warning: false
+  message: false
   cache: true
   freeze: auto  # re-render only when source changes
 
