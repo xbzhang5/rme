@@ -75,6 +75,7 @@ library(pander) # format tables for markdown
 library(ggplot2) # graphics
 library(ggfortify) # help with graphics
 library(ggeasy) # help with graphics
+library(survival) # survival analysis
 library(survminer) # survival analysis graphics
 library(dplyr) # manipulate data
 library(haven) # import Stata files
