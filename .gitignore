@@ -13,3 +13,4 @@ index.tex
 index.toc
 *_cache/
 site_libs
+*.rmarkdown
