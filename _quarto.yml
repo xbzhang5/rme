@@ -5,7 +5,7 @@ book:
   title: "Regression Models for Epidemiology"
   author:
     - name: "Ezra Morrison"
-      url: demorrison.ucdavis.edu
+      url: https://demorrison.ucdavis.edu/
       affiliation: Department of Public Health Sciences, School of Medicine, University of California, Davis
   page-footer:
     left:
@@ -17,7 +17,6 @@ book:
   date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
   google-analytics: "G-W625DGE908"
   reader-mode: true
-  site-url: https://d-morrison.github.io/rme
   repo-url: https://github.com/d-morrison/rme
   repo-actions: [edit, issue]
   chapters:
@@ -50,7 +49,7 @@ format:
     fig-cap-location: top
     html-math-method: mathjax
     number-sections: true
-    number-depth: 2
+    number-depth: 3
     code-summary: "Show the code"
 
   # pdf:
@@ -66,7 +65,7 @@ execute:
   warning: false
   message: false
   cache: false
-  freeze: false  # re-render only when source changes
+  freeze: auto  # re-render only when source changes
 
 editor: source
 
