@@ -8,7 +8,6 @@ book:
       url: demorrison.ucdavis.edu
       affiliation: Department of Public Health Sciences, School of Medicine, University of California, Davis
   page-footer:
-    background: light
     left:
       - text: "Copyright 2023, Douglas Ezra Morrison"
     right:
@@ -48,6 +47,12 @@ format:
     code-tools: true
     code-fold: show
     code-link: true
+    fig-cap-location: top
+    html-math-method: mathjax
+    number-sections: true
+    number-depth: 2
+    code-summary: "Show the code"
+
   # pdf:
   #   documentclass: scrreprt
 
@@ -60,7 +65,7 @@ comments:
 execute:
   warning: false
   message: false
-  cache: true
+  cache: false
   freeze: auto  # re-render only when source changes
 
 editor: source
