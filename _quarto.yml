@@ -47,6 +47,7 @@ format:
        dark: darkly
     code-tools: true
     code-fold: show
+    code-link: true
   # pdf:
   #   documentclass: scrreprt
 
