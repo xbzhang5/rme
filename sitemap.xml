@@ -2,50 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://d-morrison.github.io/rme/index.html</loc>
-    <lastmod>2023-07-14T22:09:51.681Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.277Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/intro-to-GLMs.html</loc>
-    <lastmod>2023-07-14T22:09:51.725Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.321Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/glms.html</loc>
-    <lastmod>2023-07-14T22:09:51.729Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.325Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/Linear-models-overview.html</loc>
-    <lastmod>2023-07-14T22:09:51.884Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.478Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/logistic-regression.html</loc>
-    <lastmod>2023-07-14T22:09:52.060Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.636Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/count-regression.html</loc>
-    <lastmod>2023-07-14T22:09:52.086Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.671Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/time-to-event-models.html</loc>
-    <lastmod>2023-07-14T22:09:52.089Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.674Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/intro-to-survival-analysis.html</loc>
-    <lastmod>2023-07-14T22:09:52.218Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.797Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/proportional-hazards-models.html</loc>
-    <lastmod>2023-07-14T22:09:52.267Z</lastmod>
+    <lastmod>2023-07-14T22:12:38.845Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/coxph-model-building.html</loc>
-    <lastmod>2023-07-14T22:09:52.423Z</lastmod>
+    <lastmod>2023-07-14T22:12:39.001Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/parametric-survival-models.html</loc>
-    <lastmod>2023-07-14T22:09:52.474Z</lastmod>
+    <lastmod>2023-07-14T22:12:39.051Z</lastmod>
   </url>
   <url>
     <loc>https://d-morrison.github.io/rme/references.html</loc>
-    <lastmod>2023-07-14T22:09:52.477Z</lastmod>
+    <lastmod>2023-07-14T22:12:39.054Z</lastmod>
   </url>
 </urlset>
