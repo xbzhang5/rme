@@ -49,6 +49,7 @@ This content is adapted from:
     Models", 4th edition, Chapter 7
 -   Vittinghoff et al 2012, "Regression Methods in Biostatistics", 2nd
     edition, Chapter 5
+- <https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>    
 
 ## Configuring R {.unnumbered}
 

@@ -1,0 +1,32 @@
+---
+title: "Risk Estimation and Prediction"
+---
+
+## Risk Estimation and Prediction
+
+Logistic regression is a method for estimating and predicting the risk of a binary event (such as disease/healthy) using one or more predictors.
+
+You have already seen methods for the case when there is one predictor that is also binary (such as exposure/non-exposure).
+
+We will first look at this again, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
+
+## Oral Contraceptive Use and Heart Attack (MI) over 3 years
+
+```{r}
+library(dplyr)
+oc_mi = tribble(
+  ~OC, ~MI, ~Total,
+  "OC use", 13, 5000,
+  "No OC use", 7, 10000
+) |> 
+  mutate(`No MI` = Total - MI)
+
+totals = oc_mi |> summarize(across(c(MI, `No MI`, Total), sum)) |> 
+  mutate(OC = "Total")
+oc_mi = bind_rows(oc_mi, totals)
+```
+
+         | MI | No MI | Total
+----------|----|-------|------
+OC use.   | 13
+No OC use |
