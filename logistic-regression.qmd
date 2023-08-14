@@ -524,8 +524,12 @@ At baseline the following information was collected:
 -   exercise
 -   alcohol use.
 
-Later surveys added data on: \* anthropometry \* triglycerides \*
-Jenkins Activity Survey \* caffeine use.
+Later surveys added data on: 
+
+* anthropometry 
+* triglycerides 
+* Jenkins Activity Survey 
+* caffeine use
 
 Average follow-up continued for 8.5 years with repeat examinations.
 

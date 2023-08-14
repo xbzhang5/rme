@@ -64,7 +64,7 @@ comments:
 execute:
   warning: false
   message: false
-  cache: false
+  cache: true
   freeze: auto  # re-render only when source changes
 
 editor: source
