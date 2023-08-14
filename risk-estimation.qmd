@@ -1,32 +1,321 @@
 ---
 title: "Risk Estimation and Prediction"
+format: 
+  pdf: 
+    number-sections: true
+    echo: false
+  html:
+    html-math-method: mathml
+    toc: true
+    number-sections: true
+    cap-location: top
+    code-fold: true
+    code-tools: true
+    code-summary: "Show the code"
+    code-link: true
 ---
 
-## Risk Estimation and Prediction
-
-Logistic regression is a method for estimating and predicting the risk of a binary event (such as disease/healthy) using one or more predictors.
-
-You have already seen methods for the case when there is one predictor that is also binary (such as exposure/non-exposure).
-
-We will first look at this again, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
-
-## Oral Contraceptive Use and Heart Attack (MI) over 3 years
+# Risk Estimation and Prediction
 
 ```{r}
-library(dplyr)
-oc_mi = tribble(
-  ~OC, ~MI, ~Total,
-  "OC use", 13, 5000,
-  "No OC use", 7, 10000
-) |> 
-  mutate(`No MI` = Total - MI)
-
-totals = oc_mi |> summarize(across(c(MI, `No MI`, Total), sum)) |> 
-  mutate(OC = "Total")
-oc_mi = bind_rows(oc_mi, totals)
+#| include: false
+library(pander)
 ```
 
-         | MI | No MI | Total
-----------|----|-------|------
-OC use.   | 13
-No OC use |
+Logistic regression is a method for estimating and predicting the risk of a **binary outcome** using one or more predictors. 
+
+:::{#def-binary}
+
+# binary variable
+A random variable which has only two possible values (such as diseased/healthy).
+:::
+
+:::{#def-cases}
+## cases and controls
+In medical studies, participants who experience a bad outcome are sometimes called **cases**, while participants who experience a good outcome are sometimes called **controls**. However, "controls" can also used to refer to participants who don't receive the *exposure* of interest (for example, participants who receive a placebo or a standard-of-care treatment rather than an experimental treatment).
+:::
+
+:::: {#exr-linear}
+
+Recall: what kind of outcome is linear regression used for?
+
+::: {.solution}
+
+Linear regression is typically used for continuous outcomes.
+
+:::
+
+::::
+
+You have already seen methods for predicting binary outcomes using one predictor that is also binary (such as exposure/non-exposure).
+
+We will first review one-predictor analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
+
+## Illustration: Oral Contraceptive Use and Heart Attack (MI) over 3 years
+
+* Research question: does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; heart attack)?
+
+:::{.note}
+This was a real issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
+:::
+
+Here's some fake study data:
+
+```{r}
+#| message: false
+#| code-fold: true
+library(dplyr)
+oc_mi = 
+  tribble(
+    ~OC, ~MI, ~Total,
+    "OC use", 13, 5000,
+    "No OC use", 7, 10000
+  ) |> 
+  mutate(`No MI` = Total - MI)
+
+totals = 
+  oc_mi |> 
+  summarize(across(c(MI, `No MI`, Total), sum)) |> 
+  mutate(OC = "Total")
+
+oc_mi = bind_rows(oc_mi, totals)
+
+pander(oc_mi)
+```
+
+::::{#exr-probs}
+
+Review: estimate the probabilities of MI for OC users and non-OC users.
+
+:::{.solution}
+
+$$\hat{p}(MI|OC) = \frac{13}{5000} = `r 13/5000`$$
+
+$$\hat{p}(MI|\neg OC) = \frac{7}{10000} = `r 7/10000`$$
+
+:::
+
+::::
+
+:::{#def-RR}
+### Relative risk ratio
+When comparing the probability of an outcome between two sets of predictor values, the **relative risk**, also called the **risk ratio**, is the ratio of those probabilities.
+
+That is, if $p(Y=1|X=x_1) = \pi_1$ and $p(Y=1|X=x_2) = \pi_2$, then $RR(2,1) = \frac{\pi_2}{\pi_1}$.
+:::
+
+:::{#exm-RR}
+
+Above, we estimated that:
+$$\hat{p}(MI|OC) = `r 13/5000`$$
+
+$$\hat{p}(MI|\neg OC) = `r 7/10000`$$
+
+So we might estimate that the *relative risk* of MI for OC versus non-OC is:
+
+$$
+\begin{aligned}
+\text{RR}(OC, \neg OC)
+&=\frac{\hat{p}(MI|OC)}{\hat{p}(MI|\neg OC)}\\
+&= \frac{`r 13/5000`}{`r 7/10000`}\\
+&= `r (13/5000)/(7/10000)`
+\end{aligned}
+$$
+
+:::
+
+Risk ratios are defined by two probabilities, plus a choice of which probability is the *baseline* or *reference* probability (i.e., which probability goes in the denominator). If you change which one is the reference probability, the ratio inverts.
+
+:::{#exm-ref}
+Above, we estimated that the risk ratio of OC versus non-OC is:
+
+$$
+\begin{aligned}
+\text{RR}(OC, \neg OC)
+&= `r (13/5000)/(7/10000)`
+\end{aligned}
+$$
+
+In comparison, the risk ratio for non-OC versus OC is:
+
+$$
+\begin{aligned}
+\text{RR}(\neg OC, OC)
+&=\frac{\hat{p}(MI|\neg OC)}{\hat{p}(MI|OC)}\\
+&= \frac{`r 7/10000`}{`r 13/5000`}\\
+&= `r (7/10000)/(13/5000)`\\
+&= \frac{1}{\text{RR}(OC, \neg OC)}
+\end{aligned}
+$$
+
+:::
+
+## Odds and probabilities
+
+In logistic regression, we make use of a transformation (rescaling) of probability, called *odds*.
+
+:::{#def-odds}
+The **odds** of an outcome, denoted $\omega$ ("omega"), is the probability that the outcome occurs, divided by the probability that it doesn't occur. 
+
+That is, if the probability of an outcome is $\pi$, then the corresponding odds of that outcome is 
+
+$$\omega(\pi) \eqdef \frac{\pi}{1-\pi}$$
+
+This function, which transforms probabilities into odds, is called the **odds function** (see @fig-odds-probs).
+:::
+
+```{r}
+#| label: fig-odds-probs
+#| code-fold: true
+#| fig-cap: Odds versus probability
+
+odds = function(pi) pi/(1-pi)
+library(ggplot2)
+ggplot() + 
+  geom_function(fun = odds, aes(col = "odds function")) +
+  xlim(0, .5) +
+  xlab("Probability") +
+  ylab("Odds") +
+  geom_abline(aes(intercept = 0, slope = 1, col = "y=x"))
+```
+
+:::{#exm-odds}
+## Calculating odds
+Above, we estimated that the probability of MI, given OC use, is $\pi(OC) \eqdef \Pr(MI|OC) = `r 13/5000`$. If this estimate is correct, then the odds of MI, given OC use, is:
+
+$$
+\begin{aligned}
+\omega(OC) 
+&\eqdef \frac{\Pr(MI|OC)}{\Pr(\neg MI|OC)}\\
+&=\frac{\Pr(MI|OC)}{1-\Pr(MI|OC)}\\
+&=\frac{\pi(OC)}{1-\pi(OC)}\\
+&=\frac{`r 13/5000`}{1-`r 13/5000`}\\
+&=`r (13/5000)/(1- (13/5000))`
+\end{aligned}
+$$
+:::
+
+:::{#exr-odds}
+## Calculating odds
+Estimate the odds of MI, for non-OC users.
+:::
+
+:::{.callout-tip}
+## A shortcut for calculating odds
+
+The usual estimate for a probability of an event is "# events/# observations". We often denote # events as $x$ and # observations as $n$. So: $$\hat\pi = \frac{x}{n}$$ 
+Thus, the usual estimate for the probability of a nonevent is:
+
+$$
+\begin{aligned}
+1-\hat\pi 
+&= 1-\frac{x}{n}\\
+&= \frac{n}{n} - \frac{x}{n}\\
+&= \frac{n - x}{n}
+\end{aligned}
+$$
+
+Thus, the estimated odds is:
+$$
+\begin{aligned}
+\frac{\hat\pi}{1-\hat\pi}
+&= \frac{\left(\frac{x}{n}\right)}{\left(\frac{n-x}{n}\right)}\\
+&= \frac{x}{n-x}
+\end{aligned}
+$$
+That is, odds can be calculated directly as "# events" divided by "# nonevents" (without needing to calculate $\hat\pi$ and $1-\hat\pi$ first).
+
+::::{#exm-odds-shortcut}
+In @exm-odds, we calculated 
+$$
+\begin{aligned}
+\omega(OC) 
+&=`r (13/5000)/(1- (13/5000))`
+\end{aligned}
+$$
+Let's recalculate this result using our shortcut:
+
+$$
+\begin{aligned}
+\omega(OC) 
+&=\frac{13}{5000-13}\\
+&=`r (13)/(5000- 13)`
+\end{aligned}
+$$
+
+Same answer!
+::::
+
+:::
+
+### Odds of rare events
+
+For rare events (small $\pi$), odds and probabilities are nearly equal, because $1-\pi \approx 1$ (see @fig-odds-probs).
+
+```{r}
+#| include: false
+pi1 = 13/5000
+odds1 = odds(pi1)
+```
+
+For example, in @exm-odds, the probability and odds differ by `r abs(pi1 - odds1)`.
+
+:::{#exr-odds-probs}
+
+What odds value corresponds to the probability $\pi = 0.2$, and what is the numerical difference between these two values?
+
+::::{.solution}
+$$
+\omega = \frac{\pi}{1-\pi} 
+=\frac{.2}{.8}
+= .25
+$$
+::::
+
+### The inverse odds function
+
+:::{#def-inv-odds}
+The **inverse odds function**, $$\pi(\omega)\eqdef \frac{\omega}{1+\omega}$$
+converts odds into their corresponding probabilities (@fig-inv-odds).
+:::
+
+The inverse-odds function takes an odds as input and produces a probability as output. Its domain of inputs is $[0,\infty)$ and its range of outputs is $[0,1]$.
+
+```{r}
+odds_inv = function(omega) omega / (1 + omega)
+
+```
+
+```{r}
+#| label: fig-inv-odds
+#| fig-cap: The inverse odds function, $\pi(\omega)$
+ggplot() +
+  geom_function(fun = odds_inv, aes(col = "inverse-odds")) +
+  xlab("Odds") +
+  ylab("Probability") +
+  xlim(0,5) +
+  ylim(0,1) +
+  geom_abline(aes(intercept = 0, slope = 1, col = "x=y"))
+```
+
+:::{.callout-important}
+An equivalent expression for the inverse odds function is $$\pi(\omega) = (1-\omega^{-1})^{-1}$$.
+:::
+
+:::{#exr-inv-odds2}
+Prove that the expression above is equivalent to @def-inv-odds.
+:::
+
+:::{#exr-odds-probs}
+
+What probability corresponds to an odds of $\omega = 1$, and what is the numerical difference between these two values?
+
+::::{.solution}
+$$
+\omega = \frac{\pi}{1-\pi} 
+=\frac{.2}{.8}
+= .25
+$$
+::::
+
+:::
