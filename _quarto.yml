@@ -51,7 +51,7 @@ format:
     html-math-method: mathjax
     number-sections: true
     number-depth: 3
-    code-summary: "Show the code"
+    code-summary: "Show R code"
 
   # pdf:
   #   documentclass: scrreprt
