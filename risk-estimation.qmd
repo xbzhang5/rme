@@ -51,7 +51,9 @@ You have already seen methods for predicting binary outcomes using one predictor
 
 We will first review one-predictor analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
 
-## Illustration: Oral Contraceptive Use and Heart Attack (MI) over 3 years
+
+:::::{#exm-oc-mi}
+## Oral Contraceptive Use and Heart Attack (MI) over 3 years
 
 * Research question: does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; heart attack)?
 
@@ -64,6 +66,7 @@ Here's some fake study data:
 ```{r}
 #| message: false
 #| code-fold: true
+#| echo: false
 library(dplyr)
 oc_mi = 
   tribble(
@@ -83,25 +86,61 @@ oc_mi = bind_rows(oc_mi, totals)
 pander(oc_mi)
 ```
 
+:::::
+
 ::::{#exr-probs}
 
-Review: estimate the probabilities of MI for OC users and non-OC users.
+Review: estimate the probabilities of MI for OC users and non-OC users in @exm-oc-mi.
 
 :::{.solution}
 
-$$\hat{p}(MI|OC) = \frac{13}{5000} = `r 13/5000`$$
+```{r, include = FALSE}
+p_MI_OC = 13/5000
+p_MI_nOC = 7/10000
+```
 
-$$\hat{p}(MI|\neg OC) = \frac{7}{10000} = `r 7/10000`$$
+$$\hat{p}(MI|OC) = \frac{13}{5000} = `r p_MI_OC`$$
+
+$$\hat{p}(MI|\neg OC) = \frac{7}{10000} = `r p_MI_nOC`$$
 
 :::
 
 ::::
 
-:::{#def-RR}
-### Relative risk ratio
-When comparing the probability of an outcome between two sets of predictor values, the **relative risk**, also called the **risk ratio**, is the ratio of those probabilities.
+## Comparing probabilities
 
-That is, if $p(Y=1|X=x_1) = \pi_1$ and $p(Y=1|X=x_2) = \pi_2$, then $RR(2,1) = \frac{\pi_2}{\pi_1}$.
+The simplest comparison of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values:
+
+:::{#def-RD}
+## Risk differences
+The **risk difference** of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values: 
+$$\delta(\pi_1,\pi_2) \eqdef \pi_1 - \pi_2$$
+:::
+
+:::{#exm-RD}
+
+In @exm-oc-mi, the estimated risk difference in MI risk between OC users and OC non-users is:
+```{r, include = FALSE}
+rd_OC = p_MI_OC - p_MI_nOC
+```
+
+$$
+\begin{aligned}
+\hat\delta(\pi(OC), \pi(\neg OC))
+&= \delta(\hat\pi(OC), \hat\pi(\neg OC))\\
+&= \hat\pi(OC) - \hat\pi(\neg OC)\\
+&= `r p_MI_OC` - `r p_MI_nOC`\\
+&= `r rd_OC`
+\end{aligned}
+$$
+:::
+
+
+:::{#def-RR}
+## Relative risk ratios
+When comparing the probability of an outcome between two sets of predictor values, the **relative risk**, also called the **risk ratio**, is the ratio of those probabilities. Let's use $\rho$ ("rho") to denote risk ratios.
+
+That is, if $p(Y=1|X=x_1) = \pi_1$ and $p(Y=1|X=x_2) = \pi_2$, then $\rho(2,1) = \frac{\pi_2}{\pi_1}$.
 :::
 
 :::{#exm-RR}
@@ -115,7 +154,7 @@ So we might estimate that the *relative risk* of MI for OC versus non-OC is:
 
 $$
 \begin{aligned}
-\text{RR}(OC, \neg OC)
+\rho(OC, \neg OC)
 &=\frac{\hat{p}(MI|OC)}{\hat{p}(MI|\neg OC)}\\
 &= \frac{`r 13/5000`}{`r 7/10000`}\\
 &= `r (13/5000)/(7/10000)`
@@ -131,7 +170,7 @@ Above, we estimated that the risk ratio of OC versus non-OC is:
 
 $$
 \begin{aligned}
-\text{RR}(OC, \neg OC)
+\rho(OC, \neg OC)
 &= `r (13/5000)/(7/10000)`
 \end{aligned}
 $$
@@ -140,11 +179,11 @@ In comparison, the risk ratio for non-OC versus OC is:
 
 $$
 \begin{aligned}
-\text{RR}(\neg OC, OC)
+\rho(\neg OC, OC)
 &=\frac{\hat{p}(MI|\neg OC)}{\hat{p}(MI|OC)}\\
 &= \frac{`r 7/10000`}{`r 13/5000`}\\
 &= `r (7/10000)/(13/5000)`\\
-&= \frac{1}{\text{RR}(OC, \neg OC)}
+&= \frac{1}{\rho(OC, \neg OC)}
 \end{aligned}
 $$
 
@@ -152,7 +191,7 @@ $$
 
 ## Odds and probabilities
 
-In logistic regression, we make use of a transformation (rescaling) of probability, called *odds*.
+In logistic regression, we will make use of a transformation (rescaling) of probability, called *odds*.
 
 :::{#def-odds}
 The **odds** of an outcome, denoted $\omega$ ("omega"), is the probability that the outcome occurs, divided by the probability that it doesn't occur. 
@@ -181,7 +220,14 @@ ggplot() +
 
 :::{#exm-odds}
 ## Calculating odds
-Above, we estimated that the probability of MI, given OC use, is $\pi(OC) \eqdef \Pr(MI|OC) = `r 13/5000`$. If this estimate is correct, then the odds of MI, given OC use, is:
+In @exr-probs, we estimated that the probability of MI, given OC use, is $\pi(OC) \eqdef \Pr(MI|OC) = `r 13/5000`$. If this estimate is correct, then the odds of MI, given OC use, is:
+
+```{r}
+#| include: false
+pi_OC = 13/5000
+odds_OC = odds(pi_OC)
+```
+
 
 $$
 \begin{aligned}
@@ -198,6 +244,15 @@ $$
 :::{#exr-odds}
 ## Calculating odds
 Estimate the odds of MI, for non-OC users.
+
+::::{.solution}
+```{r}
+pi_nOC = 7/10000
+odds_nOC = pi_nOC/(1-pi_nOC)
+```
+
+::::
+
 :::
 
 :::{.callout-tip}
@@ -252,13 +307,7 @@ Same answer!
 
 For rare events (small $\pi$), odds and probabilities are nearly equal, because $1-\pi \approx 1$ (see @fig-odds-probs).
 
-```{r}
-#| include: false
-pi1 = 13/5000
-odds1 = odds(pi1)
-```
-
-For example, in @exm-odds, the probability and odds differ by `r abs(pi1 - odds1)`.
+For example, in @exm-odds, the probability and odds differ by `r abs(pi_OC - odds_OC)`.
 
 :::{#exr-odds-probs}
 
@@ -272,10 +321,13 @@ $$
 $$
 ::::
 
-### The inverse odds function
+## The inverse odds function
 
 :::{#def-inv-odds}
-The **inverse odds function**, $$\pi(\omega)\eqdef \frac{\omega}{1+\omega}$$
+
+#### inverse odds function
+The **inverse odds function**, 
+$$\pi(\omega)\eqdef \frac{\omega}{1+\omega}$$
 converts odds into their corresponding probabilities (@fig-inv-odds).
 :::
 
@@ -312,10 +364,40 @@ What probability corresponds to an odds of $\omega = 1$, and what is the numeric
 
 ::::{.solution}
 $$
-\omega = \frac{\pi}{1-\pi} 
-=\frac{.2}{.8}
-= .25
+\pi(1) = \frac{1}{1+1} 
+=\frac{1}{2}
+= .5
 $$
+$$
+1 - \pi(1) = 1 - .5 = .5
+$$
+
 ::::
 
 :::
+
+## Odds ratios
+
+Now that we have defined odds, we can compare odds using odds ratios:
+
+:::{#dfn-OR}
+#### Odds ratio
+The **odds ratio** for two odds $\omega_1$, $\omega_2$ is their ratio:
+
+$$\theta(\omega_1, \omega_2) = \frac{\omega_1}{\omega_2}$$
+
+:::
+
+:::{#exm-OR}
+In @exm-oc-mi, the odds ratio for OC users versus OC-non-users is:
+
+$$
+\begin{aligned}
+\theta(\omega(OC), \omega(\neg OC))
+&= \frac{\omega(OC)}{\omega(\neg OC)}\\
+&= \frac{`r pi_OC`}{`r pi_nOC`}\\
+&= `r pi_OC / pi_nOC`\\
+\end{aligned}
+$$
+:::
+
