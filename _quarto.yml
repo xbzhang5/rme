@@ -40,6 +40,7 @@ bibliography: references.bib
 
 format:
   html:
+    shift-heading-level-by: 1
     theme:
        light: cosmo
        dark: darkly
@@ -50,7 +51,7 @@ format:
     html-math-method: mathjax
     number-sections: true
     number-depth: 3
-    code-summary: "Show the code"
+    code-summary: "Show R code"
 
   # pdf:
   #   documentclass: scrreprt
@@ -64,7 +65,7 @@ comments:
 execute:
   warning: false
   message: false
-  cache: false
+  cache: true
   freeze: auto  # re-render only when source changes
 
 editor: source
