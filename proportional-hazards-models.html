@@ -275,7 +275,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-07-07: 20:12:44 (PM)</p>
+      <p class="date">Last modified: 2023-08-16: 12:27:18 (PM)</p>
     </div>
   </div>
   
@@ -288,7 +288,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 </div>
 <section id="configuring-r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h3>
 <p>Functions from these packages will be used throughout this document:</p>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/packages_eb8a7877838ec6819c7dab412713e365">
+<div class="cell" data-hash="proportional-hazards-models_cache/html/packages_a23d073f9e4e450ba138bd9b49332e0c">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span> <span class="co"># format tables for markdown</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span> <span class="co"># graphics</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jonocarroll/ggeasy">ggeasy</a></span><span class="op">)</span> <span class="co"># help with graphics</span></span>
@@ -304,7 +304,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 </details>
 </div>
 <p>Here are some R settings I use in this document:</p>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/options_f9eee48aeb59e9d6a0af315933a158d5">
+<div class="cell" data-hash="proportional-hazards-models_cache/html/options_e6408b7d51e77acc1d69040371e3d7e8">
 <details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># delete any data that's already loaded into R</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>message <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu">pander</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/panderOptions.html">panderOptions</a></span><span class="op">(</span><span class="st">"table.emphasize.rownames"</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -436,7 +436,7 @@ S(t|x)
 </section></section><section id="testing-the-proportional-hazards-assumption" class="level3"><h3 class="anchored" data-anchor-id="testing-the-proportional-hazards-assumption">Testing the proportional hazards assumption</h3>
 <p>The Nelson-Aalen estimate of the cumulative hazard is usually used for estimates of the hazard and often the cumulative hazard.</p>
 <p>If the hazards of the three groups are proportional, that means that the ratio of the hazards is constant over <span class="math inline">\(t\)</span>. We can test this using the ratios of the estimated cumulative hazards, which also would be proportional, as shown above.</p>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-1_cb5770c115616c8df65d6088f20e3aaa">
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-1_f75e0a075c8965b98999e891ff7a340f">
 <details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">KMsurv</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">bmt</span><span class="op">)</span></span>
@@ -468,7 +468,7 @@ S(t|x)
 <span>    cumhaz3 <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu">sf3</span><span class="op">(</span><span class="va">timevec</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-2_f0dcbb4c387a74340bd8bdc1ccf863ce">
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-2_348f984019dc78c412c5922617f6db33">
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="va">bmt_rel_hazard_plot</span> <span class="op">=</span> </span>
 <span>  <span class="va">bmt_curves</span> <span class="op">|&gt;</span> </span>
@@ -488,10 +488,7 @@ S(t|x)
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"bottom"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">bmt_rel_hazard_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values (`geom_line()`).</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><figcaption class="figure-caption">Hazard Ratios by Disease Group</figcaption><p><img src="proportional-hazards-models_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
@@ -499,14 +496,9 @@ S(t|x)
 </div>
 </div>
 <p>We can zoom in on 30-300 days to take a closer look:</p>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-3_2527e3025f2708be4d7cdfe2ddf8854c">
-<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt_rel_hazard_plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>,<span class="fl">300</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 729 rows containing missing values (`geom_line()`).
-Removed 729 rows containing missing values (`geom_line()`).
-Removed 729 rows containing missing values (`geom_line()`).</code></pre>
-</div>
-<div class="cell-output-display">
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-3_8f508758e58ca5803b97755301a492af">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt_rel_hazard_plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>,<span class="fl">300</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><figcaption class="figure-caption">Hazard Ratios by Disease Group (30-300 Days)</figcaption><p><img src="proportional-hazards-models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
@@ -516,8 +508,8 @@ Removed 729 rows containing missing values (`geom_line()`).</code></pre>
 </section><section id="smoothed-hazard-functions" class="level3"><h3 class="anchored" data-anchor-id="smoothed-hazard-functions">Smoothed hazard functions</h3>
 <p>The Nelson-Aalen estimate of the cumulative hazard is usually used for estimates of the hazard. Since the hazard is the derivative of the cumulative hazard, we need a smooth estimate of the cumulative hazard, which is provided by smoothing the step-function cumulative hazard.</p>
 <p>The R package <code>muhaz</code> handles this for us. What we are looking for is whether the hazard function is more or less the same shape, increasing, decreasing, constant, etc. Are the hazards “proportional”?</p>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-4_54db66fbd3f7ee42293871d46b6c1580">
-<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-4_21362c3a4b0370f5042b1c85cd5e82fc">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>,<span class="va">d3</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">bmt</span><span class="op">)</span>,</span>
 <span>  col<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
 <span>  lwd<span class="op">=</span><span class="fl">2</span>,</span>
@@ -531,8 +523,8 @@ Removed 729 rows containing missing values (`geom_line()`).</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-5_2b271091b769caf4d7bdf82f1c88e43a">
-<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">muhaz</span><span class="op">)</span></span>
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-5_7d1e8d3e3292d4bb1810a8fa8e42feea">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">muhaz</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/muhaz/man/muhaz.html">muhaz</a></span><span class="op">(</span><span class="va">bmt</span><span class="op">$</span><span class="va">t2</span>,<span class="va">bmt</span><span class="op">$</span><span class="va">d3</span>,<span class="va">bmt</span><span class="op">$</span><span class="va">group</span><span class="op">==</span><span class="st">"High Risk AML"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>lwd<span class="op">=</span><span class="fl">2</span>,col<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/muhaz/man/muhaz.html">muhaz</a></span><span class="op">(</span><span class="va">bmt</span><span class="op">$</span><span class="va">t2</span>,<span class="va">bmt</span><span class="op">$</span><span class="va">d3</span>,<span class="va">bmt</span><span class="op">$</span><span class="va">group</span><span class="op">==</span><span class="st">"ALL"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>lwd<span class="op">=</span><span class="fl">2</span>,col<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
@@ -580,8 +572,8 @@ h(t|X=x)&amp;= h_0(t)e^{\eta(\boldsymbol{x})}=\theta(\boldsymbol{x}) h_0(t)
 </section></section><section id="cox-model-for-the-bmt-data" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="cox-model-for-the-bmt-data">
 <span class="header-section-number">6.2</span> Cox Model for the <code>bmt</code> data</h2>
 <section id="fit-the-model" class="level3"><h3 class="anchored" data-anchor-id="fit-the-model">Fit the model</h3>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-6_3e23a21c25cf6229c9623878973607e2">
-<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt.cox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">bmt</span><span class="op">)</span></span>
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-6_82a65c512b4879e7636705e5ca84ac71">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt.cox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">bmt</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">bmt.cox</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Call:
@@ -623,8 +615,8 @@ Score (logrank) test = 13.8  on 2 df,   p=0.001</code></pre>
 <p>The likelihood ratio test is probably best in smaller samples, followed by the Wald test.</p>
 </section><section id="survival-curves-from-the-cox-model" class="level3"><h3 class="anchored" data-anchor-id="survival-curves-from-the-cox-model">Survival Curves from the Cox Model</h3>
 <p>We can take a look at the resulting group-specific curves:</p>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-7_44e49c4eafd184844de2a0fad6290345">
-<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| fig-cap: "Survival Functions for Three Groups by KM and Cox Model"</span></span>
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-7_ca1f69df0bb7a55241c30b79d8cbce24">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| fig-cap: "Survival Functions for Three Groups by KM and Cox Model"</span></span>
 <span></span>
 <span><span class="va">km_fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">bmt</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -659,8 +651,8 @@ Score (logrank) test = 13.8  on 2 df,   p=0.001</code></pre>
 <p>Two particularly egregious examples are factor variables and interactions. Suppose one were studying interspecies transmission of a virus, and the data set has a factor variable with levels (“pig”, “chicken”) and about equal numbers of observations for each. The “mean” covariate level will be 0.5 – is this a flying pig?</p>
 </section><section id="examining-survfit" class="level3"><h3 class="anchored" data-anchor-id="examining-survfit">Examining <code>survfit</code>
 </h3>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-8_3f012a71299c03b2cfb6d9b0d31f2f51">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">bmt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-8_c94e54f9c688d4cbe18e6538469ef2a4">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">bmt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Call: survfit(formula = Surv(t2, d3) ~ group, data = bmt)
 
@@ -670,8 +662,8 @@ group=Low Risk AML  54     25   2204     704      NA
 group=High Risk AML 45     34    183     115     456</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-9_9b9d65800d45983e95aa159d68783604">
-<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">bmt</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-9_1c78db3a9ac50f3675d7cf8c556af26a">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">bmt</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Call: survfit(formula = Surv(t2, d3) ~ group, data = bmt)
 
@@ -766,15 +758,15 @@ group=High Risk AML 45     34    183     115     456</code></pre>
   677     12       1    0.244  0.0641        0.146        0.409</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-10_afe8d22639c11a8cde9546923fe08002">
-<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="va">bmt.cox</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-10_0324684d99d9467d7215eecbd5293132">
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="va">bmt.cox</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Call: survfit(formula = bmt.cox)
 
        n events median 0.95LCL 0.95UCL
 [1,] 137     83    422     268      NA</code></pre>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="va">bmt.cox</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">bmt</span><span class="op">$</span><span class="va">group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="va">bmt.cox</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">bmt</span><span class="op">$</span><span class="va">group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Call: survfit(formula = bmt.cox, newdata = tibble(group = unique(bmt$group)))
 
@@ -784,8 +776,8 @@ group=High Risk AML 45     34    183     115     456</code></pre>
 3 137     83    268     162     467</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-11_9fe1bd20c7db61a1e248d972edee659a">
-<details><summary>Code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt.cox</span> <span class="op">|&gt;</span> </span>
+<div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-11_0fa9c7a5faaaf6c276f651e071da5fe2">
+<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt.cox</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span>newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">bmt</span><span class="op">$</span><span class="va">group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -1336,628 +1328,628 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Proportional Hazards Models"</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="an">date-format:</span><span class="co"> "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="an">subject:</span><span class="co"> "EPI 204 Spring 2023"</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-cap-location: top</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 2</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Show the code"</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: dark</span></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-cap-location: top</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: mathjax</span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">    smaller: false</span></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 2</span></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">    slide-number: true</span></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co">    scrollable: true</span></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: true</span></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "[R code]"</span></span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: scroll</span></span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="co">    auto-stretch: false</span></span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="co">    # chalkboard: true</span></span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="co">    # fig-width: 7</span></span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="co">    # fig-height: 5</span></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co">    # out-width: "100%"</span></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-cap-location: top</span></span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 3</span></span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span></span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span></span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown:</span></span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: 72</span></span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>::: hidden</span>
-<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>\def\cd{\cdot}</span>
-<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>\def\eqdef{\stackrel{\text{def}}{=}}</span>
-<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>\def\se{\text{SE}}</span>
-<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>\def\hse{\hat{\se}}</span>
-<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>\def\hb{\hat\beta}</span>
-<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>\def\za{z_{1 - \frac{\alpha}{2}}}</span>
-<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>\def\cirad{\za \cd \hse(\hb)}</span>
-<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>\def\ci{\hb {\color{red}\pm} \cirad}</span>
-<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>\newcommand{\var}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\text{Var}\left(#1\right)}</span>
-<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a>\newcommand{\Var}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\text{Var}\left(#1\right)}</span>
-<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a>\newcommand{\varh}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\hat{\text{Var}}\left(#1\right)}</span>
-<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>\newcommand{\vc}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\boldsymbol{#1}}</span>
-<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a>::: {.content-hidden when-format="revealjs"}</span>
-<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Configuring R {.unnumbered}</span></span>
-<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a>Functions from these packages will be used throughout this document:</span>
-<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r packages, message = FALSE}</span></span>
-<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander) <span class="co"># format tables for markdown</span></span>
-<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># graphics</span></span>
-<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeasy) <span class="co"># help with graphics</span></span>
-<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># manipulate data</span></span>
-<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven) <span class="co"># import Stata files</span></span>
-<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># format R output for markdown</span></span>
-<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># Tools to help to create tidy data</span></span>
-<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly) <span class="co"># interactive graphics</span></span>
-<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dobson) <span class="co"># datasets from Dobson and Barnett 2018</span></span>
-<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters) <span class="co"># format model output tables for markdown</span></span>
-<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted) <span class="co"># check for conflicting function definitions</span></span>
-<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a><span class="fu">conflicts_prefer</span>(dplyr<span class="sc">::</span>filter)</span>
-<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a>Here are some R settings I use in this document:</span>
-<span id="cb23-87"><a href="#cb23-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-88"><a href="#cb23-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r options, message=FALSE}</span></span>
-<span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># delete any data that's already loaded into R</span></span>
-<span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a>pander<span class="sc">::</span><span class="fu">panderOptions</span>(<span class="st">"table.emphasize.rownames"</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">'digits'</span> <span class="ot">=</span> <span class="dv">4</span>)</span>
-<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-96"><a href="#cb23-96" aria-hidden="true" tabindex="-1"></a><span class="fu"># The proportional hazards model</span></span>
-<span id="cb23-97"><a href="#cb23-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-98"><a href="#cb23-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Background on the Proportional Hazards Model</span></span>
-<span id="cb23-99"><a href="#cb23-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-100"><a href="#cb23-100" aria-hidden="true" tabindex="-1"></a>The exponential distribution has constant hazard:</span>
-<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-102"><a href="#cb23-102" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-103"><a href="#cb23-103" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-104"><a href="#cb23-104" aria-hidden="true" tabindex="-1"></a>f(t) &amp;= \lambda e^{-\lambda t}<span class="sc">\\</span></span>
-<span id="cb23-105"><a href="#cb23-105" aria-hidden="true" tabindex="-1"></a>S(t) &amp;= e^{-\lambda t}<span class="sc">\\</span></span>
-<span id="cb23-106"><a href="#cb23-106" aria-hidden="true" tabindex="-1"></a>h(t) &amp;= \lambda</span>
-<span id="cb23-107"><a href="#cb23-107" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-108"><a href="#cb23-108" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-109"><a href="#cb23-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-110"><a href="#cb23-110" aria-hidden="true" tabindex="-1"></a>Let's make two generalizations. First, we let the hazard depend on some</span>
-<span id="cb23-111"><a href="#cb23-111" aria-hidden="true" tabindex="-1"></a>covariates $x_1,x_2, \dots, x_p$; we will indicate this dependence by extending our notation for hazard:</span>
-<span id="cb23-112"><a href="#cb23-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-113"><a href="#cb23-113" aria-hidden="true" tabindex="-1"></a>$$h(t|\boldsymbol x) \eqdef p(T=t|T\ge t, \boldsymbol X = \boldsymbol x)$$</span>
-<span id="cb23-114"><a href="#cb23-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-115"><a href="#cb23-115" aria-hidden="true" tabindex="-1"></a>Second, we let the base hazard depend on $t$, but not on the covariates (for now). We can do this using either parametric or semi-parametric approaches.</span>
-<span id="cb23-116"><a href="#cb23-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-117"><a href="#cb23-117" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cox's Proportional Hazards Model</span></span>
-<span id="cb23-118"><a href="#cb23-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-119"><a href="#cb23-119" aria-hidden="true" tabindex="-1"></a>The generalization is that the hazard function is </span>
-<span id="cb23-120"><a href="#cb23-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-121"><a href="#cb23-121" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-122"><a href="#cb23-122" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-123"><a href="#cb23-123" aria-hidden="true" tabindex="-1"></a>h(t|x)&amp;= h_0(t)\theta(x)<span class="sc">\\</span></span>
-<span id="cb23-124"><a href="#cb23-124" aria-hidden="true" tabindex="-1"></a>\theta(x) &amp;= \exp<span class="sc">\{</span>\eta(x)<span class="sc">\}\\</span></span>
-<span id="cb23-125"><a href="#cb23-125" aria-hidden="true" tabindex="-1"></a>\eta(x) &amp;= x'\beta<span class="sc">\\</span></span>
-<span id="cb23-126"><a href="#cb23-126" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \beta_1x_1+\cdots+\beta_px_p</span>
-<span id="cb23-127"><a href="#cb23-127" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-128"><a href="#cb23-128" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-129"><a href="#cb23-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-130"><a href="#cb23-130" aria-hidden="true" tabindex="-1"></a>The relationship between $h(t|x)$ and $\eta(x)$ has a log link (that is, $\log<span class="sc">\{</span>h(t|x)<span class="sc">\}</span> = \log<span class="sc">\{</span>h_0(t)<span class="sc">\}</span> + \eta(x)$), as in a generalized linear model.</span>
-<span id="cb23-131"><a href="#cb23-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-132"><a href="#cb23-132" aria-hidden="true" tabindex="-1"></a>This model is **semi-parametric**, because the linear predictor depends on estimated</span>
-<span id="cb23-133"><a href="#cb23-133" aria-hidden="true" tabindex="-1"></a>parameters but the base hazard function is unspecified. </span>
-<span id="cb23-134"><a href="#cb23-134" aria-hidden="true" tabindex="-1"></a>There is no constant term in $\eta(x)$, because it is absorbed in the base hazard. </span>
-<span id="cb23-135"><a href="#cb23-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-136"><a href="#cb23-136" aria-hidden="true" tabindex="-1"></a>Alternatively, we could define $\beta_0(t) = \log<span class="sc">\{</span>h_0(t)<span class="sc">\}</span>$, and then $\eta(x,t) = \beta_0(t) + \beta_1x_1+\cdots+\beta_px_p$.</span>
-<span id="cb23-137"><a href="#cb23-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-138"><a href="#cb23-138" aria-hidden="true" tabindex="-1"></a>For two different individuals with covariate patterns $\boldsymbol x_1$ and $\boldsymbol x_2$, the ratio of the hazard functions (a.k.a. **hazard ratio**, a.k.a. **relative hazard**) is:</span>
-<span id="cb23-139"><a href="#cb23-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-140"><a href="#cb23-140" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-141"><a href="#cb23-141" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-142"><a href="#cb23-142" aria-hidden="true" tabindex="-1"></a>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}</span>
-<span id="cb23-143"><a href="#cb23-143" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{h_0(t)\theta(\boldsymbol x_1)}{h_0(t)\theta(\boldsymbol x_2)}<span class="sc">\\</span></span>
-<span id="cb23-144"><a href="#cb23-144" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\theta(\boldsymbol x_1)}{\theta(\boldsymbol x_2)}<span class="sc">\\</span></span>
-<span id="cb23-145"><a href="#cb23-145" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-146"><a href="#cb23-146" aria-hidden="true" tabindex="-1"></a>$$ </span>
-<span id="cb23-147"><a href="#cb23-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-148"><a href="#cb23-148" aria-hidden="true" tabindex="-1"></a>Under the proportional hazards model, this ratio (a.k.a. proportion) does not depend on $t$. This property is a structural limitation of the model; it is called the **proportional hazards assumption**.</span>
-<span id="cb23-149"><a href="#cb23-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-150"><a href="#cb23-150" aria-hidden="true" tabindex="-1"></a>::: {#def-pha}</span>
-<span id="cb23-151"><a href="#cb23-151" aria-hidden="true" tabindex="-1"></a><span class="fu">## proportional hazards</span></span>
-<span id="cb23-152"><a href="#cb23-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-153"><a href="#cb23-153" aria-hidden="true" tabindex="-1"></a>A conditional probability distribution $p(T|X)$ has **proportional hazards** if the hazard ratio $h(t|\boldsymbol x_1)/h(t|\boldsymbol x_2)$ does not depend on $t$. Mathematically, it can be written as:</span>
-<span id="cb23-154"><a href="#cb23-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-155"><a href="#cb23-155" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-156"><a href="#cb23-156" aria-hidden="true" tabindex="-1"></a>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}</span>
-<span id="cb23-157"><a href="#cb23-157" aria-hidden="true" tabindex="-1"></a>= \theta(\boldsymbol x_1,\boldsymbol x_2)</span>
-<span id="cb23-158"><a href="#cb23-158" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-159"><a href="#cb23-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-160"><a href="#cb23-160" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb23-161"><a href="#cb23-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-162"><a href="#cb23-162" aria-hidden="true" tabindex="-1"></a>As we saw above, Cox's proportional hazards model has this property, with $\theta(\boldsymbol x_1,\boldsymbol x_2) = \frac{\theta(\boldsymbol x_1)}{\theta(\boldsymbol x_2)}$.</span>
-<span id="cb23-163"><a href="#cb23-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-164"><a href="#cb23-164" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
-<span id="cb23-165"><a href="#cb23-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-166"><a href="#cb23-166" aria-hidden="true" tabindex="-1"></a>We are using two similar notations, $\theta(\boldsymbol x_1,\boldsymbol x_2)$ and $\theta(\boldsymbol x)$. We can link these notations if we define $\theta(\boldsymbol x) \eqdef \theta(\boldsymbol x, \boldsymbol 0)$ and $\theta(\boldsymbol 0) = 1$.</span>
-<span id="cb23-167"><a href="#cb23-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-168"><a href="#cb23-168" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb23-169"><a href="#cb23-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-170"><a href="#cb23-170" aria-hidden="true" tabindex="-1"></a>It also has additional notable properties:</span>
-<span id="cb23-171"><a href="#cb23-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-172"><a href="#cb23-172" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-173"><a href="#cb23-173" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-174"><a href="#cb23-174" aria-hidden="true" tabindex="-1"></a>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}</span>
-<span id="cb23-175"><a href="#cb23-175" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\theta(\boldsymbol x_1)}{\theta(\boldsymbol x_2)}<span class="sc">\\</span></span>
-<span id="cb23-176"><a href="#cb23-176" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\exp<span class="sc">\{</span>\eta(\boldsymbol x_1)<span class="sc">\}</span>}{\exp<span class="sc">\{</span>\eta(\boldsymbol x_2)<span class="sc">\}</span>}<span class="sc">\\</span></span>
-<span id="cb23-177"><a href="#cb23-177" aria-hidden="true" tabindex="-1"></a>&amp;=\exp<span class="sc">\{</span>\eta(\boldsymbol x_1)-\eta(\boldsymbol x_2)<span class="sc">\}\\</span></span>
-<span id="cb23-178"><a href="#cb23-178" aria-hidden="true" tabindex="-1"></a>&amp;=\exp<span class="sc">\{</span>\boldsymbol x_1'\beta-\boldsymbol x_2'\beta<span class="sc">\}\\</span></span>
-<span id="cb23-179"><a href="#cb23-179" aria-hidden="true" tabindex="-1"></a>&amp;=\exp<span class="sc">\{</span>(\boldsymbol x_1 - \boldsymbol x_2)'\beta<span class="sc">\}\\</span></span>
-<span id="cb23-180"><a href="#cb23-180" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-181"><a href="#cb23-181" aria-hidden="true" tabindex="-1"></a>$$ </span>
-<span id="cb23-182"><a href="#cb23-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-183"><a href="#cb23-183" aria-hidden="true" tabindex="-1"></a>Hence on the log scale, we have:</span>
-<span id="cb23-184"><a href="#cb23-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-185"><a href="#cb23-185" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-186"><a href="#cb23-186" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-187"><a href="#cb23-187" aria-hidden="true" tabindex="-1"></a>\log\left<span class="sc">\{</span>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}\right<span class="sc">\}</span></span>
-<span id="cb23-188"><a href="#cb23-188" aria-hidden="true" tabindex="-1"></a>&amp;=\eta(\boldsymbol x_1)-\eta(\boldsymbol x_2)<span class="sc">\\</span></span>
-<span id="cb23-189"><a href="#cb23-189" aria-hidden="true" tabindex="-1"></a>&amp;= \boldsymbol x_1'\beta-\boldsymbol x_2'\beta<span class="sc">\\</span></span>
-<span id="cb23-190"><a href="#cb23-190" aria-hidden="true" tabindex="-1"></a>&amp;= (\boldsymbol x_1 - \boldsymbol x_2)'\beta</span>
-<span id="cb23-191"><a href="#cb23-191" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-192"><a href="#cb23-192" aria-hidden="true" tabindex="-1"></a>$$ </span>
-<span id="cb23-193"><a href="#cb23-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-194"><a href="#cb23-194" aria-hidden="true" tabindex="-1"></a>If only one covariate $x_j$ is changing, then:</span>
-<span id="cb23-195"><a href="#cb23-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-196"><a href="#cb23-196" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-197"><a href="#cb23-197" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-198"><a href="#cb23-198" aria-hidden="true" tabindex="-1"></a>\log\left<span class="sc">\{</span>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}\right<span class="sc">\}</span> </span>
-<span id="cb23-199"><a href="#cb23-199" aria-hidden="true" tabindex="-1"></a>&amp;=  (x_{1j} - x_{2j}) \cdot \beta_j<span class="sc">\\</span></span>
-<span id="cb23-200"><a href="#cb23-200" aria-hidden="true" tabindex="-1"></a>&amp;\propto (x_{1j} - x_{2j})</span>
-<span id="cb23-201"><a href="#cb23-201" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-202"><a href="#cb23-202" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-203"><a href="#cb23-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-204"><a href="#cb23-204" aria-hidden="true" tabindex="-1"></a>That is, under Cox's model $h(t|\boldsymbol x) = h_0(t)\exp<span class="sc">\{</span>\boldsymbol x'\beta<span class="sc">\}</span>$, the log of the hazard ratio is proportional to the difference in $x_j$, with the proportionality coefficient equal to $\beta_j$.</span>
-<span id="cb23-205"><a href="#cb23-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-206"><a href="#cb23-206" aria-hidden="true" tabindex="-1"></a>Further,</span>
-<span id="cb23-207"><a href="#cb23-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-208"><a href="#cb23-208" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-209"><a href="#cb23-209" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-210"><a href="#cb23-210" aria-hidden="true" tabindex="-1"></a>\log\left<span class="sc">\{</span>h(t|\boldsymbol x)\right<span class="sc">\}</span></span>
-<span id="cb23-211"><a href="#cb23-211" aria-hidden="true" tabindex="-1"></a>&amp;=\log\left<span class="sc">\{</span>h_0(t)\right<span class="sc">\}</span>  + x'\beta</span>
-<span id="cb23-212"><a href="#cb23-212" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-213"><a href="#cb23-213" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-214"><a href="#cb23-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-215"><a href="#cb23-215" aria-hidden="true" tabindex="-1"></a>That is, the covariate effects are additive on the log-hazard scale.</span>
-<span id="cb23-216"><a href="#cb23-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-217"><a href="#cb23-217" aria-hidden="true" tabindex="-1"></a>See also: </span>
-<span id="cb23-218"><a href="#cb23-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-219"><a href="#cb23-219" aria-hidden="true" tabindex="-1"></a><span class="ot">&lt;https://en.wikipedia.org/wiki/Proportional_hazards_model#Why_it_is_called_%22proportional%22&gt;</span></span>
-<span id="cb23-220"><a href="#cb23-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-221"><a href="#cb23-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## Additional properties of the proportional hazards model</span></span>
-<span id="cb23-222"><a href="#cb23-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-223"><a href="#cb23-223" aria-hidden="true" tabindex="-1"></a>If $h(t|x)= h_0(t)\theta(x)$, then:</span>
-<span id="cb23-224"><a href="#cb23-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-225"><a href="#cb23-225" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cumulative hazards are also proportional to $H_0(t)$</span></span>
-<span id="cb23-226"><a href="#cb23-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-227"><a href="#cb23-227" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-228"><a href="#cb23-228" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-229"><a href="#cb23-229" aria-hidden="true" tabindex="-1"></a>H(t|x)</span>
-<span id="cb23-230"><a href="#cb23-230" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \int_{u=0}^t h(u)du<span class="sc">\\</span></span>
-<span id="cb23-231"><a href="#cb23-231" aria-hidden="true" tabindex="-1"></a>&amp;= \int_{u=0}^t h_0(u)\theta(x)du<span class="sc">\\</span></span>
-<span id="cb23-232"><a href="#cb23-232" aria-hidden="true" tabindex="-1"></a>&amp;= \theta(x)\int_{u=0}^t h_0(u)du<span class="sc">\\</span></span>
-<span id="cb23-233"><a href="#cb23-233" aria-hidden="true" tabindex="-1"></a>&amp;= \theta(x)H_0(t)</span>
-<span id="cb23-234"><a href="#cb23-234" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-235"><a href="#cb23-235" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-236"><a href="#cb23-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-237"><a href="#cb23-237" aria-hidden="true" tabindex="-1"></a>where $H_0(t) \eqdef H(t|0) = \int_{u=0}^t h_0(u)du$.</span>
-<span id="cb23-238"><a href="#cb23-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-239"><a href="#cb23-239" aria-hidden="true" tabindex="-1"></a><span class="fu">### Survival functions are exponential multiples of $S_0(t)$</span></span>
-<span id="cb23-240"><a href="#cb23-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-241"><a href="#cb23-241" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-242"><a href="#cb23-242" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-243"><a href="#cb23-243" aria-hidden="true" tabindex="-1"></a>S(t|x)</span>
-<span id="cb23-244"><a href="#cb23-244" aria-hidden="true" tabindex="-1"></a>&amp;= \exp<span class="sc">\{</span>-H(t|x)<span class="sc">\}\\</span></span>
-<span id="cb23-245"><a href="#cb23-245" aria-hidden="true" tabindex="-1"></a>&amp;= \exp<span class="sc">\{</span>-\theta(x)\cdot H_0(t)<span class="sc">\}\\</span></span>
-<span id="cb23-246"><a href="#cb23-246" aria-hidden="true" tabindex="-1"></a>&amp;= \left(\exp<span class="sc">\{</span>- H_0(t)<span class="sc">\}</span>\right)^{\theta(x)}<span class="sc">\\</span></span>
-<span id="cb23-247"><a href="#cb23-247" aria-hidden="true" tabindex="-1"></a>&amp;= \left(S_0(t)\right)^{\theta(x)}<span class="sc">\\</span></span>
-<span id="cb23-248"><a href="#cb23-248" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-249"><a href="#cb23-249" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-250"><a href="#cb23-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-251"><a href="#cb23-251" aria-hidden="true" tabindex="-1"></a>where $S_0(t) \eqdef P(T\ge t | \boldsymbol X = 0)$ is the survival function for an individual whose covariates are all equal to their default values.</span>
-<span id="cb23-252"><a href="#cb23-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-253"><a href="#cb23-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## Testing the proportional hazards assumption</span></span>
-<span id="cb23-254"><a href="#cb23-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-255"><a href="#cb23-255" aria-hidden="true" tabindex="-1"></a>The Nelson-Aalen estimate of the cumulative hazard is usually used for estimates of the hazard and often the cumulative hazard.</span>
-<span id="cb23-256"><a href="#cb23-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-257"><a href="#cb23-257" aria-hidden="true" tabindex="-1"></a>If the hazards of the three groups are proportional, that means that the ratio of the hazards is constant over $t$. We can test this using the ratios of the estimated cumulative hazards, which also would be</span>
-<span id="cb23-258"><a href="#cb23-258" aria-hidden="true" tabindex="-1"></a>proportional, as shown above.</span>
-<span id="cb23-259"><a href="#cb23-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-262"><a href="#cb23-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-263"><a href="#cb23-263" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(KMsurv)</span>
-<span id="cb23-264"><a href="#cb23-264" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
-<span id="cb23-265"><a href="#cb23-265" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(bmt)</span>
-<span id="cb23-266"><a href="#cb23-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-267"><a href="#cb23-267" aria-hidden="true" tabindex="-1"></a>bmt <span class="ot">=</span> </span>
-<span id="cb23-268"><a href="#cb23-268" aria-hidden="true" tabindex="-1"></a>  bmt <span class="sc">|&gt;</span> </span>
-<span id="cb23-269"><a href="#cb23-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb23-270"><a href="#cb23-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-271"><a href="#cb23-271" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> </span>
-<span id="cb23-272"><a href="#cb23-272" aria-hidden="true" tabindex="-1"></a>      group <span class="sc">|&gt;</span> </span>
-<span id="cb23-273"><a href="#cb23-273" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
-<span id="cb23-274"><a href="#cb23-274" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"ALL"</span>,<span class="st">"Low Risk AML"</span>,<span class="st">"High Risk AML"</span>)))</span>
-<span id="cb23-275"><a href="#cb23-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-276"><a href="#cb23-276" aria-hidden="true" tabindex="-1"></a>nafit <span class="ot">=</span> <span class="fu">survfit</span>(</span>
-<span id="cb23-277"><a href="#cb23-277" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">Surv</span>(t2,d3) <span class="sc">~</span> group,</span>
-<span id="cb23-278"><a href="#cb23-278" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"fleming-harrington"</span>,</span>
-<span id="cb23-279"><a href="#cb23-279" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> bmt)</span>
-<span id="cb23-280"><a href="#cb23-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-281"><a href="#cb23-281" aria-hidden="true" tabindex="-1"></a>bmt_curves <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">timevec =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
-<span id="cb23-282"><a href="#cb23-282" aria-hidden="true" tabindex="-1"></a>sf1 <span class="ot">&lt;-</span> <span class="fu">with</span>(nafit[<span class="dv">1</span>], <span class="fu">stepfun</span>(time,<span class="fu">c</span>(<span class="dv">1</span>,surv)))</span>
-<span id="cb23-283"><a href="#cb23-283" aria-hidden="true" tabindex="-1"></a>sf2 <span class="ot">&lt;-</span> <span class="fu">with</span>(nafit[<span class="dv">2</span>], <span class="fu">stepfun</span>(time,<span class="fu">c</span>(<span class="dv">1</span>,surv)))</span>
-<span id="cb23-284"><a href="#cb23-284" aria-hidden="true" tabindex="-1"></a>sf3 <span class="ot">&lt;-</span> <span class="fu">with</span>(nafit[<span class="dv">3</span>], <span class="fu">stepfun</span>(time,<span class="fu">c</span>(<span class="dv">1</span>,surv)))</span>
-<span id="cb23-285"><a href="#cb23-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-286"><a href="#cb23-286" aria-hidden="true" tabindex="-1"></a>bmt_curves <span class="ot">=</span> </span>
-<span id="cb23-287"><a href="#cb23-287" aria-hidden="true" tabindex="-1"></a>  bmt_curves <span class="sc">|&gt;</span> </span>
-<span id="cb23-288"><a href="#cb23-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-289"><a href="#cb23-289" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumhaz1 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">sf1</span>(timevec)),</span>
-<span id="cb23-290"><a href="#cb23-290" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumhaz2 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">sf2</span>(timevec)),</span>
-<span id="cb23-291"><a href="#cb23-291" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumhaz3 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">sf3</span>(timevec)))</span>
-<span id="cb23-292"><a href="#cb23-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-293"><a href="#cb23-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-296"><a href="#cb23-296" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-297"><a href="#cb23-297" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Hazard Ratios by Disease Group"</span></span>
-<span id="cb23-298"><a href="#cb23-298" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb23-299"><a href="#cb23-299" aria-hidden="true" tabindex="-1"></a>bmt_rel_hazard_plot <span class="ot">=</span> </span>
-<span id="cb23-300"><a href="#cb23-300" aria-hidden="true" tabindex="-1"></a>  bmt_curves <span class="sc">|&gt;</span> </span>
-<span id="cb23-301"><a href="#cb23-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb23-302"><a href="#cb23-302" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb23-303"><a href="#cb23-303" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> timevec,</span>
-<span id="cb23-304"><a href="#cb23-304" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> cumhaz1<span class="sc">/</span>cumhaz2)</span>
-<span id="cb23-305"><a href="#cb23-305" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb23-306"><a href="#cb23-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col =</span> <span class="st">"ALL/Low Risk AML"</span>)) <span class="sc">+</span> </span>
-<span id="cb23-307"><a href="#cb23-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Hazard Ratio"</span>) <span class="sc">+</span></span>
-<span id="cb23-308"><a href="#cb23-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time"</span>) <span class="sc">+</span> </span>
-<span id="cb23-309"><a href="#cb23-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb23-310"><a href="#cb23-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> cumhaz3<span class="sc">/</span>cumhaz1, <span class="at">col =</span> <span class="st">"High Risk AML/ALL"</span>)) <span class="sc">+</span></span>
-<span id="cb23-311"><a href="#cb23-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> cumhaz3<span class="sc">/</span>cumhaz2, <span class="at">col =</span> <span class="st">"High Risk AML/Low Risk AML"</span>)) <span class="sc">+</span></span>
-<span id="cb23-312"><a href="#cb23-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb23-313"><a href="#cb23-313" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">"Comparison"</span>) <span class="sc">+</span></span>
-<span id="cb23-314"><a href="#cb23-314" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"bottom"</span>)</span>
-<span id="cb23-315"><a href="#cb23-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-316"><a href="#cb23-316" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bmt_rel_hazard_plot)</span>
-<span id="cb23-317"><a href="#cb23-317" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-318"><a href="#cb23-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-319"><a href="#cb23-319" aria-hidden="true" tabindex="-1"></a>We can zoom in on 30-300 days to take a closer look:</span>
-<span id="cb23-320"><a href="#cb23-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-323"><a href="#cb23-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-324"><a href="#cb23-324" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Hazard Ratios by Disease Group (30-300 Days)"</span></span>
-<span id="cb23-325"><a href="#cb23-325" aria-hidden="true" tabindex="-1"></a>bmt_rel_hazard_plot <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">300</span>))</span>
-<span id="cb23-326"><a href="#cb23-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-327"><a href="#cb23-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-328"><a href="#cb23-328" aria-hidden="true" tabindex="-1"></a><span class="fu">## Smoothed hazard functions</span></span>
-<span id="cb23-329"><a href="#cb23-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-330"><a href="#cb23-330" aria-hidden="true" tabindex="-1"></a>The Nelson-Aalen estimate of the cumulative hazard is usually used for</span>
-<span id="cb23-331"><a href="#cb23-331" aria-hidden="true" tabindex="-1"></a>estimates of the hazard. Since the hazard is the derivative of the</span>
-<span id="cb23-332"><a href="#cb23-332" aria-hidden="true" tabindex="-1"></a>cumulative hazard, we need a smooth estimate of the cumulative hazard,</span>
-<span id="cb23-333"><a href="#cb23-333" aria-hidden="true" tabindex="-1"></a>which is provided by smoothing the step-function cumulative hazard.</span>
-<span id="cb23-334"><a href="#cb23-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-335"><a href="#cb23-335" aria-hidden="true" tabindex="-1"></a>The R package <span class="in">`muhaz`</span> handles this for us. What we are looking for is</span>
-<span id="cb23-336"><a href="#cb23-336" aria-hidden="true" tabindex="-1"></a>whether the hazard function is more or less the same shape, increasing,</span>
-<span id="cb23-337"><a href="#cb23-337" aria-hidden="true" tabindex="-1"></a>decreasing, constant, etc. Are the hazards "proportional"?</span>
-<span id="cb23-338"><a href="#cb23-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-341"><a href="#cb23-341" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-342"><a href="#cb23-342" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Disease-Free Cumulative Hazard by Disease Group"</span></span>
-<span id="cb23-343"><a href="#cb23-343" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb23-344"><a href="#cb23-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survfit</span>(<span class="fu">Surv</span>(t2,d3)<span class="sc">~</span>group,<span class="at">data=</span>bmt),</span>
-<span id="cb23-345"><a href="#cb23-345" aria-hidden="true" tabindex="-1"></a>  <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb23-346"><a href="#cb23-346" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb23-347"><a href="#cb23-347" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun=</span><span class="st">"cumhaz"</span>,</span>
-<span id="cb23-348"><a href="#cb23-348" aria-hidden="true" tabindex="-1"></a>  <span class="at">mark.time =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-349"><a href="#cb23-349" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,<span class="fu">c</span>(<span class="st">"ALL"</span>,<span class="st">"Low Risk AML"</span>,<span class="st">"High Risk AML"</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb23-350"><a href="#cb23-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-351"><a href="#cb23-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-352"><a href="#cb23-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-355"><a href="#cb23-355" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-356"><a href="#cb23-356" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Smoothed Hazard Rate Estimates by Disease Group"</span></span>
-<span id="cb23-357"><a href="#cb23-357" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(muhaz)</span>
-<span id="cb23-358"><a href="#cb23-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-359"><a href="#cb23-359" aria-hidden="true" tabindex="-1"></a><span class="fu">muhaz</span>(bmt<span class="sc">$</span>t2,bmt<span class="sc">$</span>d3,bmt<span class="sc">$</span>group<span class="sc">==</span><span class="st">"High Risk AML"</span>) <span class="sc">|&gt;</span> <span class="fu">plot</span>(<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">3</span>)</span>
-<span id="cb23-360"><a href="#cb23-360" aria-hidden="true" tabindex="-1"></a><span class="fu">muhaz</span>(bmt<span class="sc">$</span>t2,bmt<span class="sc">$</span>d3,bmt<span class="sc">$</span>group<span class="sc">==</span><span class="st">"ALL"</span>) <span class="sc">|&gt;</span> <span class="fu">lines</span>(<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">1</span>)</span>
-<span id="cb23-361"><a href="#cb23-361" aria-hidden="true" tabindex="-1"></a><span class="fu">muhaz</span>(bmt<span class="sc">$</span>t2,bmt<span class="sc">$</span>d3,bmt<span class="sc">$</span>group<span class="sc">==</span><span class="st">"Low Risk AML"</span>) <span class="sc">|&gt;</span> <span class="fu">lines</span>(<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb23-362"><a href="#cb23-362" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,<span class="fu">c</span>(<span class="st">"ALL"</span>,<span class="st">"Low Risk AML"</span>,<span class="st">"High Risk AML"</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb23-363"><a href="#cb23-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-364"><a href="#cb23-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-365"><a href="#cb23-365" aria-hidden="true" tabindex="-1"></a>Group 3 was plotted first because it has the highest hazard.</span>
-<span id="cb23-366"><a href="#cb23-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-367"><a href="#cb23-367" aria-hidden="true" tabindex="-1"></a>We will see that except for an initial blip in the high risk AML group,</span>
-<span id="cb23-368"><a href="#cb23-368" aria-hidden="true" tabindex="-1"></a>the hazards look roughly proportional . They are all strongly</span>
-<span id="cb23-369"><a href="#cb23-369" aria-hidden="true" tabindex="-1"></a>decreasing.</span>
-<span id="cb23-370"><a href="#cb23-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-371"><a href="#cb23-371" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fitting the Proportional Hazards Model</span></span>
-<span id="cb23-372"><a href="#cb23-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-373"><a href="#cb23-373" aria-hidden="true" tabindex="-1"></a>How do we fit a proportional hazards regression model? We need to</span>
-<span id="cb23-374"><a href="#cb23-374" aria-hidden="true" tabindex="-1"></a>estimate the coefficients of the covariates, and we need to estimate the</span>
-<span id="cb23-375"><a href="#cb23-375" aria-hidden="true" tabindex="-1"></a>base hazard $h_0(t)$. For the covariates, supposing for simplicity that</span>
-<span id="cb23-376"><a href="#cb23-376" aria-hidden="true" tabindex="-1"></a>there are no tied event times, let the event times for the whole data</span>
-<span id="cb23-377"><a href="#cb23-377" aria-hidden="true" tabindex="-1"></a>set be $t_1, t_2,\ldots,t_D$. Let the risk set at time $t_i$ be $R(t_i)$</span>
-<span id="cb23-378"><a href="#cb23-378" aria-hidden="true" tabindex="-1"></a>and </span>
-<span id="cb23-379"><a href="#cb23-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-380"><a href="#cb23-380" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-381"><a href="#cb23-381" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-382"><a href="#cb23-382" aria-hidden="true" tabindex="-1"></a>\eta(\boldsymbol{x}) &amp;= \beta_1x_{1}+\cdots+\beta_p x_{p}<span class="sc">\\</span></span>
-<span id="cb23-383"><a href="#cb23-383" aria-hidden="true" tabindex="-1"></a>\theta(\boldsymbol{x}) &amp;= e^{\eta(\boldsymbol{x})}<span class="sc">\\</span></span>
-<span id="cb23-384"><a href="#cb23-384" aria-hidden="true" tabindex="-1"></a>h(t|X=x)&amp;= h_0(t)e^{\eta(\boldsymbol{x})}=\theta(\boldsymbol{x}) h_0(t)</span>
-<span id="cb23-385"><a href="#cb23-385" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-386"><a href="#cb23-386" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-387"><a href="#cb23-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-388"><a href="#cb23-388" aria-hidden="true" tabindex="-1"></a>Conditional on a single failure at time $t$, the probability that the</span>
-<span id="cb23-389"><a href="#cb23-389" aria-hidden="true" tabindex="-1"></a>event is due to subject $f\in R(t)$ is approximately</span>
-<span id="cb23-390"><a href="#cb23-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-391"><a href="#cb23-391" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-392"><a href="#cb23-392" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-393"><a href="#cb23-393" aria-hidden="true" tabindex="-1"></a>\Pr(f \text{ fails}|\text{1 failure at } t) </span>
-<span id="cb23-394"><a href="#cb23-394" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{h_0(t)e^{\eta(\boldsymbol{x}_f)}}{\sum_{k \in R(t)}h_0(t)e^{\eta(\boldsymbol{x}_f)}}<span class="sc">\\</span></span>
-<span id="cb23-395"><a href="#cb23-395" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\theta(\boldsymbol{x}_f)}{\sum_{k \in R(t)} \theta(\boldsymbol{x}_k)}</span>
-<span id="cb23-396"><a href="#cb23-396" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-397"><a href="#cb23-397" aria-hidden="true" tabindex="-1"></a>$$ </span>
-<span id="cb23-398"><a href="#cb23-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-399"><a href="#cb23-399" aria-hidden="true" tabindex="-1"></a>The logic behind this has several steps. We first fix (ex post) the</span>
-<span id="cb23-400"><a href="#cb23-400" aria-hidden="true" tabindex="-1"></a>failure times and note that in this discrete context, the probability</span>
-<span id="cb23-401"><a href="#cb23-401" aria-hidden="true" tabindex="-1"></a>$p_j$ that a subject $j$ in the risk set fails at time $t$ is just the</span>
-<span id="cb23-402"><a href="#cb23-402" aria-hidden="true" tabindex="-1"></a>hazard of that subject at that time.</span>
-<span id="cb23-403"><a href="#cb23-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-404"><a href="#cb23-404" aria-hidden="true" tabindex="-1"></a>If all of the $p_j$ are small, the chance that exactly one subject fails</span>
-<span id="cb23-405"><a href="#cb23-405" aria-hidden="true" tabindex="-1"></a>is</span>
-<span id="cb23-406"><a href="#cb23-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-407"><a href="#cb23-407" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-408"><a href="#cb23-408" aria-hidden="true" tabindex="-1"></a>\sum_{k\in R(t)}p_k\left<span class="co">[</span><span class="ot">\prod_{m\in R(t), m\ne k} (1-p_m)\right</span><span class="co">]</span>\approx\sum_{k\in R(t)}p_k</span>
-<span id="cb23-409"><a href="#cb23-409" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-410"><a href="#cb23-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-411"><a href="#cb23-411" aria-hidden="true" tabindex="-1"></a>If subject $i$ is the one who experiences the event of interest at time</span>
-<span id="cb23-412"><a href="#cb23-412" aria-hidden="true" tabindex="-1"></a>$t_i$, then the **partial likelihood** is</span>
-<span id="cb23-413"><a href="#cb23-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-414"><a href="#cb23-414" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-415"><a href="#cb23-415" aria-hidden="true" tabindex="-1"></a>\mathcal L^*(\beta|T)=</span>
-<span id="cb23-416"><a href="#cb23-416" aria-hidden="true" tabindex="-1"></a>\prod_i \frac{\theta(x_i)}{\sum_{k \in R(t_i)} \theta(\boldsymbol{x}_k)}</span>
-<span id="cb23-417"><a href="#cb23-417" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-418"><a href="#cb23-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-419"><a href="#cb23-419" aria-hidden="true" tabindex="-1"></a>and we can numerically maximize this with respect to the coefficients</span>
-<span id="cb23-420"><a href="#cb23-420" aria-hidden="true" tabindex="-1"></a>$\boldsymbol{\beta}$ that specify</span>
-<span id="cb23-421"><a href="#cb23-421" aria-hidden="true" tabindex="-1"></a>$\eta(\boldsymbol{x}) = \boldsymbol{x}'\boldsymbol{\beta}$. When there</span>
-<span id="cb23-422"><a href="#cb23-422" aria-hidden="true" tabindex="-1"></a>are tied event times adjustments need to be made, but the likelihood is</span>
-<span id="cb23-423"><a href="#cb23-423" aria-hidden="true" tabindex="-1"></a>still similar. Note that we don't need to know the base hazard to solve</span>
-<span id="cb23-424"><a href="#cb23-424" aria-hidden="true" tabindex="-1"></a>for the coefficients.</span>
-<span id="cb23-425"><a href="#cb23-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-426"><a href="#cb23-426" aria-hidden="true" tabindex="-1"></a>Once we have coefficient estimates</span>
-<span id="cb23-427"><a href="#cb23-427" aria-hidden="true" tabindex="-1"></a>$\hat{\boldsymbol{\beta}} =(\hat \beta_1,\ldots,\hat\beta_p)$, this also</span>
-<span id="cb23-428"><a href="#cb23-428" aria-hidden="true" tabindex="-1"></a>defines $\hat\eta(x)$ and $\hat\theta(x)$ and then the estimated base</span>
-<span id="cb23-429"><a href="#cb23-429" aria-hidden="true" tabindex="-1"></a>cumulative hazard function is $$\hat H(t)=</span>
-<span id="cb23-430"><a href="#cb23-430" aria-hidden="true" tabindex="-1"></a>\sum_{t_i &lt; t} \frac{d_i}{\sum_{k\in R(t_i)} \theta(x_k)}$$ which</span>
-<span id="cb23-431"><a href="#cb23-431" aria-hidden="true" tabindex="-1"></a>reduces to the Nelson-Aalen estimate when there are no covariates. There</span>
-<span id="cb23-432"><a href="#cb23-432" aria-hidden="true" tabindex="-1"></a>are numerous other estimates that have been proposed as well.</span>
-<span id="cb23-433"><a href="#cb23-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-434"><a href="#cb23-434" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cox Model for the `bmt` data</span></span>
-<span id="cb23-435"><a href="#cb23-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-436"><a href="#cb23-436" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit the model</span></span>
-<span id="cb23-437"><a href="#cb23-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-440"><a href="#cb23-440" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-441"><a href="#cb23-441" aria-hidden="true" tabindex="-1"></a>bmt.cox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(t2, d3) <span class="sc">~</span> group, <span class="at">data =</span> bmt)</span>
-<span id="cb23-442"><a href="#cb23-442" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bmt.cox)</span>
-<span id="cb23-443"><a href="#cb23-443" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-444"><a href="#cb23-444" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-445"><a href="#cb23-445" aria-hidden="true" tabindex="-1"></a>The table provides hypothesis tests comparing groups 2 and 3 to group 1.</span>
-<span id="cb23-446"><a href="#cb23-446" aria-hidden="true" tabindex="-1"></a>Group 3 has the highest hazard, so the most significant comparison is</span>
-<span id="cb23-447"><a href="#cb23-447" aria-hidden="true" tabindex="-1"></a>not directly shown.</span>
-<span id="cb23-448"><a href="#cb23-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-449"><a href="#cb23-449" aria-hidden="true" tabindex="-1"></a>The coefficient 0.3834 is on the log-hazard-ratio scale, as in</span>
-<span id="cb23-450"><a href="#cb23-450" aria-hidden="true" tabindex="-1"></a>log-risk-ratio. The next column gives the hazard ratio 1.4673, and a</span>
-<span id="cb23-451"><a href="#cb23-451" aria-hidden="true" tabindex="-1"></a>hypothesis (Wald) test.</span>
-<span id="cb23-452"><a href="#cb23-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-453"><a href="#cb23-453" aria-hidden="true" tabindex="-1"></a>The (not shown) group 3 vs. group 2 log hazard ratio is 0.3834 + 0.5742</span>
-<span id="cb23-454"><a href="#cb23-454" aria-hidden="true" tabindex="-1"></a>= 0.9576. The hazard ratio is then exp(0.9576) or 2.605.</span>
-<span id="cb23-455"><a href="#cb23-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-456"><a href="#cb23-456" aria-hidden="true" tabindex="-1"></a>Inference on all coefficients and combinations can be constructed using</span>
-<span id="cb23-457"><a href="#cb23-457" aria-hidden="true" tabindex="-1"></a><span class="in">`coef(bmt.cox)`</span> and <span class="in">`vcov(bmt.cox)`</span> as with logistic and poisson</span>
-<span id="cb23-458"><a href="#cb23-458" aria-hidden="true" tabindex="-1"></a>regression.</span>
-<span id="cb23-459"><a href="#cb23-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-460"><a href="#cb23-460" aria-hidden="true" tabindex="-1"></a>**Concordance** is agreement of first failure between pairs of subjects</span>
-<span id="cb23-461"><a href="#cb23-461" aria-hidden="true" tabindex="-1"></a>and higher predicted risk between those subjects, omitting</span>
-<span id="cb23-462"><a href="#cb23-462" aria-hidden="true" tabindex="-1"></a>non-informative pairs.</span>
-<span id="cb23-463"><a href="#cb23-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-464"><a href="#cb23-464" aria-hidden="true" tabindex="-1"></a>The Rsquare value is Cox and Snell's pseudo R-squared and is not very</span>
-<span id="cb23-465"><a href="#cb23-465" aria-hidden="true" tabindex="-1"></a>useful.</span>
-<span id="cb23-466"><a href="#cb23-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-467"><a href="#cb23-467" aria-hidden="true" tabindex="-1"></a><span class="in">`summary()`</span> prints three tests for whether the model with the group</span>
-<span id="cb23-468"><a href="#cb23-468" aria-hidden="true" tabindex="-1"></a>covariate is better than the one without</span>
-<span id="cb23-469"><a href="#cb23-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-470"><a href="#cb23-470" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Likelihood ratio test`</span> (chi-squared)</span>
-<span id="cb23-471"><a href="#cb23-471" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Wald test`</span> (also chi-squared), obtained by adding the squares of the z-scores</span>
-<span id="cb23-472"><a href="#cb23-472" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Score`</span> = log-rank test, as with comparison of survival functions.</span>
-<span id="cb23-473"><a href="#cb23-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-474"><a href="#cb23-474" aria-hidden="true" tabindex="-1"></a>The likelihood ratio test is probably best in smaller samples, followed</span>
-<span id="cb23-475"><a href="#cb23-475" aria-hidden="true" tabindex="-1"></a>by the Wald test.</span>
-<span id="cb23-476"><a href="#cb23-476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-477"><a href="#cb23-477" aria-hidden="true" tabindex="-1"></a><span class="fu">## Survival Curves from the Cox Model</span></span>
-<span id="cb23-478"><a href="#cb23-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-479"><a href="#cb23-479" aria-hidden="true" tabindex="-1"></a>We can take a look at the resulting group-specific curves:</span>
-<span id="cb23-480"><a href="#cb23-480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-483"><a href="#cb23-483" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-484"><a href="#cb23-484" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Survival Functions for Three Groups by KM and Cox Model"</span></span>
-<span id="cb23-485"><a href="#cb23-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-486"><a href="#cb23-486" aria-hidden="true" tabindex="-1"></a>km_fit <span class="ot">=</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(t2, d3) <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">as.data.frame</span>(bmt))</span>
-<span id="cb23-487"><a href="#cb23-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-488"><a href="#cb23-488" aria-hidden="true" tabindex="-1"></a>cox_fit <span class="ot">=</span> <span class="fu">survfit</span>(</span>
-<span id="cb23-489"><a href="#cb23-489" aria-hidden="true" tabindex="-1"></a>  bmt.cox, </span>
-<span id="cb23-490"><a href="#cb23-490" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata =</span> </span>
-<span id="cb23-491"><a href="#cb23-491" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
-<span id="cb23-492"><a href="#cb23-492" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> <span class="fu">unique</span>(bmt<span class="sc">$</span>group), </span>
-<span id="cb23-493"><a href="#cb23-493" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="fu">unique</span>(bmt<span class="sc">$</span>group)))</span>
-<span id="cb23-494"><a href="#cb23-494" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-495"><a href="#cb23-495" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
-<span id="cb23-496"><a href="#cb23-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-497"><a href="#cb23-497" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">KM =</span> km_fit, <span class="at">Cox =</span> cox_fit) <span class="sc">|&gt;</span> </span>
-<span id="cb23-498"><a href="#cb23-498" aria-hidden="true" tabindex="-1"></a>  survminer<span class="sc">::</span><span class="fu">ggsurvplot</span>(</span>
-<span id="cb23-499"><a href="#cb23-499" aria-hidden="true" tabindex="-1"></a>    <span class="co"># facet.by = "group",</span></span>
-<span id="cb23-500"><a href="#cb23-500" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="st">"bottom"</span>, </span>
-<span id="cb23-501"><a href="#cb23-501" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="st">""</span>,</span>
-<span id="cb23-502"><a href="#cb23-502" aria-hidden="true" tabindex="-1"></a>    <span class="at">combine =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb23-503"><a href="#cb23-503" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="st">'pct'</span>, </span>
-<span id="cb23-504"><a href="#cb23-504" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> .<span class="dv">5</span>,</span>
-<span id="cb23-505"><a href="#cb23-505" aria-hidden="true" tabindex="-1"></a>    <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>(), </span>
-<span id="cb23-506"><a href="#cb23-506" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb23-507"><a href="#cb23-507" aria-hidden="true" tabindex="-1"></a>    <span class="at">censor =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb23-508"><a href="#cb23-508" aria-hidden="true" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>() <span class="co"># ggsurvplot() throws some warnings that aren't too worrying</span></span>
-<span id="cb23-509"><a href="#cb23-509" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-510"><a href="#cb23-510" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-511"><a href="#cb23-511" aria-hidden="true" tabindex="-1"></a>When we use <span class="in">`survfit()`</span> with a Cox model, we have to specify the covariate levels we are interested in; the argument <span class="in">`newdata`</span> should include a <span class="in">`data.frame`</span> with the same named columns as the predictors in the Cox model and one or more levels of each.</span>
-<span id="cb23-512"><a href="#cb23-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-513"><a href="#cb23-513" aria-hidden="true" tabindex="-1"></a>Otherwise (that is, if the <span class="in">`newdata`</span> argument is missing), a curve is produced for a single "pseudo" subject with covariate values equal to the means component of the fit. </span>
-<span id="cb23-514"><a href="#cb23-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-515"><a href="#cb23-515" aria-hidden="true" tabindex="-1"></a>The resulting curve(s) almost never make sense, but the default remains due to an unwarranted attachment to the</span>
-<span id="cb23-516"><a href="#cb23-516" aria-hidden="true" tabindex="-1"></a>option shown by some users and by other packages.</span>
-<span id="cb23-517"><a href="#cb23-517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-518"><a href="#cb23-518" aria-hidden="true" tabindex="-1"></a>Two particularly egregious examples are factor variables and</span>
-<span id="cb23-519"><a href="#cb23-519" aria-hidden="true" tabindex="-1"></a>interactions. Suppose one were studying interspecies transmission of a virus, and the data set has a factor variable with levels ("pig", "chicken") and about equal numbers of observations for each. The "mean" covariate level will be 0.5 -- is this a flying pig?</span>
-<span id="cb23-520"><a href="#cb23-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-521"><a href="#cb23-521" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examining `survfit`</span></span>
-<span id="cb23-522"><a href="#cb23-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-525"><a href="#cb23-525" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-526"><a href="#cb23-526" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(t2, d3)<span class="sc">~</span>group,<span class="at">data=</span>bmt)</span>
-<span id="cb23-527"><a href="#cb23-527" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-528"><a href="#cb23-528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-531"><a href="#cb23-531" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-532"><a href="#cb23-532" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(t2, d3)<span class="sc">~</span>group,<span class="at">data=</span>bmt) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
-<span id="cb23-533"><a href="#cb23-533" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-534"><a href="#cb23-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-537"><a href="#cb23-537" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-538"><a href="#cb23-538" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(bmt.cox)</span>
-<span id="cb23-539"><a href="#cb23-539" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(bmt.cox, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">group =</span> <span class="fu">unique</span>(bmt<span class="sc">$</span>group)))</span>
-<span id="cb23-540"><a href="#cb23-540" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-541"><a href="#cb23-541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-544"><a href="#cb23-544" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-545"><a href="#cb23-545" aria-hidden="true" tabindex="-1"></a>bmt.cox <span class="sc">|&gt;</span> </span>
-<span id="cb23-546"><a href="#cb23-546" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survfit</span>(<span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">group =</span> <span class="fu">unique</span>(bmt<span class="sc">$</span>group))) <span class="sc">|&gt;</span> </span>
-<span id="cb23-547"><a href="#cb23-547" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span>
-<span id="cb23-548"><a href="#cb23-548" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-549"><a href="#cb23-549" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-550"><a href="#cb23-550" aria-hidden="true" tabindex="-1"></a><span class="fu"># Adjustment for Ties (optional)</span></span>
-<span id="cb23-551"><a href="#cb23-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-552"><a href="#cb23-552" aria-hidden="true" tabindex="-1"></a>##</span>
-<span id="cb23-553"><a href="#cb23-553" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-554"><a href="#cb23-554" aria-hidden="true" tabindex="-1"></a>At each time $t_i$ at which more than one of the subjects has an event,</span>
-<span id="cb23-555"><a href="#cb23-555" aria-hidden="true" tabindex="-1"></a>let $d_i$ be the number of events at that time, $D_i$ the set of</span>
-<span id="cb23-556"><a href="#cb23-556" aria-hidden="true" tabindex="-1"></a>subjects with events at that time, and let $s_i$ be a covariate vector</span>
-<span id="cb23-557"><a href="#cb23-557" aria-hidden="true" tabindex="-1"></a>for an artificial subject obtained by adding up the covariate values for</span>
-<span id="cb23-558"><a href="#cb23-558" aria-hidden="true" tabindex="-1"></a>the subjects with an event at time $t_i$. Let</span>
-<span id="cb23-559"><a href="#cb23-559" aria-hidden="true" tabindex="-1"></a>$$\bar\eta_i = \beta_1s_{i1}+\cdots+\beta_ps_{ip}$$ and</span>
-<span id="cb23-560"><a href="#cb23-560" aria-hidden="true" tabindex="-1"></a>$\bar\theta_i = \exp(\bar\eta_i)$.</span>
-<span id="cb23-561"><a href="#cb23-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-562"><a href="#cb23-562" aria-hidden="true" tabindex="-1"></a>Let $s_i$ be a covariate vector for an artificial subject obtained by</span>
-<span id="cb23-563"><a href="#cb23-563" aria-hidden="true" tabindex="-1"></a>adding up the covariate values for the subjects with an event at time</span>
-<span id="cb23-564"><a href="#cb23-564" aria-hidden="true" tabindex="-1"></a>$t_i$. Note that </span>
-<span id="cb23-565"><a href="#cb23-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-566"><a href="#cb23-566" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-567"><a href="#cb23-567" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-568"><a href="#cb23-568" aria-hidden="true" tabindex="-1"></a>\bar\eta_i &amp;=\sum_{j \in D_i}\beta_1x_{j1}+\cdots+\beta_px_{jp}<span class="sc">\\</span></span>
-<span id="cb23-569"><a href="#cb23-569" aria-hidden="true" tabindex="-1"></a>&amp;= \beta_1s_{i1}+\cdots+\beta_ps_{ip}<span class="sc">\\</span></span>
-<span id="cb23-570"><a href="#cb23-570" aria-hidden="true" tabindex="-1"></a>\bar\theta_i &amp;= \exp(\bar\eta_i)<span class="sc">\\</span></span>
-<span id="cb23-571"><a href="#cb23-571" aria-hidden="true" tabindex="-1"></a>&amp;= \prod_{j \in D_i}\theta_i</span>
-<span id="cb23-572"><a href="#cb23-572" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-573"><a href="#cb23-573" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-574"><a href="#cb23-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-575"><a href="#cb23-575" aria-hidden="true" tabindex="-1"></a><span class="fu">### Breslow's method for ties</span></span>
-<span id="cb23-576"><a href="#cb23-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-577"><a href="#cb23-577" aria-hidden="true" tabindex="-1"></a>Breslow's method estimates the partial likelihood as</span>
-<span id="cb23-578"><a href="#cb23-578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-579"><a href="#cb23-579" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-580"><a href="#cb23-580" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb23-581"><a href="#cb23-581" aria-hidden="true" tabindex="-1"></a>L(\beta|T) &amp;=</span>
-<span id="cb23-582"><a href="#cb23-582" aria-hidden="true" tabindex="-1"></a>\prod_i \frac{\bar\theta_i}{<span class="co">[</span><span class="ot">\sum_{k \in R(t_i)} \theta_k</span><span class="co">]</span>^{d_i}}<span class="sc">\\</span></span>
-<span id="cb23-583"><a href="#cb23-583" aria-hidden="true" tabindex="-1"></a>&amp;= \prod_i \prod_{j \in D_i}\frac{\theta_j}{\sum_{k \in R(t_i)} \theta_k}</span>
-<span id="cb23-584"><a href="#cb23-584" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb23-585"><a href="#cb23-585" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-586"><a href="#cb23-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-587"><a href="#cb23-587" aria-hidden="true" tabindex="-1"></a>This method is equivalent to treating each event as distinct and using the non-ties formula. </span>
-<span id="cb23-588"><a href="#cb23-588" aria-hidden="true" tabindex="-1"></a>It works best when the number of ties is small. </span>
-<span id="cb23-589"><a href="#cb23-589" aria-hidden="true" tabindex="-1"></a>It is the default in many statistical packages, including PROC PHREG in SAS.</span>
-<span id="cb23-590"><a href="#cb23-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-591"><a href="#cb23-591" aria-hidden="true" tabindex="-1"></a><span class="fu">### Efron's method for ties</span></span>
-<span id="cb23-592"><a href="#cb23-592" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-593"><a href="#cb23-593" aria-hidden="true" tabindex="-1"></a>The other common method is Efron's, which is the default in R.</span>
-<span id="cb23-594"><a href="#cb23-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-595"><a href="#cb23-595" aria-hidden="true" tabindex="-1"></a>$$L(\beta|T)=</span>
-<span id="cb23-596"><a href="#cb23-596" aria-hidden="true" tabindex="-1"></a>\prod_i \frac{\bar\theta_i}{\prod_{j=1}^{d_i}<span class="co">[</span><span class="ot">\sum_{k \in R(t_i)} \theta_k-\frac{j-1}{d_i}\sum_{k \in D_i} \theta_k</span><span class="co">]</span>}$$</span>
-<span id="cb23-597"><a href="#cb23-597" aria-hidden="true" tabindex="-1"></a>This is closer to the exact discrete partial likelihood when there are</span>
-<span id="cb23-598"><a href="#cb23-598" aria-hidden="true" tabindex="-1"></a>many ties.</span>
-<span id="cb23-599"><a href="#cb23-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-600"><a href="#cb23-600" aria-hidden="true" tabindex="-1"></a>The third option in R (and an option also in SAS as <span class="in">`discrete`</span>) is the</span>
-<span id="cb23-601"><a href="#cb23-601" aria-hidden="true" tabindex="-1"></a>"exact" method, which is the same one used for matched logistic</span>
-<span id="cb23-602"><a href="#cb23-602" aria-hidden="true" tabindex="-1"></a>regression.</span>
-<span id="cb23-603"><a href="#cb23-603" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-604"><a href="#cb23-604" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example: Breslow's method</span></span>
-<span id="cb23-605"><a href="#cb23-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-606"><a href="#cb23-606" aria-hidden="true" tabindex="-1"></a>Suppose as an example we have a time $t$ where there are 20 individuals</span>
-<span id="cb23-607"><a href="#cb23-607" aria-hidden="true" tabindex="-1"></a>at risk and three failures. Let the three individuals have risk</span>
-<span id="cb23-608"><a href="#cb23-608" aria-hidden="true" tabindex="-1"></a>parameters $\theta_1, \theta_2, \theta_3$ and let the sum of the risk</span>
-<span id="cb23-609"><a href="#cb23-609" aria-hidden="true" tabindex="-1"></a>parameters of the remaining 17 individuals be $\theta_R$. Then the</span>
-<span id="cb23-610"><a href="#cb23-610" aria-hidden="true" tabindex="-1"></a>factor in the partial likelihood at time $t$ using Breslow's method is</span>
-<span id="cb23-611"><a href="#cb23-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-612"><a href="#cb23-612" aria-hidden="true" tabindex="-1"></a>::: smaller</span>
-<span id="cb23-613"><a href="#cb23-613" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-614"><a href="#cb23-614" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_1}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
-<span id="cb23-615"><a href="#cb23-615" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_2}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
-<span id="cb23-616"><a href="#cb23-616" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_3}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
-<span id="cb23-617"><a href="#cb23-617" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-618"><a href="#cb23-618" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb23-619"><a href="#cb23-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-620"><a href="#cb23-620" aria-hidden="true" tabindex="-1"></a>If on the other hand, they had died in the order 1,2, 3, then the</span>
-<span id="cb23-621"><a href="#cb23-621" aria-hidden="true" tabindex="-1"></a>contribution to the partial likelihood would be:</span>
-<span id="cb23-622"><a href="#cb23-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-623"><a href="#cb23-623" aria-hidden="true" tabindex="-1"></a>::: smaller</span>
-<span id="cb23-624"><a href="#cb23-624" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-625"><a href="#cb23-625" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_1}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
-<span id="cb23-626"><a href="#cb23-626" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_2}{\theta_R+\theta_2+\theta_3}\right)</span>
-<span id="cb23-627"><a href="#cb23-627" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_3}{\theta_R+\theta_3}\right)</span>
-<span id="cb23-628"><a href="#cb23-628" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-629"><a href="#cb23-629" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb23-630"><a href="#cb23-630" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-631"><a href="#cb23-631" aria-hidden="true" tabindex="-1"></a>as the risk set got smaller with each failure. The exact method roughly</span>
-<span id="cb23-632"><a href="#cb23-632" aria-hidden="true" tabindex="-1"></a>averages the results for the six possible orderings of the failures.</span>
-<span id="cb23-633"><a href="#cb23-633" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-634"><a href="#cb23-634" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example: Efron's method</span></span>
-<span id="cb23-635"><a href="#cb23-635" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-636"><a href="#cb23-636" aria-hidden="true" tabindex="-1"></a>But we don't know the order they failed in, so instead of reducing the</span>
-<span id="cb23-637"><a href="#cb23-637" aria-hidden="true" tabindex="-1"></a>denominator by one risk coefficient each time, we reduce it by the same</span>
-<span id="cb23-638"><a href="#cb23-638" aria-hidden="true" tabindex="-1"></a>fraction. This is Efron's method.</span>
-<span id="cb23-639"><a href="#cb23-639" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-640"><a href="#cb23-640" aria-hidden="true" tabindex="-1"></a>::: smaller</span>
-<span id="cb23-641"><a href="#cb23-641" aria-hidden="true" tabindex="-1"></a>$$\left(\frac{\theta_1}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
-<span id="cb23-642"><a href="#cb23-642" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_2}{\theta_R+2(\theta_1+\theta_2+\theta_3)/3}\right)</span>
-<span id="cb23-643"><a href="#cb23-643" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_3}{\theta_R+(\theta_1+\theta_2+\theta_3)/3}\right)$$</span>
-<span id="cb23-644"><a href="#cb23-644" aria-hidden="true" tabindex="-1"></a>:::</span>
+<div class="sourceCode" id="cb21" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Proportional Hazards Models"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="an">date-format:</span><span class="co"> "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="an">subject:</span><span class="co"> "EPI 204 Spring 2023"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-cap-location: top</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 2</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Show the code"</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs:</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: dark</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-cap-location: top</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: mathjax</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">    smaller: false</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 3</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co">    slide-number: true</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co">    scrollable: true</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: true</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "[R code]"</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: scroll</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="co">    auto-stretch: false</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="co">    # chalkboard: true</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="co">    # fig-width: 7</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="co">    # fig-height: 5</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="co">    # out-width: "100%"</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-cap-location: top</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 3</span></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span></span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown:</span></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: 72</span></span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>::: hidden</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>\def\cd{\cdot}</span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>\def\eqdef{\stackrel{\text{def}}{=}}</span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>\def\se{\text{SE}}</span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>\def\hse{\hat{\se}}</span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>\def\hb{\hat\beta}</span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>\def\za{z_{1 - \frac{\alpha}{2}}}</span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>\def\cirad{\za \cd \hse(\hb)}</span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>\def\ci{\hb {\color{red}\pm} \cirad}</span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>\newcommand{\var}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\text{Var}\left(#1\right)}</span>
+<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>\newcommand{\Var}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\text{Var}\left(#1\right)}</span>
+<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a>\newcommand{\varh}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\hat{\text{Var}}\left(#1\right)}</span>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a>\newcommand{\vc}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\boldsymbol{#1}}</span>
+<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a>::: {.content-hidden when-format="revealjs"}</span>
+<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Configuring R {.unnumbered}</span></span>
+<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-69"><a href="#cb21-69" aria-hidden="true" tabindex="-1"></a>Functions from these packages will be used throughout this document:</span>
+<span id="cb21-70"><a href="#cb21-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-71"><a href="#cb21-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r packages, message = FALSE}</span></span>
+<span id="cb21-72"><a href="#cb21-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander) <span class="co"># format tables for markdown</span></span>
+<span id="cb21-73"><a href="#cb21-73" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># graphics</span></span>
+<span id="cb21-74"><a href="#cb21-74" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeasy) <span class="co"># help with graphics</span></span>
+<span id="cb21-75"><a href="#cb21-75" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># manipulate data</span></span>
+<span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven) <span class="co"># import Stata files</span></span>
+<span id="cb21-77"><a href="#cb21-77" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># format R output for markdown</span></span>
+<span id="cb21-78"><a href="#cb21-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># Tools to help to create tidy data</span></span>
+<span id="cb21-79"><a href="#cb21-79" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly) <span class="co"># interactive graphics</span></span>
+<span id="cb21-80"><a href="#cb21-80" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dobson) <span class="co"># datasets from Dobson and Barnett 2018</span></span>
+<span id="cb21-81"><a href="#cb21-81" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters) <span class="co"># format model output tables for markdown</span></span>
+<span id="cb21-82"><a href="#cb21-82" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted) <span class="co"># check for conflicting function definitions</span></span>
+<span id="cb21-83"><a href="#cb21-83" aria-hidden="true" tabindex="-1"></a><span class="fu">conflicts_prefer</span>(dplyr<span class="sc">::</span>filter)</span>
+<span id="cb21-84"><a href="#cb21-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-85"><a href="#cb21-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-86"><a href="#cb21-86" aria-hidden="true" tabindex="-1"></a>Here are some R settings I use in this document:</span>
+<span id="cb21-87"><a href="#cb21-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-88"><a href="#cb21-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r options, message=FALSE}</span></span>
+<span id="cb21-89"><a href="#cb21-89" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># delete any data that's already loaded into R</span></span>
+<span id="cb21-90"><a href="#cb21-90" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb21-91"><a href="#cb21-91" aria-hidden="true" tabindex="-1"></a>pander<span class="sc">::</span><span class="fu">panderOptions</span>(<span class="st">"table.emphasize.rownames"</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb21-92"><a href="#cb21-92" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">'digits'</span> <span class="ot">=</span> <span class="dv">4</span>)</span>
+<span id="cb21-93"><a href="#cb21-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-94"><a href="#cb21-94" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb21-95"><a href="#cb21-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-96"><a href="#cb21-96" aria-hidden="true" tabindex="-1"></a><span class="fu"># The proportional hazards model</span></span>
+<span id="cb21-97"><a href="#cb21-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Background on the Proportional Hazards Model</span></span>
+<span id="cb21-99"><a href="#cb21-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-100"><a href="#cb21-100" aria-hidden="true" tabindex="-1"></a>The exponential distribution has constant hazard:</span>
+<span id="cb21-101"><a href="#cb21-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-102"><a href="#cb21-102" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-103"><a href="#cb21-103" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-104"><a href="#cb21-104" aria-hidden="true" tabindex="-1"></a>f(t) &amp;= \lambda e^{-\lambda t}<span class="sc">\\</span></span>
+<span id="cb21-105"><a href="#cb21-105" aria-hidden="true" tabindex="-1"></a>S(t) &amp;= e^{-\lambda t}<span class="sc">\\</span></span>
+<span id="cb21-106"><a href="#cb21-106" aria-hidden="true" tabindex="-1"></a>h(t) &amp;= \lambda</span>
+<span id="cb21-107"><a href="#cb21-107" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-108"><a href="#cb21-108" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-109"><a href="#cb21-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-110"><a href="#cb21-110" aria-hidden="true" tabindex="-1"></a>Let's make two generalizations. First, we let the hazard depend on some</span>
+<span id="cb21-111"><a href="#cb21-111" aria-hidden="true" tabindex="-1"></a>covariates $x_1,x_2, \dots, x_p$; we will indicate this dependence by extending our notation for hazard:</span>
+<span id="cb21-112"><a href="#cb21-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-113"><a href="#cb21-113" aria-hidden="true" tabindex="-1"></a>$$h(t|\boldsymbol x) \eqdef p(T=t|T\ge t, \boldsymbol X = \boldsymbol x)$$</span>
+<span id="cb21-114"><a href="#cb21-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-115"><a href="#cb21-115" aria-hidden="true" tabindex="-1"></a>Second, we let the base hazard depend on $t$, but not on the covariates (for now). We can do this using either parametric or semi-parametric approaches.</span>
+<span id="cb21-116"><a href="#cb21-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-117"><a href="#cb21-117" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cox's Proportional Hazards Model</span></span>
+<span id="cb21-118"><a href="#cb21-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-119"><a href="#cb21-119" aria-hidden="true" tabindex="-1"></a>The generalization is that the hazard function is </span>
+<span id="cb21-120"><a href="#cb21-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-121"><a href="#cb21-121" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-122"><a href="#cb21-122" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-123"><a href="#cb21-123" aria-hidden="true" tabindex="-1"></a>h(t|x)&amp;= h_0(t)\theta(x)<span class="sc">\\</span></span>
+<span id="cb21-124"><a href="#cb21-124" aria-hidden="true" tabindex="-1"></a>\theta(x) &amp;= \exp<span class="sc">\{</span>\eta(x)<span class="sc">\}\\</span></span>
+<span id="cb21-125"><a href="#cb21-125" aria-hidden="true" tabindex="-1"></a>\eta(x) &amp;= x'\beta<span class="sc">\\</span></span>
+<span id="cb21-126"><a href="#cb21-126" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \beta_1x_1+\cdots+\beta_px_p</span>
+<span id="cb21-127"><a href="#cb21-127" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-128"><a href="#cb21-128" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-129"><a href="#cb21-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-130"><a href="#cb21-130" aria-hidden="true" tabindex="-1"></a>The relationship between $h(t|x)$ and $\eta(x)$ has a log link (that is, $\log<span class="sc">\{</span>h(t|x)<span class="sc">\}</span> = \log<span class="sc">\{</span>h_0(t)<span class="sc">\}</span> + \eta(x)$), as in a generalized linear model.</span>
+<span id="cb21-131"><a href="#cb21-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-132"><a href="#cb21-132" aria-hidden="true" tabindex="-1"></a>This model is **semi-parametric**, because the linear predictor depends on estimated</span>
+<span id="cb21-133"><a href="#cb21-133" aria-hidden="true" tabindex="-1"></a>parameters but the base hazard function is unspecified. </span>
+<span id="cb21-134"><a href="#cb21-134" aria-hidden="true" tabindex="-1"></a>There is no constant term in $\eta(x)$, because it is absorbed in the base hazard. </span>
+<span id="cb21-135"><a href="#cb21-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-136"><a href="#cb21-136" aria-hidden="true" tabindex="-1"></a>Alternatively, we could define $\beta_0(t) = \log<span class="sc">\{</span>h_0(t)<span class="sc">\}</span>$, and then $\eta(x,t) = \beta_0(t) + \beta_1x_1+\cdots+\beta_px_p$.</span>
+<span id="cb21-137"><a href="#cb21-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-138"><a href="#cb21-138" aria-hidden="true" tabindex="-1"></a>For two different individuals with covariate patterns $\boldsymbol x_1$ and $\boldsymbol x_2$, the ratio of the hazard functions (a.k.a. **hazard ratio**, a.k.a. **relative hazard**) is:</span>
+<span id="cb21-139"><a href="#cb21-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-140"><a href="#cb21-140" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-141"><a href="#cb21-141" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-142"><a href="#cb21-142" aria-hidden="true" tabindex="-1"></a>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}</span>
+<span id="cb21-143"><a href="#cb21-143" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{h_0(t)\theta(\boldsymbol x_1)}{h_0(t)\theta(\boldsymbol x_2)}<span class="sc">\\</span></span>
+<span id="cb21-144"><a href="#cb21-144" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\theta(\boldsymbol x_1)}{\theta(\boldsymbol x_2)}<span class="sc">\\</span></span>
+<span id="cb21-145"><a href="#cb21-145" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-146"><a href="#cb21-146" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb21-147"><a href="#cb21-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-148"><a href="#cb21-148" aria-hidden="true" tabindex="-1"></a>Under the proportional hazards model, this ratio (a.k.a. proportion) does not depend on $t$. This property is a structural limitation of the model; it is called the **proportional hazards assumption**.</span>
+<span id="cb21-149"><a href="#cb21-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-150"><a href="#cb21-150" aria-hidden="true" tabindex="-1"></a>::: {#def-pha}</span>
+<span id="cb21-151"><a href="#cb21-151" aria-hidden="true" tabindex="-1"></a><span class="fu">## proportional hazards</span></span>
+<span id="cb21-152"><a href="#cb21-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-153"><a href="#cb21-153" aria-hidden="true" tabindex="-1"></a>A conditional probability distribution $p(T|X)$ has **proportional hazards** if the hazard ratio $h(t|\boldsymbol x_1)/h(t|\boldsymbol x_2)$ does not depend on $t$. Mathematically, it can be written as:</span>
+<span id="cb21-154"><a href="#cb21-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-155"><a href="#cb21-155" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-156"><a href="#cb21-156" aria-hidden="true" tabindex="-1"></a>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}</span>
+<span id="cb21-157"><a href="#cb21-157" aria-hidden="true" tabindex="-1"></a>= \theta(\boldsymbol x_1,\boldsymbol x_2)</span>
+<span id="cb21-158"><a href="#cb21-158" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-159"><a href="#cb21-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-160"><a href="#cb21-160" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb21-161"><a href="#cb21-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-162"><a href="#cb21-162" aria-hidden="true" tabindex="-1"></a>As we saw above, Cox's proportional hazards model has this property, with $\theta(\boldsymbol x_1,\boldsymbol x_2) = \frac{\theta(\boldsymbol x_1)}{\theta(\boldsymbol x_2)}$.</span>
+<span id="cb21-163"><a href="#cb21-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-164"><a href="#cb21-164" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb21-165"><a href="#cb21-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-166"><a href="#cb21-166" aria-hidden="true" tabindex="-1"></a>We are using two similar notations, $\theta(\boldsymbol x_1,\boldsymbol x_2)$ and $\theta(\boldsymbol x)$. We can link these notations if we define $\theta(\boldsymbol x) \eqdef \theta(\boldsymbol x, \boldsymbol 0)$ and $\theta(\boldsymbol 0) = 1$.</span>
+<span id="cb21-167"><a href="#cb21-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-168"><a href="#cb21-168" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb21-169"><a href="#cb21-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-170"><a href="#cb21-170" aria-hidden="true" tabindex="-1"></a>It also has additional notable properties:</span>
+<span id="cb21-171"><a href="#cb21-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-172"><a href="#cb21-172" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-173"><a href="#cb21-173" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-174"><a href="#cb21-174" aria-hidden="true" tabindex="-1"></a>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}</span>
+<span id="cb21-175"><a href="#cb21-175" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\theta(\boldsymbol x_1)}{\theta(\boldsymbol x_2)}<span class="sc">\\</span></span>
+<span id="cb21-176"><a href="#cb21-176" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\exp<span class="sc">\{</span>\eta(\boldsymbol x_1)<span class="sc">\}</span>}{\exp<span class="sc">\{</span>\eta(\boldsymbol x_2)<span class="sc">\}</span>}<span class="sc">\\</span></span>
+<span id="cb21-177"><a href="#cb21-177" aria-hidden="true" tabindex="-1"></a>&amp;=\exp<span class="sc">\{</span>\eta(\boldsymbol x_1)-\eta(\boldsymbol x_2)<span class="sc">\}\\</span></span>
+<span id="cb21-178"><a href="#cb21-178" aria-hidden="true" tabindex="-1"></a>&amp;=\exp<span class="sc">\{</span>\boldsymbol x_1'\beta-\boldsymbol x_2'\beta<span class="sc">\}\\</span></span>
+<span id="cb21-179"><a href="#cb21-179" aria-hidden="true" tabindex="-1"></a>&amp;=\exp<span class="sc">\{</span>(\boldsymbol x_1 - \boldsymbol x_2)'\beta<span class="sc">\}\\</span></span>
+<span id="cb21-180"><a href="#cb21-180" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-181"><a href="#cb21-181" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb21-182"><a href="#cb21-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-183"><a href="#cb21-183" aria-hidden="true" tabindex="-1"></a>Hence on the log scale, we have:</span>
+<span id="cb21-184"><a href="#cb21-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-185"><a href="#cb21-185" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-186"><a href="#cb21-186" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-187"><a href="#cb21-187" aria-hidden="true" tabindex="-1"></a>\log\left<span class="sc">\{</span>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}\right<span class="sc">\}</span></span>
+<span id="cb21-188"><a href="#cb21-188" aria-hidden="true" tabindex="-1"></a>&amp;=\eta(\boldsymbol x_1)-\eta(\boldsymbol x_2)<span class="sc">\\</span></span>
+<span id="cb21-189"><a href="#cb21-189" aria-hidden="true" tabindex="-1"></a>&amp;= \boldsymbol x_1'\beta-\boldsymbol x_2'\beta<span class="sc">\\</span></span>
+<span id="cb21-190"><a href="#cb21-190" aria-hidden="true" tabindex="-1"></a>&amp;= (\boldsymbol x_1 - \boldsymbol x_2)'\beta</span>
+<span id="cb21-191"><a href="#cb21-191" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-192"><a href="#cb21-192" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb21-193"><a href="#cb21-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-194"><a href="#cb21-194" aria-hidden="true" tabindex="-1"></a>If only one covariate $x_j$ is changing, then:</span>
+<span id="cb21-195"><a href="#cb21-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-196"><a href="#cb21-196" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-197"><a href="#cb21-197" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-198"><a href="#cb21-198" aria-hidden="true" tabindex="-1"></a>\log\left<span class="sc">\{</span>\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}\right<span class="sc">\}</span> </span>
+<span id="cb21-199"><a href="#cb21-199" aria-hidden="true" tabindex="-1"></a>&amp;=  (x_{1j} - x_{2j}) \cdot \beta_j<span class="sc">\\</span></span>
+<span id="cb21-200"><a href="#cb21-200" aria-hidden="true" tabindex="-1"></a>&amp;\propto (x_{1j} - x_{2j})</span>
+<span id="cb21-201"><a href="#cb21-201" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-202"><a href="#cb21-202" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-203"><a href="#cb21-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-204"><a href="#cb21-204" aria-hidden="true" tabindex="-1"></a>That is, under Cox's model $h(t|\boldsymbol x) = h_0(t)\exp<span class="sc">\{</span>\boldsymbol x'\beta<span class="sc">\}</span>$, the log of the hazard ratio is proportional to the difference in $x_j$, with the proportionality coefficient equal to $\beta_j$.</span>
+<span id="cb21-205"><a href="#cb21-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-206"><a href="#cb21-206" aria-hidden="true" tabindex="-1"></a>Further,</span>
+<span id="cb21-207"><a href="#cb21-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-208"><a href="#cb21-208" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-209"><a href="#cb21-209" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-210"><a href="#cb21-210" aria-hidden="true" tabindex="-1"></a>\log\left<span class="sc">\{</span>h(t|\boldsymbol x)\right<span class="sc">\}</span></span>
+<span id="cb21-211"><a href="#cb21-211" aria-hidden="true" tabindex="-1"></a>&amp;=\log\left<span class="sc">\{</span>h_0(t)\right<span class="sc">\}</span>  + x'\beta</span>
+<span id="cb21-212"><a href="#cb21-212" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-213"><a href="#cb21-213" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-214"><a href="#cb21-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-215"><a href="#cb21-215" aria-hidden="true" tabindex="-1"></a>That is, the covariate effects are additive on the log-hazard scale.</span>
+<span id="cb21-216"><a href="#cb21-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-217"><a href="#cb21-217" aria-hidden="true" tabindex="-1"></a>See also: </span>
+<span id="cb21-218"><a href="#cb21-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-219"><a href="#cb21-219" aria-hidden="true" tabindex="-1"></a><span class="ot">&lt;https://en.wikipedia.org/wiki/Proportional_hazards_model#Why_it_is_called_%22proportional%22&gt;</span></span>
+<span id="cb21-220"><a href="#cb21-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-221"><a href="#cb21-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## Additional properties of the proportional hazards model</span></span>
+<span id="cb21-222"><a href="#cb21-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-223"><a href="#cb21-223" aria-hidden="true" tabindex="-1"></a>If $h(t|x)= h_0(t)\theta(x)$, then:</span>
+<span id="cb21-224"><a href="#cb21-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-225"><a href="#cb21-225" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cumulative hazards are also proportional to $H_0(t)$</span></span>
+<span id="cb21-226"><a href="#cb21-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-227"><a href="#cb21-227" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-228"><a href="#cb21-228" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-229"><a href="#cb21-229" aria-hidden="true" tabindex="-1"></a>H(t|x)</span>
+<span id="cb21-230"><a href="#cb21-230" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \int_{u=0}^t h(u)du<span class="sc">\\</span></span>
+<span id="cb21-231"><a href="#cb21-231" aria-hidden="true" tabindex="-1"></a>&amp;= \int_{u=0}^t h_0(u)\theta(x)du<span class="sc">\\</span></span>
+<span id="cb21-232"><a href="#cb21-232" aria-hidden="true" tabindex="-1"></a>&amp;= \theta(x)\int_{u=0}^t h_0(u)du<span class="sc">\\</span></span>
+<span id="cb21-233"><a href="#cb21-233" aria-hidden="true" tabindex="-1"></a>&amp;= \theta(x)H_0(t)</span>
+<span id="cb21-234"><a href="#cb21-234" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-235"><a href="#cb21-235" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-236"><a href="#cb21-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-237"><a href="#cb21-237" aria-hidden="true" tabindex="-1"></a>where $H_0(t) \eqdef H(t|0) = \int_{u=0}^t h_0(u)du$.</span>
+<span id="cb21-238"><a href="#cb21-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-239"><a href="#cb21-239" aria-hidden="true" tabindex="-1"></a><span class="fu">### Survival functions are exponential multiples of $S_0(t)$</span></span>
+<span id="cb21-240"><a href="#cb21-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-241"><a href="#cb21-241" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-242"><a href="#cb21-242" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-243"><a href="#cb21-243" aria-hidden="true" tabindex="-1"></a>S(t|x)</span>
+<span id="cb21-244"><a href="#cb21-244" aria-hidden="true" tabindex="-1"></a>&amp;= \exp<span class="sc">\{</span>-H(t|x)<span class="sc">\}\\</span></span>
+<span id="cb21-245"><a href="#cb21-245" aria-hidden="true" tabindex="-1"></a>&amp;= \exp<span class="sc">\{</span>-\theta(x)\cdot H_0(t)<span class="sc">\}\\</span></span>
+<span id="cb21-246"><a href="#cb21-246" aria-hidden="true" tabindex="-1"></a>&amp;= \left(\exp<span class="sc">\{</span>- H_0(t)<span class="sc">\}</span>\right)^{\theta(x)}<span class="sc">\\</span></span>
+<span id="cb21-247"><a href="#cb21-247" aria-hidden="true" tabindex="-1"></a>&amp;= \left(S_0(t)\right)^{\theta(x)}<span class="sc">\\</span></span>
+<span id="cb21-248"><a href="#cb21-248" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-249"><a href="#cb21-249" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-250"><a href="#cb21-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-251"><a href="#cb21-251" aria-hidden="true" tabindex="-1"></a>where $S_0(t) \eqdef P(T\ge t | \boldsymbol X = 0)$ is the survival function for an individual whose covariates are all equal to their default values.</span>
+<span id="cb21-252"><a href="#cb21-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-253"><a href="#cb21-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## Testing the proportional hazards assumption</span></span>
+<span id="cb21-254"><a href="#cb21-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-255"><a href="#cb21-255" aria-hidden="true" tabindex="-1"></a>The Nelson-Aalen estimate of the cumulative hazard is usually used for estimates of the hazard and often the cumulative hazard.</span>
+<span id="cb21-256"><a href="#cb21-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-257"><a href="#cb21-257" aria-hidden="true" tabindex="-1"></a>If the hazards of the three groups are proportional, that means that the ratio of the hazards is constant over $t$. We can test this using the ratios of the estimated cumulative hazards, which also would be</span>
+<span id="cb21-258"><a href="#cb21-258" aria-hidden="true" tabindex="-1"></a>proportional, as shown above.</span>
+<span id="cb21-259"><a href="#cb21-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-262"><a href="#cb21-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-263"><a href="#cb21-263" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(KMsurv)</span>
+<span id="cb21-264"><a href="#cb21-264" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb21-265"><a href="#cb21-265" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(bmt)</span>
+<span id="cb21-266"><a href="#cb21-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-267"><a href="#cb21-267" aria-hidden="true" tabindex="-1"></a>bmt <span class="ot">=</span> </span>
+<span id="cb21-268"><a href="#cb21-268" aria-hidden="true" tabindex="-1"></a>  bmt <span class="sc">|&gt;</span> </span>
+<span id="cb21-269"><a href="#cb21-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb21-270"><a href="#cb21-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-271"><a href="#cb21-271" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> </span>
+<span id="cb21-272"><a href="#cb21-272" aria-hidden="true" tabindex="-1"></a>      group <span class="sc">|&gt;</span> </span>
+<span id="cb21-273"><a href="#cb21-273" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
+<span id="cb21-274"><a href="#cb21-274" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"ALL"</span>,<span class="st">"Low Risk AML"</span>,<span class="st">"High Risk AML"</span>)))</span>
+<span id="cb21-275"><a href="#cb21-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-276"><a href="#cb21-276" aria-hidden="true" tabindex="-1"></a>nafit <span class="ot">=</span> <span class="fu">survfit</span>(</span>
+<span id="cb21-277"><a href="#cb21-277" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">Surv</span>(t2,d3) <span class="sc">~</span> group,</span>
+<span id="cb21-278"><a href="#cb21-278" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"fleming-harrington"</span>,</span>
+<span id="cb21-279"><a href="#cb21-279" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> bmt)</span>
+<span id="cb21-280"><a href="#cb21-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-281"><a href="#cb21-281" aria-hidden="true" tabindex="-1"></a>bmt_curves <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">timevec =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb21-282"><a href="#cb21-282" aria-hidden="true" tabindex="-1"></a>sf1 <span class="ot">&lt;-</span> <span class="fu">with</span>(nafit[<span class="dv">1</span>], <span class="fu">stepfun</span>(time,<span class="fu">c</span>(<span class="dv">1</span>,surv)))</span>
+<span id="cb21-283"><a href="#cb21-283" aria-hidden="true" tabindex="-1"></a>sf2 <span class="ot">&lt;-</span> <span class="fu">with</span>(nafit[<span class="dv">2</span>], <span class="fu">stepfun</span>(time,<span class="fu">c</span>(<span class="dv">1</span>,surv)))</span>
+<span id="cb21-284"><a href="#cb21-284" aria-hidden="true" tabindex="-1"></a>sf3 <span class="ot">&lt;-</span> <span class="fu">with</span>(nafit[<span class="dv">3</span>], <span class="fu">stepfun</span>(time,<span class="fu">c</span>(<span class="dv">1</span>,surv)))</span>
+<span id="cb21-285"><a href="#cb21-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-286"><a href="#cb21-286" aria-hidden="true" tabindex="-1"></a>bmt_curves <span class="ot">=</span> </span>
+<span id="cb21-287"><a href="#cb21-287" aria-hidden="true" tabindex="-1"></a>  bmt_curves <span class="sc">|&gt;</span> </span>
+<span id="cb21-288"><a href="#cb21-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-289"><a href="#cb21-289" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumhaz1 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">sf1</span>(timevec)),</span>
+<span id="cb21-290"><a href="#cb21-290" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumhaz2 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">sf2</span>(timevec)),</span>
+<span id="cb21-291"><a href="#cb21-291" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumhaz3 =</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">sf3</span>(timevec)))</span>
+<span id="cb21-292"><a href="#cb21-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-293"><a href="#cb21-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-296"><a href="#cb21-296" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-297"><a href="#cb21-297" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Hazard Ratios by Disease Group"</span></span>
+<span id="cb21-298"><a href="#cb21-298" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb21-299"><a href="#cb21-299" aria-hidden="true" tabindex="-1"></a>bmt_rel_hazard_plot <span class="ot">=</span> </span>
+<span id="cb21-300"><a href="#cb21-300" aria-hidden="true" tabindex="-1"></a>  bmt_curves <span class="sc">|&gt;</span> </span>
+<span id="cb21-301"><a href="#cb21-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb21-302"><a href="#cb21-302" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb21-303"><a href="#cb21-303" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> timevec,</span>
+<span id="cb21-304"><a href="#cb21-304" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> cumhaz1<span class="sc">/</span>cumhaz2)</span>
+<span id="cb21-305"><a href="#cb21-305" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-306"><a href="#cb21-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col =</span> <span class="st">"ALL/Low Risk AML"</span>)) <span class="sc">+</span> </span>
+<span id="cb21-307"><a href="#cb21-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Hazard Ratio"</span>) <span class="sc">+</span></span>
+<span id="cb21-308"><a href="#cb21-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time"</span>) <span class="sc">+</span> </span>
+<span id="cb21-309"><a href="#cb21-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb21-310"><a href="#cb21-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> cumhaz3<span class="sc">/</span>cumhaz1, <span class="at">col =</span> <span class="st">"High Risk AML/ALL"</span>)) <span class="sc">+</span></span>
+<span id="cb21-311"><a href="#cb21-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> cumhaz3<span class="sc">/</span>cumhaz2, <span class="at">col =</span> <span class="st">"High Risk AML/Low Risk AML"</span>)) <span class="sc">+</span></span>
+<span id="cb21-312"><a href="#cb21-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb21-313"><a href="#cb21-313" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">"Comparison"</span>) <span class="sc">+</span></span>
+<span id="cb21-314"><a href="#cb21-314" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"bottom"</span>)</span>
+<span id="cb21-315"><a href="#cb21-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-316"><a href="#cb21-316" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bmt_rel_hazard_plot)</span>
+<span id="cb21-317"><a href="#cb21-317" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-318"><a href="#cb21-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-319"><a href="#cb21-319" aria-hidden="true" tabindex="-1"></a>We can zoom in on 30-300 days to take a closer look:</span>
+<span id="cb21-320"><a href="#cb21-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-323"><a href="#cb21-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-324"><a href="#cb21-324" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Hazard Ratios by Disease Group (30-300 Days)"</span></span>
+<span id="cb21-325"><a href="#cb21-325" aria-hidden="true" tabindex="-1"></a>bmt_rel_hazard_plot <span class="sc">+</span> <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">300</span>))</span>
+<span id="cb21-326"><a href="#cb21-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-327"><a href="#cb21-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-328"><a href="#cb21-328" aria-hidden="true" tabindex="-1"></a><span class="fu">## Smoothed hazard functions</span></span>
+<span id="cb21-329"><a href="#cb21-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-330"><a href="#cb21-330" aria-hidden="true" tabindex="-1"></a>The Nelson-Aalen estimate of the cumulative hazard is usually used for</span>
+<span id="cb21-331"><a href="#cb21-331" aria-hidden="true" tabindex="-1"></a>estimates of the hazard. Since the hazard is the derivative of the</span>
+<span id="cb21-332"><a href="#cb21-332" aria-hidden="true" tabindex="-1"></a>cumulative hazard, we need a smooth estimate of the cumulative hazard,</span>
+<span id="cb21-333"><a href="#cb21-333" aria-hidden="true" tabindex="-1"></a>which is provided by smoothing the step-function cumulative hazard.</span>
+<span id="cb21-334"><a href="#cb21-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-335"><a href="#cb21-335" aria-hidden="true" tabindex="-1"></a>The R package <span class="in">`muhaz`</span> handles this for us. What we are looking for is</span>
+<span id="cb21-336"><a href="#cb21-336" aria-hidden="true" tabindex="-1"></a>whether the hazard function is more or less the same shape, increasing,</span>
+<span id="cb21-337"><a href="#cb21-337" aria-hidden="true" tabindex="-1"></a>decreasing, constant, etc. Are the hazards "proportional"?</span>
+<span id="cb21-338"><a href="#cb21-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-341"><a href="#cb21-341" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-342"><a href="#cb21-342" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Disease-Free Cumulative Hazard by Disease Group"</span></span>
+<span id="cb21-343"><a href="#cb21-343" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb21-344"><a href="#cb21-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survfit</span>(<span class="fu">Surv</span>(t2,d3)<span class="sc">~</span>group,<span class="at">data=</span>bmt),</span>
+<span id="cb21-345"><a href="#cb21-345" aria-hidden="true" tabindex="-1"></a>  <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb21-346"><a href="#cb21-346" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb21-347"><a href="#cb21-347" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun=</span><span class="st">"cumhaz"</span>,</span>
+<span id="cb21-348"><a href="#cb21-348" aria-hidden="true" tabindex="-1"></a>  <span class="at">mark.time =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-349"><a href="#cb21-349" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,<span class="fu">c</span>(<span class="st">"ALL"</span>,<span class="st">"Low Risk AML"</span>,<span class="st">"High Risk AML"</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb21-350"><a href="#cb21-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-351"><a href="#cb21-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-352"><a href="#cb21-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-355"><a href="#cb21-355" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-356"><a href="#cb21-356" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Smoothed Hazard Rate Estimates by Disease Group"</span></span>
+<span id="cb21-357"><a href="#cb21-357" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(muhaz)</span>
+<span id="cb21-358"><a href="#cb21-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-359"><a href="#cb21-359" aria-hidden="true" tabindex="-1"></a><span class="fu">muhaz</span>(bmt<span class="sc">$</span>t2,bmt<span class="sc">$</span>d3,bmt<span class="sc">$</span>group<span class="sc">==</span><span class="st">"High Risk AML"</span>) <span class="sc">|&gt;</span> <span class="fu">plot</span>(<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">3</span>)</span>
+<span id="cb21-360"><a href="#cb21-360" aria-hidden="true" tabindex="-1"></a><span class="fu">muhaz</span>(bmt<span class="sc">$</span>t2,bmt<span class="sc">$</span>d3,bmt<span class="sc">$</span>group<span class="sc">==</span><span class="st">"ALL"</span>) <span class="sc">|&gt;</span> <span class="fu">lines</span>(<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">1</span>)</span>
+<span id="cb21-361"><a href="#cb21-361" aria-hidden="true" tabindex="-1"></a><span class="fu">muhaz</span>(bmt<span class="sc">$</span>t2,bmt<span class="sc">$</span>d3,bmt<span class="sc">$</span>group<span class="sc">==</span><span class="st">"Low Risk AML"</span>) <span class="sc">|&gt;</span> <span class="fu">lines</span>(<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb21-362"><a href="#cb21-362" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,<span class="fu">c</span>(<span class="st">"ALL"</span>,<span class="st">"Low Risk AML"</span>,<span class="st">"High Risk AML"</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb21-363"><a href="#cb21-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-364"><a href="#cb21-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-365"><a href="#cb21-365" aria-hidden="true" tabindex="-1"></a>Group 3 was plotted first because it has the highest hazard.</span>
+<span id="cb21-366"><a href="#cb21-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-367"><a href="#cb21-367" aria-hidden="true" tabindex="-1"></a>We will see that except for an initial blip in the high risk AML group,</span>
+<span id="cb21-368"><a href="#cb21-368" aria-hidden="true" tabindex="-1"></a>the hazards look roughly proportional . They are all strongly</span>
+<span id="cb21-369"><a href="#cb21-369" aria-hidden="true" tabindex="-1"></a>decreasing.</span>
+<span id="cb21-370"><a href="#cb21-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-371"><a href="#cb21-371" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fitting the Proportional Hazards Model</span></span>
+<span id="cb21-372"><a href="#cb21-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-373"><a href="#cb21-373" aria-hidden="true" tabindex="-1"></a>How do we fit a proportional hazards regression model? We need to</span>
+<span id="cb21-374"><a href="#cb21-374" aria-hidden="true" tabindex="-1"></a>estimate the coefficients of the covariates, and we need to estimate the</span>
+<span id="cb21-375"><a href="#cb21-375" aria-hidden="true" tabindex="-1"></a>base hazard $h_0(t)$. For the covariates, supposing for simplicity that</span>
+<span id="cb21-376"><a href="#cb21-376" aria-hidden="true" tabindex="-1"></a>there are no tied event times, let the event times for the whole data</span>
+<span id="cb21-377"><a href="#cb21-377" aria-hidden="true" tabindex="-1"></a>set be $t_1, t_2,\ldots,t_D$. Let the risk set at time $t_i$ be $R(t_i)$</span>
+<span id="cb21-378"><a href="#cb21-378" aria-hidden="true" tabindex="-1"></a>and </span>
+<span id="cb21-379"><a href="#cb21-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-380"><a href="#cb21-380" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-381"><a href="#cb21-381" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-382"><a href="#cb21-382" aria-hidden="true" tabindex="-1"></a>\eta(\boldsymbol{x}) &amp;= \beta_1x_{1}+\cdots+\beta_p x_{p}<span class="sc">\\</span></span>
+<span id="cb21-383"><a href="#cb21-383" aria-hidden="true" tabindex="-1"></a>\theta(\boldsymbol{x}) &amp;= e^{\eta(\boldsymbol{x})}<span class="sc">\\</span></span>
+<span id="cb21-384"><a href="#cb21-384" aria-hidden="true" tabindex="-1"></a>h(t|X=x)&amp;= h_0(t)e^{\eta(\boldsymbol{x})}=\theta(\boldsymbol{x}) h_0(t)</span>
+<span id="cb21-385"><a href="#cb21-385" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-386"><a href="#cb21-386" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-387"><a href="#cb21-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-388"><a href="#cb21-388" aria-hidden="true" tabindex="-1"></a>Conditional on a single failure at time $t$, the probability that the</span>
+<span id="cb21-389"><a href="#cb21-389" aria-hidden="true" tabindex="-1"></a>event is due to subject $f\in R(t)$ is approximately</span>
+<span id="cb21-390"><a href="#cb21-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-391"><a href="#cb21-391" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-392"><a href="#cb21-392" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-393"><a href="#cb21-393" aria-hidden="true" tabindex="-1"></a>\Pr(f \text{ fails}|\text{1 failure at } t) </span>
+<span id="cb21-394"><a href="#cb21-394" aria-hidden="true" tabindex="-1"></a>&amp;= \frac{h_0(t)e^{\eta(\boldsymbol{x}_f)}}{\sum_{k \in R(t)}h_0(t)e^{\eta(\boldsymbol{x}_f)}}<span class="sc">\\</span></span>
+<span id="cb21-395"><a href="#cb21-395" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\theta(\boldsymbol{x}_f)}{\sum_{k \in R(t)} \theta(\boldsymbol{x}_k)}</span>
+<span id="cb21-396"><a href="#cb21-396" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-397"><a href="#cb21-397" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb21-398"><a href="#cb21-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-399"><a href="#cb21-399" aria-hidden="true" tabindex="-1"></a>The logic behind this has several steps. We first fix (ex post) the</span>
+<span id="cb21-400"><a href="#cb21-400" aria-hidden="true" tabindex="-1"></a>failure times and note that in this discrete context, the probability</span>
+<span id="cb21-401"><a href="#cb21-401" aria-hidden="true" tabindex="-1"></a>$p_j$ that a subject $j$ in the risk set fails at time $t$ is just the</span>
+<span id="cb21-402"><a href="#cb21-402" aria-hidden="true" tabindex="-1"></a>hazard of that subject at that time.</span>
+<span id="cb21-403"><a href="#cb21-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-404"><a href="#cb21-404" aria-hidden="true" tabindex="-1"></a>If all of the $p_j$ are small, the chance that exactly one subject fails</span>
+<span id="cb21-405"><a href="#cb21-405" aria-hidden="true" tabindex="-1"></a>is</span>
+<span id="cb21-406"><a href="#cb21-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-407"><a href="#cb21-407" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-408"><a href="#cb21-408" aria-hidden="true" tabindex="-1"></a>\sum_{k\in R(t)}p_k\left<span class="co">[</span><span class="ot">\prod_{m\in R(t), m\ne k} (1-p_m)\right</span><span class="co">]</span>\approx\sum_{k\in R(t)}p_k</span>
+<span id="cb21-409"><a href="#cb21-409" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-410"><a href="#cb21-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-411"><a href="#cb21-411" aria-hidden="true" tabindex="-1"></a>If subject $i$ is the one who experiences the event of interest at time</span>
+<span id="cb21-412"><a href="#cb21-412" aria-hidden="true" tabindex="-1"></a>$t_i$, then the **partial likelihood** is</span>
+<span id="cb21-413"><a href="#cb21-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-414"><a href="#cb21-414" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-415"><a href="#cb21-415" aria-hidden="true" tabindex="-1"></a>\mathcal L^*(\beta|T)=</span>
+<span id="cb21-416"><a href="#cb21-416" aria-hidden="true" tabindex="-1"></a>\prod_i \frac{\theta(x_i)}{\sum_{k \in R(t_i)} \theta(\boldsymbol{x}_k)}</span>
+<span id="cb21-417"><a href="#cb21-417" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-418"><a href="#cb21-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-419"><a href="#cb21-419" aria-hidden="true" tabindex="-1"></a>and we can numerically maximize this with respect to the coefficients</span>
+<span id="cb21-420"><a href="#cb21-420" aria-hidden="true" tabindex="-1"></a>$\boldsymbol{\beta}$ that specify</span>
+<span id="cb21-421"><a href="#cb21-421" aria-hidden="true" tabindex="-1"></a>$\eta(\boldsymbol{x}) = \boldsymbol{x}'\boldsymbol{\beta}$. When there</span>
+<span id="cb21-422"><a href="#cb21-422" aria-hidden="true" tabindex="-1"></a>are tied event times adjustments need to be made, but the likelihood is</span>
+<span id="cb21-423"><a href="#cb21-423" aria-hidden="true" tabindex="-1"></a>still similar. Note that we don't need to know the base hazard to solve</span>
+<span id="cb21-424"><a href="#cb21-424" aria-hidden="true" tabindex="-1"></a>for the coefficients.</span>
+<span id="cb21-425"><a href="#cb21-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-426"><a href="#cb21-426" aria-hidden="true" tabindex="-1"></a>Once we have coefficient estimates</span>
+<span id="cb21-427"><a href="#cb21-427" aria-hidden="true" tabindex="-1"></a>$\hat{\boldsymbol{\beta}} =(\hat \beta_1,\ldots,\hat\beta_p)$, this also</span>
+<span id="cb21-428"><a href="#cb21-428" aria-hidden="true" tabindex="-1"></a>defines $\hat\eta(x)$ and $\hat\theta(x)$ and then the estimated base</span>
+<span id="cb21-429"><a href="#cb21-429" aria-hidden="true" tabindex="-1"></a>cumulative hazard function is $$\hat H(t)=</span>
+<span id="cb21-430"><a href="#cb21-430" aria-hidden="true" tabindex="-1"></a>\sum_{t_i &lt; t} \frac{d_i}{\sum_{k\in R(t_i)} \theta(x_k)}$$ which</span>
+<span id="cb21-431"><a href="#cb21-431" aria-hidden="true" tabindex="-1"></a>reduces to the Nelson-Aalen estimate when there are no covariates. There</span>
+<span id="cb21-432"><a href="#cb21-432" aria-hidden="true" tabindex="-1"></a>are numerous other estimates that have been proposed as well.</span>
+<span id="cb21-433"><a href="#cb21-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-434"><a href="#cb21-434" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cox Model for the `bmt` data</span></span>
+<span id="cb21-435"><a href="#cb21-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-436"><a href="#cb21-436" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit the model</span></span>
+<span id="cb21-437"><a href="#cb21-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-440"><a href="#cb21-440" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-441"><a href="#cb21-441" aria-hidden="true" tabindex="-1"></a>bmt.cox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(t2, d3) <span class="sc">~</span> group, <span class="at">data =</span> bmt)</span>
+<span id="cb21-442"><a href="#cb21-442" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bmt.cox)</span>
+<span id="cb21-443"><a href="#cb21-443" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-444"><a href="#cb21-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-445"><a href="#cb21-445" aria-hidden="true" tabindex="-1"></a>The table provides hypothesis tests comparing groups 2 and 3 to group 1.</span>
+<span id="cb21-446"><a href="#cb21-446" aria-hidden="true" tabindex="-1"></a>Group 3 has the highest hazard, so the most significant comparison is</span>
+<span id="cb21-447"><a href="#cb21-447" aria-hidden="true" tabindex="-1"></a>not directly shown.</span>
+<span id="cb21-448"><a href="#cb21-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-449"><a href="#cb21-449" aria-hidden="true" tabindex="-1"></a>The coefficient 0.3834 is on the log-hazard-ratio scale, as in</span>
+<span id="cb21-450"><a href="#cb21-450" aria-hidden="true" tabindex="-1"></a>log-risk-ratio. The next column gives the hazard ratio 1.4673, and a</span>
+<span id="cb21-451"><a href="#cb21-451" aria-hidden="true" tabindex="-1"></a>hypothesis (Wald) test.</span>
+<span id="cb21-452"><a href="#cb21-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-453"><a href="#cb21-453" aria-hidden="true" tabindex="-1"></a>The (not shown) group 3 vs. group 2 log hazard ratio is 0.3834 + 0.5742</span>
+<span id="cb21-454"><a href="#cb21-454" aria-hidden="true" tabindex="-1"></a>= 0.9576. The hazard ratio is then exp(0.9576) or 2.605.</span>
+<span id="cb21-455"><a href="#cb21-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-456"><a href="#cb21-456" aria-hidden="true" tabindex="-1"></a>Inference on all coefficients and combinations can be constructed using</span>
+<span id="cb21-457"><a href="#cb21-457" aria-hidden="true" tabindex="-1"></a><span class="in">`coef(bmt.cox)`</span> and <span class="in">`vcov(bmt.cox)`</span> as with logistic and poisson</span>
+<span id="cb21-458"><a href="#cb21-458" aria-hidden="true" tabindex="-1"></a>regression.</span>
+<span id="cb21-459"><a href="#cb21-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-460"><a href="#cb21-460" aria-hidden="true" tabindex="-1"></a>**Concordance** is agreement of first failure between pairs of subjects</span>
+<span id="cb21-461"><a href="#cb21-461" aria-hidden="true" tabindex="-1"></a>and higher predicted risk between those subjects, omitting</span>
+<span id="cb21-462"><a href="#cb21-462" aria-hidden="true" tabindex="-1"></a>non-informative pairs.</span>
+<span id="cb21-463"><a href="#cb21-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-464"><a href="#cb21-464" aria-hidden="true" tabindex="-1"></a>The Rsquare value is Cox and Snell's pseudo R-squared and is not very</span>
+<span id="cb21-465"><a href="#cb21-465" aria-hidden="true" tabindex="-1"></a>useful.</span>
+<span id="cb21-466"><a href="#cb21-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-467"><a href="#cb21-467" aria-hidden="true" tabindex="-1"></a><span class="in">`summary()`</span> prints three tests for whether the model with the group</span>
+<span id="cb21-468"><a href="#cb21-468" aria-hidden="true" tabindex="-1"></a>covariate is better than the one without</span>
+<span id="cb21-469"><a href="#cb21-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-470"><a href="#cb21-470" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Likelihood ratio test`</span> (chi-squared)</span>
+<span id="cb21-471"><a href="#cb21-471" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Wald test`</span> (also chi-squared), obtained by adding the squares of the z-scores</span>
+<span id="cb21-472"><a href="#cb21-472" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Score`</span> = log-rank test, as with comparison of survival functions.</span>
+<span id="cb21-473"><a href="#cb21-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-474"><a href="#cb21-474" aria-hidden="true" tabindex="-1"></a>The likelihood ratio test is probably best in smaller samples, followed</span>
+<span id="cb21-475"><a href="#cb21-475" aria-hidden="true" tabindex="-1"></a>by the Wald test.</span>
+<span id="cb21-476"><a href="#cb21-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-477"><a href="#cb21-477" aria-hidden="true" tabindex="-1"></a><span class="fu">## Survival Curves from the Cox Model</span></span>
+<span id="cb21-478"><a href="#cb21-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-479"><a href="#cb21-479" aria-hidden="true" tabindex="-1"></a>We can take a look at the resulting group-specific curves:</span>
+<span id="cb21-480"><a href="#cb21-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-483"><a href="#cb21-483" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-484"><a href="#cb21-484" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Survival Functions for Three Groups by KM and Cox Model"</span></span>
+<span id="cb21-485"><a href="#cb21-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-486"><a href="#cb21-486" aria-hidden="true" tabindex="-1"></a>km_fit <span class="ot">=</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(t2, d3) <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">as.data.frame</span>(bmt))</span>
+<span id="cb21-487"><a href="#cb21-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-488"><a href="#cb21-488" aria-hidden="true" tabindex="-1"></a>cox_fit <span class="ot">=</span> <span class="fu">survfit</span>(</span>
+<span id="cb21-489"><a href="#cb21-489" aria-hidden="true" tabindex="-1"></a>  bmt.cox, </span>
+<span id="cb21-490"><a href="#cb21-490" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata =</span> </span>
+<span id="cb21-491"><a href="#cb21-491" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb21-492"><a href="#cb21-492" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> <span class="fu">unique</span>(bmt<span class="sc">$</span>group), </span>
+<span id="cb21-493"><a href="#cb21-493" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="fu">unique</span>(bmt<span class="sc">$</span>group)))</span>
+<span id="cb21-494"><a href="#cb21-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-495"><a href="#cb21-495" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb21-496"><a href="#cb21-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-497"><a href="#cb21-497" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">KM =</span> km_fit, <span class="at">Cox =</span> cox_fit) <span class="sc">|&gt;</span> </span>
+<span id="cb21-498"><a href="#cb21-498" aria-hidden="true" tabindex="-1"></a>  survminer<span class="sc">::</span><span class="fu">ggsurvplot</span>(</span>
+<span id="cb21-499"><a href="#cb21-499" aria-hidden="true" tabindex="-1"></a>    <span class="co"># facet.by = "group",</span></span>
+<span id="cb21-500"><a href="#cb21-500" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="st">"bottom"</span>, </span>
+<span id="cb21-501"><a href="#cb21-501" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="st">""</span>,</span>
+<span id="cb21-502"><a href="#cb21-502" aria-hidden="true" tabindex="-1"></a>    <span class="at">combine =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb21-503"><a href="#cb21-503" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="st">'pct'</span>, </span>
+<span id="cb21-504"><a href="#cb21-504" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> .<span class="dv">5</span>,</span>
+<span id="cb21-505"><a href="#cb21-505" aria-hidden="true" tabindex="-1"></a>    <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>(), </span>
+<span id="cb21-506"><a href="#cb21-506" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb21-507"><a href="#cb21-507" aria-hidden="true" tabindex="-1"></a>    <span class="at">censor =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb21-508"><a href="#cb21-508" aria-hidden="true" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>() <span class="co"># ggsurvplot() throws some warnings that aren't too worrying</span></span>
+<span id="cb21-509"><a href="#cb21-509" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-510"><a href="#cb21-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-511"><a href="#cb21-511" aria-hidden="true" tabindex="-1"></a>When we use <span class="in">`survfit()`</span> with a Cox model, we have to specify the covariate levels we are interested in; the argument <span class="in">`newdata`</span> should include a <span class="in">`data.frame`</span> with the same named columns as the predictors in the Cox model and one or more levels of each.</span>
+<span id="cb21-512"><a href="#cb21-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-513"><a href="#cb21-513" aria-hidden="true" tabindex="-1"></a>Otherwise (that is, if the <span class="in">`newdata`</span> argument is missing), a curve is produced for a single "pseudo" subject with covariate values equal to the means component of the fit. </span>
+<span id="cb21-514"><a href="#cb21-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-515"><a href="#cb21-515" aria-hidden="true" tabindex="-1"></a>The resulting curve(s) almost never make sense, but the default remains due to an unwarranted attachment to the</span>
+<span id="cb21-516"><a href="#cb21-516" aria-hidden="true" tabindex="-1"></a>option shown by some users and by other packages.</span>
+<span id="cb21-517"><a href="#cb21-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-518"><a href="#cb21-518" aria-hidden="true" tabindex="-1"></a>Two particularly egregious examples are factor variables and</span>
+<span id="cb21-519"><a href="#cb21-519" aria-hidden="true" tabindex="-1"></a>interactions. Suppose one were studying interspecies transmission of a virus, and the data set has a factor variable with levels ("pig", "chicken") and about equal numbers of observations for each. The "mean" covariate level will be 0.5 -- is this a flying pig?</span>
+<span id="cb21-520"><a href="#cb21-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-521"><a href="#cb21-521" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examining `survfit`</span></span>
+<span id="cb21-522"><a href="#cb21-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-525"><a href="#cb21-525" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-526"><a href="#cb21-526" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(t2, d3)<span class="sc">~</span>group,<span class="at">data=</span>bmt)</span>
+<span id="cb21-527"><a href="#cb21-527" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-528"><a href="#cb21-528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-531"><a href="#cb21-531" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-532"><a href="#cb21-532" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(t2, d3)<span class="sc">~</span>group,<span class="at">data=</span>bmt) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
+<span id="cb21-533"><a href="#cb21-533" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-534"><a href="#cb21-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-537"><a href="#cb21-537" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-538"><a href="#cb21-538" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(bmt.cox)</span>
+<span id="cb21-539"><a href="#cb21-539" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(bmt.cox, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">group =</span> <span class="fu">unique</span>(bmt<span class="sc">$</span>group)))</span>
+<span id="cb21-540"><a href="#cb21-540" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-541"><a href="#cb21-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-544"><a href="#cb21-544" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-545"><a href="#cb21-545" aria-hidden="true" tabindex="-1"></a>bmt.cox <span class="sc">|&gt;</span> </span>
+<span id="cb21-546"><a href="#cb21-546" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survfit</span>(<span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">group =</span> <span class="fu">unique</span>(bmt<span class="sc">$</span>group))) <span class="sc">|&gt;</span> </span>
+<span id="cb21-547"><a href="#cb21-547" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span>
+<span id="cb21-548"><a href="#cb21-548" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-549"><a href="#cb21-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-550"><a href="#cb21-550" aria-hidden="true" tabindex="-1"></a><span class="fu"># Adjustment for Ties (optional)</span></span>
+<span id="cb21-551"><a href="#cb21-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-552"><a href="#cb21-552" aria-hidden="true" tabindex="-1"></a>##</span>
+<span id="cb21-553"><a href="#cb21-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-554"><a href="#cb21-554" aria-hidden="true" tabindex="-1"></a>At each time $t_i$ at which more than one of the subjects has an event,</span>
+<span id="cb21-555"><a href="#cb21-555" aria-hidden="true" tabindex="-1"></a>let $d_i$ be the number of events at that time, $D_i$ the set of</span>
+<span id="cb21-556"><a href="#cb21-556" aria-hidden="true" tabindex="-1"></a>subjects with events at that time, and let $s_i$ be a covariate vector</span>
+<span id="cb21-557"><a href="#cb21-557" aria-hidden="true" tabindex="-1"></a>for an artificial subject obtained by adding up the covariate values for</span>
+<span id="cb21-558"><a href="#cb21-558" aria-hidden="true" tabindex="-1"></a>the subjects with an event at time $t_i$. Let</span>
+<span id="cb21-559"><a href="#cb21-559" aria-hidden="true" tabindex="-1"></a>$$\bar\eta_i = \beta_1s_{i1}+\cdots+\beta_ps_{ip}$$ and</span>
+<span id="cb21-560"><a href="#cb21-560" aria-hidden="true" tabindex="-1"></a>$\bar\theta_i = \exp(\bar\eta_i)$.</span>
+<span id="cb21-561"><a href="#cb21-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-562"><a href="#cb21-562" aria-hidden="true" tabindex="-1"></a>Let $s_i$ be a covariate vector for an artificial subject obtained by</span>
+<span id="cb21-563"><a href="#cb21-563" aria-hidden="true" tabindex="-1"></a>adding up the covariate values for the subjects with an event at time</span>
+<span id="cb21-564"><a href="#cb21-564" aria-hidden="true" tabindex="-1"></a>$t_i$. Note that </span>
+<span id="cb21-565"><a href="#cb21-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-566"><a href="#cb21-566" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-567"><a href="#cb21-567" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-568"><a href="#cb21-568" aria-hidden="true" tabindex="-1"></a>\bar\eta_i &amp;=\sum_{j \in D_i}\beta_1x_{j1}+\cdots+\beta_px_{jp}<span class="sc">\\</span></span>
+<span id="cb21-569"><a href="#cb21-569" aria-hidden="true" tabindex="-1"></a>&amp;= \beta_1s_{i1}+\cdots+\beta_ps_{ip}<span class="sc">\\</span></span>
+<span id="cb21-570"><a href="#cb21-570" aria-hidden="true" tabindex="-1"></a>\bar\theta_i &amp;= \exp(\bar\eta_i)<span class="sc">\\</span></span>
+<span id="cb21-571"><a href="#cb21-571" aria-hidden="true" tabindex="-1"></a>&amp;= \prod_{j \in D_i}\theta_i</span>
+<span id="cb21-572"><a href="#cb21-572" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-573"><a href="#cb21-573" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-574"><a href="#cb21-574" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-575"><a href="#cb21-575" aria-hidden="true" tabindex="-1"></a><span class="fu">### Breslow's method for ties</span></span>
+<span id="cb21-576"><a href="#cb21-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-577"><a href="#cb21-577" aria-hidden="true" tabindex="-1"></a>Breslow's method estimates the partial likelihood as</span>
+<span id="cb21-578"><a href="#cb21-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-579"><a href="#cb21-579" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-580"><a href="#cb21-580" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb21-581"><a href="#cb21-581" aria-hidden="true" tabindex="-1"></a>L(\beta|T) &amp;=</span>
+<span id="cb21-582"><a href="#cb21-582" aria-hidden="true" tabindex="-1"></a>\prod_i \frac{\bar\theta_i}{<span class="co">[</span><span class="ot">\sum_{k \in R(t_i)} \theta_k</span><span class="co">]</span>^{d_i}}<span class="sc">\\</span></span>
+<span id="cb21-583"><a href="#cb21-583" aria-hidden="true" tabindex="-1"></a>&amp;= \prod_i \prod_{j \in D_i}\frac{\theta_j}{\sum_{k \in R(t_i)} \theta_k}</span>
+<span id="cb21-584"><a href="#cb21-584" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb21-585"><a href="#cb21-585" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-586"><a href="#cb21-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-587"><a href="#cb21-587" aria-hidden="true" tabindex="-1"></a>This method is equivalent to treating each event as distinct and using the non-ties formula. </span>
+<span id="cb21-588"><a href="#cb21-588" aria-hidden="true" tabindex="-1"></a>It works best when the number of ties is small. </span>
+<span id="cb21-589"><a href="#cb21-589" aria-hidden="true" tabindex="-1"></a>It is the default in many statistical packages, including PROC PHREG in SAS.</span>
+<span id="cb21-590"><a href="#cb21-590" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-591"><a href="#cb21-591" aria-hidden="true" tabindex="-1"></a><span class="fu">### Efron's method for ties</span></span>
+<span id="cb21-592"><a href="#cb21-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-593"><a href="#cb21-593" aria-hidden="true" tabindex="-1"></a>The other common method is Efron's, which is the default in R.</span>
+<span id="cb21-594"><a href="#cb21-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-595"><a href="#cb21-595" aria-hidden="true" tabindex="-1"></a>$$L(\beta|T)=</span>
+<span id="cb21-596"><a href="#cb21-596" aria-hidden="true" tabindex="-1"></a>\prod_i \frac{\bar\theta_i}{\prod_{j=1}^{d_i}<span class="co">[</span><span class="ot">\sum_{k \in R(t_i)} \theta_k-\frac{j-1}{d_i}\sum_{k \in D_i} \theta_k</span><span class="co">]</span>}$$</span>
+<span id="cb21-597"><a href="#cb21-597" aria-hidden="true" tabindex="-1"></a>This is closer to the exact discrete partial likelihood when there are</span>
+<span id="cb21-598"><a href="#cb21-598" aria-hidden="true" tabindex="-1"></a>many ties.</span>
+<span id="cb21-599"><a href="#cb21-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-600"><a href="#cb21-600" aria-hidden="true" tabindex="-1"></a>The third option in R (and an option also in SAS as <span class="in">`discrete`</span>) is the</span>
+<span id="cb21-601"><a href="#cb21-601" aria-hidden="true" tabindex="-1"></a>"exact" method, which is the same one used for matched logistic</span>
+<span id="cb21-602"><a href="#cb21-602" aria-hidden="true" tabindex="-1"></a>regression.</span>
+<span id="cb21-603"><a href="#cb21-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-604"><a href="#cb21-604" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example: Breslow's method</span></span>
+<span id="cb21-605"><a href="#cb21-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-606"><a href="#cb21-606" aria-hidden="true" tabindex="-1"></a>Suppose as an example we have a time $t$ where there are 20 individuals</span>
+<span id="cb21-607"><a href="#cb21-607" aria-hidden="true" tabindex="-1"></a>at risk and three failures. Let the three individuals have risk</span>
+<span id="cb21-608"><a href="#cb21-608" aria-hidden="true" tabindex="-1"></a>parameters $\theta_1, \theta_2, \theta_3$ and let the sum of the risk</span>
+<span id="cb21-609"><a href="#cb21-609" aria-hidden="true" tabindex="-1"></a>parameters of the remaining 17 individuals be $\theta_R$. Then the</span>
+<span id="cb21-610"><a href="#cb21-610" aria-hidden="true" tabindex="-1"></a>factor in the partial likelihood at time $t$ using Breslow's method is</span>
+<span id="cb21-611"><a href="#cb21-611" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-612"><a href="#cb21-612" aria-hidden="true" tabindex="-1"></a>::: smaller</span>
+<span id="cb21-613"><a href="#cb21-613" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-614"><a href="#cb21-614" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_1}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
+<span id="cb21-615"><a href="#cb21-615" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_2}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
+<span id="cb21-616"><a href="#cb21-616" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_3}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
+<span id="cb21-617"><a href="#cb21-617" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-618"><a href="#cb21-618" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb21-619"><a href="#cb21-619" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-620"><a href="#cb21-620" aria-hidden="true" tabindex="-1"></a>If on the other hand, they had died in the order 1,2, 3, then the</span>
+<span id="cb21-621"><a href="#cb21-621" aria-hidden="true" tabindex="-1"></a>contribution to the partial likelihood would be:</span>
+<span id="cb21-622"><a href="#cb21-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-623"><a href="#cb21-623" aria-hidden="true" tabindex="-1"></a>::: smaller</span>
+<span id="cb21-624"><a href="#cb21-624" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-625"><a href="#cb21-625" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_1}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
+<span id="cb21-626"><a href="#cb21-626" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_2}{\theta_R+\theta_2+\theta_3}\right)</span>
+<span id="cb21-627"><a href="#cb21-627" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_3}{\theta_R+\theta_3}\right)</span>
+<span id="cb21-628"><a href="#cb21-628" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb21-629"><a href="#cb21-629" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb21-630"><a href="#cb21-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-631"><a href="#cb21-631" aria-hidden="true" tabindex="-1"></a>as the risk set got smaller with each failure. The exact method roughly</span>
+<span id="cb21-632"><a href="#cb21-632" aria-hidden="true" tabindex="-1"></a>averages the results for the six possible orderings of the failures.</span>
+<span id="cb21-633"><a href="#cb21-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-634"><a href="#cb21-634" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example: Efron's method</span></span>
+<span id="cb21-635"><a href="#cb21-635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-636"><a href="#cb21-636" aria-hidden="true" tabindex="-1"></a>But we don't know the order they failed in, so instead of reducing the</span>
+<span id="cb21-637"><a href="#cb21-637" aria-hidden="true" tabindex="-1"></a>denominator by one risk coefficient each time, we reduce it by the same</span>
+<span id="cb21-638"><a href="#cb21-638" aria-hidden="true" tabindex="-1"></a>fraction. This is Efron's method.</span>
+<span id="cb21-639"><a href="#cb21-639" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-640"><a href="#cb21-640" aria-hidden="true" tabindex="-1"></a>::: smaller</span>
+<span id="cb21-641"><a href="#cb21-641" aria-hidden="true" tabindex="-1"></a>$$\left(\frac{\theta_1}{\theta_R+\theta_1+\theta_2+\theta_3}\right)</span>
+<span id="cb21-642"><a href="#cb21-642" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_2}{\theta_R+2(\theta_1+\theta_2+\theta_3)/3}\right)</span>
+<span id="cb21-643"><a href="#cb21-643" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta_3}{\theta_R+(\theta_1+\theta_2+\theta_3)/3}\right)$$</span>
+<span id="cb21-644"><a href="#cb21-644" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
