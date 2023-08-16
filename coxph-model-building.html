@@ -234,127 +234,76 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   <ul>
 <li><a href="#configuring-r" id="toc-configuring-r" class="nav-link active" data-scroll-target="#configuring-r">Configuring R</a></li>
   <li>
-<a href="#building-cox-proportional-hazards-models" id="toc-building-cox-proportional-hazards-models" class="nav-link" data-scroll-target="#building-cox-proportional-hazards-models"><span class="header-section-number">8</span> Building Cox Proportional Hazards models</a>
+<a href="#building-cox-proportional-hazards-models" id="toc-building-cox-proportional-hazards-models" class="nav-link" data-scroll-target="#building-cox-proportional-hazards-models"><span class="header-section-number">7.1</span> Building Cox Proportional Hazards models</a>
   <ul class="collapse">
-<li>
-<a href="#hodg-lymphoma-data-set-from-kmsurv" id="toc-hodg-lymphoma-data-set-from-kmsurv" class="nav-link" data-scroll-target="#hodg-lymphoma-data-set-from-kmsurv"><span class="header-section-number">8.1</span> <code>hodg</code> Lymphoma Data Set from <code>KMsurv</code></a>
-  <ul class="collapse">
-<li><a href="#participants" id="toc-participants" class="nav-link" data-scroll-target="#participants">Participants</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  </ul>
-</li>
-  <li><a href="#proportional-hazards-model" id="toc-proportional-hazards-model" class="nav-link" data-scroll-target="#proportional-hazards-model"><span class="header-section-number">8.2</span> Proportional hazards model</a></li>
+<li><a href="#hodg-lymphoma-data-set-from-kmsurv" id="toc-hodg-lymphoma-data-set-from-kmsurv" class="nav-link" data-scroll-target="#hodg-lymphoma-data-set-from-kmsurv"><code>hodg</code> Lymphoma Data Set from <code>KMsurv</code></a></li>
+  <li><a href="#proportional-hazards-model" id="toc-proportional-hazards-model" class="nav-link" data-scroll-target="#proportional-hazards-model">Proportional hazards model</a></li>
   </ul>
 </li>
   <li>
-<a href="#diagnostic-graphs-for-proportional-hazards-assumption" id="toc-diagnostic-graphs-for-proportional-hazards-assumption" class="nav-link" data-scroll-target="#diagnostic-graphs-for-proportional-hazards-assumption"><span class="header-section-number">9</span> Diagnostic graphs for proportional hazards assumption</a>
+<a href="#diagnostic-graphs-for-proportional-hazards-assumption" id="toc-diagnostic-graphs-for-proportional-hazards-assumption" class="nav-link" data-scroll-target="#diagnostic-graphs-for-proportional-hazards-assumption"><span class="header-section-number">7.2</span> Diagnostic graphs for proportional hazards assumption</a>
   <ul class="collapse">
-<li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan"><span class="header-section-number">9.1</span> Analysis plan</a></li>
-  <li><a href="#kaplan-meier-survival-functions" id="toc-kaplan-meier-survival-functions" class="nav-link" data-scroll-target="#kaplan-meier-survival-functions"><span class="header-section-number">9.2</span> Kaplan-Meier survival functions</a></li>
-  <li><a href="#observed-and-expected-survival-curves" id="toc-observed-and-expected-survival-curves" class="nav-link" data-scroll-target="#observed-and-expected-survival-curves"><span class="header-section-number">9.3</span> Observed and expected survival curves</a></li>
-  <li><a href="#cumulative-hazard-log-scale-curves" id="toc-cumulative-hazard-log-scale-curves" class="nav-link" data-scroll-target="#cumulative-hazard-log-scale-curves"><span class="header-section-number">9.4</span> Cumulative hazard (log-scale) curves</a></li>
+<li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a></li>
+  <li><a href="#kaplan-meier-survival-functions" id="toc-kaplan-meier-survival-functions" class="nav-link" data-scroll-target="#kaplan-meier-survival-functions">Kaplan-Meier survival functions</a></li>
+  <li><a href="#observed-and-expected-survival-curves" id="toc-observed-and-expected-survival-curves" class="nav-link" data-scroll-target="#observed-and-expected-survival-curves">Observed and expected survival curves</a></li>
+  <li><a href="#cumulative-hazard-log-scale-curves" id="toc-cumulative-hazard-log-scale-curves" class="nav-link" data-scroll-target="#cumulative-hazard-log-scale-curves">Cumulative hazard (log-scale) curves</a></li>
   </ul>
 </li>
   <li>
-<a href="#predictions-and-residuals" id="toc-predictions-and-residuals" class="nav-link" data-scroll-target="#predictions-and-residuals"><span class="header-section-number">10</span> Predictions and Residuals</a>
+<a href="#predictions-and-residuals" id="toc-predictions-and-residuals" class="nav-link" data-scroll-target="#predictions-and-residuals"><span class="header-section-number">7.3</span> Predictions and Residuals</a>
   <ul class="collapse">
-<li><a href="#review-predictions-in-linear-regression" id="toc-review-predictions-in-linear-regression" class="nav-link" data-scroll-target="#review-predictions-in-linear-regression"><span class="header-section-number">10.1</span> Review: Predictions in Linear Regression</a></li>
-  <li><a href="#review-residuals-in-linear-regression" id="toc-review-residuals-in-linear-regression" class="nav-link" data-scroll-target="#review-residuals-in-linear-regression"><span class="header-section-number">10.2</span> Review: Residuals in Linear Regression</a></li>
-  <li><a href="#predictions-and-residuals-in-survival-models" id="toc-predictions-and-residuals-in-survival-models" class="nav-link" data-scroll-target="#predictions-and-residuals-in-survival-models"><span class="header-section-number">10.3</span> Predictions and Residuals in survival models</a></li>
-  <li><a href="#wide-prediction-intervals" id="toc-wide-prediction-intervals" class="nav-link" data-scroll-target="#wide-prediction-intervals"><span class="header-section-number">10.4</span> Wide prediction intervals</a></li>
-  <li><a href="#types-of-residuals-in-time-to-event-models" id="toc-types-of-residuals-in-time-to-event-models" class="nav-link" data-scroll-target="#types-of-residuals-in-time-to-event-models"><span class="header-section-number">10.5</span> Types of Residuals in Time-to-Event Models</a></li>
+<li><a href="#review-predictions-in-linear-regression" id="toc-review-predictions-in-linear-regression" class="nav-link" data-scroll-target="#review-predictions-in-linear-regression">Review: Predictions in Linear Regression</a></li>
+  <li><a href="#review-residuals-in-linear-regression" id="toc-review-residuals-in-linear-regression" class="nav-link" data-scroll-target="#review-residuals-in-linear-regression">Review: Residuals in Linear Regression</a></li>
+  <li><a href="#predictions-and-residuals-in-survival-models" id="toc-predictions-and-residuals-in-survival-models" class="nav-link" data-scroll-target="#predictions-and-residuals-in-survival-models">Predictions and Residuals in survival models</a></li>
+  <li><a href="#wide-prediction-intervals" id="toc-wide-prediction-intervals" class="nav-link" data-scroll-target="#wide-prediction-intervals">Wide prediction intervals</a></li>
+  <li><a href="#types-of-residuals-in-time-to-event-models" id="toc-types-of-residuals-in-time-to-event-models" class="nav-link" data-scroll-target="#types-of-residuals-in-time-to-event-models">Types of Residuals in Time-to-Event Models</a></li>
+  <li><a href="#schoenfeld-residuals" id="toc-schoenfeld-residuals" class="nav-link" data-scroll-target="#schoenfeld-residuals">Schoenfeld residuals</a></li>
+  </ul>
+</li>
+  <li><a href="#goodness-of-fit-using-the-cox-snell-residuals" id="toc-goodness-of-fit-using-the-cox-snell-residuals" class="nav-link" data-scroll-target="#goodness-of-fit-using-the-cox-snell-residuals"><span class="header-section-number">7.4</span> Goodness of Fit using the Cox-Snell Residuals</a></li>
   <li>
-<a href="#schoenfeld-residuals" id="toc-schoenfeld-residuals" class="nav-link" data-scroll-target="#schoenfeld-residuals"><span class="header-section-number">10.6</span> Schoenfeld residuals</a>
+<a href="#martingale-residuals" id="toc-martingale-residuals" class="nav-link" data-scroll-target="#martingale-residuals"><span class="header-section-number">7.5</span> Martingale Residuals</a>
   <ul class="collapse">
-<li><a href="#gtype" id="toc-gtype" class="nav-link" data-scroll-target="#gtype"><code>gtype</code></a></li>
-  <li><a href="#dtype" id="toc-dtype" class="nav-link" data-scroll-target="#dtype"><code>dtype</code></a></li>
-  <li><a href="#score" id="toc-score" class="nav-link" data-scroll-target="#score"><code>score</code></a></li>
-  <li><a href="#wtime" id="toc-wtime" class="nav-link" data-scroll-target="#wtime"><code>wtime</code></a></li>
-  <li><a href="#gtypedtype" id="toc-gtypedtype" class="nav-link" data-scroll-target="#gtypedtype"><code>gtype:dtype</code></a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
-  </ul>
-</li>
-  </ul>
-</li>
-  <li><a href="#goodness-of-fit-using-the-cox-snell-residuals" id="toc-goodness-of-fit-using-the-cox-snell-residuals" class="nav-link" data-scroll-target="#goodness-of-fit-using-the-cox-snell-residuals"><span class="header-section-number">11</span> Goodness of Fit using the Cox-Snell Residuals</a></li>
-  <li>
-<a href="#martingale-residuals" id="toc-martingale-residuals" class="nav-link" data-scroll-target="#martingale-residuals"><span class="header-section-number">12</span> Martingale Residuals</a>
-  <ul class="collapse">
-<li>
-<a href="#using-martingale-residuals" id="toc-using-martingale-residuals" class="nav-link" data-scroll-target="#using-martingale-residuals"><span class="header-section-number">12.1</span> Using Martingale Residuals</a>
-  <ul class="collapse">
-<li><a href="#karnofsky-score" id="toc-karnofsky-score" class="nav-link" data-scroll-target="#karnofsky-score">Karnofsky score</a></li>
-  <li><a href="#waiting-time" id="toc-waiting-time" class="nav-link" data-scroll-target="#waiting-time">Waiting time</a></li>
-  <li><a href="#updating-the-model" id="toc-updating-the-model" class="nav-link" data-scroll-target="#updating-the-model">Updating the model</a></li>
-  </ul>
-</li>
+<li><a href="#using-martingale-residuals" id="toc-using-martingale-residuals" class="nav-link" data-scroll-target="#using-martingale-residuals">Using Martingale Residuals</a></li>
   </ul>
 </li>
   <li>
-<a href="#checking-for-outliers-and-influential-observations" id="toc-checking-for-outliers-and-influential-observations" class="nav-link" data-scroll-target="#checking-for-outliers-and-influential-observations"><span class="header-section-number">13</span> Checking for Outliers and Influential Observations</a>
+<a href="#checking-for-outliers-and-influential-observations" id="toc-checking-for-outliers-and-influential-observations" class="nav-link" data-scroll-target="#checking-for-outliers-and-influential-observations"><span class="header-section-number">7.6</span> Checking for Outliers and Influential Observations</a>
   <ul class="collapse">
-<li><a href="#deviance-residuals" id="toc-deviance-residuals" class="nav-link" data-scroll-target="#deviance-residuals"><span class="header-section-number">13.1</span> Deviance Residuals</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">13.2</span> </a></li>
-  <li>
-<a href="#dfbeta" id="toc-dfbeta" class="nav-link" data-scroll-target="#dfbeta"><span class="header-section-number">13.3</span> dfbeta</a>
-  <ul class="collapse">
-<li><a href="#graft-type" id="toc-graft-type" class="nav-link" data-scroll-target="#graft-type">Graft type</a></li>
-  <li><a href="#disease-type" id="toc-disease-type" class="nav-link" data-scroll-target="#disease-type">Disease type</a></li>
-  <li><a href="#karnofsky-score-1" id="toc-karnofsky-score-1" class="nav-link" data-scroll-target="#karnofsky-score-1">Karnofsky score</a></li>
-  <li><a href="#waiting-time-dichotomized" id="toc-waiting-time-dichotomized" class="nav-link" data-scroll-target="#waiting-time-dichotomized">Waiting time (dichotomized)</a></li>
-  <li><a href="#interaction-graft-type-and-disease-type" id="toc-interaction-graft-type-and-disease-type" class="nav-link" data-scroll-target="#interaction-graft-type-and-disease-type">Interaction: graft type and disease type</a></li>
-  </ul>
-</li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">13.4</span> </a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">13.5</span> </a></li>
-  <li><a href="#action-items" id="toc-action-items" class="nav-link" data-scroll-target="#action-items"><span class="header-section-number">13.6</span> Action Items</a></li>
+<li><a href="#deviance-residuals" id="toc-deviance-residuals" class="nav-link" data-scroll-target="#deviance-residuals">Deviance Residuals</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#dfbeta" id="toc-dfbeta" class="nav-link" data-scroll-target="#dfbeta">dfbeta</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#action-items" id="toc-action-items" class="nav-link" data-scroll-target="#action-items">Action Items</a></li>
   </ul>
 </li>
   <li>
-<a href="#stratified-survival-models" id="toc-stratified-survival-models" class="nav-link" data-scroll-target="#stratified-survival-models"><span class="header-section-number">14</span> Stratified survival models</a>
+<a href="#stratified-survival-models" id="toc-stratified-survival-models" class="nav-link" data-scroll-target="#stratified-survival-models"><span class="header-section-number">7.7</span> Stratified survival models</a>
   <ul class="collapse">
-<li><a href="#revisiting-the-leukemia-dataset-anderson" id="toc-revisiting-the-leukemia-dataset-anderson" class="nav-link" data-scroll-target="#revisiting-the-leukemia-dataset-anderson"><span class="header-section-number">14.1</span> Revisiting the leukemia dataset (<code>anderson</code>)</a></li>
-  <li>
-<a href="#cox-semi-parametric-proportional-hazards-model" id="toc-cox-semi-parametric-proportional-hazards-model" class="nav-link" data-scroll-target="#cox-semi-parametric-proportional-hazards-model"><span class="header-section-number">14.2</span> Cox semi-parametric proportional hazards model</a>
-  <ul class="collapse">
-<li><a href="#test-the-proportional-hazards-assumption" id="toc-test-the-proportional-hazards-assumption" class="nav-link" data-scroll-target="#test-the-proportional-hazards-assumption">Test the proportional hazards assumption</a></li>
-  <li><a href="#graph-the-k-m-survival-curves" id="toc-graph-the-k-m-survival-curves" class="nav-link" data-scroll-target="#graph-the-k-m-survival-curves">Graph the K-M survival curves</a></li>
-  </ul>
-</li>
-  <li><a href="#graph-the-nelson-aalen-cumulative-hazard" id="toc-graph-the-nelson-aalen-cumulative-hazard" class="nav-link" data-scroll-target="#graph-the-nelson-aalen-cumulative-hazard"><span class="header-section-number">14.3</span> Graph the Nelson-Aalen cumulative hazard</a></li>
-  <li><a href="#the-stratified-cox-model" id="toc-the-stratified-cox-model" class="nav-link" data-scroll-target="#the-stratified-cox-model"><span class="header-section-number">14.4</span> The Stratified Cox Model</a></li>
-  <li><a href="#conclusions-1" id="toc-conclusions-1" class="nav-link" data-scroll-target="#conclusions-1"><span class="header-section-number">14.5</span> Conclusions</a></li>
-  <li><a href="#another-modeling-approach" id="toc-another-modeling-approach" class="nav-link" data-scroll-target="#another-modeling-approach"><span class="header-section-number">14.6</span> Another Modeling Approach</a></li>
+<li><a href="#revisiting-the-leukemia-dataset-anderson" id="toc-revisiting-the-leukemia-dataset-anderson" class="nav-link" data-scroll-target="#revisiting-the-leukemia-dataset-anderson">Revisiting the leukemia dataset (<code>anderson</code>)</a></li>
+  <li><a href="#cox-semi-parametric-proportional-hazards-model" id="toc-cox-semi-parametric-proportional-hazards-model" class="nav-link" data-scroll-target="#cox-semi-parametric-proportional-hazards-model">Cox semi-parametric proportional hazards model</a></li>
+  <li><a href="#graph-the-nelson-aalen-cumulative-hazard" id="toc-graph-the-nelson-aalen-cumulative-hazard" class="nav-link" data-scroll-target="#graph-the-nelson-aalen-cumulative-hazard">Graph the Nelson-Aalen cumulative hazard</a></li>
+  <li><a href="#the-stratified-cox-model" id="toc-the-stratified-cox-model" class="nav-link" data-scroll-target="#the-stratified-cox-model">The Stratified Cox Model</a></li>
+  <li><a href="#conclusions-1" id="toc-conclusions-1" class="nav-link" data-scroll-target="#conclusions-1">Conclusions</a></li>
+  <li><a href="#another-modeling-approach" id="toc-another-modeling-approach" class="nav-link" data-scroll-target="#another-modeling-approach">Another Modeling Approach</a></li>
   </ul>
 </li>
   <li>
-<a href="#time-varying-covariates" id="toc-time-varying-covariates" class="nav-link" data-scroll-target="#time-varying-covariates"><span class="header-section-number">15</span> Time-varying covariates</a>
+<a href="#time-varying-covariates" id="toc-time-varying-covariates" class="nav-link" data-scroll-target="#time-varying-covariates"><span class="header-section-number">7.8</span> Time-varying covariates</a>
   <ul class="collapse">
-<li>
-<a href="#motivating-example-back-to-the-leukemia-dataset" id="toc-motivating-example-back-to-the-leukemia-dataset" class="nav-link" data-scroll-target="#motivating-example-back-to-the-leukemia-dataset"><span class="header-section-number">15.1</span> Motivating example: back to the leukemia dataset</a>
-  <ul class="collapse">
-<li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a></li>
-  </ul>
-</li>
-  <li><a href="#time-dependent-covariates" id="toc-time-dependent-covariates" class="nav-link" data-scroll-target="#time-dependent-covariates"><span class="header-section-number">15.2</span> Time-Dependent Covariates</a></li>
-  <li><a href="#analysis-in-r" id="toc-analysis-in-r" class="nav-link" data-scroll-target="#analysis-in-r"><span class="header-section-number">15.3</span> Analysis in R</a></li>
-  <li><a href="#event-sequences" id="toc-event-sequences" class="nav-link" data-scroll-target="#event-sequences"><span class="header-section-number">15.4</span> Event sequences</a></li>
-  <li><a href="#model-with-time-fixed-covariates" id="toc-model-with-time-fixed-covariates" class="nav-link" data-scroll-target="#model-with-time-fixed-covariates"><span class="header-section-number">15.5</span> Model with Time-Fixed Covariates</a></li>
-  <li><a href="#model-with-time-dependent-covariates" id="toc-model-with-time-dependent-covariates" class="nav-link" data-scroll-target="#model-with-time-dependent-covariates"><span class="header-section-number">15.6</span> Model with Time-Dependent Covariates</a></li>
+<li><a href="#motivating-example-back-to-the-leukemia-dataset" id="toc-motivating-example-back-to-the-leukemia-dataset" class="nav-link" data-scroll-target="#motivating-example-back-to-the-leukemia-dataset">Motivating example: back to the leukemia dataset</a></li>
+  <li><a href="#time-dependent-covariates" id="toc-time-dependent-covariates" class="nav-link" data-scroll-target="#time-dependent-covariates">Time-Dependent Covariates</a></li>
+  <li><a href="#analysis-in-r" id="toc-analysis-in-r" class="nav-link" data-scroll-target="#analysis-in-r">Analysis in R</a></li>
+  <li><a href="#event-sequences" id="toc-event-sequences" class="nav-link" data-scroll-target="#event-sequences">Event sequences</a></li>
+  <li><a href="#model-with-time-fixed-covariates" id="toc-model-with-time-fixed-covariates" class="nav-link" data-scroll-target="#model-with-time-fixed-covariates">Model with Time-Fixed Covariates</a></li>
+  <li><a href="#model-with-time-dependent-covariates" id="toc-model-with-time-dependent-covariates" class="nav-link" data-scroll-target="#model-with-time-dependent-covariates">Model with Time-Dependent Covariates</a></li>
   </ul>
 </li>
   <li>
-<a href="#recurrent-events" id="toc-recurrent-events" class="nav-link" data-scroll-target="#recurrent-events"><span class="header-section-number">16</span> Recurrent Events</a>
+<a href="#recurrent-events" id="toc-recurrent-events" class="nav-link" data-scroll-target="#recurrent-events"><span class="header-section-number">7.9</span> Recurrent Events</a>
   <ul class="collapse">
-<li>
-<a href="#bladder-cancer-data-set" id="toc-bladder-cancer-data-set" class="nav-link" data-scroll-target="#bladder-cancer-data-set"><span class="header-section-number">16.1</span> Bladder Cancer Data Set</a>
-  <ul class="collapse">
-<li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link" data-scroll-target="#data-dictionary">Data dictionary</a></li>
-  <li><a href="#different-intervals-for-the-same-patient-are-correlated." id="toc-different-intervals-for-the-same-patient-are-correlated." class="nav-link" data-scroll-target="#different-intervals-for-the-same-patient-are-correlated.">Different intervals for the same patient are correlated.</a></li>
-  <li><a href="#adding-cluster-id" id="toc-adding-cluster-id" class="nav-link" data-scroll-target="#adding-cluster-id">adding <code>cluster = id</code></a></li>
-  </ul>
-</li>
+<li><a href="#bladder-cancer-data-set" id="toc-bladder-cancer-data-set" class="nav-link" data-scroll-target="#bladder-cancer-data-set">Bladder Cancer Data Set</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/d-morrison/rme/edit/main/coxph-model-building.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -385,7 +334,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 </header><div class="hidden">
 
 </div>
-<section id="configuring-r" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h2>
+<section id="configuring-r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h3>
 <p>Functions from these packages will be used throughout this document:</p>
 <div class="cell" data-hash="coxph-model-building_cache/html/packages_4f90b241da6e05b5dcc72232314b97f1">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span> <span class="co"># format tables for markdown</span></span>
@@ -417,14 +366,14 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 <span><span class="va">legend_text_size</span> <span class="op">=</span> <span class="fl">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section><section id="building-cox-proportional-hazards-models" class="level1" data-number="8"><h1 data-number="8">
-<span class="header-section-number">8</span> Building Cox Proportional Hazards models</h1>
-<section id="hodg-lymphoma-data-set-from-kmsurv" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="hodg-lymphoma-data-set-from-kmsurv">
-<span class="header-section-number">8.1</span> <code>hodg</code> Lymphoma Data Set from <code>KMsurv</code>
-</h2>
-<section id="participants" class="level3"><h3 class="anchored" data-anchor-id="participants">Participants</h3>
+</section><section id="building-cox-proportional-hazards-models" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="building-cox-proportional-hazards-models">
+<span class="header-section-number">7.1</span> Building Cox Proportional Hazards models</h2>
+<section id="hodg-lymphoma-data-set-from-kmsurv" class="level3"><h3 class="anchored" data-anchor-id="hodg-lymphoma-data-set-from-kmsurv">
+<code>hodg</code> Lymphoma Data Set from <code>KMsurv</code>
+</h3>
+<section id="participants" class="level4"><h4 class="anchored" data-anchor-id="participants">Participants</h4>
 <p>43 bone marrow transplant patients at Ohio State University (Avalos 1993)</p>
-</section><section id="variables" class="level3"><h3 class="anchored" data-anchor-id="variables">Variables</h3>
+</section><section id="variables" class="level4"><h4 class="anchored" data-anchor-id="variables">Variables</h4>
 <ul>
 <li>
 <code>dtype</code>: Disease type (Hodgkin’s or non-Hodgkins lymphoma)</li>
@@ -443,7 +392,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 <li>80–100: Able to carry on normal activity and to work; no special care needed.</li>
 <li>50–70: Unable to work; able to live at home and care for most personal needs; varying amount of assistance needed.</li>
 <li>10–60: Unable to care for self; requires equivalent of institutional or hospital care; disease may be progressing rapidly.</li>
-</ul></section><section id="data" class="level3"><h3 class="anchored" data-anchor-id="data">Data</h3>
+</ul></section><section id="data" class="level4"><h4 class="anchored" data-anchor-id="data">Data</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-1_060ed784c52e1c2eceec620c14f90869">
 <details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">hodg</span>, package <span class="op">=</span> <span class="st">"KMsurv"</span><span class="op">)</span></span>
 <span><span class="va">hodg2</span> <span class="op">=</span> <span class="va">hodg</span> <span class="op">|&gt;</span> </span>
@@ -486,8 +435,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 # ℹ 33 more rows</code></pre>
 </div>
 </div>
-</section></section><section id="proportional-hazards-model" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="proportional-hazards-model">
-<span class="header-section-number">8.2</span> Proportional hazards model</h2>
+</section></section><section id="proportional-hazards-model" class="level3"><h3 class="anchored" data-anchor-id="proportional-hazards-model">Proportional hazards model</h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-2_5c4885d86bc75e62039713b533485443">
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hodg.cox1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">gtype</span> <span class="op">*</span> <span class="va">dtype</span> <span class="op">+</span> <span class="va">score</span> <span class="op">+</span> <span class="va">wtime</span>, </span>
@@ -522,10 +470,9 @@ Wald test            = 27.2  on 5 df,   p=5e-05
 Score (logrank) test = 37.7  on 5 df,   p=4e-07</code></pre>
 </div>
 </div>
-</section></section><section id="diagnostic-graphs-for-proportional-hazards-assumption" class="level1" data-number="9"><h1 data-number="9">
-<span class="header-section-number">9</span> Diagnostic graphs for proportional hazards assumption</h1>
-<section id="analysis-plan" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="analysis-plan">
-<span class="header-section-number">9.1</span> Analysis plan</h2>
+</section></section><section id="diagnostic-graphs-for-proportional-hazards-assumption" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="diagnostic-graphs-for-proportional-hazards-assumption">
+<span class="header-section-number">7.2</span> Diagnostic graphs for proportional hazards assumption</h2>
+<section id="analysis-plan" class="level3"><h3 class="anchored" data-anchor-id="analysis-plan">Analysis plan</h3>
 <ul>
 <li>
 <strong>survival function</strong> for the four combinations of disease type and graft type.</li>
@@ -533,8 +480,7 @@ Score (logrank) test = 37.7  on 5 df,   p=4e-07</code></pre>
 <strong>observed (nonparametric) vs.&nbsp;expected (semiparametric) survival</strong> functions.</li>
 <li>
 <strong>complementary log-log survival</strong> for the four groups.</li>
-</ul></section><section id="kaplan-meier-survival-functions" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="kaplan-meier-survival-functions">
-<span class="header-section-number">9.2</span> Kaplan-Meier survival functions</h2>
+</ul></section><section id="kaplan-meier-survival-functions" class="level3"><h3 class="anchored" data-anchor-id="kaplan-meier-survival-functions">Kaplan-Meier survival functions</h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-4_52da330d8b77e4e2d6ddf223ab3850f9">
 <details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">km_model</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">dtype</span> <span class="op">+</span> <span class="va">gtype</span>,</span>
@@ -558,8 +504,7 @@ Score (logrank) test = 37.7  on 5 df,   p=4e-07</code></pre>
 </div>
 </div>
 </div>
-</section><section id="observed-and-expected-survival-curves" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="observed-and-expected-survival-curves">
-<span class="header-section-number">9.3</span> Observed and expected survival curves</h2>
+</section><section id="observed-and-expected-survival-curves" class="level3"><h3 class="anchored" data-anchor-id="observed-and-expected-survival-curves">Observed and expected survival curves</h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-5_ff47869d33247a52deb328887882efff">
 <details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># we need to create a tibble of covariate patterns;</span></span>
 <span><span class="co"># we will set score and wtime to mean values for disease and graft types:</span></span>
@@ -626,8 +571,7 @@ Score (logrank) test = 37.7  on 5 df,   p=4e-07</code></pre>
 </div>
 </div>
 </div>
-</section><section id="cumulative-hazard-log-scale-curves" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="cumulative-hazard-log-scale-curves">
-<span class="header-section-number">9.4</span> Cumulative hazard (log-scale) curves</h2>
+</section><section id="cumulative-hazard-log-scale-curves" class="level3"><h3 class="anchored" data-anchor-id="cumulative-hazard-log-scale-curves">Cumulative hazard (log-scale) curves</h3>
 <p>Also known as “complementary log-log (clog-log) survival curves”.</p>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-10_1cfbacacf7650cd58aebe65f6b287e90">
 <details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">na_model</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span></span>
@@ -723,10 +667,9 @@ Score (logrank) test = 37.7  on 5 df,   p=4e-07</code></pre>
 </div>
 </div>
 </div>
-</section></section><section id="predictions-and-residuals" class="level1" data-number="10"><h1 data-number="10">
-<span class="header-section-number">10</span> Predictions and Residuals</h1>
-<section id="review-predictions-in-linear-regression" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="review-predictions-in-linear-regression">
-<span class="header-section-number">10.1</span> Review: Predictions in Linear Regression</h2>
+</section></section><section id="predictions-and-residuals" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="predictions-and-residuals">
+<span class="header-section-number">7.3</span> Predictions and Residuals</h2>
+<section id="review-predictions-in-linear-regression" class="level3"><h3 class="anchored" data-anchor-id="review-predictions-in-linear-regression">Review: Predictions in Linear Regression</h3>
 <ul>
 <li>In linear regression, we have a linear predictor for each data point <span class="math inline">\(i\)</span>
 </li>
@@ -741,13 +684,11 @@ y_i &amp;\sim N(\eta_i,\sigma^2)
 <ul>
 <li>
 <span class="math inline">\(\hat y_i\)</span> estimates the conditional mean of <span class="math inline">\(y_i\)</span> given the covariate values <span class="math inline">\(\tilde x_i\)</span>. This together with the prediction error says that we are predicting the distribution of values of <span class="math inline">\(y\)</span>.</li>
-</ul></section><section id="review-residuals-in-linear-regression" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="review-residuals-in-linear-regression">
-<span class="header-section-number">10.2</span> Review: Residuals in Linear Regression</h2>
+</ul></section><section id="review-residuals-in-linear-regression" class="level3"><h3 class="anchored" data-anchor-id="review-residuals-in-linear-regression">Review: Residuals in Linear Regression</h3>
 <ul>
 <li>The usual residual is <span class="math inline">\(r_i=y_i-\hat y_i\)</span>, the difference between the actual value of <span class="math inline">\(y\)</span> and a prediction of its mean.</li>
 <li>The residuals are also the quantities the sum of whose squares is being minimized by the least squares/MLE estimation.</li>
-</ul></section><section id="predictions-and-residuals-in-survival-models" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="predictions-and-residuals-in-survival-models">
-<span class="header-section-number">10.3</span> Predictions and Residuals in survival models</h2>
+</ul></section><section id="predictions-and-residuals-in-survival-models" class="level3"><h3 class="anchored" data-anchor-id="predictions-and-residuals-in-survival-models">Predictions and Residuals in survival models</h3>
 <ul>
 <li>In survival analysis, the equivalent of <span class="math inline">\(y_i\)</span> is the event time <span class="math inline">\(t_i\)</span>, which is unknown for the censored observations.</li>
 <li>The expected event time can be tricky to calculate:</li>
@@ -755,8 +696,7 @@ y_i &amp;\sim N(\eta_i,\sigma^2)
 <p><span class="math display">\[
 \hat{\text{E}}[T|X=x] = \int_{t=0}^{\infty} \hat S(t)dt
 \]</span></p>
-</section><section id="wide-prediction-intervals" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="wide-prediction-intervals">
-<span class="header-section-number">10.4</span> Wide prediction intervals</h2>
+</section><section id="wide-prediction-intervals" class="level3"><h3 class="anchored" data-anchor-id="wide-prediction-intervals">Wide prediction intervals</h3>
 <p>The nature of time-to-event data results in very wide prediction intervals:</p>
 <ul>
 <li>Suppose a cancer patient is predicted to have a mean lifetime of 5 years after diagnosis and suppose the distribution is exponential.</li>
@@ -765,8 +705,7 @@ y_i &amp;\sim N(\eta_i,\sigma^2)
 <li>Saying that the survival time is somewhere between 6 weeks and 18 years does not seem very useful, but it may be the best we can do.</li>
 <li>For survival analysis, something is like a residual if it is small when the model is accurate or if the accumulation of them is in some way minimized by the estimation algorithm, but there is no exact equivalence to linear regression residuals.</li>
 <li>And if there is, they are mostly quite large!</li>
-</ul></section><section id="types-of-residuals-in-time-to-event-models" class="level2" data-number="10.5"><h2 data-number="10.5" class="anchored" data-anchor-id="types-of-residuals-in-time-to-event-models">
-<span class="header-section-number">10.5</span> Types of Residuals in Time-to-Event Models</h2>
+</ul></section><section id="types-of-residuals-in-time-to-event-models" class="level3"><h3 class="anchored" data-anchor-id="types-of-residuals-in-time-to-event-models">Types of Residuals in Time-to-Event Models</h3>
 <ul>
 <li>It is often hard to make a decision from graph appearances, though the process can reveal much.</li>
 <li>Some diagnostic tests are based on residuals as with other regression methods:</li>
@@ -778,8 +717,7 @@ y_i &amp;\sim N(\eta_i,\sigma^2)
 <strong>martingale residuals</strong> for non-linearity.</li>
 <li>
 <strong>dfbeta</strong> for influence.</li>
-</ul></section><section id="schoenfeld-residuals" class="level2" data-number="10.6"><h2 data-number="10.6" class="anchored" data-anchor-id="schoenfeld-residuals">
-<span class="header-section-number">10.6</span> Schoenfeld residuals</h2>
+</ul></section><section id="schoenfeld-residuals" class="level3"><h3 class="anchored" data-anchor-id="schoenfeld-residuals">Schoenfeld residuals</h3>
 <ul>
 <li><p>There is a Schoenfeld residual for each subject <span class="math inline">\(i\)</span> with an event (not censored) and for each predictor <span class="math inline">\(x_{k}\)</span>.</p></li>
 <li><p>At the event time <span class="math inline">\(t\)</span> for that subject, there is a risk set <span class="math inline">\(R\)</span>, and each subject <span class="math inline">\(j\)</span> in the risk set has a risk coefficient <span class="math inline">\(\theta_j\)</span> and also a value <span class="math inline">\(x_{jk}\)</span> of the predictor.</p></li>
@@ -806,49 +744,49 @@ gtype:dtype  4.0474  1 0.044
 GLOBAL      13.7573  5 0.017</code></pre>
 </div>
 </div>
-<section id="gtype" class="level3"><h3 class="anchored" data-anchor-id="gtype"><code>gtype</code></h3>
+<section id="gtype" class="level4"><h4 class="anchored" data-anchor-id="gtype"><code>gtype</code></h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-14_b82ca8f10a18f7b68fcca00301ed4e54">
 <details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggcoxzph.html">ggcoxzph</a></span><span class="op">(</span><span class="va">hodg.zph</span>, var <span class="op">=</span> <span class="st">"gtype"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="coxph-model-building_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="dtype" class="level3"><h3 class="anchored" data-anchor-id="dtype"><code>dtype</code></h3>
+</section><section id="dtype" class="level4"><h4 class="anchored" data-anchor-id="dtype"><code>dtype</code></h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-15_f4abaeb76c0464c7e6f9c154a2f454e7">
 <details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggcoxzph.html">ggcoxzph</a></span><span class="op">(</span><span class="va">hodg.zph</span>, var <span class="op">=</span> <span class="st">"dtype"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="coxph-model-building_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="score" class="level3"><h3 class="anchored" data-anchor-id="score"><code>score</code></h3>
+</section><section id="score" class="level4"><h4 class="anchored" data-anchor-id="score"><code>score</code></h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-16_903252a83d0b8cb1a85b00fe3f2d9f1e">
 <details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggcoxzph.html">ggcoxzph</a></span><span class="op">(</span><span class="va">hodg.zph</span>, var <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="coxph-model-building_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="wtime" class="level3"><h3 class="anchored" data-anchor-id="wtime"><code>wtime</code></h3>
+</section><section id="wtime" class="level4"><h4 class="anchored" data-anchor-id="wtime"><code>wtime</code></h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-17_1f4a57b56214617d5ce35252b31e871f">
 <details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggcoxzph.html">ggcoxzph</a></span><span class="op">(</span><span class="va">hodg.zph</span>, var <span class="op">=</span> <span class="st">"wtime"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="coxph-model-building_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="gtypedtype" class="level3"><h3 class="anchored" data-anchor-id="gtypedtype"><code>gtype:dtype</code></h3>
+</section><section id="gtypedtype" class="level4"><h4 class="anchored" data-anchor-id="gtypedtype"><code>gtype:dtype</code></h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-18_d907365f0411b0a07f78060f27f8b33e">
 <details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggcoxzph.html">ggcoxzph</a></span><span class="op">(</span><span class="va">hodg.zph</span>, var <span class="op">=</span> <span class="st">"gtype:dtype"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="coxph-model-building_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="conclusions" class="level3"><h3 class="anchored" data-anchor-id="conclusions">Conclusions</h3>
+</section><section id="conclusions" class="level4"><h4 class="anchored" data-anchor-id="conclusions">Conclusions</h4>
 <ul>
 <li>From the correlation test, the Karnofsky score and the interaction with graft type disease type induce modest but statistically significant non-proportionality.</li>
 <li>The sample size here is relatively small (26 events in 43 subjects). If the sample size is large, very small amounts of non-proportionality can induce a significant result.</li>
 <li>As time goes on, autologous grafts are over-represented at their own event times, but those from HOD patients become less represented.</li>
 <li>Both the statistical tests and the plots are useful.</li>
-</ul></section></section></section><section id="goodness-of-fit-using-the-cox-snell-residuals" class="level1" data-number="11"><h1 data-number="11">
-<span class="header-section-number">11</span> Goodness of Fit using the Cox-Snell Residuals</h1>
+</ul></section></section></section><section id="goodness-of-fit-using-the-cox-snell-residuals" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="goodness-of-fit-using-the-cox-snell-residuals">
+<span class="header-section-number">7.4</span> Goodness of Fit using the Cox-Snell Residuals</h2>
 <p>(references: Klein &amp; Moeschberger textbook, §11.2, and Dobson &amp; Barnett textbook, §10.6)</p>
 <p>Suppose that an individual has a survival time <span class="math inline">\(T\)</span> which has survival function <span class="math inline">\(S(t)\)</span>, meaning that <span class="math inline">\(\Pr(T&gt; t) = S(t)\)</span>. Then <span class="math inline">\(S(T)\)</span> has a uniform distribution on <span class="math inline">\((0,1)\)</span>.</p>
 <p><span class="math display">\[
@@ -896,11 +834,10 @@ r^{CS}_i&amp;
 </div>
 </div>
 <p>The line with slope 1 and intercept 0 fits the curve relatively well, so we don’t see lack of fit using this procedure.</p>
-</section><section id="martingale-residuals" class="level1" data-number="12"><h1 data-number="12">
-<span class="header-section-number">12</span> Martingale Residuals</h1>
+</section><section id="martingale-residuals" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="martingale-residuals">
+<span class="header-section-number">7.5</span> Martingale Residuals</h2>
 <p>The <strong>martingale residuals</strong> are a slight modification of the Cox-Snell residuals. If the censoring indicator is <span class="math inline">\(\delta_i\)</span>, then <span class="math display">\[r^M_i=\delta_i-r^{CS}_i\]</span> These residuals can be interpreted as an estimate of the excess number of events seen in the data but not predicted by the model. We will use these to examine the functional forms of continuous covariates.</p>
-<section id="using-martingale-residuals" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="using-martingale-residuals">
-<span class="header-section-number">12.1</span> Using Martingale Residuals</h2>
+<section id="using-martingale-residuals" class="level3"><h3 class="anchored" data-anchor-id="using-martingale-residuals">Using Martingale Residuals</h3>
 <p>Martingale residuals can be used to examine the functional form of a numeric variable.</p>
 <ul>
 <li>We fit the model without that variable and compute the martingale residuals.</li>
@@ -908,7 +845,7 @@ r^{CS}_i&amp;
 <li>We can see curvature, or a possible suggestion that the variable can be discretized.</li>
 </ul>
 <p>Let’s use this to examine the <code>score</code> and <code>wtime</code> variables in the <code>wtime</code> data set.</p>
-<section id="karnofsky-score" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="karnofsky-score">Karnofsky score</h3>
+<section id="karnofsky-score" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="karnofsky-score">Karnofsky score</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-20_29aa3461bf06b4f84059c6a55766e20a">
 <details><summary>Code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hodg2</span> <span class="op">=</span> <span class="va">hodg2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
@@ -938,7 +875,7 @@ r^{CS}_i&amp;
 </div>
 </div>
 <p>The line is almost straight. It could be some modest transformation of the Karnofsky score would help, but it might not make much difference.</p>
-</section><section id="waiting-time" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="waiting-time">Waiting time</h3>
+</section><section id="waiting-time" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="waiting-time">Waiting time</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-21_d967d0beee8a899eee8a1916e31c7c97">
 <details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hodg2</span><span class="op">$</span><span class="va">mres</span> <span class="op">=</span> </span>
 <span>  <span class="va">hodg.cox1</span> <span class="op">|&gt;</span> </span>
@@ -967,7 +904,7 @@ r^{CS}_i&amp;
 </div>
 <p>The line could suggest a step function. To see where the drop is, we can look at the largest waiting times and the associated martingale residual.</p>
 <p>The martingale residuals are all negative for <code>wtime</code> &gt;83 and positive for the next smallest value. A reasonable cut-point is 80 days.</p>
-</section><section id="updating-the-model" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="updating-the-model">Updating the model</h3>
+</section><section id="updating-the-model" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="updating-the-model">Updating the model</h4>
 <p>Let’s reformulate the model with dichotomized <code>wtime</code>.</p>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-22_768032ea96cbb04d9d398ee585be7230">
 <details><summary>Code</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hodg2</span> <span class="op">=</span> </span>
@@ -1019,11 +956,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>The new model has better (lower) AIC.</p>
-</section></section></section><section id="checking-for-outliers-and-influential-observations" class="level1" data-number="13"><h1 data-number="13">
-<span class="header-section-number">13</span> Checking for Outliers and Influential Observations</h1>
+</section></section></section><section id="checking-for-outliers-and-influential-observations" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="checking-for-outliers-and-influential-observations">
+<span class="header-section-number">7.6</span> Checking for Outliers and Influential Observations</h2>
 <p>We will check for outliers using the deviance residuals. The martingale residuals show excess events or the opposite, but highly skewed, with the maximum possible value being 1, but the smallest value can be very large negative. Martingale residuals can detect unexpectedly long-lived patients, but patients who die unexpectedly early show up only in the deviance residual. Influence will be examined using dfbeta in a similar way to linear regression, logistic regression, or Poisson regression.</p>
-<section id="deviance-residuals" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="deviance-residuals">
-<span class="header-section-number">13.1</span> Deviance Residuals</h2>
+<section id="deviance-residuals" class="level3"><h3 class="anchored" data-anchor-id="deviance-residuals">Deviance Residuals</h3>
 <p><span class="math display">\[
 \begin{aligned}
 r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(\delta_i-r_i^M)  \right]}\\
@@ -1031,8 +967,7 @@ r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(r_i^{CS})  \ri
 \end{aligned}
 \]</span></p>
 <p>Roughly centered on 0 with approximate standard deviation 1.</p>
-</section><section id="section" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="section">
-<span class="header-section-number">13.2</span> </h2>
+</section><section id="section" class="level3"><h3 class="anchored" data-anchor-id="section"></h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-25_921af89a1972cee185782a29d77301f2">
 <details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hodg.mart</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">hodg.cox2</span>,type<span class="op">=</span><span class="st">"martingale"</span><span class="op">)</span></span>
 <span><span class="va">hodg.dev</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">hodg.cox2</span>,type<span class="op">=</span><span class="st">"deviance"</span><span class="op">)</span></span>
@@ -1063,13 +998,12 @@ r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(r_i^{CS})  \ri
 </div>
 </div>
 <p>The two largest deviance residuals are observations 1 and 29. Worth examining.</p>
-</section><section id="dfbeta" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="dfbeta">
-<span class="header-section-number">13.3</span> dfbeta</h2>
+</section><section id="dfbeta" class="level3"><h3 class="anchored" data-anchor-id="dfbeta">dfbeta</h3>
 <ul>
 <li><p>dfbeta is the approximate change in the coefficient vector if that observation were dropped</p></li>
 <li><p>dfbetas is the approximate change in the coefficients, scaled by the standard error for the coefficients.</p></li>
 </ul>
-<section id="graft-type" class="level3"><h3 class="anchored" data-anchor-id="graft-type">Graft type</h3>
+<section id="graft-type" class="level4"><h4 class="anchored" data-anchor-id="graft-type">Graft type</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-28_d171f628d4a92d01818fb7948da97eb0">
 <details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hodg.dfb</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,xlab<span class="op">=</span><span class="st">"Observation Order"</span>,ylab<span class="op">=</span><span class="st">"dfbeta for Graft Type"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -1080,7 +1014,7 @@ r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(r_i^{CS})  \ri
 </div>
 </div>
 <p>The smallest dfbeta for graft type is observation 1.</p>
-</section><section id="disease-type" class="level3"><h3 class="anchored" data-anchor-id="disease-type">Disease type</h3>
+</section><section id="disease-type" class="level4"><h4 class="anchored" data-anchor-id="disease-type">Disease type</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-29_10ba9a3087768922bb87e7b83c04a3cb">
 <details><summary>Code</summary><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hodg.dfb</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>,</span>
 <span>     xlab<span class="op">=</span><span class="st">"Observation Order"</span>,</span>
@@ -1093,7 +1027,7 @@ r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(r_i^{CS})  \ri
 </div>
 </div>
 <p>The smallest two dfbeta values for disease type are observations 1 and 16.</p>
-</section><section id="karnofsky-score-1" class="level3"><h3 class="anchored" data-anchor-id="karnofsky-score-1">Karnofsky score</h3>
+</section><section id="karnofsky-score-1" class="level4"><h4 class="anchored" data-anchor-id="karnofsky-score-1">Karnofsky score</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-30_7a6f60a5a9447ccabd9cb90dac743a72">
 <details><summary>Code</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hodg.dfb</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>,</span>
 <span>     xlab<span class="op">=</span><span class="st">"Observation Order"</span>,</span>
@@ -1106,7 +1040,7 @@ r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(r_i^{CS})  \ri
 </div>
 </div>
 <p>The two highest dfbeta values for score are observations 1 and 18. The next three are observations 17, 29, and 19. The smallest value is observation 2.</p>
-</section><section id="waiting-time-dichotomized" class="level3"><h3 class="anchored" data-anchor-id="waiting-time-dichotomized">Waiting time (dichotomized)</h3>
+</section><section id="waiting-time-dichotomized" class="level4"><h4 class="anchored" data-anchor-id="waiting-time-dichotomized">Waiting time (dichotomized)</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-31_e6d60f1b72ae011ed786f34b000f58d9">
 <details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
 <span>  <span class="va">hodg.dfb</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span>,</span>
@@ -1120,7 +1054,7 @@ r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(r_i^{CS})  \ri
 </div>
 </div>
 <p>The two large values of dfbeta for dichotomized waiting time are observations 15 and 16. This may have to do with the discretization of waiting time.</p>
-</section><section id="interaction-graft-type-and-disease-type" class="level3"><h3 class="anchored" data-anchor-id="interaction-graft-type-and-disease-type">Interaction: graft type and disease type</h3>
+</section><section id="interaction-graft-type-and-disease-type" class="level4"><h4 class="anchored" data-anchor-id="interaction-graft-type-and-disease-type">Interaction: graft type and disease type</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-32_ea81e96263459ea4761e180ffccb2569">
 <details><summary>Code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hodg.dfb</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span>,</span>
 <span>     xlab<span class="op">=</span><span class="st">"Observation Order"</span>,</span>
@@ -1133,8 +1067,7 @@ r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(r_i^{CS})  \ri
 </div>
 </div>
 <p>The two largest values are observations 1 and 16. The smallest value is observation 35.</p>
-</section></section><section id="section-1" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="section-1">
-<span class="header-section-number">13.4</span> </h2>
+</section></section><section id="section-1" class="level3"><h3 class="anchored" data-anchor-id="section-1"></h3>
 <table class="table">
 <caption>Observations to Examine by Residuals and Influence</caption>
 <thead><tr class="header">
@@ -1173,8 +1106,7 @@ r_i^D &amp;= \textrm{sign}(r_i^M)\sqrt{-2\left[ r_i^M+\delta_i\ln(r_i^{CS})  \ri
 </tbody>
 </table>
 <p>The most important observations to examine seem to be 1, 15, 16, 18, and 29.</p>
-</section><section id="section-2" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="section-2">
-<span class="header-section-number">13.5</span> </h2>
+</section><section id="section-2" class="level3"><h3 class="anchored" data-anchor-id="section-2"></h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-33_c282fad72fc844c729e4822f76d6fd73">
 <details><summary>Code</summary><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">hodg</span>,<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">time</span><span class="op">[</span><span class="va">delta</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -1237,8 +1169,7 @@ n= 43, number of events= 26 </code></pre>
 5 Autologous Hodgkins        30 dead     90    73 early death, good score, med …</code></pre>
 </div>
 </div>
-</section><section id="action-items" class="level2" data-number="13.6"><h2 data-number="13.6" class="anchored" data-anchor-id="action-items">
-<span class="header-section-number">13.6</span> Action Items</h2>
+</section><section id="action-items" class="level3"><h3 class="anchored" data-anchor-id="action-items">Action Items</h3>
 <ul>
 <li>Unusual points may need checking, particularly if the data are not completely cleaned. In this case, observations 15 and 16 may show some trouble with the dichotomization of waiting time, but it still may be useful.</li>
 <li>The two largest residuals seem to be due to unexpectedly early deaths, but unfortunately this can occur.</li>
@@ -1289,10 +1220,9 @@ n= 43, number of events= 26 </code></pre>
 </div>
 </div>
 <p>For Non-Hodgkin’s, the allogenic graft is better. For Hodgkin’s, the autologous graft is much better.</p>
-</section></section><section id="stratified-survival-models" class="level1" data-number="14"><h1 data-number="14">
-<span class="header-section-number">14</span> Stratified survival models</h1>
-<section id="revisiting-the-leukemia-dataset-anderson" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="revisiting-the-leukemia-dataset-anderson">
-<span class="header-section-number">14.1</span> Revisiting the leukemia dataset (<code>anderson</code>)</h2>
+</section></section><section id="stratified-survival-models" class="level2" data-number="7.7"><h2 data-number="7.7" class="anchored" data-anchor-id="stratified-survival-models">
+<span class="header-section-number">7.7</span> Stratified survival models</h2>
+<section id="revisiting-the-leukemia-dataset-anderson" class="level3"><h3 class="anchored" data-anchor-id="revisiting-the-leukemia-dataset-anderson">Revisiting the leukemia dataset (<code>anderson</code>)</h3>
 <p>We will analyze remission survival times on 42 leukemia patients, half on new treatment, half on standard treatment.</p>
 <p>This is the same data as the <code>drug6mp</code> data from <code>KMsurv</code>, but with two other variables and without the pairing. This version comes from the Kleinbaum and Klein survival textbook (e.g., p281):</p>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-39_d67f2e6c86603da470801b04d6830502">
@@ -1346,8 +1276,7 @@ n= 43, number of events= 26 </code></pre>
 # ℹ 32 more rows</code></pre>
 </div>
 </div>
-</section><section id="cox-semi-parametric-proportional-hazards-model" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="cox-semi-parametric-proportional-hazards-model">
-<span class="header-section-number">14.2</span> Cox semi-parametric proportional hazards model</h2>
+</section><section id="cox-semi-parametric-proportional-hazards-model" class="level3"><h3 class="anchored" data-anchor-id="cox-semi-parametric-proportional-hazards-model">Cox semi-parametric proportional hazards model</h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-40_45c5ff290953f3dd97287f6715ed8ace">
 <details><summary>Code</summary><div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.cox1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">logwbc</span>,</span>
@@ -1378,7 +1307,7 @@ Wald test            = 33.5  on 3 df,   p=2e-07
 Score (logrank) test = 48  on 3 df,   p=2e-10</code></pre>
 </div>
 </div>
-<section id="test-the-proportional-hazards-assumption" class="level3"><h3 class="anchored" data-anchor-id="test-the-proportional-hazards-assumption">Test the proportional hazards assumption</h3>
+<section id="test-the-proportional-hazards-assumption" class="level4"><h4 class="anchored" data-anchor-id="test-the-proportional-hazards-assumption">Test the proportional hazards assumption</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-41_b47d0e3d5b0453c0f2d39904a23c6e95">
 <details><summary>Code</summary><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/cox.zph.html">cox.zph</a></span><span class="op">(</span><span class="va">anderson.cox1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -1389,7 +1318,7 @@ logwbc 0.142  1 0.71
 GLOBAL 5.879  3 0.12</code></pre>
 </div>
 </div>
-</section><section id="graph-the-k-m-survival-curves" class="level3"><h3 class="anchored" data-anchor-id="graph-the-k-m-survival-curves">Graph the K-M survival curves</h3>
+</section><section id="graph-the-k-m-survival-curves" class="level4"><h4 class="anchored" data-anchor-id="graph-the-k-m-survival-curves">Graph the K-M survival curves</h4>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-42_d0ed881b35f86f6cc12003aab7488fd7">
 <details><summary>Code</summary><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson_km_model</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">sex</span>,</span>
@@ -1404,8 +1333,7 @@ GLOBAL 5.879  3 0.12</code></pre>
 </div>
 </div>
 <p>The survival curves cross, which indicates a problem in the proportionality assumption by sex.</p>
-</section></section><section id="graph-the-nelson-aalen-cumulative-hazard" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="graph-the-nelson-aalen-cumulative-hazard">
-<span class="header-section-number">14.3</span> Graph the Nelson-Aalen cumulative hazard</h2>
+</section></section><section id="graph-the-nelson-aalen-cumulative-hazard" class="level3"><h3 class="anchored" data-anchor-id="graph-the-nelson-aalen-cumulative-hazard">Graph the Nelson-Aalen cumulative hazard</h3>
 <p>We can also look at the log-hazard (“cloglog survival”) plots:</p>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-43_adb87139ced328969ad6547a1feb76e1">
 <details><summary>Code</summary><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson_na_model</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span></span>
@@ -1445,8 +1373,7 @@ Adding another scale for y, which will replace the existing scale.</code></pre>
 </div>
 </div>
 <p>This can be fixed by using strata or possibly by other model alterations.</p>
-</section><section id="the-stratified-cox-model" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="the-stratified-cox-model">
-<span class="header-section-number">14.4</span> The Stratified Cox Model</h2>
+</section><section id="the-stratified-cox-model" class="level3"><h3 class="anchored" data-anchor-id="the-stratified-cox-model">The Stratified Cox Model</h3>
 <ul>
 <li>In a stratified Cox model, each stratum, defined by one or more factors, has its own base survival function <span class="math inline">\(h_0(t)\)</span>.</li>
 <li>But the coefficients for each variable not used in the strata definitions are assumed to be the same across strata.</li>
@@ -1596,14 +1523,12 @@ Score (logrank) test = 33.1  on 4 df,   p=1e-06</code></pre>
 </div>
 </div>
 <p>We don’t have enough evidence to tell the difference between these two models.</p>
-</section><section id="conclusions-1" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="conclusions-1">
-<span class="header-section-number">14.5</span> Conclusions</h2>
+</section><section id="conclusions-1" class="level3"><h3 class="anchored" data-anchor-id="conclusions-1">Conclusions</h3>
 <ul>
 <li>We chose to use a stratified model because of the apparent non-proportionality of the hazard for the sex variable.</li>
 <li>When we fit interactions with the strata variable, we did not get an improved model (via the likelihood ratio test).</li>
 <li>So we use the stratifed model with coefficients that are the same across strata.</li>
-</ul></section><section id="another-modeling-approach" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="another-modeling-approach">
-<span class="header-section-number">14.6</span> Another Modeling Approach</h2>
+</ul></section><section id="another-modeling-approach" class="level3"><h3 class="anchored" data-anchor-id="another-modeling-approach">Another Modeling Approach</h3>
 <ul>
 <li>We used an additive model without interactions and saw that we might need to stratify by sex.</li>
 <li>Instead, we could try to improve the model’s functional form - maybe the interaction of treatment and sex is real, and after fitting that we might not need separate hazard functions.</li>
@@ -1656,11 +1581,10 @@ logwbc:sex 0.102  1 0.75
 GLOBAL     3.747  5 0.59</code></pre>
 </div>
 </div>
-</section></section><section id="time-varying-covariates" class="level1" data-number="15"><h1 data-number="15">
-<span class="header-section-number">15</span> Time-varying covariates</h1>
+</section></section><section id="time-varying-covariates" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="time-varying-covariates">
+<span class="header-section-number">7.8</span> Time-varying covariates</h2>
 <p>(adapted from Klein and Moeschberger 2003, §9.2: https://link.springer.com/book/10.1007/b97377)</p>
-<section id="motivating-example-back-to-the-leukemia-dataset" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="motivating-example-back-to-the-leukemia-dataset">
-<span class="header-section-number">15.1</span> Motivating example: back to the leukemia dataset</h2>
+<section id="motivating-example-back-to-the-leukemia-dataset" class="level3"><h3 class="anchored" data-anchor-id="motivating-example-back-to-the-leukemia-dataset">Motivating example: back to the leukemia dataset</h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-51_ac69ab0850c68e4fb51835a41d284ff0">
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># load the data:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">bmt</span>, package <span class="op">=</span> <span class="st">'KMsurv'</span><span class="op">)</span></span>
@@ -1680,10 +1604,10 @@ GLOBAL     3.747  5 0.59</code></pre>
 </div>
 </div>
 <p>This dataset comes from the Copelan et al.&nbsp;(1991) study of allogenic bone marrow transplant therapy for acute myeloid leukemia (AML) and acute lymphoblastic leukemia (ALL).</p>
-<section id="outcomes-endpoints" class="level4"><h4 class="anchored" data-anchor-id="outcomes-endpoints">Outcomes (endpoints)</h4>
+<section id="outcomes-endpoints" class="level5"><h5 class="anchored" data-anchor-id="outcomes-endpoints">Outcomes (endpoints)</h5>
 <ul>
 <li>The main endpoint is disease-free survival (<code>t2</code> and <code>d3</code>) for the three risk groups, “ALL”, “AML Low Risk”, and “AML High Risk”.</li>
-</ul></section><section id="possible-intermediate-events" class="level4"><h4 class="anchored" data-anchor-id="possible-intermediate-events">Possible intermediate events</h4>
+</ul></section><section id="possible-intermediate-events" class="level5"><h5 class="anchored" data-anchor-id="possible-intermediate-events">Possible intermediate events</h5>
 <ul>
 <li>graft vs.&nbsp;host disease (<strong>GVHD</strong>), an immunological rejection response to the transplant (bad)</li>
 <li>acute (<strong>AGVHD</strong>)</li>
@@ -1691,11 +1615,11 @@ GLOBAL     3.747  5 0.59</code></pre>
 <li>platelet recovery, a return of platelet count to normal levels (good)</li>
 </ul>
 <p>One or the other, both in either order, or neither may occur.</p>
-</section><section id="covariates" class="level4"><h4 class="anchored" data-anchor-id="covariates">Covariates</h4>
+</section><section id="covariates" class="level5"><h5 class="anchored" data-anchor-id="covariates">Covariates</h5>
 <ul>
 <li><p>We are interested in possibly using the covariates <code>z1</code>-<code>z10</code> to adjust for other factors.</p></li>
 <li><p>In addition, the time-varying covariates for acute GVHD, chronic GVHD, and platelet recovery may be useful.</p></li>
-</ul></section><section id="preprocessing" class="level3"><h3 class="anchored" data-anchor-id="preprocessing">Preprocessing</h3>
+</ul></section><section id="preprocessing" class="level4"><h4 class="anchored" data-anchor-id="preprocessing">Preprocessing</h4>
 <p>We add reformat the data before analysis:</p>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-52_c4c6bc0fccad56a9b68f3644b3e71804">
 <details><summary>Code</summary><div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># reformat the data:</span></span>
@@ -1781,14 +1705,12 @@ GLOBAL     3.747  5 0.59</code></pre>
 #   `Waiting Time to Transplant` &lt;int&gt;, FAB &lt;fct&gt;, hospital &lt;fct&gt;, MTX &lt;lgl&gt;</code></pre>
 </div>
 </div>
-</section></section><section id="time-dependent-covariates" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="time-dependent-covariates">
-<span class="header-section-number">15.2</span> Time-Dependent Covariates</h2>
+</section></section><section id="time-dependent-covariates" class="level3"><h3 class="anchored" data-anchor-id="time-dependent-covariates">Time-Dependent Covariates</h3>
 <ul>
 <li>A <strong>time-dependent covariate</strong> (“<strong>TDC</strong>”) is a covariate whose value changes during the course of the study.</li>
 <li>For variables like age that change in a linear manner with time, we can just use the value at the start.</li>
 <li>But it may be plausible that when and if GVHD occurs, the risk of relapse or death increases, and when and if platelet recovery occurs, the risk decreases.</li>
-</ul></section><section id="analysis-in-r" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="analysis-in-r">
-<span class="header-section-number">15.3</span> Analysis in R</h2>
+</ul></section><section id="analysis-in-r" class="level3"><h3 class="anchored" data-anchor-id="analysis-in-r">Analysis in R</h3>
 <ul>
 <li>We form a variable <code>precovery</code> which is = 0 before platelet recovery and is = 1 after platelet recovery, if it occurs.</li>
 <li>For each subject where platelet recovery occurs, we set up multiple records (lines in the data frame); for example one from t = 0 to the time of platelet recovery, and one from that time to relapse, recovery, or death.</li>
@@ -1864,8 +1786,7 @@ GLOBAL     3.747  5 0.59</code></pre>
 </div>
 </div>
 <p>Note that <code>status</code> could have been <code>1</code> on the last row, indicating that relapse or death occurred; since it is false, the participant must have exited the study without experiencing relapse or death (i.e., they were censored).</p>
-</section><section id="event-sequences" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="event-sequences">
-<span class="header-section-number">15.4</span> Event sequences</h2>
+</section><section id="event-sequences" class="level3"><h3 class="anchored" data-anchor-id="event-sequences">Event sequences</h3>
 <p>Let:</p>
 <ul>
 <li>A = acute GVHD</li>
@@ -1882,8 +1803,7 @@ GLOBAL     3.747  5 0.59</code></pre>
 <li>Any earlier intervals have <code>status</code> = 0.</li>
 <li>Even though there might be multiple lines per ID in the dataset, there is never more than one event, so no alterations need be made in the estimation procedures or in the interpretation of the output.</li>
 <li>The function <code>tmerge</code> in the <code>survival</code> package eases the process of constructing the new long-format dataset.</li>
-</ul></section><section id="model-with-time-fixed-covariates" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="model-with-time-fixed-covariates">
-<span class="header-section-number">15.5</span> Model with Time-Fixed Covariates</h2>
+</ul></section><section id="model-with-time-fixed-covariates" class="level3"><h3 class="anchored" data-anchor-id="model-with-time-fixed-covariates">Model with Time-Fixed Covariates</h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-56_7bfd982fd704a2f287d3ba2a9a7366eb">
 <details><summary>Code</summary><div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt1</span> <span class="op">=</span> </span>
 <span>  <span class="va">bmt1</span> <span class="op">|&gt;</span> </span>
@@ -1979,8 +1899,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span>        type <span class="op">=</span> <span class="st">"counting"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section><section id="model-with-time-dependent-covariates" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="model-with-time-dependent-covariates">
-<span class="header-section-number">15.6</span> Model with Time-Dependent Covariates</h2>
+</section><section id="model-with-time-dependent-covariates" class="level3"><h3 class="anchored" data-anchor-id="model-with-time-dependent-covariates">Model with Time-Dependent Covariates</h3>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-59_8148936b6be2aef4c1247c7370b28afc">
 <details><summary>Code</summary><div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt_coxph_TV</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> </span>
@@ -2137,8 +2056,8 @@ Wald test            = 42.2  on 7 df,   p=5e-07
 Score (logrank) test = 47.1  on 7 df,   p=5e-08</code></pre>
 </div>
 </div>
-</section></section><section id="recurrent-events" class="level1" data-number="16"><h1 data-number="16">
-<span class="header-section-number">16</span> Recurrent Events</h1>
+</section></section><section id="recurrent-events" class="level2" data-number="7.9"><h2 data-number="7.9" class="anchored" data-anchor-id="recurrent-events">
+<span class="header-section-number">7.9</span> Recurrent Events</h2>
 <p>(Adapted from Kleinbaum and Klein, Ch 8)</p>
 <ul>
 <li>Sometimes an appropriate analysis requires consideration of recurrent events.</li>
@@ -2146,11 +2065,10 @@ Score (logrank) test = 47.1  on 7 df,   p=5e-08</code></pre>
 <li>In this case, we have more than one line in the data frame, but each line may have an event.</li>
 <li>We have to use a “robust” variance estimator to account for correlation of time-to-events within a patient.</li>
 </ul>
-<section id="bladder-cancer-data-set" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="bladder-cancer-data-set">
-<span class="header-section-number">16.1</span> Bladder Cancer Data Set</h2>
+<section id="bladder-cancer-data-set" class="level3"><h3 class="anchored" data-anchor-id="bladder-cancer-data-set">Bladder Cancer Data Set</h3>
 <p>The bladder cancer dataset from Kleinbaum and Klein contains recurrent event outcome information for eighty-six cancer patients followed for the recurrence of bladder cancer tumor after transurethral surgical excision (Byar and Green 1980). The exposure of interest is the effect of the drug treatment of thiotepa. Control variables are the initial number and initial size of tumors. The data layout is suitable for a counting processes approach.</p>
 <p>This drug is still a possible choice for some patients. Another therapeutic choice is Bacillus Calmette-Guerin (BCG), a live bacterium related to cow tuberculosis.</p>
-<section id="data-dictionary" class="level3"><h3 class="anchored" data-anchor-id="data-dictionary">Data dictionary</h3>
+<section id="data-dictionary" class="level4"><h4 class="anchored" data-anchor-id="data-dictionary">Data dictionary</h4>
 <table class="table">
 <caption>Variables in the <code>bladder</code> dataset</caption>
 <thead><tr class="header">
@@ -2203,7 +2121,7 @@ Score (logrank) test = 47.1  on 7 df,   p=5e-08</code></pre>
 <li>18 patients had exactly one recurrence.</li>
 <li>There were up to 4 recurrences in a patient.</li>
 <li>Of the 190 intervals, 112 terminated with a recurrence and 78 were censored.</li>
-</ul></section><section id="different-intervals-for-the-same-patient-are-correlated." class="level3"><h3 class="anchored" data-anchor-id="different-intervals-for-the-same-patient-are-correlated.">Different intervals for the same patient are correlated.</h3>
+</ul></section><section id="different-intervals-for-the-same-patient-are-correlated." class="level4"><h4 class="anchored" data-anchor-id="different-intervals-for-the-same-patient-are-correlated.">Different intervals for the same patient are correlated.</h4>
 <ul>
 <li><p>Is the effective sample size 47 or 112? This might narrow confidence intervals by as much as a factor of <span class="math inline">\(\sqrt{112/47}=1.54\)</span></p></li>
 <li><p>What happens if I have 5 treatment and 5 control values and want to do a t-test and I then duplicate the 10 values as if the sample size was 20? This falsely narrows confidence intervals by a factor of <span class="math inline">\(\sqrt{2}=1.41\)</span>.</p></li>
@@ -2289,8 +2207,8 @@ Note
 <p>The likelihood ratio and score tests assume independence of observations within a cluster. The Wald and robust score tests do not.</p>
 </div>
 </div>
-</section><section id="adding-cluster-id" class="level3"><h3 class="anchored" data-anchor-id="adding-cluster-id">adding <code>cluster = id</code>
-</h3>
+</section><section id="adding-cluster-id" class="level4"><h4 class="anchored" data-anchor-id="adding-cluster-id">adding <code>cluster = id</code>
+</h4>
 <p>If we add <code>cluster= id</code> to the call to <code>coxph</code>, the coefficient estimates don’t change, but we get an additional column in the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> output: <code>robust se</code>:</p>
 <div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-64_24fd3451930a0bf86432ae349dec4e27">
 <details><summary>Code</summary><div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bladder.cox2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span></span>

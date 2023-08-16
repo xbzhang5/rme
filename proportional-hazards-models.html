@@ -234,42 +234,28 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   <ul>
 <li><a href="#configuring-r" id="toc-configuring-r" class="nav-link active" data-scroll-target="#configuring-r">Configuring R</a></li>
   <li>
-<a href="#the-proportional-hazards-model" id="toc-the-proportional-hazards-model" class="nav-link" data-scroll-target="#the-proportional-hazards-model"><span class="header-section-number">7</span> The proportional hazards model</a>
+<a href="#the-proportional-hazards-model" id="toc-the-proportional-hazards-model" class="nav-link" data-scroll-target="#the-proportional-hazards-model"><span class="header-section-number">6.1</span> The proportional hazards model</a>
   <ul class="collapse">
-<li><a href="#background-on-the-proportional-hazards-model" id="toc-background-on-the-proportional-hazards-model" class="nav-link" data-scroll-target="#background-on-the-proportional-hazards-model"><span class="header-section-number">7.1</span> Background on the Proportional Hazards Model</a></li>
-  <li><a href="#coxs-proportional-hazards-model" id="toc-coxs-proportional-hazards-model" class="nav-link" data-scroll-target="#coxs-proportional-hazards-model"><span class="header-section-number">7.2</span> Cox’s Proportional Hazards Model</a></li>
-  <li>
-<a href="#additional-properties-of-the-proportional-hazards-model" id="toc-additional-properties-of-the-proportional-hazards-model" class="nav-link" data-scroll-target="#additional-properties-of-the-proportional-hazards-model"><span class="header-section-number">7.3</span> Additional properties of the proportional hazards model</a>
-  <ul class="collapse">
-<li><a href="#cumulative-hazards-are-also-proportional-to-h_0t" id="toc-cumulative-hazards-are-also-proportional-to-h_0t" class="nav-link" data-scroll-target="#cumulative-hazards-are-also-proportional-to-h_0t">Cumulative hazards are also proportional to <span class="math inline">\(H_0(t)\)</span></a></li>
-  <li><a href="#survival-functions-are-exponential-multiples-of-s_0t" id="toc-survival-functions-are-exponential-multiples-of-s_0t" class="nav-link" data-scroll-target="#survival-functions-are-exponential-multiples-of-s_0t">Survival functions are exponential multiples of <span class="math inline">\(S_0(t)\)</span></a></li>
-  </ul>
-</li>
-  <li><a href="#testing-the-proportional-hazards-assumption" id="toc-testing-the-proportional-hazards-assumption" class="nav-link" data-scroll-target="#testing-the-proportional-hazards-assumption"><span class="header-section-number">7.4</span> Testing the proportional hazards assumption</a></li>
-  <li><a href="#smoothed-hazard-functions" id="toc-smoothed-hazard-functions" class="nav-link" data-scroll-target="#smoothed-hazard-functions"><span class="header-section-number">7.5</span> Smoothed hazard functions</a></li>
-  <li><a href="#fitting-the-proportional-hazards-model" id="toc-fitting-the-proportional-hazards-model" class="nav-link" data-scroll-target="#fitting-the-proportional-hazards-model"><span class="header-section-number">7.6</span> Fitting the Proportional Hazards Model</a></li>
+<li><a href="#background-on-the-proportional-hazards-model" id="toc-background-on-the-proportional-hazards-model" class="nav-link" data-scroll-target="#background-on-the-proportional-hazards-model">Background on the Proportional Hazards Model</a></li>
+  <li><a href="#coxs-proportional-hazards-model" id="toc-coxs-proportional-hazards-model" class="nav-link" data-scroll-target="#coxs-proportional-hazards-model">Cox’s Proportional Hazards Model</a></li>
+  <li><a href="#additional-properties-of-the-proportional-hazards-model" id="toc-additional-properties-of-the-proportional-hazards-model" class="nav-link" data-scroll-target="#additional-properties-of-the-proportional-hazards-model">Additional properties of the proportional hazards model</a></li>
+  <li><a href="#testing-the-proportional-hazards-assumption" id="toc-testing-the-proportional-hazards-assumption" class="nav-link" data-scroll-target="#testing-the-proportional-hazards-assumption">Testing the proportional hazards assumption</a></li>
+  <li><a href="#smoothed-hazard-functions" id="toc-smoothed-hazard-functions" class="nav-link" data-scroll-target="#smoothed-hazard-functions">Smoothed hazard functions</a></li>
+  <li><a href="#fitting-the-proportional-hazards-model" id="toc-fitting-the-proportional-hazards-model" class="nav-link" data-scroll-target="#fitting-the-proportional-hazards-model">Fitting the Proportional Hazards Model</a></li>
   </ul>
 </li>
   <li>
-<a href="#cox-model-for-the-bmt-data" id="toc-cox-model-for-the-bmt-data" class="nav-link" data-scroll-target="#cox-model-for-the-bmt-data"><span class="header-section-number">8</span> Cox Model for the <code>bmt</code> data</a>
+<a href="#cox-model-for-the-bmt-data" id="toc-cox-model-for-the-bmt-data" class="nav-link" data-scroll-target="#cox-model-for-the-bmt-data"><span class="header-section-number">6.2</span> Cox Model for the <code>bmt</code> data</a>
   <ul class="collapse">
-<li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model"><span class="header-section-number">8.1</span> Fit the model</a></li>
-  <li><a href="#survival-curves-from-the-cox-model" id="toc-survival-curves-from-the-cox-model" class="nav-link" data-scroll-target="#survival-curves-from-the-cox-model"><span class="header-section-number">8.2</span> Survival Curves from the Cox Model</a></li>
-  <li><a href="#examining-survfit" id="toc-examining-survfit" class="nav-link" data-scroll-target="#examining-survfit"><span class="header-section-number">8.3</span> Examining <code>survfit</code></a></li>
+<li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">Fit the model</a></li>
+  <li><a href="#survival-curves-from-the-cox-model" id="toc-survival-curves-from-the-cox-model" class="nav-link" data-scroll-target="#survival-curves-from-the-cox-model">Survival Curves from the Cox Model</a></li>
+  <li><a href="#examining-survfit" id="toc-examining-survfit" class="nav-link" data-scroll-target="#examining-survfit">Examining <code>survfit</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#adjustment-for-ties-optional" id="toc-adjustment-for-ties-optional" class="nav-link" data-scroll-target="#adjustment-for-ties-optional"><span class="header-section-number">9</span> Adjustment for Ties (optional)</a>
+<a href="#adjustment-for-ties-optional" id="toc-adjustment-for-ties-optional" class="nav-link" data-scroll-target="#adjustment-for-ties-optional"><span class="header-section-number">6.3</span> Adjustment for Ties (optional)</a>
   <ul class="collapse">
-<li>
-<a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">9.1</span> </a>
-  <ul class="collapse">
-<li><a href="#breslows-method-for-ties" id="toc-breslows-method-for-ties" class="nav-link" data-scroll-target="#breslows-method-for-ties">Breslow’s method for ties</a></li>
-  <li><a href="#efrons-method-for-ties" id="toc-efrons-method-for-ties" class="nav-link" data-scroll-target="#efrons-method-for-ties">Efron’s method for ties</a></li>
-  <li><a href="#example-breslows-method" id="toc-example-breslows-method" class="nav-link" data-scroll-target="#example-breslows-method">Example: Breslow’s method</a></li>
-  <li><a href="#example-efrons-method" id="toc-example-efrons-method" class="nav-link" data-scroll-target="#example-efrons-method">Example: Efron’s method</a></li>
-  </ul>
-</li>
+<li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/d-morrison/rme/edit/main/proportional-hazards-models.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -300,7 +286,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 </header><div class="hidden">
 
 </div>
-<section id="configuring-r" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h2>
+<section id="configuring-r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h3>
 <p>Functions from these packages will be used throughout this document:</p>
 <div class="cell" data-hash="proportional-hazards-models_cache/html/packages_eb8a7877838ec6819c7dab412713e365">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span> <span class="co"># format tables for markdown</span></span>
@@ -325,10 +311,9 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">'digits'</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section><section id="the-proportional-hazards-model" class="level1" data-number="7"><h1 data-number="7">
-<span class="header-section-number">7</span> The proportional hazards model</h1>
-<section id="background-on-the-proportional-hazards-model" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="background-on-the-proportional-hazards-model">
-<span class="header-section-number">7.1</span> Background on the Proportional Hazards Model</h2>
+</section><section id="the-proportional-hazards-model" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="the-proportional-hazards-model">
+<span class="header-section-number">6.1</span> The proportional hazards model</h2>
+<section id="background-on-the-proportional-hazards-model" class="level3"><h3 class="anchored" data-anchor-id="background-on-the-proportional-hazards-model">Background on the Proportional Hazards Model</h3>
 <p>The exponential distribution has constant hazard:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -340,8 +325,7 @@ h(t) &amp;= \lambda
 <p>Let’s make two generalizations. First, we let the hazard depend on some covariates <span class="math inline">\(x_1,x_2, \dots, x_p\)</span>; we will indicate this dependence by extending our notation for hazard:</p>
 <p><span class="math display">\[h(t|\boldsymbol x) \stackrel{\text{def}}{=}p(T=t|T\ge t, \boldsymbol X = \boldsymbol x)\]</span></p>
 <p>Second, we let the base hazard depend on <span class="math inline">\(t\)</span>, but not on the covariates (for now). We can do this using either parametric or semi-parametric approaches.</p>
-</section><section id="coxs-proportional-hazards-model" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="coxs-proportional-hazards-model">
-<span class="header-section-number">7.2</span> Cox’s Proportional Hazards Model</h2>
+</section><section id="coxs-proportional-hazards-model" class="level3"><h3 class="anchored" data-anchor-id="coxs-proportional-hazards-model">Cox’s Proportional Hazards Model</h3>
 <p>The generalization is that the hazard function is</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -364,7 +348,7 @@ h(t|x)&amp;= h_0(t)\theta(x)\\
 \]</span></p>
 <p>Under the proportional hazards model, this ratio (a.k.a. proportion) does not depend on <span class="math inline">\(t\)</span>. This property is a structural limitation of the model; it is called the <strong>proportional hazards assumption</strong>.</p>
 <div id="def-pha" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.1 (proportional hazards) </strong></span>A conditional probability distribution <span class="math inline">\(p(T|X)\)</span> has <strong>proportional hazards</strong> if the hazard ratio <span class="math inline">\(h(t|\boldsymbol x_1)/h(t|\boldsymbol x_2)\)</span> does not depend on <span class="math inline">\(t\)</span>. Mathematically, it can be written as:</p>
+<p><span class="theorem-title"><strong>Definition 6.1 (proportional hazards) </strong></span>A conditional probability distribution <span class="math inline">\(p(T|X)\)</span> has <strong>proportional hazards</strong> if the hazard ratio <span class="math inline">\(h(t|\boldsymbol x_1)/h(t|\boldsymbol x_2)\)</span> does not depend on <span class="math inline">\(t\)</span>. Mathematically, it can be written as:</p>
 <p><span class="math display">\[
 \frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}
 = \theta(\boldsymbol x_1,\boldsymbol x_2)
@@ -423,11 +407,10 @@ Note
 <p>That is, the covariate effects are additive on the log-hazard scale.</p>
 <p>See also:</p>
 <p><a href="https://en.wikipedia.org/wiki/Proportional_hazards_model#Why_it_is_called_%22proportional%22" class="uri">https://en.wikipedia.org/wiki/Proportional_hazards_model#Why_it_is_called_%22proportional%22</a></p>
-</section><section id="additional-properties-of-the-proportional-hazards-model" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="additional-properties-of-the-proportional-hazards-model">
-<span class="header-section-number">7.3</span> Additional properties of the proportional hazards model</h2>
+</section><section id="additional-properties-of-the-proportional-hazards-model" class="level3"><h3 class="anchored" data-anchor-id="additional-properties-of-the-proportional-hazards-model">Additional properties of the proportional hazards model</h3>
 <p>If <span class="math inline">\(h(t|x)= h_0(t)\theta(x)\)</span>, then:</p>
-<section id="cumulative-hazards-are-also-proportional-to-h_0t" class="level3"><h3 class="anchored" data-anchor-id="cumulative-hazards-are-also-proportional-to-h_0t">Cumulative hazards are also proportional to <span class="math inline">\(H_0(t)\)</span>
-</h3>
+<section id="cumulative-hazards-are-also-proportional-to-h_0t" class="level4"><h4 class="anchored" data-anchor-id="cumulative-hazards-are-also-proportional-to-h_0t">Cumulative hazards are also proportional to <span class="math inline">\(H_0(t)\)</span>
+</h4>
 <p><span class="math display">\[
 \begin{aligned}
 H(t|x)
@@ -438,8 +421,8 @@ H(t|x)
 \end{aligned}
 \]</span></p>
 <p>where <span class="math inline">\(H_0(t) \stackrel{\text{def}}{=}H(t|0) = \int_{u=0}^t h_0(u)du\)</span>.</p>
-</section><section id="survival-functions-are-exponential-multiples-of-s_0t" class="level3"><h3 class="anchored" data-anchor-id="survival-functions-are-exponential-multiples-of-s_0t">Survival functions are exponential multiples of <span class="math inline">\(S_0(t)\)</span>
-</h3>
+</section><section id="survival-functions-are-exponential-multiples-of-s_0t" class="level4"><h4 class="anchored" data-anchor-id="survival-functions-are-exponential-multiples-of-s_0t">Survival functions are exponential multiples of <span class="math inline">\(S_0(t)\)</span>
+</h4>
 <p><span class="math display">\[
 \begin{aligned}
 S(t|x)
@@ -450,8 +433,7 @@ S(t|x)
 \end{aligned}
 \]</span></p>
 <p>where <span class="math inline">\(S_0(t) \stackrel{\text{def}}{=}P(T\ge t | \boldsymbol X = 0)\)</span> is the survival function for an individual whose covariates are all equal to their default values.</p>
-</section></section><section id="testing-the-proportional-hazards-assumption" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="testing-the-proportional-hazards-assumption">
-<span class="header-section-number">7.4</span> Testing the proportional hazards assumption</h2>
+</section></section><section id="testing-the-proportional-hazards-assumption" class="level3"><h3 class="anchored" data-anchor-id="testing-the-proportional-hazards-assumption">Testing the proportional hazards assumption</h3>
 <p>The Nelson-Aalen estimate of the cumulative hazard is usually used for estimates of the hazard and often the cumulative hazard.</p>
 <p>If the hazards of the three groups are proportional, that means that the ratio of the hazards is constant over <span class="math inline">\(t\)</span>. We can test this using the ratios of the estimated cumulative hazards, which also would be proportional, as shown above.</p>
 <div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-1_cb5770c115616c8df65d6088f20e3aaa">
@@ -531,8 +513,7 @@ Removed 729 rows containing missing values (`geom_line()`).</code></pre>
 </div>
 </div>
 </div>
-</section><section id="smoothed-hazard-functions" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="smoothed-hazard-functions">
-<span class="header-section-number">7.5</span> Smoothed hazard functions</h2>
+</section><section id="smoothed-hazard-functions" class="level3"><h3 class="anchored" data-anchor-id="smoothed-hazard-functions">Smoothed hazard functions</h3>
 <p>The Nelson-Aalen estimate of the cumulative hazard is usually used for estimates of the hazard. Since the hazard is the derivative of the cumulative hazard, we need a smooth estimate of the cumulative hazard, which is provided by smoothing the step-function cumulative hazard.</p>
 <p>The R package <code>muhaz</code> handles this for us. What we are looking for is whether the hazard function is more or less the same shape, increasing, decreasing, constant, etc. Are the hazards “proportional”?</p>
 <div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-4_54db66fbd3f7ee42293871d46b6c1580">
@@ -566,8 +547,7 @@ Removed 729 rows containing missing values (`geom_line()`).</code></pre>
 </div>
 <p>Group 3 was plotted first because it has the highest hazard.</p>
 <p>We will see that except for an initial blip in the high risk AML group, the hazards look roughly proportional . They are all strongly decreasing.</p>
-</section><section id="fitting-the-proportional-hazards-model" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="fitting-the-proportional-hazards-model">
-<span class="header-section-number">7.6</span> Fitting the Proportional Hazards Model</h2>
+</section><section id="fitting-the-proportional-hazards-model" class="level3"><h3 class="anchored" data-anchor-id="fitting-the-proportional-hazards-model">Fitting the Proportional Hazards Model</h3>
 <p>How do we fit a proportional hazards regression model? We need to estimate the coefficients of the covariates, and we need to estimate the base hazard <span class="math inline">\(h_0(t)\)</span>. For the covariates, supposing for simplicity that there are no tied event times, let the event times for the whole data set be <span class="math inline">\(t_1, t_2,\ldots,t_D\)</span>. Let the risk set at time <span class="math inline">\(t_i\)</span> be <span class="math inline">\(R(t_i)\)</span> and</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -597,10 +577,9 @@ h(t|X=x)&amp;= h_0(t)e^{\eta(\boldsymbol{x})}=\theta(\boldsymbol{x}) h_0(t)
 <p>and we can numerically maximize this with respect to the coefficients <span class="math inline">\(\boldsymbol{\beta}\)</span> that specify <span class="math inline">\(\eta(\boldsymbol{x}) = \boldsymbol{x}'\boldsymbol{\beta}\)</span>. When there are tied event times adjustments need to be made, but the likelihood is still similar. Note that we don’t need to know the base hazard to solve for the coefficients.</p>
 <p>Once we have coefficient estimates <span class="math inline">\(\hat{\boldsymbol{\beta}} =(\hat \beta_1,\ldots,\hat\beta_p)\)</span>, this also defines <span class="math inline">\(\hat\eta(x)\)</span> and <span class="math inline">\(\hat\theta(x)\)</span> and then the estimated base cumulative hazard function is <span class="math display">\[\hat H(t)=
 \sum_{t_i &lt; t} \frac{d_i}{\sum_{k\in R(t_i)} \theta(x_k)}\]</span> which reduces to the Nelson-Aalen estimate when there are no covariates. There are numerous other estimates that have been proposed as well.</p>
-</section></section><section id="cox-model-for-the-bmt-data" class="level1" data-number="8"><h1 data-number="8">
-<span class="header-section-number">8</span> Cox Model for the <code>bmt</code> data</h1>
-<section id="fit-the-model" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="fit-the-model">
-<span class="header-section-number">8.1</span> Fit the model</h2>
+</section></section><section id="cox-model-for-the-bmt-data" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="cox-model-for-the-bmt-data">
+<span class="header-section-number">6.2</span> Cox Model for the <code>bmt</code> data</h2>
+<section id="fit-the-model" class="level3"><h3 class="anchored" data-anchor-id="fit-the-model">Fit the model</h3>
 <div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-6_3e23a21c25cf6229c9623878973607e2">
 <details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt.cox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">bmt</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">bmt.cox</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -642,8 +621,7 @@ Score (logrank) test = 13.8  on 2 df,   p=0.001</code></pre>
 <code>Score</code> = log-rank test, as with comparison of survival functions.</li>
 </ul>
 <p>The likelihood ratio test is probably best in smaller samples, followed by the Wald test.</p>
-</section><section id="survival-curves-from-the-cox-model" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="survival-curves-from-the-cox-model">
-<span class="header-section-number">8.2</span> Survival Curves from the Cox Model</h2>
+</section><section id="survival-curves-from-the-cox-model" class="level3"><h3 class="anchored" data-anchor-id="survival-curves-from-the-cox-model">Survival Curves from the Cox Model</h3>
 <p>We can take a look at the resulting group-specific curves:</p>
 <div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-7_44e49c4eafd184844de2a0fad6290345">
 <details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| fig-cap: "Survival Functions for Three Groups by KM and Cox Model"</span></span>
@@ -679,9 +657,8 @@ Score (logrank) test = 13.8  on 2 df,   p=0.001</code></pre>
 <p>Otherwise (that is, if the <code>newdata</code> argument is missing), a curve is produced for a single “pseudo” subject with covariate values equal to the means component of the fit.</p>
 <p>The resulting curve(s) almost never make sense, but the default remains due to an unwarranted attachment to the option shown by some users and by other packages.</p>
 <p>Two particularly egregious examples are factor variables and interactions. Suppose one were studying interspecies transmission of a virus, and the data set has a factor variable with levels (“pig”, “chicken”) and about equal numbers of observations for each. The “mean” covariate level will be 0.5 – is this a flying pig?</p>
-</section><section id="examining-survfit" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="examining-survfit">
-<span class="header-section-number">8.3</span> Examining <code>survfit</code>
-</h2>
+</section><section id="examining-survfit" class="level3"><h3 class="anchored" data-anchor-id="examining-survfit">Examining <code>survfit</code>
+</h3>
 <div class="cell" data-hash="proportional-hazards-models_cache/html/unnamed-chunk-8_3f012a71299c03b2cfb6d9b0d31f2f51">
 <details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">t2</span>, <span class="va">d3</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">bmt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -893,10 +870,9 @@ group=High Risk AML 45     34    183     115     456</code></pre>
  2204      9       1     0.313     0.520     0.182</code></pre>
 </div>
 </div>
-</section></section><section id="adjustment-for-ties-optional" class="level1" data-number="9"><h1 data-number="9">
-<span class="header-section-number">9</span> Adjustment for Ties (optional)</h1>
-<section id="section" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="section">
-<span class="header-section-number">9.1</span> </h2>
+</section></section><section id="adjustment-for-ties-optional" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="adjustment-for-ties-optional">
+<span class="header-section-number">6.3</span> Adjustment for Ties (optional)</h2>
+<section id="section" class="level3"><h3 class="anchored" data-anchor-id="section"></h3>
 <p>At each time <span class="math inline">\(t_i\)</span> at which more than one of the subjects has an event, let <span class="math inline">\(d_i\)</span> be the number of events at that time, <span class="math inline">\(D_i\)</span> the set of subjects with events at that time, and let <span class="math inline">\(s_i\)</span> be a covariate vector for an artificial subject obtained by adding up the covariate values for the subjects with an event at time <span class="math inline">\(t_i\)</span>. Let <span class="math display">\[\bar\eta_i = \beta_1s_{i1}+\cdots+\beta_ps_{ip}\]</span> and <span class="math inline">\(\bar\theta_i = \exp(\bar\eta_i)\)</span>.</p>
 <p>Let <span class="math inline">\(s_i\)</span> be a covariate vector for an artificial subject obtained by adding up the covariate values for the subjects with an event at time <span class="math inline">\(t_i\)</span>. Note that</p>
 <p><span class="math display">\[
@@ -907,7 +883,7 @@ group=High Risk AML 45     34    183     115     456</code></pre>
 &amp;= \prod_{j \in D_i}\theta_i
 \end{aligned}
 \]</span></p>
-<section id="breslows-method-for-ties" class="level3"><h3 class="anchored" data-anchor-id="breslows-method-for-ties">Breslow’s method for ties</h3>
+<section id="breslows-method-for-ties" class="level4"><h4 class="anchored" data-anchor-id="breslows-method-for-ties">Breslow’s method for ties</h4>
 <p>Breslow’s method estimates the partial likelihood as</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -917,12 +893,12 @@ L(\beta|T) &amp;=
 \end{aligned}
 \]</span></p>
 <p>This method is equivalent to treating each event as distinct and using the non-ties formula. It works best when the number of ties is small. It is the default in many statistical packages, including PROC PHREG in SAS.</p>
-</section><section id="efrons-method-for-ties" class="level3"><h3 class="anchored" data-anchor-id="efrons-method-for-ties">Efron’s method for ties</h3>
+</section><section id="efrons-method-for-ties" class="level4"><h4 class="anchored" data-anchor-id="efrons-method-for-ties">Efron’s method for ties</h4>
 <p>The other common method is Efron’s, which is the default in R.</p>
 <p><span class="math display">\[L(\beta|T)=
 \prod_i \frac{\bar\theta_i}{\prod_{j=1}^{d_i}[\sum_{k \in R(t_i)} \theta_k-\frac{j-1}{d_i}\sum_{k \in D_i} \theta_k]}\]</span> This is closer to the exact discrete partial likelihood when there are many ties.</p>
 <p>The third option in R (and an option also in SAS as <code>discrete</code>) is the “exact” method, which is the same one used for matched logistic regression.</p>
-</section><section id="example-breslows-method" class="level3"><h3 class="anchored" data-anchor-id="example-breslows-method">Example: Breslow’s method</h3>
+</section><section id="example-breslows-method" class="level4"><h4 class="anchored" data-anchor-id="example-breslows-method">Example: Breslow’s method</h4>
 <p>Suppose as an example we have a time <span class="math inline">\(t\)</span> where there are 20 individuals at risk and three failures. Let the three individuals have risk parameters <span class="math inline">\(\theta_1, \theta_2, \theta_3\)</span> and let the sum of the risk parameters of the remaining 17 individuals be <span class="math inline">\(\theta_R\)</span>. Then the factor in the partial likelihood at time <span class="math inline">\(t\)</span> using Breslow’s method is</p>
 <div class="smaller">
 <p><span class="math display">\[
@@ -940,7 +916,7 @@ L(\beta|T) &amp;=
 \]</span></p>
 </div>
 <p>as the risk set got smaller with each failure. The exact method roughly averages the results for the six possible orderings of the failures.</p>
-</section><section id="example-efrons-method" class="level3"><h3 class="anchored" data-anchor-id="example-efrons-method">Example: Efron’s method</h3>
+</section><section id="example-efrons-method" class="level4"><h4 class="anchored" data-anchor-id="example-efrons-method">Example: Efron’s method</h4>
 <p>But we don’t know the order they failed in, so instead of reducing the denominator by one risk coefficient each time, we reduce it by the same fraction. This is Efron’s method.</p>
 <div class="smaller">
 <p><span class="math display">\[\left(\frac{\theta_1}{\theta_R+\theta_1+\theta_2+\theta_3}\right)

@@ -234,123 +234,67 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   <ul>
 <li><a href="#configuring-r" id="toc-configuring-r" class="nav-link active" data-scroll-target="#configuring-r">Configuring R</a></li>
   <li>
-<a href="#time-to-event-outcome-distributions" id="toc-time-to-event-outcome-distributions" class="nav-link" data-scroll-target="#time-to-event-outcome-distributions"><span class="header-section-number">6</span> Time-to-event outcome distributions</a>
+<a href="#time-to-event-outcome-distributions" id="toc-time-to-event-outcome-distributions" class="nav-link" data-scroll-target="#time-to-event-outcome-distributions"><span class="header-section-number">5.1</span> Time-to-event outcome distributions</a>
   <ul class="collapse">
-<li><a href="#time-to-event-data" id="toc-time-to-event-data" class="nav-link" data-scroll-target="#time-to-event-data"><span class="header-section-number">6.1</span> Time to Event Data</a></li>
-  <li><a href="#distributions-of-time-to-event-data" id="toc-distributions-of-time-to-event-data" class="nav-link" data-scroll-target="#distributions-of-time-to-event-data"><span class="header-section-number">6.2</span> Distributions of Time-to-Event Data</a></li>
-  <li><a href="#right-censoring" id="toc-right-censoring" class="nav-link" data-scroll-target="#right-censoring"><span class="header-section-number">6.3</span> Right Censoring</a></li>
-  <li><a href="#left-and-interval-censoring" id="toc-left-and-interval-censoring" class="nav-link" data-scroll-target="#left-and-interval-censoring"><span class="header-section-number">6.4</span> Left and Interval Censoring</a></li>
-  <li>
-<a href="#distribution-functions-for-time-to-event-variables" id="toc-distribution-functions-for-time-to-event-variables" class="nav-link" data-scroll-target="#distribution-functions-for-time-to-event-variables"><span class="header-section-number">6.5</span> Distribution functions for time-to-event variables</a>
-  <ul class="collapse">
-<li><a href="#the-probability-density-function-pdf" id="toc-the-probability-density-function-pdf" class="nav-link" data-scroll-target="#the-probability-density-function-pdf">The Probability Density Function (PDF)</a></li>
-  <li><a href="#the-cumulative-distribution-function-cdf" id="toc-the-cumulative-distribution-function-cdf" class="nav-link" data-scroll-target="#the-cumulative-distribution-function-cdf">The Cumulative Distribution Function (CDF)</a></li>
-  <li><a href="#the-survival-function" id="toc-the-survival-function" class="nav-link" data-scroll-target="#the-survival-function">The Survival Function</a></li>
-  <li><a href="#the-hazard-function" id="toc-the-hazard-function" class="nav-link" data-scroll-target="#the-hazard-function">The Hazard Function</a></li>
-  <li><a href="#the-cumulative-hazard-function" id="toc-the-cumulative-hazard-function" class="nav-link" data-scroll-target="#the-cumulative-hazard-function">The Cumulative Hazard Function</a></li>
-  <li><a href="#some-key-mathematical-relationships-among-survival-concepts" id="toc-some-key-mathematical-relationships-among-survival-concepts" class="nav-link" data-scroll-target="#some-key-mathematical-relationships-among-survival-concepts">Some Key Mathematical Relationships among Survival Concepts</a></li>
-  <li><a href="#example-time-to-death-the-us-in-2004" id="toc-example-time-to-death-the-us-in-2004" class="nav-link" data-scroll-target="#example-time-to-death-the-us-in-2004">Example: Time to death the US in 2004</a></li>
-  <li><a href="#likelihood-with-censoring" id="toc-likelihood-with-censoring" class="nav-link" data-scroll-target="#likelihood-with-censoring">Likelihood with censoring *</a></li>
-  </ul>
-</li>
+<li><a href="#time-to-event-data" id="toc-time-to-event-data" class="nav-link" data-scroll-target="#time-to-event-data">Time to Event Data</a></li>
+  <li><a href="#distributions-of-time-to-event-data" id="toc-distributions-of-time-to-event-data" class="nav-link" data-scroll-target="#distributions-of-time-to-event-data">Distributions of Time-to-Event Data</a></li>
+  <li><a href="#right-censoring" id="toc-right-censoring" class="nav-link" data-scroll-target="#right-censoring">Right Censoring</a></li>
+  <li><a href="#left-and-interval-censoring" id="toc-left-and-interval-censoring" class="nav-link" data-scroll-target="#left-and-interval-censoring">Left and Interval Censoring</a></li>
+  <li><a href="#distribution-functions-for-time-to-event-variables" id="toc-distribution-functions-for-time-to-event-variables" class="nav-link" data-scroll-target="#distribution-functions-for-time-to-event-variables">Distribution functions for time-to-event variables</a></li>
   </ul>
 </li>
   <li>
-<a href="#parametric-models-for-time-to-event-outcomes" id="toc-parametric-models-for-time-to-event-outcomes" class="nav-link" data-scroll-target="#parametric-models-for-time-to-event-outcomes"><span class="header-section-number">7</span> Parametric Models for Time-to-Event Outcomes</a>
+<a href="#parametric-models-for-time-to-event-outcomes" id="toc-parametric-models-for-time-to-event-outcomes" class="nav-link" data-scroll-target="#parametric-models-for-time-to-event-outcomes"><span class="header-section-number">5.2</span> Parametric Models for Time-to-Event Outcomes</a>
   <ul class="collapse">
-<li>
-<a href="#exponential-distribution" id="toc-exponential-distribution" class="nav-link" data-scroll-target="#exponential-distribution"><span class="header-section-number">7.1</span> Exponential Distribution</a>
-  <ul class="collapse">
-<li><a href="#mathematical-details-of-exponential-distribution" id="toc-mathematical-details-of-exponential-distribution" class="nav-link" data-scroll-target="#mathematical-details-of-exponential-distribution">Mathematical details of exponential distribution</a></li>
-  <li><a href="#estimation-of-lambda" id="toc-estimation-of-lambda" class="nav-link" data-scroll-target="#estimation-of-lambda">Estimation of <span class="math inline">\(\lambda\)</span></a></li>
-  <li><a href="#fisher-information-and-standard-error" id="toc-fisher-information-and-standard-error" class="nav-link" data-scroll-target="#fisher-information-and-standard-error">Fisher Information and Standard Error</a></li>
-  <li><a href="#other-parametric-survival-distributions" id="toc-other-parametric-survival-distributions" class="nav-link" data-scroll-target="#other-parametric-survival-distributions">Other Parametric Survival Distributions</a></li>
-  </ul>
-</li>
-  <li><a href="#weibull-distribution" id="toc-weibull-distribution" class="nav-link" data-scroll-target="#weibull-distribution"><span class="header-section-number">7.2</span> Weibull Distribution</a></li>
+<li><a href="#exponential-distribution" id="toc-exponential-distribution" class="nav-link" data-scroll-target="#exponential-distribution">Exponential Distribution</a></li>
+  <li><a href="#weibull-distribution" id="toc-weibull-distribution" class="nav-link" data-scroll-target="#weibull-distribution">Weibull Distribution</a></li>
   </ul>
 </li>
   <li>
-<a href="#nonparametric-survival-analysis" id="toc-nonparametric-survival-analysis" class="nav-link" data-scroll-target="#nonparametric-survival-analysis"><span class="header-section-number">8</span> Nonparametric Survival Analysis</a>
+<a href="#nonparametric-survival-analysis" id="toc-nonparametric-survival-analysis" class="nav-link" data-scroll-target="#nonparametric-survival-analysis"><span class="header-section-number">5.3</span> Nonparametric Survival Analysis</a>
   <ul class="collapse">
-<li><a href="#basic-ideas" id="toc-basic-ideas" class="nav-link" data-scroll-target="#basic-ideas"><span class="header-section-number">8.1</span> Basic ideas</a></li>
+<li><a href="#basic-ideas" id="toc-basic-ideas" class="nav-link" data-scroll-target="#basic-ideas">Basic ideas</a></li>
   </ul>
 </li>
   <li>
-<a href="#example-clinical-trial-for-pediatric-acute-leukemia" id="toc-example-clinical-trial-for-pediatric-acute-leukemia" class="nav-link" data-scroll-target="#example-clinical-trial-for-pediatric-acute-leukemia"><span class="header-section-number">9</span> Example: clinical trial for pediatric acute leukemia</a>
+<a href="#example-clinical-trial-for-pediatric-acute-leukemia" id="toc-example-clinical-trial-for-pediatric-acute-leukemia" class="nav-link" data-scroll-target="#example-clinical-trial-for-pediatric-acute-leukemia"><span class="header-section-number">5.4</span> Example: clinical trial for pediatric acute leukemia</a>
   <ul class="collapse">
-<li><a href="#overview-of-study" id="toc-overview-of-study" class="nav-link" data-scroll-target="#overview-of-study"><span class="header-section-number">9.1</span> Overview of study</a></li>
-  <li><a href="#study-design" id="toc-study-design" class="nav-link" data-scroll-target="#study-design"><span class="header-section-number">9.2</span> Study design</a></li>
-  <li><a href="#data-documentation-for-drug6mp" id="toc-data-documentation-for-drug6mp" class="nav-link" data-scroll-target="#data-documentation-for-drug6mp"><span class="header-section-number">9.3</span> Data documentation for <code>drug6mp</code></a></li>
-  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"><span class="header-section-number">9.4</span> Descriptive Statistics</a></li>
+<li><a href="#overview-of-study" id="toc-overview-of-study" class="nav-link" data-scroll-target="#overview-of-study">Overview of study</a></li>
+  <li><a href="#study-design" id="toc-study-design" class="nav-link" data-scroll-target="#study-design">Study design</a></li>
+  <li><a href="#data-documentation-for-drug6mp" id="toc-data-documentation-for-drug6mp" class="nav-link" data-scroll-target="#data-documentation-for-drug6mp">Data documentation for <code>drug6mp</code></a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
   </ul>
 </li>
   <li>
-<a href="#the-kaplan-meier-product-limit-estimator" id="toc-the-kaplan-meier-product-limit-estimator" class="nav-link" data-scroll-target="#the-kaplan-meier-product-limit-estimator"><span class="header-section-number">10</span> The Kaplan-Meier Product Limit Estimator</a>
+<a href="#the-kaplan-meier-product-limit-estimator" id="toc-the-kaplan-meier-product-limit-estimator" class="nav-link" data-scroll-target="#the-kaplan-meier-product-limit-estimator"><span class="header-section-number">5.5</span> The Kaplan-Meier Product Limit Estimator</a>
   <ul class="collapse">
-<li><a href="#kaplan-meier-curve-for-drug6mp-data" id="toc-kaplan-meier-curve-for-drug6mp-data" class="nav-link" data-scroll-target="#kaplan-meier-curve-for-drug6mp-data"><span class="header-section-number">10.1</span> Kaplan-Meier curve for <code>drug6mp</code> data</a></li>
-  <li>
-<a href="#kaplan-meier-calculations" id="toc-kaplan-meier-calculations" class="nav-link" data-scroll-target="#kaplan-meier-calculations"><span class="header-section-number">10.2</span> Kaplan-Meier calculations</a>
-  <ul class="collapse">
-<li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  </ul>
-</li>
+<li><a href="#kaplan-meier-curve-for-drug6mp-data" id="toc-kaplan-meier-curve-for-drug6mp-data" class="nav-link" data-scroll-target="#kaplan-meier-curve-for-drug6mp-data">Kaplan-Meier curve for <code>drug6mp</code> data</a></li>
+  <li><a href="#kaplan-meier-calculations" id="toc-kaplan-meier-calculations" class="nav-link" data-scroll-target="#kaplan-meier-calculations">Kaplan-Meier calculations</a></li>
   </ul>
 </li>
   <li>
-<a href="#using-the-survival-package-in-r" id="toc-using-the-survival-package-in-r" class="nav-link" data-scroll-target="#using-the-survival-package-in-r"><span class="header-section-number">11</span> Using the <code>survival</code> package in R</a>
+<a href="#using-the-survival-package-in-r" id="toc-using-the-survival-package-in-r" class="nav-link" data-scroll-target="#using-the-survival-package-in-r"><span class="header-section-number">5.6</span> Using the <code>survival</code> package in R</a>
   <ul class="collapse">
-<li>
-<a href="#the-surv-function" id="toc-the-surv-function" class="nav-link" data-scroll-target="#the-surv-function"><span class="header-section-number">11.1</span> The <code>Surv</code> function</a>
-  <ul class="collapse">
-<li><a href="#example-surv-with-drug6mp-data" id="toc-example-surv-with-drug6mp-data" class="nav-link" data-scroll-target="#example-surv-with-drug6mp-data">Example: <code>Surv()</code> with <code>drug6mp</code> data</a></li>
+<li><a href="#the-surv-function" id="toc-the-surv-function" class="nav-link" data-scroll-target="#the-surv-function">The <code>Surv</code> function</a></li>
+  <li><a href="#the-survfit-function" id="toc-the-survfit-function" class="nav-link" data-scroll-target="#the-survfit-function">The <code>survfit</code> function</a></li>
+  <li><a href="#plotting-estimated-survival-functions" id="toc-plotting-estimated-survival-functions" class="nav-link" data-scroll-target="#plotting-estimated-survival-functions">Plotting estimated survival functions</a></li>
+  <li><a href="#two-sample-tests" id="toc-two-sample-tests" class="nav-link" data-scroll-target="#two-sample-tests">Two-sample tests</a></li>
   </ul>
 </li>
   <li>
-<a href="#the-survfit-function" id="toc-the-survfit-function" class="nav-link" data-scroll-target="#the-survfit-function"><span class="header-section-number">11.2</span> The <code>survfit</code> function</a>
+<a href="#example-bone-marrow-transplant-data" id="toc-example-bone-marrow-transplant-data" class="nav-link" data-scroll-target="#example-bone-marrow-transplant-data"><span class="header-section-number">5.8</span> Example: Bone Marrow Transplant Data</a>
   <ul class="collapse">
-<li><a href="#example-survfit-with-drug6mp-data" id="toc-example-survfit-with-drug6mp-data" class="nav-link" data-scroll-target="#example-survfit-with-drug6mp-data">Example: <code>survfit()</code> with <code>drug6mp</code> data</a></li>
+<li><a href="#kmsurvbmt-data-in-r" id="toc-kmsurvbmt-data-in-r" class="nav-link" data-scroll-target="#kmsurvbmt-data-in-r"><code>KMsurv::bmt</code> data in R</a></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a></li>
+  <li><a href="#survival-function-estimate-and-variance" id="toc-survival-function-estimate-and-variance" class="nav-link" data-scroll-target="#survival-function-estimate-and-variance">Survival Function Estimate and Variance</a></li>
+  <li><a href="#test-for-differences-among-the-disease-groups" id="toc-test-for-differences-among-the-disease-groups" class="nav-link" data-scroll-target="#test-for-differences-among-the-disease-groups">Test for differences among the disease groups</a></li>
+  <li><a href="#cumulative-hazard" id="toc-cumulative-hazard" class="nav-link" data-scroll-target="#cumulative-hazard">Cumulative Hazard</a></li>
   </ul>
 </li>
   <li>
-<a href="#plotting-estimated-survival-functions" id="toc-plotting-estimated-survival-functions" class="nav-link" data-scroll-target="#plotting-estimated-survival-functions"><span class="header-section-number">11.4</span> Plotting estimated survival functions</a>
+<a href="#nelson-aalen-estimates-of-cumulative-hazard-and-survival" id="toc-nelson-aalen-estimates-of-cumulative-hazard-and-survival" class="nav-link" data-scroll-target="#nelson-aalen-estimates-of-cumulative-hazard-and-survival"><span class="header-section-number">5.9</span> Nelson-Aalen Estimates of Cumulative Hazard and Survival</a>
   <ul class="collapse">
-<li><a href="#quantiles-of-survival-curve" id="toc-quantiles-of-survival-curve" class="nav-link" data-scroll-target="#quantiles-of-survival-curve">quantiles of survival curve</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#two-sample-tests" id="toc-two-sample-tests" class="nav-link" data-scroll-target="#two-sample-tests"><span class="header-section-number">11.5</span> Two-sample tests</a>
-  <ul class="collapse">
-<li><a href="#the-survdiff-function" id="toc-the-survdiff-function" class="nav-link" data-scroll-target="#the-survdiff-function">The <code>survdiff</code> function</a></li>
-  <li><a href="#example-survdiff-with-drug6mp-data" id="toc-example-survdiff-with-drug6mp-data" class="nav-link" data-scroll-target="#example-survdiff-with-drug6mp-data">Example: <code>survdiff()</code> with <code>drug6mp</code> data</a></li>
-  </ul>
-</li>
-  </ul>
-</li>
-  <li>
-<a href="#example-bone-marrow-transplant-data" id="toc-example-bone-marrow-transplant-data" class="nav-link" data-scroll-target="#example-bone-marrow-transplant-data"><span class="header-section-number">12</span> Example: Bone Marrow Transplant Data</a>
-  <ul class="collapse">
-<li><a href="#kmsurvbmt-data-in-r" id="toc-kmsurvbmt-data-in-r" class="nav-link" data-scroll-target="#kmsurvbmt-data-in-r"><span class="header-section-number">12.1</span> <code>KMsurv::bmt</code> data in R</a></li>
-  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan"><span class="header-section-number">12.2</span> Analysis plan</a></li>
-  <li>
-<a href="#survival-function-estimate-and-variance" id="toc-survival-function-estimate-and-variance" class="nav-link" data-scroll-target="#survival-function-estimate-and-variance"><span class="header-section-number">12.3</span> Survival Function Estimate and Variance</a>
-  <ul class="collapse">
-<li><a href="#understanding-greenwoods-formula-optional" id="toc-understanding-greenwoods-formula-optional" class="nav-link" data-scroll-target="#understanding-greenwoods-formula-optional">Understanding Greenwood’s formula (optional)</a></li>
-  </ul>
-</li>
-  <li><a href="#test-for-differences-among-the-disease-groups" id="toc-test-for-differences-among-the-disease-groups" class="nav-link" data-scroll-target="#test-for-differences-among-the-disease-groups"><span class="header-section-number">12.4</span> Test for differences among the disease groups</a></li>
-  <li>
-<a href="#cumulative-hazard" id="toc-cumulative-hazard" class="nav-link" data-scroll-target="#cumulative-hazard"><span class="header-section-number">12.5</span> Cumulative Hazard</a>
-  <ul class="collapse">
-<li><a href="#example-cumulative-hazard-curves-for-bone-marrow-transplant-bmt-data" id="toc-example-cumulative-hazard-curves-for-bone-marrow-transplant-bmt-data" class="nav-link" data-scroll-target="#example-cumulative-hazard-curves-for-bone-marrow-transplant-bmt-data">Example: Cumulative Hazard Curves for Bone-Marrow Transplant (<code>bmt</code>) data</a></li>
-  </ul>
-</li>
-  </ul>
-</li>
-  <li>
-<a href="#nelson-aalen-estimates-of-cumulative-hazard-and-survival" id="toc-nelson-aalen-estimates-of-cumulative-hazard-and-survival" class="nav-link" data-scroll-target="#nelson-aalen-estimates-of-cumulative-hazard-and-survival"><span class="header-section-number">13</span> Nelson-Aalen Estimates of Cumulative Hazard and Survival</a>
-  <ul class="collapse">
-<li><a href="#application-to-bmt-dataset" id="toc-application-to-bmt-dataset" class="nav-link" data-scroll-target="#application-to-bmt-dataset"><span class="header-section-number">13.1</span> Application to <code>bmt</code> dataset</a></li>
+<li><a href="#application-to-bmt-dataset" id="toc-application-to-bmt-dataset" class="nav-link" data-scroll-target="#application-to-bmt-dataset">Application to <code>bmt</code> dataset</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/d-morrison/rme/edit/main/intro-to-survival-analysis.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -381,7 +325,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 </header><div class="hidden">
 
 </div>
-<section id="configuring-r" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h2>
+<section id="configuring-r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h3>
 <p>Functions from these packages will be used throughout this document:</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/packages_40032aa9caa8641511d75c7c3a81cab3">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span> <span class="co"># format tables for markdown</span></span>
@@ -408,17 +352,15 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">'digits'</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section><section id="time-to-event-outcome-distributions" class="level1" data-number="6"><h1 data-number="6">
-<span class="header-section-number">6</span> Time-to-event outcome distributions</h1>
-<section id="time-to-event-data" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="time-to-event-data">
-<span class="header-section-number">6.1</span> Time to Event Data</h2>
+</section><section id="time-to-event-outcome-distributions" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="time-to-event-outcome-distributions">
+<span class="header-section-number">5.1</span> Time-to-event outcome distributions</h2>
+<section id="time-to-event-data" class="level3"><h3 class="anchored" data-anchor-id="time-to-event-data">Time to Event Data</h3>
 <ul>
 <li>Survival Analysis is a term for analyzing time-to-event data.</li>
 <li>This is used in clinical trials, where the event is often death or recurrence of disease.</li>
 <li>It is used in engineering reliability analysis, where the event is failure of a device or system.</li>
 <li>It is used in insurance, particularly life insurance, where the event is death.</li>
-</ul></section><section id="distributions-of-time-to-event-data" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="distributions-of-time-to-event-data">
-<span class="header-section-number">6.2</span> Distributions of Time-to-Event Data</h2>
+</ul></section><section id="distributions-of-time-to-event-data" class="level3"><h3 class="anchored" data-anchor-id="distributions-of-time-to-event-data">Distributions of Time-to-Event Data</h3>
 <ul>
 <li>The distribution of event times is asymmetric and can be long-tailed, and starts at 0 (that is, <span class="math inline">\(P(T&lt;0) = 0\)</span>).</li>
 <li>The base distribution is not normal, but exponential.</li>
@@ -426,26 +368,23 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 <li>Often, these are <strong>right-censored</strong>, meaning that we know that the event occurred after some known time <span class="math inline">\(t\)</span>, but we don’t know the actual event time, as when a patient is still alive at the end of the study.</li>
 <li>Observations can also be <strong>left-censored</strong>, meaning we know the event has already happened at time <span class="math inline">\(t\)</span>, or <strong>interval-censored</strong>, meaning that we only know that the event happened between times <span class="math inline">\(t_1\)</span> and <span class="math inline">\(t_2\)</span>.</li>
 <li>Analysis is difficult if censoring is associated with treatment.</li>
-</ul></section><section id="right-censoring" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="right-censoring">
-<span class="header-section-number">6.3</span> Right Censoring</h2>
+</ul></section><section id="right-censoring" class="level3"><h3 class="anchored" data-anchor-id="right-censoring">Right Censoring</h3>
 <ul>
 <li>Patients are in a clinical trial for cancer, some on a new treatment and some on standard of care.</li>
 <li>Some patients in each group have died by the end of the study. We know the survival time (measured for example from time of diagnosis—each person on their own clock).</li>
 <li>Patients still alive at the end of the study are right censored.</li>
 <li>Patients who are lost to follow-up or withdraw from the study may be right-censored.</li>
-</ul></section><section id="left-and-interval-censoring" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="left-and-interval-censoring">
-<span class="header-section-number">6.4</span> Left and Interval Censoring</h2>
+</ul></section><section id="left-and-interval-censoring" class="level3"><h3 class="anchored" data-anchor-id="left-and-interval-censoring">Left and Interval Censoring</h3>
 <ul>
 <li>An individual tests positive for HIV.</li>
 <li>If the event is infection with HIV, then we only know that it has occurred before the testing time <span class="math inline">\(t\)</span>, so this is left censored.</li>
 <li>If an individual has a negative HIV test at time <span class="math inline">\(t_1\)</span> and a positive HIV test at time <span class="math inline">\(t_2\)</span>, then the infection event is interval censored.</li>
-</ul></section><section id="distribution-functions-for-time-to-event-variables" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="distribution-functions-for-time-to-event-variables">
-<span class="header-section-number">6.5</span> Distribution functions for time-to-event variables</h2>
-<section id="the-probability-density-function-pdf" class="level3"><h3 class="anchored" data-anchor-id="the-probability-density-function-pdf">The Probability Density Function (PDF)</h3>
+</ul></section><section id="distribution-functions-for-time-to-event-variables" class="level3"><h3 class="anchored" data-anchor-id="distribution-functions-for-time-to-event-variables">Distribution functions for time-to-event variables</h3>
+<section id="the-probability-density-function-pdf" class="level4"><h4 class="anchored" data-anchor-id="the-probability-density-function-pdf">The Probability Density Function (PDF)</h4>
 <p>For a time-to-event variable <span class="math inline">\(T\)</span> with a continuous distribution, the <strong>probability density function</strong> is defined as usual:</p>
 <p><span class="math display">\[f(t)\stackrel{\text{def}}{=}p(t) \stackrel{\text{def}}{=}p(T=t)\]</span></p>
 <p>Typically, this density is assumed to be 0 for all <span class="math inline">\(t&lt;0\)</span>; that is, <span class="math inline">\(f(t) = 0, \forall t&lt;0\)</span>. In other words, the range of <span class="math inline">\(T\)</span> is typically <span class="math inline">\([0,\infty)\)</span>.</p>
-<section id="example-exponential-distribution" class="level4"><h4 class="anchored" data-anchor-id="example-exponential-distribution">Example: exponential distribution</h4>
+<section id="example-exponential-distribution" class="level5"><h5 class="anchored" data-anchor-id="example-exponential-distribution">Example: exponential distribution</h5>
 <p>Recall from Epi 202: the pdf of the exponential distribution family of models is:</p>
 <p><span class="math display">\[
 p(T=t) = \mathbb{1}_{t \ge 0}\cdot \lambda  \text{e}^{-\lambda t}
@@ -456,7 +395,7 @@ p(T=t) = \mathbb{1}_{t \ge 0}\cdot \lambda  \text{e}^{-\lambda t}
 <p><img src="intro-to-survival-analysis_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section></section><section id="the-cumulative-distribution-function-cdf" class="level3"><h3 class="anchored" data-anchor-id="the-cumulative-distribution-function-cdf">The Cumulative Distribution Function (CDF)</h3>
+</section></section><section id="the-cumulative-distribution-function-cdf" class="level4"><h4 class="anchored" data-anchor-id="the-cumulative-distribution-function-cdf">The Cumulative Distribution Function (CDF)</h4>
 <p>The <strong>cumulative distribution function</strong> is defined as:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -464,7 +403,7 @@ F(t) &amp;\stackrel{\text{def}}{=}\Pr(T \le t)\\
 &amp;=\int_{u=0}^t f(u) du
 \end{aligned}
 \]</span></p>
-<section id="example-exponential-distribution-1" class="level4"><h4 class="anchored" data-anchor-id="example-exponential-distribution-1">Example: exponential distribution</h4>
+<section id="example-exponential-distribution-1" class="level5"><h5 class="anchored" data-anchor-id="example-exponential-distribution-1">Example: exponential distribution</h5>
 <p>Recall from Epi 202: the cdf of the exponential distribution family of models is:</p>
 <p><span class="math display">\[
 P(T\le t) = \mathbb{1}_{t \ge 0}\cdot(1- \text{e}^{-\lambda t})
@@ -475,7 +414,7 @@ P(T\le t) = \mathbb{1}_{t \ge 0}\cdot(1- \text{e}^{-\lambda t})
 <p><img src="intro-to-survival-analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section></section><section id="the-survival-function" class="level3"><h3 class="anchored" data-anchor-id="the-survival-function">The Survival Function</h3>
+</section></section><section id="the-survival-function" class="level4"><h4 class="anchored" data-anchor-id="the-survival-function">The Survival Function</h4>
 <p>For survival data, a more important quantity is the <strong>survival function</strong>:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -485,7 +424,7 @@ S(t) &amp;\stackrel{\text{def}}{=}\Pr(T &gt; t)\\
 \end{aligned}
 \]</span></p>
 <p>The survival function <span class="math inline">\(S(t)\)</span> is the probability that the event time is later than <span class="math inline">\(t\)</span>. If the event in a clinical trial is death, then this is the expected fraction of the original population at time 0 that is still alive at time <span class="math inline">\(t\)</span>; that is, the fraction surviving to time <span class="math inline">\(t\)</span>.</p>
-<section id="example-exponential-distribution-2" class="level4"><h4 class="anchored" data-anchor-id="example-exponential-distribution-2">Example: exponential distribution</h4>
+<section id="example-exponential-distribution-2" class="level5"><h5 class="anchored" data-anchor-id="example-exponential-distribution-2">Example: exponential distribution</h5>
 <p>Since <span class="math inline">\(S(t) = 1 - F(t)\)</span>, the survival function of the exponential distribution family of models is:</p>
 <p><span class="math display">\[
 P(T&gt; t) = \mathbb{1}_{t \ge 0} \cdot \text{e}^{-\lambda t}
@@ -496,7 +435,7 @@ P(T&gt; t) = \mathbb{1}_{t \ge 0} \cdot \text{e}^{-\lambda t}
 <p><img src="intro-to-survival-analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section></section><section id="the-hazard-function" class="level3"><h3 class="anchored" data-anchor-id="the-hazard-function">The Hazard Function</h3>
+</section></section><section id="the-hazard-function" class="level4"><h4 class="anchored" data-anchor-id="the-hazard-function">The Hazard Function</h4>
 <p>Another important quantity is the <strong>hazard function</strong>, which represents the probability that the event will occur at time <span class="math inline">\(t\)</span>, given that it has not occurred yet:</p>
 <p><span class="math display">\[h(t) \stackrel{\text{def}}{=}p(T=t|T\ge t)\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -529,7 +468,7 @@ h(t) &amp;=p(T=t|T\ge t)\\
 &amp;=\frac{f(t)}{S(t)}
 \end{aligned}
 \]</span></p>
-<section id="example-exponential-distribution-3" class="level4"><h4 class="anchored" data-anchor-id="example-exponential-distribution-3">Example: exponential distribution</h4>
+<section id="example-exponential-distribution-3" class="level5"><h5 class="anchored" data-anchor-id="example-exponential-distribution-3">Example: exponential distribution</h5>
 <p>The hazard function of the exponential distribution family of models is:</p>
 <p><span class="math display">\[
 P(T&gt; t) = \mathbb{1}_{t \ge 0}\cdot \lambda
@@ -540,11 +479,11 @@ P(T&gt; t) = \mathbb{1}_{t \ge 0}\cdot \lambda
 <p><img src="intro-to-survival-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section></section><section id="the-cumulative-hazard-function" class="level3"><h3 class="anchored" data-anchor-id="the-cumulative-hazard-function">The Cumulative Hazard Function</h3>
+</section></section><section id="the-cumulative-hazard-function" class="level4"><h4 class="anchored" data-anchor-id="the-cumulative-hazard-function">The Cumulative Hazard Function</h4>
 <p>The <strong>cumulative hazard function</strong> <span class="math inline">\(H(t)\)</span> is defined as:</p>
 <p><span class="math display">\[H(t) \stackrel{\text{def}}{=}\int_{u=0}^t h(u) du\]</span></p>
 <p>As we will see below, <span class="math inline">\(H(t)\)</span> is tractable to estimate, and we can then derive an estimate the hazard function using an approximate derivative of the estimated cumulative hazard.</p>
-<section id="example-exponential-distribution-4" class="level4"><h4 class="anchored" data-anchor-id="example-exponential-distribution-4">Example: exponential distribution</h4>
+<section id="example-exponential-distribution-4" class="level5"><h5 class="anchored" data-anchor-id="example-exponential-distribution-4">Example: exponential distribution</h5>
 <p>The cumulative hazard function of the exponential distribution family of models is:</p>
 <p><span class="math display">\[
 H(t) = \mathbb{1}_{t \ge 0}\cdot \lambda t
@@ -555,7 +494,7 @@ H(t) = \mathbb{1}_{t \ge 0}\cdot \lambda t
 <p><img src="intro-to-survival-analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section></section><section id="some-key-mathematical-relationships-among-survival-concepts" class="level3"><h3 class="anchored" data-anchor-id="some-key-mathematical-relationships-among-survival-concepts">Some Key Mathematical Relationships among Survival Concepts</h3>
+</section></section><section id="some-key-mathematical-relationships-among-survival-concepts" class="level4"><h4 class="anchored" data-anchor-id="some-key-mathematical-relationships-among-survival-concepts">Some Key Mathematical Relationships among Survival Concepts</h4>
 <p><span class="math display">\[
 \begin{aligned}
 S(t) &amp;= 1 - F(t)\\
@@ -598,8 +537,8 @@ H(t)
 \]</span></p>
 <p>Equivalently:</p>
 <p><span class="math display">\[S(t) = \text{exp}\left\{-H(t)\right\}\]</span></p>
-</section><section id="example-time-to-death-the-us-in-2004" class="level3"><h3 class="anchored" data-anchor-id="example-time-to-death-the-us-in-2004">Example: Time to death the US in 2004</h3>
-<section id="daily-hazard-rates-for-us-females-in-2004" class="level4"><h4 class="anchored" data-anchor-id="daily-hazard-rates-for-us-females-in-2004">Daily hazard rates for US Females in 2004</h4>
+</section><section id="example-time-to-death-the-us-in-2004" class="level4"><h4 class="anchored" data-anchor-id="example-time-to-death-the-us-in-2004">Example: Time to death the US in 2004</h4>
+<section id="daily-hazard-rates-for-us-females-in-2004" class="level5"><h5 class="anchored" data-anchor-id="daily-hazard-rates-for-us-females-in-2004">Daily hazard rates for US Females in 2004</h5>
 <p>The first day is the most dangerous:</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-6_1e2ba457cc3d152c4521b5ddfefa7263">
 <div class="cell-output-display">
@@ -609,7 +548,7 @@ H(t)
 </div>
 </div>
 </div>
-</section><section id="daily-hazard-rates-for-us-males-and-females-in-2004" class="level4"><h4 class="anchored" data-anchor-id="daily-hazard-rates-for-us-males-and-females-in-2004">Daily hazard rates for US Males and Females in 2004</h4>
+</section><section id="daily-hazard-rates-for-us-males-and-females-in-2004" class="level5"><h5 class="anchored" data-anchor-id="daily-hazard-rates-for-us-males-and-females-in-2004">Daily hazard rates for US Males and Females in 2004</h5>
 <p>Exercise: hypothesize why these curves differ where they do?</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-7_44e468fdeebdbcd6ccea825dac1e157b">
 <div class="cell-output-display">
@@ -619,7 +558,7 @@ H(t)
 </div>
 </div>
 </div>
-</section><section id="survival-curve-for-us-females" class="level4"><h4 class="anchored" data-anchor-id="survival-curve-for-us-females">Survival curve for US females</h4>
+</section><section id="survival-curve-for-us-females" class="level5"><h5 class="anchored" data-anchor-id="survival-curve-for-us-females">Survival curve for US females</h5>
 <p>Exercise: compare and contrast this curve with the corresponding hazard curve.</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-8_009e72ce0d15bd1437d4b9e83bc9cb80">
 <div class="cell-output-display">
@@ -629,7 +568,7 @@ H(t)
 </div>
 </div>
 </div>
-</section></section><section id="likelihood-with-censoring" class="level3"><h3 class="anchored" data-anchor-id="likelihood-with-censoring">Likelihood with censoring *</h3>
+</section></section><section id="likelihood-with-censoring" class="level4"><h4 class="anchored" data-anchor-id="likelihood-with-censoring">Likelihood with censoring *</h4>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -823,10 +762,9 @@ Note
 <p>End of extra section.</p>
 </div>
 </div>
-</section></section></section><section id="parametric-models-for-time-to-event-outcomes" class="level1" data-number="7"><h1 data-number="7">
-<span class="header-section-number">7</span> Parametric Models for Time-to-Event Outcomes</h1>
-<section id="exponential-distribution" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="exponential-distribution">
-<span class="header-section-number">7.1</span> Exponential Distribution</h2>
+</section></section></section><section id="parametric-models-for-time-to-event-outcomes" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="parametric-models-for-time-to-event-outcomes">
+<span class="header-section-number">5.2</span> Parametric Models for Time-to-Event Outcomes</h2>
+<section id="exponential-distribution" class="level3"><h3 class="anchored" data-anchor-id="exponential-distribution">Exponential Distribution</h3>
 <ul>
 <li>The exponential distribution is the base distribution for survival analysis.</li>
 <li>The distribution has a constant hazard <span class="math inline">\(\lambda\)</span>
@@ -834,7 +772,7 @@ Note
 <li>The mean survival time is <span class="math inline">\(\lambda^{-1}\)</span>
 </li>
 </ul>
-<section id="mathematical-details-of-exponential-distribution" class="level3"><h3 class="anchored" data-anchor-id="mathematical-details-of-exponential-distribution">Mathematical details of exponential distribution</h3>
+<section id="mathematical-details-of-exponential-distribution" class="level4"><h4 class="anchored" data-anchor-id="mathematical-details-of-exponential-distribution">Mathematical details of exponential distribution</h4>
 <p><span class="math display">\[
 \begin{aligned}
 f(t) &amp;= \lambda \text{e}^{-\lambda t}\\
@@ -846,8 +784,8 @@ S(t)&amp;= \text{e}^{-\lambda x}\\
 h(t) &amp;= -\frac{f(t)}{S(t)} = -\frac{\lambda \text{e}^{-\lambda t}}{\text{e}^{-\lambda t}}=\lambda
 \end{aligned}
 \]</span></p>
-</section><section id="estimation-of-lambda" class="level3"><h3 class="anchored" data-anchor-id="estimation-of-lambda">Estimation of <span class="math inline">\(\lambda\)</span>
-</h3>
+</section><section id="estimation-of-lambda" class="level4"><h4 class="anchored" data-anchor-id="estimation-of-lambda">Estimation of <span class="math inline">\(\lambda\)</span>
+</h4>
 <ul>
 <li><p>Suppose we have <span class="math inline">\(m\)</span> exponential survival times of <span class="math inline">\(t_1, t_2,\ldots,t_m\)</span> and <span class="math inline">\(k\)</span> right-censored values at <span class="math inline">\(u_1,u_2,\ldots,u_k\)</span>.</p></li>
 <li><p>A survival time of <span class="math inline">\(t_i=10\)</span> means that subject <span class="math inline">\(i\)</span> died at time 10. A right-censored time <span class="math inline">\(u_i=10\)</span> means that at time 10, subject <span class="math inline">\(i\)</span> was still alive and that we have no further follow-up.</p></li>
@@ -873,7 +811,7 @@ h(t) &amp;= -\frac{f(t)}{S(t)} = -\frac{\lambda \text{e}^{-\lambda t}}{\text{e}^
 &amp;= \frac{T+U}{m}
 \end{aligned}
 \]</span></p>
-</section><section id="fisher-information-and-standard-error" class="level3"><h3 class="anchored" data-anchor-id="fisher-information-and-standard-error">Fisher Information and Standard Error</h3>
+</section><section id="fisher-information-and-standard-error" class="level4"><h4 class="anchored" data-anchor-id="fisher-information-and-standard-error">Fisher Information and Standard Error</h4>
 <p><span class="math display">\[
 \begin{aligned}
 E[-\ell'']
@@ -887,14 +825,13 @@ E[-\ell'']
 \end{aligned}
 \]</span></p>
 <p><span class="math inline">\(\hat\lambda\)</span> depends on the censoring times of the censored observations, but <span class="math inline">\(\text{Var}\left(\hat\lambda\right)\)</span> only depends on the number of uncensored observations, <span class="math inline">\(m\)</span>, and not on the number of censored observations (<span class="math inline">\(k\)</span>).</p>
-</section><section id="other-parametric-survival-distributions" class="level3"><h3 class="anchored" data-anchor-id="other-parametric-survival-distributions">Other Parametric Survival Distributions</h3>
+</section><section id="other-parametric-survival-distributions" class="level4"><h4 class="anchored" data-anchor-id="other-parametric-survival-distributions">Other Parametric Survival Distributions</h4>
 <ul>
 <li>Any density on <span class="math inline">\([0,\infty)\)</span> can be a survival distribution, but the most useful ones are all skew right.</li>
 <li>The commonest generalization of the exponential is the Weibull.</li>
 <li>Other common choices are the gamma, log-normal, log-logistic, Gompertz, inverse Gaussian, and Pareto.</li>
 <li>Most of what we do going forward is non-parametric or semi-parametric, but sometimes these parametric distributions provide a useful approach.</li>
-</ul></section></section><section id="weibull-distribution" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="weibull-distribution">
-<span class="header-section-number">7.2</span> Weibull Distribution</h2>
+</ul></section></section><section id="weibull-distribution" class="level3"><h3 class="anchored" data-anchor-id="weibull-distribution">Weibull Distribution</h3>
 <p><span class="math display">\[
 \begin{aligned}
 p(t)&amp;= \alpha\lambda x^{\alpha-1}\text{e}^{-\lambda x^\alpha}\\
@@ -905,19 +842,17 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 \]</span></p>
 <p>When <span class="math inline">\(\alpha=1\)</span> this is the exponential. When <span class="math inline">\(\alpha&gt;1\)</span> the hazard is increasing and when <span class="math inline">\(\alpha &lt; 1\)</span> the hazard is decreasing. This provides more flexibility than the exponential.</p>
 <p>We will see more of this distribution later.</p>
-</section></section><section id="nonparametric-survival-analysis" class="level1" data-number="8"><h1 data-number="8">
-<span class="header-section-number">8</span> Nonparametric Survival Analysis</h1>
-<section id="basic-ideas" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="basic-ideas">
-<span class="header-section-number">8.1</span> Basic ideas</h2>
+</section></section><section id="nonparametric-survival-analysis" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="nonparametric-survival-analysis">
+<span class="header-section-number">5.3</span> Nonparametric Survival Analysis</h2>
+<section id="basic-ideas" class="level3"><h3 class="anchored" data-anchor-id="basic-ideas">Basic ideas</h3>
 <ul>
 <li><p>Mostly, we work without a parametric model.</p></li>
 <li><p>The first task is to estimate a survival function from data listing survival times, and censoring times for censored data.</p></li>
 <li><p>For example one patient may have relapsed at 10 months. Another might have been followed for 32 months without a relapse having occurred (censored).</p></li>
 <li><p>The minimum information we need for each patient is a time and a censoring variable which is 1 if the event occurred at the indicated time and 0 if this is a censoring time.</p></li>
-</ul></section></section><section id="example-clinical-trial-for-pediatric-acute-leukemia" class="level1" data-number="9"><h1 data-number="9">
-<span class="header-section-number">9</span> Example: clinical trial for pediatric acute leukemia</h1>
-<section id="overview-of-study" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="overview-of-study">
-<span class="header-section-number">9.1</span> Overview of study</h2>
+</ul></section></section><section id="example-clinical-trial-for-pediatric-acute-leukemia" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="example-clinical-trial-for-pediatric-acute-leukemia">
+<span class="header-section-number">5.4</span> Example: clinical trial for pediatric acute leukemia</h2>
+<section id="overview-of-study" class="level3"><h3 class="anchored" data-anchor-id="overview-of-study">Overview of study</h3>
 <p>This is from a clinical trial in 1963 for 6-MP treatment vs.&nbsp;placebo for Acute Leukemia in 42 children.</p>
 <ul>
 <li>
@@ -930,8 +865,7 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 <li><p>Followed until relapse or end of study.</p></li>
 <li><p>All of the placebo group relapsed, but some of the 6-MP group were censored (which means they were still in remission); indicated by <code>relapse</code> variable (<code>0</code> = censored, <code>1</code> = relapse).</p></li>
 <li><p>6-MP = 6-Mercaptopurine (Purinethol) is an anti-cancer (“antineoplastic” or “cytotoxic”) chemotherapy drug used currently for Acute lymphoblastic leukemia (ALL). It is classified as an antimetabolite.</p></li>
-</ul></section><section id="study-design" class="level2 smaller" data-number="9.2"><h2 class="smaller anchored" data-number="9.2" data-anchor-id="study-design">
-<span class="header-section-number">9.2</span> Study design</h2>
+</ul></section><section id="study-design" class="level3 smaller"><h3 class="smaller anchored" data-anchor-id="study-design">Study design</h3>
 <p>Clinical trial in 1963 for 6-MP treatment vs.&nbsp;placebo for Acute Leukemia in 42 children. Pairs of children matched by remission status at the time of treatment (1 = partial or 2 = complete) and randomized to 6-MP or placebo. Followed until relapse or end of study. All of the placebo group relapsed, but some of the 6-MP group were censored.</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-9_c04e1922946cf70a75119897c15757de">
 <details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">KMsurv</span><span class="op">)</span></span>
@@ -954,9 +888,8 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 # ℹ 11 more rows</code></pre>
 </div>
 </div>
-</section><section id="data-documentation-for-drug6mp" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="data-documentation-for-drug6mp">
-<span class="header-section-number">9.3</span> Data documentation for <code>drug6mp</code>
-</h2>
+</section><section id="data-documentation-for-drug6mp" class="level3"><h3 class="anchored">Data documentation for <code>drug6mp</code>
+</h3>
 <div class="cell" data-printr.help.sections="[&quot;description&quot;,&quot;format&quot;]" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-10_8eafba18de0101ca462d0ad675f0ff71">
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/printr/">printr</a></span><span class="op">)</span> <span class="co"># inserts help-file output into markdown output</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">KMsurv</span><span class="op">)</span></span>
@@ -970,7 +903,7 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 <td>drug6mp</td>
 <td style="text-align: right;">R Documentation</td>
 </tr></tbody></table>
-<h2 id="drug6mp" class="anchored">data from Section 1.2</h2>
+<h2 id="drug6mp" class="anchored" data-anchor-id="data-documentation-for-drug6mp">data from Section 1.2</h2>
 
 <h3 class="anchored">Description</h3>
 
@@ -1014,8 +947,7 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 </div>
 </div>
 </div>
-</section><section id="descriptive-statistics" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="descriptive-statistics">
-<span class="header-section-number">9.4</span> Descriptive Statistics</h2>
+</section><section id="descriptive-statistics" class="level3"><h3 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h3>
 <ul>
 <li>The average time in each group is not useful. Some of the 6-MP patients have not relapsed at the time recorded, while all of the placebo patients have relapsed.</li>
 <li>The median time is not really useful either because so many of the 6-MP patients have not relapsed (12/21).</li>
@@ -1024,8 +956,8 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 <li>For the placebo, that is just the reciprocal of the mean time = 1/8.667 = 0.115.</li>
 <li>For the 6-MP group this is 9/359 = 0.025</li>
 <li>The estimated average hazard in the placebo group is 4.6 times as large (if the hazard is constant over time).</li>
-</ul></section></section><section id="the-kaplan-meier-product-limit-estimator" class="level1" data-number="10"><h1 data-number="10">
-<span class="header-section-number">10</span> The Kaplan-Meier Product Limit Estimator</h1>
+</ul></section></section><section id="the-kaplan-meier-product-limit-estimator" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="the-kaplan-meier-product-limit-estimator">
+<span class="header-section-number">5.5</span> The Kaplan-Meier Product Limit Estimator</h2>
 <ul>
 <li><p>The estimated survival function for the placebo patients is easy to compute. For any time <span class="math inline">\(t\)</span> in months, <span class="math inline">\(S(t)\)</span> is the fraction of patients with times greater than <span class="math inline">\(t\)</span>.</p></li>
 <li><p>For the 6-MP patients, we cannot ignore the censored data because we know that the time to relapse is greater than the censoring time.</p></li>
@@ -1047,8 +979,7 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 \end{aligned}
 \]</span></p>
 <p>where <span class="math inline">\(\hat F(t)\)</span> is the usual empirical CDF estimate.</p>
-<section id="kaplan-meier-curve-for-drug6mp-data" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="kaplan-meier-curve-for-drug6mp-data">
-<span class="header-section-number">10.1</span> Kaplan-Meier curve for <code>drug6mp</code> data</h2>
+<section id="kaplan-meier-curve-for-drug6mp-data" class="level3"><h3 class="anchored" data-anchor-id="kaplan-meier-curve-for-drug6mp-data">Kaplan-Meier curve for <code>drug6mp</code> data</h3>
 <p>Here is the Kaplan-Meier estimated survival curve for the patients who received 6-MP in the <code>drug6mp</code> dataset (we will see code to produce figures like this one shortly):</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-11_2bd56a94baf93e606d89e263c8335051">
 <div class="cell-output-display">
@@ -1058,8 +989,7 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 </div>
 </div>
 </div>
-</section><section id="kaplan-meier-calculations" class="level2 smaller" data-number="10.2"><h2 class="smaller anchored" data-number="10.2" data-anchor-id="kaplan-meier-calculations">
-<span class="header-section-number">10.2</span> Kaplan-Meier calculations</h2>
+</section><section id="kaplan-meier-calculations" class="level3 smaller"><h3 class="smaller anchored" data-anchor-id="kaplan-meier-calculations">Kaplan-Meier calculations</h3>
 <p>Let’s compute these estimates and build the chart by hand:</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-12_e5274ab9fd235c8cfc88755cd98de6a4">
 <details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">KMsurv</span><span class="op">)</span></span>
@@ -1408,7 +1338,7 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 </table>
 </div>
 </div>
-<section id="summary" class="level3"><h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<section id="summary" class="level4"><h4 class="anchored" data-anchor-id="summary">Summary</h4>
 <p>For the 6-MP patients at time 6 months, there are 21 patients at risk. At <span class="math inline">\(t=6\)</span> there are 3 relapses and 1 censored observations.</p>
 <p>The Kaplan-Meier factor is <span class="math inline">\((21-3)/21 = 0.857\)</span>. The number at risk for the next time (<span class="math inline">\(t=7\)</span>) is <span class="math inline">\(21-3-1=17\)</span>.</p>
 <p>At time 7 months, there are 17 patients at risk. At <span class="math inline">\(t=7\)</span> there is 1 relapse and 0 censored observations. The Kaplan-Meier factor is <span class="math inline">\((17-1)/17 = 0.941\)</span>. The Kaplan Meier estimate is <span class="math inline">\(0.857\times0.941=0.807\)</span>. The number at risk for the next time (<span class="math inline">\(t=9\)</span>) is <span class="math inline">\(17-1=16\)</span>.</p>
@@ -1431,13 +1361,12 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 <p><img src="intro-to-survival-analysis_files/figure-html/estimated survival curve-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section></section></section><section id="using-the-survival-package-in-r" class="level1" data-number="11"><h1 data-number="11">
-<span class="header-section-number">11</span> Using the <code>survival</code> package in R</h1>
+</section></section></section><section id="using-the-survival-package-in-r" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="using-the-survival-package-in-r">
+<span class="header-section-number">5.6</span> Using the <code>survival</code> package in R</h2>
 <p>We don’t have to do these calculations by hand every time; the <code>survival</code> package and several others have functions available to automate many of these tasks (full list: <a href="https://cran.r-project.org/web/views/Survival.html" class="uri">https://cran.r-project.org/web/views/Survival.html</a>).</p>
-<section id="the-surv-function" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="the-surv-function">
-<span class="header-section-number">11.1</span> The <code>Surv</code> function</h2>
+<section id="the-surv-function" class="level3"><h3 class="anchored" data-anchor-id="the-surv-function">The <code>Surv</code> function</h3>
 <p>To use the <code>survival</code> package, the first step is telling R how to combine the exit time and exit reason (censoring versus event) columns. The <code><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv()</a></code> function accomplishes this task.</p>
-<section id="example-surv-with-drug6mp-data" class="level3"><h3 class="anchored" data-anchor-id="example-surv-with-drug6mp-data">Example: <code>Surv()</code> with <code>drug6mp</code> data</h3>
+<section id="example-surv-with-drug6mp-data" class="level4"><h4 class="anchored" data-anchor-id="example-surv-with-drug6mp-data">Example: <code>Surv()</code> with <code>drug6mp</code> data</h4>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-13_1b5bf13189f3571711545fff4e996e5c">
 <details open=""><summary>Code</summary><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(survival)</span>
 <span id="cb10-2"><a href="#cb10-2"></a>drug6mp.v3 <span class="ot">=</span> </span>
@@ -1469,8 +1398,7 @@ E(T)&amp;= \Gamma(1+1/\alpha)\cdot \lambda^{-1/\alpha}
 <ul>
 <li><p>observations where the event was observed are printed as the event time (for example, <code>surv2 = 10</code> on line 1)</p></li>
 <li><p>observations where the event was right-censored are printed as the censoring time with a plus sign (<code>+</code>; for example, <code>surv2 = 32+</code> on line 3).</p></li>
-</ul></section></section><section id="the-survfit-function" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="the-survfit-function">
-<span class="header-section-number">11.2</span> The <code>survfit</code> function</h2>
+</ul></section></section><section id="the-survfit-function" class="level3"><h3 class="anchored">The <code>survfit</code> function</h3>
 <p>Once we have constructed our <code>Surv</code> variable, we can calculate the Kaplan-Meier estimate of the survival curve using the <code><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit()</a></code> function.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1485,7 +1413,7 @@ Note
 <p>The documentation for <code><a href="https://rdrr.io/pkg/survival/man/survfit.html">?survfit</a></code> isn’t too helpful; the <code>survfit.formula</code> documentation is better.</p>
 </div>
 </div>
-<section id="example-survfit-with-drug6mp-data" class="level3"><h3 class="anchored">Example: <code>survfit()</code> with <code>drug6mp</code> data</h3>
+<section id="example-survfit-with-drug6mp-data" class="level4"><h4 class="anchored">Example: <code>survfit()</code> with <code>drug6mp</code> data</h4>
 <p>Here we use <code><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit()</a></code> to create a <code>survfit</code> object, which contains the Kaplan-Meier estimate:</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-15_b270c760fcdfaf15ec1182300e7a7f37">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">drug6mp.km_model</span> <span class="op">=</span> <span class="fu">survfit</span><span class="op">(</span></span>
@@ -1579,8 +1507,8 @@ Note
 <td>summary.survfit</td>
 <td style="text-align: right;">R Documentation</td>
 </tr></tbody></table>
-<section id="summary.survfit" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="summary.survfit">
-<span class="header-section-number">11.3</span> Summary of a Survival Curve</h2>
+<section id="summary.survfit" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="summary.survfit">
+<span class="header-section-number">5.7</span> Summary of a Survival Curve</h2>
 <section id="description" class="level3"><h3 class="anchored" data-anchor-id="description">Description</h3>
 <p>Returns a list containing the survival curve, confidence limits for the curve, and other information.</p>
 </section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
@@ -1625,8 +1553,7 @@ Note
 
 </div>
 </div>
-</section></section><section id="plotting-estimated-survival-functions" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="plotting-estimated-survival-functions">
-<span class="header-section-number">11.4</span> Plotting estimated survival functions</h2>
+</section></section><section id="plotting-estimated-survival-functions" class="level3"><h3 class="anchored" data-anchor-id="plotting-estimated-survival-functions">Plotting estimated survival functions</h3>
 <p>We can plot <code>survfit</code> objects with <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code>, or <code>ggsurvplot()</code>:</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-21_59d27fbc4cb9ca50d593913f7ff3b57b">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sinhrks/ggfortify">ggfortify</a></span><span class="op">)</span></span>
@@ -1644,7 +1571,7 @@ Note
 <span><span class="co"># ggsurvplot(drug6mp.km_model)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="quantiles-of-survival-curve" class="level3"><h3 class="anchored" data-anchor-id="quantiles-of-survival-curve">quantiles of survival curve</h3>
+<section id="quantiles-of-survival-curve" class="level4"><h4 class="anchored" data-anchor-id="quantiles-of-survival-curve">quantiles of survival curve</h4>
 <p>We can extract quantiles with <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>:</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-22_229e37173fb9145520a61dc86bd51fb5">
 <details><summary>Code</summary><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>drug6mp.km_model <span class="sc">|&gt;</span> </span>
@@ -1677,9 +1604,8 @@ Note
 </table>
 </div>
 </div>
-</section></section><section id="two-sample-tests" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="two-sample-tests">
-<span class="header-section-number">11.5</span> Two-sample tests</h2>
-<section id="the-survdiff-function" class="level3"><h3 class="anchored">The <code>survdiff</code> function</h3>
+</section></section><section id="two-sample-tests" class="level3"><h3 class="anchored">Two-sample tests</h3>
+<section id="the-survdiff-function" class="level4"><h4 class="anchored">The <code>survdiff</code> function</h4>
 <div class="cell" data-printr.help.sections="[&quot;description&quot;,&quot;usage&quot;]" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-23_c794e8ac7455dcc2a8b4eb2650dd9c36">
 <details><summary>Code</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">survdiff</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -1712,7 +1638,7 @@ the <code class="reqn">G^\rho</code> family of tests, or for a single curve agai
 </div>
 </div>
 </div>
-</section><section id="example-survdiff-with-drug6mp-data" class="level3"><h3 class="anchored" data-anchor-id="example-survdiff-with-drug6mp-data">Example: <code>survdiff()</code> with <code>drug6mp</code> data</h3>
+</section><section id="example-survdiff-with-drug6mp-data" class="level4"><h4 class="anchored" data-anchor-id="example-survdiff-with-drug6mp-data">Example: <code>survdiff()</code> with <code>drug6mp</code> data</h4>
 <p>Now we are going to compare the placebo and 6-MP data. We need to reshape the data to make it usable with the standard <code>survival</code> workflow:</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-24_7fa14ef88168567b3d7475f72bfd729d">
 <details><summary>Code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span>
@@ -1790,19 +1716,19 @@ treatment=placebo 21       21     13.5      4.17      10.7
 </div>
 </div>
 <p>Interestingly, accounting for pairing reduces the significant of the difference.</p>
-</section></section></section><section id="example-bone-marrow-transplant-data" class="level1" data-number="12"><h1 data-number="12">
-<span class="header-section-number">12</span> Example: Bone Marrow Transplant Data</h1>
+</section></section></section><section id="example-bone-marrow-transplant-data" class="level2" data-number="5.8"><h2 data-number="5.8" class="anchored" data-anchor-id="example-bone-marrow-transplant-data">
+<span class="header-section-number">5.8</span> Example: Bone Marrow Transplant Data</h2>
 <p>(Copelan et al., 1991)</p>
-<section id="treatment" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="treatment">Treatment</h4>
+<section id="treatment" class="level5 unnumbered"><h5 class="unnumbered anchored" data-anchor-id="treatment">Treatment</h5>
 <ul>
 <li>
 <strong>allogeneic</strong> (from a donor) <strong>bone marrow transplant therapy</strong>
 </li>
-</ul></section><section id="inclusion-criteria" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="inclusion-criteria">Inclusion criteria</h4>
+</ul></section><section id="inclusion-criteria" class="level5 unnumbered"><h5 class="unnumbered anchored" data-anchor-id="inclusion-criteria">Inclusion criteria</h5>
 <ul>
 <li><strong>acute myeloid leukemia (AML)</strong></li>
 <li><strong>acute lymphoblastic leukemia (ALL).</strong></li>
-</ul></section><section id="possible-intermediate-events" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="possible-intermediate-events">Possible intermediate events</h4>
+</ul></section><section id="possible-intermediate-events" class="level5 unnumbered"><h5 class="unnumbered anchored" data-anchor-id="possible-intermediate-events">Possible intermediate events</h5>
 <ul>
 <li>
 <strong>graft vs.&nbsp;host disease (GVHD)</strong>: an immunological rejection response to the transplant</li>
@@ -1810,14 +1736,14 @@ treatment=placebo 21       21     13.5      4.17      10.7
 <strong>platelet recovery</strong>: a return of platelet count to normal levels.</li>
 </ul>
 <p>One or the other, both in either order, or neither may occur.</p>
-</section><section id="end-point-events" class="level4"><h4 class="anchored" data-anchor-id="end-point-events">End point events</h4>
+</section><section id="end-point-events" class="level5"><h5 class="anchored" data-anchor-id="end-point-events">End point events</h5>
 <ul>
 <li>relapse of the disease</li>
 <li>death</li>
 </ul>
 <p>Any or all of these events may be censored.</p>
-</section><section id="kmsurvbmt-data-in-r" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="kmsurvbmt-data-in-r">
-<span class="header-section-number">12.1</span> <code>KMsurv::bmt</code> data in R</h2>
+</section><section id="kmsurvbmt-data-in-r" class="level3"><h3 class="anchored">
+<code>KMsurv::bmt</code> data in R</h3>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-29_35fdecbeb39a09c8f7d69edbec2c8630">
 <details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/printr/">printr</a></span><span class="op">)</span> <span class="co"># inserts help-file output into markdown output</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">KMsurv</span><span class="op">)</span></span>
@@ -1831,7 +1757,7 @@ treatment=placebo 21       21     13.5      4.17      10.7
 <td>bmt</td>
 <td style="text-align: right;">R Documentation</td>
 </tr></tbody></table>
-<h2 id="bmt" class="anchored">data from Section 1.3</h2>
+<h2 id="bmt" class="anchored" data-anchor-id="kmsurvbmt-data-in-r">data from Section 1.3</h2>
 
 <h3 class="anchored">Description</h3>
 
@@ -1973,18 +1899,16 @@ and truncated data</em>, Springer.
 </div>
 </div>
 </div>
-</section><section id="analysis-plan" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="analysis-plan">
-<span class="header-section-number">12.2</span> Analysis plan</h2>
+</section><section id="analysis-plan" class="level3"><h3 class="anchored" data-anchor-id="analysis-plan">Analysis plan</h3>
 <ul>
 <li>We concentrate for now on disease-free survival (<code>t2</code> and <code>d3</code>) for the three risk groups, ALL, AML Low Risk, and AML High Risk.</li>
 <li>We will construct the Kaplan-Meier survival curves, compare them, and test for differences.</li>
 <li>We will construct the cumulative hazard curves and compare them.</li>
 <li>We will estimate the hazard functions, interpret, and compare them.</li>
-</ul></section><section id="survival-function-estimate-and-variance" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="survival-function-estimate-and-variance">
-<span class="header-section-number">12.3</span> Survival Function Estimate and Variance</h2>
+</ul></section><section id="survival-function-estimate-and-variance" class="level3"><h3 class="anchored" data-anchor-id="survival-function-estimate-and-variance">Survival Function Estimate and Variance</h3>
 <p><span class="math display">\[\hat S(t) = \prod_{t_i &lt; t}\left[1-\frac{d_i}{Y_i}\right]\]</span> where <span class="math inline">\(Y_i\)</span> is the group at risk at time <span class="math inline">\(t_i\)</span>.</p>
 <p>The estimated variance of <span class="math inline">\(\hat S(t)\)</span> is (Greenwood’s formula) <span class="math display">\[\hat{\text{Var}}\left(\hat S (t)\right) = \hat S(t)^2\sum_{t_i &lt;t}\frac{d_i}{Y_i(Y_i-d_i)}\]</span> which we can use for confidence intervals for a survival function or a difference of survival functions.</p>
-<section id="kaplan-meier-survival-curves" class="level4"><h4 class="anchored" data-anchor-id="kaplan-meier-survival-curves">Kaplan-Meier survival curves</h4>
+<section id="kaplan-meier-survival-curves" class="level5"><h5 class="anchored" data-anchor-id="kaplan-meier-survival-curves">Kaplan-Meier survival curves</h5>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-30_266f7c1d7b22856cd488c4b4696b5038">
 <details><summary>code to preprocess and model bmt data</summary><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">KMsurv</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span>
@@ -2021,7 +1945,7 @@ and truncated data</em>, Springer.
 </div>
 </div>
 </div>
-</section><section id="understanding-greenwoods-formula-optional" class="level3"><h3 class="anchored" data-anchor-id="understanding-greenwoods-formula-optional">Understanding Greenwood’s formula (optional)</h3>
+</section><section id="understanding-greenwoods-formula-optional" class="level4"><h4 class="anchored" data-anchor-id="understanding-greenwoods-formula-optional">Understanding Greenwood’s formula (optional)</h4>
 <p>To see where Greenwood’s formula comes from, let <span class="math inline">\(x_i=Y_i-d_i\)</span>. We approximate the solution treating each time as independent, with <span class="math inline">\(Y_i\)</span> fixed and ignore randomness in times of failure and we treat <span class="math inline">\(x_i\)</span> as independent binomials <span class="math inline">\(\text{Bin}(Y_i,p_i)\)</span>. Letting <span class="math inline">\(S(t)\)</span> be the “true” survival function</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -2049,8 +1973,7 @@ S(t)&amp;=\prod_{t_i&lt;t}p_i
 &amp;\approx \hat S(t)^2\sum_{t_i&lt;t} \frac{d_i}{Y_i(Y_i-d_i)}
 \end{aligned}
 \]</span></p>
-</section></section><section id="test-for-differences-among-the-disease-groups" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="test-for-differences-among-the-disease-groups">
-<span class="header-section-number">12.4</span> Test for differences among the disease groups</h2>
+</section></section><section id="test-for-differences-among-the-disease-groups" class="level3"><h3 class="anchored" data-anchor-id="test-for-differences-among-the-disease-groups">Test for differences among the disease groups</h3>
 <p>Here we compute a chi-square test for assocation between disease group (<code>group</code>) and disease-free survival:</p>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-31_46e54b9aadef2b18cbf86dfe6da5b6c2">
 <details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survdiff.html">survdiff</a></span><span class="op">(</span><span class="va">surv</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">bmt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2066,8 +1989,7 @@ group=High Risk AML 45       34     21.2     7.756    10.529
  Chisq= 13.8  on 2 degrees of freedom, p= 0.001 </code></pre>
 </div>
 </div>
-</section><section id="cumulative-hazard" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="cumulative-hazard">
-<span class="header-section-number">12.5</span> Cumulative Hazard</h2>
+</section><section id="cumulative-hazard" class="level3"><h3 class="anchored" data-anchor-id="cumulative-hazard">Cumulative Hazard</h3>
 <p><span class="math display">\[
 \begin{aligned}
 h(t)
@@ -2091,7 +2013,7 @@ H(t)=-\text{log}\left\{S\right\}(t)
 \end{aligned}
 \]</span></p>
 <p>This is the <strong>Kaplan-Meier (product-limit) estimate of cumulative hazard</strong>.</p>
-<section id="example-cumulative-hazard-curves-for-bone-marrow-transplant-bmt-data" class="level3"><h3 class="anchored" data-anchor-id="example-cumulative-hazard-curves-for-bone-marrow-transplant-bmt-data">Example: Cumulative Hazard Curves for Bone-Marrow Transplant (<code>bmt</code>) data</h3>
+<section id="example-cumulative-hazard-curves-for-bone-marrow-transplant-bmt-data" class="level4"><h4 class="anchored" data-anchor-id="example-cumulative-hazard-curves-for-bone-marrow-transplant-bmt-data">Example: Cumulative Hazard Curves for Bone-Marrow Transplant (<code>bmt</code>) data</h4>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-32_aedbf885dbd20850aff6df938f7b56c2">
 <details><summary>Code</summary><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span></span>
 <span>  fun <span class="op">=</span> <span class="st">"cumhaz"</span>,</span>
@@ -2108,8 +2030,8 @@ H(t)=-\text{log}\left\{S\right\}(t)
 </div>
 </div>
 </div>
-</section></section></section><section id="nelson-aalen-estimates-of-cumulative-hazard-and-survival" class="level1" data-number="13"><h1 data-number="13">
-<span class="header-section-number">13</span> Nelson-Aalen Estimates of Cumulative Hazard and Survival</h1>
+</section></section></section><section id="nelson-aalen-estimates-of-cumulative-hazard-and-survival" class="level2" data-number="5.9"><h2 data-number="5.9" class="anchored" data-anchor-id="nelson-aalen-estimates-of-cumulative-hazard-and-survival">
+<span class="header-section-number">5.9</span> Nelson-Aalen Estimates of Cumulative Hazard and Survival</h2>
 <p>The point hazard at time <span class="math inline">\(t_i\)</span> can be estimated by <span class="math inline">\(d_i/Y_i\)</span>, which leads to the <strong>Nelson-Aalen estimator of the cumulative hazard</strong>:</p>
 <p><span class="math display">\[\hat H_{NA}(t) \stackrel{\text{def}}{=}\sum_{t_i &lt; t}\frac{d_i}{Y_i}\]</span></p>
 <p>The variance of this estimator is approximately: <span class="math display">\[
@@ -2136,8 +2058,7 @@ H(t)=-\text{log}\left\{S\right\}(t)
 \end{aligned}
 \]</span></p>
 <p>The product limit estimate and the Nelson-Aalen estimate often do not differ by much. The latter is considered more accurate in small samples and also directly estimates the cumulative hazard. The <code>"fleming-harrington"</code> method for <code><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit()</a></code> reduces to Nelson-Aalen when the data are unweighted. We can also estimate the cumulative hazard as the negative log of the KM survival function estimate.</p>
-<section id="application-to-bmt-dataset" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="application-to-bmt-dataset">
-<span class="header-section-number">13.1</span> Application to <code>bmt</code> dataset</h2>
+<section id="application-to-bmt-dataset" class="level3"><h3 class="anchored" data-anchor-id="application-to-bmt-dataset">Application to <code>bmt</code> dataset</h3>
 <div class="cell" data-hash="intro-to-survival-analysis_cache/html/unnamed-chunk-33_c0b922606ab5840fa4ae72e51eaf8382">
 <details><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">na_fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">group</span>,</span>
