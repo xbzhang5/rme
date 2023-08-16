@@ -74,7 +74,8 @@ oc_mi =
     "OC use", 13, 5000,
     "No OC use", 7, 10000
   ) |> 
-  mutate(`No MI` = Total - MI)
+  mutate(`No MI` = Total - MI) |> 
+  relocate(`No MI`, .after = MI)
 
 totals = 
   oc_mi |> 
