@@ -22,12 +22,12 @@ format:
 library(pander)
 ```
 
-Logistic regression is a method for estimating and predicting the risk of a **binary outcome** using one or more predictors. 
+Logistic regression is a method for estimating and predicting the probability of a **binary outcome** using one or more predictors. 
 
 :::{#def-binary}
 
 # binary variable
-A random variable which has only two possible values (such as diseased/healthy).
+A random variable which has only two possible values (such as diseased/healthy) in its range.
 :::
 
 :::{#def-cases}
@@ -66,7 +66,6 @@ Here's some fake study data:
 ```{r}
 #| message: false
 #| code-fold: true
-#| echo: false
 library(dplyr)
 oc_mi = 
   tribble(
@@ -195,6 +194,8 @@ $$
 In logistic regression, we will make use of a transformation (rescaling) of probability, called *odds*.
 
 :::{#def-odds}
+
+### Odds
 The **odds** of an outcome, denoted $\omega$ ("omega"), is the probability that the outcome occurs, divided by the probability that it doesn't occur. 
 
 That is, if the probability of an outcome is $\pi$, then the corresponding odds of that outcome is 
@@ -335,13 +336,9 @@ converts odds into their corresponding probabilities (@fig-inv-odds).
 The inverse-odds function takes an odds as input and produces a probability as output. Its domain of inputs is $[0,\infty)$ and its range of outputs is $[0,1]$.
 
 ```{r}
-odds_inv = function(omega) omega / (1 + omega)
-
-```
-
-```{r}
 #| label: fig-inv-odds
 #| fig-cap: The inverse odds function, $\pi(\omega)$
+odds_inv = function(omega) omega / (1 + omega)
 ggplot() +
   geom_function(fun = odds_inv, aes(col = "inverse-odds")) +
   xlab("Odds") +
@@ -390,6 +387,7 @@ $$\theta(\omega_1, \omega_2) = \frac{\omega_1}{\omega_2}$$
 :::
 
 :::{#exm-OR}
+### Calculating odds ratios
 In @exm-oc-mi, the odds ratio for OC users versus OC-non-users is:
 
 $$
