@@ -170,7 +170,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro-to-GLMs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview of Statistical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -273,6 +273,70 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 
 <p>This section is primarily adapted starting from the textbook “An Introduction to Generalized Linear Models” (4th edition, 2018) by Annette J. Dobson and Adrian G. Barnett:</p>
 <p><a href="https://www.routledge.com/An-Introduction-to-Generalized-Linear-Models/Dobson-Barnett/p/book/9781138741515" class="uri">https://www.routledge.com/An-Introduction-to-Generalized-Linear-Models/Dobson-Barnett/p/book/9781138741515</a></p>
+<p>The type of predictive model one uses depends on several issues; one is the type of response.</p>
+<ul>
+<li><p>Measured values such as quantity of a protein, age, weight usually can be handled in an ordinary linear regression model, possibly after a log transformation.</p></li>
+<li><p>Patient survival, which may be censored, calls for a different method (survival analysis, Cox regression).</p></li>
+<li><p>If the response is binary, then can we use logistic regression models</p></li>
+<li><p>If the response is a count, we can use Poisson regression</p></li>
+<li><p>If the count has a higher variance than is consistent with the Poisson, we can use a negative binomial or over-dispersed Poisson</p></li>
+<li><p>Other forms of response can generate other types of generalized linear models</p></li>
+</ul>
+<p>We need a linear predictor of the same form as in linear regression βx. In theory, such a linear predictor can generate any type of number as a prediction, positive, negative, or zero</p>
+<p>We choose a suitable distribution for the type of data we are predicting (normal for any number, gamma for positive numbers, binomial for binary responses, Poisson for counts)</p>
+<p>We create a link function which maps the mean of the distribution onto the set of all possible linear prediction results, which is the whole real line (-∞, ∞). The inverse of the link function takes the linear predictor to the actual prediction.</p>
+<ul>
+<li><p>Ordinary linear regression has identity link (no transformation by the link function) and uses the normal distribution</p></li>
+<li><p>If one is predicting an inherently positive quantity, one may want to use the log link since ex is always positive.</p></li>
+<li><p>An alternative to using a generalized linear model with a log link, is to transform the data using the log. This is a device that works well with measurement data and may be usable in other cases, but it cannot be used for 0/1 data or for count data that may be 0.</p></li>
+</ul>
+<table class="table">
+<caption>R glm() Families</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Family</th>
+<th>Links</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gaussian</td>
+<td><strong>identity</strong>, log, inverse</td>
+</tr>
+<tr class="even">
+<td>binomial</td>
+<td><strong>logit</strong>, probit, cauchit, log, cloglog</td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td><strong>inverse</strong>, identity, log</td>
+</tr>
+<tr class="even">
+<td>inverse.gaussian</td>
+<td><strong>1/mu^2</strong>, inverse, identity, log</td>
+</tr>
+<tr class="odd">
+<td>Poisson</td>
+<td><strong>log</strong>, identity, sqrt</td>
+</tr>
+<tr class="even">
+<td>quasi</td>
+<td><strong>identity</strong>, logit, probit, cloglog, inverse, log, 1/mu^2 and sqrt</td>
+</tr>
+<tr class="odd">
+<td>quasibinomial</td>
+<td><strong>logit</strong>, probit, identity, cloglog, inverse, log, 1/mu^2 and sqrt</td>
+</tr>
+<tr class="even">
+<td>quasipoisson</td>
+<td><strong>log</strong>, identity, logit, probit, cloglog, inverse, 1/mu^2 and sqrt</td>
+</tr>
+</tbody>
+</table>
 
 
 <!-- -->
@@ -681,7 +745,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./intro-to-GLMs.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview of Statistical Models</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -697,7 +761,46 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>This section is primarily adapted starting from the textbook "An Introduction to Generalized Linear Models" (4th edition, 2018)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>by Annette J. Dobson and Adrian G. Barnett:</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ot">&lt;https://www.routledge.com/An-Introduction-to-Generalized-Linear-Models/Dobson-Barnett/p/book/9781138741515&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ot">&lt;https://www.routledge.com/An-Introduction-to-Generalized-Linear-Models/Dobson-Barnett/p/book/9781138741515&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>The type of predictive model one uses depends on several issues; one is the type of response.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Measured values such as quantity of a protein, age, weight usually can be handled in an ordinary linear regression model, possibly after a log transformation.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Patient survival, which may be censored, calls for a different method (survival analysis, Cox regression).</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>If the response is binary, then can we use logistic regression models</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>If the response is a count, we can use Poisson regression</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>If the count has a higher variance than is consistent with the Poisson, we can use a negative binomial or over-dispersed Poisson</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Other forms of response can generate other types of generalized linear models</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>We need a linear predictor of the same form as in linear regression βx. In theory, such a linear predictor can generate any type of number as a prediction, positive, negative, or zero</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>We choose a suitable distribution for the type of data we are predicting (normal for any number, gamma for positive numbers, binomial for binary responses, Poisson for counts)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>We create a link function which maps the mean of the distribution onto the set of all possible linear prediction results, which is the whole real line (-∞, ∞). The inverse of the link function takes the linear predictor to the actual prediction.</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Ordinary linear regression has identity link (no transformation by the link function) and uses the normal distribution</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>If one is predicting an inherently positive quantity, one may want to use the log link since ex is always positive.</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>An alternative to using a generalized linear model with a log link, is to transform the data using the log. This is a device that works well with measurement data and may be usable in other cases, but it cannot be used for 0/1 data or for count data that may be 0.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Family | Links</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>------ | ------ </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>gaussian | **identity**, log, inverse</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>binomial | **logit**, probit, cauchit, log, cloglog</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>gamma | **inverse**, identity, log</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>inverse.gaussian | **1/mu^2**, inverse, identity, log</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>Poisson | **log**, identity, sqrt</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>quasi | **identity**, logit, probit, cloglog, inverse, log, 1/mu^2 and sqrt</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>quasibinomial | **logit**, probit, identity, cloglog, inverse, log, 1/mu^2 and sqrt</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>quasipoisson | **log**, identity, logit, probit, cloglog, inverse, 1/mu^2 and sqrt</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>: R glm() Families</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
