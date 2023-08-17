@@ -563,13 +563,13 @@ Calculate the odds ratio of MI with respect to OC use, assuming that @tbl-oc-mi 
 
 ::::{.solution}
 
-O1 = P(OC|MI)/(1 – P(OC|MI)
+* $\omega(OC|MI) = P(OC|MI)/(1 – P(OC|MI) = \frac{13}{7} = `r 13/7`$
 
-O2 = P(OC|no MI)/(1 – P(OC|no MI)
+* $\omega(OC|\neg MI) = P(OC|\neg MI)/(1 – P(OC|\neg MI) = \frac{4987}{9993} = `r 4987/9993`$
 
-OR = O1/O2
+* $\theta(OC,MI) = \frac{\omega(OC|MI)}{\omega(OC|\neg MI)} = \frac{13×9993}{7×4987} = `r (13*9993)/(7*4987)`$
 
-OR = (13×9993)/(7×4987) = 3.72
+This is the same estimate we calculated in @exm-OR.
 
 ::::
 
