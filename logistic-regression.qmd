@@ -558,7 +558,7 @@ The disease odds ratio is the odds for the disease in the exposed group divided 
 
 But we can validly compute and use the exposure odds ratio, which is the odds for exposure in the disease group divided by the odds for exposure in the non-diseased group (because exposure can be treated as random). And these two odds ratios are mathematically equivalent, as we saw in @sec-OR-props.
 
-:::{# exr-or-rev}
+:::{#exr-or-rev}
 Calculate the odds ratio of MI with respect to OC use, assuming that @tbl-oc-mi comes from a case-control study. Confirm that the result is the same as in @exm-OR.
 
 ::::{.solution}
@@ -566,7 +566,9 @@ O1 = P(OC|MI)/(1 – P(OC|MI)
 O2 = P(OC|no MI)/(1 – P(OC|no MI)
 OR = O1/O2
 OR = (13×9993)/(7×4987) = 3.72
+
 ::::
+
 :::
 
 ### Cross-Sectional Studies
