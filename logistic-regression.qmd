@@ -563,10 +563,13 @@ Calculate the odds ratio of MI with respect to OC use, assuming that @tbl-oc-mi 
 
 ::::{.solution}
 
-* O1 = P(OC|MI)/(1 – P(OC|MI)
-* O2 = P(OC|no MI)/(1 – P(OC|no MI)
-* OR = O1/O2
-* OR = (13×9993)/(7×4987) = 3.72
+O1 = P(OC|MI)/(1 – P(OC|MI)
+
+O2 = P(OC|no MI)/(1 – P(OC|no MI)
+
+OR = O1/O2
+
+OR = (13×9993)/(7×4987) = 3.72
 
 ::::
 
