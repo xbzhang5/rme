@@ -42,7 +42,9 @@ format:
   html:
     shift-heading-level-by: 1
     theme:
-       light: cosmo
+       light:
+         - cosmo
+         - custom.scss
        dark: darkly
     code-tools: true
     code-fold: show

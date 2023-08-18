@@ -119,7 +119,7 @@ We will first review one-predictor analyses, with a special focus on risk ratios
 * Research question: does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; a.k.a. heart attack)?
 
 :::{.note}
-This was a real issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
+This was an issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
 :::
 
 @tbl-oc-mi contains simulated data for an imaginary follow-up (a.k.a. *prospective*) study in which two groups are identified, one using OCs and another not using OCs, and both groups are tracked for three years to determine how many in each groups have MIs.
@@ -567,7 +567,7 @@ Calculate the odds ratio of MI with respect to OC use, assuming that @tbl-oc-mi 
 
 * $\omega(OC|\neg MI) = P(OC|\neg MI)/(1 – P(OC|\neg MI) = \frac{4987}{9993} = `r 4987/9993`$
 
-* $\theta(OC,MI) = \frac{\omega(OC|MI)}{\omega(OC|\neg MI)} = \frac{13×9993}{7×4987} = `r (13*9993)/(7*4987)`$
+* $\theta(OC,MI) = \frac{\omega(OC|MI)}{\omega(OC|\neg MI)} = \frac{13/7}{4987/9993} = `r (13/7)/(4987/9993)`$
 
 This is the same estimate we calculated in @exm-OR.
 
