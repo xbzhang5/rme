@@ -170,10 +170,23 @@ $$\hat{p}(MI|\neg OC) = \frac{7}{10000} = `r p_MI_nOC`$$
 
 ::::
 
-:::{#def-cases}
-### cases and controls
-In medical studies, participants who experience a bad outcome are sometimes called **cases**, while participants who experience a good outcome are sometimes called **controls**. However, "controls" can also used to refer to participants who don't receive the *exposure* of interest (for example, participants who receive a placebo or a standard-of-care treatment rather than an experimental treatment).
+::::{.callout-note}
+## Two meanings of "controls"
+
+Depending on context, "controls" can mean either individuals who don't experience an *exposure* of interest, or individuals who don't experience an *outcome* of interest.
+
+:::{#def-cases-retrospective}
+### cases and controls in retrospective studies
+In *retrospective studies*, participants who experience the outcome of interest are called **cases**, while participants who don't experience that outcome are called **controls**. 
 :::
+
+:::{#def-cases-prospective}
+### treatment groups and control groups in prospective studies
+In *prospective studies*, the group of participants who experience the treatment or exposure of interest is called the **treatment group**, while the participants who receive the baseline or comparison treatment  (for example, clinical trial participants who receive a placebo or a standard-of-care treatment rather than an experimental treatment) are called **controls**.
+
+:::
+
+::::
 
 ## Comparing probabilities
 
