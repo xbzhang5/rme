@@ -40,9 +40,7 @@ editor:
     wrap: 72
 ---
 
-::: hidden
-\def\eqdef{\stackrel{\text{def}}{=}}
-:::
+{{< include macros.qmd >}}
 
 ## Acknowledgements {.unnumbered}
 
@@ -628,9 +626,9 @@ p(Y=0) &= 1-\pi\\
 p(Y=y) &= \pi^y (1-\pi)^{1-y}\\
 \mathbf y  &= (y_1, ..., y_n)\\
 \mathcal L(\pi;\mathbf y) &= \pi^{\sum y_i} (1-\pi)^{n - \sum y_i}\\
-\ell(\pi, \mathbf y) &= \left({\sum y_i}\right) \log \pi + \left(n - \sum y_i\right) \log (1-\pi)\\
-&= \left({\sum y_i}\right) \left(\log \pi - \log (1-\pi)\right) + n \cdot \log (1-\pi)\\
-&= \left({\sum y_i}\right) \log \left( \frac{\pi}{ 1-\pi}\right) + n \cdot \log (1-\pi)
+\ell(\pi, \mathbf y) &= \left({\sum y_i}\right) \log{\pi} + \left(n - \sum y_i\right) \log{1-\pi}\\
+&= \left({\sum y_i}\right) \left(\log{\pi} - \log{1-\pi}\right) + n \cdot \log{1-\pi}\\
+&= \left({\sum y_i}\right) \log{\frac{\pi}{ 1-\pi}} + n \cdot \log{1-\pi}
 \end{aligned}
 $$
 
@@ -646,7 +644,7 @@ p(Y_i=y) &= (\pi_i)^y (1-\pi_i)^{1-y}\\
 (\pi_i)^{y_i} (1-\pi_i)^{1 - y_i}\\
 \ell(\pi, \mathbf y) &= 
 \sum_{i=1}^n 
-y_i \log \pi_i + (1 - y_i) \log (1-\pi_i)
+y_i \log{\pi_i} + (1 - y_i) \log{1-\pi_i}
 \end{aligned}
 $$
 
@@ -676,8 +674,8 @@ The **expit** function (@fig-expit-plot), also known as the **inverse-logit** or
 $$
 \begin{aligned}
 \text{expit}(\eta)
-&\eqdef \frac{\exp(\eta)}{1+\exp(\eta)}\\
-&= (1 + \exp\{-\eta\})^{-1}
+&\eqdef \frac{\exp{\eta}}{1+\exp{\eta}}\\
+&= (1 + \exp{-\eta})^{-1}
 \end{aligned}
 $$
 
@@ -707,7 +705,7 @@ print(expit_plot)
 
 The inverse of the `expit` function is the `logit` function:
 
-$$g(p) = f^{-1}(p) = \text{logit}(p) = \log \left\{\frac{p}{1-p}\right\}$$
+$$g(p) = f^{-1}(p) = \text{logit}(p) = \log{\frac{p}{1-p}}$$
 
 :::
 
@@ -742,10 +740,10 @@ $$
 }
 \left[\omega \eqdef \text{odds}(Y=1)\right]
 \underset{
-\xleftarrow[\exp\{\eta\}]{}
+\xleftarrow[\exp{\eta}]{}
 }
 {
-\xrightarrow{\log\{\omega\}}
+\xrightarrow{\log{\omega}}
 }
 }^{\text{logit}(\pi)}
 }_{\text{expit}(\eta)}
@@ -767,10 +765,10 @@ $$
 }
 \underbrace{\omega}_{\text{odds}(Y=1)}
 \underset{
-\xleftarrow[\exp\{\eta\}]{}
+\xleftarrow[\exp{\eta}]{}
 }
 {
-\xrightarrow{\log\{\omega\}}
+\xrightarrow{\log{\omega}}
 }
 }_{\text{expit}(\eta)}
 }^{\text{logit}(\pi)}
@@ -2035,7 +2033,7 @@ anthers_glm_log |> parameters() |> print_md()
 
 ```
 
-Now $\exp(\beta)$ gives us risk ratios instead of odds ratios:
+Now $\exp{\beta}$ gives us risk ratios instead of odds ratios:
 
 ```{r}
 anthers_glm_log |> parameters(exponentiate = TRUE) |> print_md()

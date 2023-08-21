@@ -3,6 +3,7 @@ project:
 
 book:
   title: "Regression Models for Epidemiology"
+  downloads: [pdf]
   author:
     - name: "Ezra Morrison"
       url: https://demorrison.ucdavis.edu/
@@ -34,6 +35,9 @@ book:
        - coxph-model-building.qmd
        - parametric-survival-models.qmd
     - references.qmd
+  appendices:
+    - intro-MLEs.qmd
+
   page-navigation: true
 
 bibliography: references.bib
@@ -55,8 +59,21 @@ format:
     number-depth: 3
     code-summary: "Show R code"
 
-  # pdf:
-  #   documentclass: scrreprt
+  pdf:
+    toc: true
+    toc-title: Contents
+    shift-heading-level-by: 1
+    toc-depth: 2
+    number-sections: true
+    number-depth: 3
+    colorlinks: true
+    include-in-header:
+      text: |
+        \usepackage{makeidx}
+        \makeindex
+    include-after-body:
+      text: |
+        \printindex
 
 comments:
   hypothesis:

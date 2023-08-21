@@ -46,22 +46,7 @@ editor:
     wrap: 72
 ---
 
-::: hidden
-
-\def\cd{\cdot}
-\def\eqdef{\stackrel{\text{def}}{=}}
-\def\se{\text{SE}}
-\def\hse{\hat{\se}}
-\def\hb{\hat\beta}
-\def\za{z_{1 - \frac{\alpha}{2}}}
-\def\cirad{\za \cd \hse(\hb)}
-\def\ci{\hb {\color{red}\pm} \cirad}
-\newcommand{\var}[1]{\text{Var}\left(#1\right)}
-\newcommand{\Var}[1]{\text{Var}\left(#1\right)}
-\newcommand{\varh}[1]{\hat{\text{Var}}\left(#1\right)}
-\newcommand{\vc}[1]{\boldsymbol{#1}}
-
-:::
+{{< include macros.qmd >}}
 
 ::: {.content-hidden when-format="revealjs"}
 ## Configuring R {.unnumbered}
@@ -121,19 +106,19 @@ The generalization is that the hazard function is
 $$
 \begin{aligned}
 h(t|x)&= h_0(t)\theta(x)\\
-\theta(x) &= \exp\{\eta(x)\}\\
+\theta(x) &= \exp{\eta(x)}\\
 \eta(x) &= x'\beta\\
 &\eqdef \beta_1x_1+\cdots+\beta_px_p
 \end{aligned}
 $$
 
-The relationship between $h(t|x)$ and $\eta(x)$ has a log link (that is, $\log\{h(t|x)\} = \log\{h_0(t)\} + \eta(x)$), as in a generalized linear model.
+The relationship between $h(t|x)$ and $\eta(x)$ has a log link (that is, $\log{h(t|x)} = \log{h_0(t)} + \eta(x)$), as in a generalized linear model.
 
 This model is **semi-parametric**, because the linear predictor depends on estimated
 parameters but the base hazard function is unspecified. 
 There is no constant term in $\eta(x)$, because it is absorbed in the base hazard. 
 
-Alternatively, we could define $\beta_0(t) = \log\{h_0(t)\}$, and then $\eta(x,t) = \beta_0(t) + \beta_1x_1+\cdots+\beta_px_p$.
+Alternatively, we could define $\beta_0(t) = \log{h_0(t)}$, and then $\eta(x,t) = \beta_0(t) + \beta_1x_1+\cdots+\beta_px_p$.
 
 For two different individuals with covariate patterns $\boldsymbol x_1$ and $\boldsymbol x_2$, the ratio of the hazard functions (a.k.a. **hazard ratio**, a.k.a. **relative hazard**) is:
 
@@ -173,10 +158,10 @@ $$
 \begin{aligned}
 \frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}
 &=\frac{\theta(\boldsymbol x_1)}{\theta(\boldsymbol x_2)}\\
-&=\frac{\exp\{\eta(\boldsymbol x_1)\}}{\exp\{\eta(\boldsymbol x_2)\}}\\
-&=\exp\{\eta(\boldsymbol x_1)-\eta(\boldsymbol x_2)\}\\
-&=\exp\{\boldsymbol x_1'\beta-\boldsymbol x_2'\beta\}\\
-&=\exp\{(\boldsymbol x_1 - \boldsymbol x_2)'\beta\}\\
+&=\frac{\exp{\eta(\boldsymbol x_1)}}{\exp{\eta(\boldsymbol x_2)}}\\
+&=\exp{\eta(\boldsymbol x_1)-\eta(\boldsymbol x_2)}\\
+&=\exp{\boldsymbol x_1'\beta-\boldsymbol x_2'\beta}\\
+&=\exp{(\boldsymbol x_1 - \boldsymbol x_2)'\beta}\\
 \end{aligned}
 $$ 
 
@@ -184,7 +169,7 @@ Hence on the log scale, we have:
 
 $$
 \begin{aligned}
-\log\left\{\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}\right\}
+\log{\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}}
 &=\eta(\boldsymbol x_1)-\eta(\boldsymbol x_2)\\
 &= \boldsymbol x_1'\beta-\boldsymbol x_2'\beta\\
 &= (\boldsymbol x_1 - \boldsymbol x_2)'\beta
@@ -195,20 +180,20 @@ If only one covariate $x_j$ is changing, then:
 
 $$
 \begin{aligned}
-\log\left\{\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}\right\} 
+\log{\frac{h(t|\boldsymbol x_1)}{h(t|\boldsymbol x_2)}} 
 &=  (x_{1j} - x_{2j}) \cdot \beta_j\\
 &\propto (x_{1j} - x_{2j})
 \end{aligned}
 $$
 
-That is, under Cox's model $h(t|\boldsymbol x) = h_0(t)\exp\{\boldsymbol x'\beta\}$, the log of the hazard ratio is proportional to the difference in $x_j$, with the proportionality coefficient equal to $\beta_j$.
+That is, under Cox's model $h(t|\boldsymbol x) = h_0(t)\exp{\boldsymbol x'\beta}$, the log of the hazard ratio is proportional to the difference in $x_j$, with the proportionality coefficient equal to $\beta_j$.
 
 Further,
 
 $$
 \begin{aligned}
-\log\left\{h(t|\boldsymbol x)\right\}
-&=\log\left\{h_0(t)\right\}  + x'\beta
+\log{h(t|\boldsymbol x)}
+&=\log{h_0(t)}  + x'\beta
 \end{aligned}
 $$
 
@@ -241,9 +226,9 @@ where $H_0(t) \eqdef H(t|0) = \int_{u=0}^t h_0(u)du$.
 $$
 \begin{aligned}
 S(t|x)
-&= \exp\{-H(t|x)\}\\
-&= \exp\{-\theta(x)\cdot H_0(t)\}\\
-&= \left(\exp\{- H_0(t)\}\right)^{\theta(x)}\\
+&= \exp{-H(t|x)}\\
+&= \exp{-\theta(x)\cdot H_0(t)}\\
+&= \left(\exp{- H_0(t)}\right)^{\theta(x)}\\
 &= \left(S_0(t)\right)^{\theta(x)}\\
 \end{aligned}
 $$
@@ -538,7 +523,7 @@ subjects with events at that time, and let $s_i$ be a covariate vector
 for an artificial subject obtained by adding up the covariate values for
 the subjects with an event at time $t_i$. Let
 $$\bar\eta_i = \beta_1s_{i1}+\cdots+\beta_ps_{ip}$$ and
-$\bar\theta_i = \exp(\bar\eta_i)$.
+$\bar\theta_i = \exp{\bar\eta_i}$.
 
 Let $s_i$ be a covariate vector for an artificial subject obtained by
 adding up the covariate values for the subjects with an event at time
@@ -548,7 +533,7 @@ $$
 \begin{aligned}
 \bar\eta_i &=\sum_{j \in D_i}\beta_1x_{j1}+\cdots+\beta_px_{jp}\\
 &= \beta_1s_{i1}+\cdots+\beta_ps_{ip}\\
-\bar\theta_i &= \exp(\bar\eta_i)\\
+\bar\theta_i &= \exp{\bar\eta_i}\\
 &= \prod_{j \in D_i}\theta_i
 \end{aligned}
 $$

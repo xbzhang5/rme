@@ -28,10 +28,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-::: hidden
-$$\def\eqdef{\stackrel{\text{def}}{=}}$$
-:::
-
+{{< include macros.qmd >}}
 
 :::{.callout-note}
 This content is adapted from Dobson & Barnett, An Introduction to Generalized Linear Models, 4th edition, Chapters 2-6\]
@@ -418,7 +415,7 @@ Previously, we learned how to fit outcome-only models of the form $p(X=x|\theta)
 
 $$\mathcal L(\mathbf x|\theta) = p(X_1 = x_1, …,X_n =x_n|\theta) = \prod_{i=1}^n p(X=x_i|\theta)$$
 
-$$\ell(x|\theta) = \log \mathcal L(x|\theta)$$
+$$\ell(x|\theta) = \log{\mathcal L(x|\theta)}$$
 
 $$\hat \theta_{ML} = \arg \max_\theta \ell(x|\theta)$$
 
@@ -441,7 +438,9 @@ where $z_\beta$ the $\beta$ quantile of the standard Gaussian distribution.
 Let's use maximum likelihood again:
 
 $$
-\mathcal L(\mathbf y|\mathbf x,\beta, \sigma^2) = \prod_{i=1}^n (2\pi\sigma^2)^{-1/2} \exp\left\{-\frac{1}{2\sigma^2}(y_i - x_i'\beta)^2\right\}
+\mathcal L(\mathbf y|\mathbf x,\beta, \sigma^2) = 
+\prod_{i=1}^n (2\pi\sigma^2)^{-1/2} 
+\exp{-\frac{1}{2\sigma^2}(y_i - x_i'\beta)^2}
 $$
 
 $$

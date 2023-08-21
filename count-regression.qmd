@@ -39,16 +39,7 @@ editor:
     wrap: 72
 ---
 
-::: hidden
-\def\cd{\cdot}
-\def\eqdef{\stackrel{\text{def}}{=}}
-\def\se{\text{SE}}
-\def\hse{\hat{\se}}
-\def\hb{\hat\beta}
-\def\za{z_{1 - \frac{\alpha}{2}}}
-\def\cirad{\za \cd \hse(\hb)}
-\def\ci{\hb {\color{red}\pm} \cirad}
-:::
+{{< include macros.qmd >}}
 
 ## Acknowledgements{.unnumbered}
 
@@ -126,7 +117,7 @@ The exposure magnitude, $T$, is *similar* to a covariate in linear or logistic r
 
 ## Adding covariates
 
-With covariates, $\lambda$ becomes a function of the covariates $\tilde X = (X_1, \dots,X_n)$, with a $\log()$ link function (and thus an $\exp()$ inverse-link). That is:
+With covariates, $\lambda$ becomes a function of the covariates $\tilde X = (X_1, \dots,X_n)$, with a $\log{}$ link function (and thus an $\exp{}$ inverse-link). That is:
 
 $$
 \begin{aligned}
@@ -135,7 +126,7 @@ $$
 \mu(\tilde x,t) 
 &= \lambda(\tilde x)\cd t\\
 \lambda(\tilde x) 
-&= \exp(\eta(\tilde x))\\
+&= \exp{\eta(\tilde x)}\\
 \eta(\tilde x) 
 &= \tilde x'\tilde \beta = \beta_0 + \beta_1 x_1 + \dots + \beta_p x_p
 \end{aligned}
@@ -144,21 +135,21 @@ $$
 Therefore,
 $$
 \begin{aligned}
-\log \{\mathbb E[Y | \tilde X = \tilde x,T=t] \}
-&= \log \{\mu(\tilde x)\}\\
-&=\log  \{\lambda(\tilde x) \cd t \}\\
-&=\log\{\lambda(\tilde x)\} + \log\{ t \}\\
-&=\log\{\exp(\eta(\tilde x))\} + \log\{ t \}\\
-&=\eta(\tilde x) + \log\{t\}\\
-&=\tilde x'\tilde\beta + \log\{t\}\\
-&=(\beta_0 +\beta_1 x_1+\dots + \beta_p x_p) + \log\{t\}\\
+\log{\{\mathbb E[Y | \tilde X = \tilde x,T=t] \}}
+&= \log{\{\mu(\tilde x)\}}\\
+&=\log{\{\lambda(\tilde x) \cd t \}}\\
+&=\log{\lambda(\tilde x)} + \log{t}\\
+&=\log{\exp{\eta(\tilde x)}} + \log{t}\\
+&=\eta(\tilde x) + \log{t}\\
+&=\tilde x'\tilde\beta + \log{t}\\
+&=(\beta_0 +\beta_1 x_1+\dots + \beta_p x_p) + \log{t}\\
 \end{aligned}
 $$
 
-In contrast with the $X$s, $T$ enters this expression with a $\log$ transformation and without a corresponding $\beta$ coefficient. 
+In contrast with the $X$s, $T$ enters this expression with a $\log{}$ transformation and without a corresponding $\beta$ coefficient. 
 
 :::{.callout-note}
-Terms that enter the linear component of a model without a coefficient, such as $\log(t)$ here, are called **offsets**.
+Terms that enter the linear component of a model without a coefficient, such as $\log{t}$ here, are called **offsets**.
 :::
 
 ## Rate ratios {.smaller}
@@ -167,10 +158,10 @@ Differences on the log-rate scale become ratios on the rate scale.
 
 :::{.callout-tip}
 
-$$\exp\{a-b\} = \frac{\exp\{a\}}{\exp\{b\}}$$
+$$\exp{a-b} = \frac{\exp{a}}{\exp{b}}$$
 :::
 
-Therefore, according to this model, **differences of $\delta$ in covariate $x_j$ correspond to rate ratios of $\exp\{\beta_j\cd \delta\}$**.
+Therefore, according to this model, **differences of $\delta$ in covariate $x_j$ correspond to rate ratios of $\exp{\beta_j \cd \delta}$**.
 
 That is, letting $\tilde X_{-j}$ denote vector $\tilde X$ with element $j$ removed: 
 
@@ -178,16 +169,16 @@ $$
 \begin{aligned}
 &{
 \left\{
-    \log\{\mathbb E[Y |{\color{red}{X_j = a}}, \tilde X_{-j}=\tilde x_{-j},T=t]\}
+    \log{\mathbb E[Y |{\color{red}{X_j = a}}, \tilde X_{-j}=\tilde x_{-j},T=t]}
     \atop 
-    {-\log\{\mathbb E[Y |{\color{red}{X_j = b}}, \tilde X_{-j}=\tilde x_{-j},T=t]\}}
+    {-\log{\mathbb E[Y |{\color{red}{X_j = b}}, \tilde X_{-j}=\tilde x_{-j},T=t]}}
     \right\}
 }\\
 &= 
 {\left\{
-\log t + \beta_0 + \beta_1 x_1 + ... + {\color{red}{\beta_j (a)}} + ...+\beta_p x_p 
+\log{t} + \beta_0 + \beta_1 x_1 + ... + {\color{red}{\beta_j (a)}} + ...+\beta_p x_p 
 \atop 
-{-\log t + \beta_0 + \beta_1 x_1 + ... + {\color{red}{\beta_j (b)}} + ...+\beta_p x_p}
+{-\log{t} + \beta_0 + \beta_1 x_1 + ... + {\color{red}{\beta_j (b)}} + ...+\beta_p x_p}
 \right\}}\\
 &= \color{red}{\beta_j(a-b)}
 \end{aligned}
@@ -204,7 +195,7 @@ $$
 \mathbb E[Y |{\color{red}{X_j = b}}, \tilde X_{-j}=\tilde x_{-j},T=t]
 }
 = 
-\exp\{{\color{red}{\beta_j(a-b)}}\}
+\exp{{\color{red}{\beta_j(a-b)}}}
 \end{aligned}
 $$
 
@@ -221,7 +212,7 @@ $$
 Rate ratios: exponentiate CI endpoints
 
 $$
-\exp\{\beta\} \in \left[\exp\left\{\ci\right\} \right]
+\exp{\beta} \in \left[\exp{\ci} \right]
 $$
 
 ## Hypothesis tests for regression coefficients
@@ -244,8 +235,8 @@ $$
 &\eqdef \hat{\mathbb E}[Y|\tilde X= \tilde x,T=t]\\
 &=\hat\mu(\tilde x, t)\\
 &=\hat\lambda(\tilde x) \cd t\\
-&=\exp\{\hat\eta(\tilde x)\} \cd t\\
-&=\exp\{\tilde x'\hat{\boldsymbol{\beta}}\} \cd t
+&=\exp{\hat\eta(\tilde x)} \cd t\\
+&=\exp{\tilde x'\hat{\boldsymbol{\beta}}} \cd t
 \end{aligned}
 $$
 
@@ -345,7 +336,7 @@ $$P(Y=y) = \frac{\mu^y}{y!} \cdot \frac{\Gamma(\rho + y)}{\Gamma(\rho) \cdot (\r
 
 where $\rho$ is an overdispersion parameter and $\Gamma(x) = (x-1)!$ for integers $x$.
 
-You don't need to memorize or understand this expression, but as $\rho \rightarrow \infty$, the second term converges to 1 and the third term converges to $\exp\{-\mu\}$, which brings us back to the Poisson distribution.
+You don't need to memorize or understand this expression, but as $\rho \rightarrow \infty$, the second term converges to 1 and the third term converges to $\exp{-\mu}$, which brings us back to the Poisson distribution.
 
 For this distribution, $\mathbb E[Y] = \mu$ and $\text{Var}(Y) = \mu + \frac{\mu^2}{\rho} > \mu$.
 
