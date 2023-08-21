@@ -62,7 +62,7 @@ format:
   pdf:
     toc: true
     toc-title: Contents
-    # shift-heading-level-by: 1
+    shift-heading-level-by: 1
     toc-depth: 2
     number-sections: true
     number-depth: 3
