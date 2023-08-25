@@ -3,67 +3,13 @@ title: "Building Cox Proportional Hazards models"
 date: last-modified
 date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
 subject: "EPI 204 Spring 2023"
-format:
-  revealjs:
-    theme: dark
-    fig-cap-location: top
-    html-math-method: mathjax
-    smaller: false
-    number-sections: true
-    number-depth: 2
-    slide-number: true
-    scrollable: true
-    echo: true
-    code-fold: true
-    code-link: true
-    code-summary: "[R code]"
-    code-overflow: scroll
-    auto-stretch: false
-    # chalkboard: true
-    # fig-width: 30
-    # fig-height: 10
-    # out-width: "100%"
-  html:
-    toc: true
-    fig-cap-location: top
-    number-sections: true
-    number-depth: 3
-    code-fold: true
-    code-tools: true
-    code-summary: "Show the code"
-    code-link: true
-  pdf:
-    toc: true
-    fig-cap-location: top
-    number-sections: true
-    number-depth: 3
-    code-link: true
-    code-overflow: wrap
 editor_options:
   chunk_output_type: console
 editor:
   markdown:
     wrap: 72
 ---
-
-::: hidden
-
-\def\cd{\cdot}
-\def\eqdef{\stackrel{\text{def}}{=}}
-\def\se{\text{SE}}
-\def\hse{\hat{\se}}
-\def\hb{\hat\beta}
-\def\za{z_{1 - \frac{\alpha}{2}}}
-\def\cirad{\za \cd \hse(\hb)}
-\def\ci{\hb {\color{red}\pm} \cirad}
-\newcommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
-\newcommand{\E}[1]{\text{E}\left[#1\right]}
-\newcommand{\var}[1]{\text{Var}\left(#1\right)}
-\newcommand{\Var}[1]{\text{Var}\left(#1\right)}
-\newcommand{\varh}[1]{\hat{\text{Var}}\left(#1\right)}
-\newcommand{\vc}[1]{\boldsymbol{#1}}
-
-:::
+{{< include macros.qmd >}}
 
 ::: {.content-hidden when-format="revealjs"}
 ## Configuring R {.unnumbered}
@@ -672,7 +618,7 @@ distribution of $-\ln(U)$?
 
 $$
 \begin{aligned}
-\Pr(-\ln(U) < x) &= \Pr(U>\exp(-x))\\
+\Pr(-\ln(U) < x) &= \Pr(U>\exp{-x})\\
 &= 1-e^{-x} 
 \end{aligned}
 $$

@@ -3,43 +3,6 @@ title: "Introduction to Survival Analysis"
 date: last-modified
 date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
 subject: "EPI 204 Spring 2023"
-format:
-  revealjs:
-    theme: dark
-    fig-cap-location: top
-    html-math-method: mathjax
-    smaller: false
-    number-sections: true
-    number-depth: 2
-    slide-number: true
-    scrollable: true
-    echo: true
-    code-fold: true
-    code-link: true
-    code-summary: "[R code]"
-    code-overflow: scroll
-    auto-stretch: false
-    # chalkboard: true
-    # fig-width: 7
-    # fig-height: 5
-    # out-width: "100%"
-  html:
-    toc: true
-    fig-cap-location: top
-    number-sections: true
-    number-depth: 3
-    code-fold: true
-    code-tools: true
-    code-summary: "Show the code"
-    code-link: true
-  pdf:
-    toc: true
-    fig-cap-location: top
-    number-sections: true
-    number-depth: 3
-    code-link: true
-    code-overflow: wrap
-    fig-pos: "H"
 editor_options:
   chunk_output_type: console
 editor:
@@ -47,30 +10,8 @@ editor:
     wrap: 72
 ---
 
-::: hidden
-```{=tex}
-\def\cd{\cdot}
-\def\eqdef{\stackrel{\text{def}}{=}}
-\def\se{\text{SE}}
-\def\hse{\hat{\se}}
-\def\hb{\hat\beta}
-\def\za{z_{1 - \frac{\alpha}{2}}}
-\def\cirad{\za \cd \hse(\hb)}
-\def\ci{\hb {\color{red}\pm} \cirad}
-\newcommand{\var}[1]{\text{Var}\left(#1\right)}
-\newcommand{\se}[1]{\text{se}\left(#1\right)}
-\newcommand{\SE}[1]{\text{SE}\left(#1\right)}
-\renewcommand{\log}[1]{\text{log}\left\{#1\right\}}
-\renewcommand{\exp}[1]{\text{exp}\left\{#1\right\}}
-\newcommand{\e}[1]{\text{e}^{#1}}
-\newcommand{\inv}[1]{\left(#1\right)^{-1}}
-\newcommand{\Var}[1]{\text{Var}\left(#1\right)}
-\newcommand{\varh}[1]{\hat{\text{Var}}\left(#1\right)}
-\newcommand{\vc}[1]{\boldsymbol{#1}}
-\newcommand{\ind}[1]{\mathbb{1}_{#1}}
-\newcommand{\pr}{\text{p}}
-```
-:::
+{{< include macros.qmd >}}
+
 
 ::: {.content-hidden when-format="revealjs"}
 ## Configuring R {.unnumbered}

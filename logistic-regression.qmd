@@ -2,37 +2,6 @@
 title: "Logistic Regression"
 date: last-modified
 date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-format: 
-  revealjs:
-    theme: dark
-    smaller: false
-    number-sections: true
-    slide-number: true
-    scrollable: true
-    echo: true
-    code-fold: true
-    code-link: true
-    code-summary: "[R code]"
-    code-overflow: scroll
-    # chalkboard: true
-    # fig-width: 7
-    # fig-height: 5
-    # out-width: "100%"
-  html:
-    html-math-method: mathjax
-    toc: true
-    number-sections: true
-    cap-location: top
-    code-fold: true
-    code-tools: true
-    code-summary: "Show the code"
-    code-link: true
-  pdf:
-    cap-location: top
-    toc: true
-    number-sections: true
-    code-link: true
-    code-overflow: wrap
 editor_options: 
   chunk_output_type: console
 editor: 
@@ -40,9 +9,7 @@ editor:
     wrap: 72
 ---
 
-::: hidden
-\def\eqdef{\stackrel{\text{def}}{=}}
-:::
+{{< include macros.qmd >}}
 
 ## Acknowledgements {.unnumbered}
 
@@ -88,7 +55,7 @@ options('digits' = 4)
 library(pander)
 ```
 
-Logistic regression is a method for estimating and predicting the probability of a *binary outcome variable* using one or more predictors. 
+Logistic regression is a method for estimating and predicting the probability of a *binary outcome variable* using one or more *predictors* (a.k.a. *covariates*).
 
 :::{#def-binary}
 
@@ -119,14 +86,16 @@ We will first review one-predictor analyses, with a special focus on risk ratios
 * Research question: does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; a.k.a. heart attack)?
 
 :::{.note}
-This was a real issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
+This was an issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
 :::
 
-Here's some fake study data:
+@tbl-oc-mi contains simulated data for an imaginary follow-up (a.k.a. *prospective*) study in which two groups are identified, one using OCs and another not using OCs, and both groups are tracked for three years to determine how many in each groups have MIs.
 
 ```{r}
 #| message: false
 #| code-fold: true
+#| label: tbl-oc-mi
+#| tbl-cap: Simulated data from study of oral contraceptive use and heart attack risk
 library(dplyr)
 oc_mi = 
   tribble(
@@ -168,16 +137,34 @@ $$\hat{p}(MI|\neg OC) = \frac{7}{10000} = `r p_MI_nOC`$$
 
 ::::
 
-:::{#def-cases}
-### cases and controls
-In medical studies, participants who experience a bad outcome are sometimes called **cases**, while participants who experience a good outcome are sometimes called **controls**. However, "controls" can also used to refer to participants who don't receive the *exposure* of interest (for example, participants who receive a placebo or a standard-of-care treatment rather than an experimental treatment).
+::::{.callout-note}
+## Two meanings of "controls"
+
+Depending on context, "controls" can mean either individuals who don't experience an *exposure* of interest, or individuals who don't experience an *outcome* of interest.
+
+:::{#def-cases-retrospective}
+### cases and controls in retrospective studies
+In *retrospective studies*, participants who experience the outcome of interest are called **cases**, while participants who don't experience that outcome are called **controls**. 
 :::
+
+:::{#def-cases-prospective}
+### treatment groups and control groups in prospective studies
+In *prospective studies*, the group of participants who experience the treatment or exposure of interest is called the **treatment group**, while the participants who receive the baseline or comparison treatment  (for example, clinical trial participants who receive a placebo or a standard-of-care treatment rather than an experimental treatment) are called **controls**.
+
+:::
+
+::::
 
 ## Comparing probabilities
 
+### Risk differences
+
 The simplest comparison of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values:
 
+:::::{.columns}
+
 :::{#def-RD}
+### Risk difference
 The **risk difference** of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values: 
 $$\delta(\pi_1,\pi_2) \eqdef \pi_1 - \pi_2$$
 :::
@@ -200,12 +187,17 @@ $$
 $$
 :::
 
+:::::
+
+### Risk ratios
+
+:::::{.columns}
 
 :::{#def-RR}
 ## Relative risk ratios
-When comparing the probability of an outcome between two sets of predictor values, the **relative risk**, also called the **risk ratio**, is the ratio of those probabilities. Let's use $\rho$ ("rho") to denote risk ratios.
+The **relative risk** of two probabilities $\pi_1$ and $\pi_2$, also called the **risk ratio**, is the ratio of those probabilities:
 
-That is, if $p(Y=1|X=x_1) = \pi_1$ and $p(Y=1|X=x_2) = \pi_2$, then $\rho(2,1) = \frac{\pi_2}{\pi_1}$.
+$$\rho(\pi_1,\pi_2) = \frac{\pi_1}{\pi_2}$$
 :::
 
 :::{#exm-RR}
@@ -219,7 +211,7 @@ So we might estimate that the *relative risk* of MI for OC versus non-OC is:
 
 $$
 \begin{aligned}
-\rho(OC, \neg OC)
+\hat\rho(OC, \neg OC)
 &=\frac{\hat{p}(MI|OC)}{\hat{p}(MI|\neg OC)}\\
 &= \frac{`r 13/5000`}{`r 7/10000`}\\
 &= `r (13/5000)/(7/10000)`
@@ -228,7 +220,9 @@ $$
 
 :::
 
-Risk ratios are defined by two probabilities, plus a choice of which probability is the *baseline* or *reference* probability (i.e., which probability goes in the denominator). If you change which one is the reference probability, the ratio inverts.
+:::::
+
+Both risk differences and risk ratios are defined by two probabilities, plus a choice of which probability is the **baseline** or **reference** probability (i.e., which probability is the subtrahend of the risk difference or the denominator of the risk ratio). To switch which one is the reference probability, invert the ratio and multiply the difference by -1.
 
 :::{#exm-ref}
 Above, we estimated that the risk ratio of OC versus non-OC is:
@@ -449,7 +443,7 @@ $$
 
 ## Odds ratios
 
-Now that we have defined odds, we can compare odds using odds ratios:
+Now that we have defined odds, we can introduce another way of comparing event probabilities: odds ratios.
 
 :::{#def-OR}
 #### Odds ratio
@@ -473,8 +467,124 @@ $$
 $$
 :::
 
+When the outcome is rare (i.e., its probability is small) for both groups being compared in an odds ratio, the odds of the outcome will be similar to the probability of the outcome, and thus the risk ratio will be similar to the odds ratio.
+
+For example, in @exm-oc-mi, the outcome is rare for both OC and non-OC participants, so the odds for both groups are similar to the corresponding probabilities, and the odds ratio is similar the risk ratio.
+
+### A shortcut for calculating odds ratio estimates
+
+The general form of a two-by-two table is shown in @tbl-2x2-generic. 
+
+|               | Event | Non-Event | Total
+|-------------- | ------ | ---------- | ----- 
+|Exposed        | a      | b | a+b
+|Non-exposed    | c      | d | c+d
+|Total         | a+c   | b+d | a+b+c+d
+
+: A generic 2x2 table {#tbl-2x2-generic}
+
+From this table, we have:
+
+* $\hat\pi(Event|Exposed) = a/(a+b)$
+
+* $\hat\pi(\neg Event|Exposed) = b/(a+b)$
+
+* $\hat\omega(Event|Exposed) = \frac{\left(\frac{a}{a+b}\right)}{\left(\frac{b}{a+b}\right)}=\frac{a}{b}$
+
+* $\hat\omega(Event|\neg Exposed) = \frac{c}{d}$
+(see @exr-odds-generic)
+
+* $\theta(Exposed,\neg Exposed) = \frac{\frac{a}{b}}{\frac{c}{d}} = \frac{ad}{bc}$
+
+:::{#exr-odds-generic}
+Given @tbl-2x2-generic, show that $\hat\omega(Event|\neg Exposed) = \frac{c}{d}$.
+:::
+
+### Properties of odds ratios {#sec-OR-props}
+
+Odds ratios have a special property: we can swap a covariate with the outcome, and the odds ratio remains the same.
+
+:::{#exm-or-inv-MI}
+
+In @exm-oc-mi, we have:
+
+$$
+\begin{aligned}
+\theta(MI; OC) 
+&\eqdef
+\frac{\omega(MI|OC)}{\omega(MI|\neg OC)}\\
+&\eqdef \frac
+{\left(\frac{\Pr(MI|OC)}{\Pr(\neg MI|OC)}\right)}
+{\left(\frac{\Pr(MI|\neg OC)}{\Pr(\neg MI|\neg OC)}\right)}\\
+&= \frac
+{\left(\frac{\Pr(MI,OC)}{\Pr(\neg MI,OC)}\right)}
+{\left(\frac{\Pr(MI,\neg OC)}{\Pr(\neg MI,\neg OC)}\right)}\\
+&= \left(\frac{\Pr(MI,OC)}{\Pr(\neg MI,OC)}\right)
+\left(\frac{\Pr(\neg MI,\neg OC)}{\Pr(MI,\neg OC)}\right)\\
+&= \left(\frac{\Pr(MI,OC)}{\Pr(MI,\neg OC)}\right)
+\left(\frac{\Pr(\neg MI,\neg OC)}{\Pr(\neg MI,OC)}\right)\\
+&= \left(\frac{\Pr(OC,MI)}{\Pr(\neg OC,MI)}\right)
+\left(\frac{\Pr(\neg OC,\neg MI)}{\Pr(OC,\neg MI)}\right)\\
+&= \left(\frac{\Pr(OC|MI)}{\Pr(\neg OC|MI)}\right)
+\left(\frac{\Pr(\neg OC|\neg MI)}{\Pr(OC|\neg MI)}\right)\\
+&= \frac{\left(\frac{\Pr(OC|MI)}{\Pr(\neg OC|MI)}\right)}
+{\left(\frac{\Pr(OC|\neg MI)}{\Pr(\neg OC|\neg MI)}\right)}\\
+&\eqdef \frac{\omega(OC|MI)}
+{\omega(OC|\neg MI)}\\
+&\eqdef \theta(OC; MI)
+\end{aligned}
+$$
+:::
+
+:::{#exr-2x2-generic}
+For @tbl-2x2-generic, show that $\hat\theta(Exposed, Unexposed) = \hat\theta(Event, \neg Event)$.
+:::
+
+## Effect of study design
+
+@tbl-oc-mi simulates a follow-up study in which two populations were followed and the number of MI’s was observed. The risks are $P(MI|OC)$ and $P(MI|\neg OC)$ and we can estimate these risks from the data.
+
+But suppose we had a case-control study in which we had 100 women with MI and selected a comparison group of 100 women without MI (matched as groups on age, etc.). Then MI is not random, and we cannot compute P(MI|OC) and we cannot compute the risk ratio. However, the odds ratio however can be computed.
+
+The disease odds ratio is the odds for the disease in the exposed group divided by the odds for the disease in the unexposed group, and we cannot validly compute and use these separate parts.
+
+But we can validly compute and use the exposure odds ratio, which is the odds for exposure in the disease group divided by the odds for exposure in the non-diseased group (because exposure can be treated as random). And these two odds ratios are mathematically equivalent, as we saw in @sec-OR-props.
+
+:::{#exr-or-rev}
+Calculate the odds ratio of MI with respect to OC use, assuming that @tbl-oc-mi comes from a case-control study. Confirm that the result is the same as in @exm-OR.
+
+::::{.solution}
+
+* $\omega(OC|MI) = P(OC|MI)/(1 – P(OC|MI) = \frac{13}{7} = `r 13/7`$
+
+* $\omega(OC|\neg MI) = P(OC|\neg MI)/(1 – P(OC|\neg MI) = \frac{4987}{9993} = `r 4987/9993`$
+
+* $\theta(OC,MI) = \frac{\omega(OC|MI)}{\omega(OC|\neg MI)} = \frac{13/7}{4987/9993} = `r (13/7)/(4987/9993)`$
+
+This is the same estimate we calculated in @exm-OR.
+
+::::
+
+:::
+
+### Cross-Sectional Studies
+
+* If a cross-sectional study is a probability sample of a population (which it rarely is) then we can estimate risks.
+
+* If it is a sample, but not an unbiased probability sample, then we need to treat it in the same way as a case-control study.
+
+* We can validly estimate odds ratios in either case.
+
+* But we can usually not validly estimate risks and risk ratios.
+
 
 # Introduction to logistic regression
+
+* In @exm-oc-mi, we estimated the risk and the odds of MI for two discrete cases, as to whether of not the individual used oral contraceptives.
+
+* If the predictor is quantitative (dose) or there is more than one predictor, the task becomes more difficult.
+
+* In this case, we will use logistic regression, which is a generalization of the linear regression models you have been using that can account for a binary response instead of a continuous one.
 
 ## Binary outcomes models - one group, no covariates
 
@@ -485,9 +595,9 @@ p(Y=0) &= 1-\pi\\
 p(Y=y) &= \pi^y (1-\pi)^{1-y}\\
 \mathbf y  &= (y_1, ..., y_n)\\
 \mathcal L(\pi;\mathbf y) &= \pi^{\sum y_i} (1-\pi)^{n - \sum y_i}\\
-\ell(\pi, \mathbf y) &= \left({\sum y_i}\right) \log \pi + \left(n - \sum y_i\right) \log (1-\pi)\\
-&= \left({\sum y_i}\right) \left(\log \pi - \log (1-\pi)\right) + n \cdot \log (1-\pi)\\
-&= \left({\sum y_i}\right) \log \left( \frac{\pi}{ 1-\pi}\right) + n \cdot \log (1-\pi)
+\ell(\pi, \mathbf y) &= \left({\sum y_i}\right) \log{\pi} + \left(n - \sum y_i\right) \log{1-\pi}\\
+&= \left({\sum y_i}\right) \left(\log{\pi} - \log{1-\pi}\right) + n \cdot \log{1-\pi}\\
+&= \left({\sum y_i}\right) \log{\frac{\pi}{ 1-\pi}} + n \cdot \log{1-\pi}
 \end{aligned}
 $$
 
@@ -503,7 +613,7 @@ p(Y_i=y) &= (\pi_i)^y (1-\pi_i)^{1-y}\\
 (\pi_i)^{y_i} (1-\pi_i)^{1 - y_i}\\
 \ell(\pi, \mathbf y) &= 
 \sum_{i=1}^n 
-y_i \log \pi_i + (1 - y_i) \log (1-\pi_i)
+y_i \log{\pi_i} + (1 - y_i) \log{1-\pi_i}
 \end{aligned}
 $$
 
@@ -533,8 +643,8 @@ The **expit** function (@fig-expit-plot), also known as the **inverse-logit** or
 $$
 \begin{aligned}
 \text{expit}(\eta)
-&\eqdef \frac{\exp(\eta)}{1+\exp(\eta)}\\
-&= (1 + \exp\{-\eta\})^{-1}
+&\eqdef \frac{\exp{\eta}}{1+\exp{\eta}}\\
+&= (1 + \exp{-\eta})^{-1}
 \end{aligned}
 $$
 
@@ -564,7 +674,7 @@ print(expit_plot)
 
 The inverse of the `expit` function is the `logit` function:
 
-$$g(p) = f^{-1}(p) = \text{logit}(p) = \log \left\{\frac{p}{1-p}\right\}$$
+$$g(p) = f^{-1}(p) = \text{logit}(p) = \log{\frac{p}{1-p}}$$
 
 :::
 
@@ -599,10 +709,10 @@ $$
 }
 \left[\omega \eqdef \text{odds}(Y=1)\right]
 \underset{
-\xleftarrow[\exp\{\eta\}]{}
+\xleftarrow[\exp{\eta}]{}
 }
 {
-\xrightarrow{\log\{\omega\}}
+\xrightarrow{\log{\omega}}
 }
 }^{\text{logit}(\pi)}
 }_{\text{expit}(\eta)}
@@ -624,10 +734,10 @@ $$
 }
 \underbrace{\omega}_{\text{odds}(Y=1)}
 \underset{
-\xleftarrow[\exp\{\eta\}]{}
+\xleftarrow[\exp{\eta}]{}
 }
 {
-\xrightarrow{\log\{\omega\}}
+\xrightarrow{\log{\omega}}
 }
 }_{\text{expit}(\eta)}
 }^{\text{logit}(\pi)}
@@ -1892,7 +2002,7 @@ anthers_glm_log |> parameters() |> print_md()
 
 ```
 
-Now $\exp(\beta)$ gives us risk ratios instead of odds ratios:
+Now $\exp{\beta}$ gives us risk ratios instead of odds ratios:
 
 ```{r}
 anthers_glm_log |> parameters(exponentiate = TRUE) |> print_md()

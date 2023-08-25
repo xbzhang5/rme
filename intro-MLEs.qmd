@@ -1,0 +1,369 @@
+---
+title: "Introduction to Maximum Likelihood Inference"
+---
+{{< include macros.qmd >}}
+
+These notes are derived primarily from:
+
+Dobson, Annette J., and Adrian G. Barnett. An introduction to
+generalized linear models. 3<sup>rd</sup> edition. CRC press, 2008
+(mostly chapters 3-5).
+
+I’ve added this book to the "Reading List" on canvas, so it should be
+uploaded there by the librarians soon.
+
+Some material was also taken from:
+
+McLachlan, Geoffrey J., and Thriyambakam Krishnan. The EM algorithm and
+extensions. John Wiley & Sons, 2007.
+<https://onlinelibrary.wiley.com/doi/book/10.1002/9780470191613>
+
+Casella, G., & Berger, R. L. (2002). Statistical inference. 2nd ed.
+Australia ; Pacific Grove, CA, Thomson Learning.
+
+# Maximum likelihood inference for univariate Gaussian models
+
+Suppose $X_{1},\ldots,X_{n} \sim_{iid}N\left( \mu,\ \sigma^{2} \right)$.
+Let $X = \left( X_{1},\ldots,X_{n} \right)^{\top}$ be these random
+variables in vector format. Let $x_{i}$ and $x$ denote the corresponding
+observed data. Let $\theta = \left( \mu,\sigma^{2} \right)^{\top}$ be
+the vector of parameters. Let $\Theta$ denote the parameters as a random
+vector.
+
+Then the log-likelihood
+$\ell \eqdef \ell(X;\theta) \eqdef p\left( X = x \mid \Theta = \theta \right)$
+is:
+
+$$
+\begin{aligned}
+\ell 
+&\propto - \frac{n}{2}\log{\sigma^{2}} - \frac{1}{2}\sum_{i = 1}^{n}\frac{\left( x_{i} - \mu \right)^{2}}{\sigma^{2}}\\
+&= - \frac{n}{2}\log{\sigma^{2}} - \frac{1}{2\sigma^{2}}\sum_{i = 1}^{n}{x_{i}^{2} - 2x_{i}\mu + \mu^{2}}
+\end{aligned}
+$$
+
+## MLE of $\mu$:
+
+Then:
+
+$$\frac{d\ell}{d\mu} = - \frac{1}{2}\sum_{i = 1}^{n}\frac{- 2\left( x_{i} - \mu \right)}{\sigma^{2}}$$
+
+$$= \frac{1}{\sigma^{2}}\left\lbrack \left( \sum_{i = 1}^{n}x_{i} \right) - n\mu \right\rbrack$$
+
+If $\frac{d\ell}{d\mu} = 0$, then
+$\mu = \overline{x} \eqdef \frac{1}{n}\sum_{i = 1}^{n}x_{i}$.
+
+$$\frac{d^{2}\ell}{(d\mu)^{2}} = \frac{- n}{\sigma^{2}} < 0$$
+
+So ${\widehat{\mu}}_{ML} = \overline{x}$.
+
+## MLE of $\sigma^{2}$
+
+:::{.callout-tip}
+## Reparametrizing the Gaussian distribution
+When solving for ${\widehat{\sigma}}_{ML}$, you can treat
+$\sigma^{2}$ as an atomic variable (don’t differentiate with respect to
+$\sigma$ or things get messy). In fact, you can replace $\sigma^{2}$
+with $1/\tau$ and differentiate with respect to $\tau$ instead, and the
+process might be even easier.
+:::
+
+$$\frac{d\ell}{d\sigma^{2}} = \frac{d}{d\sigma^{2}}\left( - \frac{n}{2}\log{\sigma^{2}} - \frac{1}{2}\sum_{i = 1}^{n}\frac{\left( x_{i} - \mu \right)^{2}}{\sigma^{2}} \right)\ $$
+
+$$= - \frac{n}{2}\left( \sigma^{2} \right)^{- 1} + \frac{1}{2}\left( \sigma^{2} \right)^{- 2}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2}$$
+
+If $\frac{d\ell}{d\sigma^{2}} = 0$, then:
+
+$$\frac{n}{2}\left( \sigma^{2} \right)^{- 1} = \frac{1}{2}\left( \sigma^{2} \right)^{- 2}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2}$$
+
+$$\sigma^{2} = \frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2}$$
+
+We plug in ${\widehat{\mu}}_{ML} = \overline{x}$ to maximize globally (a
+technique called profiling):
+
+$$\sigma_{ML}^{2} = \frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}$$
+
+Now:
+
+$$
+\begin{aligned}
+\frac{d^{2}\ell}{\left( d\sigma^{2} \right)^{2}} 
+&= \frac{d}{d\sigma^{2}}\left\{ - \frac{n}{2}\left( \sigma^{2} \right)^{- 1} + \frac{1}{2}\left( \sigma^{2} \right)^{- 2}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2} \right\}\\
+&= \left\{ - \frac{n}{2}\frac{d}{d\sigma^{2}}\left( \sigma^{2} \right)^{- 1} + \frac{1}{2}\frac{d}{d\sigma^{2}}\left( \sigma^{2} \right)^{- 2}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2} \right\}\\
+&= \left\{ \frac{n}{2}\left( \sigma^{2} \right)^{- 2} - \left( \sigma^{2} \right)^{- 3}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2} \right\}\\
+&= \left( \sigma^{2} \right)^{- 2}\left\{ \frac{n}{2} - \left( \sigma^{2} \right)^{- 1}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2} \right\}
+\end{aligned}
+$$
+
+Evaluated at
+$\mu = \overline{x},\sigma^{2} = \frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}$,
+we have:
+
+$$
+\begin{aligned}
+\frac{d^{2}\ell}{\left( d\sigma^{2} \right)^{2}} 
+&= \left( {\widehat{\sigma}}^{2} \right)^{- 2}\left\{ \frac{n}{2} - \left( {\widehat{\sigma}}^{2} \right)^{- 1}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2} \right\}\\
+&= \left( {\widehat{\sigma}}^{2} \right)^{- 2}\left\{ \frac{n}{2} - \left( {\widehat{\sigma}}^{2} \right)^{- 1}n{\widehat{\sigma}}^{2} \right\}\\
+&= \left( {\widehat{\sigma}}^{2} \right)^{- 2}\left\{ \frac{n}{2} - n \right\}\\
+&= \left( {\widehat{\sigma}}^{2} \right)^{- 2}n\left\{ \frac{1}{2} - 1 \right\}\\
+&= \left( {\widehat{\sigma}}^{2} \right)^{- 2}n\left( - \frac{1}{2} \right) < 0
+\end{aligned}
+$$
+
+Finally, we have:
+
+$$
+\begin{aligned}
+\frac{d^{2}\ell}{d\mu\ d\sigma^{2}} 
+&= \frac{d}{d\mu}\left\{ - \frac{n}{2}\left( \sigma^{2} \right)^{- 1} + \frac{1}{2}\left( \sigma^{2} \right)^{- 2}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2} \right\}\\
+&= \frac{1}{2}\left( \sigma^{2} \right)^{- 2}\frac{d}{d\mu}\sum_{i = 1}^{n}\left( x_{i} - \mu \right)^{2}\\
+&= \frac{1}{2}\left( \sigma^{2} \right)^{- 2}\sum_{i = 1}^{n}{- 2(x_{i} - \mu)}\\
+&= - \left( \sigma^{2} \right)^{- 2}\sum_{i = 1}^{n}{(x_{i} - \mu)}
+\end{aligned}
+$$
+
+Evaluated at
+$\mu = \widehat{\mu} = \overline{x},\sigma^{2} = {\widehat{\sigma}}^{2} = \frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}$,
+we have:
+
+$$\frac{d^{2}\ell}{d\mu\ d\sigma^{2}} = - \left( {\widehat{\sigma}}^{2} \right)^{- 2}\left( n\overline{x} - n\overline{x} \right) = 0$$
+
+## Covariance matrix of MLEs
+
+### The score function
+
+Let $\theta$ be the vector of all parameters; here,
+$\theta = \left( \mu,\sigma^{2} \right)^{\top}$.
+
+Let
+$\ell^{'}(x,\theta) \eqdef \frac{d}{d\theta}\ell(x,\theta) = \left( \begin{array}{r}
+\frac{d}{d\mu}\ell(\theta;x) \\
+\frac{d}{d\sigma^{2}}\ell(\theta;x)
+\end{array} \right) = \left( \begin{array}{r}
+\ell_{\mu}^{'}(\theta;x) \\
+\ell_{\sigma^{2}}^{'}(\theta;x)
+\end{array} \right)$.
+
+$\ell^{'}(x,\theta)$ is the function we set equal to 0 and solve
+to find the MLE:
+
+$${\widehat{\theta}}_{ML} = \left\{ \theta:\ell^{'}(x,\theta) = 0 \right\}$$
+
+The function $\ell^{'}(x,\theta)$ is so central that it has its
+own name, the "score" or "gradient" function. Statisticians also often
+skip writing the arguments $(x,\theta)$, so
+$\ell^{'} \eqdef \ell^{'}(x,\theta)$.[^1] Some statisticians
+use $U$ or $S$ instead of $\ell^{'}$. I prefer $\ell^{'}$.
+Why use up extra letters?
+
+### The (Fisher) (expected) information matrix
+
+The variance of $\ell^{'}(x,\theta)$,
+${Cov}\left\{ \ell^{'}(x,\theta) \right\}$, is also very
+important; we call it the "expected information matrix", "Fisher
+information matrix", or just "information matrix", and we represent it
+using the symbol $\mathfrak{I}$ (`\frakturI` in Unicode, `\mathfrak{I}` in LaTeX).
+
+#### Review of variances and covariances
+
+##### Variances and covariances of one-dimensional random variables
+
+For a one-dimensional random variables $X$,
+
+$${Var}(X) \eqdef Ε\left\lbrack \left( X - Ε\lbrack X\rbrack \right)^{2} \right\rbrack = Ε\left\lbrack X^{2} \right\rbrack - \left( Ε\lbrack X\rbrack \right)^{2}$$
+
+For any two-dimensional random variables, $X,Y$:
+
+$${Cov}(X,Y) = E\left\lbrack (X - ΕX)(Y - ΕY) \right\rbrack = Ε\lbrack XY\rbrack - E\lbrack X\rbrack E\lbrack Y\rbrack$$
+
+Therefore,
+${Var}{(X)} = {Cov}(X,X) = Ε\lbrack XX\rbrack - E\lbrack X\rbrack E\lbrack X\rbrack = Ε\left\lbrack X^{2} \right\rbrack - \left( E\lbrack X\rbrack \right)^{2}$
+
+$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - Ε\left\lbrack \ell^{'} \right\rbrack\ Ε\left\lbrack \ell^{'} \right\rbrack^{\top}$$
+
+Sometimes we write ${Cov}{(X)} \eqdef {Cov}(X,X) = {Var}(X)$.
+
+##### Variances and covariances of $p \times 1$ random vectors
+
+Now, for a $p \times 1$ dimensional random vector $X$,
+
+$$
+\begin{aligned}
+\text{Var}(X) 
+&\eqdef \text{Cov}(X)\\
+&\eqdef E\left\lbrack \left( X - E\lbrack X\rbrack \right)^{\top}\left( X - E\lbrack X\rbrack \right) \right\rbrack\\
+&= E\left\lbrack \left( X^{\top} - E\lbrack X\rbrack^{\top} \right)\left( X - E\lbrack X\rbrack \right) \right\rbrack\\
+&= E\left\lbrack X^{\top}X - E\lbrack X\rbrack^{\top}X - X^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack \right\rbrack\\
+&= E\left\lbrack X^{\top}X \right\rbrack - E\lbrack X\rbrack^{\top}E\lbrack X\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack\\
+&= E\left\lbrack X^{\top}X \right\rbrack - 2{E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack\\
+&= E\left\lbrack X^{\top}X \right\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack
+\end{aligned}
+$$
+
+The elements of $\mathfrak{I}$ are:
+
+$$\left\{ \mathfrak{I}_{ij} \eqdef {Cov}\left( {\ell^{'}}_{i},{\ell^{'}}_{j} \right) = Ε\left\lbrack \ell_{i}^{'}\ell_{j}^{'} \right\rbrack - Ε\left\lbrack {\ell^{'}}_{i} \right\rbrack Ε\left\lbrack {\ell^{'}}_{j} \right\rbrack \right\}$$
+
+In our motivating example, $i,j \in \left\{ \mu,\sigma^{2} \right\}$. Here, 
+
+$$
+\begin{aligned}
+Ε[\ell']
+&\eqdef \int_{x \in \mathcal R(x)}{\ell'(x,\theta) p(X = x | \theta)dx}\\
+&= \int_{x\in \mathcal R(x)}{\left( \frac{d}{d\theta}\log{p\left( X = x \mid \theta \right)} \right)\ p\left( X = x \mid \theta \right)\ dx}\\
+&= \int_{x \in \mathcal R(x)}{\frac{\frac{d}{d\theta}p\left( X = x \mid \theta \right)}{p\left( X = x \mid \theta \right)}p\left( X = x \mid \theta \right)\ dx
+}\\
+&= \int_{x \in \mathcal R(x)}{\frac{d}{d\theta}p\left( X = x \mid \theta \right)\ dx}
+\end{aligned}
+$$
+
+
+
+And similarly
+
+$$Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack \eqdef \int_{x \in R(x)}^{}{\ell^{'}(x,\theta)\ell^{'}(x,\theta)^{\top}\ p\left( X = x \mid \theta \right)\ dx}$$
+
+Note that $Ε\left\lbrack \ell^{'} \right\rbrack$ and
+$Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack$
+are functions of $\theta$ but not of $x$; the expectation operator
+removed $x$.
+
+Also note that for most of the distributions you are familiar with
+(including Gaussian, binomial, Poisson, exponential),
+
+$$Ε\left\lbrack \ell^{'} \right\rbrack = 0$$
+
+So
+
+$$\mathfrak{I =}Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack$$
+
+Moreover, for those distributions (called the "exponential family"), we
+have:
+
+$$\mathfrak{I = -}Ε\left\lbrack \ell^{''} \right\rbrack = Ε\left\lbrack - \ell^{''} \right\rbrack$$
+
+(see Dobson and Barnett 4e, §3.17), where
+
+$$\ell^{''} \eqdef \frac{d}{d\theta}\ell^{'(x,\theta)^{\top}} = \frac{d}{d\theta}\frac{d}{d\theta^{\top}}\ell(x,\theta)$$
+
+is the $p \times p$ matrix whose elements are:
+
+$$\ell_{ij}^{''} \eqdef \frac{d}{d\theta_{i}}\frac{d}{d\theta_{j}}\log{ p\left( X = x \mid \theta \right)}$$
+
+$\ell^{''}$ could be called the "Hessian" of the log-likelihood
+function.
+
+Sometimes, we use $I(\theta;x) \eqdef - \ell^{''}$ (note the
+standard-font "I" here). $I(\theta;x)$ is the observed information
+matrix (Negative Hessian).
+
+:::{.callout-important}
+## Key point
+ The asymptotics of MLEs gives us
+${\widehat{\theta}}_{ML} \sim N\left( \theta,\mathfrak{I}^{- 1}(\theta) \right)$,
+approximately, for large sample sizes.
+:::
+
+We can estimate $\mathfrak{I}^{- 1}(\theta)$ by working out
+$- Ε\left\lbrack \ell^{''} \right\rbrack$ or
+$Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack$
+and plugging in ${\widehat{\theta}}_{ML}$, but sometimes we instead use
+$I\left( {\widehat{\theta}}_{ML};x \right)$ for convenience; there are
+some cases where it’s provably better according to some criteria (Efron
+& Hinkley 1978).
+
+Note that later, when we are trying to find MLEs for likelihoods that we
+can’t easily differentiate, we will "hill-climb" using the
+Newton-Raphson algorithm:
+
+$$
+\begin{aligned}
+\widehat{\theta} 
+&\leftarrow \widehat{\theta} + \left\lbrack I\left( \widehat{\theta},y \right) \right\rbrack^{- 1}\ell^{'}\left( y,\widehat{\theta} \right)\\
+&= \widehat{\theta} - \left\lbrack \ell^{''}\left( y,\widehat{\theta} \right) \right\rbrack^{- 1}\ell^{'}\left( y,\widehat{\theta} \right)
+\end{aligned}
+$$
+
+Here, for computational simplicity, we will sometimes use
+$\mathfrak{I}^{- 1}(\theta)$ in place of
+$I\left( \widehat{\theta},y \right)$; doing so is called "Fisher
+scoring" or the "method of scoring". Note that this is the opposite of
+the substitution that we are making for estimating the variance of the
+MLE; this time we should technically use the observed information but we
+use the expected information instead.
+
+There’s also an "empirical information matrix" (see McLachlan and
+Krishnan 2007).
+
+$$I_{e}(\theta,y) = \sum_{i = 1}^{n}{\ell_{i}^{'}\ {\ell_{i}^{'}}^{\top}} - \frac{1}{n}\ell^{'}{\ell^{'}}^{\top}$$
+
+where $\ell_{i}$ is the log-likelihood of the ith observation.
+Note that $\ell^{'} = \sum_{i = 1}^{n}\ell_{i}^{'}$.
+
+$\frac{1}{n}I_{e}(\theta,y)$ is the sample equivalent of
+
+$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - Ε\left\lbrack \ell^{'} \right\rbrack\ Ε\left\lbrack \ell^{'} \right\rbrack^{\top}$$
+
+$$\left\{ \mathfrak{I}_{jk} \eqdef {Cov}\left( {\ell^{'}}_{j},{\ell^{'}}_{k} \right) = Ε\left\lbrack \ell_{j}^{'}\ell_{k}^{'} \right\rbrack - Ε\left\lbrack {\ell^{'}}_{j} \right\rbrack Ε\left\lbrack {\ell^{'}}_{k} \right\rbrack \right\}$$
+
+$I_{e}(\theta,y)$ is sometimes computationally easier to compute for
+Newton-Raphson-type maximization algorithms.
+
+Back to our Gaussian example:
+
+$$I = \begin{bmatrix}
+\frac{n}{\sigma^{2}} & 0 \\
+0 & \left( {\widehat{\sigma}}^{2} \right)^{- 2}n\left( - \frac{1}{2} \right)
+\end{bmatrix} = \begin{bmatrix}
+a & 0 \\
+0 & d
+\end{bmatrix}$$
+
+So:
+
+$$I^{- 1} = \frac{1}{ad}\begin{bmatrix}
+d & 0 \\
+0 & a
+\end{bmatrix} = \begin{bmatrix}
+\frac{1}{a} & 0 \\
+0 & \frac{1}{d}
+\end{bmatrix}$$
+
+$$I^{- 1} = \begin{bmatrix}
+\frac{{\widehat{\sigma}}^{2}}{n} & 0 \\
+0 & \frac{{2\left( {\widehat{\sigma}}^{2} \right)}^{2}}{n}
+\end{bmatrix}$$
+
+See Casella-Berger p322, example 7.2.12.
+
+To prove it’s a maximum, need:
+
+- $\ell^{'} = 0$
+
+- At least one diagonal element of $\mathcal{l''}$ is negative.
+
+- Determinant of $\mathcal{l''}$ is positive.
+
+## Confidence intervals for MLEs
+
+## p-values and hypothesis tests for MLEs
+
+## Likelihood ratio tests for MLEs
+
+\[We haven’t gone over this yet\]
+
+Log-likelihood ratio tests (Dobson & Barnett 5.7)
+
+$$2\left( \mathcal{l -}\ell_{0} \right) \sim \chi^{2}(p - q)$$
+
+## Prediction intervals for MLEs
+
+$$\overline{X} \in \left\lbrack \widehat{\mu} \pm z_{1 - \alpha\text{/}2}\frac{\sigma}{m} \right\rbrack$$
+
+Where $m$ is the sample size of the new data to be predicted (typically
+1, except for binary outcomes, where it needs to be bigger for
+prediction intervals to make sense)
+
+[^1]: I might sometimes switch the order of $x,$ $\theta$; this is
+    unintentional and not meaningful.
+

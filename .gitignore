@@ -5,7 +5,8 @@
 /.quarto/
 *.html
 *files/
-_*
+_*/
+*.pdf
 index.aux
 index.log
 index.pdf
@@ -14,3 +15,7 @@ index.toc
 *_cache/
 site_libs
 *.rmarkdown
+index.idx
+index.ilg
+index.ind
+Intro-to-GLMs.pdf

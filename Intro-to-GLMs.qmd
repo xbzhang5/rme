@@ -1,48 +1,7 @@
 ---
-title: "Overview of Statistical Models"
+title: "Introduction"
 date: last-modified
 date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-format: 
-  revealjs:
-    theme: dark
-    fig-cap-location: top
-    html-math-method: mathjax
-    smaller: false
-    number-sections: true
-    number-depth: 2
-    slide-number: true
-    scrollable: true
-    echo: true
-    code-fold: true
-    code-link: true
-    code-summary: "[R code]"
-    code-overflow: scroll
-    auto-stretch: false
-    # chalkboard: true
-    # fig-width: 30
-    # fig-height: 10
-    # out-width: "100%"
-  html:
-    theme: darkly
-    toc: true
-    fig-cap-location: top
-    number-sections: true
-    number-depth: 3
-    code-fold: true
-    code-tools: true
-    code-summary: "Show the code"
-    code-link: true
-  pdf:
-    toc: true
-    links-as-notes: true
-    df-print: tibble
-    cap-location: top
-    number-sections: true
-    number-depth: 3
-    code-link: true
-    code-overflow: wrap
-  beamer:
-    theme: Antibes
 editor_options:
   chunk_output_type: console
 editor:
@@ -173,8 +132,9 @@ ggpenguins <-
 ::: {.content-visible when-format="html"}
 
 ```{r}
+#| fig-cap: Palmer penguins
+#| echo: false
 ggpenguins |> ggplotly()
-
 ```
 
 :::
@@ -182,6 +142,7 @@ ggpenguins |> ggplotly()
 ::: {.content-visible when-format="pdf"}
 
 ```{r}
+#| fig-cap: Palmer penguins
 ggpenguins |> print()
 ```
 
@@ -190,7 +151,6 @@ ggpenguins |> print()
 ## Linear regression
 
 ```{r}
-
 ggpenguins2 = 
   ggpenguins +
   stat_smooth(method = "lm",
@@ -201,7 +161,8 @@ ggpenguins2 =
 
 ::: {.content-visible when-format="html"}
 
-```{r}
+```{r, echo = FALSE}
+#| fig-cap: Palmer penguins with linear regression fit
 ggpenguins2 |> ggplotly()
 
 ```
@@ -211,6 +172,8 @@ ggpenguins2 |> ggplotly()
 ::: {.content-visible when-format="pdf"}
 
 ```{r}
+#| echo: false
+#| fig-cap: Palmer penguins with linear regression fit
 ggpenguins2 |> print()
 
 ```
@@ -234,6 +197,7 @@ ggpenguins2 = ggpenguins +
 ::: {.content-visible when-format="html"}
 
 ```{r}
+#| echo: false
 ggpenguins2 |> ggplotly()
 
 ```
@@ -273,6 +237,7 @@ ggpenguins =
 ::: {.content-visible when-format="html"}
 
 ```{r}
+#| echo: false
 ggpenguins |> ggplotly()
 
 ```
@@ -313,6 +278,7 @@ plot1 =
 ::: {.content-visible when-format="html"}
 ```{r}
 #| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| echo: false
 ggplotly(plot1)
 ```
 :::
@@ -358,6 +324,7 @@ plot2 =
 ::: {.content-visible when-format="html"}
 ```{r}
 #| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| echo: false
 ggplotly(plot2)
 ```
 :::
@@ -375,6 +342,7 @@ print(plot2)
 ::: {.content-visible when-format="html"}
 ```{r}
 #| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| echo: false
 ggplotly(plot2 + expand_limits(x = c(1.6, 2)))
 ```
 :::
@@ -407,6 +375,7 @@ plot3 = plot2 +
 ::: {.content-visible when-format="html"}
 ```{r}
 #| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| echo: false
 ggplotly(plot3 + expand_limits(x = c(1.6, 2)))
 ```
 :::
@@ -435,6 +404,7 @@ plot4 = plot3 + geom_function(fun = f, aes(col = "Logistic regression"))
 ::: {.content-visible when-format="html"}
 ```{r}
 #| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| echo: false
 ggplotly(plot4)
 ```
 :::
