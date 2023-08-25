@@ -6,6 +6,7 @@
 *.html
 *files/
 _*/
+*.pdf
 index.aux
 index.log
 index.pdf

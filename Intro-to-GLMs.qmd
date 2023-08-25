@@ -41,8 +41,6 @@ format:
     number-depth: 3
     code-link: true
     code-overflow: wrap
-  beamer:
-    theme: Antibes
 editor_options:
   chunk_output_type: console
 editor:

@@ -1,4 +1,5 @@
 project:
+  execute-dir: _render
   output-dir: _slides
   render:
     - intro-to-GLMs.qmd
@@ -13,7 +14,22 @@ project:
     - coxph-model-building.qmd
     - parametric-survival-models.qmd
 
-format: revealjs
+format:
+  revealjs:
+    theme: dark
+    fig-cap-location: top
+    html-math-method: mathjax
+    smaller: false
+    number-sections: true
+    number-depth: 2
+    slide-number: true
+    scrollable: true
+    echo: true
+    code-fold: true
+    code-link: true
+    code-summary: "[R code]"
+    code-overflow: scroll
+    auto-stretch: false
 
 execute:
   warning: false

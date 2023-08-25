@@ -1,5 +1,6 @@
 project:
   type: book
+  execute-dir: _render
   output-dir: _book
 
 book:
@@ -59,10 +60,11 @@ format:
     number-sections: true
     number-depth: 3
     code-summary: "Show R code"
-
   pdf:
     toc: true
     toc-title: Contents
+    links-as-notes: true
+    df-print: tibble
     shift-heading-level-by: 1
     toc-depth: 2
     number-sections: true
