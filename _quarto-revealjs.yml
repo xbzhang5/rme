@@ -1,5 +1,4 @@
 project:
-  execute-dir: _render
   output-dir: _slides
   render:
     - intro-to-GLMs.qmd
@@ -23,13 +22,17 @@ format:
     number-sections: true
     number-depth: 2
     slide-number: true
+    slide-level: 2
     scrollable: true
     echo: true
     code-fold: true
     code-link: true
     code-summary: "[R code]"
-    code-overflow: scroll
-    auto-stretch: false
+    # code-overflow: scroll
+    auto-stretch: true
+    # out-width: "50%"
+    fig-height: 3
+    fig-width: 7
 
 execute:
   warning: false

@@ -1,6 +1,5 @@
 project:
   type: book
-  execute-dir: _render
   output-dir: _book
 
 book:
