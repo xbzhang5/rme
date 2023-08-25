@@ -5,7 +5,7 @@
 /.quarto/
 *.html
 *files/
-_*
+_*/
 index.aux
 index.log
 index.pdf
