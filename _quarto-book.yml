@@ -52,7 +52,7 @@ format:
          - custom.scss
        dark: darkly
     code-tools: true
-    code-fold: show
+    code-fold: true
     code-link: true
     fig-cap-location: top
     html-math-method: mathjax
