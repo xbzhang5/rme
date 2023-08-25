@@ -133,6 +133,7 @@ ggpenguins <-
 
 ```{r}
 #| fig-cap: Palmer penguins
+#| echo: false
 ggpenguins |> ggplotly()
 ```
 
@@ -170,7 +171,8 @@ ggpenguins2 |> ggplotly()
 
 ::: {.content-visible when-format="pdf"}
 
-```{r, echo = FALSE}
+```{r}
+#| echo: false
 #| fig-cap: Palmer penguins with linear regression fit
 ggpenguins2 |> print()
 
