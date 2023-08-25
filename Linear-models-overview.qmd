@@ -1,29 +1,5 @@
 ---
 title: "Linear (Gaussian) Models"
-format: 
-  pdf:
-    toc: true
-    number-sections: true
-    code-link: true
-    code-overflow: wrap
-  revealjs:
-    theme: dark
-    smaller: false
-    slide-number: true
-    scrollable: true
-    code-fold: true
-    code-summary: "[R code]"
-    code-overflow: scroll
-    auto-stretch: false
-    code-link: true
-    out-width: "100%"
-  html:
-    toc: true
-    number-sections: true
-    code-fold: true
-    code-tools: true
-    code-summary: "Show the code"
-    code-link: true
 editor_options: 
   chunk_output_type: console
 ---

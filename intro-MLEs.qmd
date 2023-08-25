@@ -1,8 +1,5 @@
 ---
 title: "Introduction to Maximum Likelihood Inference"
-format:
-  revealjs:
-    theme: dark
 ---
 {{< include macros.qmd >}}
 

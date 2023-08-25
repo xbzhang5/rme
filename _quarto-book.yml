@@ -61,6 +61,7 @@ format:
     code-summary: "Show R code"
   pdf:
     toc: true
+    fig-pos: "H"
     toc-title: Contents
     links-as-notes: true
     df-print: tibble

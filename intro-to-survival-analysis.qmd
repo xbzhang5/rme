@@ -3,43 +3,6 @@ title: "Introduction to Survival Analysis"
 date: last-modified
 date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
 subject: "EPI 204 Spring 2023"
-format:
-  revealjs:
-    theme: dark
-    fig-cap-location: top
-    html-math-method: mathjax
-    smaller: false
-    number-sections: true
-    number-depth: 2
-    slide-number: true
-    scrollable: true
-    echo: true
-    code-fold: true
-    code-link: true
-    code-summary: "[R code]"
-    code-overflow: scroll
-    auto-stretch: false
-    # chalkboard: true
-    # fig-width: 7
-    # fig-height: 5
-    # out-width: "100%"
-  html:
-    toc: true
-    fig-cap-location: top
-    number-sections: true
-    number-depth: 3
-    code-fold: true
-    code-tools: true
-    code-summary: "Show the code"
-    code-link: true
-  pdf:
-    toc: true
-    fig-cap-location: top
-    number-sections: true
-    number-depth: 3
-    code-link: true
-    code-overflow: wrap
-    fig-pos: "H"
 editor_options:
   chunk_output_type: console
 editor:

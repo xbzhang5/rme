@@ -33,6 +33,7 @@ format:
     # out-width: "50%"
     fig-height: 3
     fig-width: 7
+    # chalkboard: true
 
 execute:
   warning: false
