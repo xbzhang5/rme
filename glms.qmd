@@ -45,3 +45,17 @@ quasibinomial | **logit**, probit, identity, cloglog, inverse, log, 1/mu^2 and s
 quasipoisson | **log**, identity, logit, probit, cloglog, inverse, 1/mu^2 and sqrt
 
 : R glm() Families
+
+Name | Domain | Range | Link Function | Inverse Link Function
+------| ------ | ----- | ----- | ------
+identity | $(-\infty, \infty)$ | $(-\infty, \infty)$ | $\eta = \mu$ | $\mu = \eta$
+log | $(0,\infty)$ | $(-\infty, \infty)$ | $\eta = \log{\mu}$ | $\mu = \exp{\eta}$
+inverse | $(0, \infty)$ | $(0,\infty)$ | $\eta = 1/\mu$ | $\mu = 1/\eta$
+logit | $(0,1)$ | $(-\infty, \infty)$ | $\eta = \log{\mu/(1-\mu)}$ | $\mu = exp{\eta}/(1+exp{\eta})$
+probit | $(0,1)$ | $(-\infty, \infty)$ | $\eta = \Phi^-1{\mu}$ | $\mu = \Phi(\eta)$
+cloglog | $(0,1)$ | $(-\infty, \infty)$ | $\eta = \log{-\log{1-\mu}}$ | $\mu = {1-\exp{-\exp{\eta}}}$
+1/mu^2 | $(0,\infty)$ | $(0, \infty)$ | $\eta = 1/\mu^2$ | $\mu = 1/\sqrt(\eta)$
+sqrt | $(0,\infty)$ | $(0,\infty)$ | $\eta = \sqrt{\mu}$ | $\mu = \eta^2$
+
+
+: R `glm()` Link Functions; $\eta = X\beta = g(\mu)$

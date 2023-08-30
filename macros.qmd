@@ -2,7 +2,7 @@
 \def\eqdef{\stackrel{\text{def}}{=}}
 \def\hb{\hat\beta}
 \def\za{z_{1 - \frac{\alpha}{2}}}
-\def\cirad{\za \cd \hse(\hb)}
+\def\cirad{\za \cd \hse{\hb}}
 \def\ci{\hb {\color{red}\pm} \cirad}
 \providecommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
 \providecommand{\E}[1]{\text{E}\left[#1\right]}

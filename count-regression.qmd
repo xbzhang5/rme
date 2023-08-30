@@ -117,7 +117,7 @@ $$
 \end{aligned}
 $$
 
-In contrast with the $X$s, $T$ enters this expression with a $\log{}$ transformation and without a corresponding $\beta$ coefficient. 
+In contrast with the $X$s, $T$ enters this expression with a $\log$ transformation and without a corresponding $\beta$ coefficient. 
 
 :::{.callout-note}
 Terms that enter the linear component of a model without a coefficient, such as $\log{t}$ here, are called **offsets**.
@@ -189,7 +189,7 @@ $$
 ## Hypothesis tests for regression coefficients
 
 $$
-t = \frac{\hat \beta - \beta_0}{\hse(\hb)}
+t = \frac{\hat \beta - \beta_0}{\hse{\hb}}
 $$
 
 Compare $t$ or $|t|$ to the tails of the standard Gaussian distribution, according to the null hypothesis.
@@ -221,7 +221,7 @@ $$e \eqdef y - \hat y$$
 
 ### Pearson residuals
 
-$$r = \frac{e}{\hse(e)} \approx \frac{e}{\sqrt{\hat y}}$$
+$$r = \frac{e}{\hse{e}} \approx \frac{e}{\sqrt{\hat y}}$$
 
 ### Standardized Pearson residuals
 
