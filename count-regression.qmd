@@ -10,7 +10,7 @@ editor:
     wrap: 72
 ---
 
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 ## Acknowledgements{.unnumbered}
 
@@ -117,7 +117,7 @@ $$
 \end{aligned}
 $$
 
-In contrast with the $X$s, $T$ enters this expression with a $\log$ transformation and without a corresponding $\beta$ coefficient. 
+In contrast with the $X$s, $T$ enters this expression with a $\log{}$ transformation and without a corresponding $\beta$ coefficient. 
 
 :::{.callout-note}
 Terms that enter the linear component of a model without a coefficient, such as $\log{t}$ here, are called **offsets**.

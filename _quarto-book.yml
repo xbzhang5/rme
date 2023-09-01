@@ -12,9 +12,6 @@ book:
   page-footer:
     left:
       - text: "Copyright 2023, Douglas Ezra Morrison"
-    right:
-      - text: "License"
-        href: http://creativecommons.org/licenses/by-nc-nd/4.0/
   date: last-modified
   date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
   google-analytics: "G-W625DGE908"

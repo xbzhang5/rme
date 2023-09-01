@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Maximum Likelihood Inference"
 ---
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 These notes are derived primarily from:
 

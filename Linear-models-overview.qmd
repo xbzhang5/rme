@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 :::{.callout-note}
 This content is adapted from Dobson & Barnett, An Introduction to Generalized Linear Models, 4th edition, Chapters 2-6\]

@@ -9,7 +9,7 @@ editor:
     wrap: 72
 ---
 
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 ## Acknowledgements {.unnumbered}
 
@@ -44,7 +44,6 @@ Here are some R settings I use in this document:
 ```{r options, message=FALSE}
 rm(list = ls()) # delete any data that's already loaded into R
 knitr::opts_chunk$set(message = FALSE)
-pander::panderOptions("table.emphasize.rownames", FALSE)
 options('digits' = 4)
 ```
 

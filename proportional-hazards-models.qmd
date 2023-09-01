@@ -9,7 +9,7 @@ editor:
     wrap: 72
 ---
 
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 ::: {.content-hidden when-format="revealjs"}
 ## Configuring R {.unnumbered}

@@ -1,0 +1,7 @@
+```{r}
+#| label: r-config
+#| include: FALSE
+library(pander)
+library(printr)
+panderOptions("big.mark", ",")
+```

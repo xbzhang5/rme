@@ -19,4 +19,3 @@
 \providecommand{\inv}[1]{\left(#1\right)^{-1}}
 \providecommand{\ind}[1]{\mathbb{1}_{#1}}
 \providecommand{\pr}{\text{p}}
-
