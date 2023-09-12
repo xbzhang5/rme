@@ -1,0 +1,34 @@
+---
+title: "Estimation"
+date: last-modified
+date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# Definitions
+
+{{< include macros.qmd >}}
+
+:::{def-bias}
+
+## Bias
+
+The **bias** of an estimator $\hat\theta$ for an estimand $\theta$ is the signed difference between the expected value (mean) of that estimator minus the true value of the estimand; that is:
+
+$$\bias{\hat\theta} \eqdef \E{\hat\theta} - \theta$$
+
+:::
+
+:::{def-precision}
+
+## Precision
+
+The **precision** of an estimator $\hat\theta$, often denoted $\tau(\hat\theta)$, is the inverse of that estimator's variance; that is:
+
+$$\tau(\hat\theta) \eqdef \inv{\Var{\hat\theta}}$$
+
+:::

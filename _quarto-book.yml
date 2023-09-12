@@ -35,6 +35,7 @@ book:
     - references.qmd
   appendices:
     - intro-MLEs.qmd
+    - estimation.qmd
 
   page-navigation: true
 

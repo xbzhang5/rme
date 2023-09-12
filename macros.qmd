@@ -19,3 +19,6 @@
 \providecommand{\inv}[1]{\left(#1\right)^{-1}}
 \providecommand{\ind}[1]{\mathbb{1}_{#1}}
 \providecommand{\pr}{\text{p}}
+\providecommand{\Bias}[1]{\text{Bias}\left(#1\right)}
+\providecommand{\bias}[1]{\text{Bias}\left(#1\right)}
+\providecommand{\ssqf}[1]{\sigma^2\left(#1\right)}
