@@ -240,6 +240,12 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Introduction to Maximum Likelihood Inference</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Estimation</span></span></a>
+  </div>
+</li>
       </ul>
 </li>
     </ul>
@@ -278,7 +284,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-08-25: 15:36:50 (PM)</p>
+      <p class="date">Last modified: 2023-09-01: 18:15:57 (PM)</p>
     </div>
   </div>
   
@@ -359,15 +365,15 @@ Note
 <li><p><span class="math inline">\(\Gamma(t) = (t-1)!\)</span> for integers <span class="math inline">\(t \in \mathbb Z\)</span></p></li>
 <li><p>It is implemented by the <code><a href="https://rdrr.io/r/base/Special.html">gamma()</a></code> function in R.</p></li>
 </ul>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-1_c076c1d415f80e024506baff848de077">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-2_63e3bbc6331ab611c86996be31c1424f">
 <div class="cell-output-display">
-<p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
 </div>
 <p>Here are some Weibull density functions, with <span class="math inline">\(\lambda = 1\)</span> and <span class="math inline">\(p\)</span> varying:</p>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-2_d5f4c5d03c6da84213a1bf304b5441d1">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-3_ca24d5a808ccd16cadfca577f143b859">
 <details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="va">lambda</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -403,7 +409,7 @@ Note
 <span>            size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><figcaption class="figure-caption">Density functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><figcaption class="figure-caption">Density functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -417,7 +423,7 @@ Note
 <p><strong>In HW: prove these properties</strong></p>
 <p>This distribution provides more flexibility than the exponential.</p>
 <p>Here are some Weibull hazard functions, with <span class="math inline">\(\lambda = 1\)</span> and <span class="math inline">\(p\)</span> varying:</p>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-3_ead6c7ee8c41b927942097703036925c">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-4_1ed4dd11cbd21ef3d73ee942ef75e01d">
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ehar.se/r/eha/">eha</a></span><span class="op">)</span></span>
 <span><span class="va">lambda</span> <span class="op">=</span> <span class="fl">1</span></span>
@@ -452,12 +458,12 @@ Note
 <span>            size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><figcaption class="figure-caption">Hazard functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><figcaption class="figure-caption">Hazard functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-4_a68557e1484b4ac3d926c4d8fa7fbad7">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-5_0fc268f48e2507793b1b8f1b26b56e4f">
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="va">lambda</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span></span>
@@ -491,7 +497,7 @@ Note
 <span>            size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><figcaption class="figure-caption">Survival functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><figcaption class="figure-caption">Survival functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -612,7 +618,7 @@ Y&amp;=\alpha-\sigma\eta+\sigma W\\
 <span class="header-section-number">8.1.5</span> Dataset: Leukemia treatments</h3>
 <p>Remission survival times on 42 leukemia patients, half on new treatment, half on standard treatment.</p>
 <p>This is the same data as the <code>drug6mp</code> data from KMsurv, but with two other variables and without the pairing.</p>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-5_93a490c5342f854ba9eeea9d78c38bd8">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-6_cf203a9f1833381a0ccdeb5a345e5d17">
 <details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span>
 <span><span class="va">anderson</span> <span class="op">=</span> </span>
@@ -660,7 +666,7 @@ Y&amp;=\alpha-\sigma\eta+\sigma W\\
 </div>
 </div>
 <section id="cox-semi-parametric-model" class="level4"><h4 class="anchored" data-anchor-id="cox-semi-parametric-model">Cox semi-parametric model</h4>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-6_dda9f45af8381729ecc17412dab65885">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-7_c6b8bcef2530c52eda7dc9ed8a8643f9">
 <details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.cox0</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">anderson</span><span class="op">)</span></span>
@@ -686,7 +692,7 @@ Score (logrank) test = 17.2  on 1 df,   p=3e-05</code></pre>
 </div>
 </div>
 </section><section id="weibull-parametric-model" class="level4"><h4 class="anchored" data-anchor-id="weibull-parametric-model">Weibull parametric model</h4>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-7_6a387e25f32e2b9d3870b1f591f8533a">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-8_f41d28f638670adaf51b3c3d2417914c">
 <details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.weib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survreg.html">survreg</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">anderson</span>,</span>
@@ -711,7 +717,7 @@ n= 42 </code></pre>
 </div>
 </div>
 </section><section id="exponential-parametric-model" class="level4"><h4 class="anchored" data-anchor-id="exponential-parametric-model">Exponential parametric model</h4>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-8_9ec6d8fbf33d147332f786bd5b0ec366">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-9_652a79832f33a28d7e319a1c27818f91">
 <details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.exp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survreg.html">survreg</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">anderson</span>,</span>
@@ -735,14 +741,14 @@ n= 42 </code></pre>
 </div>
 </div>
 </section><section id="diagnostic---complementary-log-log-survival-plot" class="level4"><h4 class="anchored" data-anchor-id="diagnostic---complementary-log-log-survival-plot">Diagnostic - complementary log-log survival plot</h4>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-9_ebbdb93d0c7ba5a40ee488a4c14c19eb">
+<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-10_b35ffd42a3b899554facd15e0eb7365b">
 <details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">anderson</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="st">"cloglog"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>If the cloglog plot is linear, then a Weibull model may be ok.</p>
@@ -1170,7 +1176,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown:</span></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: 72</span></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>{{&lt; include macros.qmd &gt;}}</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>{{&lt; include shared-config.qmd &gt;}}</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>::: {.content-hidden when-format="revealjs"}</span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Configuring R {.unnumbered}</span></span>
@@ -1649,12 +1655,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-<li class="nav-item">
-    <a class="nav-link" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">License</a>
-  </li>  
-</ul>
-</div>
+      &nbsp;
+    </div>
   </div>
 </footer>
 
