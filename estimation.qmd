@@ -9,15 +9,103 @@ editor:
     wrap: 72
 ---
 
-# Definitions
+
+
+# Estimands, estimates, and estimators
 
 {{< include macros.qmd >}}
+
+:::{#def-estimand}
+\index{estimand}
+## Estimand
+
+An **estimand** is an unknown quantity that someone is interested in. In statistical contexts, most estimands are parameters of probabilistic models, or functions of model parameters.
+
+::::{#exm-estimand}
+
+## Estimand
+
+"How long it takes for the Earth to completely orbit the sun once" is a (reasonably-clearly defined) estimand.
+::::
+
+:::
+
+:::{#def-estimate}
+
+## Estimate/estimated value
+\index{estimate}
+\index{estimated value}
+
+An **estimate** or **estimated value** is a number (or vector of numbers) that someone uses to guess the value of an estimand.
+
+:::{#exm-estimate}
+
+## Length of a year
+
+365 days is often used as an *estimate* of the duration of an Earth-year (one rotation around the Sun).
+
+:::
+
+:::{#def-estimator}
+
+## Estimator
+
+\index{estimator}
+An **estimator** is a function $\theta(x_1,...x_n)$ which takes data $x_1,...,x_n$ as input and outputs a number (or vector of numbers) that someone uses as an estimate.
+
+:::
+
+:::{.callout-note}
+
+## Notation for estimators and estimates
+
+We often use shorthands for estimators; for example, instead of writing out $\hat\mu(x_1,...,x_n)$, we might just write $\hat\mu$. We tend not to distinguish between an *estimator* applied to not-yet-observed random variables (which is itself a random variable) versus the *estimate* produced by the estimator for a given set of observed values. For example, $\hat\mu(X_1,...,X_n)$ and $\hat\mu(x_1,...,x_n)$ are both often shorthanded as $\hat\mu$, even though $\hat\mu(X_1,...,X_n)$ should probably be written with a capital "mu" ($M$) as $\hat M(X_1,...,X_n)$.
+
+:::
+
+:::{#exm-estimator}
+If we want to estimate the mean height of students at our university, which we can represent as $\mu$, we might measure the heights of $n$ randomly sampled students as *data* $x_1,...,x_n$. Then we could use the function
+
+$$\hat\mu(x_1,...,x_n) = \sum_{i=1}^n x_i \eqdef \bar x$$
+
+as an *estimator* to produce an *estimate* of $\mu$. Another estimator would be just the height of the first student sampled: 
+
+$$\hat\mu^{(2)}(x_1,...,x_n) = x_1$$
+
+A third possible estimator would be the mean of all sampled students' heights, except for the two most extreme; that is, if we re-order the observations $x_{(1)} = \min_{i\in 1:n} x_i$, $x_{(2)} = \min_{i\in 1:n - \arg x_{(1)}} x_i$, ..., $x_{(n)} = \max_{i\in 1:n} x_i$, then we could define the estimator:
+
+$$\hat\mu^{(3)}(x_1,...,x_n) = \sum_{i=2}^{n-1} x_i$$
+
+Which of these estimators is best? That depends on how we evaluate our estimators.
+
+:::
+
+# Accuracy of estimates and estimators
+
+To determine which estimator is best, we need to define *best*. "Accuracy" is usually most important; easy computation is usually secondary.
+
+:::{def-accuracy}
+## Accuracy
+
+**Accuracy** lacks a consensus mathematical definition. Mean squared error? Mean absolute error?
+
+:::
 
 :::{def-bias}
 
 ## Bias
 
 The **bias** of an estimator $\hat\theta$ for an estimand $\theta$ is the signed difference between the expected value (mean) of that estimator minus the true value of the estimand; that is:
+
+$$\bias{\hat\theta} \eqdef \E{\hat\theta} - \theta$$
+
+:::
+
+:::{def-accuracy}
+
+## Accuracy
+
+The **accuracy** of an estimate $\hat\theta$ for an estimand $\theta$ is the signed difference between the expected value (mean) of that estimator minus the true value of the estimand; that is:
 
 $$\bias{\hat\theta} \eqdef \E{\hat\theta} - \theta$$
 
@@ -32,3 +120,4 @@ The **precision** of an estimator $\hat\theta$, often denoted $\tau(\hat\theta)$
 $$\tau(\hat\theta) \eqdef \inv{\Var{\hat\theta}}$$
 
 :::
+
