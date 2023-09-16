@@ -72,7 +72,7 @@ An **estimator** is a function $\hth(X_1,...X_n)$, whose input is a set of rando
 :::{.callout-note}
 ### Notation for estimators
 
-Estimators are often symbolized by placing a "hat" (circumflex) diacritic symbol $\hat\ $ on top of the corresponding estimand; for example, $\hth$.
+Estimators are often symbolized by placing a ^ ("hat") symbol on top of the corresponding estimand; for example, $\hth$.
 :::
 
 :::{#exm-estimator}
