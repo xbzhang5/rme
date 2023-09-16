@@ -34,8 +34,9 @@ book:
        - parametric-survival-models.qmd
     - references.qmd
   appendices:
-    - intro-MLEs.qmd
+    - probability.qmd
     - estimation.qmd
+    - intro-MLEs.qmd
 
   page-navigation: true
 

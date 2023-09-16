@@ -13,20 +13,23 @@ editor:
 
 {{< include macros.qmd >}}
 
+\index{estimand}
+
 :::{#def-estimand}
 
-## Estimand \index{estimand}
+## Estimand 
 
-An **estimand** is an unknown quantity that someone is interested in. 
-
-In statistical contexts, most estimands are parameters of probabilistic models, or functions of model parameters.
+An **estimand** is an unknown quantity whose value we want to know. 
 
 ::::{#exm-estimand}
 
-## Estimand
+## Mean height of students
 
-"How long it takes for the Earth to completely orbit the sun once" is a (reasonably-clearly defined) estimand.
+If we are trying to determine the mean height of students at our school, then the population mean is our estimand.
+
 ::::
+
+In statistical contexts, most estimands are parameters of probabilistic models, or functions of model parameters.
 
 ::::{.callout-note}
 
@@ -38,84 +41,95 @@ Model paramaters and other estimands are often symbolized using lower-case Greek
 
 :::
 
+ \index{estimate} \index{estimated value}
+ 
 :::{#def-estimate}
 
-## Estimate/estimated value \index{estimate} \index{estimated value}
+## Estimate/estimated value
 
-An **estimate** or **estimated value** is a number (or vector of numbers) that someone uses to guess the value of an estimand.
+In statistics, in **estimate** or **estimated value** is an informed guess of an estimand's value, based on observed data.
 
 ::::{#exm-estimate}
 
-## Length of a year
+## Mean height of students
 
-365 days is often used as an *estimate* of the duration of an Earth-year (one rotation around the Sun).
-
-::::
-
-::::{.callout-note}
-
-## Notation for estimates
-
-Estimates are often symbolized by placing a "hat" (circumflex) diacritic symbol $\hat\ $ on top of the corresponding estimand; for example, $\hat\theta$.
+Suppose we measure the heights of 50 random students from our school, and that the the sample mean was 175cm. We might use 175cm as an estimate of the population mean.
 
 ::::
 
 :::
+
+\index{estimator}
 
 :::{#def-estimator}
 
-## Estimator \index{estimator}
+## Estimator 
 
-An **estimator** is a function $\hat\theta(x_1,...x_n)$ which someone uses to produce an estimate $\hat\theta$ of an estimand $\theta$ from data $x_1,...,x_n$.
-
+An **estimator** is a function $\hat\theta(X_1,...X_n)$, whose input is a set of random variables $X_1,...,X_n$, and whose corresponding observed value $\hat\theta(x_1,...x_n)$ is used as an estimate.
 
 :::
 
+:::{.callout-note}
+### Notation for estimators
+
+Estimators are often symbolized by placing a "hat" (circumflex) diacritic symbol $\hat\ $ on top of the corresponding estimand; for example, $\hat\theta$.
+:::
+
 :::{#exm-estimator}
-If we want to estimate the mean height of students at our university, which we can represent as $\mu$, we might measure the heights of $n$ randomly sampled students as *data* $x_1,...,x_n$. Then we could use the function
 
-$$\hat\mu(x_1,...,x_n) = \sum_{i=1}^n x_i \eqdef \bar x$$
+## Mean height of students
 
-as an *estimator* to produce an *estimate* of $\mu$. Another estimator would be just the height of the first student sampled: 
+If we want to estimate the mean height of students at our university, which we will represent as $\mu$, we might measure the heights of $n= 50$ randomly sampled students as random variables $X_1,...,X_n$. Then we could use the function
 
-$$\hat\mu^{(2)}(x_1,...,x_n) = x_1$$
+$$\hat\mu(X_1,...,X_n) = \frac{1}{n} \sum_{i=1}^n X_i \eqdef \bar X$$
 
-A third possible estimator would be the mean of all sampled students' heights, except for the two most extreme; that is, if we re-order the observations $x_{(1)} = \min_{i\in 1:n} x_i$, $x_{(2)} = \min_{i\in 1:n - \arg x_{(1)}} x_i$, ..., $x_{(n)} = \max_{i\in 1:n} x_i$, then we could define the estimator:
+as an *estimator* to produce an *estimate* $\hat\mu = \bar x$ of $\mu$. 
 
-$$\hat\mu^{(3)}(x_1,...,x_n) = \sum_{i=2}^{n-1} x_i$$
+Another estimator would be just the height of the first student sampled: 
 
-Which of these estimators is best? It depends on how we evaluate them.
+$$\hat\mu^{(2)}(X_1,...,X_n) = X_1$$
+
+A third possible estimator would be the mean of all sampled students' heights, except for the two most extreme; that is, if we re-order the observations $X_{(1)} = \min_{i\in 1:n} X_i$, $X_{(2)} = \min_{i\in \{1:n\} - \arg X_{(1)}} X_i$, ..., $X_{(n)} = \max_{i\in 1:n} X_i$, then we could define the estimator:
+
+$$\hat\mu^{(3)}(X_1,...,X_n) = \frac{1}{n}\sum_{i=2}^{n-1} X_{(i)}$$
+
+Which of these estimators is best? It depends on how we evaluate them (see @sec-est-accuracy below).
 
 :::
 
 :::{.callout-note}
 
-## Notation for estimators
+## Contrasting estimands, estimates, and estimators
 
-We often use shorthand notation for estimators; for example, instead of writing out $\hat\mu(x_1,...,x_n)$, we might just write $\hat\mu$. In other words,  we tend not to distinguish symbolically between an *estimator* applied to not-yet-observed random variables (which is itself a random variable) versus the *estimate* produced by the estimator for a given set of observed values. For example, $\hat\mu(X_1,...,X_n)$ and $\hat\mu(x_1,...,x_n)$ are both often shorthanded as $\hat\mu$, even though $\hat\mu(X_1,...,X_n)$ should probably be shorthanded with a capital "mu" ($M$) as $\hat M = \hat \mu(X_1,...,X_n)$.
+It's helpful to keep in mind the mathematical type of each estimation concept:
+
+* estimands are numbers (or vector of numbers)
+* estimates are also numbers (or vectors)
+* estimators are functions of random variables, so they are also random variables
 
 :::
 
-# Accuracy of estimators
+# Accuracy of estimators {#sec-est-accuracy}
 
 To determine which estimator is best, we need to define *best*. "Accuracy" is usually most important; easy computation is usually secondary.
 
-:::{def-accuracy}
+:::{#def-accuracy}
 ## Accuracy
 
-The **accuracy** of an estimator for a given estimand does not have a consensus formal definition, but all of the usual candidates are related to the sizes of the *errors* made by the resulting estimates that the estimators produce.
+The **accuracy** of an estimator for a given estimand does not have a consensus formal definition, but all of the usual candidates are related to the distributions of the *errors* made by the resulting estimates.
 
-::::{def-error}
+::::{#def-error}
+## Error
 
-The **error** $\epsilon(\hat\theta))$ of an estimate $\hat\theta$ is the distance between the estimate and its estimand $\theta$; that is:
+The **error** of an estimate $\hth$, often denoted $\e(\hth)$, is the difference between the estimate and its estimand $\theta$; that is:
 
-$$\epsilon(\hat\theta) \eqdef \hat\theta - \theta$$
+$$\e(\hth) \eqdef \hth - \th$$
 
 ::::
 
 Two frequently-used options for accuracy are:
 
-::::{def-mse}
+::::{#def-mse}
 
 ### Mean squared error
 
@@ -131,7 +145,7 @@ $$
 
 ::::
 
-::::{def-mae}
+::::{#def-mae}
 
 ### Mean absolute error
 
@@ -140,7 +154,7 @@ The **mean absolute error** of an estimator is the expectation of the absolute v
 
 $$
 \begin{aligned}
-\mselr{\hat\theta} 
+\maelr{\hat\theta} 
 &\eqdef \E{\abs{\epsilon(\hat\theta)}}\\
 &= \E{\abs{\hat\theta - \theta}}
 \end{aligned}
@@ -148,24 +162,29 @@ $$
 
 ::::
 
-::::{def-bias}
+::::{#def-bias}
 
 ## Bias
 
-The **bias** of an estimator $\hat\theta$ for an estimand $\theta$ is the signed difference between the expected value (mean) of the error. Due to the linearity of expectation, bias is equivalent to the expected value of the estimator, minus the true value of the estimand. That is:
+The **bias** of an estimator $\hat\theta$ for an estimand $\theta$ is the expected value of the error:
 
 $$
 \begin{aligned}
-\bias{\hat\theta} \eqdef \E{\hat\theta - \theta}\\
-&= \E{\hat\theta} - \theta
+\bias{\hat\theta} 
+&\eqdef \E{\epsilon(\hat\theta)}\\
+&= \E{\hat\theta - \theta}\\
+&=\E{\hat\theta} - \E{\theta}\\
+&=\E{\hat\theta} - \theta
 \end{aligned}
-$$
+$$ {#eq-bias-def}
+
+The third equality in @eq-bias-def is by the linearity of expectation.
 
 ::::
 
 :::
 
-:::{def-precision}
+:::{#def-precision}
 
 ## Precision
 
@@ -175,3 +194,46 @@ $$\tau(\hat\theta) \eqdef \inv{\Var{\hat\theta}}$$
 
 :::
 
+:::{#thm-mse-bias-variance}
+
+## $\text{MSE} = \sqf{\text{Bias}} + \text{Variance}$
+
+For any one-dimensional estimator $\hat\theta$:
+
+$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
+
+::::{.proof}
+
+It's easiest to work backwards:
+
+$$
+\ba
+\sqf{\bias{\hth}}
+&=\sqf{\E{\e(\hat\theta)}}\\
+&=\sqf{\E{\hth - \th}}\\
+&=\sqf{\E{\hth} - \th}\\
+&=\sqf{\E{\hth}} - 2\E{\hth}\th+\sqf{\th}\\
+\ea
+$$
+
+$$
+\ba
+\var{\hth}
+&=\E{\hth^2} - \sqf{\E{\hth}}\\
+\sqf{\bias{\hth}} + \var{\hth}
+&=\sqf{\E{\hth}} - 2\E{\hth}\th+\sqf{\th} + \E{\hth^2} - \sqf{\E{\hth}}\\
+&=\sqf{\E{\hth}} - 2\E{\hth}\th+\sqf{\th} + \E{\hth^2} - \sqf{\E{\hth}}\\
+\ea
+$$
+
+$$
+\ba
+\mselr{\hat\theta} 
+&\eqdef \E{(\e(\hat\theta))^2}\\
+&= \E{(\hat\theta - \th)^2}\\
+&= \E{\sqf{\hat\theta} - 2\hth\th - \sqf{\th}}\\
+\ea
+$$
+::::
+
+:::

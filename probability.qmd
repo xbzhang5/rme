@@ -5,10 +5,12 @@ date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
 editor: source
 ---
 
-# Definitions
+{{< include macros.qmd >}}
+
+# Core concepts
 
 :::{#def-density}
-## density function
+## Density function
 
 The density function $f(t)$ for a random variable $T$ at value $t$ can be defined as the derivative of the cumulative probability function $P(T\le t)$; that is:
 
@@ -23,4 +25,32 @@ The hazard function for a random variable $T$ at value $t$ is the conditional de
 
 $$h(t) \eqdef p(T=t|T\ge t)$$
 
+:::
+
+:::{#def-variance}
+## Variance
+
+The variance of a random variable $X$ is the expected squared difference between $X$ and $\E{X}$; that is:
+
+$$
+\Var{X} \eqdef \E{(X-\E[X])^2}
+$$
+
+:::
+
+:::{#thm-variance}
+## Properties of variance
+
+By linearity of expectation, we have:
+
+$$
+\begin{aligned}
+\Var{X} 
+&\eqdef \E{(X-\E{X})^2}\\
+&=\E{X^2 - 2X\E{X} + \sqf{\E{X}}}\\
+&=\E{X^2} - \E{2X\E{X}} + \E{\sqf{\E{X}}}\\
+&=\E{X^2} - 2\E{X}\E{X} + \sqf{\E{X}}\\
+&=\E{X^2} - \sqf{\E{X}}\\
+\end{aligned}
+$$
 :::
