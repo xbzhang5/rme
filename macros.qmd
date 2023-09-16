@@ -22,3 +22,5 @@
 \providecommand{\Bias}[1]{\text{Bias}\left(#1\right)}
 \providecommand{\bias}[1]{\text{Bias}\left(#1\right)}
 \providecommand{\ssqf}[1]{\sigma^2\left(#1\right)}
+\providecommand{\mselr}[1]{\text{MSE}\left(#1\right)}
+\providecommand{\abs}[1]{\left|#1\right|}

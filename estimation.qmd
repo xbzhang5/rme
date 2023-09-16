@@ -9,17 +9,17 @@ editor:
     wrap: 72
 ---
 
-
-
 # Estimands, estimates, and estimators
 
 {{< include macros.qmd >}}
 
 :::{#def-estimand}
-\index{estimand}
-## Estimand
 
-An **estimand** is an unknown quantity that someone is interested in. In statistical contexts, most estimands are parameters of probabilistic models, or functions of model parameters.
+## Estimand \index{estimand}
+
+An **estimand** is an unknown quantity that someone is interested in. 
+
+In statistical contexts, most estimands are parameters of probabilistic models, or functions of model parameters.
 
 ::::{#exm-estimand}
 
@@ -28,38 +28,46 @@ An **estimand** is an unknown quantity that someone is interested in. In statist
 "How long it takes for the Earth to completely orbit the sun once" is a (reasonably-clearly defined) estimand.
 ::::
 
+::::{.callout-note}
+
+## Notation for estimands
+
+Model paramaters and other estimands are often symbolized using lower-case Greek letters: $\alpha, \beta, \gamma, \delta$, etc.
+
+::::
+
 :::
 
 :::{#def-estimate}
 
-## Estimate/estimated value
-\index{estimate}
-\index{estimated value}
+## Estimate/estimated value \index{estimate} \index{estimated value}
 
 An **estimate** or **estimated value** is a number (or vector of numbers) that someone uses to guess the value of an estimand.
 
-:::{#exm-estimate}
+::::{#exm-estimate}
 
 ## Length of a year
 
 365 days is often used as an *estimate* of the duration of an Earth-year (one rotation around the Sun).
 
+::::
+
+::::{.callout-note}
+
+## Notation for estimates
+
+Estimates are often symbolized by placing a "hat" (circumflex) diacritic symbol $\hat\ $ on top of the corresponding estimand; for example, $\hat\theta$.
+
+::::
+
 :::
 
 :::{#def-estimator}
 
-## Estimator
+## Estimator \index{estimator}
 
-\index{estimator}
-An **estimator** is a function $\theta(x_1,...x_n)$ which takes data $x_1,...,x_n$ as input and outputs a number (or vector of numbers) that someone uses as an estimate.
+An **estimator** is a function $\hat\theta(x_1,...x_n)$ which someone uses to produce an estimate $\hat\theta$ of an estimand $\theta$ from data $x_1,...,x_n$.
 
-:::
-
-:::{.callout-note}
-
-## Notation for estimators and estimates
-
-We often use shorthands for estimators; for example, instead of writing out $\hat\mu(x_1,...,x_n)$, we might just write $\hat\mu$. We tend not to distinguish between an *estimator* applied to not-yet-observed random variables (which is itself a random variable) versus the *estimate* produced by the estimator for a given set of observed values. For example, $\hat\mu(X_1,...,X_n)$ and $\hat\mu(x_1,...,x_n)$ are both often shorthanded as $\hat\mu$, even though $\hat\mu(X_1,...,X_n)$ should probably be written with a capital "mu" ($M$) as $\hat M(X_1,...,X_n)$.
 
 :::
 
@@ -76,38 +84,84 @@ A third possible estimator would be the mean of all sampled students' heights, e
 
 $$\hat\mu^{(3)}(x_1,...,x_n) = \sum_{i=2}^{n-1} x_i$$
 
-Which of these estimators is best? That depends on how we evaluate our estimators.
+Which of these estimators is best? It depends on how we evaluate them.
 
 :::
 
-# Accuracy of estimates and estimators
+:::{.callout-note}
+
+## Notation for estimators
+
+We often use shorthand notation for estimators; for example, instead of writing out $\hat\mu(x_1,...,x_n)$, we might just write $\hat\mu$. In other words,  we tend not to distinguish symbolically between an *estimator* applied to not-yet-observed random variables (which is itself a random variable) versus the *estimate* produced by the estimator for a given set of observed values. For example, $\hat\mu(X_1,...,X_n)$ and $\hat\mu(x_1,...,x_n)$ are both often shorthanded as $\hat\mu$, even though $\hat\mu(X_1,...,X_n)$ should probably be shorthanded with a capital "mu" ($M$) as $\hat M = \hat \mu(X_1,...,X_n)$.
+
+:::
+
+# Accuracy of estimators
 
 To determine which estimator is best, we need to define *best*. "Accuracy" is usually most important; easy computation is usually secondary.
 
 :::{def-accuracy}
 ## Accuracy
 
-**Accuracy** lacks a consensus mathematical definition. Mean squared error? Mean absolute error?
+The **accuracy** of an estimator for a given estimand does not have a consensus formal definition, but all of the usual candidates are related to the sizes of the *errors* made by the resulting estimates that the estimators produce.
 
-:::
+::::{def-error}
 
-:::{def-bias}
+The **error** $\epsilon(\hat\theta))$ of an estimate $\hat\theta$ is the distance between the estimate and its estimand $\theta$; that is:
+
+$$\epsilon(\hat\theta) \eqdef \hat\theta - \theta$$
+
+::::
+
+Two frequently-used options for accuracy are:
+
+::::{def-mse}
+
+### Mean squared error
+
+The **mean squared error** of an estimator is the expectation of the squared errors:
+
+$$
+\begin{aligned}
+\mselr{\hat\theta} 
+&\eqdef \E{(\epsilon(\hat\theta))^2}\\
+&= \E{(\hat\theta - \theta)^2}
+\end{aligned}
+$$
+
+::::
+
+::::{def-mae}
+
+### Mean absolute error
+
+The **mean absolute error** of an estimator is the expectation of the absolute values of the errors:
+
+
+$$
+\begin{aligned}
+\mselr{\hat\theta} 
+&\eqdef \E{\abs{\epsilon(\hat\theta)}}\\
+&= \E{\abs{\hat\theta - \theta}}
+\end{aligned}
+$$
+
+::::
+
+::::{def-bias}
 
 ## Bias
 
-The **bias** of an estimator $\hat\theta$ for an estimand $\theta$ is the signed difference between the expected value (mean) of that estimator minus the true value of the estimand; that is:
+The **bias** of an estimator $\hat\theta$ for an estimand $\theta$ is the signed difference between the expected value (mean) of the error. Due to the linearity of expectation, bias is equivalent to the expected value of the estimator, minus the true value of the estimand. That is:
 
-$$\bias{\hat\theta} \eqdef \E{\hat\theta} - \theta$$
+$$
+\begin{aligned}
+\bias{\hat\theta} \eqdef \E{\hat\theta - \theta}\\
+&= \E{\hat\theta} - \theta
+\end{aligned}
+$$
 
-:::
-
-:::{def-accuracy}
-
-## Accuracy
-
-The **accuracy** of an estimate $\hat\theta$ for an estimand $\theta$ is the signed difference between the expected value (mean) of that estimator minus the true value of the estimand; that is:
-
-$$\bias{\hat\theta} \eqdef \E{\hat\theta} - \theta$$
+::::
 
 :::
 
