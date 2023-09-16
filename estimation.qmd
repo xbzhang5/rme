@@ -53,7 +53,7 @@ In statistics, in **estimate** or **estimated value** is an informed guess of an
 
 ## Mean height of students
 
-Suppose we measure the heights of 50 random students from our school, and that the the sample mean was 175cm. We might use 175cm as an estimate of the population mean.
+Suppose we measure the heights of 50 random students from our school, and the sample mean was 175cm. We might use 175cm as an estimate of the population mean.
 
 ::::
 
