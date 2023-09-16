@@ -65,14 +65,14 @@ Suppose we measure the heights of 50 random students from our school, and that t
 
 ## Estimator 
 
-An **estimator** is a function $\hat\theta(X_1,...X_n)$, whose input is a set of random variables $X_1,...,X_n$, and whose corresponding observed value $\hat\theta(x_1,...x_n)$ is used as an estimate.
+An **estimator** is a function $\hth(X_1,...X_n)$, whose input is a set of random variables $X_1,...,X_n$, and whose corresponding observed value $\hth(x_1,...x_n)$ is used as an estimate.
 
 :::
 
 :::{.callout-note}
 ### Notation for estimators
 
-Estimators are often symbolized by placing a "hat" (circumflex) diacritic symbol $\hat\ $ on top of the corresponding estimand; for example, $\hat\theta$.
+Estimators are often symbolized by placing a "hat" (circumflex) diacritic symbol $\hat\ $ on top of the corresponding estimand; for example, $\hth$.
 :::
 
 :::{#exm-estimator}
@@ -137,9 +137,9 @@ The **mean squared error** of an estimator is the expectation of the squared err
 
 $$
 \begin{aligned}
-\mselr{\hat\theta} 
-&\eqdef \E{(\epsilon(\hat\theta))^2}\\
-&= \E{(\hat\theta - \theta)^2}
+\mselr{\hth} 
+&\eqdef \E{(\epsilon(\hth))^2}\\
+&= \E{(\hth - \theta)^2}
 \end{aligned}
 $$
 
@@ -154,9 +154,9 @@ The **mean absolute error** of an estimator is the expectation of the absolute v
 
 $$
 \begin{aligned}
-\maelr{\hat\theta} 
-&\eqdef \E{\abs{\epsilon(\hat\theta)}}\\
-&= \E{\abs{\hat\theta - \theta}}
+\maelr{\hth} 
+&\eqdef \E{\abs{\epsilon(\hth)}}\\
+&= \E{\abs{\hth - \theta}}
 \end{aligned}
 $$
 
@@ -166,15 +166,15 @@ $$
 
 ## Bias
 
-The **bias** of an estimator $\hat\theta$ for an estimand $\theta$ is the expected value of the error:
+The **bias** of an estimator $\hth$ for an estimand $\theta$ is the expected value of the error:
 
 $$
 \begin{aligned}
-\bias{\hat\theta} 
-&\eqdef \E{\epsilon(\hat\theta)}\\
-&= \E{\hat\theta - \theta}\\
-&=\E{\hat\theta} - \E{\theta}\\
-&=\E{\hat\theta} - \theta
+\bias{\hth} 
+&\eqdef \E{\epsilon(\hth)}\\
+&= \E{\hth - \theta}\\
+&=\E{\hth} - \E{\theta}\\
+&=\E{\hth} - \theta
 \end{aligned}
 $$ {#eq-bias-def}
 
@@ -188,17 +188,17 @@ The third equality in @eq-bias-def is by the linearity of expectation.
 
 ## Precision
 
-The **precision** of an estimator $\hat\theta$, often denoted $\tau(\hat\theta)$, is the inverse of that estimator's variance; that is:
+The **precision** of an estimator $\hth$, often denoted $\tau(\hth)$, is the inverse of that estimator's variance; that is:
 
-$$\tau(\hat\theta) \eqdef \inv{\Var{\hat\theta}}$$
+$$\tau(\hth) \eqdef \inv{\Var{\hth}}$$
 
 :::
 
 :::{#thm-mse-bias-variance}
 
-## $\text{MSE} = \sqf{\text{Bias}} + \text{Variance}$
+## MSE = Bias^2^ + Variance
 
-For any one-dimensional estimator $\hat\theta$:
+For any one-dimensional estimator $\hth$:
 
 $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
 
@@ -209,29 +209,20 @@ It's easiest to work backwards:
 $$
 \ba
 \sqf{\bias{\hth}}
-&=\sqf{\E{\e(\hat\theta)}}\\
+&=\sqf{\E{\e(\hth)}}\\
 &=\sqf{\E{\hth - \th}}\\
 &=\sqf{\E{\hth} - \th}\\
-&=\sqf{\E{\hth}} - 2\E{\hth}\th+\sqf{\th}\\
-\ea
-$$
-
-$$
-\ba
+&=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2\\
 \var{\hth}
 &=\E{\hth^2} - \sqf{\E{\hth}}\\
 \sqf{\bias{\hth}} + \var{\hth}
-&=\sqf{\E{\hth}} - 2\E{\hth}\th+\sqf{\th} + \E{\hth^2} - \sqf{\E{\hth}}\\
-&=\sqf{\E{\hth}} - 2\E{\hth}\th+\sqf{\th} + \E{\hth^2} - \sqf{\E{\hth}}\\
-\ea
-$$
-
-$$
-\ba
-\mselr{\hat\theta} 
-&\eqdef \E{(\e(\hat\theta))^2}\\
-&= \E{(\hat\theta - \th)^2}\\
-&= \E{\sqf{\hat\theta} - 2\hth\th - \sqf{\th}}\\
+&=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2 + \E{\hth^2} - \sqf{\E{\hth}}\\
+&=\E{\hth^2} - 2\E{\hth}\th+\th^2\\
+&=\E{\hth^2} - 2\E{\hth}\th+\E{\th^2}\\
+&= \E{\hth^2 - 2\hth\th - \th^2}\\
+&= \E{(\hth - \th)^2}\\
+&= \E{(\e(\hth))^2}\\
+&=\mselr{\hth} 
 \ea
 $$
 ::::

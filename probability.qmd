@@ -39,7 +39,7 @@ $$
 :::
 
 :::{#thm-variance}
-## Properties of variance
+## Alternative expressions for variance
 
 By linearity of expectation, we have:
 
