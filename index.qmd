@@ -4,11 +4,12 @@ This web-book is derived from my lecture slides for the Spring 2023 session of E
 
 I have drawn these materials from many sources, including but not limited to:
 
--   <https://www.taylorfrancis.com/books/mono/10.1201/9781315182780/introduction-generalized-linear-models-adrian-barnett-annette-dobson>
+-   "An Introduction to Generalized Linear Models" (4th edition, 2018)
+by Annette J. Dobson and Adrian G. Barnett (<https://doi.org/10.1201/9781315182780>)
 
--   <https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>
+- David Rocke's materiels from the 2021 edition of Epi 204 (<https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>)
 
--   <https://link.springer.com/book/10.1007/978-1-4614-1353-0>
+- "Regression Methods in Biostatistics" (2nd edition, 2012) by Eric Vittinghoff , David V. Glidden , Stephen C. Shiboski , and Charles E. McCulloch  (<https://link.springer.com/book/10.1007/978-1-4614-1353-0>)
 
 ## License {.unnumbered}
 
