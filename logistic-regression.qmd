@@ -1408,7 +1408,10 @@ chd_glm_strat |>
   print_md()
 ```
 
+
+:::{#exr-strat-to-contrast}
 If I give you model 1, how would you get the coefficients of model 2?
+:::
 
 # Fitting logistic regression models
 
