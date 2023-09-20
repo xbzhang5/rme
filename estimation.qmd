@@ -47,7 +47,7 @@ Model paramaters and other estimands are often symbolized using lower-case Greek
 
 ## Estimate/estimated value
 
-In statistics, in **estimate** or **estimated value** is an informed guess of an estimand's value, based on observed data.
+In statistics, an **estimate** or **estimated value** is an informed guess of an estimand's value, based on observed data.
 
 ::::{#exm-estimate}
 
@@ -133,7 +133,7 @@ Two frequently-used options for accuracy are:
 
 ### Mean squared error
 
-The **mean squared error** of an estimator is the expectation of the squared errors:
+The **mean squared error** of an estimator $\hth$, denoted $\mselr{\hth}$, is the expectation of the square of the error^[<https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>]:
 
 $$
 \begin{aligned}
