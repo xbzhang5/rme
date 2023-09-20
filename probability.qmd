@@ -30,10 +30,10 @@ $$h(t) \eqdef p(T=t|T\ge t)$$
 :::{#def-variance}
 ## Variance
 
-The variance of a random variable $X$ is the expected squared difference between $X$ and $\E{X}$; that is:
+The variance of a random variable $X$ is the expectation of the squared difference between $X$ and $\E{X}$; that is:
 
 $$
-\Var{X} \eqdef \E{(X-\E[X])^2}
+\Var{X} \eqdef \E{(X-\E{x})^2}
 $$
 
 :::

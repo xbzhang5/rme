@@ -131,34 +131,23 @@ Two frequently-used options for accuracy are:
 
 ::::{#def-mse}
 
-### Mean squared error
+## Mean squared error
 
 The **mean squared error** of an estimator $\hth$, denoted $\mselr{\hth}$, is the expectation of the square of the error^[<https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>]:
 
-$$
-\begin{aligned}
-\mselr{\hth} 
-&\eqdef \E{(\epsilon(\hth))^2}\\
-&= \E{(\hth - \theta)^2}
-\end{aligned}
-$$
+$$\mselr{\hth} \eqdef \E{(\epsilon(\hth))^2}$$
 
 ::::
 
 ::::{#def-mae}
 
-### Mean absolute error
+## Mean absolute error
 
-The **mean absolute error** of an estimator is the expectation of the absolute values of the errors:
+The **mean absolute error** of an estimator is the expectation of the absolute value of the error:
 
 
 $$
-\begin{aligned}
-\maelr{\hth} 
-&\eqdef \E{\abs{\epsilon(\hth)}}\\
-&= \E{\abs{\hth - \theta}}
-\end{aligned}
-$$
+\maelr{\hth} \eqdef \E{\abs{\epsilon(\hth)}}$$
 
 ::::
 
@@ -168,6 +157,16 @@ $$
 
 The **bias** of an estimator $\hth$ for an estimand $\theta$ is the expected value of the error:
 
+$$\bias{\hth} \eqdef \E{\epsilon(\hth)}$$ {#eq-bias-def}
+
+::::
+
+::::{#thm-bias-exprs}
+
+### Expressions for bias
+
+The following expressions are equivalent to the definition of bias:
+
 $$
 \begin{aligned}
 \bias{\hth} 
@@ -176,9 +175,9 @@ $$
 &=\E{\hth} - \E{\theta}\\
 &=\E{\hth} - \theta
 \end{aligned}
-$$ {#eq-bias-def}
+$$
 
-The third equality in @eq-bias-def is by the linearity of expectation.
+The third equality is by the linearity of expectation.
 
 ::::
 
