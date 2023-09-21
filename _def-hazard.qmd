@@ -1,0 +1,8 @@
+## Hazard function
+
+The hazard function for a random variable $T$ at value $t$ is the conditional density of $T$ at $t$, given $T\ge t$; that is:
+
+$$h(t) \eqdef p(T=t|T\ge t)$$
+
+If $T$ represents the time at which an event occurs, then $h(t)$ is the probability that the event occurs at time $t$, given that it has
+not occurred prior to time $t$.

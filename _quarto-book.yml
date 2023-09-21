@@ -46,9 +46,7 @@ format:
   html:
     shift-heading-level-by: 1
     theme:
-       light:
-         - cosmo
-         - custom.scss
+       light: cosmo
        dark: darkly
     code-tools: true
     code-fold: true
@@ -58,6 +56,7 @@ format:
     number-sections: true
     number-depth: 3
     code-summary: "Show R code"
+    css: custom.scss
   pdf:
     toc: true
     fig-pos: "H"

@@ -45,17 +45,20 @@ options('digits' = 4)
 ```
 :::
 
-# Time-to-event outcome distributions
+# Overview
 
-## Time to Event Data
+## Time-to-event outcomes
 
--   Survival Analysis is a term for analyzing time-to-event data.
--   This is used in clinical trials, where the event is often death or
+**Survival analysis** is a framework for modeling *time-to-event* outcomes. It is used in:
+
+-   clinical trials, where the event is often death or
     recurrence of disease.
--   It is used in engineering reliability analysis, where the event is
+-   engineering reliability analysis, where the event is
     failure of a device or system.
--   It is used in insurance, particularly life insurance, where the
+-   insurance, particularly life insurance, where the
     event is death.
+
+# Time-to-event outcome distributions
 
 ## Distributions of Time-to-Event Data
 
@@ -94,27 +97,28 @@ options('digits' = 4)
     positive HIV test at time $t_2$, then the infection event is
     interval censored.
 
-## Distribution functions for time-to-event variables
+# Distribution functions for time-to-event variables
 
-### The Probability Density Function (PDF)
+## The Probability Density Function (PDF)
 
 For a time-to-event variable $T$ with a continuous distribution, the
 **probability density function** is defined as usual:
 
-$$f(t)\stackrel{\text{def}}{=}p(t) \stackrel{\text{def}}{=}p(T=t)$$
+$$f(t)\eqdef  p(t) \eqdef  p(T=t)$$
 
 Typically, this density is assumed to be 0 for all $t<0$; that is,
 $f(t) = 0, \forall t<0$. In other words, the range of $T$ is typically
 $[0,\infty)$.
 
-#### Example: exponential distribution
+:::{#exm-exp-pdf}
+### exponential distribution
 
 Recall from Epi 202: the pdf of the exponential distribution family of
 models is:
 
-$$
-p(T=t) = \mathbb{1}_{t \ge 0}\cdot \lambda  \text{e}^{-\lambda t}
-$$ where $\lambda > 0$.
+$$p(T=t) = \mathbb{1}_{t \ge 0}\cdot \lambda  \text{e}^{-\lambda t}$$ 
+
+where $\lambda > 0$.
 
 Here are some examples of exponential pdfs:
 
@@ -151,17 +155,20 @@ ggplot() +
         hjust = 1))
 ```
 
-### The Cumulative Distribution Function (CDF)
+:::
+
+## The Cumulative Distribution Function (CDF)
 
 The **cumulative distribution function** is defined as:
 
 $$
 \begin{aligned}
-F(t) &\stackrel{\text{def}}{=}\Pr(T \le t)\\
+F(t) &\eqdef \Pr(T \le t)\\
 &=\int_{u=0}^t f(u) du
 \end{aligned}
 $$
 
+:::{#exm-exp-cdf}
 #### Example: exponential distribution
 
 Recall from Epi 202: the cdf of the exponential distribution family of
@@ -206,14 +213,16 @@ ggplot() +
         hjust = 1))
 ```
 
-### The Survival Function
+:::
+
+## The Survival Function
 
 For survival data, a more important quantity is the **survival
 function**:
 
 $$
 \begin{aligned}
-S(t) &\stackrel{\text{def}}{=}\Pr(T > t)\\
+S(t) &\eqdef \Pr(T > t)\\
 &=\int_{u=t}^\infty p(u) du\\
 &=1-F(t)\\
 \end{aligned}
@@ -224,13 +233,14 @@ later than $t$. If the event in a clinical trial is death, then this is
 the expected fraction of the original population at time 0 that is still
 alive at time $t$; that is, the fraction surviving to time $t$.
 
+:::{#exm-exp-survfn}
 #### Example: exponential distribution
 
 Since $S(t) = 1 - F(t)$, the survival function of the exponential
 distribution family of models is:
 
 $$
-P(T> t) = \mathbb{1}_{t \ge 0} \cdot \text{e}^{-\lambda t}
+P(T> t) = \left\{ {{\text{e}^{-\lambda t}, t\ge0} \atop {1, t \le 0}}\right. 
 $$ where $\lambda > 0$.
 
 Here are some examples of exponential pdfs:
@@ -268,27 +278,29 @@ ggplot() +
         hjust = 1))
 ```
 
-### The Hazard Function
-
-Another important quantity is the **hazard function**, which represents
-the probability that the event will occur at time $t$, given that it has
-not occurred yet:
-
-$$h(t) \stackrel{\text{def}}{=}p(T=t|T\ge t)$$
-
-::: callout-note
-Recall from Epi 202: if $A\subseteq B$ then $p(A \cap B) = p(A)$.
 :::
 
-Now, $\{T=t\} \subseteq \{T\geq t\}$. So:
+## The Hazard Function
 
-$$
-\begin{aligned}
-p(T=t, T\ge t) 
-&= p(T=t \cap T\ge t)\\
-&= p(T=t)
-\end{aligned}
-$$
+Another important quantity is the **hazard function**:
+
+:::{#def-hazard}
+
+{{< include _def-hazard.qmd >}}
+
+:::
+
+The hazard function has an important relationship to the density and survival functions, which we can use to derive the hazard function for a given probability distribution.
+
+:::{#thm-hazard1}
+
+$$h(t)=\frac{f(t)}{S(t)}$$
+
+::::{.proof}
+
+Recall from Epi 202: if $A$ and $B$ are statistical events and $A\subseteq B$, then $p(A, B) = p(A)$. In particular, $\{T=t\} \subseteq \{T\geq t\}$, so:
+
+$$p(T=t, T\ge t) = p(T=t)$$
 
 Hence:
 
@@ -301,17 +313,29 @@ h(t) &=p(T=t|T\ge t)\\
 \end{aligned}
 $$
 
-#### Example: exponential distribution
+::::
+
+:::
+
+:::{#exm-exp-haz}
+#### exponential distribution
 
 The hazard function of the exponential distribution family of models is:
 
 $$
-P(T> t) = \mathbb{1}_{t \ge 0}\cdot \lambda
+\begin{aligned}
+P(T=t|T \ge t) 
+&= \frac{f(t)}{S(t)}\\
+&= \frac{\mathbb{1}_{t \ge 0}\cdot \lambda  \text{e}^{-\lambda t}}{\text{e}^{-\lambda t}}\\
+&=\mathbb{1}_{t \ge 0}\cdot \lambda
+\end{aligned}
 $$
 
-Here are some examples of exponential hazard functions:
+@fig-exp-hazard shows some examples of exponential hazard functions:
 
 ```{r, echo = FALSE}
+#| fig-cap: "Examples of hazard functions for exponential distributions"
+#| label: fig-exp-hazard
 library(ggplot2)
 ggplot() +
   geom_hline(
@@ -341,17 +365,53 @@ ggplot() +
         hjust = 1))
 ```
 
-### The Cumulative Hazard Function
+:::
+
+We can also view the hazard function as the derivative of the negative of the logarithm of the survival function:
+
+:::{#thm-h-logS}
+
+$$h(t) = \frac{d}{dt}\cb{-\log{S(t)}}$$
+
+::::{.proof}
+$$
+\begin{aligned}
+h(t)
+&= \frac{f(t)}{S(t)}\\
+&= \frac{-S'(t)}{S(t)}\\
+&= -\frac{S'(t)}{S(t)}\\
+&=-\frac{d}{dt}\log{S(t)}\\
+&=\frac{d}{dt}\cb{-\log{S(t)}}
+\end{aligned}
+$$
+::::
+:::
+
+## The Cumulative Hazard Function
+
+Since $h(t) = \frac{d}{dt}\cb{-\log{S(t)}}$ (see @thm-h-logS), we also have:
+
+:::{#cor-surv-int-haz}
+$$S(t) = \exp{-\int_{u=0}^t h(u)du}$${#eq-surv-int-haz}
+:::
+
+The integral in @eq-surv-int-haz is important enough to have its own name: **cumulative hazard**.
+
+:::{#def-cumhaz}
+
+#### cumulative hazard
 
 The **cumulative hazard function** $H(t)$ is defined as:
 
-$$H(t) \stackrel{\text{def}}{=}\int_{u=0}^t h(u) du$$
+$$H(t) \eqdef \int_{u=0}^t h(u) du$$
+
+:::
 
 As we will see below, $H(t)$ is tractable to estimate, and we can then
-derive an estimate the hazard function using an approximate derivative
+derive an estimate of the hazard function using an approximate derivative
 of the estimated cumulative hazard.
 
-#### Example: exponential distribution
+:::{#exm-exp-cumhaz}
 
 The cumulative hazard function of the exponential distribution family of
 models is:
@@ -392,7 +452,9 @@ ggplot() +
         hjust = 1))
 ```
 
-### Some Key Mathematical Relationships among Survival Concepts
+:::
+
+## Some Key Mathematical Relationships among Survival Concepts
 
 $$
 \begin{aligned}
@@ -402,6 +464,7 @@ S'(t) &= -f(t)\\
 H(t) &= -\text{log}\left\{S(t)\right\}\\
 H'(t) &= h(t)\\
 h(t) &= \frac{f(t)}{S(t)}\\
+ &= -\frac{d}{dt}\log{S(t)} \\
 f(t) &= h(t)\cdot S(t)\\
 \end{aligned}
 $$
@@ -419,7 +482,7 @@ $$
 
 $$
 \begin{aligned}
-\frac{d}{dt}\text{log}\left\{S(t)\right\} 
+\frac{d}{dt}\log{S(t)} 
 &= \frac{S'(t)}{S(t)}\\
 &= -\frac{f(t)}{S(t)}\\
 &= -h(t)\\
@@ -429,7 +492,7 @@ $$
 $$
 \begin{aligned}
 H(t)
-&\stackrel{\text{def}}{=}\int_{u=0}^t h(u) du\\
+&\eqdef \int_{u=0}^t h(u) du\\
 &= \int_0^t -\frac{d}{du}\text{log}\left\{S(u)\right\} du\\
 &= \left[-\text{log}\left\{S(u)\right\}\right]_{u=0}^{u=t}\\
 &= \left[\text{log}\left\{S(u)\right\}\right]_{u=t}^{u=0}\\
@@ -543,10 +606,10 @@ $$
 \begin{aligned}
 \mathcal L(t) 
 &= p(T=t)\\ 
-&\stackrel{\text{def}}{=}f_T(t)\\
+&\eqdef  f_T(t)\\
 &= h_T(t)S_T(t)\\
 \ell(t) 
-&\stackrel{\text{def}}{=}\text{log}\left\{\mathcal L(t)\right\}\\
+&\eqdef \text{log}\left\{\mathcal L(t)\right\}\\
 &= \text{log}\left\{h_T(t)S_T(t)\right\}\\
 &= \text{log}\left\{h_T(t)\right\} + \text{log}\left\{S_T(t)\right\}\\
 &= \text{log}\left\{h_T(t)\right\} - H_T(t)\\
@@ -561,9 +624,9 @@ $$
 \begin{aligned}
 \mathcal L(y) 
 &=p_T(T>y)\\
-&\stackrel{\text{def}}{=}S_T(y)\\
+&\eqdef  S_T(y)\\
 \ell(y)
-&\stackrel{\text{def}}{=}\text{log}\left\{\mathcal L(y)\right\}\\
+&\eqdef \text{log}\left\{\mathcal L(y)\right\}\\
 &=\text{log}\left\{S(y)\right\}\\
 &=-H(y)\\
 \end{aligned}
@@ -579,8 +642,8 @@ Let $Y$ denote the time when observation ended (either by censoring or
 by the event of interest occurring), and let $D$ be an indicator
 variable for the event occurring at $Y$ (so $D=0$ represents a censored
 observation and $D=1$ represents an uncensored observation). In other
-words, let $Y \stackrel{\text{def}}{=}\min(T,C)$ and
-$D \stackrel{\text{def}}{=}\mathbb 1{\{T<=C\}}$.
+words, let $Y \eqdef  \min(T,C)$ and
+$D \eqdef  \mathbb 1{\{T<=C\}}$.
 
 Then the complete likelihood of the observed data $(Y,D)$ is:
 
@@ -679,7 +742,7 @@ $\theta_T$ is:
 $$
 \begin{aligned}
 \ell'_{\theta_T}(y,d)
-&\stackrel{\text{def}}{=}\frac{d}{d\theta_T}\ell(y,d)\\
+&\eqdef  \frac{d}{d\theta_T}\ell(y,d)\\
 &= 
 \left(
 \frac{d}{d\theta_T} 
@@ -1466,7 +1529,7 @@ survdiff(surv ~ group, data = bmt)
 $$
 \begin{aligned}
 h(t) 
-&\stackrel{\text{def}}{=}P(T=t|T\ge t)\\
+&\eqdef   P(T=t|T\ge t)\\
 &= \frac{p(T=t)}{P(T\ge t)}\\
 &= -\frac{d}{dt}\text{log}\left\{S(t)\right\}
 \end{aligned}
@@ -1474,7 +1537,7 @@ $$
 
 The **cumulative hazard** (or **integrated hazard**) function is
 
-$$H(t)\stackrel{\text{def}}{=}\int_0^t h(t) dt$$ Since
+$$H(t)\eqdef  \int_0^t h(t) dt$$ Since
 $h(t) = -\frac{d}{dt}\text{log}\left\{S(t)\right\}$ as shown above, we
 have:
 
@@ -1516,7 +1579,7 @@ autoplot(
 The point hazard at time $t_i$ can be estimated by $d_i/Y_i$, which
 leads to the **Nelson-Aalen estimator of the cumulative hazard**:
 
-$$\hat H_{NA}(t) \stackrel{\text{def}}{=}\sum_{t_i < t}\frac{d_i}{Y_i}$$
+$$\hat H_{NA}(t) \eqdef \sum_{t_i < t}\frac{d_i}{Y_i}$$
 
 The variance of this estimator is approximately: $$
 \begin{aligned}
