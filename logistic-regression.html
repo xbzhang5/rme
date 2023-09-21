@@ -126,6 +126,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="custom.scss">
 </head>
 
 <body class="nav-sidebar floating">
@@ -369,7 +370,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-09-01: 19:02:28 (PM)</p>
+      <p class="date">Last modified: 2023-09-18: 13:12:09 (PM)</p>
     </div>
   </div>
   
@@ -440,7 +441,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 <p>This was an issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don’t have this issue.</p>
 </div>
 <p><a href="#tbl-oc-mi">Table&nbsp;<span>3.1</span></a> contains simulated data for an imaginary follow-up (a.k.a. <em>prospective</em>) study in which two groups are identified, one using OCs and another not using OCs, and both groups are tracked for three years to determine how many in each groups have MIs.</p>
-<div class="cell" data-hash="logistic-regression_cache/html/tbl-oc-mi_c8360d9b826ba5155f9825a1d628a25b">
+<div class="cell" data-hash="logistic-regression_cache/html/tbl-oc-mi_bc81a36e4e12bea5b12c506188323089">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -604,7 +605,7 @@ Two meanings of “controls”
 <p><span class="math display">\[\omega(\pi) \stackrel{\text{def}}{=}\frac{\pi}{1-\pi}\]</span></p>
 <p>This function, which transforms probabilities into odds, is called the <strong>odds function</strong> (see <a href="#fig-odds-probs">Figure&nbsp;<span>3.1</span></a>).</p>
 </div>
-<div class="cell" data-hash="logistic-regression_cache/html/fig-odds-probs_76af71e476de2081139022867dc02381">
+<div class="cell" data-hash="logistic-regression_cache/html/fig-odds-probs_edc24c4996869d93eccfcb35965e7aa8">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>odds <span class="ot">=</span> <span class="cf">function</span>(pi) pi<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>pi)</span>
@@ -705,7 +706,7 @@ Two meanings of “controls”
 <p><span class="theorem-title"><strong>Definition 3.7 (inverse odds function) </strong></span>The <strong>inverse odds function</strong>, <span class="math display">\[\pi(\omega)\stackrel{\text{def}}{=}\frac{\omega}{1+\omega}\]</span> converts odds into their corresponding probabilities (<a href="#fig-inv-odds">Figure&nbsp;<span>3.2</span></a>).</p>
 </div>
 <p>The inverse-odds function takes an odds as input and produces a probability as output. Its domain of inputs is <span class="math inline">\([0,\infty)\)</span> and its range of outputs is <span class="math inline">\([0,1]\)</span>.</p>
-<div class="cell" data-hash="logistic-regression_cache/html/fig-inv-odds_221f570b3ef2e763ed4b7d7c23b6d978">
+<div class="cell" data-hash="logistic-regression_cache/html/fig-inv-odds_0e86d46ffc88188c4380d09e2f1f7e13">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>odds_inv <span class="ot">=</span> <span class="cf">function</span>(omega) omega <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> omega)</span>
@@ -947,7 +948,7 @@ y_i \text{log}\left\{\pi_i\right\} + (1 - y_i) \text{log}\left\{1-\pi_i\right\}
 &amp;= (1 + \text{exp}\left\{-\eta\right\})^{-1}
 \end{aligned}
 \]</span></p>
-<div class="cell" data-hash="logistic-regression_cache/html/fig-expit-plot_3052a4ae6a0bb260723c24f2446c68d2">
+<div class="cell" data-hash="logistic-regression_cache/html/fig-expit-plot_7e29da345338f1a6641cc48ddc8a3a23">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>expit <span class="ot">=</span> <span class="cf">function</span>(eta) <span class="fu">exp</span>(eta)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(eta))</span>
@@ -976,7 +977,7 @@ y_i \text{log}\left\{\pi_i\right\} + (1 - y_i) \text{log}\left\{1-\pi_i\right\}
 <p><span class="theorem-title"><strong>Definition 3.10 (logit function) </strong></span>The inverse of the <code>expit</code> function is the <code>logit</code> function:</p>
 <p><span class="math display">\[g(p) = f^{-1}(p) = \text{logit}(p) = \text{log}\left\{\frac{p}{1-p}\right\}\]</span></p>
 </div>
-<div class="cell" data-hash="logistic-regression_cache/html/fig-logit_dc9575dc551c637c5cb67036be81b0fb">
+<div class="cell" data-hash="logistic-regression_cache/html/fig-logit_7d8c8a16c46867589df87bb8d77af144">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>logit <span class="ot">=</span> <span class="cf">function</span>(p) <span class="fu">log</span>(<span class="fu">odds</span>(p))</span>
@@ -2878,7 +2879,9 @@ y_i \text{log}\left\{\pi_i\right\} + (1 - y_i) \text{log}\left\{1-\pi_i\right\}
 </table>
 </div>
 </div>
-<p>If I give you model 1, how would you get the coefficients of model 2?</p>
+<div id="exr-strat-to-contrast" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.10 </strong></span>If I give you model 1, how would you get the coefficients of model 2?</p>
+</div>
 </section>
 </section>
 <section id="fitting-logistic-regression-models" class="level2" data-number="3.4">
@@ -3019,7 +3022,7 @@ Caution
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>pval1 <span class="ot">=</span> <span class="fu">pchisq</span>(X2, <span class="at">lower =</span> <span class="cn">FALSE</span>, <span class="at">df =</span> <span class="fu">nrow</span>(HL_table) <span class="sc">-</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Our statistic is <span class="math inline">\(X^2 = 1.11028711\)</span>; <span class="math inline">\(p(\chi^2(1) &gt; 1.11028711) = 0.29201955\)</span>, which is our p-value for detecting a lack of goodness of fit.</p>
+<p>Our statistic is <span class="math inline">\(X^2 = 1.1103\)</span>; <span class="math inline">\(p(\chi^2(1) &gt; 1.1103) = 0.292\)</span>, which is our p-value for detecting a lack of goodness of fit.</p>
 <p>Unfortunately that grouping plan left us with just three categories with any observations, so instead of grouping by 10% increments of predicted probability, typically analysts use deciles of the predicted probabilities:</p>
 <div class="cell" data-hash="logistic-regression_cache/html/unnamed-chunk-50_99d7ea388f48cc02eca89bbb91486352">
 <details>
@@ -3142,7 +3145,7 @@ Caution
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>pval1 <span class="ot">=</span> <span class="fu">pchisq</span>(X2, <span class="at">lower =</span> <span class="cn">FALSE</span>, <span class="at">df =</span> <span class="fu">nrow</span>(HL_table) <span class="sc">-</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Now we have more evenly split categories. The p-value is <span class="math inline">\(0.56041994\)</span>, still not significant.</p>
+<p>Now we have more evenly split categories. The p-value is <span class="math inline">\(0.5604\)</span>, still not significant.</p>
 <p>Graphically, we have compared:</p>
 <div class="cell" data-hash="logistic-regression_cache/html/unnamed-chunk-51_ff8138d30f8c2b2c69c396ec97efae95">
 <details>
@@ -3306,7 +3309,7 @@ Caution
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-44" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-44" data-code-lines="22,23,24,25,26,27,28,29" data-code-annotation="1">Don’t worry about these options for now; I chose them to match <code>autoplot()</code> as closely as I can. <code>plot.glm</code> and <code>autoplot</code> use <code>stats::lowess</code> instead of <code>stats::loess</code>; <code>stats::lowess</code> is older, hard to use with <code>geom_smooth</code>, and hard to match exactly with <code>stats::loess</code>; see https://support.bioconductor.org/p/2323/.]</span>
+<span data-code-lines="22,23,24,25,26,27,28,29" data-code-cell="annotated-cell-44" data-code-annotation="1">Don’t worry about these options for now; I chose them to match <code>autoplot()</code> as closely as I can. <code>plot.glm</code> and <code>autoplot</code> use <code>stats::lowess</code> instead of <code>stats::loess</code>; <code>stats::lowess</code> is older, hard to use with <code>geom_smooth</code>, and hard to match exactly with <code>stats::loess</code>; see https://support.bioconductor.org/p/2323/.]</span>
 </dd>
 </dl>
 </div>
@@ -3466,7 +3469,7 @@ X^2 = \sum_{k=1}^m X_k^2
 <span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> <span class="fu">length</span>(X) <span class="sc">-</span> <span class="fu">length</span>(<span class="fu">coef</span>(chd_glm_strat_grouped)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>For our CHD model, the p-value for this test is 0.26523556; no significant evidence of a lack of fit at the 0.05 level.</p>
+<p>For our CHD model, the p-value for this test is 0.2652; no significant evidence of a lack of fit at the 0.05 level.</p>
 <section id="standardized-pearson-residuals" class="level4">
 <h4 class="anchored" data-anchor-id="standardized-pearson-residuals">Standardized Pearson residuals</h4>
 <p>Especially for small data sets, we might want to adjust our residuals for leverage (since outliers in <span class="math inline">\(X\)</span> add extra variance to the residuals):</p>
@@ -5512,625 +5515,628 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb84-1477"><a href="#cb84-1477" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_md</span>()</span>
 <span id="cb84-1478"><a href="#cb84-1478" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb84-1479"><a href="#cb84-1479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1480"><a href="#cb84-1480" aria-hidden="true" tabindex="-1"></a>If I give you model 1, how would you get the coefficients of model 2?</span>
-<span id="cb84-1481"><a href="#cb84-1481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1482"><a href="#cb84-1482" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fitting logistic regression models</span></span>
-<span id="cb84-1483"><a href="#cb84-1483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1484"><a href="#cb84-1484" aria-hidden="true" tabindex="-1"></a><span class="fu">## </span></span>
-<span id="cb84-1485"><a href="#cb84-1485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1486"><a href="#cb84-1486" aria-hidden="true" tabindex="-1"></a>In general, the estimating equation $\ell'(\beta; \mathbf x) = 0$ cannot</span>
-<span id="cb84-1487"><a href="#cb84-1487" aria-hidden="true" tabindex="-1"></a>be solved analytically.</span>
+<span id="cb84-1480"><a href="#cb84-1480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1481"><a href="#cb84-1481" aria-hidden="true" tabindex="-1"></a>:::{#exr-strat-to-contrast}</span>
+<span id="cb84-1482"><a href="#cb84-1482" aria-hidden="true" tabindex="-1"></a>If I give you model 1, how would you get the coefficients of model 2?</span>
+<span id="cb84-1483"><a href="#cb84-1483" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1484"><a href="#cb84-1484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1485"><a href="#cb84-1485" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fitting logistic regression models</span></span>
+<span id="cb84-1486"><a href="#cb84-1486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1487"><a href="#cb84-1487" aria-hidden="true" tabindex="-1"></a><span class="fu">## </span></span>
 <span id="cb84-1488"><a href="#cb84-1488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1489"><a href="#cb84-1489" aria-hidden="true" tabindex="-1"></a>Instead, we have to use a variant of the Newton-Raphson method, which</span>
-<span id="cb84-1490"><a href="#cb84-1490" aria-hidden="true" tabindex="-1"></a>was discussed briefly in Epi 203. We won't go over it in this class; if</span>
-<span id="cb84-1491"><a href="#cb84-1491" aria-hidden="true" tabindex="-1"></a>you need to learn it, see Chapter 4 of Dobson and Barnett.</span>
-<span id="cb84-1492"><a href="#cb84-1492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1493"><a href="#cb84-1493" aria-hidden="true" tabindex="-1"></a>For now, all you need to know is that we make an iterative series of</span>
-<span id="cb84-1494"><a href="#cb84-1494" aria-hidden="true" tabindex="-1"></a>guesses, and each guess helps us make the next guess better (higher</span>
-<span id="cb84-1495"><a href="#cb84-1495" aria-hidden="true" tabindex="-1"></a>log-likelihood).</span>
-<span id="cb84-1496"><a href="#cb84-1496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1497"><a href="#cb84-1497" aria-hidden="true" tabindex="-1"></a>You can see some information about this process like so:</span>
-<span id="cb84-1498"><a href="#cb84-1498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1501"><a href="#cb84-1501" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1502"><a href="#cb84-1502" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">8</span>)</span>
-<span id="cb84-1503"><a href="#cb84-1503" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">=</span> </span>
-<span id="cb84-1504"><a href="#cb84-1504" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
-<span id="cb84-1505"><a href="#cb84-1505" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(</span>
-<span id="cb84-1506"><a href="#cb84-1506" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">glm.control</span>(<span class="at">trace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb84-1507"><a href="#cb84-1507" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data"</span> <span class="ot">=</span> _,</span>
-<span id="cb84-1508"><a href="#cb84-1508" aria-hidden="true" tabindex="-1"></a>    <span class="st">"formula"</span> <span class="ot">=</span> chd69 <span class="sc">==</span> <span class="st">"Yes"</span> <span class="sc">~</span> dibpat<span class="sc">*</span>age, </span>
-<span id="cb84-1509"><a href="#cb84-1509" aria-hidden="true" tabindex="-1"></a>    <span class="st">"family"</span> <span class="ot">=</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)</span>
-<span id="cb84-1510"><a href="#cb84-1510" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb84-1511"><a href="#cb84-1511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1512"><a href="#cb84-1512" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1513"><a href="#cb84-1513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1514"><a href="#cb84-1514" aria-hidden="true" tabindex="-1"></a>After each iteration of the fitting procedure, the deviance</span>
-<span id="cb84-1515"><a href="#cb84-1515" aria-hidden="true" tabindex="-1"></a>($2(\ell_{\text{full}} - \ell(\hat\beta))$ ) is printed. You can see</span>
-<span id="cb84-1516"><a href="#cb84-1516" aria-hidden="true" tabindex="-1"></a>that the algorithm took six iterations to converge to a solution where</span>
-<span id="cb84-1517"><a href="#cb84-1517" aria-hidden="true" tabindex="-1"></a>the likelihood wasn't changing much anymore.</span>
-<span id="cb84-1518"><a href="#cb84-1518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1519"><a href="#cb84-1519" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model comparisons for logistic models {#sec-gof}</span></span>
-<span id="cb84-1520"><a href="#cb84-1520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1521"><a href="#cb84-1521" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deviance test</span></span>
-<span id="cb84-1522"><a href="#cb84-1522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1523"><a href="#cb84-1523" aria-hidden="true" tabindex="-1"></a>We can compare the maximized log-likelihood of our model,</span>
-<span id="cb84-1524"><a href="#cb84-1524" aria-hidden="true" tabindex="-1"></a>$\ell(\hat\beta; \mathbf x)$, versus the log-likelihood of the full</span>
-<span id="cb84-1525"><a href="#cb84-1525" aria-hidden="true" tabindex="-1"></a>model (aka saturated model aka maximal model), $\ell_{\text{full}}$,</span>
-<span id="cb84-1526"><a href="#cb84-1526" aria-hidden="true" tabindex="-1"></a>which has one parameter per covariate pattern. With enough data,</span>
-<span id="cb84-1527"><a href="#cb84-1527" aria-hidden="true" tabindex="-1"></a>$2(\ell_{\text{full}} - \ell(\hat\beta; \mathbf x)) \dot \sim \chi^2(N - p)$,</span>
-<span id="cb84-1528"><a href="#cb84-1528" aria-hidden="true" tabindex="-1"></a>where $N$ is the number of distinct covariate patterns and $p$ is the</span>
-<span id="cb84-1529"><a href="#cb84-1529" aria-hidden="true" tabindex="-1"></a>number of $\beta$ parameters in our model. A significant p-value for</span>
-<span id="cb84-1530"><a href="#cb84-1530" aria-hidden="true" tabindex="-1"></a>this **deviance** statistic indicates that there's some detectable</span>
-<span id="cb84-1531"><a href="#cb84-1531" aria-hidden="true" tabindex="-1"></a>pattern in the data that our model isn't flexible enough to catch.</span>
-<span id="cb84-1532"><a href="#cb84-1532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1533"><a href="#cb84-1533" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
-<span id="cb84-1534"><a href="#cb84-1534" aria-hidden="true" tabindex="-1"></a>The deviance statistic needs to have a large amount of data **for each</span>
-<span id="cb84-1535"><a href="#cb84-1535" aria-hidden="true" tabindex="-1"></a>covariate pattern** for the $\chi^2$ approximation to hold. A guideline</span>
-<span id="cb84-1536"><a href="#cb84-1536" aria-hidden="true" tabindex="-1"></a>from Dobson is that if there are $q$ distinct covariate patterns</span>
-<span id="cb84-1537"><a href="#cb84-1537" aria-hidden="true" tabindex="-1"></a>$x_1...,x_q$, with $n_1,...,n_q$ observations per pattern, then the</span>
-<span id="cb84-1538"><a href="#cb84-1538" aria-hidden="true" tabindex="-1"></a>expected frequencies $n_k \cdot \pi(x_k)$ should be at least 1 for every</span>
-<span id="cb84-1539"><a href="#cb84-1539" aria-hidden="true" tabindex="-1"></a>pattern $k\in 1:q$.</span>
-<span id="cb84-1540"><a href="#cb84-1540" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1541"><a href="#cb84-1541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1542"><a href="#cb84-1542" aria-hidden="true" tabindex="-1"></a>If you have covariates measured on a continuous scale, you may not be</span>
-<span id="cb84-1543"><a href="#cb84-1543" aria-hidden="true" tabindex="-1"></a>able to use the deviance tests to assess goodness of fit.</span>
+<span id="cb84-1489"><a href="#cb84-1489" aria-hidden="true" tabindex="-1"></a>In general, the estimating equation $\ell'(\beta; \mathbf x) = 0$ cannot</span>
+<span id="cb84-1490"><a href="#cb84-1490" aria-hidden="true" tabindex="-1"></a>be solved analytically.</span>
+<span id="cb84-1491"><a href="#cb84-1491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1492"><a href="#cb84-1492" aria-hidden="true" tabindex="-1"></a>Instead, we have to use a variant of the Newton-Raphson method, which</span>
+<span id="cb84-1493"><a href="#cb84-1493" aria-hidden="true" tabindex="-1"></a>was discussed briefly in Epi 203. We won't go over it in this class; if</span>
+<span id="cb84-1494"><a href="#cb84-1494" aria-hidden="true" tabindex="-1"></a>you need to learn it, see Chapter 4 of Dobson and Barnett.</span>
+<span id="cb84-1495"><a href="#cb84-1495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1496"><a href="#cb84-1496" aria-hidden="true" tabindex="-1"></a>For now, all you need to know is that we make an iterative series of</span>
+<span id="cb84-1497"><a href="#cb84-1497" aria-hidden="true" tabindex="-1"></a>guesses, and each guess helps us make the next guess better (higher</span>
+<span id="cb84-1498"><a href="#cb84-1498" aria-hidden="true" tabindex="-1"></a>log-likelihood).</span>
+<span id="cb84-1499"><a href="#cb84-1499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1500"><a href="#cb84-1500" aria-hidden="true" tabindex="-1"></a>You can see some information about this process like so:</span>
+<span id="cb84-1501"><a href="#cb84-1501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1504"><a href="#cb84-1504" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1505"><a href="#cb84-1505" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">8</span>)</span>
+<span id="cb84-1506"><a href="#cb84-1506" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">=</span> </span>
+<span id="cb84-1507"><a href="#cb84-1507" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
+<span id="cb84-1508"><a href="#cb84-1508" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(</span>
+<span id="cb84-1509"><a href="#cb84-1509" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">glm.control</span>(<span class="at">trace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb84-1510"><a href="#cb84-1510" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data"</span> <span class="ot">=</span> _,</span>
+<span id="cb84-1511"><a href="#cb84-1511" aria-hidden="true" tabindex="-1"></a>    <span class="st">"formula"</span> <span class="ot">=</span> chd69 <span class="sc">==</span> <span class="st">"Yes"</span> <span class="sc">~</span> dibpat<span class="sc">*</span>age, </span>
+<span id="cb84-1512"><a href="#cb84-1512" aria-hidden="true" tabindex="-1"></a>    <span class="st">"family"</span> <span class="ot">=</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)</span>
+<span id="cb84-1513"><a href="#cb84-1513" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb84-1514"><a href="#cb84-1514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1515"><a href="#cb84-1515" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1516"><a href="#cb84-1516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1517"><a href="#cb84-1517" aria-hidden="true" tabindex="-1"></a>After each iteration of the fitting procedure, the deviance</span>
+<span id="cb84-1518"><a href="#cb84-1518" aria-hidden="true" tabindex="-1"></a>($2(\ell_{\text{full}} - \ell(\hat\beta))$ ) is printed. You can see</span>
+<span id="cb84-1519"><a href="#cb84-1519" aria-hidden="true" tabindex="-1"></a>that the algorithm took six iterations to converge to a solution where</span>
+<span id="cb84-1520"><a href="#cb84-1520" aria-hidden="true" tabindex="-1"></a>the likelihood wasn't changing much anymore.</span>
+<span id="cb84-1521"><a href="#cb84-1521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1522"><a href="#cb84-1522" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model comparisons for logistic models {#sec-gof}</span></span>
+<span id="cb84-1523"><a href="#cb84-1523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1524"><a href="#cb84-1524" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deviance test</span></span>
+<span id="cb84-1525"><a href="#cb84-1525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1526"><a href="#cb84-1526" aria-hidden="true" tabindex="-1"></a>We can compare the maximized log-likelihood of our model,</span>
+<span id="cb84-1527"><a href="#cb84-1527" aria-hidden="true" tabindex="-1"></a>$\ell(\hat\beta; \mathbf x)$, versus the log-likelihood of the full</span>
+<span id="cb84-1528"><a href="#cb84-1528" aria-hidden="true" tabindex="-1"></a>model (aka saturated model aka maximal model), $\ell_{\text{full}}$,</span>
+<span id="cb84-1529"><a href="#cb84-1529" aria-hidden="true" tabindex="-1"></a>which has one parameter per covariate pattern. With enough data,</span>
+<span id="cb84-1530"><a href="#cb84-1530" aria-hidden="true" tabindex="-1"></a>$2(\ell_{\text{full}} - \ell(\hat\beta; \mathbf x)) \dot \sim \chi^2(N - p)$,</span>
+<span id="cb84-1531"><a href="#cb84-1531" aria-hidden="true" tabindex="-1"></a>where $N$ is the number of distinct covariate patterns and $p$ is the</span>
+<span id="cb84-1532"><a href="#cb84-1532" aria-hidden="true" tabindex="-1"></a>number of $\beta$ parameters in our model. A significant p-value for</span>
+<span id="cb84-1533"><a href="#cb84-1533" aria-hidden="true" tabindex="-1"></a>this **deviance** statistic indicates that there's some detectable</span>
+<span id="cb84-1534"><a href="#cb84-1534" aria-hidden="true" tabindex="-1"></a>pattern in the data that our model isn't flexible enough to catch.</span>
+<span id="cb84-1535"><a href="#cb84-1535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1536"><a href="#cb84-1536" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
+<span id="cb84-1537"><a href="#cb84-1537" aria-hidden="true" tabindex="-1"></a>The deviance statistic needs to have a large amount of data **for each</span>
+<span id="cb84-1538"><a href="#cb84-1538" aria-hidden="true" tabindex="-1"></a>covariate pattern** for the $\chi^2$ approximation to hold. A guideline</span>
+<span id="cb84-1539"><a href="#cb84-1539" aria-hidden="true" tabindex="-1"></a>from Dobson is that if there are $q$ distinct covariate patterns</span>
+<span id="cb84-1540"><a href="#cb84-1540" aria-hidden="true" tabindex="-1"></a>$x_1...,x_q$, with $n_1,...,n_q$ observations per pattern, then the</span>
+<span id="cb84-1541"><a href="#cb84-1541" aria-hidden="true" tabindex="-1"></a>expected frequencies $n_k \cdot \pi(x_k)$ should be at least 1 for every</span>
+<span id="cb84-1542"><a href="#cb84-1542" aria-hidden="true" tabindex="-1"></a>pattern $k\in 1:q$.</span>
+<span id="cb84-1543"><a href="#cb84-1543" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb84-1544"><a href="#cb84-1544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1545"><a href="#cb84-1545" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hosmer-Lemeshow test</span></span>
-<span id="cb84-1546"><a href="#cb84-1546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1547"><a href="#cb84-1547" aria-hidden="true" tabindex="-1"></a>If our covariate patterns produce groups that are too small, a</span>
-<span id="cb84-1548"><a href="#cb84-1548" aria-hidden="true" tabindex="-1"></a>reasonable solution is to make bigger groups by merging some of the</span>
-<span id="cb84-1549"><a href="#cb84-1549" aria-hidden="true" tabindex="-1"></a>covariate-pattern groups together.</span>
-<span id="cb84-1550"><a href="#cb84-1550" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1551"><a href="#cb84-1551" aria-hidden="true" tabindex="-1"></a>Hosmer and Lemeshow (1980) proposed that we group the patterns by their</span>
-<span id="cb84-1552"><a href="#cb84-1552" aria-hidden="true" tabindex="-1"></a>predicted probabilities according to the model of interest. For example,</span>
-<span id="cb84-1553"><a href="#cb84-1553" aria-hidden="true" tabindex="-1"></a>you could group all of the observations with predicted probabilities of</span>
-<span id="cb84-1554"><a href="#cb84-1554" aria-hidden="true" tabindex="-1"></a>10% or less together, then group the observations with 11%-20%</span>
-<span id="cb84-1555"><a href="#cb84-1555" aria-hidden="true" tabindex="-1"></a>probability together, and so on; $g=10$ categories in all.</span>
-<span id="cb84-1556"><a href="#cb84-1556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1557"><a href="#cb84-1557" aria-hidden="true" tabindex="-1"></a>Then we can construct a statistic</span>
-<span id="cb84-1558"><a href="#cb84-1558" aria-hidden="true" tabindex="-1"></a>$$X^2 = \sum_{c=1}^g \frac{(o_c - e_c)^2}{e_c}$$ where $o_c$ is the</span>
-<span id="cb84-1559"><a href="#cb84-1559" aria-hidden="true" tabindex="-1"></a>number of events *observed* in group $c$, and $e_c$ is the number of</span>
-<span id="cb84-1560"><a href="#cb84-1560" aria-hidden="true" tabindex="-1"></a>events expected in group $c$ (based on the sum of the fitted values</span>
-<span id="cb84-1561"><a href="#cb84-1561" aria-hidden="true" tabindex="-1"></a>$\hat\pi_i$ for observations in group $c$).</span>
-<span id="cb84-1562"><a href="#cb84-1562" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1563"><a href="#cb84-1563" aria-hidden="true" tabindex="-1"></a>If each group has enough observations in it, you can compare $X^2$ to a</span>
-<span id="cb84-1564"><a href="#cb84-1564" aria-hidden="true" tabindex="-1"></a>$\chi^2$ distribution; by simulation, the degrees of freedom has been</span>
-<span id="cb84-1565"><a href="#cb84-1565" aria-hidden="true" tabindex="-1"></a>found to be approximately $g-2$.</span>
-<span id="cb84-1566"><a href="#cb84-1566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1567"><a href="#cb84-1567" aria-hidden="true" tabindex="-1"></a>For our CHD model, this procedure would be:</span>
-<span id="cb84-1568"><a href="#cb84-1568" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1571"><a href="#cb84-1571" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1572"><a href="#cb84-1572" aria-hidden="true" tabindex="-1"></a>wcgs <span class="ot">=</span> </span>
-<span id="cb84-1573"><a href="#cb84-1573" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
-<span id="cb84-1574"><a href="#cb84-1574" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb84-1575"><a href="#cb84-1575" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_probs_glm1 =</span> chd_glm_strat <span class="sc">|&gt;</span> <span class="fu">fitted</span>(),</span>
-<span id="cb84-1576"><a href="#cb84-1576" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_prob_cats1 =</span> </span>
-<span id="cb84-1577"><a href="#cb84-1577" aria-hidden="true" tabindex="-1"></a>      pred_probs_glm1 <span class="sc">|&gt;</span> </span>
-<span id="cb84-1578"><a href="#cb84-1578" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cut</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>), </span>
-<span id="cb84-1579"><a href="#cb84-1579" aria-hidden="true" tabindex="-1"></a>          <span class="at">include.lowest =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb84-1580"><a href="#cb84-1580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1581"><a href="#cb84-1581" aria-hidden="true" tabindex="-1"></a>HL_table <span class="ot">=</span> </span>
-<span id="cb84-1582"><a href="#cb84-1582" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
-<span id="cb84-1583"><a href="#cb84-1583" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb84-1584"><a href="#cb84-1584" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> pred_prob_cats1,</span>
-<span id="cb84-1585"><a href="#cb84-1585" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb84-1586"><a href="#cb84-1586" aria-hidden="true" tabindex="-1"></a>    <span class="at">o =</span> <span class="fu">sum</span>(chd69 <span class="sc">==</span> <span class="st">"Yes"</span>),</span>
-<span id="cb84-1587"><a href="#cb84-1587" aria-hidden="true" tabindex="-1"></a>    <span class="at">e =</span> <span class="fu">sum</span>(pred_probs_glm1)</span>
-<span id="cb84-1588"><a href="#cb84-1588" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb84-1589"><a href="#cb84-1589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1590"><a href="#cb84-1590" aria-hidden="true" tabindex="-1"></a>HL_table <span class="sc">|&gt;</span> <span class="fu">pander</span>()</span>
-<span id="cb84-1591"><a href="#cb84-1591" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1592"><a href="#cb84-1592" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">=</span> HL_table <span class="sc">|&gt;</span> </span>
-<span id="cb84-1593"><a href="#cb84-1593" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb84-1594"><a href="#cb84-1594" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">X^2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>((o<span class="sc">-</span>e)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>e)</span>
-<span id="cb84-1595"><a href="#cb84-1595" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb84-1596"><a href="#cb84-1596" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(<span class="st">`</span><span class="at">X^2</span><span class="st">`</span>)</span>
-<span id="cb84-1597"><a href="#cb84-1597" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(X2)</span>
-<span id="cb84-1598"><a href="#cb84-1598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1599"><a href="#cb84-1599" aria-hidden="true" tabindex="-1"></a>pval1 <span class="ot">=</span> <span class="fu">pchisq</span>(X2, <span class="at">lower =</span> <span class="cn">FALSE</span>, <span class="at">df =</span> <span class="fu">nrow</span>(HL_table) <span class="sc">-</span> <span class="dv">2</span>)</span>
-<span id="cb84-1600"><a href="#cb84-1600" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1545"><a href="#cb84-1545" aria-hidden="true" tabindex="-1"></a>If you have covariates measured on a continuous scale, you may not be</span>
+<span id="cb84-1546"><a href="#cb84-1546" aria-hidden="true" tabindex="-1"></a>able to use the deviance tests to assess goodness of fit.</span>
+<span id="cb84-1547"><a href="#cb84-1547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1548"><a href="#cb84-1548" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hosmer-Lemeshow test</span></span>
+<span id="cb84-1549"><a href="#cb84-1549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1550"><a href="#cb84-1550" aria-hidden="true" tabindex="-1"></a>If our covariate patterns produce groups that are too small, a</span>
+<span id="cb84-1551"><a href="#cb84-1551" aria-hidden="true" tabindex="-1"></a>reasonable solution is to make bigger groups by merging some of the</span>
+<span id="cb84-1552"><a href="#cb84-1552" aria-hidden="true" tabindex="-1"></a>covariate-pattern groups together.</span>
+<span id="cb84-1553"><a href="#cb84-1553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1554"><a href="#cb84-1554" aria-hidden="true" tabindex="-1"></a>Hosmer and Lemeshow (1980) proposed that we group the patterns by their</span>
+<span id="cb84-1555"><a href="#cb84-1555" aria-hidden="true" tabindex="-1"></a>predicted probabilities according to the model of interest. For example,</span>
+<span id="cb84-1556"><a href="#cb84-1556" aria-hidden="true" tabindex="-1"></a>you could group all of the observations with predicted probabilities of</span>
+<span id="cb84-1557"><a href="#cb84-1557" aria-hidden="true" tabindex="-1"></a>10% or less together, then group the observations with 11%-20%</span>
+<span id="cb84-1558"><a href="#cb84-1558" aria-hidden="true" tabindex="-1"></a>probability together, and so on; $g=10$ categories in all.</span>
+<span id="cb84-1559"><a href="#cb84-1559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1560"><a href="#cb84-1560" aria-hidden="true" tabindex="-1"></a>Then we can construct a statistic</span>
+<span id="cb84-1561"><a href="#cb84-1561" aria-hidden="true" tabindex="-1"></a>$$X^2 = \sum_{c=1}^g \frac{(o_c - e_c)^2}{e_c}$$ where $o_c$ is the</span>
+<span id="cb84-1562"><a href="#cb84-1562" aria-hidden="true" tabindex="-1"></a>number of events *observed* in group $c$, and $e_c$ is the number of</span>
+<span id="cb84-1563"><a href="#cb84-1563" aria-hidden="true" tabindex="-1"></a>events expected in group $c$ (based on the sum of the fitted values</span>
+<span id="cb84-1564"><a href="#cb84-1564" aria-hidden="true" tabindex="-1"></a>$\hat\pi_i$ for observations in group $c$).</span>
+<span id="cb84-1565"><a href="#cb84-1565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1566"><a href="#cb84-1566" aria-hidden="true" tabindex="-1"></a>If each group has enough observations in it, you can compare $X^2$ to a</span>
+<span id="cb84-1567"><a href="#cb84-1567" aria-hidden="true" tabindex="-1"></a>$\chi^2$ distribution; by simulation, the degrees of freedom has been</span>
+<span id="cb84-1568"><a href="#cb84-1568" aria-hidden="true" tabindex="-1"></a>found to be approximately $g-2$.</span>
+<span id="cb84-1569"><a href="#cb84-1569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1570"><a href="#cb84-1570" aria-hidden="true" tabindex="-1"></a>For our CHD model, this procedure would be:</span>
+<span id="cb84-1571"><a href="#cb84-1571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1574"><a href="#cb84-1574" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1575"><a href="#cb84-1575" aria-hidden="true" tabindex="-1"></a>wcgs <span class="ot">=</span> </span>
+<span id="cb84-1576"><a href="#cb84-1576" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
+<span id="cb84-1577"><a href="#cb84-1577" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb84-1578"><a href="#cb84-1578" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_probs_glm1 =</span> chd_glm_strat <span class="sc">|&gt;</span> <span class="fu">fitted</span>(),</span>
+<span id="cb84-1579"><a href="#cb84-1579" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_prob_cats1 =</span> </span>
+<span id="cb84-1580"><a href="#cb84-1580" aria-hidden="true" tabindex="-1"></a>      pred_probs_glm1 <span class="sc">|&gt;</span> </span>
+<span id="cb84-1581"><a href="#cb84-1581" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cut</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>), </span>
+<span id="cb84-1582"><a href="#cb84-1582" aria-hidden="true" tabindex="-1"></a>          <span class="at">include.lowest =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb84-1583"><a href="#cb84-1583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1584"><a href="#cb84-1584" aria-hidden="true" tabindex="-1"></a>HL_table <span class="ot">=</span> </span>
+<span id="cb84-1585"><a href="#cb84-1585" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
+<span id="cb84-1586"><a href="#cb84-1586" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb84-1587"><a href="#cb84-1587" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> pred_prob_cats1,</span>
+<span id="cb84-1588"><a href="#cb84-1588" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb84-1589"><a href="#cb84-1589" aria-hidden="true" tabindex="-1"></a>    <span class="at">o =</span> <span class="fu">sum</span>(chd69 <span class="sc">==</span> <span class="st">"Yes"</span>),</span>
+<span id="cb84-1590"><a href="#cb84-1590" aria-hidden="true" tabindex="-1"></a>    <span class="at">e =</span> <span class="fu">sum</span>(pred_probs_glm1)</span>
+<span id="cb84-1591"><a href="#cb84-1591" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb84-1592"><a href="#cb84-1592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1593"><a href="#cb84-1593" aria-hidden="true" tabindex="-1"></a>HL_table <span class="sc">|&gt;</span> <span class="fu">pander</span>()</span>
+<span id="cb84-1594"><a href="#cb84-1594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1595"><a href="#cb84-1595" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">=</span> HL_table <span class="sc">|&gt;</span> </span>
+<span id="cb84-1596"><a href="#cb84-1596" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb84-1597"><a href="#cb84-1597" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">X^2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>((o<span class="sc">-</span>e)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>e)</span>
+<span id="cb84-1598"><a href="#cb84-1598" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb84-1599"><a href="#cb84-1599" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(<span class="st">`</span><span class="at">X^2</span><span class="st">`</span>)</span>
+<span id="cb84-1600"><a href="#cb84-1600" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(X2)</span>
 <span id="cb84-1601"><a href="#cb84-1601" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1602"><a href="#cb84-1602" aria-hidden="true" tabindex="-1"></a>Our statistic is $X^2 = <span class="in">`r X2`</span>$; $p(\chi^2(1) &gt; <span class="in">`r X2`</span>) = <span class="in">`r pval1`</span>$,</span>
-<span id="cb84-1603"><a href="#cb84-1603" aria-hidden="true" tabindex="-1"></a>which is our p-value for detecting a lack of goodness of fit.</span>
+<span id="cb84-1602"><a href="#cb84-1602" aria-hidden="true" tabindex="-1"></a>pval1 <span class="ot">=</span> <span class="fu">pchisq</span>(X2, <span class="at">lower =</span> <span class="cn">FALSE</span>, <span class="at">df =</span> <span class="fu">nrow</span>(HL_table) <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb84-1603"><a href="#cb84-1603" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb84-1604"><a href="#cb84-1604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1605"><a href="#cb84-1605" aria-hidden="true" tabindex="-1"></a>Unfortunately that grouping plan left us with just three categories with</span>
-<span id="cb84-1606"><a href="#cb84-1606" aria-hidden="true" tabindex="-1"></a>any observations, so instead of grouping by 10% increments of predicted</span>
-<span id="cb84-1607"><a href="#cb84-1607" aria-hidden="true" tabindex="-1"></a>probability, typically analysts use deciles of the predicted</span>
-<span id="cb84-1608"><a href="#cb84-1608" aria-hidden="true" tabindex="-1"></a>probabilities:</span>
-<span id="cb84-1609"><a href="#cb84-1609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1612"><a href="#cb84-1612" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1613"><a href="#cb84-1613" aria-hidden="true" tabindex="-1"></a>wcgs <span class="ot">=</span> </span>
-<span id="cb84-1614"><a href="#cb84-1614" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
-<span id="cb84-1615"><a href="#cb84-1615" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb84-1616"><a href="#cb84-1616" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_probs_glm1 =</span> chd_glm_strat <span class="sc">|&gt;</span> <span class="fu">fitted</span>(),</span>
-<span id="cb84-1617"><a href="#cb84-1617" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_prob_cats1 =</span> </span>
-<span id="cb84-1618"><a href="#cb84-1618" aria-hidden="true" tabindex="-1"></a>      pred_probs_glm1 <span class="sc">|&gt;</span> </span>
-<span id="cb84-1619"><a href="#cb84-1619" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cut</span>(<span class="at">breaks =</span> <span class="fu">quantile</span>(pred_probs_glm1, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>)), </span>
-<span id="cb84-1620"><a href="#cb84-1620" aria-hidden="true" tabindex="-1"></a>          <span class="at">include.lowest =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb84-1621"><a href="#cb84-1621" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1622"><a href="#cb84-1622" aria-hidden="true" tabindex="-1"></a>HL_table <span class="ot">=</span> </span>
-<span id="cb84-1623"><a href="#cb84-1623" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
-<span id="cb84-1624"><a href="#cb84-1624" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb84-1625"><a href="#cb84-1625" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> pred_prob_cats1,</span>
-<span id="cb84-1626"><a href="#cb84-1626" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb84-1627"><a href="#cb84-1627" aria-hidden="true" tabindex="-1"></a>    <span class="at">o =</span> <span class="fu">sum</span>(chd69 <span class="sc">==</span> <span class="st">"Yes"</span>),</span>
-<span id="cb84-1628"><a href="#cb84-1628" aria-hidden="true" tabindex="-1"></a>    <span class="at">e =</span> <span class="fu">sum</span>(pred_probs_glm1)</span>
-<span id="cb84-1629"><a href="#cb84-1629" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb84-1630"><a href="#cb84-1630" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1631"><a href="#cb84-1631" aria-hidden="true" tabindex="-1"></a>HL_table <span class="sc">|&gt;</span> <span class="fu">pander</span>()</span>
-<span id="cb84-1632"><a href="#cb84-1632" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1633"><a href="#cb84-1633" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">=</span> HL_table <span class="sc">|&gt;</span> </span>
-<span id="cb84-1634"><a href="#cb84-1634" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb84-1635"><a href="#cb84-1635" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">X^2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>((o<span class="sc">-</span>e)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>e)</span>
-<span id="cb84-1636"><a href="#cb84-1636" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb84-1637"><a href="#cb84-1637" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(<span class="st">`</span><span class="at">X^2</span><span class="st">`</span>)</span>
-<span id="cb84-1638"><a href="#cb84-1638" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1639"><a href="#cb84-1639" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(X2)</span>
-<span id="cb84-1640"><a href="#cb84-1640" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1641"><a href="#cb84-1641" aria-hidden="true" tabindex="-1"></a>pval1 <span class="ot">=</span> <span class="fu">pchisq</span>(X2, <span class="at">lower =</span> <span class="cn">FALSE</span>, <span class="at">df =</span> <span class="fu">nrow</span>(HL_table) <span class="sc">-</span> <span class="dv">2</span>)</span>
-<span id="cb84-1642"><a href="#cb84-1642" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1605"><a href="#cb84-1605" aria-hidden="true" tabindex="-1"></a>Our statistic is $X^2 = <span class="in">`r X2`</span>$; $p(\chi^2(1) &gt; <span class="in">`r X2`</span>) = <span class="in">`r pval1`</span>$,</span>
+<span id="cb84-1606"><a href="#cb84-1606" aria-hidden="true" tabindex="-1"></a>which is our p-value for detecting a lack of goodness of fit.</span>
+<span id="cb84-1607"><a href="#cb84-1607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1608"><a href="#cb84-1608" aria-hidden="true" tabindex="-1"></a>Unfortunately that grouping plan left us with just three categories with</span>
+<span id="cb84-1609"><a href="#cb84-1609" aria-hidden="true" tabindex="-1"></a>any observations, so instead of grouping by 10% increments of predicted</span>
+<span id="cb84-1610"><a href="#cb84-1610" aria-hidden="true" tabindex="-1"></a>probability, typically analysts use deciles of the predicted</span>
+<span id="cb84-1611"><a href="#cb84-1611" aria-hidden="true" tabindex="-1"></a>probabilities:</span>
+<span id="cb84-1612"><a href="#cb84-1612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1615"><a href="#cb84-1615" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1616"><a href="#cb84-1616" aria-hidden="true" tabindex="-1"></a>wcgs <span class="ot">=</span> </span>
+<span id="cb84-1617"><a href="#cb84-1617" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
+<span id="cb84-1618"><a href="#cb84-1618" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb84-1619"><a href="#cb84-1619" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_probs_glm1 =</span> chd_glm_strat <span class="sc">|&gt;</span> <span class="fu">fitted</span>(),</span>
+<span id="cb84-1620"><a href="#cb84-1620" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_prob_cats1 =</span> </span>
+<span id="cb84-1621"><a href="#cb84-1621" aria-hidden="true" tabindex="-1"></a>      pred_probs_glm1 <span class="sc">|&gt;</span> </span>
+<span id="cb84-1622"><a href="#cb84-1622" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cut</span>(<span class="at">breaks =</span> <span class="fu">quantile</span>(pred_probs_glm1, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>)), </span>
+<span id="cb84-1623"><a href="#cb84-1623" aria-hidden="true" tabindex="-1"></a>          <span class="at">include.lowest =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb84-1624"><a href="#cb84-1624" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1625"><a href="#cb84-1625" aria-hidden="true" tabindex="-1"></a>HL_table <span class="ot">=</span> </span>
+<span id="cb84-1626"><a href="#cb84-1626" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
+<span id="cb84-1627"><a href="#cb84-1627" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb84-1628"><a href="#cb84-1628" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> pred_prob_cats1,</span>
+<span id="cb84-1629"><a href="#cb84-1629" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb84-1630"><a href="#cb84-1630" aria-hidden="true" tabindex="-1"></a>    <span class="at">o =</span> <span class="fu">sum</span>(chd69 <span class="sc">==</span> <span class="st">"Yes"</span>),</span>
+<span id="cb84-1631"><a href="#cb84-1631" aria-hidden="true" tabindex="-1"></a>    <span class="at">e =</span> <span class="fu">sum</span>(pred_probs_glm1)</span>
+<span id="cb84-1632"><a href="#cb84-1632" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb84-1633"><a href="#cb84-1633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1634"><a href="#cb84-1634" aria-hidden="true" tabindex="-1"></a>HL_table <span class="sc">|&gt;</span> <span class="fu">pander</span>()</span>
+<span id="cb84-1635"><a href="#cb84-1635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1636"><a href="#cb84-1636" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">=</span> HL_table <span class="sc">|&gt;</span> </span>
+<span id="cb84-1637"><a href="#cb84-1637" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb84-1638"><a href="#cb84-1638" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">X^2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>((o<span class="sc">-</span>e)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>e)</span>
+<span id="cb84-1639"><a href="#cb84-1639" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb84-1640"><a href="#cb84-1640" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(<span class="st">`</span><span class="at">X^2</span><span class="st">`</span>)</span>
+<span id="cb84-1641"><a href="#cb84-1641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1642"><a href="#cb84-1642" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(X2)</span>
 <span id="cb84-1643"><a href="#cb84-1643" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1644"><a href="#cb84-1644" aria-hidden="true" tabindex="-1"></a>Now we have more evenly split categories. The p-value is $<span class="in">`r pval1`</span>$,</span>
-<span id="cb84-1645"><a href="#cb84-1645" aria-hidden="true" tabindex="-1"></a>still not significant.</span>
+<span id="cb84-1644"><a href="#cb84-1644" aria-hidden="true" tabindex="-1"></a>pval1 <span class="ot">=</span> <span class="fu">pchisq</span>(X2, <span class="at">lower =</span> <span class="cn">FALSE</span>, <span class="at">df =</span> <span class="fu">nrow</span>(HL_table) <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb84-1645"><a href="#cb84-1645" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb84-1646"><a href="#cb84-1646" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1647"><a href="#cb84-1647" aria-hidden="true" tabindex="-1"></a>Graphically, we have compared:</span>
-<span id="cb84-1648"><a href="#cb84-1648" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1651"><a href="#cb84-1651" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1652"><a href="#cb84-1652" aria-hidden="true" tabindex="-1"></a>HL_plot <span class="ot">=</span> </span>
-<span id="cb84-1653"><a href="#cb84-1653" aria-hidden="true" tabindex="-1"></a>  HL_table <span class="sc">|&gt;</span> </span>
-<span id="cb84-1654"><a href="#cb84-1654" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pred_prob_cats1)) <span class="sc">+</span> </span>
-<span id="cb84-1655"><a href="#cb84-1655" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> e, <span class="at">x =</span> pred_prob_cats1, <span class="at">group =</span> <span class="st">"Expected"</span>, <span class="at">col =</span> <span class="st">"Expected"</span>)) <span class="sc">+</span></span>
-<span id="cb84-1656"><a href="#cb84-1656" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> e, <span class="at">size =</span> n, <span class="at">col =</span> <span class="st">"Expected"</span>)) <span class="sc">+</span></span>
-<span id="cb84-1657"><a href="#cb84-1657" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> o, <span class="at">size =</span> n, <span class="at">col =</span> <span class="st">"Observed"</span>)) <span class="sc">+</span></span>
-<span id="cb84-1658"><a href="#cb84-1658" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> o, <span class="at">col =</span> <span class="st">"Observed"</span>, <span class="at">group =</span> <span class="st">"Observed"</span>)) <span class="sc">+</span></span>
-<span id="cb84-1659"><a href="#cb84-1659" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
-<span id="cb84-1660"><a href="#cb84-1660" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb84-1661"><a href="#cb84-1661" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"number of CHD events"</span>) <span class="sc">+</span></span>
-<span id="cb84-1662"><a href="#cb84-1662" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span>
-<span id="cb84-1663"><a href="#cb84-1663" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1664"><a href="#cb84-1664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1665"><a href="#cb84-1665" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb84-1668"><a href="#cb84-1668" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1669"><a href="#cb84-1669" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(HL_plot)</span>
-<span id="cb84-1670"><a href="#cb84-1670" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1671"><a href="#cb84-1671" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1672"><a href="#cb84-1672" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1673"><a href="#cb84-1673" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb84-1676"><a href="#cb84-1676" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1677"><a href="#cb84-1677" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(HL_plot)</span>
-<span id="cb84-1678"><a href="#cb84-1678" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1679"><a href="#cb84-1679" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1680"><a href="#cb84-1680" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1681"><a href="#cb84-1681" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparing models</span></span>
-<span id="cb84-1682"><a href="#cb84-1682" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1683"><a href="#cb84-1683" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>AIC = $-2 * \ell(\hat\theta) + 2 * p$ <span class="sc">\[</span>lower is better<span class="sc">\]</span></span>
-<span id="cb84-1684"><a href="#cb84-1684" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>BIC = $-2 * \ell(\hat\theta) + p * \text{log}(n)$ <span class="sc">\[</span>lower is</span>
-<span id="cb84-1685"><a href="#cb84-1685" aria-hidden="true" tabindex="-1"></a>    better<span class="sc">\]</span></span>
-<span id="cb84-1686"><a href="#cb84-1686" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>likelihood ratio <span class="sc">\[</span>higher is better<span class="sc">\]</span></span>
-<span id="cb84-1687"><a href="#cb84-1687" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1688"><a href="#cb84-1688" aria-hidden="true" tabindex="-1"></a><span class="fu"># Residual-based diagnostics</span></span>
-<span id="cb84-1689"><a href="#cb84-1689" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1690"><a href="#cb84-1690" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logistic regression residuals only work for grouped data</span></span>
-<span id="cb84-1691"><a href="#cb84-1691" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1692"><a href="#cb84-1692" aria-hidden="true" tabindex="-1"></a>Residuals only work if there is more than one observation for most</span>
-<span id="cb84-1693"><a href="#cb84-1693" aria-hidden="true" tabindex="-1"></a>covariate patterns.</span>
+<span id="cb84-1647"><a href="#cb84-1647" aria-hidden="true" tabindex="-1"></a>Now we have more evenly split categories. The p-value is $<span class="in">`r pval1`</span>$,</span>
+<span id="cb84-1648"><a href="#cb84-1648" aria-hidden="true" tabindex="-1"></a>still not significant.</span>
+<span id="cb84-1649"><a href="#cb84-1649" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1650"><a href="#cb84-1650" aria-hidden="true" tabindex="-1"></a>Graphically, we have compared:</span>
+<span id="cb84-1651"><a href="#cb84-1651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1654"><a href="#cb84-1654" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1655"><a href="#cb84-1655" aria-hidden="true" tabindex="-1"></a>HL_plot <span class="ot">=</span> </span>
+<span id="cb84-1656"><a href="#cb84-1656" aria-hidden="true" tabindex="-1"></a>  HL_table <span class="sc">|&gt;</span> </span>
+<span id="cb84-1657"><a href="#cb84-1657" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pred_prob_cats1)) <span class="sc">+</span> </span>
+<span id="cb84-1658"><a href="#cb84-1658" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> e, <span class="at">x =</span> pred_prob_cats1, <span class="at">group =</span> <span class="st">"Expected"</span>, <span class="at">col =</span> <span class="st">"Expected"</span>)) <span class="sc">+</span></span>
+<span id="cb84-1659"><a href="#cb84-1659" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> e, <span class="at">size =</span> n, <span class="at">col =</span> <span class="st">"Expected"</span>)) <span class="sc">+</span></span>
+<span id="cb84-1660"><a href="#cb84-1660" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> o, <span class="at">size =</span> n, <span class="at">col =</span> <span class="st">"Observed"</span>)) <span class="sc">+</span></span>
+<span id="cb84-1661"><a href="#cb84-1661" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> o, <span class="at">col =</span> <span class="st">"Observed"</span>, <span class="at">group =</span> <span class="st">"Observed"</span>)) <span class="sc">+</span></span>
+<span id="cb84-1662"><a href="#cb84-1662" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb84-1663"><a href="#cb84-1663" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb84-1664"><a href="#cb84-1664" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"number of CHD events"</span>) <span class="sc">+</span></span>
+<span id="cb84-1665"><a href="#cb84-1665" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span>
+<span id="cb84-1666"><a href="#cb84-1666" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1667"><a href="#cb84-1667" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1668"><a href="#cb84-1668" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb84-1671"><a href="#cb84-1671" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1672"><a href="#cb84-1672" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(HL_plot)</span>
+<span id="cb84-1673"><a href="#cb84-1673" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1674"><a href="#cb84-1674" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1675"><a href="#cb84-1675" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1676"><a href="#cb84-1676" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb84-1679"><a href="#cb84-1679" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1680"><a href="#cb84-1680" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(HL_plot)</span>
+<span id="cb84-1681"><a href="#cb84-1681" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1682"><a href="#cb84-1682" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1683"><a href="#cb84-1683" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1684"><a href="#cb84-1684" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparing models</span></span>
+<span id="cb84-1685"><a href="#cb84-1685" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1686"><a href="#cb84-1686" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>AIC = $-2 * \ell(\hat\theta) + 2 * p$ <span class="sc">\[</span>lower is better<span class="sc">\]</span></span>
+<span id="cb84-1687"><a href="#cb84-1687" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>BIC = $-2 * \ell(\hat\theta) + p * \text{log}(n)$ <span class="sc">\[</span>lower is</span>
+<span id="cb84-1688"><a href="#cb84-1688" aria-hidden="true" tabindex="-1"></a>    better<span class="sc">\]</span></span>
+<span id="cb84-1689"><a href="#cb84-1689" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>likelihood ratio <span class="sc">\[</span>higher is better<span class="sc">\]</span></span>
+<span id="cb84-1690"><a href="#cb84-1690" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1691"><a href="#cb84-1691" aria-hidden="true" tabindex="-1"></a><span class="fu"># Residual-based diagnostics</span></span>
+<span id="cb84-1692"><a href="#cb84-1692" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1693"><a href="#cb84-1693" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logistic regression residuals only work for grouped data</span></span>
 <span id="cb84-1694"><a href="#cb84-1694" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1695"><a href="#cb84-1695" aria-hidden="true" tabindex="-1"></a>Here we will create the grouped-data version of our CHD model from the</span>
-<span id="cb84-1696"><a href="#cb84-1696" aria-hidden="true" tabindex="-1"></a>WCGS study:</span>
+<span id="cb84-1695"><a href="#cb84-1695" aria-hidden="true" tabindex="-1"></a>Residuals only work if there is more than one observation for most</span>
+<span id="cb84-1696"><a href="#cb84-1696" aria-hidden="true" tabindex="-1"></a>covariate patterns.</span>
 <span id="cb84-1697"><a href="#cb84-1697" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1700"><a href="#cb84-1700" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1701"><a href="#cb84-1701" aria-hidden="true" tabindex="-1"></a>wcgs_grouped <span class="ot">=</span> </span>
-<span id="cb84-1702"><a href="#cb84-1702" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
-<span id="cb84-1703"><a href="#cb84-1703" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb84-1704"><a href="#cb84-1704" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(dibpat, age),</span>
-<span id="cb84-1705"><a href="#cb84-1705" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb84-1706"><a href="#cb84-1706" aria-hidden="true" tabindex="-1"></a>    <span class="at">chd =</span> <span class="fu">sum</span>(chd69 <span class="sc">==</span> <span class="st">"Yes"</span>),</span>
-<span id="cb84-1707"><a href="#cb84-1707" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">!chd</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(chd69 <span class="sc">==</span> <span class="st">"No"</span>)</span>
-<span id="cb84-1708"><a href="#cb84-1708" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb84-1709"><a href="#cb84-1709" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1710"><a href="#cb84-1710" aria-hidden="true" tabindex="-1"></a>chd_glm_strat_grouped <span class="ot">=</span> <span class="fu">glm</span>(</span>
-<span id="cb84-1711"><a href="#cb84-1711" aria-hidden="true" tabindex="-1"></a>  <span class="st">"formula"</span> <span class="ot">=</span> <span class="fu">cbind</span>(chd, <span class="st">`</span><span class="at">!chd</span><span class="st">`</span>) <span class="sc">~</span> dibpat <span class="sc">+</span> dibpat<span class="sc">:</span>age <span class="sc">-</span> <span class="dv">1</span>, </span>
-<span id="cb84-1712"><a href="#cb84-1712" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data"</span> <span class="ot">=</span> wcgs_grouped,</span>
-<span id="cb84-1713"><a href="#cb84-1713" aria-hidden="true" tabindex="-1"></a>  <span class="st">"family"</span> <span class="ot">=</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)</span>
-<span id="cb84-1714"><a href="#cb84-1714" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb84-1715"><a href="#cb84-1715" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1716"><a href="#cb84-1716" aria-hidden="true" tabindex="-1"></a>chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">parameters</span>() <span class="sc">|&gt;</span> <span class="fu">print_md</span>()</span>
-<span id="cb84-1717"><a href="#cb84-1717" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1718"><a href="#cb84-1718" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1719"><a href="#cb84-1719" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1720"><a href="#cb84-1720" aria-hidden="true" tabindex="-1"></a><span class="fu">## (Response) residuals</span></span>
-<span id="cb84-1721"><a href="#cb84-1721" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1722"><a href="#cb84-1722" aria-hidden="true" tabindex="-1"></a>$$e_k \eqdef \bar y_k - \hat{\pi}(x_k)$$</span>
-<span id="cb84-1723"><a href="#cb84-1723" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1724"><a href="#cb84-1724" aria-hidden="true" tabindex="-1"></a>($k$ indexes the covariate patterns)</span>
-<span id="cb84-1725"><a href="#cb84-1725" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1726"><a href="#cb84-1726" aria-hidden="true" tabindex="-1"></a>We can graph these residuals $e_k$ against the fitted values</span>
-<span id="cb84-1727"><a href="#cb84-1727" aria-hidden="true" tabindex="-1"></a>$\hat\pi(x_k)$:</span>
+<span id="cb84-1698"><a href="#cb84-1698" aria-hidden="true" tabindex="-1"></a>Here we will create the grouped-data version of our CHD model from the</span>
+<span id="cb84-1699"><a href="#cb84-1699" aria-hidden="true" tabindex="-1"></a>WCGS study:</span>
+<span id="cb84-1700"><a href="#cb84-1700" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1703"><a href="#cb84-1703" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1704"><a href="#cb84-1704" aria-hidden="true" tabindex="-1"></a>wcgs_grouped <span class="ot">=</span> </span>
+<span id="cb84-1705"><a href="#cb84-1705" aria-hidden="true" tabindex="-1"></a>  wcgs <span class="sc">|&gt;</span> </span>
+<span id="cb84-1706"><a href="#cb84-1706" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb84-1707"><a href="#cb84-1707" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(dibpat, age),</span>
+<span id="cb84-1708"><a href="#cb84-1708" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb84-1709"><a href="#cb84-1709" aria-hidden="true" tabindex="-1"></a>    <span class="at">chd =</span> <span class="fu">sum</span>(chd69 <span class="sc">==</span> <span class="st">"Yes"</span>),</span>
+<span id="cb84-1710"><a href="#cb84-1710" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">!chd</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(chd69 <span class="sc">==</span> <span class="st">"No"</span>)</span>
+<span id="cb84-1711"><a href="#cb84-1711" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb84-1712"><a href="#cb84-1712" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1713"><a href="#cb84-1713" aria-hidden="true" tabindex="-1"></a>chd_glm_strat_grouped <span class="ot">=</span> <span class="fu">glm</span>(</span>
+<span id="cb84-1714"><a href="#cb84-1714" aria-hidden="true" tabindex="-1"></a>  <span class="st">"formula"</span> <span class="ot">=</span> <span class="fu">cbind</span>(chd, <span class="st">`</span><span class="at">!chd</span><span class="st">`</span>) <span class="sc">~</span> dibpat <span class="sc">+</span> dibpat<span class="sc">:</span>age <span class="sc">-</span> <span class="dv">1</span>, </span>
+<span id="cb84-1715"><a href="#cb84-1715" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data"</span> <span class="ot">=</span> wcgs_grouped,</span>
+<span id="cb84-1716"><a href="#cb84-1716" aria-hidden="true" tabindex="-1"></a>  <span class="st">"family"</span> <span class="ot">=</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)</span>
+<span id="cb84-1717"><a href="#cb84-1717" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb84-1718"><a href="#cb84-1718" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1719"><a href="#cb84-1719" aria-hidden="true" tabindex="-1"></a>chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">parameters</span>() <span class="sc">|&gt;</span> <span class="fu">print_md</span>()</span>
+<span id="cb84-1720"><a href="#cb84-1720" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1721"><a href="#cb84-1721" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1722"><a href="#cb84-1722" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1723"><a href="#cb84-1723" aria-hidden="true" tabindex="-1"></a><span class="fu">## (Response) residuals</span></span>
+<span id="cb84-1724"><a href="#cb84-1724" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1725"><a href="#cb84-1725" aria-hidden="true" tabindex="-1"></a>$$e_k \eqdef \bar y_k - \hat{\pi}(x_k)$$</span>
+<span id="cb84-1726"><a href="#cb84-1726" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1727"><a href="#cb84-1727" aria-hidden="true" tabindex="-1"></a>($k$ indexes the covariate patterns)</span>
 <span id="cb84-1728"><a href="#cb84-1728" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1731"><a href="#cb84-1731" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1732"><a href="#cb84-1732" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb84-1733"><a href="#cb84-1733" aria-hidden="true" tabindex="-1"></a>wcgs_grouped <span class="ot">=</span> </span>
-<span id="cb84-1734"><a href="#cb84-1734" aria-hidden="true" tabindex="-1"></a>  wcgs_grouped <span class="sc">|&gt;</span> </span>
-<span id="cb84-1735"><a href="#cb84-1735" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb84-1736"><a href="#cb84-1736" aria-hidden="true" tabindex="-1"></a>    <span class="at">fitted =</span> chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">fitted</span>(),</span>
-<span id="cb84-1737"><a href="#cb84-1737" aria-hidden="true" tabindex="-1"></a>    <span class="at">fitted_logit =</span> fitted <span class="sc">|&gt;</span> <span class="fu">logit</span>(),</span>
-<span id="cb84-1738"><a href="#cb84-1738" aria-hidden="true" tabindex="-1"></a>    <span class="at">response_resids =</span> </span>
-<span id="cb84-1739"><a href="#cb84-1739" aria-hidden="true" tabindex="-1"></a>      chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">resid</span>(<span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb84-1740"><a href="#cb84-1740" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb84-1741"><a href="#cb84-1741" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1742"><a href="#cb84-1742" aria-hidden="true" tabindex="-1"></a>wcgs_response_resid_plot <span class="ot">=</span> </span>
-<span id="cb84-1743"><a href="#cb84-1743" aria-hidden="true" tabindex="-1"></a>  wcgs_grouped <span class="sc">|&gt;</span> </span>
-<span id="cb84-1744"><a href="#cb84-1744" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb84-1745"><a href="#cb84-1745" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb84-1746"><a href="#cb84-1746" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> fitted,</span>
-<span id="cb84-1747"><a href="#cb84-1747" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> response_resids</span>
-<span id="cb84-1748"><a href="#cb84-1748" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb84-1749"><a href="#cb84-1749" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb84-1750"><a href="#cb84-1750" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb84-1751"><a href="#cb84-1751" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">col =</span> dibpat)</span>
-<span id="cb84-1752"><a href="#cb84-1752" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb84-1753"><a href="#cb84-1753" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb84-1754"><a href="#cb84-1754" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>( <span class="co">#&lt;1&gt;</span></span>
-<span id="cb84-1755"><a href="#cb84-1755" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">TRUE</span>,  <span class="co">#&lt;1&gt;</span></span>
-<span id="cb84-1756"><a href="#cb84-1756" aria-hidden="true" tabindex="-1"></a>    <span class="at">method.args =</span> <span class="fu">list</span>( <span class="co">#&lt;1&gt;</span></span>
-<span id="cb84-1757"><a href="#cb84-1757" aria-hidden="true" tabindex="-1"></a>      <span class="at">span=</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>, <span class="co">#&lt;1&gt;</span></span>
-<span id="cb84-1758"><a href="#cb84-1758" aria-hidden="true" tabindex="-1"></a>      <span class="at">degree=</span><span class="dv">1</span>, <span class="co">#&lt;1&gt;</span></span>
-<span id="cb84-1759"><a href="#cb84-1759" aria-hidden="true" tabindex="-1"></a>      <span class="at">family=</span><span class="st">"symmetric"</span>, <span class="co">#&lt;1&gt;</span></span>
-<span id="cb84-1760"><a href="#cb84-1760" aria-hidden="true" tabindex="-1"></a>      <span class="at">iterations=</span><span class="dv">3</span>), <span class="co">#&lt;1&gt;</span></span>
-<span id="cb84-1761"><a href="#cb84-1761" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> stats<span class="sc">::</span>loess) <span class="co">#&lt;1&gt;</span></span>
-<span id="cb84-1762"><a href="#cb84-1762" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1763"><a href="#cb84-1763" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1764"><a href="#cb84-1764" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1765"><a href="#cb84-1765" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Don't worry about these options for now; I chose them to match</span>
-<span id="cb84-1766"><a href="#cb84-1766" aria-hidden="true" tabindex="-1"></a>    <span class="in">`autoplot()`</span> as closely as I can. <span class="in">`plot.glm`</span> and <span class="in">`autoplot`</span> use</span>
-<span id="cb84-1767"><a href="#cb84-1767" aria-hidden="true" tabindex="-1"></a>    <span class="in">`stats::lowess`</span> instead of <span class="in">`stats::loess`</span>; <span class="in">`stats::lowess`</span> is older,</span>
-<span id="cb84-1768"><a href="#cb84-1768" aria-hidden="true" tabindex="-1"></a>    hard to use with <span class="in">`geom_smooth`</span>, and hard to match exactly with</span>
-<span id="cb84-1769"><a href="#cb84-1769" aria-hidden="true" tabindex="-1"></a>    <span class="in">`stats::loess`</span>; see https://support.bioconductor.org/p/2323/.<span class="sc">\]</span></span>
-<span id="cb84-1770"><a href="#cb84-1770" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1771"><a href="#cb84-1771" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb84-1774"><a href="#cb84-1774" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1775"><a href="#cb84-1775" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb84-1776"><a href="#cb84-1776" aria-hidden="true" tabindex="-1"></a>wcgs_response_resid_plot <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-1777"><a href="#cb84-1777" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1778"><a href="#cb84-1778" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1779"><a href="#cb84-1779" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1780"><a href="#cb84-1780" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb84-1783"><a href="#cb84-1783" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1784"><a href="#cb84-1784" aria-hidden="true" tabindex="-1"></a>wcgs_response_resid_plot <span class="sc">|&gt;</span> <span class="fu">ggplotly</span>()</span>
-<span id="cb84-1785"><a href="#cb84-1785" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1786"><a href="#cb84-1786" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1787"><a href="#cb84-1787" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1788"><a href="#cb84-1788" aria-hidden="true" tabindex="-1"></a>We can see a slight fan-shape here: observations on the right have</span>
-<span id="cb84-1789"><a href="#cb84-1789" aria-hidden="true" tabindex="-1"></a>larger variance (as expected since $var(\bar y) = \pi(1-\pi)/n$ is</span>
-<span id="cb84-1790"><a href="#cb84-1790" aria-hidden="true" tabindex="-1"></a>maximized when $\pi = 0.5$).</span>
-<span id="cb84-1791"><a href="#cb84-1791" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1792"><a href="#cb84-1792" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pearson residuals</span></span>
-<span id="cb84-1793"><a href="#cb84-1793" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1794"><a href="#cb84-1794" aria-hidden="true" tabindex="-1"></a>The fan-shape in the response residuals plot isn't necessarily a concern</span>
-<span id="cb84-1795"><a href="#cb84-1795" aria-hidden="true" tabindex="-1"></a>here, since we haven't made an assumption of constant residual variance,</span>
-<span id="cb84-1796"><a href="#cb84-1796" aria-hidden="true" tabindex="-1"></a>as we did for linear regression.</span>
-<span id="cb84-1797"><a href="#cb84-1797" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1798"><a href="#cb84-1798" aria-hidden="true" tabindex="-1"></a>However, we might want to divide by the standard error in order to make</span>
-<span id="cb84-1799"><a href="#cb84-1799" aria-hidden="true" tabindex="-1"></a>the graph easier to interpret. Here's one way to do that:</span>
+<span id="cb84-1729"><a href="#cb84-1729" aria-hidden="true" tabindex="-1"></a>We can graph these residuals $e_k$ against the fitted values</span>
+<span id="cb84-1730"><a href="#cb84-1730" aria-hidden="true" tabindex="-1"></a>$\hat\pi(x_k)$:</span>
+<span id="cb84-1731"><a href="#cb84-1731" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1734"><a href="#cb84-1734" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1735"><a href="#cb84-1735" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
+<span id="cb84-1736"><a href="#cb84-1736" aria-hidden="true" tabindex="-1"></a>wcgs_grouped <span class="ot">=</span> </span>
+<span id="cb84-1737"><a href="#cb84-1737" aria-hidden="true" tabindex="-1"></a>  wcgs_grouped <span class="sc">|&gt;</span> </span>
+<span id="cb84-1738"><a href="#cb84-1738" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb84-1739"><a href="#cb84-1739" aria-hidden="true" tabindex="-1"></a>    <span class="at">fitted =</span> chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">fitted</span>(),</span>
+<span id="cb84-1740"><a href="#cb84-1740" aria-hidden="true" tabindex="-1"></a>    <span class="at">fitted_logit =</span> fitted <span class="sc">|&gt;</span> <span class="fu">logit</span>(),</span>
+<span id="cb84-1741"><a href="#cb84-1741" aria-hidden="true" tabindex="-1"></a>    <span class="at">response_resids =</span> </span>
+<span id="cb84-1742"><a href="#cb84-1742" aria-hidden="true" tabindex="-1"></a>      chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">resid</span>(<span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb84-1743"><a href="#cb84-1743" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb84-1744"><a href="#cb84-1744" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1745"><a href="#cb84-1745" aria-hidden="true" tabindex="-1"></a>wcgs_response_resid_plot <span class="ot">=</span> </span>
+<span id="cb84-1746"><a href="#cb84-1746" aria-hidden="true" tabindex="-1"></a>  wcgs_grouped <span class="sc">|&gt;</span> </span>
+<span id="cb84-1747"><a href="#cb84-1747" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb84-1748"><a href="#cb84-1748" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb84-1749"><a href="#cb84-1749" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> fitted,</span>
+<span id="cb84-1750"><a href="#cb84-1750" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> response_resids</span>
+<span id="cb84-1751"><a href="#cb84-1751" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb84-1752"><a href="#cb84-1752" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb84-1753"><a href="#cb84-1753" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb84-1754"><a href="#cb84-1754" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">col =</span> dibpat)</span>
+<span id="cb84-1755"><a href="#cb84-1755" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb84-1756"><a href="#cb84-1756" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb84-1757"><a href="#cb84-1757" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>( <span class="co">#&lt;1&gt;</span></span>
+<span id="cb84-1758"><a href="#cb84-1758" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">TRUE</span>,  <span class="co">#&lt;1&gt;</span></span>
+<span id="cb84-1759"><a href="#cb84-1759" aria-hidden="true" tabindex="-1"></a>    <span class="at">method.args =</span> <span class="fu">list</span>( <span class="co">#&lt;1&gt;</span></span>
+<span id="cb84-1760"><a href="#cb84-1760" aria-hidden="true" tabindex="-1"></a>      <span class="at">span=</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>, <span class="co">#&lt;1&gt;</span></span>
+<span id="cb84-1761"><a href="#cb84-1761" aria-hidden="true" tabindex="-1"></a>      <span class="at">degree=</span><span class="dv">1</span>, <span class="co">#&lt;1&gt;</span></span>
+<span id="cb84-1762"><a href="#cb84-1762" aria-hidden="true" tabindex="-1"></a>      <span class="at">family=</span><span class="st">"symmetric"</span>, <span class="co">#&lt;1&gt;</span></span>
+<span id="cb84-1763"><a href="#cb84-1763" aria-hidden="true" tabindex="-1"></a>      <span class="at">iterations=</span><span class="dv">3</span>), <span class="co">#&lt;1&gt;</span></span>
+<span id="cb84-1764"><a href="#cb84-1764" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> stats<span class="sc">::</span>loess) <span class="co">#&lt;1&gt;</span></span>
+<span id="cb84-1765"><a href="#cb84-1765" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1766"><a href="#cb84-1766" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1767"><a href="#cb84-1767" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1768"><a href="#cb84-1768" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Don't worry about these options for now; I chose them to match</span>
+<span id="cb84-1769"><a href="#cb84-1769" aria-hidden="true" tabindex="-1"></a>    <span class="in">`autoplot()`</span> as closely as I can. <span class="in">`plot.glm`</span> and <span class="in">`autoplot`</span> use</span>
+<span id="cb84-1770"><a href="#cb84-1770" aria-hidden="true" tabindex="-1"></a>    <span class="in">`stats::lowess`</span> instead of <span class="in">`stats::loess`</span>; <span class="in">`stats::lowess`</span> is older,</span>
+<span id="cb84-1771"><a href="#cb84-1771" aria-hidden="true" tabindex="-1"></a>    hard to use with <span class="in">`geom_smooth`</span>, and hard to match exactly with</span>
+<span id="cb84-1772"><a href="#cb84-1772" aria-hidden="true" tabindex="-1"></a>    <span class="in">`stats::loess`</span>; see https://support.bioconductor.org/p/2323/.<span class="sc">\]</span></span>
+<span id="cb84-1773"><a href="#cb84-1773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1774"><a href="#cb84-1774" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb84-1777"><a href="#cb84-1777" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1778"><a href="#cb84-1778" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb84-1779"><a href="#cb84-1779" aria-hidden="true" tabindex="-1"></a>wcgs_response_resid_plot <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-1780"><a href="#cb84-1780" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1781"><a href="#cb84-1781" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1782"><a href="#cb84-1782" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1783"><a href="#cb84-1783" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb84-1786"><a href="#cb84-1786" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1787"><a href="#cb84-1787" aria-hidden="true" tabindex="-1"></a>wcgs_response_resid_plot <span class="sc">|&gt;</span> <span class="fu">ggplotly</span>()</span>
+<span id="cb84-1788"><a href="#cb84-1788" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1789"><a href="#cb84-1789" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1790"><a href="#cb84-1790" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1791"><a href="#cb84-1791" aria-hidden="true" tabindex="-1"></a>We can see a slight fan-shape here: observations on the right have</span>
+<span id="cb84-1792"><a href="#cb84-1792" aria-hidden="true" tabindex="-1"></a>larger variance (as expected since $var(\bar y) = \pi(1-\pi)/n$ is</span>
+<span id="cb84-1793"><a href="#cb84-1793" aria-hidden="true" tabindex="-1"></a>maximized when $\pi = 0.5$).</span>
+<span id="cb84-1794"><a href="#cb84-1794" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1795"><a href="#cb84-1795" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pearson residuals</span></span>
+<span id="cb84-1796"><a href="#cb84-1796" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1797"><a href="#cb84-1797" aria-hidden="true" tabindex="-1"></a>The fan-shape in the response residuals plot isn't necessarily a concern</span>
+<span id="cb84-1798"><a href="#cb84-1798" aria-hidden="true" tabindex="-1"></a>here, since we haven't made an assumption of constant residual variance,</span>
+<span id="cb84-1799"><a href="#cb84-1799" aria-hidden="true" tabindex="-1"></a>as we did for linear regression.</span>
 <span id="cb84-1800"><a href="#cb84-1800" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1801"><a href="#cb84-1801" aria-hidden="true" tabindex="-1"></a>The Pearson (chi-squared) residual for covariate pattern $k$ is: $$</span>
-<span id="cb84-1802"><a href="#cb84-1802" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb84-1803"><a href="#cb84-1803" aria-hidden="true" tabindex="-1"></a>X_k &amp;= \frac{\bar y_k - \hat\pi_k}{\sqrt{\hat \pi_k (1-\hat\pi_k)/n_k}}</span>
-<span id="cb84-1804"><a href="#cb84-1804" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb84-1805"><a href="#cb84-1805" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb84-1806"><a href="#cb84-1806" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1807"><a href="#cb84-1807" aria-hidden="true" tabindex="-1"></a>where $$</span>
-<span id="cb84-1808"><a href="#cb84-1808" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb84-1809"><a href="#cb84-1809" aria-hidden="true" tabindex="-1"></a>\hat\pi_k </span>
-<span id="cb84-1810"><a href="#cb84-1810" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \hat\pi(x_k)<span class="sc">\\</span></span>
-<span id="cb84-1811"><a href="#cb84-1811" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \hat P(Y=1|X=x_k)<span class="sc">\\</span> </span>
-<span id="cb84-1812"><a href="#cb84-1812" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \text{expit}(x_i'\hat \beta)<span class="sc">\\</span></span>
-<span id="cb84-1813"><a href="#cb84-1813" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \text{expit}(\hat \beta_0 + \sum_{j=1}^p \hat \beta_j x_{ij})</span>
-<span id="cb84-1814"><a href="#cb84-1814" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb84-1815"><a href="#cb84-1815" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb84-1816"><a href="#cb84-1816" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1817"><a href="#cb84-1817" aria-hidden="true" tabindex="-1"></a>Let's take a look at the Pearson residuals for our CHD model from the</span>
-<span id="cb84-1818"><a href="#cb84-1818" aria-hidden="true" tabindex="-1"></a>WCGS data (graphed against the fitted values on the logit scale):</span>
+<span id="cb84-1801"><a href="#cb84-1801" aria-hidden="true" tabindex="-1"></a>However, we might want to divide by the standard error in order to make</span>
+<span id="cb84-1802"><a href="#cb84-1802" aria-hidden="true" tabindex="-1"></a>the graph easier to interpret. Here's one way to do that:</span>
+<span id="cb84-1803"><a href="#cb84-1803" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1804"><a href="#cb84-1804" aria-hidden="true" tabindex="-1"></a>The Pearson (chi-squared) residual for covariate pattern $k$ is: $$</span>
+<span id="cb84-1805"><a href="#cb84-1805" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb84-1806"><a href="#cb84-1806" aria-hidden="true" tabindex="-1"></a>X_k &amp;= \frac{\bar y_k - \hat\pi_k}{\sqrt{\hat \pi_k (1-\hat\pi_k)/n_k}}</span>
+<span id="cb84-1807"><a href="#cb84-1807" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb84-1808"><a href="#cb84-1808" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb84-1809"><a href="#cb84-1809" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1810"><a href="#cb84-1810" aria-hidden="true" tabindex="-1"></a>where $$</span>
+<span id="cb84-1811"><a href="#cb84-1811" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb84-1812"><a href="#cb84-1812" aria-hidden="true" tabindex="-1"></a>\hat\pi_k </span>
+<span id="cb84-1813"><a href="#cb84-1813" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \hat\pi(x_k)<span class="sc">\\</span></span>
+<span id="cb84-1814"><a href="#cb84-1814" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \hat P(Y=1|X=x_k)<span class="sc">\\</span> </span>
+<span id="cb84-1815"><a href="#cb84-1815" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \text{expit}(x_i'\hat \beta)<span class="sc">\\</span></span>
+<span id="cb84-1816"><a href="#cb84-1816" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \text{expit}(\hat \beta_0 + \sum_{j=1}^p \hat \beta_j x_{ij})</span>
+<span id="cb84-1817"><a href="#cb84-1817" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb84-1818"><a href="#cb84-1818" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb84-1819"><a href="#cb84-1819" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1822"><a href="#cb84-1822" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1823"><a href="#cb84-1823" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb84-1824"><a href="#cb84-1824" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1825"><a href="#cb84-1825" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1826"><a href="#cb84-1826" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb84-1829"><a href="#cb84-1829" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1830"><a href="#cb84-1830" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb84-1831"><a href="#cb84-1831" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(chd_glm_strat_grouped, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-1832"><a href="#cb84-1832" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1833"><a href="#cb84-1833" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1834"><a href="#cb84-1834" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1835"><a href="#cb84-1835" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb84-1838"><a href="#cb84-1838" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1839"><a href="#cb84-1839" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(chd_glm_strat_grouped, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-1840"><a href="#cb84-1840" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1841"><a href="#cb84-1841" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1842"><a href="#cb84-1842" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1843"><a href="#cb84-1843" aria-hidden="true" tabindex="-1"></a>The fan-shape is gone, and these residuals don't show any obvious signs</span>
-<span id="cb84-1844"><a href="#cb84-1844" aria-hidden="true" tabindex="-1"></a>of model fit issues.</span>
+<span id="cb84-1820"><a href="#cb84-1820" aria-hidden="true" tabindex="-1"></a>Let's take a look at the Pearson residuals for our CHD model from the</span>
+<span id="cb84-1821"><a href="#cb84-1821" aria-hidden="true" tabindex="-1"></a>WCGS data (graphed against the fitted values on the logit scale):</span>
+<span id="cb84-1822"><a href="#cb84-1822" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1825"><a href="#cb84-1825" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1826"><a href="#cb84-1826" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb84-1827"><a href="#cb84-1827" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1828"><a href="#cb84-1828" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1829"><a href="#cb84-1829" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb84-1832"><a href="#cb84-1832" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1833"><a href="#cb84-1833" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb84-1834"><a href="#cb84-1834" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(chd_glm_strat_grouped, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-1835"><a href="#cb84-1835" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1836"><a href="#cb84-1836" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1837"><a href="#cb84-1837" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1838"><a href="#cb84-1838" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb84-1841"><a href="#cb84-1841" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1842"><a href="#cb84-1842" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(chd_glm_strat_grouped, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-1843"><a href="#cb84-1843" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1844"><a href="#cb84-1844" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb84-1845"><a href="#cb84-1845" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1846"><a href="#cb84-1846" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pearson residuals plot for `beetles` data</span></span>
-<span id="cb84-1847"><a href="#cb84-1847" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1848"><a href="#cb84-1848" aria-hidden="true" tabindex="-1"></a>If we create the same plot for the <span class="in">`beetles`</span> model, we see some strong</span>
-<span id="cb84-1849"><a href="#cb84-1849" aria-hidden="true" tabindex="-1"></a>evidence of a lack of fit:</span>
+<span id="cb84-1846"><a href="#cb84-1846" aria-hidden="true" tabindex="-1"></a>The fan-shape is gone, and these residuals don't show any obvious signs</span>
+<span id="cb84-1847"><a href="#cb84-1847" aria-hidden="true" tabindex="-1"></a>of model fit issues.</span>
+<span id="cb84-1848"><a href="#cb84-1848" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1849"><a href="#cb84-1849" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pearson residuals plot for `beetles` data</span></span>
 <span id="cb84-1850"><a href="#cb84-1850" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1851"><a href="#cb84-1851" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb84-1854"><a href="#cb84-1854" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1855"><a href="#cb84-1855" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(beetles_glm_grouped, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-1856"><a href="#cb84-1856" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1857"><a href="#cb84-1857" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1858"><a href="#cb84-1858" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1859"><a href="#cb84-1859" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb84-1862"><a href="#cb84-1862" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1863"><a href="#cb84-1863" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb84-1864"><a href="#cb84-1864" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(beetles_glm_grouped, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-1865"><a href="#cb84-1865" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1866"><a href="#cb84-1866" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1867"><a href="#cb84-1867" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1868"><a href="#cb84-1868" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pearson residuals with individual (ungrouped) data</span></span>
-<span id="cb84-1869"><a href="#cb84-1869" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1870"><a href="#cb84-1870" aria-hidden="true" tabindex="-1"></a>What happens if we try to compute residuals without grouping the data by</span>
-<span id="cb84-1871"><a href="#cb84-1871" aria-hidden="true" tabindex="-1"></a>covariate pattern?</span>
+<span id="cb84-1851"><a href="#cb84-1851" aria-hidden="true" tabindex="-1"></a>If we create the same plot for the <span class="in">`beetles`</span> model, we see some strong</span>
+<span id="cb84-1852"><a href="#cb84-1852" aria-hidden="true" tabindex="-1"></a>evidence of a lack of fit:</span>
+<span id="cb84-1853"><a href="#cb84-1853" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1854"><a href="#cb84-1854" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb84-1857"><a href="#cb84-1857" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1858"><a href="#cb84-1858" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(beetles_glm_grouped, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-1859"><a href="#cb84-1859" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1860"><a href="#cb84-1860" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1861"><a href="#cb84-1861" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1862"><a href="#cb84-1862" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb84-1865"><a href="#cb84-1865" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1866"><a href="#cb84-1866" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb84-1867"><a href="#cb84-1867" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(beetles_glm_grouped, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-1868"><a href="#cb84-1868" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1869"><a href="#cb84-1869" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1870"><a href="#cb84-1870" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1871"><a href="#cb84-1871" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pearson residuals with individual (ungrouped) data</span></span>
 <span id="cb84-1872"><a href="#cb84-1872" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1875"><a href="#cb84-1875" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1876"><a href="#cb84-1876" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb84-1877"><a href="#cb84-1877" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1878"><a href="#cb84-1878" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1879"><a href="#cb84-1879" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb84-1882"><a href="#cb84-1882" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1883"><a href="#cb84-1883" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(chd_glm_strat, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-1884"><a href="#cb84-1884" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1885"><a href="#cb84-1885" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1886"><a href="#cb84-1886" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1887"><a href="#cb84-1887" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb84-1890"><a href="#cb84-1890" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1891"><a href="#cb84-1891" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb84-1892"><a href="#cb84-1892" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(chd_glm_strat, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-1893"><a href="#cb84-1893" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1894"><a href="#cb84-1894" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1895"><a href="#cb84-1895" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1896"><a href="#cb84-1896" aria-hidden="true" tabindex="-1"></a>Meaningless.</span>
-<span id="cb84-1897"><a href="#cb84-1897" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1898"><a href="#cb84-1898" aria-hidden="true" tabindex="-1"></a><span class="fu">### Residuals plot by hand (*optional section*)</span></span>
-<span id="cb84-1899"><a href="#cb84-1899" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1900"><a href="#cb84-1900" aria-hidden="true" tabindex="-1"></a>If you want to check your understanding of what these residual plots</span>
-<span id="cb84-1901"><a href="#cb84-1901" aria-hidden="true" tabindex="-1"></a>are, try building them yourself:</span>
+<span id="cb84-1873"><a href="#cb84-1873" aria-hidden="true" tabindex="-1"></a>What happens if we try to compute residuals without grouping the data by</span>
+<span id="cb84-1874"><a href="#cb84-1874" aria-hidden="true" tabindex="-1"></a>covariate pattern?</span>
+<span id="cb84-1875"><a href="#cb84-1875" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1878"><a href="#cb84-1878" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1879"><a href="#cb84-1879" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb84-1880"><a href="#cb84-1880" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1881"><a href="#cb84-1881" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1882"><a href="#cb84-1882" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb84-1885"><a href="#cb84-1885" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1886"><a href="#cb84-1886" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(chd_glm_strat, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-1887"><a href="#cb84-1887" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1888"><a href="#cb84-1888" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1889"><a href="#cb84-1889" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1890"><a href="#cb84-1890" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb84-1893"><a href="#cb84-1893" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1894"><a href="#cb84-1894" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb84-1895"><a href="#cb84-1895" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(chd_glm_strat, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-1896"><a href="#cb84-1896" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1897"><a href="#cb84-1897" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1898"><a href="#cb84-1898" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1899"><a href="#cb84-1899" aria-hidden="true" tabindex="-1"></a>Meaningless.</span>
+<span id="cb84-1900"><a href="#cb84-1900" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1901"><a href="#cb84-1901" aria-hidden="true" tabindex="-1"></a><span class="fu">### Residuals plot by hand (*optional section*)</span></span>
 <span id="cb84-1902"><a href="#cb84-1902" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1905"><a href="#cb84-1905" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1906"><a href="#cb84-1906" aria-hidden="true" tabindex="-1"></a>wcgs_grouped <span class="ot">=</span> </span>
-<span id="cb84-1907"><a href="#cb84-1907" aria-hidden="true" tabindex="-1"></a>  wcgs_grouped <span class="sc">|&gt;</span> </span>
-<span id="cb84-1908"><a href="#cb84-1908" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb84-1909"><a href="#cb84-1909" aria-hidden="true" tabindex="-1"></a>    <span class="at">fitted =</span> chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">fitted</span>(),</span>
-<span id="cb84-1910"><a href="#cb84-1910" aria-hidden="true" tabindex="-1"></a>    <span class="at">fitted_logit =</span> fitted <span class="sc">|&gt;</span> <span class="fu">logit</span>(),</span>
-<span id="cb84-1911"><a href="#cb84-1911" aria-hidden="true" tabindex="-1"></a>    <span class="at">resids =</span> chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">resid</span>(<span class="at">type =</span> <span class="st">"pearson"</span>)</span>
-<span id="cb84-1912"><a href="#cb84-1912" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb84-1913"><a href="#cb84-1913" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1914"><a href="#cb84-1914" aria-hidden="true" tabindex="-1"></a>wcgs_resid_plot1 <span class="ot">=</span> </span>
-<span id="cb84-1915"><a href="#cb84-1915" aria-hidden="true" tabindex="-1"></a>  wcgs_grouped <span class="sc">|&gt;</span> </span>
-<span id="cb84-1916"><a href="#cb84-1916" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb84-1917"><a href="#cb84-1917" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb84-1918"><a href="#cb84-1918" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> fitted_logit,</span>
-<span id="cb84-1919"><a href="#cb84-1919" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> resids</span>
-<span id="cb84-1920"><a href="#cb84-1920" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb84-1921"><a href="#cb84-1921" aria-hidden="true" tabindex="-1"></a>    ) </span>
-<span id="cb84-1922"><a href="#cb84-1922" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb84-1923"><a href="#cb84-1923" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb84-1924"><a href="#cb84-1924" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb84-1925"><a href="#cb84-1925" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">col =</span> dibpat)</span>
-<span id="cb84-1926"><a href="#cb84-1926" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb84-1927"><a href="#cb84-1927" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb84-1928"><a href="#cb84-1928" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb84-1929"><a href="#cb84-1929" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(</span>
-<span id="cb84-1930"><a href="#cb84-1930" aria-hidden="true" tabindex="-1"></a>                <span class="at">span=</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>,</span>
-<span id="cb84-1931"><a href="#cb84-1931" aria-hidden="true" tabindex="-1"></a>                <span class="at">degree=</span><span class="dv">1</span>,</span>
-<span id="cb84-1932"><a href="#cb84-1932" aria-hidden="true" tabindex="-1"></a>                <span class="at">family=</span><span class="st">"symmetric"</span>,</span>
-<span id="cb84-1933"><a href="#cb84-1933" aria-hidden="true" tabindex="-1"></a>                <span class="at">iterations=</span><span class="dv">3</span>,</span>
-<span id="cb84-1934"><a href="#cb84-1934" aria-hidden="true" tabindex="-1"></a>                <span class="at">surface=</span><span class="st">"direct"</span></span>
-<span id="cb84-1935"><a href="#cb84-1935" aria-hidden="true" tabindex="-1"></a>                <span class="co"># span = 2/3, </span></span>
-<span id="cb84-1936"><a href="#cb84-1936" aria-hidden="true" tabindex="-1"></a>                <span class="co"># iterations = 3</span></span>
-<span id="cb84-1937"><a href="#cb84-1937" aria-hidden="true" tabindex="-1"></a>              ),</span>
-<span id="cb84-1938"><a href="#cb84-1938" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> stats<span class="sc">::</span>loess)</span>
-<span id="cb84-1939"><a href="#cb84-1939" aria-hidden="true" tabindex="-1"></a><span class="co"># plot.glm and autoplot use stats::lowess, which is hard to use with </span></span>
-<span id="cb84-1940"><a href="#cb84-1940" aria-hidden="true" tabindex="-1"></a><span class="co"># geom_smooth and hard to match exactly; </span></span>
-<span id="cb84-1941"><a href="#cb84-1941" aria-hidden="true" tabindex="-1"></a><span class="co"># see https://support.bioconductor.org/p/2323/</span></span>
-<span id="cb84-1942"><a href="#cb84-1942" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1943"><a href="#cb84-1943" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1944"><a href="#cb84-1944" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1945"><a href="#cb84-1945" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb84-1948"><a href="#cb84-1948" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1949"><a href="#cb84-1949" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb84-1950"><a href="#cb84-1950" aria-hidden="true" tabindex="-1"></a>wcgs_resid_plot1 <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-1951"><a href="#cb84-1951" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1952"><a href="#cb84-1952" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1953"><a href="#cb84-1953" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1954"><a href="#cb84-1954" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb84-1957"><a href="#cb84-1957" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1958"><a href="#cb84-1958" aria-hidden="true" tabindex="-1"></a>wcgs_resid_plot1 <span class="sc">|&gt;</span> <span class="fu">ggplotly</span>()</span>
-<span id="cb84-1959"><a href="#cb84-1959" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-1960"><a href="#cb84-1960" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-1961"><a href="#cb84-1961" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1962"><a href="#cb84-1962" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pearson chi-squared goodness of fit test</span></span>
-<span id="cb84-1963"><a href="#cb84-1963" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1964"><a href="#cb84-1964" aria-hidden="true" tabindex="-1"></a>The Pearson chi-squared goodness of fit statistic is: $$</span>
-<span id="cb84-1965"><a href="#cb84-1965" aria-hidden="true" tabindex="-1"></a>X^2 = \sum_{k=1}^m X_k^2 </span>
-<span id="cb84-1966"><a href="#cb84-1966" aria-hidden="true" tabindex="-1"></a>$$ Under the null hypothesis that the model in question is correct</span>
-<span id="cb84-1967"><a href="#cb84-1967" aria-hidden="true" tabindex="-1"></a>(i.e., sufficiently complex), $X^2\ \dot \sim\ \chi^2(N-p)$.</span>
-<span id="cb84-1968"><a href="#cb84-1968" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1971"><a href="#cb84-1971" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-1972"><a href="#cb84-1972" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> chd_glm_strat_grouped <span class="sc">|&gt;</span> </span>
-<span id="cb84-1973"><a href="#cb84-1973" aria-hidden="true" tabindex="-1"></a>  <span class="fu">resid</span>(<span class="at">type =</span> <span class="st">"pearson"</span>)</span>
-<span id="cb84-1974"><a href="#cb84-1974" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1975"><a href="#cb84-1975" aria-hidden="true" tabindex="-1"></a>chisq_stat <span class="ot">=</span> <span class="fu">sum</span>(X<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb84-1976"><a href="#cb84-1976" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1977"><a href="#cb84-1977" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">=</span> <span class="fu">pchisq</span>(</span>
-<span id="cb84-1978"><a href="#cb84-1978" aria-hidden="true" tabindex="-1"></a>  chisq_stat, </span>
-<span id="cb84-1979"><a href="#cb84-1979" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb84-1980"><a href="#cb84-1980" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> <span class="fu">length</span>(X) <span class="sc">-</span> <span class="fu">length</span>(<span class="fu">coef</span>(chd_glm_strat_grouped)))</span>
-<span id="cb84-1981"><a href="#cb84-1981" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1982"><a href="#cb84-1982" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1983"><a href="#cb84-1983" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1903"><a href="#cb84-1903" aria-hidden="true" tabindex="-1"></a>If you want to check your understanding of what these residual plots</span>
+<span id="cb84-1904"><a href="#cb84-1904" aria-hidden="true" tabindex="-1"></a>are, try building them yourself:</span>
+<span id="cb84-1905"><a href="#cb84-1905" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1908"><a href="#cb84-1908" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1909"><a href="#cb84-1909" aria-hidden="true" tabindex="-1"></a>wcgs_grouped <span class="ot">=</span> </span>
+<span id="cb84-1910"><a href="#cb84-1910" aria-hidden="true" tabindex="-1"></a>  wcgs_grouped <span class="sc">|&gt;</span> </span>
+<span id="cb84-1911"><a href="#cb84-1911" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb84-1912"><a href="#cb84-1912" aria-hidden="true" tabindex="-1"></a>    <span class="at">fitted =</span> chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">fitted</span>(),</span>
+<span id="cb84-1913"><a href="#cb84-1913" aria-hidden="true" tabindex="-1"></a>    <span class="at">fitted_logit =</span> fitted <span class="sc">|&gt;</span> <span class="fu">logit</span>(),</span>
+<span id="cb84-1914"><a href="#cb84-1914" aria-hidden="true" tabindex="-1"></a>    <span class="at">resids =</span> chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">resid</span>(<span class="at">type =</span> <span class="st">"pearson"</span>)</span>
+<span id="cb84-1915"><a href="#cb84-1915" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb84-1916"><a href="#cb84-1916" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1917"><a href="#cb84-1917" aria-hidden="true" tabindex="-1"></a>wcgs_resid_plot1 <span class="ot">=</span> </span>
+<span id="cb84-1918"><a href="#cb84-1918" aria-hidden="true" tabindex="-1"></a>  wcgs_grouped <span class="sc">|&gt;</span> </span>
+<span id="cb84-1919"><a href="#cb84-1919" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb84-1920"><a href="#cb84-1920" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb84-1921"><a href="#cb84-1921" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> fitted_logit,</span>
+<span id="cb84-1922"><a href="#cb84-1922" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> resids</span>
+<span id="cb84-1923"><a href="#cb84-1923" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb84-1924"><a href="#cb84-1924" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb84-1925"><a href="#cb84-1925" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb84-1926"><a href="#cb84-1926" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb84-1927"><a href="#cb84-1927" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb84-1928"><a href="#cb84-1928" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">col =</span> dibpat)</span>
+<span id="cb84-1929"><a href="#cb84-1929" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb84-1930"><a href="#cb84-1930" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb84-1931"><a href="#cb84-1931" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb84-1932"><a href="#cb84-1932" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(</span>
+<span id="cb84-1933"><a href="#cb84-1933" aria-hidden="true" tabindex="-1"></a>                <span class="at">span=</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>,</span>
+<span id="cb84-1934"><a href="#cb84-1934" aria-hidden="true" tabindex="-1"></a>                <span class="at">degree=</span><span class="dv">1</span>,</span>
+<span id="cb84-1935"><a href="#cb84-1935" aria-hidden="true" tabindex="-1"></a>                <span class="at">family=</span><span class="st">"symmetric"</span>,</span>
+<span id="cb84-1936"><a href="#cb84-1936" aria-hidden="true" tabindex="-1"></a>                <span class="at">iterations=</span><span class="dv">3</span>,</span>
+<span id="cb84-1937"><a href="#cb84-1937" aria-hidden="true" tabindex="-1"></a>                <span class="at">surface=</span><span class="st">"direct"</span></span>
+<span id="cb84-1938"><a href="#cb84-1938" aria-hidden="true" tabindex="-1"></a>                <span class="co"># span = 2/3, </span></span>
+<span id="cb84-1939"><a href="#cb84-1939" aria-hidden="true" tabindex="-1"></a>                <span class="co"># iterations = 3</span></span>
+<span id="cb84-1940"><a href="#cb84-1940" aria-hidden="true" tabindex="-1"></a>              ),</span>
+<span id="cb84-1941"><a href="#cb84-1941" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> stats<span class="sc">::</span>loess)</span>
+<span id="cb84-1942"><a href="#cb84-1942" aria-hidden="true" tabindex="-1"></a><span class="co"># plot.glm and autoplot use stats::lowess, which is hard to use with </span></span>
+<span id="cb84-1943"><a href="#cb84-1943" aria-hidden="true" tabindex="-1"></a><span class="co"># geom_smooth and hard to match exactly; </span></span>
+<span id="cb84-1944"><a href="#cb84-1944" aria-hidden="true" tabindex="-1"></a><span class="co"># see https://support.bioconductor.org/p/2323/</span></span>
+<span id="cb84-1945"><a href="#cb84-1945" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1946"><a href="#cb84-1946" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1947"><a href="#cb84-1947" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1948"><a href="#cb84-1948" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb84-1951"><a href="#cb84-1951" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1952"><a href="#cb84-1952" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb84-1953"><a href="#cb84-1953" aria-hidden="true" tabindex="-1"></a>wcgs_resid_plot1 <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-1954"><a href="#cb84-1954" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1955"><a href="#cb84-1955" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1956"><a href="#cb84-1956" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1957"><a href="#cb84-1957" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb84-1960"><a href="#cb84-1960" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1961"><a href="#cb84-1961" aria-hidden="true" tabindex="-1"></a>wcgs_resid_plot1 <span class="sc">|&gt;</span> <span class="fu">ggplotly</span>()</span>
+<span id="cb84-1962"><a href="#cb84-1962" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-1963"><a href="#cb84-1963" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-1964"><a href="#cb84-1964" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1965"><a href="#cb84-1965" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pearson chi-squared goodness of fit test</span></span>
+<span id="cb84-1966"><a href="#cb84-1966" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1967"><a href="#cb84-1967" aria-hidden="true" tabindex="-1"></a>The Pearson chi-squared goodness of fit statistic is: $$</span>
+<span id="cb84-1968"><a href="#cb84-1968" aria-hidden="true" tabindex="-1"></a>X^2 = \sum_{k=1}^m X_k^2 </span>
+<span id="cb84-1969"><a href="#cb84-1969" aria-hidden="true" tabindex="-1"></a>$$ Under the null hypothesis that the model in question is correct</span>
+<span id="cb84-1970"><a href="#cb84-1970" aria-hidden="true" tabindex="-1"></a>(i.e., sufficiently complex), $X^2\ \dot \sim\ \chi^2(N-p)$.</span>
+<span id="cb84-1971"><a href="#cb84-1971" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1974"><a href="#cb84-1974" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-1975"><a href="#cb84-1975" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> chd_glm_strat_grouped <span class="sc">|&gt;</span> </span>
+<span id="cb84-1976"><a href="#cb84-1976" aria-hidden="true" tabindex="-1"></a>  <span class="fu">resid</span>(<span class="at">type =</span> <span class="st">"pearson"</span>)</span>
+<span id="cb84-1977"><a href="#cb84-1977" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1978"><a href="#cb84-1978" aria-hidden="true" tabindex="-1"></a>chisq_stat <span class="ot">=</span> <span class="fu">sum</span>(X<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb84-1979"><a href="#cb84-1979" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1980"><a href="#cb84-1980" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">=</span> <span class="fu">pchisq</span>(</span>
+<span id="cb84-1981"><a href="#cb84-1981" aria-hidden="true" tabindex="-1"></a>  chisq_stat, </span>
+<span id="cb84-1982"><a href="#cb84-1982" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb84-1983"><a href="#cb84-1983" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> <span class="fu">length</span>(X) <span class="sc">-</span> <span class="fu">length</span>(<span class="fu">coef</span>(chd_glm_strat_grouped)))</span>
 <span id="cb84-1984"><a href="#cb84-1984" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1985"><a href="#cb84-1985" aria-hidden="true" tabindex="-1"></a>For our CHD model, the p-value for this test is <span class="in">`r pval`</span>; no significant</span>
-<span id="cb84-1986"><a href="#cb84-1986" aria-hidden="true" tabindex="-1"></a>evidence of a lack of fit at the 0.05 level.</span>
+<span id="cb84-1985"><a href="#cb84-1985" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1986"><a href="#cb84-1986" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb84-1987"><a href="#cb84-1987" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1988"><a href="#cb84-1988" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standardized Pearson residuals</span></span>
-<span id="cb84-1989"><a href="#cb84-1989" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1990"><a href="#cb84-1990" aria-hidden="true" tabindex="-1"></a>Especially for small data sets, we might want to adjust our residuals</span>
-<span id="cb84-1991"><a href="#cb84-1991" aria-hidden="true" tabindex="-1"></a>for leverage (since outliers in $X$ add extra variance to the</span>
-<span id="cb84-1992"><a href="#cb84-1992" aria-hidden="true" tabindex="-1"></a>residuals):</span>
-<span id="cb84-1993"><a href="#cb84-1993" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1994"><a href="#cb84-1994" aria-hidden="true" tabindex="-1"></a>$$r_{P_k} = \frac{X_k}{\sqrt{1-h_k}}$$</span>
-<span id="cb84-1995"><a href="#cb84-1995" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1996"><a href="#cb84-1996" aria-hidden="true" tabindex="-1"></a>where $h_k$ is the leverage of $X_k$. The functions <span class="in">`autoplot()`</span> and</span>
-<span id="cb84-1997"><a href="#cb84-1997" aria-hidden="true" tabindex="-1"></a><span class="in">`plot.lm()`</span> use these for some of their graphs.</span>
+<span id="cb84-1988"><a href="#cb84-1988" aria-hidden="true" tabindex="-1"></a>For our CHD model, the p-value for this test is <span class="in">`r pval`</span>; no significant</span>
+<span id="cb84-1989"><a href="#cb84-1989" aria-hidden="true" tabindex="-1"></a>evidence of a lack of fit at the 0.05 level.</span>
+<span id="cb84-1990"><a href="#cb84-1990" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1991"><a href="#cb84-1991" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standardized Pearson residuals</span></span>
+<span id="cb84-1992"><a href="#cb84-1992" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1993"><a href="#cb84-1993" aria-hidden="true" tabindex="-1"></a>Especially for small data sets, we might want to adjust our residuals</span>
+<span id="cb84-1994"><a href="#cb84-1994" aria-hidden="true" tabindex="-1"></a>for leverage (since outliers in $X$ add extra variance to the</span>
+<span id="cb84-1995"><a href="#cb84-1995" aria-hidden="true" tabindex="-1"></a>residuals):</span>
+<span id="cb84-1996"><a href="#cb84-1996" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-1997"><a href="#cb84-1997" aria-hidden="true" tabindex="-1"></a>$$r_{P_k} = \frac{X_k}{\sqrt{1-h_k}}$$</span>
 <span id="cb84-1998"><a href="#cb84-1998" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-1999"><a href="#cb84-1999" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deviance residuals</span></span>
-<span id="cb84-2000"><a href="#cb84-2000" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2001"><a href="#cb84-2001" aria-hidden="true" tabindex="-1"></a>For large sample sizes, the Pearson and deviance residuals will be</span>
-<span id="cb84-2002"><a href="#cb84-2002" aria-hidden="true" tabindex="-1"></a>approximately the same. For small sample sizes, the deviance residuals</span>
-<span id="cb84-2003"><a href="#cb84-2003" aria-hidden="true" tabindex="-1"></a>from covariate patterns with small sample sizes can be unreliable (high</span>
-<span id="cb84-2004"><a href="#cb84-2004" aria-hidden="true" tabindex="-1"></a>variance).</span>
-<span id="cb84-2005"><a href="#cb84-2005" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2006"><a href="#cb84-2006" aria-hidden="true" tabindex="-1"></a>$$d_k = \text{sign}(y_k - n_k \hat \pi_k)\left<span class="sc">\{</span>\sqrt{2<span class="co">[</span><span class="ot">\ell_{\text{full}}(x_k) - \ell(\hat\beta; x_k)</span><span class="co">]</span>}\right<span class="sc">\}</span>$$</span>
-<span id="cb84-2007"><a href="#cb84-2007" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2008"><a href="#cb84-2008" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standardized deviance residuals</span></span>
-<span id="cb84-2009"><a href="#cb84-2009" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2010"><a href="#cb84-2010" aria-hidden="true" tabindex="-1"></a>$$r_{D_k} = \frac{d_k}{\sqrt{1-h_k}}$$</span>
-<span id="cb84-2011"><a href="#cb84-2011" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2012"><a href="#cb84-2012" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diagnostic plots</span></span>
-<span id="cb84-2013"><a href="#cb84-2013" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2014"><a href="#cb84-2014" aria-hidden="true" tabindex="-1"></a>Let's take a look at the full set of <span class="in">`autoplot()`</span> diagnostics now for</span>
-<span id="cb84-2015"><a href="#cb84-2015" aria-hidden="true" tabindex="-1"></a>our <span class="in">`CHD`</span> model:</span>
+<span id="cb84-1999"><a href="#cb84-1999" aria-hidden="true" tabindex="-1"></a>where $h_k$ is the leverage of $X_k$. The functions <span class="in">`autoplot()`</span> and</span>
+<span id="cb84-2000"><a href="#cb84-2000" aria-hidden="true" tabindex="-1"></a><span class="in">`plot.lm()`</span> use these for some of their graphs.</span>
+<span id="cb84-2001"><a href="#cb84-2001" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2002"><a href="#cb84-2002" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deviance residuals</span></span>
+<span id="cb84-2003"><a href="#cb84-2003" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2004"><a href="#cb84-2004" aria-hidden="true" tabindex="-1"></a>For large sample sizes, the Pearson and deviance residuals will be</span>
+<span id="cb84-2005"><a href="#cb84-2005" aria-hidden="true" tabindex="-1"></a>approximately the same. For small sample sizes, the deviance residuals</span>
+<span id="cb84-2006"><a href="#cb84-2006" aria-hidden="true" tabindex="-1"></a>from covariate patterns with small sample sizes can be unreliable (high</span>
+<span id="cb84-2007"><a href="#cb84-2007" aria-hidden="true" tabindex="-1"></a>variance).</span>
+<span id="cb84-2008"><a href="#cb84-2008" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2009"><a href="#cb84-2009" aria-hidden="true" tabindex="-1"></a>$$d_k = \text{sign}(y_k - n_k \hat \pi_k)\left<span class="sc">\{</span>\sqrt{2<span class="co">[</span><span class="ot">\ell_{\text{full}}(x_k) - \ell(\hat\beta; x_k)</span><span class="co">]</span>}\right<span class="sc">\}</span>$$</span>
+<span id="cb84-2010"><a href="#cb84-2010" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2011"><a href="#cb84-2011" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standardized deviance residuals</span></span>
+<span id="cb84-2012"><a href="#cb84-2012" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2013"><a href="#cb84-2013" aria-hidden="true" tabindex="-1"></a>$$r_{D_k} = \frac{d_k}{\sqrt{1-h_k}}$$</span>
+<span id="cb84-2014"><a href="#cb84-2014" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2015"><a href="#cb84-2015" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diagnostic plots</span></span>
 <span id="cb84-2016"><a href="#cb84-2016" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2017"><a href="#cb84-2017" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb84-2020"><a href="#cb84-2020" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-2021"><a href="#cb84-2021" aria-hidden="true" tabindex="-1"></a>chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(<span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-2022"><a href="#cb84-2022" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2023"><a href="#cb84-2023" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-2024"><a href="#cb84-2024" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2025"><a href="#cb84-2025" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb84-2028"><a href="#cb84-2028" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-2029"><a href="#cb84-2029" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb84-2030"><a href="#cb84-2030" aria-hidden="true" tabindex="-1"></a>chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(<span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-2031"><a href="#cb84-2031" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2032"><a href="#cb84-2032" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-2033"><a href="#cb84-2033" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2034"><a href="#cb84-2034" aria-hidden="true" tabindex="-1"></a>Things look pretty good here. The QQ plot is still usable; with large</span>
-<span id="cb84-2035"><a href="#cb84-2035" aria-hidden="true" tabindex="-1"></a>samples; the residuals should be approximately Gaussian.</span>
+<span id="cb84-2017"><a href="#cb84-2017" aria-hidden="true" tabindex="-1"></a>Let's take a look at the full set of <span class="in">`autoplot()`</span> diagnostics now for</span>
+<span id="cb84-2018"><a href="#cb84-2018" aria-hidden="true" tabindex="-1"></a>our <span class="in">`CHD`</span> model:</span>
+<span id="cb84-2019"><a href="#cb84-2019" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2020"><a href="#cb84-2020" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb84-2023"><a href="#cb84-2023" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-2024"><a href="#cb84-2024" aria-hidden="true" tabindex="-1"></a>chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(<span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-2025"><a href="#cb84-2025" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-2026"><a href="#cb84-2026" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-2027"><a href="#cb84-2027" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2028"><a href="#cb84-2028" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb84-2031"><a href="#cb84-2031" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-2032"><a href="#cb84-2032" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb84-2033"><a href="#cb84-2033" aria-hidden="true" tabindex="-1"></a>chd_glm_strat_grouped <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(<span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-2034"><a href="#cb84-2034" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-2035"><a href="#cb84-2035" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb84-2036"><a href="#cb84-2036" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2037"><a href="#cb84-2037" aria-hidden="true" tabindex="-1"></a><span class="fu">### Beetles</span></span>
-<span id="cb84-2038"><a href="#cb84-2038" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2039"><a href="#cb84-2039" aria-hidden="true" tabindex="-1"></a>Let's look at the beetles model diagnostic plots for comparison:</span>
-<span id="cb84-2040"><a href="#cb84-2040" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2041"><a href="#cb84-2041" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb84-2044"><a href="#cb84-2044" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-2045"><a href="#cb84-2045" aria-hidden="true" tabindex="-1"></a>beetles_glm_grouped <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(<span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-2046"><a href="#cb84-2046" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2047"><a href="#cb84-2047" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-2048"><a href="#cb84-2048" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2049"><a href="#cb84-2049" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb84-2052"><a href="#cb84-2052" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-2053"><a href="#cb84-2053" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb84-2054"><a href="#cb84-2054" aria-hidden="true" tabindex="-1"></a>beetles_glm_grouped <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(<span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
-<span id="cb84-2055"><a href="#cb84-2055" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2056"><a href="#cb84-2056" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb84-2057"><a href="#cb84-2057" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2058"><a href="#cb84-2058" aria-hidden="true" tabindex="-1"></a>Hard to tell much from so little data, but there might be some issues</span>
-<span id="cb84-2059"><a href="#cb84-2059" aria-hidden="true" tabindex="-1"></a>here.</span>
+<span id="cb84-2037"><a href="#cb84-2037" aria-hidden="true" tabindex="-1"></a>Things look pretty good here. The QQ plot is still usable; with large</span>
+<span id="cb84-2038"><a href="#cb84-2038" aria-hidden="true" tabindex="-1"></a>samples; the residuals should be approximately Gaussian.</span>
+<span id="cb84-2039"><a href="#cb84-2039" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2040"><a href="#cb84-2040" aria-hidden="true" tabindex="-1"></a><span class="fu">### Beetles</span></span>
+<span id="cb84-2041"><a href="#cb84-2041" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2042"><a href="#cb84-2042" aria-hidden="true" tabindex="-1"></a>Let's look at the beetles model diagnostic plots for comparison:</span>
+<span id="cb84-2043"><a href="#cb84-2043" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2044"><a href="#cb84-2044" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb84-2047"><a href="#cb84-2047" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-2048"><a href="#cb84-2048" aria-hidden="true" tabindex="-1"></a>beetles_glm_grouped <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(<span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-2049"><a href="#cb84-2049" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-2050"><a href="#cb84-2050" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-2051"><a href="#cb84-2051" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2052"><a href="#cb84-2052" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb84-2055"><a href="#cb84-2055" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-2056"><a href="#cb84-2056" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb84-2057"><a href="#cb84-2057" aria-hidden="true" tabindex="-1"></a>beetles_glm_grouped <span class="sc">|&gt;</span> <span class="fu">autoplot</span>(<span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span>
+<span id="cb84-2058"><a href="#cb84-2058" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-2059"><a href="#cb84-2059" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb84-2060"><a href="#cb84-2060" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2061"><a href="#cb84-2061" aria-hidden="true" tabindex="-1"></a><span class="fu"># Odds Ratios vs Probability (Risk) Ratios {#sec-OR-RR}</span></span>
-<span id="cb84-2062"><a href="#cb84-2062" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2063"><a href="#cb84-2063" aria-hidden="true" tabindex="-1"></a>::: {#def-rr}</span>
-<span id="cb84-2064"><a href="#cb84-2064" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relative risk</span></span>
+<span id="cb84-2061"><a href="#cb84-2061" aria-hidden="true" tabindex="-1"></a>Hard to tell much from so little data, but there might be some issues</span>
+<span id="cb84-2062"><a href="#cb84-2062" aria-hidden="true" tabindex="-1"></a>here.</span>
+<span id="cb84-2063"><a href="#cb84-2063" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2064"><a href="#cb84-2064" aria-hidden="true" tabindex="-1"></a><span class="fu"># Odds Ratios vs Probability (Risk) Ratios {#sec-OR-RR}</span></span>
 <span id="cb84-2065"><a href="#cb84-2065" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2066"><a href="#cb84-2066" aria-hidden="true" tabindex="-1"></a>The **relative risk** comparing two probabilities $\pi_1$ and $\pi_2$,</span>
-<span id="cb84-2067"><a href="#cb84-2067" aria-hidden="true" tabindex="-1"></a>also known as the **risk ratio**, **relative risk ratio**, **probability</span>
-<span id="cb84-2068"><a href="#cb84-2068" aria-hidden="true" tabindex="-1"></a>ratio**, and **rate ratio**, is:</span>
-<span id="cb84-2069"><a href="#cb84-2069" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2070"><a href="#cb84-2070" aria-hidden="true" tabindex="-1"></a>$$\rho(1,2) \eqdef \frac{\pi_1}{\pi_2}$$</span>
-<span id="cb84-2071"><a href="#cb84-2071" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-2066"><a href="#cb84-2066" aria-hidden="true" tabindex="-1"></a>::: {#def-rr}</span>
+<span id="cb84-2067"><a href="#cb84-2067" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relative risk</span></span>
+<span id="cb84-2068"><a href="#cb84-2068" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2069"><a href="#cb84-2069" aria-hidden="true" tabindex="-1"></a>The **relative risk** comparing two probabilities $\pi_1$ and $\pi_2$,</span>
+<span id="cb84-2070"><a href="#cb84-2070" aria-hidden="true" tabindex="-1"></a>also known as the **risk ratio**, **relative risk ratio**, **probability</span>
+<span id="cb84-2071"><a href="#cb84-2071" aria-hidden="true" tabindex="-1"></a>ratio**, and **rate ratio**, is:</span>
 <span id="cb84-2072"><a href="#cb84-2072" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2073"><a href="#cb84-2073" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case 1: rare events</span></span>
-<span id="cb84-2074"><a href="#cb84-2074" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2075"><a href="#cb84-2075" aria-hidden="true" tabindex="-1"></a>For rare events, odds ratios and probability (a.k.a. risk, a.k.a.</span>
-<span id="cb84-2076"><a href="#cb84-2076" aria-hidden="true" tabindex="-1"></a>prevalence) ratios will be close:</span>
+<span id="cb84-2073"><a href="#cb84-2073" aria-hidden="true" tabindex="-1"></a>$$\rho(1,2) \eqdef \frac{\pi_1}{\pi_2}$$</span>
+<span id="cb84-2074"><a href="#cb84-2074" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb84-2075"><a href="#cb84-2075" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2076"><a href="#cb84-2076" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case 1: rare events</span></span>
 <span id="cb84-2077"><a href="#cb84-2077" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2078"><a href="#cb84-2078" aria-hidden="true" tabindex="-1"></a>$\pi_1 = .01$ $\pi_2 = .02$</span>
-<span id="cb84-2079"><a href="#cb84-2079" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2080"><a href="#cb84-2080" aria-hidden="true" tabindex="-1"></a><span class="in">```{r "rare events or-rr"}</span></span>
-<span id="cb84-2081"><a href="#cb84-2081" aria-hidden="true" tabindex="-1"></a>pi1 <span class="ot">=</span> .<span class="dv">01</span></span>
-<span id="cb84-2082"><a href="#cb84-2082" aria-hidden="true" tabindex="-1"></a>pi2 <span class="ot">=</span> .<span class="dv">02</span></span>
-<span id="cb84-2083"><a href="#cb84-2083" aria-hidden="true" tabindex="-1"></a>pi2<span class="sc">/</span>pi1</span>
-<span id="cb84-2084"><a href="#cb84-2084" aria-hidden="true" tabindex="-1"></a><span class="fu">odds</span>(pi2)<span class="sc">/</span><span class="fu">odds</span>(pi1)</span>
-<span id="cb84-2085"><a href="#cb84-2085" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2086"><a href="#cb84-2086" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2087"><a href="#cb84-2087" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2088"><a href="#cb84-2088" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case 2: frequent events</span></span>
-<span id="cb84-2089"><a href="#cb84-2089" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2090"><a href="#cb84-2090" aria-hidden="true" tabindex="-1"></a>$\pi_1 = .4$ $\pi_2 = .5$</span>
-<span id="cb84-2091"><a href="#cb84-2091" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2092"><a href="#cb84-2092" aria-hidden="true" tabindex="-1"></a>For more frequently-occurring outcomes, this won't be the case:</span>
-<span id="cb84-2093"><a href="#cb84-2093" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2096"><a href="#cb84-2096" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-2097"><a href="#cb84-2097" aria-hidden="true" tabindex="-1"></a>pi1 <span class="ot">=</span> .<span class="dv">4</span></span>
-<span id="cb84-2098"><a href="#cb84-2098" aria-hidden="true" tabindex="-1"></a>pi2 <span class="ot">=</span> .<span class="dv">5</span></span>
-<span id="cb84-2099"><a href="#cb84-2099" aria-hidden="true" tabindex="-1"></a>pi2<span class="sc">/</span>pi1</span>
-<span id="cb84-2100"><a href="#cb84-2100" aria-hidden="true" tabindex="-1"></a><span class="fu">odds</span>(pi2)<span class="sc">/</span><span class="fu">odds</span>(pi1)</span>
-<span id="cb84-2101"><a href="#cb84-2101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2102"><a href="#cb84-2102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2103"><a href="#cb84-2103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2104"><a href="#cb84-2104" aria-hidden="true" tabindex="-1"></a>If you want risk ratios, you can sometimes get them by changing the link</span>
-<span id="cb84-2105"><a href="#cb84-2105" aria-hidden="true" tabindex="-1"></a>function:</span>
+<span id="cb84-2078"><a href="#cb84-2078" aria-hidden="true" tabindex="-1"></a>For rare events, odds ratios and probability (a.k.a. risk, a.k.a.</span>
+<span id="cb84-2079"><a href="#cb84-2079" aria-hidden="true" tabindex="-1"></a>prevalence) ratios will be close:</span>
+<span id="cb84-2080"><a href="#cb84-2080" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2081"><a href="#cb84-2081" aria-hidden="true" tabindex="-1"></a>$\pi_1 = .01$ $\pi_2 = .02$</span>
+<span id="cb84-2082"><a href="#cb84-2082" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2083"><a href="#cb84-2083" aria-hidden="true" tabindex="-1"></a><span class="in">```{r "rare events or-rr"}</span></span>
+<span id="cb84-2084"><a href="#cb84-2084" aria-hidden="true" tabindex="-1"></a>pi1 <span class="ot">=</span> .<span class="dv">01</span></span>
+<span id="cb84-2085"><a href="#cb84-2085" aria-hidden="true" tabindex="-1"></a>pi2 <span class="ot">=</span> .<span class="dv">02</span></span>
+<span id="cb84-2086"><a href="#cb84-2086" aria-hidden="true" tabindex="-1"></a>pi2<span class="sc">/</span>pi1</span>
+<span id="cb84-2087"><a href="#cb84-2087" aria-hidden="true" tabindex="-1"></a><span class="fu">odds</span>(pi2)<span class="sc">/</span><span class="fu">odds</span>(pi1)</span>
+<span id="cb84-2088"><a href="#cb84-2088" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2089"><a href="#cb84-2089" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-2090"><a href="#cb84-2090" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2091"><a href="#cb84-2091" aria-hidden="true" tabindex="-1"></a><span class="fu">### Case 2: frequent events</span></span>
+<span id="cb84-2092"><a href="#cb84-2092" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2093"><a href="#cb84-2093" aria-hidden="true" tabindex="-1"></a>$\pi_1 = .4$ $\pi_2 = .5$</span>
+<span id="cb84-2094"><a href="#cb84-2094" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2095"><a href="#cb84-2095" aria-hidden="true" tabindex="-1"></a>For more frequently-occurring outcomes, this won't be the case:</span>
+<span id="cb84-2096"><a href="#cb84-2096" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2099"><a href="#cb84-2099" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-2100"><a href="#cb84-2100" aria-hidden="true" tabindex="-1"></a>pi1 <span class="ot">=</span> .<span class="dv">4</span></span>
+<span id="cb84-2101"><a href="#cb84-2101" aria-hidden="true" tabindex="-1"></a>pi2 <span class="ot">=</span> .<span class="dv">5</span></span>
+<span id="cb84-2102"><a href="#cb84-2102" aria-hidden="true" tabindex="-1"></a>pi2<span class="sc">/</span>pi1</span>
+<span id="cb84-2103"><a href="#cb84-2103" aria-hidden="true" tabindex="-1"></a><span class="fu">odds</span>(pi2)<span class="sc">/</span><span class="fu">odds</span>(pi1)</span>
+<span id="cb84-2104"><a href="#cb84-2104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2105"><a href="#cb84-2105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb84-2106"><a href="#cb84-2106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2109"><a href="#cb84-2109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-2110"><a href="#cb84-2110" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(anthers, <span class="at">package =</span> <span class="st">"dobson"</span>)</span>
-<span id="cb84-2111"><a href="#cb84-2111" aria-hidden="true" tabindex="-1"></a>anthers.sum<span class="ot">&lt;-</span><span class="fu">aggregate</span>(</span>
-<span id="cb84-2112"><a href="#cb84-2112" aria-hidden="true" tabindex="-1"></a>  anthers[<span class="fu">c</span>(<span class="st">"n"</span>,<span class="st">"y"</span>)], </span>
-<span id="cb84-2113"><a href="#cb84-2113" aria-hidden="true" tabindex="-1"></a>  <span class="at">by=</span>anthers[<span class="fu">c</span>(<span class="st">"storage"</span>)],<span class="at">FUN=</span>sum) </span>
-<span id="cb84-2114"><a href="#cb84-2114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2115"><a href="#cb84-2115" aria-hidden="true" tabindex="-1"></a>anthers_glm_log <span class="ot">=</span> <span class="fu">glm</span>(</span>
-<span id="cb84-2116"><a href="#cb84-2116" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">cbind</span>(y,n<span class="sc">-</span>y)<span class="sc">~</span>storage,</span>
-<span id="cb84-2117"><a href="#cb84-2117" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>anthers.sum, </span>
-<span id="cb84-2118"><a href="#cb84-2118" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"log"</span>))</span>
-<span id="cb84-2119"><a href="#cb84-2119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2120"><a href="#cb84-2120" aria-hidden="true" tabindex="-1"></a>anthers_glm_log <span class="sc">|&gt;</span> <span class="fu">parameters</span>() <span class="sc">|&gt;</span> <span class="fu">print_md</span>()</span>
-<span id="cb84-2121"><a href="#cb84-2121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2122"><a href="#cb84-2122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2123"><a href="#cb84-2123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2124"><a href="#cb84-2124" aria-hidden="true" tabindex="-1"></a>Now $\exp{\beta}$ gives us risk ratios instead of odds ratios:</span>
-<span id="cb84-2125"><a href="#cb84-2125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2128"><a href="#cb84-2128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-2129"><a href="#cb84-2129" aria-hidden="true" tabindex="-1"></a>anthers_glm_log <span class="sc">|&gt;</span> <span class="fu">parameters</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">print_md</span>()</span>
-<span id="cb84-2130"><a href="#cb84-2130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2131"><a href="#cb84-2131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2132"><a href="#cb84-2132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2133"><a href="#cb84-2133" aria-hidden="true" tabindex="-1"></a>Let's compare this model with a logistic model:</span>
-<span id="cb84-2134"><a href="#cb84-2134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2137"><a href="#cb84-2137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb84-2138"><a href="#cb84-2138" aria-hidden="true" tabindex="-1"></a>anthers_glm_logit <span class="ot">=</span> <span class="fu">glm</span>(</span>
-<span id="cb84-2139"><a href="#cb84-2139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(y,n<span class="sc">-</span>y)<span class="sc">~</span>storage,</span>
-<span id="cb84-2140"><a href="#cb84-2140" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>anthers.sum, </span>
-<span id="cb84-2141"><a href="#cb84-2141" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
-<span id="cb84-2142"><a href="#cb84-2142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2143"><a href="#cb84-2143" aria-hidden="true" tabindex="-1"></a>anthers_glm_logit <span class="sc">|&gt;</span> <span class="fu">parameters</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">print_md</span>()</span>
-<span id="cb84-2144"><a href="#cb84-2144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2145"><a href="#cb84-2145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb84-2146"><a href="#cb84-2146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2147"><a href="#cb84-2147" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>to add: fitted plots on each outcome scale<span class="sc">\]</span></span>
-<span id="cb84-2148"><a href="#cb84-2148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2149"><a href="#cb84-2149" aria-hidden="true" tabindex="-1"></a>When I try to use <span class="in">`link ="log"`</span> in practice, I often get errors about</span>
-<span id="cb84-2150"><a href="#cb84-2150" aria-hidden="true" tabindex="-1"></a>not finding good starting values for the estimation procedure. This is</span>
-<span id="cb84-2151"><a href="#cb84-2151" aria-hidden="true" tabindex="-1"></a>likely because the model is producing fitted probabilities greater than</span>
-<span id="cb84-2152"><a href="#cb84-2152" aria-hidden="true" tabindex="-1"></a>1.</span>
-<span id="cb84-2153"><a href="#cb84-2153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-2154"><a href="#cb84-2154" aria-hidden="true" tabindex="-1"></a>When this happens, you can try to fit Poisson regression models instead</span>
-<span id="cb84-2155"><a href="#cb84-2155" aria-hidden="true" tabindex="-1"></a>(we will see those soon!). But then the outcome distribution isn't quite</span>
-<span id="cb84-2156"><a href="#cb84-2156" aria-hidden="true" tabindex="-1"></a>right, and you won't get warnings about fitted probabilities greater</span>
-<span id="cb84-2157"><a href="#cb84-2157" aria-hidden="true" tabindex="-1"></a>than 1. In my opinion, the Poisson model for binary outcomes is</span>
-<span id="cb84-2158"><a href="#cb84-2158" aria-hidden="true" tabindex="-1"></a>confusing and not very appealing.</span>
+<span id="cb84-2107"><a href="#cb84-2107" aria-hidden="true" tabindex="-1"></a>If you want risk ratios, you can sometimes get them by changing the link</span>
+<span id="cb84-2108"><a href="#cb84-2108" aria-hidden="true" tabindex="-1"></a>function:</span>
+<span id="cb84-2109"><a href="#cb84-2109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2112"><a href="#cb84-2112" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-2113"><a href="#cb84-2113" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(anthers, <span class="at">package =</span> <span class="st">"dobson"</span>)</span>
+<span id="cb84-2114"><a href="#cb84-2114" aria-hidden="true" tabindex="-1"></a>anthers.sum<span class="ot">&lt;-</span><span class="fu">aggregate</span>(</span>
+<span id="cb84-2115"><a href="#cb84-2115" aria-hidden="true" tabindex="-1"></a>  anthers[<span class="fu">c</span>(<span class="st">"n"</span>,<span class="st">"y"</span>)], </span>
+<span id="cb84-2116"><a href="#cb84-2116" aria-hidden="true" tabindex="-1"></a>  <span class="at">by=</span>anthers[<span class="fu">c</span>(<span class="st">"storage"</span>)],<span class="at">FUN=</span>sum) </span>
+<span id="cb84-2117"><a href="#cb84-2117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2118"><a href="#cb84-2118" aria-hidden="true" tabindex="-1"></a>anthers_glm_log <span class="ot">=</span> <span class="fu">glm</span>(</span>
+<span id="cb84-2119"><a href="#cb84-2119" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">cbind</span>(y,n<span class="sc">-</span>y)<span class="sc">~</span>storage,</span>
+<span id="cb84-2120"><a href="#cb84-2120" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>anthers.sum, </span>
+<span id="cb84-2121"><a href="#cb84-2121" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"log"</span>))</span>
+<span id="cb84-2122"><a href="#cb84-2122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2123"><a href="#cb84-2123" aria-hidden="true" tabindex="-1"></a>anthers_glm_log <span class="sc">|&gt;</span> <span class="fu">parameters</span>() <span class="sc">|&gt;</span> <span class="fu">print_md</span>()</span>
+<span id="cb84-2124"><a href="#cb84-2124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2125"><a href="#cb84-2125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-2126"><a href="#cb84-2126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2127"><a href="#cb84-2127" aria-hidden="true" tabindex="-1"></a>Now $\exp{\beta}$ gives us risk ratios instead of odds ratios:</span>
+<span id="cb84-2128"><a href="#cb84-2128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2131"><a href="#cb84-2131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-2132"><a href="#cb84-2132" aria-hidden="true" tabindex="-1"></a>anthers_glm_log <span class="sc">|&gt;</span> <span class="fu">parameters</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">print_md</span>()</span>
+<span id="cb84-2133"><a href="#cb84-2133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2134"><a href="#cb84-2134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-2135"><a href="#cb84-2135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2136"><a href="#cb84-2136" aria-hidden="true" tabindex="-1"></a>Let's compare this model with a logistic model:</span>
+<span id="cb84-2137"><a href="#cb84-2137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2140"><a href="#cb84-2140" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb84-2141"><a href="#cb84-2141" aria-hidden="true" tabindex="-1"></a>anthers_glm_logit <span class="ot">=</span> <span class="fu">glm</span>(</span>
+<span id="cb84-2142"><a href="#cb84-2142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(y,n<span class="sc">-</span>y)<span class="sc">~</span>storage,</span>
+<span id="cb84-2143"><a href="#cb84-2143" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>anthers.sum, </span>
+<span id="cb84-2144"><a href="#cb84-2144" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
+<span id="cb84-2145"><a href="#cb84-2145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2146"><a href="#cb84-2146" aria-hidden="true" tabindex="-1"></a>anthers_glm_logit <span class="sc">|&gt;</span> <span class="fu">parameters</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">print_md</span>()</span>
+<span id="cb84-2147"><a href="#cb84-2147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2148"><a href="#cb84-2148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb84-2149"><a href="#cb84-2149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2150"><a href="#cb84-2150" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>to add: fitted plots on each outcome scale<span class="sc">\]</span></span>
+<span id="cb84-2151"><a href="#cb84-2151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2152"><a href="#cb84-2152" aria-hidden="true" tabindex="-1"></a>When I try to use <span class="in">`link ="log"`</span> in practice, I often get errors about</span>
+<span id="cb84-2153"><a href="#cb84-2153" aria-hidden="true" tabindex="-1"></a>not finding good starting values for the estimation procedure. This is</span>
+<span id="cb84-2154"><a href="#cb84-2154" aria-hidden="true" tabindex="-1"></a>likely because the model is producing fitted probabilities greater than</span>
+<span id="cb84-2155"><a href="#cb84-2155" aria-hidden="true" tabindex="-1"></a>1.</span>
+<span id="cb84-2156"><a href="#cb84-2156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-2157"><a href="#cb84-2157" aria-hidden="true" tabindex="-1"></a>When this happens, you can try to fit Poisson regression models instead</span>
+<span id="cb84-2158"><a href="#cb84-2158" aria-hidden="true" tabindex="-1"></a>(we will see those soon!). But then the outcome distribution isn't quite</span>
+<span id="cb84-2159"><a href="#cb84-2159" aria-hidden="true" tabindex="-1"></a>right, and you won't get warnings about fitted probabilities greater</span>
+<span id="cb84-2160"><a href="#cb84-2160" aria-hidden="true" tabindex="-1"></a>than 1. In my opinion, the Poisson model for binary outcomes is</span>
+<span id="cb84-2161"><a href="#cb84-2161" aria-hidden="true" tabindex="-1"></a>confusing and not very appealing.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

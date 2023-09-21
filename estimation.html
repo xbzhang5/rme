@@ -118,6 +118,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="custom.scss">
 </head>
 
 <body class="nav-sidebar floating">
@@ -306,7 +307,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-09-16: 2:40:40 (AM)</p>
+      <p class="date">Last modified: 2023-09-20: 11:48:06 (AM)</p>
     </div>
   </div>
   
@@ -341,9 +342,9 @@ Notation for estimands
 </div>
 <p> </p>
 <div id="def-estimate" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition B.2 (Estimate/estimated value) </strong></span>In statistics, in <strong>estimate</strong> or <strong>estimated value</strong> is an informed guess of an estimand’s value, based on observed data.</p>
+<p><span class="theorem-title"><strong>Definition B.2 (Estimate/estimated value) </strong></span>In statistics, an <strong>estimate</strong> or <strong>estimated value</strong> is an informed guess of an estimand’s value, based on observed data.</p>
 <div id="exm-estimate" class="theorem example">
-<p><span class="theorem-title"><strong>Example B.2 (Mean height of students) </strong></span>Suppose we measure the heights of 50 random students from our school, and that the the sample mean was 175cm. We might use 175cm as an estimate of the population mean.</p>
+<p><span class="theorem-title"><strong>Example B.2 (Mean height of students) </strong></span>Suppose we measure the heights of 50 random students from our school, and the sample mean was 175cm. We might use 175cm as an estimate of the population mean.</p>
 </div>
 </div>
 <p></p>
@@ -403,28 +404,21 @@ Contrasting estimands, estimates, and estimators
 </div>
 <p>Two frequently-used options for accuracy are:</p>
 <div id="def-mse" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition B.5 (Mean squared error) </strong></span>The <strong>mean squared error</strong> of an estimator is the expectation of the squared errors:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\text{MSE}\left(\hat\theta\right)
-&amp;\stackrel{\text{def}}{=}\mathbb{E}\left[(\epsilon(\hat\theta))^2\right]\\
-&amp;= \mathbb{E}\left[(\hat\theta- \theta)^2\right]
-\end{aligned}
-\]</span></p>
+<p><span class="theorem-title"><strong>Definition B.5 (Mean squared error) </strong></span>The <strong>mean squared error</strong> of an estimator <span class="math inline">\(\hat\theta\)</span>, denoted <span class="math inline">\(\text{MSE}\left(\hat\theta\right)\)</span>, is the expectation of the square of the error<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<p><span class="math display">\[\text{MSE}\left(\hat\theta\right) \stackrel{\text{def}}{=}\mathbb{E}\left[(\epsilon(\hat\theta))^2\right]\]</span></p>
 </div>
 <div id="def-mae" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition B.6 (Mean absolute error) </strong></span>The <strong>mean absolute error</strong> of an estimator is the expectation of the absolute values of the errors:</p>
+<p><span class="theorem-title"><strong>Definition B.6 (Mean absolute error) </strong></span>The <strong>mean absolute error</strong> of an estimator is the expectation of the absolute value of the error:</p>
 <p><span class="math display">\[
-\begin{aligned}
-\text{MAE}\left(\hat\theta\right)
-&amp;\stackrel{\text{def}}{=}\mathbb{E}\left[\left|\epsilon(\hat\theta)\right|\right]\\
-&amp;= \mathbb{E}\left[\left|\hat\theta- \theta\right|\right]
-\end{aligned}
-\]</span></p>
+\text{MAE}\left(\hat\theta\right) \stackrel{\text{def}}{=}\mathbb{E}\left[\left|\epsilon(\hat\theta)\right|\right]\]</span></p>
 </div>
 <div id="def-bias" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition B.7 (Bias) </strong></span>The <strong>bias</strong> of an estimator <span class="math inline">\(\hat\theta\)</span> for an estimand <span class="math inline">\(\theta\)</span> is the expected value of the error:</p>
-<p><span id="eq-bias-def"><span class="math display">\[
+<p><span id="eq-bias-def"><span class="math display">\[\text{Bias}\left(\hat\theta\right) \stackrel{\text{def}}{=}\mathbb{E}\left[\epsilon(\hat\theta)\right] \tag{B.1}\]</span></span></p>
+</div>
+<div id="thm-bias-exprs" class="theorem">
+<p><span class="theorem-title"><strong>Theorem B.1 (Expressions for bias) </strong></span>The following expressions are equivalent to the definition of bias:</p>
+<p><span class="math display">\[
 \begin{aligned}
 \text{Bias}\left(\hat\theta\right)
 &amp;\stackrel{\text{def}}{=}\mathbb{E}\left[\epsilon(\hat\theta)\right]\\
@@ -432,8 +426,8 @@ Contrasting estimands, estimates, and estimators
 &amp;=\mathbb{E}\left[\hat\theta\right] - \mathbb{E}\left[\theta\right]\\
 &amp;=\mathbb{E}\left[\hat\theta\right] - \theta
 \end{aligned}
-\tag{B.1}\]</span></span></p>
-<p>The third equality in <a href="#eq-bias-def">Equation&nbsp;<span>B.1</span></a> is by the linearity of expectation.</p>
+\]</span></p>
+<p>The third equality is by the linearity of expectation.</p>
 </div>
 </div>
 <div id="def-precision" class="theorem definition">
@@ -441,7 +435,7 @@ Contrasting estimands, estimates, and estimators
 <p><span class="math display">\[\tau(\hat\theta) \stackrel{\text{def}}{=}\left(\text{Var}\left(\hat\theta\right)\right)^{-1}\]</span></p>
 </div>
 <div id="thm-mse-bias-variance" class="theorem">
-<p><span class="theorem-title"><strong>Theorem B.1 (MSE = Bias<sup>2</sup> + Variance) </strong></span>For any one-dimensional estimator <span class="math inline">\(\hat\theta\)</span>:</p>
+<p><span class="theorem-title"><strong>Theorem B.2 (MSE = Bias<sup>2</sup> + Variance) </strong></span>For any one-dimensional estimator <span class="math inline">\(\hat\theta\)</span>:</p>
 <p><span class="math display">\[\text{MSE}\left(\hat\theta\right) = \left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)\]</span></p>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>It’s easiest to work backwards:</p>
@@ -470,6 +464,12 @@ Contrasting estimands, estimates, and estimators
 
 <!-- -->
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a href="https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin" class="uri">https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -933,13 +933,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estimate/estimated value</span></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>In statistics, in **estimate** or **estimated value** is an informed guess of an estimand's value, based on observed data.</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>In statistics, an **estimate** or **estimated value** is an informed guess of an estimand's value, based on observed data.</span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>::::{#exm-estimate}</span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mean height of students</span></span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>Suppose we measure the heights of 50 random students from our school, and that the the sample mean was 175cm. We might use 175cm as an estimate of the population mean.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>Suppose we measure the heights of 50 random students from our school, and the sample mean was 175cm. We might use 175cm as an estimate of the population mean.</span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
@@ -1017,103 +1017,102 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>::::{#def-mse}</span>
 <span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mean squared error</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mean squared error</span></span>
 <span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>The **mean squared error** of an estimator is the expectation of the squared errors:</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>The **mean squared error** of an estimator $\hth$, denoted $\mselr{\hth}$, is the expectation of the square of the error^<span class="co">[</span><span class="ot">&lt;https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin&gt;</span><span class="co">]</span>:</span>
 <span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} </span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \E{(\epsilon(\hth))^2}<span class="sc">\\</span></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\hth - \theta)^2}</span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>$$\mselr{\hth} \eqdef \E{(\epsilon(\hth))^2}$$</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>::::{#def-mae}</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mean absolute error</span></span>
 <span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>The **mean absolute error** of an estimator is the expectation of the absolute value of the error:</span>
 <span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>::::{#def-mae}</span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mean absolute error</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>\maelr{\hth} \eqdef \E{\abs{\epsilon(\hth)}}$$</span>
 <span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>The **mean absolute error** of an estimator is the expectation of the absolute values of the errors:</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>\maelr{\hth} </span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \E{\abs{\epsilon(\hth)}}<span class="sc">\\</span></span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\abs{\hth - \theta}}</span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>::::{#def-bias}</span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bias</span></span>
-<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>The **bias** of an estimator $\hth$ for an estimand $\theta$ is the expected value of the error:</span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>\bias{\hth} </span>
-<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \E{\epsilon(\hth)}<span class="sc">\\</span></span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\hth - \theta}<span class="sc">\\</span></span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth} - \E{\theta}<span class="sc">\\</span></span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth} - \theta</span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>$$ {#eq-bias-def}</span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>The third equality in @eq-bias-def is by the linearity of expectation.</span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>:::{#def-precision}</span>
-<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a><span class="fu">## Precision</span></span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>The **precision** of an estimator $\hth$, often denoted $\tau(\hth)$, is the inverse of that estimator's variance; that is:</span>
-<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>$$\tau(\hth) \eqdef \inv{\Var{\hth}}$$</span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>:::{#thm-mse-bias-variance}</span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## MSE = Bias^2^ + Variance</span></span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>For any one-dimensional estimator $\hth$:</span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$</span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>::::{.proof}</span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>It's easiest to work backwards:</span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>\ba</span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>\sqf{\bias{\hth}}</span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\e(\hth)}}<span class="sc">\\</span></span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth - \th}}<span class="sc">\\</span></span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth} - \th}<span class="sc">\\</span></span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>\var{\hth}</span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - \sqf{\E{\hth}}<span class="sc">\\</span></span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>\sqf{\bias{\hth}} + \var{\hth}</span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2 + \E{\hth^2} - \sqf{\E{\hth}}<span class="sc">\\</span></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - 2\E{\hth}\th+\E{\th^2}<span class="sc">\\</span></span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\hth^2 - 2\hth\th - \th^2}<span class="sc">\\</span></span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\hth - \th)^2}<span class="sc">\\</span></span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\e(\hth))^2}<span class="sc">\\</span></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>&amp;=\mselr{\hth} </span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>\ea</span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>::::{#def-bias}</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bias</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>The **bias** of an estimator $\hth$ for an estimand $\theta$ is the expected value of the error:</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>$$\bias{\hth} \eqdef \E{\epsilon(\hth)}$$ {#eq-bias-def}</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>::::{#thm-bias-exprs}</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="fu">### Expressions for bias</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>The following expressions are equivalent to the definition of bias:</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>\bias{\hth} </span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \E{\epsilon(\hth)}<span class="sc">\\</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\hth - \theta}<span class="sc">\\</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth} - \E{\theta}<span class="sc">\\</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth} - \theta</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>The third equality is by the linearity of expectation.</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>:::{#def-precision}</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Precision</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>The **precision** of an estimator $\hth$, often denoted $\tau(\hth)$, is the inverse of that estimator's variance; that is:</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>$$\tau(\hth) \eqdef \inv{\Var{\hth}}$$</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>:::{#thm-mse-bias-variance}</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="fu">## MSE = Bias^2^ + Variance</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>For any one-dimensional estimator $\hth$:</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>::::{.proof}</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>It's easiest to work backwards:</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>\sqf{\bias{\hth}}</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\e(\hth)}}<span class="sc">\\</span></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth - \th}}<span class="sc">\\</span></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth} - \th}<span class="sc">\\</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>\var{\hth}</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - \sqf{\E{\hth}}<span class="sc">\\</span></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>\sqf{\bias{\hth}} + \var{\hth}</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2 + \E{\hth^2} - \sqf{\E{\hth}}<span class="sc">\\</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - 2\E{\hth}\th+\E{\th^2}<span class="sc">\\</span></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\hth^2 - 2\hth\th - \th^2}<span class="sc">\\</span></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\hth - \th)^2}<span class="sc">\\</span></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\e(\hth))^2}<span class="sc">\\</span></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>&amp;=\mselr{\hth} </span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
