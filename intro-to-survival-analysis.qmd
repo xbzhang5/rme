@@ -456,6 +456,23 @@ ggplot() +
 
 ## Some Key Mathematical Relationships among Survival Concepts
 
+Diagram:
+
+$$
+h(t) \xrightarrow[]{\int_{u=0}^t h(u)du} H(t) 
+\xrightarrow[]{\exp{-H(t)}} S(t)
+\xrightarrow[]{1-S(t)} F(t)
+$$
+
+$$
+h(t) \xleftarrow[\frac{d}{dt}H(t)]{} H(t) 
+\xleftarrow[-\log{S(t)}]{} S(t)
+\xleftarrow[1-F(t)]{} F(t)
+$$
+
+
+Identities:
+
 $$
 \begin{aligned}
 S(t) &= 1 - F(t)\\
