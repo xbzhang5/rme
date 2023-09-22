@@ -222,7 +222,7 @@ $$
 :::{#def-unbiased}
 
 ## unbiased estimator
-An estimator \hth is **unbiased** if $\bias{\hth} = 0$.
+An estimator $\hth$ is **unbiased** if $\bias{\hth} = 0$.
 
 :::
 
