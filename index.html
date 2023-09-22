@@ -55,7 +55,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -320,7 +339,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-09-21: 23:33:13 (PM)</p>
+      <p class="date">Last modified: 2023-09-22: 12:43:54 (PM)</p>
     </div>
   </div>
   
@@ -335,9 +354,9 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 <p>This web-book is derived from my lecture slides for the Spring 2023 session of Epidemiology 204: “Quantitative Epidemiology III: Statistical Models”, at UC Davis.</p>
 <p>I have drawn these materials from many sources, including but not limited to:</p>
 <ul>
-<li><p>“An Introduction to Generalized Linear Models” (4th edition, 2018) by Annette J. Dobson and Adrian G. Barnett (<a href="https://doi.org/10.1201/9781315182780" class="uri">https://doi.org/10.1201/9781315182780</a>)</p></li>
-<li><p>David Rocke’s materiels from the 2021 edition of Epi 204 (<a href="https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html" class="uri">https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html</a>)</p></li>
-<li><p>“Regression Methods in Biostatistics” (2nd edition, 2012) by Eric Vittinghoff , David V. Glidden , Stephen C. Shiboski , and Charles E. McCulloch (<a href="https://link.springer.com/book/10.1007/978-1-4614-1353-0" class="uri">https://link.springer.com/book/10.1007/978-1-4614-1353-0</a>)</p></li>
+<li><p>David Rocke’s materials from the 2021 edition of Epi 204 (<a href="https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html" class="uri">https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html</a>)</p></li>
+<li><p><em>Regression methods in biostatistics: linear, logistic, survival, and repeated measures models</em> <span class="citation" data-cites="dobson2018introduction">(<a href="references.html#ref-dobson2018introduction" role="doc-biblioref">Dobson and Barnett 2018</a>)</span></p></li>
+<li><p><em>An Introduction to Generalized Linear Models</em>, 4th edition <span class="citation" data-cites="vittinghoff2012regression">(<a href="references.html#ref-vittinghoff2012regression" role="doc-biblioref">Vittinghoff et al. 2012</a>)</span></p></li>
 </ul>
 <section id="license" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="license">License</h3>
@@ -347,6 +366,14 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-dobson2018introduction" class="csl-entry" role="listitem">
+Dobson, Annette J, and Adrian G Barnett. 2018. <em>An Introduction to Generalized Linear Models</em>. CRC press. <a href="https://doi.org/10.1201/9781315182780">https://doi.org/10.1201/9781315182780</a>.
+</div>
+<div id="ref-vittinghoff2012regression" class="csl-entry" role="listitem">
+Vittinghoff, Eric, David V Glidden, Stephen C Shiboski, and Charles E McCulloch. 2012. <span>“Regression Methods in Biostatistics: Linear, Logistic, Survival, and Repeated Measures Models.”</span> <a href="https://doi.org/10.1007/978-1-4614-1353-0">https://doi.org/10.1007/978-1-4614-1353-0</a>.
+</div>
+</div>
 </section>
 </section>
 
@@ -765,18 +792,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>I have drawn these materials from many sources, including but not limited to:</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>"An Introduction to Generalized Linear Models" (4th edition, 2018)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>by Annette J. Dobson and Adrian G. Barnett (<span class="ot">&lt;https://doi.org/10.1201/9781315182780&gt;</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>David Rocke's materiels from the 2021 edition of Epi 204 (<span class="ot">&lt;https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html&gt;</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Regression Methods in Biostatistics" (2nd edition, 2012) by Eric Vittinghoff , David V. Glidden , Stephen C. Shiboski , and Charles E. McCulloch  (<span class="ot">&lt;https://link.springer.com/book/10.1007/978-1-4614-1353-0&gt;</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## License {.unnumbered}</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>This book is licensed to you under <span class="co">[</span><span class="ot">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</span><span class="co">][http://creativecommons.org/licenses/by-nc-nd/4.0/]</span>.</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>The code samples in this book are licensed under <span class="co">[</span><span class="ot">Creative Commons CC0 1.0 Universal (CC0 1.0)</span><span class="co">][https://creativecommons.org/publicdomain/zero/1.0/]</span>, i.e. public domain.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>David Rocke's materials from the 2021 edition of Epi 204 (<span class="ot">&lt;https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html&gt;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Regression methods in biostatistics: linear, logistic, survival, and repeated measures models* <span class="co">[</span><span class="ot">@dobson2018introduction</span><span class="co">]</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*An Introduction to Generalized Linear Models*, 4th edition <span class="co">[</span><span class="ot">@vittinghoff2012regression</span><span class="co">]</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## License {.unnumbered}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>This book is licensed to you under <span class="co">[</span><span class="ot">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</span><span class="co">][http://creativecommons.org/licenses/by-nc-nd/4.0/]</span>.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>The code samples in this book are licensed under <span class="co">[</span><span class="ot">Creative Commons CC0 1.0 Universal (CC0 1.0)</span><span class="co">][https://creativecommons.org/publicdomain/zero/1.0/]</span>, i.e. public domain.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
