@@ -1,3 +1,7 @@
 profile:
   default: book
-editor: source
+editor_options:
+  chunk_output_type: console
+editor:
+  markdown:
+    wrap: 72

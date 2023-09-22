@@ -1,12 +1,5 @@
 ---
 title: "Logistic Regression"
-date: last-modified
-date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-editor_options: 
-  chunk_output_type: console
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
 {{< include shared-config.qmd >}}
@@ -17,8 +10,7 @@ This content is adapted from:
 
 -   Dobson & Barnett 2018, "An Introduction to Generalized Linear
     Models", 4th edition, Chapter 7
--   Vittinghoff et al 2012, "Regression Methods in Biostatistics", 2nd
-    edition, Chapter 5
+-   @vittinghoff2012regression, Chapter 5
 - <https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>    
 
 ## Configuring R {.unnumbered}
@@ -938,7 +930,7 @@ regression:
 
 ### Summary of study
 
-*From Vittinghoff et al 2012:*
+*From @vittinghoff2012regression:*
 
 "The **Western Collaborative Group Study (WCGS)** was a large
 epidemiological study designed to investigate the association between

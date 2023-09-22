@@ -1,13 +1,6 @@
 ---
 title: "Models for Count Outcomes"
 subtitle: "(Poisson Regression and Variations)"
-date: last-modified
-date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-editor_options: 
-  chunk_output_type: console
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
 {{< include shared-config.qmd >}}
@@ -16,8 +9,8 @@ editor:
 
 This content is adapted from:
 
--   Dobson & Barnett 2018, "An Introduction to Generalized Linear Models", 4th edition, Chapter 9
--   Vittinghoff et al 2012, "Regression Methods in Biostatistics", 2nd edition, Chapter 8
+-   @dobson2018introduction, Chapter 9
+-   @vittinghoff2012regression, Chapter 8
 
 ::: {.content-hidden when-format="revealjs"}
 ## Configuring R{.unnumbered}

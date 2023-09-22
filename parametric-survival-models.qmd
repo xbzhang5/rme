@@ -1,13 +1,5 @@
 ---
 title: "Parametric survival models"
-date: last-modified
-date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-subject: "EPI 204 Spring 2023"
-editor_options:
-  chunk_output_type: console
-editor:
-  markdown:
-    wrap: 72
 ---
 {{< include shared-config.qmd >}}
 
