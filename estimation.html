@@ -307,7 +307,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-09-22: 15:58:04 (PM)</p>
+      <p class="date">Last modified: 2023-09-22: 16:11:33 (PM)</p>
     </div>
   </div>
   
@@ -434,14 +434,18 @@ Contrasting estimands, estimates, and estimators
 <p><span class="theorem-title"><strong>Theorem B.2 (MSE = Bias<sup>2</sup> + Variance) </strong></span>For any one-dimensional estimator <span class="math inline">\(\hat\theta\)</span>:</p>
 <p><span class="math display">\[\text{MSE}\left(\hat\theta\right) = \left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)\]</span></p>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Let’s start by expanding the right-hand side:</p>
-<p><span class="math display">\[
+<p><span class="proof-title"><em>Proof</em>. </span>Let’s start by expanding each term of the right-hand side:<br>
+<span class="math display">\[
 \begin{aligned}
 \left(\text{Bias}\left(\hat\theta\right)\right)^2
 &amp;=\left(\mathbb{E}\left[\hat\theta\right] - \theta\right)^2\\
 &amp;=\left(\mathbb{E}\left[\hat\theta\right]\right)^2 - 2\mathbb{E}\left[\hat\theta\right]\theta+\theta^2\\
-\text{Var}\left(\hat\theta\right)
-&amp;=\mathbb{E}\left[\hat\theta^2\right] - \left(\mathbb{E}\left[\hat\theta\right]\right)^2\\
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[\text{Var}\left(\hat\theta\right) = \mathbb{E}\left[\hat\theta^2\right] - \left(\mathbb{E}\left[\hat\theta\right]\right)^2\\\]</span></p>
+<p>Now, add them together and simplify:</p>
+<p><span class="math display">\[
+\begin{aligned}
 \left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)
 &amp;=\left(\mathbb{E}\left[\hat\theta\right]\right)^2 - 2\mathbb{E}\left[\hat\theta\right]\theta+\theta^2 + \mathbb{E}\left[\hat\theta^2\right] - \left(\mathbb{E}\left[\hat\theta\right]\right)^2\\
 &amp;=\mathbb{E}\left[\hat\theta^2\right] - 2\mathbb{E}\left[\hat\theta\right]\theta+\theta^2\\
@@ -458,6 +462,8 @@ Contrasting estimands, estimates, and estimators
 &amp;=\mathbb{E}\left[\hat\theta^2\right] - 2\mathbb{E}\left[\hat\theta\right]\theta+\theta^2\\
 \end{aligned}
 \]</span></p>
+<p><span class="math inline">\(\text{MSE}\left(\hat\theta\right)\)</span> and <span class="math inline">\(\left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)\)</span> both equal <span class="math inline">\(\mathbb{E}\left[\hat\theta^2\right] - 2\mathbb{E}\left[\hat\theta\right]\theta+\theta^2\)</span>, so by the transitivity property of equality, <span class="math inline">\(\text{MSE}\left(\hat\theta\right)\)</span> and <span class="math inline">\(\left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)\)</span> are equal:</p>
+<p><span class="math display">\[\text{MSE}\left(\hat\theta\right) = \left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)\]</span></p>
 </div>
 </div>
 <section id="unbiased-estimators" class="level4">
@@ -1119,93 +1125,105 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>:::: proof</span>
 <span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>Let's start by expanding the right-hand side:</span>
-<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>Let's start by expanding each term of the right-hand side:</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>\</span>
 <span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>\ba</span>
 <span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>\sqf{\bias{\hth}}</span>
 <span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth} - \th}<span class="sc">\\</span></span>
 <span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>\var{\hth}</span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - \sqf{\E{\hth}}<span class="sc">\\</span></span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>\sqf{\bias{\hth}} + \var{\hth}</span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2 + \E{\hth^2} - \sqf{\E{\hth}}<span class="sc">\\</span></span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>\ea</span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>Now let's expand the left-hand side to reach the same expression:</span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>\ba</span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} </span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\e(\hth))^2}<span class="sc">\\</span></span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\hth - \th)^2}<span class="sc">\\</span></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\hth^2 - 2\hth\th - \th^2}<span class="sc">\\</span></span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - \E{2\hth\th}+\E{\th^2}<span class="sc">\\</span></span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>\ea</span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="fu">### Unbiased estimators</span></span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>::: {#def-unbiased}</span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## unbiased estimator</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>$$\var{\hth} = \E{\hth^2} - \sqf{\E{\hth}}<span class="sc">\\</span>$$</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>Now, add them together and simplify:</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>\sqf{\bias{\hth}} + \var{\hth}</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>&amp;=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2 + \E{\hth^2} - \sqf{\E{\hth}}<span class="sc">\\</span></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>Now let's expand the left-hand side to reach the same expression:</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} </span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\e(\hth))^2}<span class="sc">\\</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>&amp;= \E{(\hth - \th)^2}<span class="sc">\\</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\hth^2 - 2\hth\th - \th^2}<span class="sc">\\</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - \E{2\hth\th}+\E{\th^2}<span class="sc">\\</span></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>&amp;=\E{\hth^2} - 2\E{\hth}\th+\th^2<span class="sc">\\</span></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>An estimator $\hth$ is **unbiased** if $\bias{\hth} = 0$.</span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>::: {#thm-unbiased-props}</span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a><span class="fu">### properties of unbiased estimators</span></span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>If $\hth$ is unbiased, then:</span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>$$\E{\hth} = \th$$ {#eq-unbiased-exp}</span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>$$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}</span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>:::: proof</span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>\</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>$\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ both equal $\E{\hth^2} - 2\E{\hth}\th+\th^2$, so by the transitivity property of equality, $\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ are equal:</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="fu">### Unbiased estimators</span></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>::: {#def-unbiased}</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="fu">## unbiased estimator</span></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>An estimator $\hth$ is **unbiased** if $\bias{\hth} = 0$.</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>(@eq-unbiased-exp) If $\hth$ is unbiased, then:</span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>\ba</span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>\bias{\hth} &amp;= 0<span class="sc">\\</span></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>\E{\hth} - \theta &amp;= 0<span class="sc">\\</span></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>\E{\hth} &amp;= \theta</span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>\ea</span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>::: {#thm-unbiased-props}</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="fu">### properties of unbiased estimators</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>If $\hth$ is unbiased, then:</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>$$\E{\hth} = \th$$ {#eq-unbiased-exp}</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>$$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>:::: proof</span>
 <span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>(@eq-unbiased-mse) If $\hth$ is unbiased, then:</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>\</span>
 <span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>\ba</span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} </span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\sqf{\e(\hth)}}<span class="sc">\\</span></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\sqf{\hth - \th}}<span class="sc">\\</span></span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\sqf{\hth - \E{\hth}}}<span class="sc">\\</span></span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \Var{\hth}</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>(@eq-unbiased-exp) If $\hth$ is unbiased, then:</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>\bias{\hth} &amp;= 0<span class="sc">\\</span></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>\E{\hth} - \theta &amp;= 0<span class="sc">\\</span></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>\E{\hth} &amp;= \theta</span>
 <span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>\ea</span>
 <span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>(*Alternative proof of @eq-unbiased-mse*) We could have started from</span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>@thm-mse-bias-variance instead:</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>\ba</span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} </span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>&amp;= \sqf{\bias{\hth}} + \var{\hth}<span class="sc">\\</span></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>&amp;= \sqf{0} + \var{\hth}<span class="sc">\\</span></span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>&amp;= 0 + \var{\hth}<span class="sc">\\</span></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>&amp;= \var{\hth}<span class="sc">\\</span></span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>\ea</span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>(@eq-unbiased-mse) If $\hth$ is unbiased, then:</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} </span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\sqf{\e(\hth)}}<span class="sc">\\</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\sqf{\hth - \th}}<span class="sc">\\</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>&amp;= \E{\sqf{\hth - \E{\hth}}}<span class="sc">\\</span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>&amp;\eqdef \Var{\hth}</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>(*Alternative proof of @eq-unbiased-mse*) We could have started from</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>@thm-mse-bias-variance instead:</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} </span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>&amp;= \sqf{\bias{\hth}} + \var{\hth}<span class="sc">\\</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>&amp;= \sqf{0} + \var{\hth}<span class="sc">\\</span></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>&amp;= 0 + \var{\hth}<span class="sc">\\</span></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>&amp;= \var{\hth}<span class="sc">\\</span></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
