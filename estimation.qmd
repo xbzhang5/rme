@@ -222,7 +222,7 @@ $$
 \ea
 $$
 
-$\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ both equal $\E{\hth^2} - 2\E{\hth}\th+\th^2$, so by the transitivity property of equality, $\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ are equal:
+$\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ both equal $\E{\hth^2} - 2\E{\hth}\th+\th^2$. Equality is transitive, so $\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ are equal to each other:
 
 $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
 
