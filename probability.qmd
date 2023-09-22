@@ -1,8 +1,5 @@
 ---
 title: "Probability"
-date: last-modified
-date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-editor: source
 ---
 
 {{< include macros.qmd >}}
@@ -30,14 +27,17 @@ $$f(t) \eqdef \frac{d}{dt} \Pr(T\le t)$$
 The variance of a random variable $X$ is the expectation of the squared difference between $X$ and $\E{X}$; that is:
 
 $$
-\Var{X} \eqdef \E{(X-\E{x})^2}
+\Var{X} \eqdef \E{(X-\E{X})^2}
 $$
 
 :::
 
 :::{#thm-variance}
-## Alternative expressions for variance
+## Alternative expression for variance
 
+$$\Var{X}=\E{X^2} - \sqf{\E{X}}$$
+
+::::{.proof}
 By linearity of expectation, we have:
 
 $$
@@ -50,4 +50,6 @@ $$
 &=\E{X^2} - \sqf{\E{X}}\\
 \end{aligned}
 $$
+::::
+
 :::

@@ -1,5 +1,6 @@
 \def\cd{\cdot}
 \def\eqdef{\stackrel{\text{def}}{=}}
+\def\defeq{\stackrel{\text{def}}{=}}
 \def\hb{\hat\beta}
 \def\za{z_{1 - \frac{\alpha}{2}}}
 \def\cirad{\za \cd \hse{\hb}}
@@ -10,6 +11,7 @@
 \def\ea{\end{aligned}}
 \def\e{\epsilon}
 \providecommand{\cb}[1]{\left\{#1\right\}}
+\providecommand{\paren}[1]{\left(#1\right)}
 \providecommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
 \providecommand{\E}[1]{\mathbb{E}\left[#1\right]}
 \providecommand{\var}[1]{\text{Var}\left(#1\right)}
