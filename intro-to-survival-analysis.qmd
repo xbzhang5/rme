@@ -169,7 +169,7 @@ F(t) &\eqdef \Pr(T \le t)\\
 $$
 
 :::{#exm-exp-cdf}
-#### Example: exponential distribution
+#### exponential distribution
 
 Recall from Epi 202: the cdf of the exponential distribution family of
 models is:
@@ -229,12 +229,13 @@ S(t) &\eqdef \Pr(T > t)\\
 $$
 
 The survival function $S(t)$ is the probability that the event time is
-later than $t$. If the event in a clinical trial is death, then this is
-the expected fraction of the original population at time 0 that is still
-alive at time $t$; that is, the fraction surviving to time $t$.
+later than $t$. If the event in a clinical trial is death, then $S(t)$ is
+the expected fraction of the original population at time 0 who have survived up to time $t$ and are still alive at time $t$; that is, if $X_t$ represents survival status at time $t$, with $X_t = 1$ denoting alive at time $t$ and $X_t = 0$ denoting deceased at time $t$, then:
+
+$$S(t) = \E{X_t}$$
 
 :::{#exm-exp-survfn}
-#### Example: exponential distribution
+#### exponential distribution
 
 Since $S(t) = 1 - F(t)$, the survival function of the exponential
 distribution family of models is:
