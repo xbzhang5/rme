@@ -127,7 +127,7 @@ difference between the estimate and its estimand $\theta$; that is:
 $$\e(\hth) \eqdef \hth - \th$$
 :::
 
-Two frequently-used options for accuracy are:
+Some frequently-used measures of accuracy include:
 
 ::: {#def-mse}
 ## Mean squared error
@@ -186,13 +186,12 @@ For any one-dimensional estimator $\hth$:
 $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
 
 :::: proof
-It's easiest to work backwards:
+
+Let's start by expanding the right-hand side:
 
 $$
 \ba
 \sqf{\bias{\hth}}
-&=\sqf{\E{\e(\hth)}}\\
-&=\sqf{\E{\hth - \th}}\\
 &=\sqf{\E{\hth} - \th}\\
 &=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2\\
 \var{\hth}
@@ -200,11 +199,19 @@ $$
 \sqf{\bias{\hth}} + \var{\hth}
 &=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2 + \E{\hth^2} - \sqf{\E{\hth}}\\
 &=\E{\hth^2} - 2\E{\hth}\th+\th^2\\
-&=\E{\hth^2} - 2\E{\hth}\th+\E{\th^2}\\
-&= \E{\hth^2 - 2\hth\th - \th^2}\\
-&= \E{(\hth - \th)^2}\\
+\ea
+$$
+
+Now let's expand the left-hand side to reach the same expression:
+
+$$
+\ba
+\mselr{\hth} 
 &= \E{(\e(\hth))^2}\\
-&=\mselr{\hth} 
+&= \E{(\hth - \th)^2}\\
+&= \E{\hth^2 - 2\hth\th - \th^2}\\
+&=\E{\hth^2} - \E{2\hth\th}+\E{\th^2}\\
+&=\E{\hth^2} - 2\E{\hth}\th+\th^2\\
 \ea
 $$
 ::::
@@ -226,7 +233,7 @@ If $\hth$ is unbiased, then:
 $$\E{\hth} = \th$$ {#eq-unbiased-exp}
 $$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}
 
-::: proof
+:::: proof
 
 \
 
@@ -264,5 +271,7 @@ $$
 &= \var{\hth}\\
 \ea
 $$
+
+::::
 :::
 
