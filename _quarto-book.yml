@@ -64,6 +64,8 @@ format:
   pdf:
     toc: true
     fig-pos: "H"
+    hyperrefoptions:
+    - bookmarksnumbered=true
     toc-title: Contents
     links-as-notes: true
     df-print: tibble
