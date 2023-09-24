@@ -35,10 +35,10 @@ book:
        - proportional-hazards-models.qmd
        - coxph-model-building.qmd
        - parametric-survival-models.qmd
-    - references.qmd
+  references: references.qmd
   appendices:
     - intro-MLEs.qmd
-
+  back-to-top-navigation: true
   page-navigation: true
 
 bibliography: references.bib
