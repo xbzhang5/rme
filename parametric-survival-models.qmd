@@ -394,13 +394,46 @@ This is the same data as the `drug6mp` data from KMsurv, but with two
 other variables and without the pairing.
 
 ```{r}
-
+#| eval: false
 library(haven)
 library(survival)
 anderson = 
   paste0(
     "http://web1.sph.emory.edu/dkleinb/allDatasets",
     "/surv2datasets/anderson.dta") |> 
+  read_dta() |> 
+  mutate(
+    status = status |> 
+      case_match(
+        1 ~ "relapse",
+        0 ~ "censored"
+      ),
+    sex = sex |> 
+      case_match(
+        0 ~ "female",
+        1 ~ "male"
+      ),
+    
+    rx = rx |> 
+      case_match(
+        0 ~ "new",
+        1 ~ "standard"
+      ),
+    
+    surv = Surv(time = survt,event = (status == "relapse"))
+  ) 
+
+print(anderson)
+```
+
+```{r}
+#| include: false
+#| label: anderson-load-local
+library(haven)
+library(survival)
+anderson = 
+  fs::path_package(
+    "rme", "extdata/anderson.dta") |> 
   read_dta() |> 
   mutate(
     status = status |> 

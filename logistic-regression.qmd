@@ -8,8 +8,7 @@ title: "Logistic Regression"
 
 This content is adapted from:
 
--   Dobson & Barnett 2018, "An Introduction to Generalized Linear
-    Models", 4th edition, Chapter 7
+-   @dobson2018introduction, Chapter 7
 -   @vittinghoff2012regression, Chapter 5
 - <https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>    
 
@@ -39,7 +38,9 @@ knitr::opts_chunk$set(message = FALSE)
 options('digits' = 4)
 ```
 
-# Risk Estimation and Prediction
+# Introduction
+
+## Logistic regression vs linear regression
 
 ```{r}
 #| include: false
@@ -65,6 +66,8 @@ Linear regression is typically used for continuous outcomes.
 :::
 
 ::::
+
+# Risk Estimation and Prediction
 
 You have already seen methods for predicting binary outcomes using one predictor that is also binary (such as exposure/non-exposure).
 
@@ -539,7 +542,14 @@ But suppose we had a case-control study in which we had 100 women with MI and se
 
 The disease odds ratio is the odds for the disease in the exposed group divided by the odds for the disease in the unexposed group, and we cannot validly compute and use these separate parts.
 
-But we can validly compute and use the exposure odds ratio, which is the odds for exposure in the disease group divided by the odds for exposure in the non-diseased group (because exposure can be treated as random). And these two odds ratios are mathematically equivalent, as we saw in @sec-OR-props.
+But we can validly compute and use the exposure odds ratio, which is the odds for exposure in the disease group divided by the odds for exposure in the non-diseased group (because exposure can be treated as random):
+
+$$
+\hth(OC|MI) = 
+\frac{\hat{\omega}(OC|MI)}{\hat{\omega}(OC|\neg MI)}
+$$
+
+And these two odds ratios, $\hth(MI|OC)$ and $\hth(OC|MI)$ are mathematically equivalent, as we saw in @sec-OR-props.
 
 :::{#exr-or-rev}
 Calculate the odds ratio of MI with respect to OC use, assuming that @tbl-oc-mi comes from a case-control study. Confirm that the result is the same as in @exm-OR.

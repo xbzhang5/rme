@@ -10,9 +10,11 @@
 \def\ba{\begin{aligned}}
 \def\ea{\end{aligned}}
 \def\e{\epsilon}
+\def\om{\omega}
 \providecommand{\cb}[1]{\left\{#1\right\}}
 \providecommand{\paren}[1]{\left(#1\right)}
 \providecommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
+
 \providecommand{\E}[1]{\mathbb{E}\left[#1\right]}
 \providecommand{\var}[1]{\text{Var}\left(#1\right)}
 \providecommand{\Var}[1]{\text{Var}\left(#1\right)}
