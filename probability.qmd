@@ -4,7 +4,17 @@ title: "Probability"
 
 {{< include macros.qmd >}}
 
-# Core concepts
+# Random variables
+
+## Types of random variables
+
+:::{#def-binary}
+
+### binary variable
+A **binary variable** is a random variable which has only two possible values in its range.
+:::
+
+# Characteristics of probability distributions
 
 :::{#def-density}
 ## Density function
@@ -63,3 +73,13 @@ the inverse of that random variable's variance; that is:
 
 $$\tau(X) \eqdef \inv{\Var{X}}$$
 :::
+
+# Key probability distributions
+
+:::::{#def-bernoulli}
+### Bernoulli distribution
+The **Bernoulli distribution** family for a random variable $X$ is defined as:
+
+$$\Pr(X=x) = \cbl{{\pi, x=1}\atop{1-\pi, x=0}}$$
+
+:::::

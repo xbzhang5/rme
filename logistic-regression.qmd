@@ -47,25 +47,32 @@ options('digits' = 4)
 library(pander)
 ```
 
-**Logistic regression** is a framework for modeling a *binary outcome variable*, conditional on one or more *predictors* (a.k.a. *covariates*).
-
-:::{#def-binary}
-
-### binary variable
-A **binary variable** is a random variable which has only two possible values in its range.
-:::
+**Logistic regression** is a framework for modeling [binary](probability.qmd#def-binary) outcomes, conditional on one or more *predictors* (a.k.a. *covariates*).
 
 Examples of binary variables include:
 
-* vital status (dead vs alive) at a given time point 
-* disease status (healthy vs diseased) at a given time point
-* spam email vs not spam
+* exposure (exposed vs unexposed)
+* disease (diseased vs healthy)
+* recovery (recovered vs unrecovered)
+* relapse (relapse vs remission)
+* return to hospital (returned vs not)
+* vital status (dead vs alive)
 
-In many health sciences applications, binary outcomes are defined for a *specific time point*, such as the end of a study, one year after exposure to a pathogen, or one month after treatment.
+:::{.callout-note}
 
-Many of these outcomes have a corresponding *time-to-event* variable. Time-to-event variables are modeled using survival analysis, covered in 
+#### Event times
 
-Logistic regression uses the Bernoulli family of probability distributions to model the outcome variable, conditional on  each set of covariate values. 
+In many health sciences applications, binary outcomes are *incompletely observed*. For example, if we are studying whether cancer patients experience a relapse, we may may not be able to follow patients to the end of their lives; instead, we may only know whether each patient has relapsed before the end of the study. If a patient has not relapsed by that point, we might not know if they will relapse at some other date or if they will stay cancer-free for the rest of their lives. 
+
+
+has experienced some event *by a specific time point*, such as whether a cancer patient has experienced cancer relapse by the end of the study two years after the start of a treatment. These outcomes often have a corresponding *time-to-event* variable recording *when* the outcome occurred, if it did occur, or otherwise recording when the individual was last checked for the outcome, if the outcome had not occurred by that time. If some individuals did not experience the outcome event of interest by the time when they were last observed, then their outcome value is *missing data*, and logistic regression may not be appropriate. Instead, the combination of the outcome status at the last observation time (event vs no event *yet*) and the time of that last observation can be analyzed jointly using survival analysis, which is covered in [Part 2](time-to-event-models.qmd) of these course notes.
+:::
+
+
+## Logistic regression versus linear regression
+
+
+Logistic regression uses the [Bernoulli](probability.qmd#def-bernoulli) family of probability distributions to model the outcome variable, conditional on  each set of covariate values. 
 
 ::: {#exr-def-bernoulli}
 
@@ -73,16 +80,10 @@ Write down the mathematical definition of the Bernoulli distribution family.
 
 ::::{.solution}
 
-:::::{#def-bernoulli}
-#### Bernoulli distribution
-The **Bernoulli distribution** family for a random variable $X$ is defined as:
+See @def-bernoulli.
 
-$$\Pr(X=x) = \cbl{{\pi, x=1}\atop{1-\pi, x=0}}$$
-
-:::::
 ::::
 :::
-## Logistic regression versus linear regression
 
 Logistic regression thus differs from linear regression, which uses the Gaussian ("normal") distribution to model the outcome variable, conditional on the covariates.
 
