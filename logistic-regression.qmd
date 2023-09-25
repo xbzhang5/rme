@@ -40,39 +40,69 @@ options('digits' = 4)
 
 # Introduction
 
-## Logistic regression vs linear regression
+## What is logistic regression?
 
 ```{r}
 #| include: false
 library(pander)
 ```
 
-Logistic regression is a method for estimating and predicting the probability of a *binary outcome variable* using one or more *predictors* (a.k.a. *covariates*).
+**Logistic regression** is a framework for modeling a *binary outcome variable*, conditional on one or more *predictors* (a.k.a. *covariates*).
 
 :::{#def-binary}
 
 ### binary variable
-A **binary variable** is a random variable which has only two possible values (such as diseased/healthy) in its range.
+A **binary variable** is a random variable which has only two possible values in its range.
 :::
+
+Examples of binary variables include:
+
+* vital status (dead vs alive) at a given time point 
+* disease status (healthy vs diseased) at a given time point
+* spam email vs not spam
+
+In many health sciences applications, binary outcomes are defined for a *specific time point*, such as the end of a study, one year after exposure to a pathogen, or one month after treatment.
+
+Many of these outcomes have a corresponding *time-to-event* variable. Time-to-event variables are modeled using survival analysis, covered in 
+
+Logistic regression uses the Bernoulli family of probability distributions to model the outcome variable, conditional on  each set of covariate values. 
+
+::: {#exr-def-bernoulli}
+
+Write down the mathematical definition of the Bernoulli distribution family.
+
+::::{.solution}
+
+:::::{#def-bernoulli}
+#### Bernoulli distribution
+The **Bernoulli distribution** family for a random variable $X$ is defined as:
+
+$$\Pr(X=x) = \cbl{{\pi, x=1}\atop{1-\pi, x=0}}$$
+
+:::::
+::::
+:::
+## Logistic regression versus linear regression
+
+Logistic regression thus differs from linear regression, which uses the Gaussian ("normal") distribution to model the outcome variable, conditional on the covariates.
 
 :::: {#exr-linear}
 
-Recall: what kind of outcome is linear regression used for?
+Recall: what kinds of outcomes is linear regression used for?
 
 ::: {.solution}
 
-Linear regression is typically used for continuous outcomes.
+Linear regression is typically used for numerical outcomes that aren't event counts or waiting times for an event. Examples of outcomes that are often analyzed using linear regression include include weight, height, and income.
 
 :::
-
-::::
-
-# Risk Estimation and Prediction
 
 You have already seen methods for predicting binary outcomes using one predictor that is also binary (such as exposure/non-exposure).
 
 We will first review one-predictor analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
 
+::::
+
+# Risk Estimation and Prediction
 
 :::::{#exm-oc-mi}
 ## Oral Contraceptive Use and Heart Attack
