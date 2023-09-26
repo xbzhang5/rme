@@ -58,13 +58,11 @@ Examples of binary variables include:
 * return to hospital (returned vs not)
 * vital status (dead vs alive)
 
-## Logistic regression versus linear regression
-
-Logistic regression uses the [Bernoulli](probability.qmd#def-bernoulli) family of probability distributions to model the outcome variable, conditional on  each set of covariate values. 
+Logistic regression uses the [Bernoulli](probability.qmd#def-bernoulli) distribution to model the outcome variable, conditional on one or more covariates. 
 
 ::: {#exr-def-bernoulli}
 
-Write down the mathematical definition of the Bernoulli distribution family.
+Write down a mathematical definition of the Bernoulli distribution.
 
 ::::{.solution}
 
@@ -73,7 +71,9 @@ See @def-bernoulli.
 ::::
 :::
 
-Logistic regression thus differs from linear regression, which uses the Gaussian ("normal") distribution to model the outcome variable, conditional on the covariates.
+## Logistic regression versus linear regression
+
+Logistic regression differs from linear regression, which uses the Gaussian ("normal") distribution to model the outcome variable, conditional on the covariates.
 
 :::: {#exr-linear}
 
@@ -85,18 +85,17 @@ Linear regression is typically used for numerical outcomes that aren't event cou
 
 :::
 
-You have already seen methods for predicting binary outcomes using one predictor that is also binary (such as exposure/non-exposure).
-
-We will first review one-predictor analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
-
 ::::
 
 # Risk Estimation and Prediction
 
+In Epi 203, you have already seen methods for modeling binary outcomes using one covariate that is also binary (such as exposure/non-exposure).
+In this section, we review one-covariate analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
+
 :::::{#exm-oc-mi}
 ## Oral Contraceptive Use and Heart Attack
 
-* Research question: does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; a.k.a. heart attack)?
+* Research question: how does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; a.k.a. heart attack)?
 
 :::{.note}
 This was an issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
