@@ -7,5 +7,3 @@ panderOptions("big.mark", ",")
 library(conflicted)
 conflicts_prefer(plotly::filter)
 ```
-
-test

@@ -912,12 +912,6 @@ lrtest(lm_max, lm0)
 
 This log-likelihood ratio statistic is called the **null deviance**. It tells us whether we have enough data to detect a difference between the null and full models.
 
-::: callout-caution
-## Caution
-
-This definition is a bit different from what I said in class (4/25); then, I said the null deviance was twice the difference in log-likelihood between the model of interest and the null model. The one I have written above is the standard one, and we'll stick to the standard definition going forward.
-:::
-
 # Rescaling
 
 ## Rescale age {.smaller}

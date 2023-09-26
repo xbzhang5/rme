@@ -533,12 +533,7 @@ failure times.
 The default is to use the KM curve as a transform, which is similar to
 the rank but deals better with censoring.
 
-The `cox.zph()` function implements a score test proposed by Grambsch
-and Therneau[^coxph-model-building-1]:
-
-[^coxph-model-building-1]: P. Grambsch and T. Therneau (1994),
-    Proportional hazards tests and diagnostics based on weighted
-    residuals. Biometrika, 81, 515-26.
+The `cox.zph()` function implements a score test proposed in  @grambsch1994proportional.
 
 ```{r}
 hodg.zph = cox.zph(hodg.cox1)

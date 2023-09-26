@@ -58,19 +58,7 @@ Examples of binary variables include:
 * return to hospital (returned vs not)
 * vital status (dead vs alive)
 
-:::{.callout-note}
-
-#### Event times
-
-In many health sciences applications, binary outcomes are *incompletely observed*. For example, if we are studying whether cancer patients experience a relapse, we may may not be able to follow patients to the end of their lives; instead, we may only know whether each patient has relapsed before the end of the study. If a patient has not relapsed by that point, we might not know if they will relapse at some other date or if they will stay cancer-free for the rest of their lives. 
-
-
-has experienced some event *by a specific time point*, such as whether a cancer patient has experienced cancer relapse by the end of the study two years after the start of a treatment. These outcomes often have a corresponding *time-to-event* variable recording *when* the outcome occurred, if it did occur, or otherwise recording when the individual was last checked for the outcome, if the outcome had not occurred by that time. If some individuals did not experience the outcome event of interest by the time when they were last observed, then their outcome value is *missing data*, and logistic regression may not be appropriate. Instead, the combination of the outcome status at the last observation time (event vs no event *yet*) and the time of that last observation can be analyzed jointly using survival analysis, which is covered in [Part 2](time-to-event-models.qmd) of these course notes.
-:::
-
-
 ## Logistic regression versus linear regression
-
 
 Logistic regression uses the [Bernoulli](probability.qmd#def-bernoulli) family of probability distributions to model the outcome variable, conditional on  each set of covariate values. 
 
@@ -441,11 +429,11 @@ ggplot() +
 ```
 
 :::{.callout-important}
-An equivalent expression for the inverse odds function is $$\pi(\omega) = (1-\omega^{-1})^{-1}$$.
+An equivalent expression for the inverse odds function is $$\pi(\omega) = (1-\omega^{-1})^{-1}$${#eq-inv-odds-reduced}
 :::
 
 :::{#exr-inv-odds2}
-Prove that the expression above is equivalent to @def-inv-odds.
+Prove that @eq-inv-odds-reduced is equivalent to @def-inv-odds.
 :::
 
 :::{#exr-odds-probs}

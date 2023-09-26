@@ -11,7 +11,7 @@
 \def\ea{\end{aligned}}
 \def\e{\epsilon}
 \def\om{\omega}
-\providecommand{\cbl}[1]{\left\{#1\right.}}
+\providecommand{\cbl}[1]{\left\{#1\right.}
 \providecommand{\cb}[1]{\left\{#1\right\}}
 \providecommand{\paren}[1]{\left(#1\right)}
 \providecommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
