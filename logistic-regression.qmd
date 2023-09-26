@@ -1,24 +1,15 @@
 ---
 title: "Logistic Regression"
-date: last-modified
-date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-editor_options: 
-  chunk_output_type: console
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 ## Acknowledgements {.unnumbered}
 
 This content is adapted from:
 
--   Dobson & Barnett 2018, "An Introduction to Generalized Linear
-    Models", 4th edition, Chapter 7
--   Vittinghoff et al 2012, "Regression Methods in Biostatistics", 2nd
-    edition, Chapter 5
+-   @dobson2018introduction, Chapter 7
+-   @vittinghoff2012regression, Chapter 5
 - <https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>    
 
 ## Configuring R {.unnumbered}
@@ -44,46 +35,67 @@ Here are some R settings I use in this document:
 ```{r options, message=FALSE}
 rm(list = ls()) # delete any data that's already loaded into R
 knitr::opts_chunk$set(message = FALSE)
-pander::panderOptions("table.emphasize.rownames", FALSE)
 options('digits' = 4)
 ```
 
-# Risk Estimation and Prediction
+# Introduction
+
+## What is logistic regression?
 
 ```{r}
 #| include: false
 library(pander)
 ```
 
-Logistic regression is a method for estimating and predicting the probability of a *binary outcome variable* using one or more *predictors* (a.k.a. *covariates*).
+**Logistic regression** is a framework for modeling [binary](probability.qmd#def-binary) outcomes, conditional on one or more *predictors* (a.k.a. *covariates*).
 
-:::{#def-binary}
+Examples of binary variables include:
 
-### binary variable
-A **binary variable** is a random variable which has only two possible values (such as diseased/healthy) in its range.
+* exposure (exposed vs unexposed)
+* disease (diseased vs healthy)
+* recovery (recovered vs unrecovered)
+* relapse (relapse vs remission)
+* return to hospital (returned vs not)
+* vital status (dead vs alive)
+
+Logistic regression uses the [Bernoulli](probability.qmd#def-bernoulli) distribution to model the outcome variable, conditional on one or more covariates. 
+
+::: {#exr-def-bernoulli}
+
+Write down a mathematical definition of the Bernoulli distribution.
+
+::::{.solution}
+
+See @def-bernoulli.
+
+::::
 :::
+
+## Logistic regression versus linear regression
+
+Logistic regression differs from linear regression, which uses the Gaussian ("normal") distribution to model the outcome variable, conditional on the covariates.
 
 :::: {#exr-linear}
 
-Recall: what kind of outcome is linear regression used for?
+Recall: what kinds of outcomes is linear regression used for?
 
 ::: {.solution}
 
-Linear regression is typically used for continuous outcomes.
+Linear regression is typically used for numerical outcomes that aren't event counts or waiting times for an event. Examples of outcomes that are often analyzed using linear regression include include weight, height, and income.
 
 :::
 
 ::::
 
-You have already seen methods for predicting binary outcomes using one predictor that is also binary (such as exposure/non-exposure).
+# Risk Estimation and Prediction
 
-We will first review one-predictor analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
-
+In Epi 203, you have already seen methods for modeling binary outcomes using one covariate that is also binary (such as exposure/non-exposure).
+In this section, we review one-covariate analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
 
 :::::{#exm-oc-mi}
 ## Oral Contraceptive Use and Heart Attack
 
-* Research question: does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; a.k.a. heart attack)?
+* Research question: how does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; a.k.a. heart attack)?
 
 :::{.note}
 This was an issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
@@ -416,11 +428,11 @@ ggplot() +
 ```
 
 :::{.callout-important}
-An equivalent expression for the inverse odds function is $$\pi(\omega) = (1-\omega^{-1})^{-1}$$.
+An equivalent expression for the inverse odds function is $$\pi(\omega) = (1-\omega^{-1})^{-1}$${#eq-inv-odds-reduced}
 :::
 
 :::{#exr-inv-odds2}
-Prove that the expression above is equivalent to @def-inv-odds.
+Prove that @eq-inv-odds-reduced is equivalent to @def-inv-odds.
 :::
 
 :::{#exr-odds-probs}
@@ -548,7 +560,14 @@ But suppose we had a case-control study in which we had 100 women with MI and se
 
 The disease odds ratio is the odds for the disease in the exposed group divided by the odds for the disease in the unexposed group, and we cannot validly compute and use these separate parts.
 
-But we can validly compute and use the exposure odds ratio, which is the odds for exposure in the disease group divided by the odds for exposure in the non-diseased group (because exposure can be treated as random). And these two odds ratios are mathematically equivalent, as we saw in @sec-OR-props.
+But we can validly compute and use the exposure odds ratio, which is the odds for exposure in the disease group divided by the odds for exposure in the non-diseased group (because exposure can be treated as random):
+
+$$
+\hth(OC|MI) = 
+\frac{\hat{\omega}(OC|MI)}{\hat{\omega}(OC|\neg MI)}
+$$
+
+And these two odds ratios, $\hth(MI|OC)$ and $\hth(OC|MI)$ are mathematically equivalent, as we saw in @sec-OR-props.
 
 :::{#exr-or-rev}
 Calculate the odds ratio of MI with respect to OC use, assuming that @tbl-oc-mi comes from a case-control study. Confirm that the result is the same as in @exm-OR.
@@ -939,7 +958,7 @@ regression:
 
 ### Summary of study
 
-*From Vittinghoff et al 2012:*
+*From @vittinghoff2012regression:*
 
 "The **Western Collaborative Group Study (WCGS)** was a large
 epidemiological study designed to investigate the association between
@@ -1409,7 +1428,10 @@ chd_glm_strat |>
   print_md()
 ```
 
+
+:::{#exr-strat-to-contrast}
 If I give you model 1, how would you get the coefficients of model 2?
+:::
 
 # Fitting logistic regression models
 

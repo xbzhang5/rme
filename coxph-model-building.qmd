@@ -1,15 +1,7 @@
 ---
 title: "Building Cox Proportional Hazards models"
-date: last-modified
-date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-subject: "EPI 204 Spring 2023"
-editor_options:
-  chunk_output_type: console
-editor:
-  markdown:
-    wrap: 72
 ---
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 ::: {.content-hidden when-format="revealjs"}
 ## Configuring R {.unnumbered}
@@ -541,12 +533,7 @@ failure times.
 The default is to use the KM curve as a transform, which is similar to
 the rank but deals better with censoring.
 
-The `cox.zph()` function implements a score test proposed by Grambsch
-and Therneau[^coxph-model-building-1]:
-
-[^coxph-model-building-1]: P. Grambsch and T. Therneau (1994),
-    Proportional hazards tests and diagnostics based on weighted
-    residuals. Biometrika, 81, 515-26.
+The `cox.zph()` function implements a score test proposed in  @grambsch1994proportional.
 
 ```{r}
 hodg.zph = cox.zph(hodg.cox1)
@@ -922,10 +909,8 @@ plot(hodg.dfb[,5],
 
 ```
 
-The two largest values are observations 1 and 16. The smallest value is
-observation 35.
+The two largest values are observations 1 and 16. The smallest value is observation 35.
 
-## 
 
 | Diagnostic                 | Observations to Examine |
 |----------------------------|-------------------------|
@@ -937,7 +922,7 @@ observation 35.
 | Waiting Time Influence     | 15, 16                  |
 | Graft by Disease Influence | 1, 16, 35               |
 
-: Observations to Examine by Residuals and Influence
+: Observations to Examine by Residuals and Influence {#tbl-obs-to-examine}
 
 The most important observations to examine seem to be 1, 15, 16, 18, and
 29.
@@ -1018,7 +1003,44 @@ This is the same data as the `drug6mp` data from `KMsurv`, but with two
 other variables and without the pairing. This version comes from the
 Kleinbaum and Klein survival textbook (e.g., p281):
 
-```{r}
+
+```{r,include = FALSE}
+anderson = 
+  fs::path_package(
+    "rme", "extdata/anderson.dta") |> 
+  haven::read_dta() |> 
+  mutate(
+    status = status |> 
+      case_match(
+        1 ~ "relapse",
+        0 ~ "censored"
+      ),
+    
+    sex = sex |> 
+      case_match(
+        0 ~ "female",
+        1 ~ "male"
+      ) |> 
+      factor() |> 
+      relevel(ref = "female"),
+    
+    rx = rx |> 
+      case_match(
+        0 ~ "new",
+        1 ~ "standard"
+      ) |> 
+      factor() |> relevel(ref = "standard"),
+    
+    surv = Surv(
+      time = survt, 
+      event = (status == "relapse"))
+  )
+
+print(anderson)
+```
+
+
+```{r, eval = FALSE}
 
 anderson = 
   paste0(
@@ -1601,10 +1623,23 @@ related to cow tuberculosis.
     $\sqrt{2}=1.41$.
 
 ```{r}
+#| eval: false
 bladder = 
   paste0(
     "http://web1.sph.emory.edu/dkleinb/allDatasets",
     "/surv2datasets/bladder.dta") |> 
+  read_dta() |> 
+  as_tibble()
+
+bladder = bladder[-1,]  #remove subject with 0 observation time
+print(bladder)
+```
+
+```{r}
+#| include: false
+bladder = 
+  fs::path_package(
+    "rme", "extdata/bladder.dta") |> 
   read_dta() |> 
   as_tibble()
 
@@ -1619,10 +1654,10 @@ bladder =
   mutate(
     surv = 
       Surv(
-        time=start,
-        time2=stop,
-        event=event,
-        type="counting"))
+        time = start,
+        time2 = stop,
+        event = event,
+        type = "counting"))
 
 bladder.cox1 = coxph(
   formula = surv~tx+num+size,

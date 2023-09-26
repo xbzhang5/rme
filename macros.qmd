@@ -1,11 +1,22 @@
 \def\cd{\cdot}
 \def\eqdef{\stackrel{\text{def}}{=}}
+\def\defeq{\stackrel{\text{def}}{=}}
 \def\hb{\hat\beta}
 \def\za{z_{1 - \frac{\alpha}{2}}}
-\def\cirad{\za \cd \hse(\hb)}
+\def\cirad{\za \cd \hse{\hb}}
 \def\ci{\hb {\color{red}\pm} \cirad}
+\def\th{\theta}
+\def\hth{\hat\theta}
+\def\ba{\begin{aligned}}
+\def\ea{\end{aligned}}
+\def\e{\epsilon}
+\def\om{\omega}
+\providecommand{\cbl}[1]{\left\{#1\right.}
+\providecommand{\cb}[1]{\left\{#1\right\}}
+\providecommand{\paren}[1]{\left(#1\right)}
 \providecommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
-\providecommand{\E}[1]{\text{E}\left[#1\right]}
+
+\providecommand{\E}[1]{\mathbb{E}\left[#1\right]}
 \providecommand{\var}[1]{\text{Var}\left(#1\right)}
 \providecommand{\Var}[1]{\text{Var}\left(#1\right)}
 \providecommand{\varh}[1]{\hat{\text{Var}}\left(#1\right)}
@@ -13,10 +24,18 @@
 \providecommand{\se}[1]{\text{se}\left(#1\right)}
 \providecommand{\hse}[1]{\hat{\text{se}}\left(#1\right)}
 \providecommand{\SE}[1]{\text{SE}\left(#1\right)}
-\renewcommand{\log}[1]{\text{log}\left\{#1\right\}}
-\renewcommand{\exp}[1]{\text{exp}\left\{#1\right\}}
+\renewcommand{\log}[1]{\text{log}\cb{#1}}
+\renewcommand{\exp}[1]{\text{exp}\cb{#1}}
 \providecommand{\e}[1]{\text{e}^{#1}}
 \providecommand{\inv}[1]{\left(#1\right)^{-1}}
 \providecommand{\ind}[1]{\mathbb{1}_{#1}}
 \providecommand{\pr}{\text{p}}
+\providecommand{\Bias}[1]{\text{Bias}\left(#1\right)}
+\providecommand{\bias}[1]{\text{Bias}\left(#1\right)}
+\providecommand{\ssqf}[1]{\sigma^2\left(#1\right)}
+\providecommand{\mselr}[1]{\text{MSE}\left(#1\right)}
+\providecommand{\maelr}[1]{\text{MAE}\left(#1\right)}
+\providecommand{\abs}[1]{\left|#1\right|}
+\providecommand{\sqf}[1]{\left(#1\right)^2}
+\providecommand{\sq}{^2}
 

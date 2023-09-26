@@ -1,25 +1,11 @@
 ---
 title: "Introduction to Maximum Likelihood Inference"
 ---
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
-These notes are derived primarily from:
+These notes are derived primarily from @dobson2018introduction (mostly chapters 3-5).
 
-Dobson, Annette J., and Adrian G. Barnett. An introduction to
-generalized linear models. 3<sup>rd</sup> edition. CRC press, 2008
-(mostly chapters 3-5).
-
-I’ve added this book to the "Reading List" on canvas, so it should be
-uploaded there by the librarians soon.
-
-Some material was also taken from:
-
-McLachlan, Geoffrey J., and Thriyambakam Krishnan. The EM algorithm and
-extensions. John Wiley & Sons, 2007.
-<https://onlinelibrary.wiley.com/doi/book/10.1002/9780470191613>
-
-Casella, G., & Berger, R. L. (2002). Statistical inference. 2nd ed.
-Australia ; Pacific Grove, CA, Thomson Learning.
+Some material was also taken from @mclachlan2007algorithm and @CaseBerg01.
 
 # Maximum likelihood inference for univariate Gaussian models
 
@@ -334,7 +320,7 @@ $$I^{- 1} = \begin{bmatrix}
 0 & \frac{{2\left( {\widehat{\sigma}}^{2} \right)}^{2}}{n}
 \end{bmatrix}$$
 
-See Casella-Berger p322, example 7.2.12.
+See @CaseBerg01 p322, example 7.2.12.
 
 To prove it’s a maximum, need:
 

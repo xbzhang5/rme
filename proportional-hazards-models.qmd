@@ -1,15 +1,8 @@
 ---
 title: "Proportional Hazards Models"
-date: last-modified
-date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-editor_options:
-  chunk_output_type: console
-editor:
-  markdown:
-    wrap: 72
 ---
 
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 ::: {.content-hidden when-format="revealjs"}
 ## Configuring R {.unnumbered}

@@ -1,23 +1,16 @@
 ---
 title: "Models for Count Outcomes"
 subtitle: "(Poisson Regression and Variations)"
-date: last-modified
-date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
-editor_options: 
-  chunk_output_type: console
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
-{{< include macros.qmd >}}
+{{< include shared-config.qmd >}}
 
 ## Acknowledgements{.unnumbered}
 
 This content is adapted from:
 
--   Dobson & Barnett 2018, "An Introduction to Generalized Linear Models", 4th edition, Chapter 9
--   Vittinghoff et al 2012, "Regression Methods in Biostatistics", 2nd edition, Chapter 8
+-   @dobson2018introduction, Chapter 9
+-   @vittinghoff2012regression, Chapter 8
 
 ::: {.content-hidden when-format="revealjs"}
 ## Configuring R{.unnumbered}
@@ -189,7 +182,7 @@ $$
 ## Hypothesis tests for regression coefficients
 
 $$
-t = \frac{\hat \beta - \beta_0}{\hse(\hb)}
+t = \frac{\hat \beta - \beta_0}{\hse{\hb}}
 $$
 
 Compare $t$ or $|t|$ to the tails of the standard Gaussian distribution, according to the null hypothesis.
@@ -221,7 +214,7 @@ $$e \eqdef y - \hat y$$
 
 ### Pearson residuals
 
-$$r = \frac{e}{\hse(e)} \approx \frac{e}{\sqrt{\hat y}}$$
+$$r = \frac{e}{\hse{e}} \approx \frac{e}{\sqrt{\hat y}}$$
 
 ### Standardized Pearson residuals
 
