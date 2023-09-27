@@ -360,7 +360,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-09-25: 18:06:29 (PM)</p>
+      <p class="date">Last modified: 2023-09-27: 10:21:58 (AM)</p>
     </div>
   </div>
   
@@ -562,7 +562,7 @@ Note
 <span><span class="co"># predict(bw_lm1, newdata = tibble(sex = "female", age = 36))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><span class="math display">\[E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 =  2578.8739\]</span></p>
+<p><span class="math display">\[E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 =  2578.873934\]</span></p>
 <p>What’s the mean birthweight for a male born at 36 weeks?</p>
 <div class="cell" data-hash="Linear-models-overview_cache/html/unnamed-chunk-12_84d58b89c22162e62ccfaaba4c296c90">
 <details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pred_male</span> <span class="op">=</span> </span>
@@ -572,16 +572,16 @@ Note
 </details>
 </div>
 <p><span class="math display">\[
-E[Y|X_1 = 1, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 =  2741.9132
+E[Y|X_1 = 1, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 =  2741.91323693
 \]</span></p>
 <p>What’s the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; E[Y|X_1 = 1, X_2 = 36] - E[Y|X_1 = 0, X_2 = 36]\\
 &amp;=
-2741.9132 - 2578.8739\\
+2741.91323693 - 2578.873934\\
 &amp;=
-163.0393
+163.03930293
 \end{aligned}
 \]</span></p>
 <p>Shortcut:</p>
@@ -591,7 +591,7 @@ E[Y|X_1 = 1, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 =  2741.913
 E[Y|X_1 = 0, X_2 = 36]\\
 &amp;= (\beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36) - (\beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36) \\
 &amp;= \beta_1 \\
-&amp;=  163.0393
+&amp;=  163.03930293
 \end{aligned}
 \]</span></p>
 <p>Note that age doesn’t show up in this difference: in other words, according to this model, the difference between females and males with the same gestational age is the same for every age.</p>
@@ -686,7 +686,7 @@ Note
 </div>
 </div>
 <p>In this case, the coefficient <span class="math inline">\(X_2\)</span> is interacting with <span class="math inline">\(X_1\)</span>. So the slope of <span class="math inline">\(Y\)</span> with respect to <span class="math inline">\(X_2\)</span> depends on the value of <span class="math inline">\(X_2\)</span>.</p>
-<p>There is no longer a slope; we can’t talk about “the slope of birthweight with respect to age”. We can only talk about “the slope of birthweight with respect to age among males” and “the slope of birthweight with respect to age among females”.</p>
+<p>According to this model, there is no such thing as “<em>the</em> slope of birthweight with respect to age”. There are two slopes, one for each sex.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> We can only talk about “the slope of birthweight with respect to age among males” and “the slope of birthweight with respect to age among females”.</p>
 <p>Then: that coefficient is the difference in means per unit change in its corresponding coefficient, when the other collected variables are set to 0.</p>
 <p>Here’s how this model looks, superimposed on the data:</p>
 <div class="cell" data-hash="Linear-models-overview_cache/html/unnamed-chunk-15_e1b7d16686d1f062b6d2e0db7cf3076f">
@@ -716,7 +716,7 @@ Note
 <details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pred_female</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">bw_lm2</span><span class="op">)</span><span class="op">[</span><span class="st">"(Intercept)"</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">bw_lm2</span><span class="op">)</span><span class="op">[</span><span class="st">"age"</span><span class="op">]</span><span class="op">*</span><span class="fl">36</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><span class="math display">\[E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 + \beta_3 \cdot (0 * 36) =  2552.7333\]</span> What’s the mean birthweight for a male born at 36 weeks?</p>
+<p><span class="math display">\[E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 + \beta_3 \cdot (0 * 36) =  2552.73333333\]</span> What’s the mean birthweight for a male born at 36 weeks?</p>
 <div class="cell" data-hash="Linear-models-overview_cache/html/unnamed-chunk-19_4f542a0605575d0310a7d5460d651599">
 <details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pred_male</span> <span class="op">=</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">bw_lm2</span><span class="op">)</span><span class="op">[</span><span class="st">"(Intercept)"</span><span class="op">]</span> <span class="op">+</span> </span>
@@ -725,7 +725,7 @@ Note
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">bw_lm2</span><span class="op">)</span><span class="op">[</span><span class="st">"sexmale:age"</span><span class="op">]</span> <span class="op">*</span> <span class="fl">36</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><span class="math display">\[E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 + \beta_3 \cdot 1 \cdot 36 =  2762.7069\]</span></p>
+<p><span class="math display">\[E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 + \beta_3 \cdot 1 \cdot 36 =  2762.70689655\]</span></p>
 <p>What’s the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -733,7 +733,7 @@ Note
 &amp;= (\beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 + \beta_3 \cdot 1 \cdot 36)\\
 &amp;\ \ \ \ \  -(\beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 + \beta_3 \cdot 0 \cdot 36) \\
 &amp;= \beta_2 + \beta_3\cdot 36\\
-&amp;=  209.9736
+&amp;=  209.97356322
 \end{aligned}
 \]</span></p>
 <p>Note that age now does show up in the difference: in other words, according to this model, the difference in mean birthweights between females and males with the same gestational age can vary by gestational age.</p>
@@ -1108,7 +1108,7 @@ Var(\hat \beta) \approx (\mathcal I_{\beta})^{-1} = \sigma^2 (X'X)^{-1}
 <p>Research question: is there really an interaction between sex and age?</p>
 <p><span class="math inline">\(H_0: \beta_3 = 0\)</span></p>
 <p><span class="math inline">\(H_A: \beta_3 \neq 0\)</span></p>
-<p><span class="math inline">\(P(|\hat\beta_3| &gt; |-18.4172| \mid H_0)\)</span> = ?</p>
+<p><span class="math inline">\(P(|\hat\beta_3| &gt; |-18.41724138| \mid H_0)\)</span> = ?</p>
 <section id="wald-tests-and-cis" class="level3" data-number="2.3.1"><h3 data-number="2.3.1" class="anchored" data-anchor-id="wald-tests-and-cis">
 <span class="header-section-number">2.3.1</span> Wald tests and CIs</h3>
 <p>R can give you Wald tests for single coefficients and corresponding CIs:</p>
@@ -1187,16 +1187,16 @@ Var(\hat \beta) \approx (\mathcal I_{\beta})^{-1} = \sigma^2 (X'X)^{-1}
 \begin{aligned}
 &amp;P\left(
 | \hat \beta_3  | &gt;
-| -18.4172| \middle| H_0
+| -18.41724138| \middle| H_0
 \right)
 &amp;= P\left(
 \left| \frac{\hat\beta_3}{\hat{SE}(\hat\beta_3)} \right| &gt;
-\left| \frac{-18.4172}{41.7558} \right| \middle| H_0
+\left| \frac{-18.41724138}{41.75581745} \right| \middle| H_0
 \right)\\
 &amp;= P\left(
-| T_{20} | &gt;  0.4411 \middle| H_0
+| T_{20} | &gt;  0.44107007 \middle| H_0
 \right)\\
-&amp;= 0.6639
+&amp;= 0.66389342
 \end{aligned}
 \]</span> This matches the result in the table above.</p>
 </section><section id="confidence-interval" class="level4"><h4 class="anchored" data-anchor-id="confidence-interval">Confidence interval</h4>
@@ -1647,12 +1647,12 @@ Note
 </table>
 </div>
 </div>
-<p>The likelihood ratio statistic for this test is <span class="math display">\[\lambda = 2 * (\ell_{\text{full}} - \ell) = 10.3554\]</span> where:</p>
+<p>The likelihood ratio statistic for this test is <span class="math display">\[\lambda = 2 * (\ell_{\text{full}} - \ell) = 10.35537421\]</span> where:</p>
 <ul>
 <li>
-<span class="math inline">\(\ell_{\text{max}}\)</span> is the log-likelihood of the full model: -151.4016</li>
+<span class="math inline">\(\ell_{\text{max}}\)</span> is the log-likelihood of the full model: -151.40160056</li>
 <li>
-<span class="math inline">\(\ell\)</span> is the log-likelihood of our comparison model (two slopes, two intercepts): -156.5793</li>
+<span class="math inline">\(\ell\)</span> is the log-likelihood of our comparison model (two slopes, two intercepts): -156.57928767</li>
 </ul>
 <p>This statistic is called the <strong>deviance</strong> or <strong>residual deviance</strong> for our two-slopes and two-intercepts model; it tells us how much the likelihood of that model deviates from the likelihood of the maximal model.</p>
 <p>The corresponding p-value tells us whether there we have enough evidence to detect that our two-slopes, two-intercepts model is a worse fit for the data than the maximal model; in other words, it tells us if there’s evidence that we missed any important patterns. (Remember, a nonsignificant p-value could mean that we didn’t miss anything and a more complicated model is unnecessary, or it could mean we just don’t have enough data to tell the difference between these models.)</p>
@@ -1731,12 +1731,12 @@ Note
 </table>
 </div>
 </div>
-<p>The likelihood ratio statistic for the test comparing the null model to the maximal model is <span class="math display">\[\lambda = 2 * (\ell_{\text{full}} - \ell_{0}) = 35.1067\]</span> where:</p>
+<p>The likelihood ratio statistic for the test comparing the null model to the maximal model is <span class="math display">\[\lambda = 2 * (\ell_{\text{full}} - \ell_{0}) = 35.10673188\]</span> where:</p>
 <ul>
 <li>
-<span class="math inline">\(\ell_{\text{0}}\)</span> is the log-likelihood of the null model: -168.955</li>
+<span class="math inline">\(\ell_{\text{0}}\)</span> is the log-likelihood of the null model: -168.9549665</li>
 <li>
-<span class="math inline">\(\ell_{\text{full}}\)</span> is the log-likelihood of the maximal model: -151.4016</li>
+<span class="math inline">\(\ell_{\text{full}}\)</span> is the log-likelihood of the maximal model: -151.40160056</li>
 </ul>
 <p>In R, this test is:</p>
 <div class="cell" data-hash="Linear-models-overview_cache/html/unnamed-chunk-47_ce9dc2b1c786f35affb42aa9d8fafcc4">
@@ -4286,7 +4286,10 @@ Levels: setosa versicolor virginica</code></pre>
 
 <!-- -->
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>using the definite article “the” would mean there is only one slope.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -4944,7 +4947,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb136-273"><a href="#cb136-273" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-274"><a href="#cb136-274" aria-hidden="true" tabindex="-1"></a>In this case, the coefficient $X_2$ is interacting with $X_1$. So the slope of $Y$ with respect to $X_2$ depends on the value of $X_2$.</span>
 <span id="cb136-275"><a href="#cb136-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-276"><a href="#cb136-276" aria-hidden="true" tabindex="-1"></a>There is no longer a slope; we can't talk about "the slope of birthweight with respect to age". We can only talk about "the slope of birthweight with respect to age among males" and "the slope of birthweight with respect to age among females".</span>
+<span id="cb136-276"><a href="#cb136-276" aria-hidden="true" tabindex="-1"></a>According to this model, there is no such thing as "*the* slope of birthweight with respect to age". There are two slopes, one for each sex.^<span class="co">[</span><span class="ot">using the definite article "the" would mean there is only one slope.</span><span class="co">]</span> We can only talk about "the slope of birthweight with respect to age among males" and "the slope of birthweight with respect to age among females".</span>
 <span id="cb136-277"><a href="#cb136-277" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-278"><a href="#cb136-278" aria-hidden="true" tabindex="-1"></a>Then: that coefficient is the difference in means per unit change in its corresponding coefficient, when the other collected variables are set to 0.</span>
 <span id="cb136-279"><a href="#cb136-279" aria-hidden="true" tabindex="-1"></a></span>
