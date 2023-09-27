@@ -253,7 +253,7 @@ If you want to understand a coefficient in a model with interactions, collect te
 
 In this case, the coefficient $X_2$ is interacting with $X_1$. So the slope of $Y$ with respect to $X_2$ depends on the value of $X_2$.
 
-There is no longer a slope; we can't talk about "the slope of birthweight with respect to age". We can only talk about "the slope of birthweight with respect to age among males" and "the slope of birthweight with respect to age among females".
+According to this model, there is no such thing as "*the* slope of birthweight with respect to age". There are two slopes, one for each sex.^[using the definite article "the" would mean there is only one slope.] We can only talk about "the slope of birthweight with respect to age among males" and "the slope of birthweight with respect to age among females".
 
 Then: that coefficient is the difference in means per unit change in its corresponding coefficient, when the other collected variables are set to 0.
 
