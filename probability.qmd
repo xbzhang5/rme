@@ -1,0 +1,85 @@
+---
+title: "Probability"
+---
+
+{{< include macros.qmd >}}
+
+# Random variables
+
+## Types of random variables
+
+:::{#def-binary}
+
+### binary variable
+A **binary variable** is a random variable which has only two possible values in its range.
+:::
+
+# Characteristics of probability distributions
+
+:::{#def-density}
+## Density function
+
+The density function $f(t)$ for a random variable $T$ at value $t$ can be defined as the derivative of the cumulative probability function $P(T\le t)$; that is:
+
+$$f(t) \eqdef \frac{d}{dt} \Pr(T\le t)$$
+
+:::
+
+:::{#def-hazard}
+
+{{< include _def-hazard.qmd >}}
+
+:::
+
+:::{#def-variance}
+## Variance
+
+The variance of a random variable $X$ is the expectation of the squared difference between $X$ and $\E{X}$; that is:
+
+$$
+\Var{X} \eqdef \E{(X-\E{X})^2}
+$$
+
+:::
+
+:::{#thm-variance}
+## Alternative expression for variance
+
+$$\Var{X}=\E{X^2} - \sqf{\E{X}}$$
+
+::::{.proof}
+By linearity of expectation, we have:
+
+$$
+\begin{aligned}
+\Var{X} 
+&\eqdef \E{(X-\E{X})^2}\\
+&=\E{X^2 - 2X\E{X} + \sqf{\E{X}}}\\
+&=\E{X^2} - \E{2X\E{X}} + \E{\sqf{\E{X}}}\\
+&=\E{X^2} - 2\E{X}\E{X} + \sqf{\E{X}}\\
+&=\E{X^2} - \sqf{\E{X}}\\
+\end{aligned}
+$$
+::::
+
+:::
+
+
+::: {#def-precision}
+## Precision
+
+The **precision** of a random variable $X$, often denoted $\tau(X)$, $\tau_X$, or shorthanded as $\tau$, is
+the inverse of that random variable's variance; that is:
+
+$$\tau(X) \eqdef \inv{\Var{X}}$$
+:::
+
+# Key probability distributions
+
+:::::{#def-bernoulli}
+### Bernoulli distribution
+The **Bernoulli distribution** family for a random variable $X$ is defined as:
+
+$$\Pr(X=x) = \cbl{{\pi, x=1}\atop{1-\pi, x=0}}$$
+
+:::::

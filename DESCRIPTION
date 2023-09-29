@@ -9,3 +9,27 @@ Authors@R:
       comment = c(ORCID = "0000-0002-7195-830X", Twitter = "@demstats1"))
 Description: Lecture notes for Epi 204 @ UC Davis
 Encoding: UTF-8
+Imports: 
+    conflicted,
+    cvTools,
+    dobson,
+    dplyr,
+    eha,
+    fs,
+    ggeasy,
+    ggfortify,
+    ggplot2,
+    haven,
+    kableExtra,
+    KMsurv,
+    muhaz,
+    palmerpenguins,
+    pander,
+    parameters,
+    plotly,
+    printr,
+    survminer,
+    tidyr
+Suggests: 
+    tidyverse
+RoxygenNote: 7.2.3

@@ -1,0 +1,289 @@
+---
+title: "Estimation"
+---
+
+# Estimands, estimates, and estimators
+
+{{< include macros.qmd >}}
+
+\index{estimand}
+
+::: {#def-estimand}
+## Estimand
+
+An **estimand** is an unknown quantity whose value we want to know.
+
+::: {#exm-estimand}
+## Mean height of students
+
+If we are trying to determine the mean height of students at our school,
+then the population mean is our estimand.
+:::
+
+In statistical contexts, most estimands are parameters of probabilistic
+models, or functions of model parameters.
+
+::: callout-note
+## Notation for estimands
+
+Model paramaters and other estimands are often symbolized using
+lower-case Greek letters: $\alpha, \beta, \gamma, \delta$, etc.
+:::
+:::
+
+\index{estimate} \index{estimated value}
+
+::: {#def-estimate}
+## Estimate/estimated value
+
+In statistics, an **estimate** or **estimated value** is an informed
+guess of an estimand's value, based on observed data.
+
+::: {#exm-estimate}
+## Mean height of students
+
+Suppose we measure the heights of 50 random students from our school,
+and the sample mean was 175cm. We might use 175cm as an *estimate* of
+the population mean.
+:::
+:::
+
+\index{estimator}
+
+::: {#def-estimator}
+## Estimator
+
+An **estimator** is a function $\hth(X_1,...X_n)$, whose input is a set
+of random variables $X_1,...,X_n$, and whose corresponding observed
+value $\hth(x_1,...x_n)$ is used as an estimate.
+:::
+
+::: callout-note
+### Notation for estimators
+
+Estimators are often symbolized by placing a \^ ("hat") symbol on top of
+the corresponding estimand; for example, $\hth$.
+:::
+
+::: {#exm-estimator}
+## Mean height of students
+
+If we want to estimate the mean height of students at our university,
+which we will represent as $\mu$, we might measure the heights of
+$n= 50$ randomly sampled students as random variables $X_1,...,X_n$.
+Then we could use the function
+
+$$\hat\mu(X_1,...,X_n) = \frac{1}{n} \sum_{i=1}^n X_i \eqdef \bar X$$
+
+as an *estimator* to produce an *estimate* $\hat\mu = \bar x$ of $\mu$.
+
+Another estimator would be just the height of the first student sampled:
+
+$$\hat\mu^{(2)}(X_1,...,X_n) = X_1$$
+
+A third possible estimator would be the mean of all sampled students'
+heights, except for the two most extreme; that is, if we re-order the
+observations $X_{(1)} = \min_{i\in 1:n} X_i$,
+$X_{(2)} = \min_{i\in \{1:n\} - \arg X_{(1)}} X_i$, ...,
+$X_{(n)} = \max_{i\in 1:n} X_i$, then we could define the estimator:
+
+$$\hat\mu^{(3)}(X_1,...,X_n) = \frac{1}{n}\sum_{i=2}^{n-1} X_{(i)}$$
+
+Which of these estimators is best? It depends on how we evaluate them
+(see @sec-est-accuracy below).
+:::
+
+::: callout-note
+## Contrasting estimands, estimates, and estimators
+
+It's helpful to keep in mind the mathematical type of each estimation
+concept:
+
+-   estimands are numbers (or vector of numbers)
+-   estimates are also numbers (or vectors)
+-   estimators are functions of random variables, so they are also
+    random variables
+:::
+
+# Accuracy of estimators {#sec-est-accuracy}
+
+To determine which estimator is best, we need to define *best*.
+"Accuracy" is usually most important; easy computation is usually
+secondary.
+
+::: {#def-accuracy}
+## Accuracy
+
+The **accuracy** of an estimator for a given estimand does not have a
+consensus formal definition, but all of the usual candidates are related
+to the distributions of the *errors* made by the resulting estimates.
+
+::: {#def-error}
+## Error
+
+The **error** of an estimate $\hth$, often denoted $\e(\hth)$, is the
+difference between the estimate and its estimand $\theta$; that is:
+
+$$\e(\hth) \eqdef \hth - \th$$
+:::
+
+Some frequently-used measures of accuracy include:
+
+::: {#def-mse}
+## Mean squared error
+
+The **mean squared error** of an estimator $\hth$, denoted
+$\mselr{\hth}$, is the expectation of the square of the error[^1]:
+
+$$\mselr{\hth} \eqdef \E{(\epsilon(\hth))^2}$$
+:::
+
+::: {#def-mae}
+## Mean absolute error
+
+The **mean absolute error** of an estimator is the expectation of the
+absolute value of the error:
+
+$$
+\maelr{\hth} \eqdef \E{\abs{\epsilon(\hth)}}$$
+:::
+
+::: {#def-bias}
+## Bias
+
+The **bias** of an estimator $\hth$ for an estimand $\theta$ is the
+expected value of the error:
+
+$$\bias{\hth} \eqdef \E{\epsilon(\hth)}$$ {#eq-bias-def}
+:::
+
+::: {#thm-bias-exprs}
+### Expressions for bias
+
+The following expressions are equivalent to the definition of bias:
+
+$$
+\begin{aligned}
+\bias{\hth} 
+&\eqdef \E{\epsilon(\hth)}\\
+&= \E{\hth - \theta}\\
+&=\E{\hth} - \E{\theta}\\
+&=\E{\hth} - \theta
+\end{aligned}
+$$
+
+The third equality is by the linearity of expectation.
+:::
+:::
+
+[^1]: <https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>
+
+::: {#thm-mse-bias-variance}
+### MSE = Bias^2^ + Variance
+
+For any one-dimensional estimator $\hth$:
+
+$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
+
+:::: proof
+
+Let's start by expanding each term of the right-hand side:
+\
+$$
+\ba
+\sqf{\bias{\hth}}
+&=\sqf{\E{\hth} - \th}\\
+&=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2\\
+\ea
+$$
+
+$$\var{\hth} = \E{\hth^2} - \sqf{\E{\hth}}\\$$
+
+Now, add them together and simplify:
+
+$$
+\ba
+\sqf{\bias{\hth}} + \var{\hth}
+&=\sqf{\E{\hth}} - 2\E{\hth}\th+\th^2 + \E{\hth^2} - \sqf{\E{\hth}}\\
+&=\E{\hth^2} - 2\E{\hth}\th+\th^2\\
+\ea
+$$
+
+Now let's expand the left-hand side to reach the same expression:
+
+$$
+\ba
+\mselr{\hth} 
+&= \E{(\e(\hth))^2}\\
+&= \E{(\hth - \th)^2}\\
+&= \E{\hth^2 - 2\hth\th - \th^2}\\
+&=\E{\hth^2} - \E{2\hth\th}+\E{\th^2}\\
+&=\E{\hth^2} - 2\E{\hth}\th+\th^2\\
+\ea
+$$
+
+$\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ both equal $\E{\hth^2} - 2\E{\hth}\th+\th^2$. Equality is transitive, so $\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ are equal to each other:
+
+$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
+
+::::
+:::
+
+### Unbiased estimators
+
+::: {#def-unbiased}
+## unbiased estimator
+
+An estimator $\hth$ is **unbiased** if $\bias{\hth} = 0$.
+:::
+
+::: {#thm-unbiased-props}
+### properties of unbiased estimators
+
+If $\hth$ is unbiased, then:
+
+$$\E{\hth} = \th$$ {#eq-unbiased-exp}
+$$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}
+
+:::: proof
+
+\
+
+(@eq-unbiased-exp) If $\hth$ is unbiased, then:
+
+$$
+\ba
+\bias{\hth} &= 0\\
+\E{\hth} - \theta &= 0\\
+\E{\hth} &= \theta
+\ea
+$$
+
+(@eq-unbiased-mse) If $\hth$ is unbiased, then:
+
+$$
+\ba
+\mselr{\hth} 
+&= \E{\sqf{\e(\hth)}}\\
+&= \E{\sqf{\hth - \th}}\\
+&= \E{\sqf{\hth - \E{\hth}}}\\
+&\eqdef \Var{\hth}
+\ea
+$$
+
+(*Alternative proof of @eq-unbiased-mse*) We could have started from
+@thm-mse-bias-variance instead:
+
+$$
+\ba
+\mselr{\hth} 
+&= \sqf{\bias{\hth}} + \var{\hth}\\
+&= \sqf{0} + \var{\hth}\\
+&= 0 + \var{\hth}\\
+&= \var{\hth}\\
+\ea
+$$
+
+::::
+:::
+
