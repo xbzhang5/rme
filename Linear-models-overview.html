@@ -51,7 +51,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -360,7 +379,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-09-27: 10:21:58 (AM)</p>
+      <p class="date">Last modified: 2023-09-29: 10:51:36 (AM)</p>
     </div>
   </div>
   
@@ -868,7 +887,7 @@ Note
 <p><span class="math display">\[
 \ell'(\mathbf y|\mathbf x,\beta, \sigma^2) \propto -\frac{n}{2}\text{log}\left\{\sigma^2\right\} - \frac{1}{2\sigma^2}\frac{d}{d\beta}\left(\sum_{i=1}^n (y_i - x_i' \beta)^2\right)
 \]</span></p>
-<p>A few tools from linear algebra will make this analysis go easier (see <a href="https://www.taylorfrancis.com/books/mono/10.1201/9781315370200/basics-matrix-algebra-statistics-nick-fieller">Fieller</a>, Section 7.2 for details).</p>
+<p>A few tools from linear algebra will make this analysis go easier (see <span class="citation" data-cites="fieller2018basics">Fieller (<a href="references.html#ref-fieller2018basics" role="doc-biblioref">2016</a>)</span>, Section 7.2 for details).</p>
 <p><span class="math display">\[
 f_{\beta}(\mathbf x) = (f_{\beta}(x_1), f_{\beta}(x_2), ..., f_{\beta}(x_n))^\top
 \]</span></p>
@@ -4286,6 +4305,11 @@ Levels: setosa versicolor virginica</code></pre>
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-fieller2018basics" class="csl-entry" role="listitem">
+Fieller, Nick. 2016. <em>Basics of Matrix Algebra for Statistics with r</em>. Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9781315370200">https://doi.org/10.1201/9781315370200</a>.
+</div>
+</div>
 </section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>using the definite article “the” would mean there is only one slope.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -5119,7 +5143,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb136-463"><a href="#cb136-463" aria-hidden="true" tabindex="-1"></a>\ell'(\mathbf y|\mathbf x,\beta, \sigma^2) \propto -\frac{n}{2}\log{\sigma^2} - \frac{1}{2\sigma^2}\frac{d}{d\beta}\left(\sum_{i=1}^n (y_i - x_i' \beta)^2\right)</span>
 <span id="cb136-464"><a href="#cb136-464" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb136-465"><a href="#cb136-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-466"><a href="#cb136-466" aria-hidden="true" tabindex="-1"></a>A few tools from linear algebra will make this analysis go easier (see <span class="co">[</span><span class="ot">Fieller</span><span class="co">](https://www.taylorfrancis.com/books/mono/10.1201/9781315370200/basics-matrix-algebra-statistics-nick-fieller)</span>, Section 7.2 for details).</span>
+<span id="cb136-466"><a href="#cb136-466" aria-hidden="true" tabindex="-1"></a>A few tools from linear algebra will make this analysis go easier (see @fieller2018basics, Section 7.2 for details).</span>
 <span id="cb136-467"><a href="#cb136-467" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-468"><a href="#cb136-468" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb136-469"><a href="#cb136-469" aria-hidden="true" tabindex="-1"></a>f_{\beta}(\mathbf x) = (f_{\beta}(x_1), f_{\beta}(x_2), ..., f_{\beta}(x_n))^\top</span>
