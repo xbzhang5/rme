@@ -28,7 +28,7 @@ $$
 \end{aligned}
 $$
 
-## MLE of $\mu$:
+## MLE of $\mu$
 
 Then:
 

@@ -427,7 +427,7 @@ $$
 \ell'(\mathbf y|\mathbf x,\beta, \sigma^2) \propto -\frac{n}{2}\log{\sigma^2} - \frac{1}{2\sigma^2}\frac{d}{d\beta}\left(\sum_{i=1}^n (y_i - x_i' \beta)^2\right)
 $$
 
-A few tools from linear algebra will make this analysis go easier (see [Fieller](https://www.taylorfrancis.com/books/mono/10.1201/9781315370200/basics-matrix-algebra-statistics-nick-fieller), Section 7.2 for details).
+A few tools from linear algebra will make this analysis go easier (see @fieller2018basics, Section 7.2 for details).
 
 $$
 f_{\beta}(\mathbf x) = (f_{\beta}(x_1), f_{\beta}(x_2), ..., f_{\beta}(x_n))^\top
