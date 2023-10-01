@@ -338,7 +338,7 @@ To prove it’s a maximum, need:
 
 \[We haven’t gone over this yet\]
 
-Log-likelihood ratio tests (Dobson & Barnett 5.7)
+log(likelihood ratio) tests [c.f. @dobson2018introduction §5.7]:
 
 $$2\left( \mathcal{l -}\ell_{0} \right) \sim \chi^{2}(p - q)$$
 
