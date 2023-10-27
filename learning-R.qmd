@@ -2,7 +2,7 @@
 title: "Learning R"
 ---
 
-# Additional resources
+# Further reading
 
 ## Debugging R and C code
 
