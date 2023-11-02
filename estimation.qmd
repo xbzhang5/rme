@@ -2,6 +2,32 @@
 title: "Estimation"
 ---
 
+# Probabilitistic Models
+
+:::{#def-model}
+
+## Models
+
+**Scientific models** are attempts to describe *physical processes* that occur in the world and universe around us. 
+
+:::
+
+:::{#exm-model}
+
+## Models in epidemiology
+
+Epidemiologists typically study *biological processes*, such as the spread of infectious diseases through populations, or the effects of environmental factors on individuals.
+
+:::
+
+When we perform statistical analyses, we use data to help us choose between models - specifically, to determine which models best explain that data.
+
+However, physical processes do not produce data on their own. Data is only produced when scientists implement an *observation process* (i.e., a *scientific study*), which is distinct from the underlying *physical process*^[in many cases, the observation process and the physical process interact with each other.].
+
+In order to learn about the physical processes we are ultimately interested in, we often need to make special considerations for the observation process that produced the data which we are analyzing. In particular, if some of the planned observations in the study design were not completed, we will likely need to account for the incompleteness of the resulting data set in our analysis. If we are not sure why some observations are incomplete, we may need to model the observation process in addition to the physical process we were originally interested in. For example, if some participants in a study dropped out part-way through the study, we may need investigate why those participants dropped out, as opposed to other participants who completed the study.
+
+These kinds of *missing data* issues are outside of the scope of this course; see @van2018flexible for more details.
+
 # Estimands, estimates, and estimators
 
 {{< include macros.qmd >}}

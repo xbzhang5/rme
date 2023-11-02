@@ -1412,8 +1412,8 @@ Let's see how we've rearranged the first row of the data:
 ```{r}
 
 bmt1 |> 
-  filter(id == 1) |> 
-  select(id, t1, d1, t2, d2, d3, ta, da, tc, dc, tp, dp)
+  dplyr::filter(id == 1) |> 
+  dplyr::select(id, t1, d1, t2, d2, d3, ta, da, tc, dc, tp, dp)
 ```
 
 The event times for this individual are:
@@ -1437,7 +1437,7 @@ bmt2 |>
     precovery,
     status
   ) |> 
-  filter(id == 1)
+  dplyr::filter(id == 1)
 ```
 
 Note that `status` could have been `1` on the last row, indicating that
