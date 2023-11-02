@@ -290,7 +290,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-09-25: 18:06:29 (PM)</p>
+      <p class="date">Last modified: 2023-10-10: 17:56:59 (PM)</p>
     </div>
   </div>
   
@@ -298,9 +298,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   </div>
   
 
-</header>
-}
-<section id="configuring-r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h3>
+</header><section id="configuring-r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h3>
 <p>Functions from these packages will be used throughout this document:</p>
 <div class="cell" data-hash="parametric-survival-models_cache/html/packages_c2d3f9d2c5b05e72309eb36efec9480f">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span> <span class="co"># format tables for markdown</span></span>
@@ -670,18 +668,18 @@ coxph(formula = surv ~ rx, data = anderson)
 
   n= 42, number of events= 30 
 
-             coef exp(coef) se(coef)      z  Pr(&gt;|z|)    
-rxstandard 1.5721    4.8169   0.4124 3.8122 0.0001378 ***
+            coef exp(coef) se(coef)    z Pr(&gt;|z|)    
+rxstandard 1.572     4.817    0.412 3.81  0.00014 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
            exp(coef) exp(-coef) lower .95 upper .95
-rxstandard    4.8169     0.2076    2.1465    10.809
+rxstandard      4.82      0.208      2.15      10.8
 
 Concordance= 0.69  (se = 0.041 )
-Likelihood ratio test= 16.35  on 1 df,   p=5e-05
-Wald test            = 14.53  on 1 df,   p=1e-04
-Score (logrank) test = 17.25  on 1 df,   p=3e-05</code></pre>
+Likelihood ratio test= 16.4  on 1 df,   p=5e-05
+Wald test            = 14.5  on 1 df,   p=1e-04
+Score (logrank) test = 17.2  on 1 df,   p=3e-05</code></pre>
 </div>
 </div>
 </section><section id="weibull-parametric-model" class="level4"><h4 class="anchored" data-anchor-id="weibull-parametric-model">Weibull parametric model</h4>
@@ -695,12 +693,12 @@ Score (logrank) test = 17.25  on 1 df,   p=3e-05</code></pre>
 <pre><code>
 Call:
 survreg(formula = surv ~ rx, data = anderson, dist = "weibull")
-              Value Std. Error      z        p
-(Intercept)  3.5157     0.2518 13.963  &lt; 2e-16
-rxstandard  -1.2673     0.3106 -4.080 4.51e-05
-Log(scale)  -0.3117     0.1473 -2.116   0.0343
+             Value Std. Error     z       p
+(Intercept)  3.516      0.252 13.96 &lt; 2e-16
+rxstandard  -1.267      0.311 -4.08 4.5e-05
+Log(scale)  -0.312      0.147 -2.12   0.034
 
-Scale= 0.7322 
+Scale= 0.732 
 
 Weibull distribution
 Loglik(model)= -106.6   Loglik(intercept only)= -116.4
@@ -720,9 +718,9 @@ n= 42 </code></pre>
 <pre><code>
 Call:
 survreg(formula = surv ~ rx, data = anderson, dist = "exp")
-              Value Std. Error      z        p
-(Intercept)  3.6861     0.3333 11.058  &lt; 2e-16
-rxstandard  -1.5266     0.3984 -3.832 0.000127
+             Value Std. Error     z       p
+(Intercept)  3.686      0.333 11.06 &lt; 2e-16
+rxstandard  -1.527      0.398 -3.83 0.00013
 
 Scale fixed at 1 
 

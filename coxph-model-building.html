@@ -371,7 +371,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-09-25: 18:06:29 (PM)</p>
+      <p class="date">Last modified: 2023-11-02: 17:41:25 (PM)</p>
     </div>
   </div>
   
@@ -1956,10 +1956,10 @@ GLOBAL     3.747  5 0.59</code></pre>
 </details>
 </div>
 <p>Let’s see how we’ve rearranged the first row of the data:</p>
-<div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-56_f0736f664c4d8b734aaac385e417a431">
+<div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-56_15bc1177d1eacd511606b01052e15bb0">
 <details><summary>Code</summary><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt1</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">t1</span>, <span class="va">d1</span>, <span class="va">t2</span>, <span class="va">d2</span>, <span class="va">d3</span>, <span class="va">ta</span>, <span class="va">da</span>, <span class="va">tc</span>, <span class="va">dc</span>, <span class="va">tp</span>, <span class="va">dp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">t1</span>, <span class="va">d1</span>, <span class="va">t2</span>, <span class="va">d2</span>, <span class="va">d3</span>, <span class="va">ta</span>, <span class="va">da</span>, <span class="va">tc</span>, <span class="va">dc</span>, <span class="va">tp</span>, <span class="va">dp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -2007,7 +2007,7 @@ GLOBAL     3.747  5 0.59</code></pre>
 <code>t2</code> = 2081 end of study, patient not relapsed or dead</li>
 </ul>
 <p>After converting the data to long-format, we have:</p>
-<div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-57_873b423fe49185387b82fad79506c2a8">
+<div class="cell" data-hash="coxph-model-building_cache/html/unnamed-chunk-57_11c052c349cc847d7e1930c1fecfd9f1">
 <details><summary>Code</summary><div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bmt2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
 <span>    <span class="va">id</span>,</span>
@@ -2018,7 +2018,7 @@ GLOBAL     3.747  5 0.59</code></pre>
 <span>    <span class="va">precovery</span>,</span>
 <span>    <span class="va">status</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -4456,8 +4456,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb93-1506"><a href="#cb93-1506" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb93-1509"><a href="#cb93-1509" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb93-1510"><a href="#cb93-1510" aria-hidden="true" tabindex="-1"></a>bmt1 <span class="sc">|&gt;</span> </span>
-<span id="cb93-1511"><a href="#cb93-1511" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb93-1512"><a href="#cb93-1512" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, t1, d1, t2, d2, d3, ta, da, tc, dc, tp, dp)</span>
+<span id="cb93-1511"><a href="#cb93-1511" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb93-1512"><a href="#cb93-1512" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(id, t1, d1, t2, d2, d3, ta, da, tc, dc, tp, dp)</span>
 <span id="cb93-1513"><a href="#cb93-1513" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb93-1514"><a href="#cb93-1514" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb93-1515"><a href="#cb93-1515" aria-hidden="true" tabindex="-1"></a>The event times for this individual are:</span>
@@ -4481,7 +4481,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb93-1535"><a href="#cb93-1535" aria-hidden="true" tabindex="-1"></a>    precovery,</span>
 <span id="cb93-1536"><a href="#cb93-1536" aria-hidden="true" tabindex="-1"></a>    status</span>
 <span id="cb93-1537"><a href="#cb93-1537" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb93-1538"><a href="#cb93-1538" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb93-1538"><a href="#cb93-1538" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">1</span>)</span>
 <span id="cb93-1539"><a href="#cb93-1539" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb93-1540"><a href="#cb93-1540" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb93-1541"><a href="#cb93-1541" aria-hidden="true" tabindex="-1"></a>Note that <span class="in">`status`</span> could have been <span class="in">`1`</span> on the last row, indicating that</span>
