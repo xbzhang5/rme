@@ -1,6 +1,6 @@
 ---
 title: "Models for Count Outcomes"
-subtitle: "(Poisson Regression and Variations)"
+subtitle: "Poisson regression and variations"
 ---
 
 {{< include shared-config.qmd >}}

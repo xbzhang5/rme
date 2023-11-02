@@ -1,5 +1,6 @@
 ---
-title: "Logistic Regression"
+title: "Models for Binary Outcomes"
+subtitle: "Logistic regression and variations"
 ---
 
 {{< include shared-config.qmd >}}
