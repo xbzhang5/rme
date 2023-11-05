@@ -1443,7 +1443,7 @@ be solved analytically.
 
 Instead, we have to use a variant of the Newton-Raphson method, which
 was discussed briefly in Epi 203. We won't go over it in this class; if
-you need to learn it, see Chapter 4 of Dobson and Barnett.
+you need to learn it, see @dobson2018introduction, Chapter 4.
 
 For now, all you need to know is that we make an iterative series of
 guesses, and each guess helps us make the next guess better (higher
