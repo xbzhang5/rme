@@ -50,7 +50,7 @@ library(pander)
 
 **Logistic regression** is a framework for modeling [binary](probability.qmd#def-binary) outcomes, conditional on one or more *predictors* (a.k.a. *covariates*).
 
-Examples of binary variables include:
+Examples of binary outcomes include:
 
 * exposure (exposed vs unexposed)
 * disease (diseased vs healthy)
@@ -289,9 +289,23 @@ odds_plot = ggplot() +
   xlab("Probability") +
   ylab("Odds") +
   geom_abline(aes(intercept = 0, slope = 1, col = "y=x")) + 
-  theme_bw()
+  theme_bw() +
+  labs(colour = "") +
+  theme(legend.position = "bottom")
+```
+
+::: {.content-visible when-format="pdf"}
+```{r}
 print(odds_plot)
 ```
+:::
+
+::: {.content-visible when-format="html"}
+```{r}
+plotly::ggplotly(odds_plot) |>  
+  plotly::layout(legend = list(orientation = 'h'))
+```
+:::
 
 :::{#exm-odds}
 ## Calculating odds
