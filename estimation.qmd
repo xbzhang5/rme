@@ -37,7 +37,7 @@ These kinds of *missing data* issues are outside of the scope of this course; se
 ::: {#def-estimand}
 ## Estimand
 
-An **estimand** is an unknown quantity whose value we want to know.^[c.f., @pohl2021estimands]
+An **estimand** is an unknown quantity whose value we want to know.^[c.f., @pohl2021estimands, @lawrance2020estimand]
 
 ::: {#exm-estimand}
 ## Mean height of students
