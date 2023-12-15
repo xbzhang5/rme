@@ -208,7 +208,8 @@ $$
 
 :::{#def-RR}
 ## Relative risk ratios
-The **relative risk** of two probabilities $\pi_1$ and $\pi_2$, also called the **risk ratio**, is the ratio of those probabilities:
+
+The **relative risk** of probability $\pi_1$ compared to another probability $\pi_2$, also called the **risk ratio**, **relative risk ratio**, **probability ratio**, or **rate ratio**, is the ratio of those probabilities:
 
 $$\rho(\pi_1,\pi_2) = \frac{\pi_1}{\pi_2}$$
 :::
@@ -222,20 +223,36 @@ $$\hat{p}(MI|\neg OC) = `r 7/10000`$$
 
 So we might estimate that the *relative risk* of MI for OC versus non-OC is:
 
+```{r}
+rr = (13/5000)/(7/10000)
+```
+
+
 $$
 \begin{aligned}
 \hat\rho(OC, \neg OC)
 &=\frac{\hat{p}(MI|OC)}{\hat{p}(MI|\neg OC)}\\
 &= \frac{`r 13/5000`}{`r 7/10000`}\\
-&= `r (13/5000)/(7/10000)`
+&= `r rr`
 \end{aligned}
 $$
+
+We might summarize this result by saying that "the estimated probability of MI among OC users was `r rr` as high as the estimated probability among OC non-users. 
 
 :::
 
 :::::
 
-Both risk differences and risk ratios are defined by two probabilities, plus a choice of which probability is the **baseline** or **reference** probability (i.e., which probability is the subtrahend of the risk difference or the denominator of the risk ratio). To switch which one is the reference probability, invert the ratio and multiply the difference by -1.
+Sometimes, we divide the risk difference by the comparison probability, or equivalently, subtract 1 from the risk ratio; the result is called the **relative risk difference**:
+
+$$
+\begin{aligned}
+\xi(\pi_1,\pi_2) 
+&= \frac{\pi_1-\pi_2}{\pi_2}\\
+&= \frac{\pi_1}{\pi_2} - 1
+\end{aligned}$$
+
+Risk differences, risk ratios, and relative risk differences are defined by two probabilities, plus a choice of which probability is the **baseline** or **reference** probability (i.e., which probability is the subtrahend of the risk difference or the denominator of the risk ratio). To switch which one is the reference probability, invert the ratio and multiply the difference by -1.
 
 :::{#exm-ref}
 Above, we estimated that the risk ratio of OC versus non-OC is:
@@ -1980,16 +1997,6 @@ Hard to tell much from so little data, but there might be some issues
 here.
 
 # Odds Ratios vs Probability (Risk) Ratios {#sec-OR-RR}
-
-::: {#def-rr}
-## Relative risk
-
-The **relative risk** comparing two probabilities $\pi_1$ and $\pi_2$,
-also known as the **risk ratio**, **relative risk ratio**, **probability
-ratio**, and **rate ratio**, is:
-
-$$\rho(1,2) \eqdef \frac{\pi_1}{\pi_2}$$
-:::
 
 ### Case 1: rare events
 
