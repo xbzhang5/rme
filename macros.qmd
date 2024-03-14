@@ -11,6 +11,9 @@
 \def\ea{\end{aligned}}
 \def\e{\epsilon}
 \def\om{\omega}
+\providecommand{\red}[1]{{\color{red}#1}}
+\providecommand{\blue}[1]{{\color{blue}#1}}
+\providecommand{\green}[1]{{\color{green}#1}}
 \providecommand{\cbl}[1]{\left\{#1\right.}
 \providecommand{\cb}[1]{\left\{#1\right\}}
 \providecommand{\paren}[1]{\left(#1\right)}
