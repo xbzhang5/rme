@@ -1203,8 +1203,8 @@ chd_plot_probs =
 ```{r}
 #| label: fig-chd-graph-prob-scale-interactive
 #| fig-cap: "CHD rates by age group, probability scale"
-# ggplotly(chd_plot_probs)
-print(chd_plot_probs)
+ggplotly(chd_plot_probs)
+# print(chd_plot_probs)
 ```
 :::
 
