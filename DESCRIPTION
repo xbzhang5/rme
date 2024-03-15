@@ -34,3 +34,4 @@ Imports:
 Suggests: 
     tidyverse
 RoxygenNote: 7.2.3
+License: MIT + file LICENSE
