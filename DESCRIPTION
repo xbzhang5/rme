@@ -19,6 +19,7 @@ Imports:
     ggeasy,
     ggfortify,
     ggplot2,
+    glmx,
     haven,
     kableExtra,
     KMsurv,

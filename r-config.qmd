@@ -5,5 +5,5 @@ library(pander)
 library(printr)
 panderOptions("big.mark", ",")
 library(conflicted)
-conflicts_prefer(plotly::filter)
+conflicts_prefer(dplyr::filter)
 ```
