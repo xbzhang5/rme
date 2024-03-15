@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/d-morrison/rme/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/d-morrison/rme/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
