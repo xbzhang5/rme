@@ -1,9 +1,9 @@
 ```{r}
 #| label: r-config
 #| include: FALSE
-library(pander)
-library(printr)
-panderOptions("big.mark", ",")
-library(conflicted)
-conflicts_prefer(dplyr::filter)
+# library(pander)
+# library(printr)
+# panderOptions("big.mark", ",")
+# library(conflicted)
+# conflicts_prefer(plotly::filter)
 ```

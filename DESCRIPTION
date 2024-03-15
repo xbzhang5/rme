@@ -10,12 +10,14 @@ Authors@R:
 Description: Lecture notes for Epi 204 @ UC Davis
 Encoding: UTF-8
 Imports: 
+    fs
+Suggests: 
+    tidyverse,
     conflicted,
     cvTools,
     dobson,
     dplyr,
     eha,
-    fs,
     ggeasy,
     ggfortify,
     ggplot2,
@@ -31,6 +33,5 @@ Imports:
     printr,
     survminer,
     tidyr
-Suggests: 
-    tidyverse
 RoxygenNote: 7.2.3
+License: MIT + file LICENSE

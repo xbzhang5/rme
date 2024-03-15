@@ -1157,7 +1157,7 @@ type (`dibpat`). To make it easier to visualize the data, we summarize
 the event rates for each combination of age:
 
 ```{r}
-
+#| label: "event rates by age"
 chd_grouped_data = 
   wcgs |> 
   summarize(
@@ -1201,12 +1201,17 @@ chd_plot_probs =
 
 ::: {.content-visible when-format="html"}
 ```{r}
+#| label: fig-chd-graph-prob-scale-interactive
+#| fig-cap: "CHD rates by age group, probability scale"
 ggplotly(chd_plot_probs)
+# print(chd_plot_probs)
 ```
 :::
 
 ::: {.content-visible when-format="pdf"}
 ```{r}
+#| label: fig-chd-graph-prob-scale-static
+#| fig-cap: "CHD rates by age group, probability scale"
 print(chd_plot_probs)
 ```
 :::
@@ -1214,6 +1219,8 @@ print(chd_plot_probs)
 ### Odds scale
 
 ```{r}
+#| label: fig-chd-odds-scale
+#| fig-cap: "CHD rates by age group, odds scale"
 chd_plot_odds = 
   chd_grouped_data |> 
   ggplot(

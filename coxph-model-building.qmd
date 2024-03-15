@@ -261,7 +261,7 @@ par(mfrow = c(1,1)) # reset the paneling
 ```
 
 ```{r}
-
+#| label: survminer-1
 temp1 = 
   km_model |>
   survminer::ggsurvplot(
@@ -310,6 +310,7 @@ temp =
 Also known as "complementary log-log (clog-log) survival curves".
 
 ```{r}
+#| label: fig-cloglog-na
 #| fig-cap: "Complementary log-log survival curves - Nelson-Aalen estimates"
 
 na_model = survfit(
@@ -317,7 +318,8 @@ na_model = survfit(
   data = hodg2,
   type = "fleming")
 
-na_model |> survminer::ggsurvplot(
+na_model |> 
+  survminer::ggsurvplot(
   legend = "bottom", 
   legend.title = "",
   ylab = "log(Cumulative Hazard)",
@@ -326,7 +328,8 @@ na_model |> survminer::ggsurvplot(
   size = .5,
   ggtheme = theme_bw(),
   conf.int = FALSE, 
-  censor = TRUE) +
+  censor = TRUE) |>  
+  magrittr::extract2("plot") +
   guides(
     col = 
       guide_legend(
@@ -342,6 +345,7 @@ Let's compare these empirical (i.e., non-parametric) curves with the
 fitted curves from our `coxph()` model:
 
 ```{r}
+#| label: fig-cloglog-ph
 #| fig-cap: "Complementary log-log survival curves - PH estimates"
 
 cox_model |> 
@@ -355,7 +359,8 @@ cox_model |>
     size = .5,
     ggtheme = theme_bw(),
     censor = FALSE, # doesn't make sense for cox model
-    conf.int = FALSE) + 
+    conf.int = FALSE) |>  
+  magrittr::extract2("plot") +
   guides(
     col = 
       guide_legend(
@@ -369,6 +374,7 @@ cox_model |>
 Now let's overlay these cumulative hazard curves:
 
 ```{r}
+#| label: fig-bmt-cumhaz
 #| fig-cap: "Observed and expected cumulative hazard curves for `bmt` data (cloglog format)"
 
 na_and_cph = 

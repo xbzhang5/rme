@@ -32,7 +32,7 @@ knitr::opts_chunk$set(message = FALSE)
 knitr::opts_chunk$set(warning = FALSE)
 pander::panderOptions("table.emphasize.rownames", FALSE)
 options('digits' = 4)
-conflicts_prefer(dplyr::filter)
+conflicts_prefer(plotly::filter)
 conflicts_prefer(ggplot2::autoplot)
 ```
 
