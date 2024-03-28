@@ -500,3 +500,35 @@ survfit(
 ```
 
 If the cloglog plot is linear, then a Weibull model may be ok.
+
+# Combining left-truncation and interval-censoring
+
+From [https://stat.ethz.ch/pipermail/r-help/2015-August/431735.html]:
+
+> As usual I'm a day late since I read digests, and Goran has already clarified things.  A
+> discussion of this is badly needed in my as yet unwrritten book on using the survival
+> package.  From a higher level view:
+>    If an observation is interval censored (a,b) then one knows that the event happened
+> between time "a" and time "b", but not when.  The survreg routine can handle interval
+> censored data since it is parametric (you need to integrate over the interval).  The
+> interval (-infinity, b) is called 'left censored' and the interval (a, infinity) is 'right
+> censored'.  Left censored data is rare in medical work, an example might be a chronic
+> disease like rhuematoid arthritis where we know that the true disease onset was some time
+> before the date it was first detected, and one is trying to deduce the duration of disease.
+> 
+>    Left truncation at time 'a' means that any events before time "a" are not in the data
+> set.  In a referral center like mine this includes any subjects who die before they come
+> to us.  The coxph model handles left truncation naturally via its counting process
+> formulation.  That same formulation also allows it to deal with time dependent
+> covariates.   Accelerated failure time models like survreg can handle left truncation in
+> principle, but they require that the values of any covariates are known from time 0 --
+> even for a truncated subject.   I have never added left-truncation to the survreg code,
+> mostly because I have never needed it myself, but also because users would immediately
+> think that they could accomplish time-dependent covariates by simply using a long format
+> data set. Rather, each subject needs to be linked to a full covariate history, which is a
+> bit more work.
+> 
+>   So:  coxph does left truncation but not left (or interval) censoring
+>        survreg does interval censoring but not left truncation (or time dependent covariates).
+
+ - Terry Therneau, August 31, 2015

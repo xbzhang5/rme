@@ -1534,6 +1534,14 @@ bmt2 =
 
 ```
 
+Let's see how the data looks for patient 15:
+
+```{r}
+bmt1 |> dplyr::filter(id == 15) |> dplyr::select(tp, dp, tc,dc, ta, da, FAB, surv, t1, d1, t2, d2, d3)
+bmt2 |> dplyr::filter(id == 15) |> dplyr::select(id, agvhd, cgvhd, precovery, surv)
+```
+
+
 ## Model with Time-Dependent Covariates
 
 ```{r}

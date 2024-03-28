@@ -296,7 +296,7 @@ This function, which transforms probabilities into odds, is called the **odds fu
 ```{r}
 #| code-fold: true
 #| label: fig-odds-probs
-#| fig-cap: Odds versus probability
+#| fig-cap: "Odds versus probability"
 
 odds = function(pi) pi/(1-pi)
 library(ggplot2)
