@@ -1254,8 +1254,7 @@ cox.zph(anderson.coxph.intxn)
 
 # Time-varying covariates
 
-(adapted from Klein and Moeschberger 2003, §9.2:
-https://link.springer.com/book/10.1007/b97377)
+(adapted from @klein2003survival, §9.2)
 
 ## Motivating example: back to the leukemia dataset
 
@@ -1296,7 +1295,7 @@ One or the other, both in either order, or neither may occur.
 
 ### Preprocessing
 
-We add reformat the data before analysis:
+We reformat the data before analysis:
 
 ```{r}
 # reformat the data:

@@ -1,0 +1,16 @@
+---
+title: "notation"
+format: html
+editor: visual
+---
+
+| symbol | meaning | latex
+|--------|---------|-----------
+| $\neg$ | not     | `\neg`
+| $\forall$ | all     | `\forall`
+| $\exists$ | some | `\exists`
+| $\cup$ | union, "or" | `\cup`
+| $\cap$ | intersection, "and" | `\cap`
+| $\mid$ | given, conditional on | `\mid`, `|`
+| $\sum$ | sum | `\sum`
+| $\prod$ | product | `\prod`

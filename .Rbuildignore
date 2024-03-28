@@ -9,3 +9,4 @@ _freeze/
 .*_cache/
 .*_files/
 ^\.github$
+^README\.Rmd$
