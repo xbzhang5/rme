@@ -9,5 +9,5 @@ If a patient has not relapsed by that point, we might not know if they will rela
 Their recurrence status at end-of-life is *missing data*.
 If some study participants withdraw from a study before the end date in the study design, there will be even more missing data. All of this missing data will make logistic regression difficult for this type of data.
 
-However, the data is not *entirely* missing. We know that those patients stayed relapse free *at least* until the time point when we last saw them.
+However, these outcome observations are not *entirely* missing. We know that those patients stayed relapse free *at least* until the time point when we last saw them.
 If we also know the *time-to-event* for the participants who did experience events while under study, we can analyze *time-to-event-or-study-exit*, combined with the indicator of which of these two cases occurred, using *survival analysis*. The survival analysis framework is the subject of the rest of these course notes.
