@@ -71,7 +71,7 @@ format:
     df-print: tibble
     documentclass: scrbook
     classoption: [twoside=off]
-    shift-heading-level-by: 1
+    shift-heading-level-by: 0
     toc-depth: 2
     number-sections: true
     number-depth: 3

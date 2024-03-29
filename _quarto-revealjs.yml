@@ -16,10 +16,13 @@ project:
 format:
   revealjs:
     theme: dark
+    embed-resources: true
     fig-cap-location: top
     html-math-method: mathjax
     smaller: false
     number-sections: true
+    progress: true
+    incremental: false
     number-depth: 2
     slide-number: true
     slide-level: 2
