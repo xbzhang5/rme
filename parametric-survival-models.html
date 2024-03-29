@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Regression Models for Epidemiology - 8&nbsp; Parametric survival models</title>
 <style>
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -78,7 +78,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -87,6 +93,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -103,30 +110,59 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   "openSidebar": false,
   "enableExperimentalNewNoteButton": true
 }
-</script><script async="" src="https://hypothes.is/embed.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="custom.scss">
+</script><script async="" src="https://hypothes.is/embed.js"></script><script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="custom.scss">
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./time-to-event-models.html">Time to Event Models</a></li><li class="breadcrumb-item"><a href="./parametric-survival-models.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Parametric survival models</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./time-to-event-models.html">Time to Event Models</a></li><li class="breadcrumb-item"><a href="./parametric-survival-models.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Parametric survival models</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Regression Models for Epidemiology</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/d-morrison/rme" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Regression-Models-for-Epidemiology.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/d-morrison/rme" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Regression-Models-for-Epidemiology.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -173,7 +209,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Models for Binary Outcomes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -256,7 +292,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -273,10 +309,11 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   <li><a href="#dataset-leukemia-treatments" id="toc-dataset-leukemia-treatments" class="nav-link" data-scroll-target="#dataset-leukemia-treatments"><span class="header-section-number">8.1.5</span> Dataset: Leukemia treatments</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/d-morrison/rme/edit/main/parametric-survival-models.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  <li><a href="#combining-left-truncation-and-interval-censoring" id="toc-combining-left-truncation-and-interval-censoring" class="nav-link" data-scroll-target="#combining-left-truncation-and-interval-censoring"><span class="header-section-number">8.2</span> Combining left-truncation and interval-censoring</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rme/edit/main/parametric-survival-models.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./time-to-event-models.html">Time to Event Models</a></li><li class="breadcrumb-item"><a href="./parametric-survival-models.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Parametric survival models</span></a></li></ol></nav><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">
 <span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Parametric survival models</span>
 </h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
@@ -290,7 +327,7 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2023-10-10: 17:56:59 (PM)</p>
+      <p class="date">Last modified: 2024-03-28: 16:35:11 (PM)</p>
     </div>
   </div>
   
@@ -298,10 +335,11 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
   </div>
   
 
+
 </header><section id="configuring-r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h3>
 <p>Functions from these packages will be used throughout this document:</p>
-<div class="cell" data-hash="parametric-survival-models_cache/html/packages_c2d3f9d2c5b05e72309eb36efec9480f">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span> <span class="co"># format tables for markdown</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span> <span class="co"># format tables for markdown</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span> <span class="co"># graphics</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jonocarroll/ggeasy">ggeasy</a></span><span class="op">)</span> <span class="co"># help with graphics</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span> <span class="co"># manipulate data</span></span>
@@ -316,8 +354,8 @@ gtag('config', 'G-W625DGE908', { 'anonymize_ip': true});
 </details>
 </div>
 <p>Here are some R settings I use in this document:</p>
-<div class="cell" data-hash="parametric-survival-models_cache/html/options_6b3e12a50b5fe69d365dc2e450d33c1b">
-<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># delete any data that's already loaded into R</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># delete any data that's already loaded into R</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>message <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu">pander</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pander/man/panderOptions.html">panderOptions</a></span><span class="op">(</span><span class="st">"table.emphasize.rownames"</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">'digits'</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -371,16 +409,19 @@ Note
 <li><p><span class="math inline">\(\Gamma(t) = (t-1)!\)</span> for integers <span class="math inline">\(t \in \mathbb Z\)</span></p></li>
 <li><p>It is implemented by the <code><a href="https://rdrr.io/r/base/Special.html">gamma()</a></code> function in R.</p></li>
 </ul>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-2_63e3bbc6331ab611c86996be31c1424f">
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 </div>
 <p>Here are some Weibull density functions, with <span class="math inline">\(\lambda = 1\)</span> and <span class="math inline">\(p\)</span> varying:</p>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-3_ca24d5a808ccd16cadfca577f143b859">
-<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="va">lambda</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">geom_function</a></span><span class="op">(</span></span>
@@ -415,7 +456,7 @@ Note
 <span>            size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><figcaption class="figure-caption">Density functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><figcaption>Density functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -429,8 +470,8 @@ Note
 <p><strong>In HW: prove these properties</strong></p>
 <p>This distribution provides more flexibility than the exponential.</p>
 <p>Here are some Weibull hazard functions, with <span class="math inline">\(\lambda = 1\)</span> and <span class="math inline">\(p\)</span> varying:</p>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-4_1ed4dd11cbd21ef3d73ee942ef75e01d">
-<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ehar.se/r/eha/">eha</a></span><span class="op">)</span></span>
 <span><span class="va">lambda</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span></span>
@@ -464,13 +505,13 @@ Note
 <span>            size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><figcaption class="figure-caption">Hazard functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><figcaption>Hazard functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-5_0fc268f48e2507793b1b8f1b26b56e4f">
-<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="va">lambda</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -503,7 +544,7 @@ Note
 <span>            size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><figcaption class="figure-caption">Survival functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><figcaption>Survival functions for Weibull distribution</figcaption><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -624,8 +665,8 @@ Y&amp;=\alpha-\sigma\eta+\sigma W\\
 <span class="header-section-number">8.1.5</span> Dataset: Leukemia treatments</h3>
 <p>Remission survival times on 42 leukemia patients, half on new treatment, half on standard treatment.</p>
 <p>This is the same data as the <code>drug6mp</code> data from KMsurv, but with two other variables and without the pairing.</p>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-6_5eb42bd689597b7f1e78b0e47cde2008">
-<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span>
 <span><span class="va">anderson</span> <span class="op">=</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
@@ -657,8 +698,8 @@ Y&amp;=\alpha-\sigma\eta+\sigma W\\
 </details>
 </div>
 <section id="cox-semi-parametric-model" class="level4"><h4 class="anchored" data-anchor-id="cox-semi-parametric-model">Cox semi-parametric model</h4>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-8_dd0aaf09347ae8cf9fd127edfad61130">
-<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.cox0</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.cox0</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">anderson</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">anderson.cox0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -683,8 +724,8 @@ Score (logrank) test = 17.2  on 1 df,   p=3e-05</code></pre>
 </div>
 </div>
 </section><section id="weibull-parametric-model" class="level4"><h4 class="anchored" data-anchor-id="weibull-parametric-model">Weibull parametric model</h4>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-9_a7bc50826cd082df65a76e8de130f7e8">
-<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.weib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survreg.html">survreg</a></span><span class="op">(</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.weib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survreg.html">survreg</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">anderson</span>,</span>
 <span>  dist <span class="op">=</span> <span class="st">"weibull"</span><span class="op">)</span></span>
@@ -708,8 +749,8 @@ n= 42 </code></pre>
 </div>
 </div>
 </section><section id="exponential-parametric-model" class="level4"><h4 class="anchored" data-anchor-id="exponential-parametric-model">Exponential parametric model</h4>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-10_4b8bfbe527e340d5e5a00e7724122a58">
-<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.exp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survreg.html">survreg</a></span><span class="op">(</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anderson.exp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survreg.html">survreg</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">anderson</span>,</span>
 <span>  dist <span class="op">=</span> <span class="st">"exp"</span><span class="op">)</span></span>
@@ -732,22 +773,36 @@ n= 42 </code></pre>
 </div>
 </div>
 </section><section id="diagnostic---complementary-log-log-survival-plot" class="level4"><h4 class="anchored" data-anchor-id="diagnostic---complementary-log-log-survival-plot">Diagnostic - complementary log-log survival plot</h4>
-<div class="cell" data-hash="parametric-survival-models_cache/html/unnamed-chunk-11_1a0fda72f11ed8638ebf981d7d02a928">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span></span>
+<div class="cell">
+<details class="code-fold"><summary>Show R code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">surv</span> <span class="op">~</span> <span class="va">rx</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">anderson</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="st">"cloglog"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="parametric-survival-models_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>If the cloglog plot is linear, then a Weibull model may be ok.</p>
+</section></section></section><section id="combining-left-truncation-and-interval-censoring" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="combining-left-truncation-and-interval-censoring">
+<span class="header-section-number">8.2</span> Combining left-truncation and interval-censoring</h2>
+<p>From [https://stat.ethz.ch/pipermail/r-help/2015-August/431733.html]:</p>
+<blockquote class="blockquote">
+<p>As usual I’m a day late since I read digests, and Goran has already clarified things. A discussion of this is badly needed in my as yet unwrritten book on using the survival package. From a higher level view: If an observation is interval censored (a,b) then one knows that the event happened between time “a” and time “b”, but not when. The survreg routine can handle interval censored data since it is parametric (you need to integrate over the interval). The interval (-infinity, b) is called ‘left censored’ and the interval (a, infinity) is ‘right censored’. Left censored data is rare in medical work, an example might be a chronic disease like rhuematoid arthritis where we know that the true disease onset was some time before the date it was first detected, and one is trying to deduce the duration of disease.</p>
+<p>Left truncation at time ‘a’ means that any events before time “a” are not in the data set. In a referral center like mine this includes any subjects who die before they come to us. The coxph model handles left truncation naturally via its counting process formulation. That same formulation also allows it to deal with time dependent covariates. Accelerated failure time models like survreg can handle left truncation in principle, but they require that the values of any covariates are known from time 0 – even for a truncated subject. I have never added left-truncation to the survreg code, mostly because I have never needed it myself, but also because users would immediately think that they could accomplish time-dependent covariates by simply using a long format data set. Rather, each subject needs to be linked to a full covariate history, which is a bit more work.</p>
+<p>So: coxph does left truncation but not left (or interval) censoring survreg does interval censoring but not left truncation (or time dependent covariates).</p>
+</blockquote>
+<ul>
+<li>Terry Therneau, August 31, 2015</li>
+</ul>
 
 
 <!-- -->
 
-</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -788,6 +843,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -856,13 +938,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -992,10 +1076,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1005,8 +1106,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1018,7 +1128,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1062,6 +1295,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1087,6 +1321,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1146,12 +1406,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./coxph-model-building.html" class="pagination-link">
+      <a href="./coxph-model-building.html" class="pagination-link" aria-label="Building Cox Proportional Hazards models">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Building Cox Proportional Hazards models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
+      <a href="./references.html" class="pagination-link" aria-label="References">
         <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1167,27 +1427,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>Functions from these packages will be used throughout this document:</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r packages, message = FALSE}</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander) <span class="co"># format tables for markdown</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># graphics</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeasy) <span class="co"># help with graphics</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># manipulate data</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven) <span class="co"># import Stata files</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># format R output for markdown</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># Tools to help to create tidy data</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly) <span class="co"># interactive graphics</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dobson) <span class="co"># datasets from Dobson and Barnett 2018</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters) <span class="co"># format model output tables for markdown</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted) <span class="co"># check for conflicting function definitions</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="fu">conflicts_prefer</span>(dplyr<span class="sc">::</span>filter)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(pander) # format tables for markdown</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2) # graphics</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggeasy) # help with graphics</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="in">library(dplyr) # manipulate data</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="in">library(haven) # import Stata files</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="in">library(knitr) # format R output for markdown</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyr) # Tools to help to create tidy data</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="in">library(plotly) # interactive graphics</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="in">library(dobson) # datasets from Dobson and Barnett 2018</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="in">library(parameters) # format model output tables for markdown</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="in">library(conflicted) # check for conflicting function definitions</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="in">conflicts_prefer(dplyr::filter)</span></span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>Here are some R settings I use in this document:</span>
 <span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r options, message=FALSE}</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># delete any data that's already loaded into R</span></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>pander<span class="sc">::</span><span class="fu">panderOptions</span>(<span class="st">"table.emphasize.rownames"</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">'digits'</span> <span class="ot">=</span> <span class="dv">4</span>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="in">rm(list = ls()) # delete any data that's already loaded into R</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message = FALSE)</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="in">pander::panderOptions("table.emphasize.rownames", FALSE)</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="in">options('digits' = 4)</span></span>
 <span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
@@ -1236,16 +1496,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>It is implemented by the <span class="in">`gamma()`</span> function in R.</span>
 <span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo = FALSE}</span></span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> gamma) <span class="sc">+</span></span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> <span class="fu">gamma</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">1</span>,<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"t"</span>) <span class="sc">+</span></span>
-<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">Gamma</span>(t))) <span class="sc">+</span> </span>
-<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)</span></span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot() + </span></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_function(fun = gamma) +</span></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point(aes(x = 1:5, y = gamma(1:5))) +</span></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a><span class="in">  xlim(1,5) +</span></span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a><span class="in">  xlab("t") +</span></span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a><span class="in">  ylab(expression(Gamma(t))) + </span></span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_bw() + </span></span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(axis.title.y = element_text(angle=0)) +</span></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="in">  expand_limits(y = 0)</span></span>
 <span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>:::</span>
@@ -1657,6 +1917,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb14-517"><a href="#cb14-517" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb14-518"><a href="#cb14-518" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-519"><a href="#cb14-519" aria-hidden="true" tabindex="-1"></a>If the cloglog plot is linear, then a Weibull model may be ok.</span>
+<span id="cb14-520"><a href="#cb14-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-521"><a href="#cb14-521" aria-hidden="true" tabindex="-1"></a><span class="fu"># Combining left-truncation and interval-censoring</span></span>
+<span id="cb14-522"><a href="#cb14-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-523"><a href="#cb14-523" aria-hidden="true" tabindex="-1"></a>From <span class="co">[</span><span class="ot">https://stat.ethz.ch/pipermail/r-help/2015-August/431733.html</span><span class="co">]</span>:</span>
+<span id="cb14-524"><a href="#cb14-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-525"><a href="#cb14-525" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; As usual I'm a day late since I read digests, and Goran has already clarified things.  A</span></span>
+<span id="cb14-526"><a href="#cb14-526" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; discussion of this is badly needed in my as yet unwrritten book on using the survival</span></span>
+<span id="cb14-527"><a href="#cb14-527" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; package.  From a higher level view:</span></span>
+<span id="cb14-528"><a href="#cb14-528" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;    If an observation is interval censored (a,b) then one knows that the event happened</span></span>
+<span id="cb14-529"><a href="#cb14-529" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; between time "a" and time "b", but not when.  The survreg routine can handle interval</span></span>
+<span id="cb14-530"><a href="#cb14-530" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; censored data since it is parametric (you need to integrate over the interval).  The</span></span>
+<span id="cb14-531"><a href="#cb14-531" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; interval (-infinity, b) is called 'left censored' and the interval (a, infinity) is 'right</span></span>
+<span id="cb14-532"><a href="#cb14-532" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; censored'.  Left censored data is rare in medical work, an example might be a chronic</span></span>
+<span id="cb14-533"><a href="#cb14-533" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; disease like rhuematoid arthritis where we know that the true disease onset was some time</span></span>
+<span id="cb14-534"><a href="#cb14-534" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; before the date it was first detected, and one is trying to deduce the duration of disease.</span></span>
+<span id="cb14-535"><a href="#cb14-535" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span></span>
+<span id="cb14-536"><a href="#cb14-536" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;    Left truncation at time 'a' means that any events before time "a" are not in the data</span></span>
+<span id="cb14-537"><a href="#cb14-537" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; set.  In a referral center like mine this includes any subjects who die before they come</span></span>
+<span id="cb14-538"><a href="#cb14-538" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; to us.  The coxph model handles left truncation naturally via its counting process</span></span>
+<span id="cb14-539"><a href="#cb14-539" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; formulation.  That same formulation also allows it to deal with time dependent</span></span>
+<span id="cb14-540"><a href="#cb14-540" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; covariates.   Accelerated failure time models like survreg can handle left truncation in</span></span>
+<span id="cb14-541"><a href="#cb14-541" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; principle, but they require that the values of any covariates are known from time 0 --</span></span>
+<span id="cb14-542"><a href="#cb14-542" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; even for a truncated subject.   I have never added left-truncation to the survreg code,</span></span>
+<span id="cb14-543"><a href="#cb14-543" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; mostly because I have never needed it myself, but also because users would immediately</span></span>
+<span id="cb14-544"><a href="#cb14-544" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; think that they could accomplish time-dependent covariates by simply using a long format</span></span>
+<span id="cb14-545"><a href="#cb14-545" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; data set. Rather, each subject needs to be linked to a full covariate history, which is a</span></span>
+<span id="cb14-546"><a href="#cb14-546" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; bit more work.</span></span>
+<span id="cb14-547"><a href="#cb14-547" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span></span>
+<span id="cb14-548"><a href="#cb14-548" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;   So:  coxph does left truncation but not left (or interval) censoring</span></span>
+<span id="cb14-549"><a href="#cb14-549" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;        survreg does interval censoring but not left truncation (or time dependent covariates).</span></span>
+<span id="cb14-550"><a href="#cb14-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-551"><a href="#cb14-551" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Terry Therneau, August 31, 2015</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -1670,7 +1962,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/rme/edit/main/parametric-survival-models.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
