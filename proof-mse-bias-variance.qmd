@@ -1,6 +1,5 @@
-
 Let's start by expanding each term of the right-hand side:
-\
+
 $$
 \ba
 \sqf{\bias{\hth}}
@@ -37,3 +36,4 @@ $$
 $\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ both equal $\E{\hth^2} - 2\E{\hth}\th+\th^2$. Equality is transitive, so $\mselr{\hth}$ and $\sqf{\bias{\hth}} + \var{\hth}$ are equal to each other:
 
 $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
+

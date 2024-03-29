@@ -234,8 +234,6 @@ $$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}
 
 :::: proof
 
-\
-
 (@eq-unbiased-exp) If $\hth$ is unbiased, then:
 
 $$
