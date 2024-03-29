@@ -503,7 +503,7 @@ If the cloglog plot is linear, then a Weibull model may be ok.
 
 # Combining left-truncation and interval-censoring
 
-From [https://stat.ethz.ch/pipermail/r-help/2015-August/431735.html]:
+From [https://stat.ethz.ch/pipermail/r-help/2015-August/431733.html]:
 
 > As usual I'm a day late since I read digests, and Goran has already clarified things.  A
 > discussion of this is badly needed in my as yet unwrritten book on using the survival

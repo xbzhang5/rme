@@ -1733,3 +1733,7 @@ Ways to check PH assumption:
 -   schoenfeld residuals
 -   interaction with time
 :::
+
+# Age as the time scale
+
+See @canchola2003cox.
