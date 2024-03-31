@@ -270,7 +270,8 @@ plot1 =
 
 ::: {.content-visible when-format="html"}
 ```{r}
-#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| label: fig-beetles
+#| fig-cap: "Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)"
 #| echo: false
 ggplotly(plot1)
 ```
@@ -278,7 +279,8 @@ ggplotly(plot1)
 
 ::: {.content-visible when-format="pdf"}
 ```{r}
-#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| label: fig-beetles2
+#| fig-cap: "Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)"
 print(plot1)
 ```
 :::
@@ -316,7 +318,7 @@ plot2 =
 
 ::: {.content-visible when-format="html"}
 ```{r}
-#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| fig-cap: "Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)"
 #| echo: false
 ggplotly(plot2)
 ```
@@ -324,7 +326,7 @@ ggplotly(plot2)
 
 ::: {.content-visible when-format="pdf"}
 ```{r}
-#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| fig-cap: "Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)"
 print(plot2)
 ```
 :::
