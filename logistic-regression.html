@@ -359,14 +359,68 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">3.0.1</span> Introduction</a></li>
-  <li><a href="#risk-estimation-and-prediction" id="toc-risk-estimation-and-prediction" class="nav-link" data-scroll-target="#risk-estimation-and-prediction"><span class="header-section-number">3.0.2</span> Risk Estimation and Prediction</a></li>
-  <li><a href="#introduction-to-logistic-regression" id="toc-introduction-to-logistic-regression" class="nav-link" data-scroll-target="#introduction-to-logistic-regression"><span class="header-section-number">3.0.3</span> Introduction to logistic regression</a></li>
-  <li><a href="#multiple-logistic-regression" id="toc-multiple-logistic-regression" class="nav-link" data-scroll-target="#multiple-logistic-regression"><span class="header-section-number">3.0.4</span> Multiple logistic regression</a></li>
-  <li><a href="#fitting-logistic-regression-models" id="toc-fitting-logistic-regression-models" class="nav-link" data-scroll-target="#fitting-logistic-regression-models"><span class="header-section-number">3.0.5</span> Fitting logistic regression models</a></li>
-  <li><a href="#sec-gof" id="toc-sec-gof" class="nav-link" data-scroll-target="#sec-gof"><span class="header-section-number">3.0.6</span> Model comparisons for logistic models</a></li>
-  <li><a href="#residual-based-diagnostics" id="toc-residual-based-diagnostics" class="nav-link" data-scroll-target="#residual-based-diagnostics"><span class="header-section-number">3.0.7</span> Residual-based diagnostics</a></li>
-  <li><a href="#sec-OR-RR" id="toc-sec-OR-RR" class="nav-link" data-scroll-target="#sec-OR-RR"><span class="header-section-number">3.0.8</span> Odds Ratios vs Probability (Risk) Ratios</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link active" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#configuring-r" id="toc-configuring-r" class="nav-link" data-scroll-target="#configuring-r">Configuring R</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">3.1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#what-is-logistic-regression" id="toc-what-is-logistic-regression" class="nav-link" data-scroll-target="#what-is-logistic-regression"><span class="header-section-number">3.1.1</span> What is logistic regression?</a></li>
+  <li><a href="#logistic-regression-versus-linear-regression" id="toc-logistic-regression-versus-linear-regression" class="nav-link" data-scroll-target="#logistic-regression-versus-linear-regression"><span class="header-section-number">3.1.2</span> Logistic regression versus linear regression</a></li>
+  </ul></li>
+  <li><a href="#risk-estimation-and-prediction" id="toc-risk-estimation-and-prediction" class="nav-link" data-scroll-target="#risk-estimation-and-prediction"><span class="header-section-number">3.2</span> Risk Estimation and Prediction</a>
+  <ul class="collapse">
+  <li><a href="#comparing-probabilities" id="toc-comparing-probabilities" class="nav-link" data-scroll-target="#comparing-probabilities"><span class="header-section-number">3.2.1</span> Comparing probabilities</a></li>
+  <li><a href="#odds-and-probabilities" id="toc-odds-and-probabilities" class="nav-link" data-scroll-target="#odds-and-probabilities"><span class="header-section-number">3.2.2</span> Odds and probabilities</a></li>
+  <li><a href="#the-inverse-odds-function" id="toc-the-inverse-odds-function" class="nav-link" data-scroll-target="#the-inverse-odds-function"><span class="header-section-number">3.2.3</span> The inverse odds function</a></li>
+  <li><a href="#odds-ratios" id="toc-odds-ratios" class="nav-link" data-scroll-target="#odds-ratios"><span class="header-section-number">3.2.4</span> Odds ratios</a></li>
+  <li><a href="#effect-of-study-design" id="toc-effect-of-study-design" class="nav-link" data-scroll-target="#effect-of-study-design"><span class="header-section-number">3.2.5</span> Effect of study design</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-logistic-regression" id="toc-introduction-to-logistic-regression" class="nav-link" data-scroll-target="#introduction-to-logistic-regression"><span class="header-section-number">3.3</span> Introduction to logistic regression</a>
+  <ul class="collapse">
+  <li><a href="#binary-outcomes-models---one-group-no-covariates" id="toc-binary-outcomes-models---one-group-no-covariates" class="nav-link" data-scroll-target="#binary-outcomes-models---one-group-no-covariates"><span class="header-section-number">3.3.1</span> Binary outcomes models - one group, no covariates</a></li>
+  <li><a href="#binary-outcomes---general" id="toc-binary-outcomes---general" class="nav-link" data-scroll-target="#binary-outcomes---general"><span class="header-section-number">3.3.2</span> Binary outcomes - general</a></li>
+  <li><a href="#modeling-pi_i-as-a-function-of-x_i" id="toc-modeling-pi_i-as-a-function-of-x_i" class="nav-link" data-scroll-target="#modeling-pi_i-as-a-function-of-x_i"><span class="header-section-number">3.3.3</span> Modeling <span class="math inline">\(\pi_i\)</span> as a function of <span class="math inline">\(X_i\)</span></a></li>
+  <li><a href="#sec-expit-logit-diagram" id="toc-sec-expit-logit-diagram" class="nav-link" data-scroll-target="#sec-expit-logit-diagram"><span class="header-section-number">3.3.4</span> Diagram of expit and logit</a></li>
+  <li><a href="#meet-the-beetles" id="toc-meet-the-beetles" class="nav-link" data-scroll-target="#meet-the-beetles"><span class="header-section-number">3.3.5</span> Meet the beetles</a></li>
+  <li><a href="#why-dont-we-use-linear-regression" id="toc-why-dont-we-use-linear-regression" class="nav-link" data-scroll-target="#why-dont-we-use-linear-regression"><span class="header-section-number">3.3.6</span> Why don’t we use linear regression?</a></li>
+  <li><a href="#zoom-out" id="toc-zoom-out" class="nav-link" data-scroll-target="#zoom-out"><span class="header-section-number">3.3.7</span> Zoom out</a></li>
+  <li><a href="#log-transformation-of-dose" id="toc-log-transformation-of-dose" class="nav-link" data-scroll-target="#log-transformation-of-dose"><span class="header-section-number">3.3.8</span> log transformation of dose?</a></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression"><span class="header-section-number">3.3.9</span> Logistic regression</a></li>
+  <li><a href="#three-parts-to-regression-models" id="toc-three-parts-to-regression-models" class="nav-link" data-scroll-target="#three-parts-to-regression-models"><span class="header-section-number">3.3.10</span> Three parts to regression models</a></li>
+  <li><a href="#logistic-regression-in-r" id="toc-logistic-regression-in-r" class="nav-link" data-scroll-target="#logistic-regression-in-r"><span class="header-section-number">3.3.11</span> Logistic regression in R</a></li>
+  <li><a href="#individual-observations" id="toc-individual-observations" class="nav-link" data-scroll-target="#individual-observations"><span class="header-section-number">3.3.12</span> Individual observations</a></li>
+  </ul></li>
+  <li><a href="#multiple-logistic-regression" id="toc-multiple-logistic-regression" class="nav-link" data-scroll-target="#multiple-logistic-regression"><span class="header-section-number">3.4</span> Multiple logistic regression</a>
+  <ul class="collapse">
+  <li><a href="#coronary-heart-disease-wcgs-study-data" id="toc-coronary-heart-disease-wcgs-study-data" class="nav-link" data-scroll-target="#coronary-heart-disease-wcgs-study-data"><span class="header-section-number">3.4.1</span> Coronary heart disease (WCGS) study data</a></li>
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data"><span class="header-section-number">3.4.2</span> Load the data</a></li>
+  <li><a href="#now-lets-do-some-data-cleaning" id="toc-now-lets-do-some-data-cleaning" class="nav-link" data-scroll-target="#now-lets-do-some-data-cleaning"><span class="header-section-number">3.4.3</span> Now let’s do some data cleaning</a></li>
+  <li><a href="#whats-in-the-data" id="toc-whats-in-the-data" class="nav-link" data-scroll-target="#whats-in-the-data"><span class="header-section-number">3.4.4</span> What’s in the data</a></li>
+  <li><a href="#data-by-age-and-personality-type" id="toc-data-by-age-and-personality-type" class="nav-link" data-scroll-target="#data-by-age-and-personality-type"><span class="header-section-number">3.4.5</span> Data by age and personality type</a></li>
+  <li><a href="#graphical-exploration" id="toc-graphical-exploration" class="nav-link" data-scroll-target="#graphical-exploration"><span class="header-section-number">3.4.6</span> Graphical exploration</a></li>
+  <li><a href="#logistic-regression-models-for-chd-data" id="toc-logistic-regression-models-for-chd-data" class="nav-link" data-scroll-target="#logistic-regression-models-for-chd-data"><span class="header-section-number">3.4.7</span> Logistic regression models for CHD data</a></li>
+  <li><a href="#models-superimposed-on-data" id="toc-models-superimposed-on-data" class="nav-link" data-scroll-target="#models-superimposed-on-data"><span class="header-section-number">3.4.8</span> Models superimposed on data</a></li>
+  <li><a href="#reference-group-and-contrast-parametrization" id="toc-reference-group-and-contrast-parametrization" class="nav-link" data-scroll-target="#reference-group-and-contrast-parametrization"><span class="header-section-number">3.4.9</span> reference-group and contrast parametrization</a></li>
+  </ul></li>
+  <li><a href="#fitting-logistic-regression-models" id="toc-fitting-logistic-regression-models" class="nav-link" data-scroll-target="#fitting-logistic-regression-models"><span class="header-section-number">3.5</span> Fitting logistic regression models</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3.5.1</span> </a></li>
+  </ul></li>
+  <li><a href="#sec-gof" id="toc-sec-gof" class="nav-link" data-scroll-target="#sec-gof"><span class="header-section-number">3.6</span> Model comparisons for logistic models</a>
+  <ul class="collapse">
+  <li><a href="#deviance-test" id="toc-deviance-test" class="nav-link" data-scroll-target="#deviance-test"><span class="header-section-number">3.6.1</span> Deviance test</a></li>
+  <li><a href="#hosmer-lemeshow-test" id="toc-hosmer-lemeshow-test" class="nav-link" data-scroll-target="#hosmer-lemeshow-test"><span class="header-section-number">3.6.2</span> Hosmer-Lemeshow test</a></li>
+  <li><a href="#comparing-models" id="toc-comparing-models" class="nav-link" data-scroll-target="#comparing-models"><span class="header-section-number">3.6.3</span> Comparing models</a></li>
+  </ul></li>
+  <li><a href="#residual-based-diagnostics" id="toc-residual-based-diagnostics" class="nav-link" data-scroll-target="#residual-based-diagnostics"><span class="header-section-number">3.7</span> Residual-based diagnostics</a>
+  <ul class="collapse">
+  <li><a href="#logistic-regression-residuals-only-work-for-grouped-data" id="toc-logistic-regression-residuals-only-work-for-grouped-data" class="nav-link" data-scroll-target="#logistic-regression-residuals-only-work-for-grouped-data"><span class="header-section-number">3.7.1</span> Logistic regression residuals only work for grouped data</a></li>
+  <li><a href="#response-residuals" id="toc-response-residuals" class="nav-link" data-scroll-target="#response-residuals"><span class="header-section-number">3.7.2</span> (Response) residuals</a></li>
+  <li><a href="#pearson-residuals" id="toc-pearson-residuals" class="nav-link" data-scroll-target="#pearson-residuals"><span class="header-section-number">3.7.3</span> Pearson residuals</a></li>
+  <li><a href="#pearson-chi-squared-goodness-of-fit-test" id="toc-pearson-chi-squared-goodness-of-fit-test" class="nav-link" data-scroll-target="#pearson-chi-squared-goodness-of-fit-test"><span class="header-section-number">3.7.4</span> Pearson chi-squared goodness of fit test</a></li>
+  <li><a href="#deviance-residuals" id="toc-deviance-residuals" class="nav-link" data-scroll-target="#deviance-residuals"><span class="header-section-number">3.7.5</span> Deviance residuals</a></li>
+  <li><a href="#diagnostic-plots" id="toc-diagnostic-plots" class="nav-link" data-scroll-target="#diagnostic-plots"><span class="header-section-number">3.7.6</span> Diagnostic plots</a></li>
+  </ul></li>
+  <li><a href="#sec-OR-RR" id="toc-sec-OR-RR" class="nav-link" data-scroll-target="#sec-OR-RR"><span class="header-section-number">3.8</span> Odds Ratios vs Probability (Risk) Ratios</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rme/edit/main/logistic-regression.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -398,8 +452,8 @@ window.Quarto = {
 </header>
 
 
-<section id="acknowledgements" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="acknowledgements">Acknowledgements</h4>
+<section id="acknowledgements" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="acknowledgements">Acknowledgements</h3>
 <p>This content is adapted from:</p>
 <ul>
 <li><span class="citation" data-cites="dobson2018introduction">Dobson and Barnett (<a href="references.html#ref-dobson2018introduction" role="doc-biblioref">2018</a>)</span>, Chapter 7</li>
@@ -407,8 +461,8 @@ window.Quarto = {
 <li><a href="https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html" class="uri">https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html</a></li>
 </ul>
 </section>
-<section id="configuring-r" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h4>
+<section id="configuring-r" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="configuring-r">Configuring R</h3>
 <p>Functions from these packages will be used throughout this document:</p>
 <div class="cell">
 <details class="code-fold">
@@ -436,10 +490,10 @@ window.Quarto = {
 </details>
 </div>
 </section>
-<section id="introduction" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.0.1</span> Introduction</h3>
-<section id="what-is-logistic-regression" class="level4">
-<h4 class="anchored" data-anchor-id="what-is-logistic-regression">What is logistic regression?</h4>
+<section id="introduction" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.1</span> Introduction</h2>
+<section id="what-is-logistic-regression" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="what-is-logistic-regression"><span class="header-section-number">3.1.1</span> What is logistic regression?</h3>
 <p><strong>Logistic regression</strong> is a framework for modeling <a href="./probability.html#def-binary">binary</a> outcomes, conditional on one or more <em>predictors</em> (a.k.a. <em>covariates</em>).</p>
 <div id="exr-binary-examples" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 3.1 (Examples of binary outcomes)</strong></span> What are some examples of binary outcomes in the health sciences?</p>
@@ -463,8 +517,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="logistic-regression-versus-linear-regression" class="level4">
-<h4 class="anchored" data-anchor-id="logistic-regression-versus-linear-regression">Logistic regression versus linear regression</h4>
+<section id="logistic-regression-versus-linear-regression" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="logistic-regression-versus-linear-regression"><span class="header-section-number">3.1.2</span> Logistic regression versus linear regression</h3>
 <p>Logistic regression differs from linear regression, which uses the Gaussian (“normal”) distribution to model the outcome variable, conditional on the covariates.</p>
 <div id="exr-linear" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 3.3</strong></span> Recall: what kinds of outcomes is linear regression used for?</p>
@@ -474,8 +528,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="risk-estimation-and-prediction" class="level3" data-number="3.0.2">
-<h3 data-number="3.0.2" class="anchored" data-anchor-id="risk-estimation-and-prediction"><span class="header-section-number">3.0.2</span> Risk Estimation and Prediction</h3>
+<section id="risk-estimation-and-prediction" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="risk-estimation-and-prediction"><span class="header-section-number">3.2</span> Risk Estimation and Prediction</h2>
 <p>In Epi 203, you have already seen methods for modeling binary outcomes using one covariate that is also binary (such as exposure/non-exposure). In this section, we review one-covariate analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.</p>
 <div id="exm-oc-mi" class="theorem example">
 <p><span class="theorem-title"><strong>Example 3.1 (Oral Contraceptive Use and Heart Attack)</strong></span> &nbsp;</p>
@@ -583,10 +637,10 @@ Two meanings of “controls”
 </div>
 </div>
 </div>
-<section id="comparing-probabilities" class="level4">
-<h4 class="anchored" data-anchor-id="comparing-probabilities">Comparing probabilities</h4>
-<section id="risk-differences" class="level5">
-<h5 class="anchored" data-anchor-id="risk-differences">Risk differences</h5>
+<section id="comparing-probabilities" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="comparing-probabilities"><span class="header-section-number">3.2.1</span> Comparing probabilities</h3>
+<section id="risk-differences" class="level4">
+<h4 class="anchored" data-anchor-id="risk-differences">Risk differences</h4>
 <p>The simplest comparison of two probabilities, <span class="math inline">\(\pi_1\)</span>, and <span class="math inline">\(\pi_2\)</span>, is the difference of their values:</p>
 <div class="columns">
 <div id="def-RD" class="theorem definition">
@@ -605,8 +659,8 @@ Two meanings of “controls”
 </div>
 </div>
 </section>
-<section id="risk-ratios" class="level5">
-<h5 class="anchored" data-anchor-id="risk-ratios">Risk ratios</h5>
+<section id="risk-ratios" class="level4">
+<h4 class="anchored" data-anchor-id="risk-ratios">Risk ratios</h4>
 <div class="columns">
 <div id="def-RR" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.4 (Relative risk ratios)</strong></span> The <strong>relative risk</strong> of probability <span class="math inline">\(\pi_1\)</span> compared to another probability <span class="math inline">\(\pi_2\)</span>, also called the <strong>risk ratio</strong>, <strong>relative risk ratio</strong>, <strong>probability ratio</strong>, or <strong>rate ratio</strong>, is the ratio of those probabilities:</p>
@@ -661,8 +715,8 @@ Two meanings of “controls”
 </div>
 </section>
 </section>
-<section id="odds-and-probabilities" class="level4">
-<h4 class="anchored" data-anchor-id="odds-and-probabilities">Odds and probabilities</h4>
+<section id="odds-and-probabilities" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="odds-and-probabilities"><span class="header-section-number">3.2.2</span> Odds and probabilities</h3>
 <p>In logistic regression, we will make use of a transformation (rescaling) of probability, called <em>odds</em>.</p>
 <div id="def-odds" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.5 (Odds)</strong></span> The <strong>odds</strong> of an outcome, denoted <span class="math inline">\(\omega\)</span> (“omega”), is the probability that the outcome occurs, divided by the probability that it doesn’t occur.</p>
@@ -718,8 +772,8 @@ Two meanings of “controls”
 \]</span></p>
 </div>
 </div>
-<section id="a-shortcut-for-calculating-odds" class="level5">
-<h5 class="anchored" data-anchor-id="a-shortcut-for-calculating-odds">A shortcut for calculating odds</h5>
+<section id="a-shortcut-for-calculating-odds" class="level4">
+<h4 class="anchored" data-anchor-id="a-shortcut-for-calculating-odds">A shortcut for calculating odds</h4>
 <p>The usual estimate for a probability of an event is “# events/# observations”. We often denote # events as <span class="math inline">\(x\)</span> and # observations as <span class="math inline">\(n\)</span>. So: <span class="math display">\[\hat\pi = \frac{x}{n}\]</span> Thus, the usual estimate for the probability of a nonevent is:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -753,8 +807,8 @@ Two meanings of “controls”
 <p>Same answer!</p>
 </div>
 </section>
-<section id="odds-of-rare-events" class="level5">
-<h5 class="anchored" data-anchor-id="odds-of-rare-events">Odds of rare events</h5>
+<section id="odds-of-rare-events" class="level4">
+<h4 class="anchored" data-anchor-id="odds-of-rare-events">Odds of rare events</h4>
 <p>For rare events (small <span class="math inline">\(\pi\)</span>), odds and probabilities are nearly equal, because <span class="math inline">\(1-\pi \approx 1\)</span> (see <span class="quarto-unresolved-ref">?fig-odds-probs</span>).</p>
 <p>For example, in <a href="#exm-odds" class="quarto-xref">Example&nbsp;<span>3.5</span></a>, the probability and odds differ by <span class="math inline">\(6.77762182\times 10^{-6}\)</span>.</p>
 <div id="exr-odds-probs" class="theorem exercise">
@@ -769,8 +823,8 @@ Two meanings of “controls”
 </div>
 </section>
 </section>
-<section id="the-inverse-odds-function" class="level4">
-<h4 class="anchored" data-anchor-id="the-inverse-odds-function">The inverse odds function</h4>
+<section id="the-inverse-odds-function" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="the-inverse-odds-function"><span class="header-section-number">3.2.3</span> The inverse odds function</h3>
 <div id="def-inv-odds" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.6 (inverse odds function)</strong></span> The <strong>inverse odds function</strong>, <span class="math display">\[\pi(\omega)\stackrel{\text{def}}{=}\frac{\omega}{1+\omega}\]</span> converts odds into their corresponding probabilities (<a href="#fig-inv-odds" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>).</p>
 </div>
@@ -829,8 +883,8 @@ Important
 </div>
 </div>
 </section>
-<section id="odds-ratios" class="level4">
-<h4 class="anchored" data-anchor-id="odds-ratios">Odds ratios</h4>
+<section id="odds-ratios" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="odds-ratios"><span class="header-section-number">3.2.4</span> Odds ratios</h3>
 <p>Now that we have defined odds, we can introduce another way of comparing event probabilities: odds ratios.</p>
 <div id="def-OR" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.7 (Odds ratio)</strong></span> The <strong>odds ratio</strong> for two odds <span class="math inline">\(\omega_1\)</span>, <span class="math inline">\(\omega_2\)</span> is their ratio:</p>
@@ -849,8 +903,8 @@ Important
 </div>
 <p>When the outcome is rare (i.e., its probability is small) for both groups being compared in an odds ratio, the odds of the outcome will be similar to the probability of the outcome, and thus the risk ratio will be similar to the odds ratio.</p>
 <p>For example, in <a href="#exm-oc-mi" class="quarto-xref">Example&nbsp;<span>3.1</span></a>, the outcome is rare for both OC and non-OC participants, so the odds for both groups are similar to the corresponding probabilities, and the odds ratio is similar the risk ratio.</p>
-<section id="a-shortcut-for-calculating-odds-ratio-estimates" class="level5">
-<h5 class="anchored" data-anchor-id="a-shortcut-for-calculating-odds-ratio-estimates">A shortcut for calculating odds ratio estimates</h5>
+<section id="a-shortcut-for-calculating-odds-ratio-estimates" class="level4">
+<h4 class="anchored" data-anchor-id="a-shortcut-for-calculating-odds-ratio-estimates">A shortcut for calculating odds ratio estimates</h4>
 <p>The general form of a two-by-two table is shown in <a href="#tbl-2x2-generic" class="quarto-xref">Table&nbsp;<span>3.2</span></a>.</p>
 <div id="tbl-2x2-generic" class="quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -903,8 +957,8 @@ Table&nbsp;3.2: A generic 2x2 table
 <p><span class="theorem-title"><strong>Exercise 3.9</strong></span> Given <a href="#tbl-2x2-generic" class="quarto-xref">Table&nbsp;<span>3.2</span></a>, show that <span class="math inline">\(\hat\omega(Event|\neg Exposed) = \frac{c}{d}\)</span>.</p>
 </div>
 </section>
-<section id="sec-OR-props" class="level5">
-<h5 class="anchored" data-anchor-id="sec-OR-props">Properties of odds ratios</h5>
+<section id="sec-OR-props" class="level4">
+<h4 class="anchored" data-anchor-id="sec-OR-props">Properties of odds ratios</h4>
 <p>Odds ratios have a special property: we can swap a covariate with the outcome, and the odds ratio remains the same.</p>
 <div id="exm-or-inv-MI" class="theorem example">
 <p><span class="theorem-title"><strong>Example 3.8</strong></span> In <a href="#exm-oc-mi" class="quarto-xref">Example&nbsp;<span>3.1</span></a>, we have:</p>
@@ -940,8 +994,8 @@ Table&nbsp;3.2: A generic 2x2 table
 </div>
 </section>
 </section>
-<section id="effect-of-study-design" class="level4">
-<h4 class="anchored" data-anchor-id="effect-of-study-design">Effect of study design</h4>
+<section id="effect-of-study-design" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="effect-of-study-design"><span class="header-section-number">3.2.5</span> Effect of study design</h3>
 <p><a href="#tbl-oc-mi" class="quarto-xref">Table&nbsp;<span>3.1</span></a> simulates a follow-up study in which two populations were followed and the number of MI’s was observed. The risks are <span class="math inline">\(P(MI|OC)\)</span> and <span class="math inline">\(P(MI|\neg OC)\)</span> and we can estimate these risks from the data.</p>
 <p>But suppose we had a case-control study in which we had 100 women with MI and selected a comparison group of 100 women without MI (matched as groups on age, etc.). Then MI is not random, and we cannot compute P(MI|OC) and we cannot compute the risk ratio. However, the odds ratio however can be computed.</p>
 <p>The disease odds ratio is the odds for the disease in the exposed group divided by the odds for the disease in the unexposed group, and we cannot validly compute and use these separate parts.</p>
@@ -950,7 +1004,7 @@ Table&nbsp;3.2: A generic 2x2 table
 \hat\theta(OC|MI) =
 \frac{\hat{\omega}(OC|MI)}{\hat{\omega}(OC|\neg MI)}
 \]</span></p>
-<p>And these two odds ratios, <span class="math inline">\(\hat\theta(MI|OC)\)</span> and <span class="math inline">\(\hat\theta(OC|MI)\)</span> are mathematically equivalent, as we saw in <a href="#sec-OR-props" class="quarto-xref"><span>Section 3.0.2.4.2</span></a>.</p>
+<p>And these two odds ratios, <span class="math inline">\(\hat\theta(MI|OC)\)</span> and <span class="math inline">\(\hat\theta(OC|MI)\)</span> are mathematically equivalent, as we saw in <a href="#sec-OR-props" class="quarto-xref"><span>Section 3.2.4.2</span></a>.</p>
 <div id="exr-or-rev" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 3.11</strong></span> Calculate the odds ratio of MI with respect to OC use, assuming that <a href="#tbl-oc-mi" class="quarto-xref">Table&nbsp;<span>3.1</span></a> comes from a case-control study. Confirm that the result is the same as in <a href="#exm-OR" class="quarto-xref">Example&nbsp;<span>3.7</span></a>.</p>
 <div class="proof solution">
@@ -963,8 +1017,8 @@ Table&nbsp;3.2: A generic 2x2 table
 <p>This is the same estimate we calculated in <a href="#exm-OR" class="quarto-xref">Example&nbsp;<span>3.7</span></a>.</p>
 </div>
 </div>
-<section id="cross-sectional-studies" class="level5">
-<h5 class="anchored" data-anchor-id="cross-sectional-studies">Cross-Sectional Studies</h5>
+<section id="cross-sectional-studies" class="level4">
+<h4 class="anchored" data-anchor-id="cross-sectional-studies">Cross-Sectional Studies</h4>
 <ul>
 <li><p>If a cross-sectional study is a probability sample of a population (which it rarely is) then we can estimate risks.</p></li>
 <li><p>If it is a sample, but not an unbiased probability sample, then we need to treat it in the same way as a case-control study.</p></li>
@@ -974,15 +1028,15 @@ Table&nbsp;3.2: A generic 2x2 table
 </section>
 </section>
 </section>
-<section id="introduction-to-logistic-regression" class="level3" data-number="3.0.3">
-<h3 data-number="3.0.3" class="anchored" data-anchor-id="introduction-to-logistic-regression"><span class="header-section-number">3.0.3</span> Introduction to logistic regression</h3>
+<section id="introduction-to-logistic-regression" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="introduction-to-logistic-regression"><span class="header-section-number">3.3</span> Introduction to logistic regression</h2>
 <ul>
 <li><p>In <a href="#exm-oc-mi" class="quarto-xref">Example&nbsp;<span>3.1</span></a>, we estimated the risk and the odds of MI for two discrete cases, as to whether of not the individual used oral contraceptives.</p></li>
 <li><p>If the predictor is quantitative (dose) or there is more than one predictor, the task becomes more difficult.</p></li>
 <li><p>In this case, we will use logistic regression, which is a generalization of the linear regression models you have been using that can account for a binary response instead of a continuous one.</p></li>
 </ul>
-<section id="binary-outcomes-models---one-group-no-covariates" class="level4">
-<h4 class="anchored" data-anchor-id="binary-outcomes-models---one-group-no-covariates">Binary outcomes models - one group, no covariates</h4>
+<section id="binary-outcomes-models---one-group-no-covariates" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="binary-outcomes-models---one-group-no-covariates"><span class="header-section-number">3.3.1</span> Binary outcomes models - one group, no covariates</h3>
 <p><span class="math display">\[
 \begin{aligned}
 p(Y=1) &amp;= \pi\\
@@ -996,8 +1050,8 @@ p(Y=y) &amp;= \pi^y (1-\pi)^{1-y}\\
 \end{aligned}
 \]</span></p>
 </section>
-<section id="binary-outcomes---general" class="level4">
-<h4 class="anchored" data-anchor-id="binary-outcomes---general">Binary outcomes - general</h4>
+<section id="binary-outcomes---general" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="binary-outcomes---general"><span class="header-section-number">3.3.2</span> Binary outcomes - general</h3>
 <p><span class="math display">\[
 \begin{aligned}
 p(Y_i=1) &amp;= \pi_i\\
@@ -1012,8 +1066,8 @@ y_i \text{log}\left\{\pi_i\right\} + (1 - y_i) \text{log}\left\{1-\pi_i\right\}
 \end{aligned}
 \]</span></p>
 </section>
-<section id="modeling-pi_i-as-a-function-of-x_i" class="level4">
-<h4 class="anchored" data-anchor-id="modeling-pi_i-as-a-function-of-x_i">Modeling <span class="math inline">\(\pi_i\)</span> as a function of <span class="math inline">\(X_i\)</span></h4>
+<section id="modeling-pi_i-as-a-function-of-x_i" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="modeling-pi_i-as-a-function-of-x_i"><span class="header-section-number">3.3.3</span> Modeling <span class="math inline">\(\pi_i\)</span> as a function of <span class="math inline">\(X_i\)</span></h3>
 <p>If there are only a few distinct <span class="math inline">\(X_i\)</span> values, we can model each one separately.</p>
 <p>Otherwise, we need regression.</p>
 <p><span class="math display">\[
@@ -1093,8 +1147,8 @@ Figure&nbsp;3.3: the logit function
 </div>
 </div>
 </section>
-<section id="sec-expit-logit-diagram" class="level4">
-<h4 class="anchored" data-anchor-id="sec-expit-logit-diagram">Diagram of expit and logit</h4>
+<section id="sec-expit-logit-diagram" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="sec-expit-logit-diagram"><span class="header-section-number">3.3.4</span> Diagram of expit and logit</h3>
 <p><span class="math display">\[
 \underbrace{\pi}_{\atop{\Pr(Y=1)} }
 \overbrace{
@@ -1117,8 +1171,8 @@ Figure&nbsp;3.3: the logit function
 \underbrace{\eta}_{\atop{\text{log-odds}(Y=1)}}
 \]</span></p>
 </section>
-<section id="meet-the-beetles" class="level4">
-<h4 class="anchored" data-anchor-id="meet-the-beetles">Meet the beetles</h4>
+<section id="meet-the-beetles" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="meet-the-beetles"><span class="header-section-number">3.3.5</span> Meet the beetles</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -1153,8 +1207,8 @@ Figure&nbsp;3.3: the logit function
 </div>
 <p>Mortality rates of adult flour beetles after five hours’ exposure to gaseous carbon disulphide (Bliss 1935)</p>
 </section>
-<section id="why-dont-we-use-linear-regression" class="level4">
-<h4 class="anchored" data-anchor-id="why-dont-we-use-linear-regression">Why don’t we use linear regression?</h4>
+<section id="why-dont-we-use-linear-regression" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="why-dont-we-use-linear-regression"><span class="header-section-number">3.3.6</span> Why don’t we use linear regression?</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -1208,8 +1262,8 @@ Figure&nbsp;3.3: the logit function
 </div>
 </div>
 </section>
-<section id="zoom-out" class="level4">
-<h4 class="anchored" data-anchor-id="zoom-out">Zoom out</h4>
+<section id="zoom-out" class="level3" data-number="3.3.7">
+<h3 data-number="3.3.7" class="anchored" data-anchor-id="zoom-out"><span class="header-section-number">3.3.7</span> Zoom out</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -1224,8 +1278,8 @@ Figure&nbsp;3.3: the logit function
 </div>
 </div>
 </section>
-<section id="log-transformation-of-dose" class="level4">
-<h4 class="anchored" data-anchor-id="log-transformation-of-dose">log transformation of dose?</h4>
+<section id="log-transformation-of-dose" class="level3" data-number="3.3.8">
+<h3 data-number="3.3.8" class="anchored" data-anchor-id="log-transformation-of-dose"><span class="header-section-number">3.3.8</span> log transformation of dose?</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -1243,8 +1297,8 @@ Figure&nbsp;3.3: the logit function
 </div>
 </div>
 </section>
-<section id="logistic-regression" class="level4">
-<h4 class="anchored" data-anchor-id="logistic-regression">Logistic regression</h4>
+<section id="logistic-regression" class="level3" data-number="3.3.9">
+<h3 data-number="3.3.9" class="anchored" data-anchor-id="logistic-regression"><span class="header-section-number">3.3.9</span> Logistic regression</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -1260,16 +1314,16 @@ Figure&nbsp;3.3: the logit function
 </div>
 </div>
 </section>
-<section id="three-parts-to-regression-models" class="level4">
-<h4 class="anchored" data-anchor-id="three-parts-to-regression-models">Three parts to regression models</h4>
+<section id="three-parts-to-regression-models" class="level3" data-number="3.3.10">
+<h3 data-number="3.3.10" class="anchored" data-anchor-id="three-parts-to-regression-models"><span class="header-section-number">3.3.10</span> Three parts to regression models</h3>
 <ul>
 <li><p>What distribution does the outcome have for a specific subpopulation defined by covariates? (outcome model)</p></li>
 <li><p>How does the combination of covariates relate to the mean? (link function)</p></li>
 <li><p>How do the covariates combine? (linear predictor, interactions)</p></li>
 </ul>
 </section>
-<section id="logistic-regression-in-r" class="level4">
-<h4 class="anchored" data-anchor-id="logistic-regression-in-r">Logistic regression in R</h4>
+<section id="logistic-regression-in-r" class="level3" data-number="3.3.11">
+<h3 data-number="3.3.11" class="anchored" data-anchor-id="logistic-regression-in-r"><span class="header-section-number">3.3.11</span> Logistic regression in R</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -1348,8 +1402,8 @@ Figure&nbsp;3.3: the logit function
 </details>
 </div>
 </section>
-<section id="individual-observations" class="level4">
-<h4 class="anchored" data-anchor-id="individual-observations">Individual observations</h4>
+<section id="individual-observations" class="level3" data-number="3.3.12">
+<h3 data-number="3.3.12" class="anchored" data-anchor-id="individual-observations"><span class="header-section-number">3.3.12</span> Individual observations</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -1484,21 +1538,21 @@ Figure&nbsp;3.3: the logit function
 <p>The difference is due to the binomial coefficient <span class="math inline">\(\left(n\atop x \right)\)</span> which isn’t included in the individual-observations (Bernoulli) version of the model.</p>
 </section>
 </section>
-<section id="multiple-logistic-regression" class="level3" data-number="3.0.4">
-<h3 data-number="3.0.4" class="anchored" data-anchor-id="multiple-logistic-regression"><span class="header-section-number">3.0.4</span> Multiple logistic regression</h3>
-<section id="coronary-heart-disease-wcgs-study-data" class="level4">
-<h4 class="anchored" data-anchor-id="coronary-heart-disease-wcgs-study-data">Coronary heart disease (WCGS) study data</h4>
+<section id="multiple-logistic-regression" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="multiple-logistic-regression"><span class="header-section-number">3.4</span> Multiple logistic regression</h2>
+<section id="coronary-heart-disease-wcgs-study-data" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="coronary-heart-disease-wcgs-study-data"><span class="header-section-number">3.4.1</span> Coronary heart disease (WCGS) study data</h3>
 <p>Let’s use the data from the following study to explore multiple logistic regression:</p>
-<section id="summary-of-study" class="level5">
-<h5 class="anchored" data-anchor-id="summary-of-study">Summary of study</h5>
+<section id="summary-of-study" class="level4">
+<h4 class="anchored" data-anchor-id="summary-of-study">Summary of study</h4>
 <p><em>From <span class="citation" data-cites="vittinghoff2012regression">Vittinghoff et al. (<a href="references.html#ref-vittinghoff2012regression" role="doc-biblioref">2012</a>)</span>:</em></p>
 <p>“The <strong>Western Collaborative Group Study (WCGS)</strong> was a large epidemiological study designed to investigate the association between the”type A” behavior pattern and coronary heart disease (CHD) (Rosenman et al.&nbsp;1964).”</p>
 <p><em>From Wikipedia, “Type A and Type B personality theory”:</em></p>
 <p>“The hypothesis describes Type A individuals as outgoing, ambitious, rigidly organized, highly status-conscious, impatient, anxious, proactive, and concerned with time management….</p>
 <p>The hypothesis describes Type B individuals as a contrast to those of Type A. Type B personalities, by definition, are noted to live at lower stress levels. They typically work steadily and may enjoy achievement, although they have a greater tendency to disregard physical or mental stress when they do not achieve.”</p>
 </section>
-<section id="study-design" class="level5">
-<h5 class="anchored" data-anchor-id="study-design">Study design</h5>
+<section id="study-design" class="level4">
+<h4 class="anchored" data-anchor-id="study-design">Study design</h4>
 <p><em>from <code>?faraway::wcgs</code>:</em></p>
 <p>3154 healthy young men aged 39-59 from the San Francisco area were assessed for their personality type. All were free from coronary heart disease at the start of the research. Eight and a half years later change in CHD status was recorded.</p>
 <p><em>Details (from <code>faraway::wcgs</code>)</em></p>
@@ -1537,8 +1591,8 @@ Figure&nbsp;3.3: the logit function
 <p>Reference: Coronary Heart Disease in the Western Collaborative Group Study Final Follow-up Experience of 8 1/2 Years Ray H. Rosenman, MD; Richard J. Brand, PhD; C. David Jenkins, PhD; Meyer Friedman, MD; Reuben Straus, MD; Moses Wurm, MD JAMA. 1975;233(8):872-877. doi:10.1001/jama.1975.03260080034016.</p>
 </section>
 </section>
-<section id="load-the-data" class="level4">
-<h4 class="anchored" data-anchor-id="load-the-data">Load the data</h4>
+<section id="load-the-data" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="load-the-data"><span class="header-section-number">3.4.2</span> Load the data</h3>
 <p>Here, I load the data:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -1561,8 +1615,8 @@ Figure&nbsp;3.3: the logit function
 </details>
 </div>
 </section>
-<section id="now-lets-do-some-data-cleaning" class="level4">
-<h4 class="anchored" data-anchor-id="now-lets-do-some-data-cleaning">Now let’s do some data cleaning</h4>
+<section id="now-lets-do-some-data-cleaning" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="now-lets-do-some-data-cleaning"><span class="header-section-number">3.4.3</span> Now let’s do some data cleaning</h3>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show R code</summary>
@@ -1607,8 +1661,8 @@ Figure&nbsp;3.3: the logit function
 </details>
 </div>
 </section>
-<section id="whats-in-the-data" class="level4 smaller">
-<h4 class="smaller anchored" data-anchor-id="whats-in-the-data">What’s in the data</h4>
+<section id="whats-in-the-data" class="level3 smaller" data-number="3.4.4">
+<h3 class="smaller anchored" data-number="3.4.4" data-anchor-id="whats-in-the-data"><span class="header-section-number">3.4.4</span> What’s in the data</h3>
 <p>Here’s a table of the data:</p>
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -2108,8 +2162,8 @@ Figure&nbsp;3.3: the logit function
 <li>Pearson’s Chi-squared test</li>
 </ol>
 </section>
-<section id="data-by-age-and-personality-type" class="level4">
-<h4 class="anchored" data-anchor-id="data-by-age-and-personality-type">Data by age and personality type</h4>
+<section id="data-by-age-and-personality-type" class="level3" data-number="3.4.5">
+<h3 data-number="3.4.5" class="anchored" data-anchor-id="data-by-age-and-personality-type"><span class="header-section-number">3.4.5</span> Data by age and personality type</h3>
 <p>For now, we will look at the interaction between age and personality type (<code>dibpat</code>). To make it easier to visualize the data, we summarize the event rates for each combination of age:</p>
 <div class="cell">
 <details class="code-fold">
@@ -2481,10 +2535,10 @@ Figure&nbsp;3.3: the logit function
 </div>
 </div>
 </section>
-<section id="graphical-exploration" class="level4">
-<h4 class="anchored" data-anchor-id="graphical-exploration">Graphical exploration</h4>
-<section id="probability-scale" class="level5">
-<h5 class="anchored" data-anchor-id="probability-scale">Probability scale</h5>
+<section id="graphical-exploration" class="level3" data-number="3.4.6">
+<h3 data-number="3.4.6" class="anchored" data-anchor-id="graphical-exploration"><span class="header-section-number">3.4.6</span> Graphical exploration</h3>
+<section id="probability-scale" class="level4">
+<h4 class="anchored" data-anchor-id="probability-scale">Probability scale</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -2535,8 +2589,8 @@ Figure&nbsp;3.4: CHD rates by age group, probability scale
 </details>
 </div>
 </section>
-<section id="odds-scale" class="level5">
-<h5 class="anchored" data-anchor-id="odds-scale">Odds scale</h5>
+<section id="odds-scale" class="level4">
+<h4 class="anchored" data-anchor-id="odds-scale">Odds scale</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -2592,8 +2646,8 @@ Figure&nbsp;3.5: CHD rates by age group, odds scale
 </div>
 </div>
 </section>
-<section id="log-odds-logit-scale" class="level5">
-<h5 class="anchored" data-anchor-id="log-odds-logit-scale">Log-odds (logit) scale</h5>
+<section id="log-odds-logit-scale" class="level4">
+<h4 class="anchored" data-anchor-id="log-odds-logit-scale">Log-odds (logit) scale</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -2625,8 +2679,8 @@ Figure&nbsp;3.5: CHD rates by age group, odds scale
 </div>
 </section>
 </section>
-<section id="logistic-regression-models-for-chd-data" class="level4 smaller">
-<h4 class="smaller anchored" data-anchor-id="logistic-regression-models-for-chd-data">Logistic regression models for CHD data</h4>
+<section id="logistic-regression-models-for-chd-data" class="level3 smaller" data-number="3.4.7">
+<h3 class="smaller anchored" data-number="3.4.7" data-anchor-id="logistic-regression-models-for-chd-data"><span class="header-section-number">3.4.7</span> Logistic regression models for CHD data</h3>
 <p>Here, we fit stratified models for CHD by personality type.</p>
 <div class="cell">
 <details class="code-fold">
@@ -2762,11 +2816,11 @@ Figure&nbsp;3.5: CHD rates by age group, odds scale
 </div>
 </div>
 </section>
-<section id="models-superimposed-on-data" class="level4">
-<h4 class="anchored" data-anchor-id="models-superimposed-on-data">Models superimposed on data</h4>
+<section id="models-superimposed-on-data" class="level3" data-number="3.4.8">
+<h3 data-number="3.4.8" class="anchored" data-anchor-id="models-superimposed-on-data"><span class="header-section-number">3.4.8</span> Models superimposed on data</h3>
 <p>We can graph our fitted models on each scale (probability, odds, log-odds).</p>
-<section id="probability-scale-1" class="level5">
-<h5 class="anchored" data-anchor-id="probability-scale-1">probability scale</h5>
+<section id="probability-scale-1" class="level4">
+<h4 class="anchored" data-anchor-id="probability-scale-1">probability scale</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -2807,8 +2861,8 @@ Figure&nbsp;3.5: CHD rates by age group, odds scale
 </div>
 </div>
 </section>
-<section id="odds-scale-1" class="level5">
-<h5 class="anchored" data-anchor-id="odds-scale-1">odds scale</h5>
+<section id="odds-scale-1" class="level4">
+<h4 class="anchored" data-anchor-id="odds-scale-1">odds scale</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -2848,8 +2902,8 @@ Figure&nbsp;3.5: CHD rates by age group, odds scale
 </div>
 </div>
 </section>
-<section id="log-odds-logit-scale-1" class="level5">
-<h5 class="anchored" data-anchor-id="log-odds-logit-scale-1">log-odds (logit) scale</h5>
+<section id="log-odds-logit-scale-1" class="level4">
+<h4 class="anchored" data-anchor-id="log-odds-logit-scale-1">log-odds (logit) scale</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
@@ -2890,8 +2944,8 @@ Figure&nbsp;3.5: CHD rates by age group, odds scale
 </div>
 </section>
 </section>
-<section id="reference-group-and-contrast-parametrization" class="level4">
-<h4 class="anchored" data-anchor-id="reference-group-and-contrast-parametrization">reference-group and contrast parametrization</h4>
+<section id="reference-group-and-contrast-parametrization" class="level3" data-number="3.4.9">
+<h3 data-number="3.4.9" class="anchored" data-anchor-id="reference-group-and-contrast-parametrization"><span class="header-section-number">3.4.9</span> reference-group and contrast parametrization</h3>
 <p>We can also use the corner-point parametrization (with reference groups and contrasts):</p>
 <div class="cell">
 <details class="code-fold">
@@ -3035,10 +3089,10 @@ Figure&nbsp;3.5: CHD rates by age group, odds scale
 </div>
 </section>
 </section>
-<section id="fitting-logistic-regression-models" class="level3" data-number="3.0.5">
-<h3 data-number="3.0.5" class="anchored" data-anchor-id="fitting-logistic-regression-models"><span class="header-section-number">3.0.5</span> Fitting logistic regression models</h3>
-<section id="section" class="level4">
-<h4 class="anchored" data-anchor-id="section"></h4>
+<section id="fitting-logistic-regression-models" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="fitting-logistic-regression-models"><span class="header-section-number">3.5</span> Fitting logistic regression models</h2>
+<section id="section" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="section"><span class="header-section-number">3.5.1</span> </h3>
 <p>In general, the estimating equation <span class="math inline">\(\ell'(\beta; \mathbf x) = 0\)</span> cannot be solved analytically.</p>
 <p>Instead, we have to use a variant of the Newton-Raphson method, which was discussed briefly in Epi 203. We won’t go over it in this class; if you need to learn it, see <span class="citation" data-cites="dobson2018introduction">Dobson and Barnett (<a href="references.html#ref-dobson2018introduction" role="doc-biblioref">2018</a>)</span>, Chapter 4.</p>
 <p>For now, all you need to know is that we make an iterative series of guesses, and each guess helps us make the next guess better (higher log-likelihood).</p>
@@ -3068,10 +3122,10 @@ Deviance = 1703.9832 Iterations - 6</code></pre>
 <p>After each iteration of the fitting procedure, the deviance (<span class="math inline">\(2(\ell_{\text{full}} - \ell(\hat\beta))\)</span> ) is printed. You can see that the algorithm took six iterations to converge to a solution where the likelihood wasn’t changing much anymore.</p>
 </section>
 </section>
-<section id="sec-gof" class="level3" data-number="3.0.6">
-<h3 data-number="3.0.6" class="anchored" data-anchor-id="sec-gof"><span class="header-section-number">3.0.6</span> Model comparisons for logistic models</h3>
-<section id="deviance-test" class="level4">
-<h4 class="anchored" data-anchor-id="deviance-test">Deviance test</h4>
+<section id="sec-gof" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sec-gof"><span class="header-section-number">3.6</span> Model comparisons for logistic models</h2>
+<section id="deviance-test" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="deviance-test"><span class="header-section-number">3.6.1</span> Deviance test</h3>
 <p>We can compare the maximized log-likelihood of our model, <span class="math inline">\(\ell(\hat\beta; \mathbf x)\)</span>, versus the log-likelihood of the full model (aka saturated model aka maximal model), <span class="math inline">\(\ell_{\text{full}}\)</span>, which has one parameter per covariate pattern. With enough data, <span class="math inline">\(2(\ell_{\text{full}} - \ell(\hat\beta; \mathbf x)) \dot \sim \chi^2(N - p)\)</span>, where <span class="math inline">\(N\)</span> is the number of distinct covariate patterns and <span class="math inline">\(p\)</span> is the number of <span class="math inline">\(\beta\)</span> parameters in our model. A significant p-value for this <strong>deviance</strong> statistic indicates that there’s some detectable pattern in the data that our model isn’t flexible enough to catch.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -3088,8 +3142,8 @@ Caution
 </div>
 <p>If you have covariates measured on a continuous scale, you may not be able to use the deviance tests to assess goodness of fit.</p>
 </section>
-<section id="hosmer-lemeshow-test" class="level4">
-<h4 class="anchored" data-anchor-id="hosmer-lemeshow-test">Hosmer-Lemeshow test</h4>
+<section id="hosmer-lemeshow-test" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="hosmer-lemeshow-test"><span class="header-section-number">3.6.2</span> Hosmer-Lemeshow test</h3>
 <p>If our covariate patterns produce groups that are too small, a reasonable solution is to make bigger groups by merging some of the covariate-pattern groups together.</p>
 <p>Hosmer and Lemeshow (1980) proposed that we group the patterns by their predicted probabilities according to the model of interest. For example, you could group all of the observations with predicted probabilities of 10% or less together, then group the observations with 11%-20% probability together, and so on; <span class="math inline">\(g=10\)</span> categories in all.</p>
 <p>Then we can construct a statistic <span class="math display">\[X^2 = \sum_{c=1}^g \frac{(o_c - e_c)^2}{e_c}\]</span> where <span class="math inline">\(o_c\)</span> is the number of events <em>observed</em> in group <span class="math inline">\(c\)</span>, and <span class="math inline">\(e_c\)</span> is the number of events expected in group <span class="math inline">\(c\)</span> (based on the sum of the fitted values <span class="math inline">\(\hat\pi_i\)</span> for observations in group <span class="math inline">\(c\)</span>).</p>
@@ -3325,8 +3379,8 @@ Caution
 </div>
 </div>
 </section>
-<section id="comparing-models" class="level4">
-<h4 class="anchored" data-anchor-id="comparing-models">Comparing models</h4>
+<section id="comparing-models" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="comparing-models"><span class="header-section-number">3.6.3</span> Comparing models</h3>
 <ul>
 <li>AIC = <span class="math inline">\(-2 * \ell(\hat\theta) + 2 * p\)</span> [lower is better]</li>
 <li>BIC = <span class="math inline">\(-2 * \ell(\hat\theta) + p * \text{log}(n)\)</span> [lower is better]</li>
@@ -3334,10 +3388,10 @@ Caution
 </ul>
 </section>
 </section>
-<section id="residual-based-diagnostics" class="level3" data-number="3.0.7">
-<h3 data-number="3.0.7" class="anchored" data-anchor-id="residual-based-diagnostics"><span class="header-section-number">3.0.7</span> Residual-based diagnostics</h3>
-<section id="logistic-regression-residuals-only-work-for-grouped-data" class="level4">
-<h4 class="anchored" data-anchor-id="logistic-regression-residuals-only-work-for-grouped-data">Logistic regression residuals only work for grouped data</h4>
+<section id="residual-based-diagnostics" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="residual-based-diagnostics"><span class="header-section-number">3.7</span> Residual-based diagnostics</h2>
+<section id="logistic-regression-residuals-only-work-for-grouped-data" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="logistic-regression-residuals-only-work-for-grouped-data"><span class="header-section-number">3.7.1</span> Logistic regression residuals only work for grouped data</h3>
 <p>Residuals only work if there is more than one observation for most covariate patterns.</p>
 <p>Here we will create the grouped-data version of our CHD model from the WCGS study:</p>
 <div class="cell">
@@ -3418,8 +3472,8 @@ Caution
 </div>
 </div>
 </section>
-<section id="response-residuals" class="level4">
-<h4 class="anchored" data-anchor-id="response-residuals">(Response) residuals</h4>
+<section id="response-residuals" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="response-residuals"><span class="header-section-number">3.7.2</span> (Response) residuals</h3>
 <p><span class="math display">\[e_k \stackrel{\text{def}}{=}\bar y_k - \hat{\pi}(x_k)\]</span></p>
 <p>(<span class="math inline">\(k\)</span> indexes the covariate patterns)</p>
 <p>We can graph these residuals <span class="math inline">\(e_k\)</span> against the fitted values <span class="math inline">\(\hat\pi(x_k)\)</span>:</p>
@@ -3477,8 +3531,8 @@ Caution
 </div>
 <p>We can see a slight fan-shape here: observations on the right have larger variance (as expected since <span class="math inline">\(var(\bar y) = \pi(1-\pi)/n\)</span> is maximized when <span class="math inline">\(\pi = 0.5\)</span>).</p>
 </section>
-<section id="pearson-residuals" class="level4">
-<h4 class="anchored" data-anchor-id="pearson-residuals">Pearson residuals</h4>
+<section id="pearson-residuals" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="pearson-residuals"><span class="header-section-number">3.7.3</span> Pearson residuals</h3>
 <p>The fan-shape in the response residuals plot isn’t necessarily a concern here, since we haven’t made an assumption of constant residual variance, as we did for linear regression.</p>
 <p>However, we might want to divide by the standard error in order to make the graph easier to interpret. Here’s one way to do that:</p>
 <p>The Pearson (chi-squared) residual for covariate pattern <span class="math inline">\(k\)</span> is: <span class="math display">\[
@@ -3516,8 +3570,8 @@ X_k &amp;= \frac{\bar y_k - \hat\pi_k}{\sqrt{\hat \pi_k (1-\hat\pi_k)/n_k}}
 </div>
 </div>
 <p>The fan-shape is gone, and these residuals don’t show any obvious signs of model fit issues.</p>
-<section id="pearson-residuals-plot-for-beetles-data" class="level5">
-<h5 class="anchored" data-anchor-id="pearson-residuals-plot-for-beetles-data">Pearson residuals plot for <code>beetles</code> data</h5>
+<section id="pearson-residuals-plot-for-beetles-data" class="level4">
+<h4 class="anchored" data-anchor-id="pearson-residuals-plot-for-beetles-data">Pearson residuals plot for <code>beetles</code> data</h4>
 <p>If we create the same plot for the <code>beetles</code> model, we see some strong evidence of a lack of fit:</p>
 <div class="cell">
 <details class="code-fold">
@@ -3533,8 +3587,8 @@ X_k &amp;= \frac{\bar y_k - \hat\pi_k}{\sqrt{\hat \pi_k (1-\hat\pi_k)/n_k}}
 </div>
 </div>
 </section>
-<section id="pearson-residuals-with-individual-ungrouped-data" class="level5">
-<h5 class="anchored" data-anchor-id="pearson-residuals-with-individual-ungrouped-data">Pearson residuals with individual (ungrouped) data</h5>
+<section id="pearson-residuals-with-individual-ungrouped-data" class="level4">
+<h4 class="anchored" data-anchor-id="pearson-residuals-with-individual-ungrouped-data">Pearson residuals with individual (ungrouped) data</h4>
 <p>What happens if we try to compute residuals without grouping the data by covariate pattern?</p>
 <div class="cell">
 <details class="code-fold">
@@ -3557,8 +3611,8 @@ X_k &amp;= \frac{\bar y_k - \hat\pi_k}{\sqrt{\hat \pi_k (1-\hat\pi_k)/n_k}}
 </div>
 <p>Meaningless.</p>
 </section>
-<section id="residuals-plot-by-hand-optional-section" class="level5">
-<h5 class="anchored" data-anchor-id="residuals-plot-by-hand-optional-section">Residuals plot by hand (<em>optional section</em>)</h5>
+<section id="residuals-plot-by-hand-optional-section" class="level4">
+<h4 class="anchored" data-anchor-id="residuals-plot-by-hand-optional-section">Residuals plot by hand (<em>optional section</em>)</h4>
 <p>If you want to check your understanding of what these residual plots are, try building them yourself:</p>
 <div class="cell">
 <details class="code-fold">
@@ -3613,8 +3667,8 @@ X_k &amp;= \frac{\bar y_k - \hat\pi_k}{\sqrt{\hat \pi_k (1-\hat\pi_k)/n_k}}
 </div>
 </section>
 </section>
-<section id="pearson-chi-squared-goodness-of-fit-test" class="level4">
-<h4 class="anchored" data-anchor-id="pearson-chi-squared-goodness-of-fit-test">Pearson chi-squared goodness of fit test</h4>
+<section id="pearson-chi-squared-goodness-of-fit-test" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="pearson-chi-squared-goodness-of-fit-test"><span class="header-section-number">3.7.4</span> Pearson chi-squared goodness of fit test</h3>
 <p>The Pearson chi-squared goodness of fit statistic is: <span class="math display">\[
 X^2 = \sum_{k=1}^m X_k^2
 \]</span> Under the null hypothesis that the model in question is correct (i.e., sufficiently complex), <span class="math inline">\(X^2\ \dot \sim\ \chi^2(N-p)\)</span>.</p>
@@ -3633,24 +3687,24 @@ X^2 = \sum_{k=1}^m X_k^2
 </details>
 </div>
 <p>For our CHD model, the p-value for this test is 0.26523556; no significant evidence of a lack of fit at the 0.05 level.</p>
-<section id="standardized-pearson-residuals" class="level5">
-<h5 class="anchored" data-anchor-id="standardized-pearson-residuals">Standardized Pearson residuals</h5>
+<section id="standardized-pearson-residuals" class="level4">
+<h4 class="anchored" data-anchor-id="standardized-pearson-residuals">Standardized Pearson residuals</h4>
 <p>Especially for small data sets, we might want to adjust our residuals for leverage (since outliers in <span class="math inline">\(X\)</span> add extra variance to the residuals):</p>
 <p><span class="math display">\[r_{P_k} = \frac{X_k}{\sqrt{1-h_k}}\]</span></p>
 <p>where <span class="math inline">\(h_k\)</span> is the leverage of <span class="math inline">\(X_k\)</span>. The functions <code>autoplot()</code> and <code>plot.lm()</code> use these for some of their graphs.</p>
 </section>
 </section>
-<section id="deviance-residuals" class="level4">
-<h4 class="anchored" data-anchor-id="deviance-residuals">Deviance residuals</h4>
+<section id="deviance-residuals" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="deviance-residuals"><span class="header-section-number">3.7.5</span> Deviance residuals</h3>
 <p>For large sample sizes, the Pearson and deviance residuals will be approximately the same. For small sample sizes, the deviance residuals from covariate patterns with small sample sizes can be unreliable (high variance).</p>
 <p><span class="math display">\[d_k = \text{sign}(y_k - n_k \hat \pi_k)\left\{\sqrt{2[\ell_{\text{full}}(x_k) - \ell(\hat\beta; x_k)]}\right\}\]</span></p>
-<section id="standardized-deviance-residuals" class="level5">
-<h5 class="anchored" data-anchor-id="standardized-deviance-residuals">Standardized deviance residuals</h5>
+<section id="standardized-deviance-residuals" class="level4">
+<h4 class="anchored" data-anchor-id="standardized-deviance-residuals">Standardized deviance residuals</h4>
 <p><span class="math display">\[r_{D_k} = \frac{d_k}{\sqrt{1-h_k}}\]</span></p>
 </section>
 </section>
-<section id="diagnostic-plots" class="level4">
-<h4 class="anchored" data-anchor-id="diagnostic-plots">Diagnostic plots</h4>
+<section id="diagnostic-plots" class="level3" data-number="3.7.6">
+<h3 data-number="3.7.6" class="anchored" data-anchor-id="diagnostic-plots"><span class="header-section-number">3.7.6</span> Diagnostic plots</h3>
 <p>Let’s take a look at the full set of <code>autoplot()</code> diagnostics now for our <code>CHD</code> model:</p>
 <div class="cell">
 <details class="code-fold">
@@ -3666,8 +3720,8 @@ X^2 = \sum_{k=1}^m X_k^2
 </div>
 </div>
 <p>Things look pretty good here. The QQ plot is still usable; with large samples; the residuals should be approximately Gaussian.</p>
-<section id="beetles" class="level5">
-<h5 class="anchored" data-anchor-id="beetles">Beetles</h5>
+<section id="beetles" class="level4">
+<h4 class="anchored" data-anchor-id="beetles">Beetles</h4>
 <p>Let’s look at the beetles model diagnostic plots for comparison:</p>
 <div class="cell">
 <details class="code-fold">
@@ -3686,10 +3740,10 @@ X^2 = \sum_{k=1}^m X_k^2
 </section>
 </section>
 </section>
-<section id="sec-OR-RR" class="level3" data-number="3.0.8">
-<h3 data-number="3.0.8" class="anchored" data-anchor-id="sec-OR-RR"><span class="header-section-number">3.0.8</span> Odds Ratios vs Probability (Risk) Ratios</h3>
-<section id="case-1-rare-events" class="level5">
-<h5 class="anchored" data-anchor-id="case-1-rare-events">Case 1: rare events</h5>
+<section id="sec-OR-RR" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="sec-OR-RR"><span class="header-section-number">3.8</span> Odds Ratios vs Probability (Risk) Ratios</h2>
+<section id="case-1-rare-events" class="level4">
+<h4 class="anchored" data-anchor-id="case-1-rare-events">Case 1: rare events</h4>
 <p>For rare events, odds ratios and probability (a.k.a. risk, a.k.a. prevalence) ratios will be close:</p>
 <p><span class="math inline">\(\pi_1 = .01\)</span> <span class="math inline">\(\pi_2 = .02\)</span></p>
 <div class="cell">
@@ -3711,8 +3765,8 @@ X^2 = \sum_{k=1}^m X_k^2
 </div>
 </div>
 </section>
-<section id="case-2-frequent-events" class="level5">
-<h5 class="anchored" data-anchor-id="case-2-frequent-events">Case 2: frequent events</h5>
+<section id="case-2-frequent-events" class="level4">
+<h4 class="anchored" data-anchor-id="case-2-frequent-events">Case 2: frequent events</h4>
 <p><span class="math inline">\(\pi_1 = .4\)</span> <span class="math inline">\(\pi_2 = .5\)</span></p>
 <p>For more frequently-occurring outcomes, this won’t be the case:</p>
 <div class="cell">

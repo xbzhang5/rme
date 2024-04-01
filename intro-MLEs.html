@@ -324,7 +324,18 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#maximum-likelihood-inference-for-univariate-gaussian-models" id="toc-maximum-likelihood-inference-for-univariate-gaussian-models" class="nav-link active" data-scroll-target="#maximum-likelihood-inference-for-univariate-gaussian-models"><span class="header-section-number">C.0.1</span> Maximum likelihood inference for univariate Gaussian models</a></li>
+<li>
+<a href="#maximum-likelihood-inference-for-univariate-gaussian-models" id="toc-maximum-likelihood-inference-for-univariate-gaussian-models" class="nav-link active" data-scroll-target="#maximum-likelihood-inference-for-univariate-gaussian-models"><span class="header-section-number">C.1</span> Maximum likelihood inference for univariate Gaussian models</a>
+  <ul class="collapse">
+<li><a href="#mle-of-mu" id="toc-mle-of-mu" class="nav-link" data-scroll-target="#mle-of-mu"><span class="header-section-number">C.1.1</span> MLE of <span class="math inline">\(\mu\)</span></a></li>
+  <li><a href="#mle-of-sigma2" id="toc-mle-of-sigma2" class="nav-link" data-scroll-target="#mle-of-sigma2"><span class="header-section-number">C.1.2</span> MLE of <span class="math inline">\(\sigma^{2}\)</span></a></li>
+  <li><a href="#covariance-matrix-of-mles" id="toc-covariance-matrix-of-mles" class="nav-link" data-scroll-target="#covariance-matrix-of-mles"><span class="header-section-number">C.1.3</span> Covariance matrix of MLEs</a></li>
+  <li><a href="#confidence-intervals-for-mles" id="toc-confidence-intervals-for-mles" class="nav-link" data-scroll-target="#confidence-intervals-for-mles"><span class="header-section-number">C.1.4</span> Confidence intervals for MLEs</a></li>
+  <li><a href="#p-values-and-hypothesis-tests-for-mles" id="toc-p-values-and-hypothesis-tests-for-mles" class="nav-link" data-scroll-target="#p-values-and-hypothesis-tests-for-mles"><span class="header-section-number">C.1.5</span> p-values and hypothesis tests for MLEs</a></li>
+  <li><a href="#likelihood-ratio-tests-for-mles" id="toc-likelihood-ratio-tests-for-mles" class="nav-link" data-scroll-target="#likelihood-ratio-tests-for-mles"><span class="header-section-number">C.1.6</span> Likelihood ratio tests for MLEs</a></li>
+  <li><a href="#prediction-intervals-for-mles" id="toc-prediction-intervals-for-mles" class="nav-link" data-scroll-target="#prediction-intervals-for-mles"><span class="header-section-number">C.1.7</span> Prediction intervals for MLEs</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rme/edit/main/intro-MLEs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -351,8 +362,8 @@ window.Quarto = {
 
 </header><p>These notes are derived primarily from <span class="citation" data-cites="dobson2018introduction">Dobson and Barnett (<a href="references.html#ref-dobson2018introduction" role="doc-biblioref">2018</a>)</span> (mostly chapters 3-5).</p>
 <p>Some material was also taken from <span class="citation" data-cites="mclachlan2007algorithm">McLachlan and Krishnan (<a href="references.html#ref-mclachlan2007algorithm" role="doc-biblioref">2007</a>)</span> and <span class="citation" data-cites="CaseBerg01">Casella and Berger (<a href="references.html#ref-CaseBerg01" role="doc-biblioref">2002</a>)</span>.</p>
-<section id="maximum-likelihood-inference-for-univariate-gaussian-models" class="level3" data-number="C.0.1"><h3 data-number="C.0.1" class="anchored" data-anchor-id="maximum-likelihood-inference-for-univariate-gaussian-models">
-<span class="header-section-number">C.0.1</span> Maximum likelihood inference for univariate Gaussian models</h3>
+<section id="maximum-likelihood-inference-for-univariate-gaussian-models" class="level2" data-number="C.1"><h2 data-number="C.1" class="anchored" data-anchor-id="maximum-likelihood-inference-for-univariate-gaussian-models">
+<span class="header-section-number">C.1</span> Maximum likelihood inference for univariate Gaussian models</h2>
 <p>Suppose <span class="math inline">\(X_{1},\ldots,X_{n} \sim_{iid}N\left( \mu,\ \sigma^{2} \right)\)</span>. Let <span class="math inline">\(X = \left( X_{1},\ldots,X_{n} \right)^{\top}\)</span> be these random variables in vector format. Let <span class="math inline">\(x_{i}\)</span> and <span class="math inline">\(x\)</span> denote the corresponding observed data. Let <span class="math inline">\(\theta = \left( \mu,\sigma^{2} \right)^{\top}\)</span> be the vector of parameters. Let <span class="math inline">\(\Theta\)</span> denote the parameters as a random vector.</p>
 <p>Then the log-likelihood <span class="math inline">\(\ell \stackrel{\text{def}}{=}\ell(X;\theta) \stackrel{\text{def}}{=}p\left( X = x \mid \Theta = \theta \right)\)</span> is:</p>
 <p><span class="math display">\[
@@ -362,16 +373,18 @@ window.Quarto = {
 &amp;= - \frac{n}{2}\text{log}\left\{\sigma^{2}\right\} - \frac{1}{2\sigma^{2}}\sum_{i = 1}^{n}{x_{i}^{2} - 2x_{i}\mu + \mu^{2}}
 \end{aligned}
 \]</span></p>
-<section id="mle-of-mu" class="level4"><h4 class="anchored" data-anchor-id="mle-of-mu">MLE of <span class="math inline">\(\mu\)</span>
-</h4>
+<section id="mle-of-mu" class="level3" data-number="C.1.1"><h3 data-number="C.1.1" class="anchored" data-anchor-id="mle-of-mu">
+<span class="header-section-number">C.1.1</span> MLE of <span class="math inline">\(\mu\)</span>
+</h3>
 <p>Then:</p>
 <p><span class="math display">\[\frac{d\ell}{d\mu} = - \frac{1}{2}\sum_{i = 1}^{n}\frac{- 2\left( x_{i} - \mu \right)}{\sigma^{2}}\]</span></p>
 <p><span class="math display">\[= \frac{1}{\sigma^{2}}\left\lbrack \left( \sum_{i = 1}^{n}x_{i} \right) - n\mu \right\rbrack\]</span></p>
 <p>If <span class="math inline">\(\frac{d\ell}{d\mu} = 0\)</span>, then <span class="math inline">\(\mu = \overline{x} \stackrel{\text{def}}{=}\frac{1}{n}\sum_{i = 1}^{n}x_{i}\)</span>.</p>
 <p><span class="math display">\[\frac{d^{2}\ell}{(d\mu)^{2}} = \frac{- n}{\sigma^{2}} &lt; 0\]</span></p>
 <p>So <span class="math inline">\({\widehat{\mu}}_{ML} = \overline{x}\)</span>.</p>
-</section><section id="mle-of-sigma2" class="level4"><h4 class="anchored" data-anchor-id="mle-of-sigma2">MLE of <span class="math inline">\(\sigma^{2}\)</span>
-</h4>
+</section><section id="mle-of-sigma2" class="level3" data-number="C.1.2"><h3 data-number="C.1.2" class="anchored" data-anchor-id="mle-of-sigma2">
+<span class="header-section-number">C.1.2</span> MLE of <span class="math inline">\(\sigma^{2}\)</span>
+</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -425,8 +438,9 @@ Reparametrizing the Gaussian distribution
 \]</span></p>
 <p>Evaluated at <span class="math inline">\(\mu = \widehat{\mu} = \overline{x},\sigma^{2} = {\widehat{\sigma}}^{2} = \frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}\)</span>, we have:</p>
 <p><span class="math display">\[\frac{d^{2}\ell}{d\mu\ d\sigma^{2}} = - \left( {\widehat{\sigma}}^{2} \right)^{- 2}\left( n\overline{x} - n\overline{x} \right) = 0\]</span></p>
-</section><section id="covariance-matrix-of-mles" class="level4"><h4 class="anchored" data-anchor-id="covariance-matrix-of-mles">Covariance matrix of MLEs</h4>
-<section id="the-score-function" class="level5"><h5 class="anchored" data-anchor-id="the-score-function">The score function</h5>
+</section><section id="covariance-matrix-of-mles" class="level3" data-number="C.1.3"><h3 data-number="C.1.3" class="anchored" data-anchor-id="covariance-matrix-of-mles">
+<span class="header-section-number">C.1.3</span> Covariance matrix of MLEs</h3>
+<section id="the-score-function" class="level4"><h4 class="anchored" data-anchor-id="the-score-function">The score function</h4>
 <p>Let <span class="math inline">\(\theta\)</span> be the vector of all parameters; here, <span class="math inline">\(\theta = \left( \mu,\sigma^{2} \right)^{\top}\)</span>.</p>
 <p>Let <span class="math inline">\(\ell^{'}(x,\theta) \stackrel{\text{def}}{=}\frac{d}{d\theta}\ell(x,\theta) = \left( \begin{array}{r}
 \frac{d}{d\mu}\ell(\theta;x) \\
@@ -438,10 +452,10 @@ Reparametrizing the Gaussian distribution
 <p><span class="math inline">\(\ell^{'}(x,\theta)\)</span> is the function we set equal to 0 and solve to find the MLE:</p>
 <p><span class="math display">\[{\widehat{\theta}}_{ML} = \left\{ \theta:\ell^{'}(x,\theta) = 0 \right\}\]</span></p>
 <p>The function <span class="math inline">\(\ell^{'}(x,\theta)\)</span> is so central that it has its own name, the “score” or “gradient” function. Statisticians also often skip writing the arguments <span class="math inline">\((x,\theta)\)</span>, so <span class="math inline">\(\ell^{'} \stackrel{\text{def}}{=}\ell^{'}(x,\theta)\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Some statisticians use <span class="math inline">\(U\)</span> or <span class="math inline">\(S\)</span> instead of <span class="math inline">\(\ell^{'}\)</span>. I prefer <span class="math inline">\(\ell^{'}\)</span>. Why use up extra letters?</p>
-</section><section id="the-fisher-expected-information-matrix" class="level5"><h5 class="anchored" data-anchor-id="the-fisher-expected-information-matrix">The (Fisher) (expected) information matrix</h5>
+</section><section id="the-fisher-expected-information-matrix" class="level4"><h4 class="anchored" data-anchor-id="the-fisher-expected-information-matrix">The (Fisher) (expected) information matrix</h4>
 <p>The variance of <span class="math inline">\(\ell^{'}(x,\theta)\)</span>, <span class="math inline">\({Cov}\left\{ \ell^{'}(x,\theta) \right\}\)</span>, is also very important; we call it the “expected information matrix”, “Fisher information matrix”, or just “information matrix”, and we represent it using the symbol <span class="math inline">\(\mathfrak{I}\)</span> (<code>\frakturI</code> in Unicode, <code>\mathfrak{I}</code> in LaTeX).</p>
-<section id="review-of-variances-and-covariances" class="level6"><h6 class="anchored" data-anchor-id="review-of-variances-and-covariances">Review of variances and covariances</h6>
-<section id="variances-and-covariances-of-one-dimensional-random-variables" class="level7"><p class="heading">Variances and covariances of one-dimensional random variables</p>
+<section id="review-of-variances-and-covariances" class="level5"><h5 class="anchored" data-anchor-id="review-of-variances-and-covariances">Review of variances and covariances</h5>
+<section id="variances-and-covariances-of-one-dimensional-random-variables" class="level6"><h6 class="anchored" data-anchor-id="variances-and-covariances-of-one-dimensional-random-variables">Variances and covariances of one-dimensional random variables</h6>
 <p>For a one-dimensional random variables <span class="math inline">\(X\)</span>,</p>
 <p><span class="math display">\[{Var}(X) \stackrel{\text{def}}{=}Ε\left\lbrack \left( X - Ε\lbrack X\rbrack \right)^{2} \right\rbrack = Ε\left\lbrack X^{2} \right\rbrack - \left( Ε\lbrack X\rbrack \right)^{2}\]</span></p>
 <p>For any two-dimensional random variables, <span class="math inline">\(X,Y\)</span>:</p>
@@ -449,7 +463,7 @@ Reparametrizing the Gaussian distribution
 <p>Therefore, <span class="math inline">\({Var}{(X)} = {Cov}(X,X) = Ε\lbrack XX\rbrack - E\lbrack X\rbrack E\lbrack X\rbrack = Ε\left\lbrack X^{2} \right\rbrack - \left( E\lbrack X\rbrack \right)^{2}\)</span></p>
 <p><span class="math display">\[\mathfrak{I \stackrel{\text{def}}{=}I(}\theta) \stackrel{\text{def}}{=}{Cov}\left( \ell^{'}|\theta \right) = Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - Ε\left\lbrack \ell^{'} \right\rbrack\ Ε\left\lbrack \ell^{'} \right\rbrack^{\top}\]</span></p>
 <p>Sometimes we write <span class="math inline">\({Cov}{(X)} \stackrel{\text{def}}{=}{Cov}(X,X) = {Var}(X)\)</span>.</p>
-</section><section id="variances-and-covariances-of-p-times-1-random-vectors" class="level7"><p class="heading">Variances and covariances of <span class="math inline">\(p \times 1\)</span> random vectors</p>
+</section><section id="variances-and-covariances-of-p-times-1-random-vectors" class="level6"><h6 class="anchored" data-anchor-id="variances-and-covariances-of-p-times-1-random-vectors">Variances and covariances of <span class="math inline">\(p \times 1\)</span> random vectors</h6>
 <p>Now, for a <span class="math inline">\(p \times 1\)</span> dimensional random vector <span class="math inline">\(X\)</span>,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -547,13 +561,17 @@ d &amp; 0 \\
 <li><p><span class="math inline">\(\ell^{'} = 0\)</span></p></li>
 <li><p>At least one diagonal element of <span class="math inline">\(\mathcal{l''}\)</span> is negative.</p></li>
 <li><p>Determinant of <span class="math inline">\(\mathcal{l''}\)</span> is positive.</p></li>
-</ul></section></section></section></section><section id="confidence-intervals-for-mles" class="level4"><h4 class="anchored" data-anchor-id="confidence-intervals-for-mles">Confidence intervals for MLEs</h4>
-</section><section id="p-values-and-hypothesis-tests-for-mles" class="level4"><h4 class="anchored" data-anchor-id="p-values-and-hypothesis-tests-for-mles">p-values and hypothesis tests for MLEs</h4>
-</section><section id="likelihood-ratio-tests-for-mles" class="level4"><h4 class="anchored" data-anchor-id="likelihood-ratio-tests-for-mles">Likelihood ratio tests for MLEs</h4>
+</ul></section></section></section></section><section id="confidence-intervals-for-mles" class="level3" data-number="C.1.4"><h3 data-number="C.1.4" class="anchored" data-anchor-id="confidence-intervals-for-mles">
+<span class="header-section-number">C.1.4</span> Confidence intervals for MLEs</h3>
+</section><section id="p-values-and-hypothesis-tests-for-mles" class="level3" data-number="C.1.5"><h3 data-number="C.1.5" class="anchored" data-anchor-id="p-values-and-hypothesis-tests-for-mles">
+<span class="header-section-number">C.1.5</span> p-values and hypothesis tests for MLEs</h3>
+</section><section id="likelihood-ratio-tests-for-mles" class="level3" data-number="C.1.6"><h3 data-number="C.1.6" class="anchored" data-anchor-id="likelihood-ratio-tests-for-mles">
+<span class="header-section-number">C.1.6</span> Likelihood ratio tests for MLEs</h3>
 <p>[We haven’t gone over this yet]</p>
 <p>log(likelihood ratio) tests <span class="citation" data-cites="dobson2018introduction">(c.f. <a href="references.html#ref-dobson2018introduction" role="doc-biblioref">Dobson and Barnett 2018, sec. 5.7</a>)</span>:</p>
 <p><span class="math display">\[2\left( \mathcal{l -}\ell_{0} \right) \sim \chi^{2}(p - q)\]</span></p>
-</section><section id="prediction-intervals-for-mles" class="level4"><h4 class="anchored" data-anchor-id="prediction-intervals-for-mles">Prediction intervals for MLEs</h4>
+</section><section id="prediction-intervals-for-mles" class="level3" data-number="C.1.7"><h3 data-number="C.1.7" class="anchored" data-anchor-id="prediction-intervals-for-mles">
+<span class="header-section-number">C.1.7</span> Prediction intervals for MLEs</h3>
 <p><span class="math display">\[\overline{X} \in \left\lbrack \widehat{\mu} \pm z_{1 - \alpha\text{/}2}\frac{\sigma}{m} \right\rbrack\]</span></p>
 <p>Where <span class="math inline">\(m\)</span> is the sample size of the new data to be predicted (typically 1, except for binary outcomes, where it needs to be bigger for prediction intervals to make sense)</p>
 
