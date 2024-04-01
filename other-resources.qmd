@@ -1,0 +1,1 @@
+@dunn2018generalized is a recent textbook on GLMs. It doesn't cover survival models, and it doesn't use the modern `tidyverse` packages (`ggplot2`, `dplyr`, etc.).
