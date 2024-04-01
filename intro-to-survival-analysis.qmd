@@ -35,7 +35,7 @@ options('digits' = 4)
 ```
 :::
 
-# Overview
+## Overview
 
 ### Time-to-event outcomes
 
@@ -52,7 +52,7 @@ options('digits' = 4)
 The term *Survival analysis* is a bit misleading. Survival outcomes can sometimes be analyzed using binomial models (logistic regression). *Time-to-event models* might be a better name.
 :::
 
-# Time-to-event outcome distributions
+## Time-to-event outcome distributions
 
 ### Distributions of Time-to-Event Data
 
@@ -91,7 +91,7 @@ The term *Survival analysis* is a bit misleading. Survival outcomes can sometime
     positive HIV test at time $t_2$, then the infection event is
     interval censored.
 
-# Distribution functions for time-to-event variables
+## Distribution functions for time-to-event variables
 
 ### The Probability Density Function (PDF)
 
@@ -833,7 +833,7 @@ $y$.
 End of extra section.
 :::
 
-# Parametric Models for Time-to-Event Outcomes
+## Parametric Models for Time-to-Event Outcomes
 
 ### Exponential Distribution
 
@@ -944,7 +944,7 @@ more flexibility than the exponential.
 
 We will see more of this distribution later.
 
-# Nonparametric Survival Analysis
+## Nonparametric Survival Analysis
 
 ### Basic ideas
 
@@ -961,7 +961,7 @@ We will see more of this distribution later.
     censoring variable which is 1 if the event occurred at the indicated
     time and 0 if this is a censoring time.
 
-# Example: clinical trial for pediatric acute leukemia
+## Example: clinical trial for pediatric acute leukemia
 
 ### Overview of study
 
@@ -1026,7 +1026,7 @@ library(KMsurv)
 -   The estimated average hazard in the placebo group is 4.6 times as
     large (if the hazard is constant over time).
 
-# The Kaplan-Meier Product Limit Estimator
+## The Kaplan-Meier Product Limit Estimator
 
 -   The estimated survival function for the placebo patients is easy to
     compute. For any time $t$ in months, $S(t)$ is the fraction of
@@ -1188,7 +1188,7 @@ km.6mp |>
   scale_y_continuous(labels = scales::percent)
 ```
 
-# Using the `survival` package in R
+## Using the `survival` package in R
 
 We don't have to do these calculations by hand every time; the
 `survival` package and several others have functions available to
@@ -1405,7 +1405,7 @@ survdiff(
 Interestingly, accounting for pairing reduces the significant of the
 difference.
 
-# Example: Bone Marrow Transplant Data
+## Example: Bone Marrow Transplant Data
 
 (Copelan et al., 1991)
 
@@ -1593,7 +1593,7 @@ autoplot(
   theme(legend.position="bottom")
 ```
 
-# Nelson-Aalen Estimates of Cumulative Hazard and Survival
+## Nelson-Aalen Estimates of Cumulative Hazard and Survival
 
 The point hazard at time $t_i$ can be estimated by $d_i/Y_i$, which
 leads to the **Nelson-Aalen estimator of the cumulative hazard**:
