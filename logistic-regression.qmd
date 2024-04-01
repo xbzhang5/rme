@@ -1,11 +1,8 @@
----
-title: "Models for Binary Outcomes"
-subtitle: "Logistic regression and variations"
----
+# Models for Binary Outcomes (Logistic regression and variations)
 
 {{< include shared-config.qmd >}}
 
-## Acknowledgements {.unnumbered}
+### Acknowledgements {.unnumbered}
 
 This content is adapted from:
 
@@ -13,7 +10,7 @@ This content is adapted from:
 -   @vittinghoff2012regression, Chapter 5
 - <https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>    
 
-## Configuring R {.unnumbered}
+### Configuring R {.unnumbered}
 
 Functions from these packages will be used throughout this document:
 
@@ -39,9 +36,9 @@ knitr::opts_chunk$set(message = FALSE)
 options('digits' = 4)
 ```
 
-# Introduction
+## Introduction
 
-## What is logistic regression?
+### What is logistic regression?
 
 ```{r}
 #| include: false
@@ -50,14 +47,20 @@ library(pander)
 
 **Logistic regression** is a framework for modeling [binary](probability.qmd#def-binary) outcomes, conditional on one or more *predictors* (a.k.a. *covariates*).
 
-Examples of binary outcomes include:
+::: {#exr-binary-examples}
 
-* exposure (exposed vs unexposed)
-* disease (diseased vs healthy)
-* recovery (recovered vs unrecovered)
-* relapse (relapse vs remission)
-* return to hospital (returned vs not)
-* vital status (dead vs alive)
+#### Examples of binary outcomes
+
+What are some examples of binary outcomes in the health sciences?
+
+:::: {.solution}
+
+{{< include binary-outcome-examples.qmd >}}
+
+
+::::
+
+:::
 
 Logistic regression uses the [Bernoulli](probability.qmd#def-bernoulli) distribution to model the outcome variable, conditional on one or more covariates. 
 
@@ -72,7 +75,7 @@ See @def-bernoulli.
 ::::
 :::
 
-## Logistic regression versus linear regression
+### Logistic regression versus linear regression
 
 Logistic regression differs from linear regression, which uses the Gaussian ("normal") distribution to model the outcome variable, conditional on the covariates.
 
@@ -88,13 +91,13 @@ Linear regression is typically used for numerical outcomes that aren't event cou
 
 ::::
 
-# Risk Estimation and Prediction
+## Risk Estimation and Prediction
 
 In Epi 203, you have already seen methods for modeling binary outcomes using one covariate that is also binary (such as exposure/non-exposure).
 In this section, we review one-covariate analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
 
 :::::{#exm-oc-mi}
-## Oral Contraceptive Use and Heart Attack
+### Oral Contraceptive Use and Heart Attack
 
 * Research question: how does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; a.k.a. heart attack)?
 
@@ -151,33 +154,33 @@ $$\hat{p}(MI|\neg OC) = \frac{7}{10000} = `r p_MI_nOC`$$
 ::::
 
 ::::{.callout-note}
-## Two meanings of "controls"
+### Two meanings of "controls"
 
 Depending on context, "controls" can mean either individuals who don't experience an *exposure* of interest, or individuals who don't experience an *outcome* of interest.
 
 :::{#def-cases-retrospective}
-### cases and controls in retrospective studies
+#### cases and controls in retrospective studies
 In *retrospective studies*, participants who experience the outcome of interest are called **cases**, while participants who don't experience that outcome are called **controls**. 
 :::
 
 :::{#def-cases-prospective}
-### treatment groups and control groups in prospective studies
+#### treatment groups and control groups in prospective studies
 In *prospective studies*, the group of participants who experience the treatment or exposure of interest is called the **treatment group**, while the participants who receive the baseline or comparison treatment  (for example, clinical trial participants who receive a placebo or a standard-of-care treatment rather than an experimental treatment) are called **controls**.
 
 :::
 
 ::::
 
-## Comparing probabilities
+### Comparing probabilities
 
-### Risk differences
+#### Risk differences
 
 The simplest comparison of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values:
 
 :::::{.columns}
 
 :::{#def-RD}
-### Risk difference
+#### Risk difference
 The **risk difference** of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values: 
 $$\delta(\pi_1,\pi_2) \eqdef \pi_1 - \pi_2$$
 :::
@@ -202,12 +205,12 @@ $$
 
 :::::
 
-### Risk ratios
+#### Risk ratios
 
 :::::{.columns}
 
 :::{#def-RR}
-## Relative risk ratios
+### Relative risk ratios
 
 The **relative risk** of probability $\pi_1$ compared to another probability $\pi_2$, also called the **risk ratio**, **relative risk ratio**, **probability ratio**, or **rate ratio**, is the ratio of those probabilities:
 
@@ -278,12 +281,12 @@ $$
 
 :::
 
-## Odds and probabilities
+### Odds and probabilities
 
 In logistic regression, we will make use of a transformation (rescaling) of probability, called *odds*.
 
 :::{#def-odds}
-### Odds
+#### Odds
 The **odds** of an outcome, denoted $\omega$ ("omega"), is the probability that the outcome occurs, divided by the probability that it doesn't occur. 
 
 That is, if the probability of an outcome is $\pi$, then the corresponding odds of that outcome is 
@@ -325,7 +328,7 @@ plotly::ggplotly(odds_plot) |>
 :::
 
 :::{#exm-odds}
-## Calculating odds
+### Calculating odds
 In @exr-probs, we estimated that the probability of MI, given OC use, is $\pi(OC) \eqdef \Pr(MI|OC) = `r 13/5000`$. If this estimate is correct, then the odds of MI, given OC use, is:
 
 ```{r}
@@ -349,7 +352,7 @@ $$
 :::
 
 :::{#exr-odds}
-## Calculating odds
+### Calculating odds
 Estimate the odds of MI, for non-OC users.
 
 ::::{.solution}
@@ -366,7 +369,7 @@ $$
 
 :::
 
-### A shortcut for calculating odds
+#### A shortcut for calculating odds
 
 The usual estimate for a probability of an event is "# events/# observations". We often denote # events as $x$ and # observations as $n$. So: $$\hat\pi = \frac{x}{n}$$ 
 Thus, the usual estimate for the probability of a nonevent is:
@@ -392,7 +395,7 @@ That is, odds can be calculated directly as "# events" divided by "# nonevents" 
 
 ::::{#exm-odds-shortcut}
 
-### calculating odds using the shortcut
+#### calculating odds using the shortcut
 In @exm-odds, we calculated 
 $$
 \begin{aligned}
@@ -414,7 +417,7 @@ Same answer!
 ::::
 
 
-### Odds of rare events
+#### Odds of rare events
 
 For rare events (small $\pi$), odds and probabilities are nearly equal, because $1-\pi \approx 1$ (see @fig-odds-probs).
 
@@ -434,11 +437,11 @@ $$
 
 :::
 
-## The inverse odds function
+### The inverse odds function
 
 :::{#def-inv-odds}
 
-#### inverse odds function
+##### inverse odds function
 The **inverse odds function**, 
 $$\pi(\omega)\eqdef \frac{\omega}{1+\omega}$$
 converts odds into their corresponding probabilities (@fig-inv-odds).
@@ -485,12 +488,12 @@ $$
 
 :::
 
-## Odds ratios
+### Odds ratios
 
 Now that we have defined odds, we can introduce another way of comparing event probabilities: odds ratios.
 
 :::{#def-OR}
-#### Odds ratio
+##### Odds ratio
 The **odds ratio** for two odds $\omega_1$, $\omega_2$ is their ratio:
 
 $$\theta(\omega_1, \omega_2) = \frac{\omega_1}{\omega_2}$$
@@ -498,7 +501,7 @@ $$\theta(\omega_1, \omega_2) = \frac{\omega_1}{\omega_2}$$
 :::
 
 :::{#exm-OR}
-### Calculating odds ratios
+#### Calculating odds ratios
 In @exm-oc-mi, the odds ratio for OC users versus OC-non-users is:
 
 $$
@@ -515,7 +518,7 @@ When the outcome is rare (i.e., its probability is small) for both groups being 
 
 For example, in @exm-oc-mi, the outcome is rare for both OC and non-OC participants, so the odds for both groups are similar to the corresponding probabilities, and the odds ratio is similar the risk ratio.
 
-### A shortcut for calculating odds ratio estimates
+#### A shortcut for calculating odds ratio estimates
 
 The general form of a two-by-two table is shown in @tbl-2x2-generic. 
 
@@ -544,7 +547,7 @@ From this table, we have:
 Given @tbl-2x2-generic, show that $\hat\omega(Event|\neg Exposed) = \frac{c}{d}$.
 :::
 
-### Properties of odds ratios {#sec-OR-props}
+#### Properties of odds ratios {#sec-OR-props}
 
 Odds ratios have a special property: we can swap a covariate with the outcome, and the odds ratio remains the same.
 
@@ -584,7 +587,7 @@ $$
 For @tbl-2x2-generic, show that $\hat\theta(Exposed, Unexposed) = \hat\theta(Event, \neg Event)$.
 :::
 
-## Effect of study design
+### Effect of study design
 
 @tbl-oc-mi simulates a follow-up study in which two populations were followed and the number of MI’s was observed. The risks are $P(MI|OC)$ and $P(MI|\neg OC)$ and we can estimate these risks from the data.
 
@@ -618,7 +621,7 @@ This is the same estimate we calculated in @exm-OR.
 
 :::
 
-### Cross-Sectional Studies
+#### Cross-Sectional Studies
 
 * If a cross-sectional study is a probability sample of a population (which it rarely is) then we can estimate risks.
 
@@ -629,7 +632,7 @@ This is the same estimate we calculated in @exm-OR.
 * But we can usually not validly estimate risks and risk ratios.
 
 
-# Introduction to logistic regression
+## Introduction to logistic regression
 
 * In @exm-oc-mi, we estimated the risk and the odds of MI for two discrete cases, as to whether of not the individual used oral contraceptives.
 
@@ -637,7 +640,7 @@ This is the same estimate we calculated in @exm-OR.
 
 * In this case, we will use logistic regression, which is a generalization of the linear regression models you have been using that can account for a binary response instead of a continuous one.
 
-## Binary outcomes models - one group, no covariates
+### Binary outcomes models - one group, no covariates
 
 $$
 \begin{aligned}
@@ -652,7 +655,7 @@ p(Y=y) &= \pi^y (1-\pi)^{1-y}\\
 \end{aligned}
 $$
 
-## Binary outcomes - general
+### Binary outcomes - general
 
 $$
 \begin{aligned}
@@ -668,7 +671,7 @@ y_i \log{\pi_i} + (1 - y_i) \log{1-\pi_i}
 \end{aligned}
 $$
 
-## Modeling $\pi_i$ as a function of $X_i$
+### Modeling $\pi_i$ as a function of $X_i$
 
 If there are only a few distinct $X_i$ values, we can model each one
 separately.
@@ -687,7 +690,7 @@ Typically, we use $f(\eta) = \text{expit}(\eta)$.
 
 :::{#def-expit}
 
-### expit function
+#### expit function
 
 The **expit** function (@fig-expit-plot), also known as the **inverse-logit** or **logistic** function, is:
 
@@ -721,7 +724,7 @@ print(expit_plot)
 
 :::{#def-logit}
 
-#### logit function
+##### logit function
 
 The inverse of the `expit` function is the `logit` function:
 
@@ -745,7 +748,7 @@ logit_plot =
 print(logit_plot)
 ```
 
-## Diagram of expit and logit {#sec-expit-logit-diagram}
+### Diagram of expit and logit {#sec-expit-logit-diagram}
 
 ::: {.content-visible when-format="pdf"}
 $$
@@ -796,7 +799,7 @@ $$
 $$
 :::
 
-## Meet the beetles
+### Meet the beetles
 
 ```{r}
 library(glmx)
@@ -824,7 +827,7 @@ print(plot1)
 Mortality rates of adult flour beetles after five hours' exposure to
 gaseous carbon disulphide (Bliss 1935)
 
-## Why don't we use linear regression?
+### Why don't we use linear regression?
 
 ```{r}
 
@@ -872,13 +875,13 @@ plot2 |> print()
 
 ```
 
-## Zoom out
+### Zoom out
 
 ```{r}
 (plot2 + expand_limits(x = c(1.6, 2))) |> print()
 ```
 
-## log transformation of dose?
+### log transformation of dose?
 
 ```{r}
 
@@ -889,7 +892,7 @@ plot3 = plot2 +
 
 ```
 
-## Logistic regression
+### Logistic regression
 
 ```{r}
 
@@ -897,7 +900,7 @@ plot4 = plot3 + geom_function(fun = f, aes(col = "Logistic regression"))
 plot4 |> print()
 ```
 
-## Three parts to regression models
+### Three parts to regression models
 
 -   What distribution does the outcome have for a specific subpopulation
 defined by covariates? (outcome model)
@@ -907,7 +910,7 @@ function)
 
 -   How do the covariates combine? (linear predictor, interactions)
 
-## Logistic regression in R
+### Logistic regression in R
 
 ```{r}
 
@@ -933,7 +936,7 @@ predict(beetles_glm_grouped, type = "link")
 fit_y = beetles$n * fitted.values(beetles_glm_grouped)
 ```
 
-## Individual observations
+### Individual observations
 
 ```{r}
 
@@ -981,14 +984,14 @@ The difference is due to the binomial coefficient
 $\left(n\atop x \right)$ which isn't included in the
 individual-observations (Bernoulli) version of the model.
 
-# Multiple logistic regression
+## Multiple logistic regression
 
-## Coronary heart disease (WCGS) study data
+### Coronary heart disease (WCGS) study data
 
 Let's use the data from the following study to explore multiple logistic
 regression:
 
-### Summary of study
+#### Summary of study
 
 *From @vittinghoff2012regression:*
 
@@ -1009,7 +1012,7 @@ stress levels. They typically work steadily and may enjoy achievement,
 although they have a greater tendency to disregard physical or mental
 stress when they do not achieve."
 
-### Study design
+#### Study design
 
 *from `?faraway::wcgs`:*
 
@@ -1065,14 +1068,14 @@ Richard J. Brand, PhD; C. David Jenkins, PhD; Meyer Friedman, MD; Reuben
 Straus, MD; Moses Wurm, MD JAMA. 1975;233(8):872-877.
 doi:10.1001/jama.1975.03260080034016.
 
-## Load the data
+### Load the data
 
 Here, I load the data:
 
 ```{r}
 #| code-fold: show
 
-## load the data directly from a UCSF website:
+### load the data directly from a UCSF website:
 # library(haven)
 # url = paste0( 
 #     # I'm breaking up the url into two chunks for readability
@@ -1090,7 +1093,7 @@ here::here() |>
 
 ```
 
-## Now let's do some data cleaning
+### Now let's do some data cleaning
 
 ```{r}
 #| code-fold: show
@@ -1135,7 +1138,7 @@ wcgs = wcgs |>
 
 ```
 
-## What's in the data {.smaller}
+### What's in the data {.smaller}
 
 Here's a table of the data:
 
@@ -1150,7 +1153,7 @@ wcgs |>
 
 ```
 
-## Data by age and personality type
+### Data by age and personality type
 
 For now, we will look at the interaction between age and personality
 type (`dibpat`). To make it easier to visualize the data, we summarize
@@ -1172,9 +1175,9 @@ chd_grouped_data =
 chd_grouped_data
 ```
 
-## Graphical exploration
+### Graphical exploration
 
-### Probability scale
+#### Probability scale
 
 ```{r "graphical exploration"}
 
@@ -1221,7 +1224,7 @@ print(chd_plot_probs)
 ```
 :::
 
-### Odds scale
+#### Odds scale
 
 ```{r}
 #| label: fig-chd-odds-scale
@@ -1268,7 +1271,7 @@ print(chd_plot_odds)
 ```
 :::
 
-### Log-odds (logit) scale
+#### Log-odds (logit) scale
 
 ```{r}
 chd_plot_logit = 
@@ -1299,7 +1302,7 @@ print(chd_plot_logit)
 ```
 :::
 
-## Logistic regression models for CHD data {.smaller}
+### Logistic regression models for CHD data {.smaller}
 
 Here, we fit stratified models for CHD by personality type.
 
@@ -1324,12 +1327,12 @@ chd_glm_strat |>
   print_md()
 ```
 
-## Models superimposed on data
+### Models superimposed on data
 
 We can graph our fitted models on each scale (probability, odds,
 log-odds).
 
-### probability scale
+#### probability scale
 
 ```{r}
 
@@ -1372,7 +1375,7 @@ print(chd_plot_probs_2)
 ```
 :::
 
-### odds scale
+#### odds scale
 
 ```{r}
 
@@ -1415,7 +1418,7 @@ print(chd_plot_odds_2)
 ```
 :::
 
-### log-odds (logit) scale
+#### log-odds (logit) scale
 
 ```{r}
 
@@ -1458,7 +1461,7 @@ print(chd_plot_logit_2)
 ```
 :::
 
-## reference-group and contrast parametrization
+### reference-group and contrast parametrization
 
 We can also use the corner-point parametrization (with reference groups
 and contrasts):
@@ -1491,9 +1494,9 @@ chd_glm_strat |>
 If I give you model 1, how would you get the coefficients of model 2?
 :::
 
-# Fitting logistic regression models
+## Fitting logistic regression models
 
-## 
+### 
 
 In general, the estimating equation $\ell'(\beta; \mathbf x) = 0$ cannot
 be solved analytically.
@@ -1526,9 +1529,9 @@ After each iteration of the fitting procedure, the deviance
 that the algorithm took six iterations to converge to a solution where
 the likelihood wasn't changing much anymore.
 
-# Model comparisons for logistic models {#sec-gof}
+## Model comparisons for logistic models {#sec-gof}
 
-## Deviance test
+### Deviance test
 
 We can compare the maximized log-likelihood of our model,
 $\ell(\hat\beta; \mathbf x)$, versus the log-likelihood of the full
@@ -1552,7 +1555,7 @@ pattern $k\in 1:q$.
 If you have covariates measured on a continuous scale, you may not be
 able to use the deviance tests to assess goodness of fit.
 
-## Hosmer-Lemeshow test
+### Hosmer-Lemeshow test
 
 If our covariate patterns produce groups that are too small, a
 reasonable solution is to make bigger groups by merging some of the
@@ -1679,16 +1682,16 @@ print(HL_plot)
 ```
 :::
 
-## Comparing models
+### Comparing models
 
 -   AIC = $-2 * \ell(\hat\theta) + 2 * p$ \[lower is better\]
 -   BIC = $-2 * \ell(\hat\theta) + p * \text{log}(n)$ \[lower is
 better\]
 -   likelihood ratio \[higher is better\]
 
-# Residual-based diagnostics
+## Residual-based diagnostics
 
-## Logistic regression residuals only work for grouped data
+### Logistic regression residuals only work for grouped data
 
 Residuals only work if there is more than one observation for most
 covariate patterns.
@@ -1717,7 +1720,7 @@ chd_glm_strat_grouped |> parameters() |> print_md()
 
 ```
 
-## (Response) residuals
+### (Response) residuals
 
 $$e_k \eqdef \bar y_k - \hat{\pi}(x_k)$$
 
@@ -1783,7 +1786,7 @@ We can see a slight fan-shape here: observations on the right have
 larger variance (as expected since $var(\bar y) = \pi(1-\pi)/n$ is
 maximized when $\pi = 0.5$).
 
-## Pearson residuals
+### Pearson residuals
 
 The fan-shape in the response residuals plot isn't necessarily a concern
 here, since we haven't made an assumption of constant residual variance,
@@ -1831,7 +1834,7 @@ autoplot(chd_glm_strat_grouped, which = 1, ncol = 1) |> print()
 The fan-shape is gone, and these residuals don't show any obvious signs
 of model fit issues.
 
-### Pearson residuals plot for `beetles` data
+#### Pearson residuals plot for `beetles` data
 
 If we create the same plot for the `beetles` model, we see some strong
 evidence of a lack of fit:
@@ -1849,7 +1852,7 @@ autoplot(beetles_glm_grouped, which = 1, ncol = 1) |> print()
 ```
 :::
 
-### Pearson residuals with individual (ungrouped) data
+#### Pearson residuals with individual (ungrouped) data
 
 What happens if we try to compute residuals without grouping the data by
 covariate pattern?
@@ -1873,7 +1876,7 @@ autoplot(chd_glm_strat, which = 1, ncol = 1) |> print()
 
 Meaningless.
 
-### Residuals plot by hand (*optional section*)
+#### Residuals plot by hand (*optional section*)
 
 If you want to check your understanding of what these residual plots
 are, try building them yourself:
@@ -1932,7 +1935,7 @@ wcgs_resid_plot1 |> ggplotly()
 ```
 :::
 
-## Pearson chi-squared goodness of fit test
+### Pearson chi-squared goodness of fit test
 
 The Pearson chi-squared goodness of fit statistic is: $$
 X^2 = \sum_{k=1}^m X_k^2 
@@ -1957,7 +1960,7 @@ pval = pchisq(
 For our CHD model, the p-value for this test is `r pval`; no significant
 evidence of a lack of fit at the 0.05 level.
 
-### Standardized Pearson residuals
+#### Standardized Pearson residuals
 
 Especially for small data sets, we might want to adjust our residuals
 for leverage (since outliers in $X$ add extra variance to the
@@ -1968,7 +1971,7 @@ $$r_{P_k} = \frac{X_k}{\sqrt{1-h_k}}$$
 where $h_k$ is the leverage of $X_k$. The functions `autoplot()` and
 `plot.lm()` use these for some of their graphs.
 
-## Deviance residuals
+### Deviance residuals
 
 For large sample sizes, the Pearson and deviance residuals will be
 approximately the same. For small sample sizes, the deviance residuals
@@ -1977,11 +1980,11 @@ variance).
 
 $$d_k = \text{sign}(y_k - n_k \hat \pi_k)\left\{\sqrt{2[\ell_{\text{full}}(x_k) - \ell(\hat\beta; x_k)]}\right\}$$
 
-### Standardized deviance residuals
+#### Standardized deviance residuals
 
 $$r_{D_k} = \frac{d_k}{\sqrt{1-h_k}}$$
 
-## Diagnostic plots
+### Diagnostic plots
 
 Let's take a look at the full set of `autoplot()` diagnostics now for
 our `CHD` model:
@@ -2002,7 +2005,7 @@ chd_glm_strat_grouped |> autoplot(which = 1:6) |> print()
 Things look pretty good here. The QQ plot is still usable; with large
 samples; the residuals should be approximately Gaussian.
 
-### Beetles
+#### Beetles
 
 Let's look at the beetles model diagnostic plots for comparison:
 
@@ -2022,9 +2025,9 @@ beetles_glm_grouped |> autoplot(which = 1:6) |> print()
 Hard to tell much from so little data, but there might be some issues
 here.
 
-# Odds Ratios vs Probability (Risk) Ratios {#sec-OR-RR}
+## Odds Ratios vs Probability (Risk) Ratios {#sec-OR-RR}
 
-### Case 1: rare events
+#### Case 1: rare events
 
 For rare events, odds ratios and probability (a.k.a. risk, a.k.a.
 prevalence) ratios will be close:
@@ -2039,7 +2042,7 @@ odds(pi2)/odds(pi1)
 
 ```
 
-### Case 2: frequent events
+#### Case 2: frequent events
 
 $\pi_1 = .4$ $\pi_2 = .5$
 

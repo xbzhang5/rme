@@ -1,10 +1,9 @@
----
-title: "Building Cox Proportional Hazards models"
----
+# Building Cox Proportional Hazards models
+
 {{< include shared-config.qmd >}}
 
 ::: {.content-hidden when-format="revealjs"}
-## Configuring R {.unnumbered}
+### Configuring R {.unnumbered}
 
 Functions from these packages will be used throughout this document:
 
@@ -41,16 +40,16 @@ legend_text_size = 9
 ```
 :::
 
-# Building Cox Proportional Hazards models
+## Building Cox Proportional Hazards models
 
-## `hodg` Lymphoma Data Set from `KMsurv`
+### `hodg` Lymphoma Data Set from `KMsurv`
 
-### Participants
+#### Participants
 
 43 bone marrow transplant patients at Ohio State University (Avalos
 1993)
 
-### Variables
+#### Variables
 
 -   `dtype`: Disease type (Hodgkin's or non-Hodgkins lymphoma)
 -   `gtype`: Bone marrow graft type:
@@ -67,7 +66,7 @@ legend_text_size = 9
 -   10--60: Unable to care for self; requires equivalent of
     institutional or hospital care; disease may be progressing rapidly.
 
-### Data
+#### Data
 
 ```{r}
 data(hodg, package = "KMsurv")
@@ -97,7 +96,7 @@ hodg2 |> print()
 
 ```
 
-## Proportional hazards model
+### Proportional hazards model
 
 ```{r}
 
@@ -110,7 +109,7 @@ summary(hodg.cox1)
 
 ::: content-hidden
 ```{r}
-## fancier alternatives:
+### fancier alternatives:
 # library(parameters)
 # hodg.cox1 |>  
 #   parameters() |> 
@@ -122,9 +121,9 @@ summary(hodg.cox1)
 ```
 :::
 
-# Diagnostic graphs for proportional hazards assumption
+## Diagnostic graphs for proportional hazards assumption
 
-## Analysis plan
+### Analysis plan
 
 -   **survival function** for the four combinations of disease type and
     graft type.
@@ -132,7 +131,7 @@ summary(hodg.cox1)
     functions.
 -   **complementary log-log survival** for the four groups.
 
-## Kaplan-Meier survival functions
+### Kaplan-Meier survival functions
 
 ```{r}
 #| fig-cap: "Kaplan-Meier Survival Curves for HOD/NHL and Allo/Auto Grafts"
@@ -156,7 +155,7 @@ km_model |>
 
 ```
 
-## Observed and expected survival curves
+### Observed and expected survival curves
 
 ```{r}
 #| fig-cap: "Observed and Expected Survival Curves"
@@ -305,7 +304,7 @@ temp =
 ```
 :::
 
-## Cumulative hazard (log-scale) curves
+### Cumulative hazard (log-scale) curves
 
 Also known as "complementary log-log (clog-log) survival curves".
 
@@ -406,9 +405,9 @@ na_and_cph |>
   theme(legend.position = "bottom")
 ```
 
-# Predictions and Residuals
+## Predictions and Residuals
 
-## Review: Predictions in Linear Regression
+### Review: Predictions in Linear Regression
 
 -   In linear regression, we have a linear predictor for each data point
     $i$
@@ -425,14 +424,14 @@ $$
     covariate values $\tilde x_i$. This together with the prediction
     error says that we are predicting the distribution of values of $y$.
 
-## Review: Residuals in Linear Regression
+### Review: Residuals in Linear Regression
 
 -   The usual residual is $r_i=y_i-\hat y_i$, the difference between the
     actual value of $y$ and a prediction of its mean.
 -   The residuals are also the quantities the sum of whose squares is
     being minimized by the least squares/MLE estimation.
 
-## Predictions and Residuals in survival models
+### Predictions and Residuals in survival models
 
 -   In survival analysis, the equivalent of $y_i$ is the event time
     $t_i$, which is unknown for the censored observations.
@@ -442,7 +441,7 @@ $$
 \hat{\text{E}}[T|X=x] = \int_{t=0}^{\infty} \hat S(t)dt
 $$
 
-## Wide prediction intervals
+### Wide prediction intervals
 
 The nature of time-to-event data results in very wide prediction
 intervals:
@@ -464,7 +463,7 @@ intervals:
     equivalence to linear regression residuals.
 -   And if there is, they are mostly quite large!
 
-## Types of Residuals in Time-to-Event Models
+### Types of Residuals in Time-to-Event Models
 
 -   It is often hard to make a decision from graph appearances, though
     the process can reveal much.
@@ -476,7 +475,7 @@ intervals:
 -   **dfbeta** for influence.
 
 ::: content-hidden
-## Martingale and deviance residuals
+### Martingale and deviance residuals
 
 For martingale and deviance residuals, the returned object is a vector
 with one element for each subject (without collapse). Even censored
@@ -484,7 +483,7 @@ observations have a martingale residual and a deviance residual. Each
 subject's value for the martingale residual and the deviance residual is
 a single value.
 
-## Score residuals
+### Score residuals
 
 Each observation also has a score residual, though this is a vector, not
 a scalar.
@@ -510,7 +509,7 @@ vector: $\ell'(\beta;y_i)$
     residual, which like the score residual is a vector.
 :::
 
-## Schoenfeld residuals
+### Schoenfeld residuals
 
 -   There is a Schoenfeld residual for each subject $i$ with an event
     (not censored) and for each predictor $x_{k}$.
@@ -546,37 +545,37 @@ hodg.zph = cox.zph(hodg.cox1)
 print(hodg.zph)
 ```
 
-### `gtype`
+#### `gtype`
 
 ```{r}
 ggcoxzph(hodg.zph, var = "gtype")
 ```
 
-### `dtype`
+#### `dtype`
 
 ```{r}
 ggcoxzph(hodg.zph, var = "dtype")
 ```
 
-### `score`
+#### `score`
 
 ```{r}
 ggcoxzph(hodg.zph, var = "score")
 ```
 
-### `wtime`
+#### `wtime`
 
 ```{r}
 ggcoxzph(hodg.zph, var = "wtime")
 ```
 
-### `gtype:dtype`
+#### `gtype:dtype`
 
 ```{r}
 ggcoxzph(hodg.zph, var = "gtype:dtype")
 ```
 
-### Conclusions
+#### Conclusions
 
 -   From the correlation test, the Karnofsky score and the interaction
     with graft type disease type induce modest but statistically
@@ -588,7 +587,7 @@ ggcoxzph(hodg.zph, var = "gtype:dtype")
     event times, but those from HOD patients become less represented.
 -   Both the statistical tests and the plots are useful.
 
-# Goodness of Fit using the Cox-Snell Residuals
+## Goodness of Fit using the Cox-Snell Residuals
 
 (references: Klein & Moeschberger textbook, §11.2, and Dobson & Barnett
 textbook, §10.6)
@@ -656,7 +655,7 @@ autoplot(surv.csr, fun = "cumhaz") +
 The line with slope 1 and intercept 0 fits the curve relatively well, so
 we don't see lack of fit using this procedure.
 
-# Martingale Residuals
+## Martingale Residuals
 
 The **martingale residuals** are a slight modification of the Cox-Snell
 residuals. If the censoring indicator is $\delta_i$, then
@@ -666,7 +665,7 @@ predicted by the model. We will use these to examine the functional
 forms of continuous covariates.
 
 ::: content-hidden
-## Martingale
+### Martingale
 
 Originally, a martingale referred to a betting strategy where you bet
 \$1 on the first play, then you double the bet if you lose and continue
@@ -688,7 +687,7 @@ martingale
     residuals ordered in time form a martingale.
 :::
 
-## Using Martingale Residuals
+### Using Martingale Residuals
 
 Martingale residuals can be used to examine the functional form of a
 numeric variable.
@@ -703,7 +702,7 @@ numeric variable.
 Let's use this to examine the `score` and `wtime` variables in the
 `wtime` data set.
 
-### Karnofsky score {.unnumbered}
+#### Karnofsky score {.unnumbered}
 
 ```{r}
 #| fig-cap: "Martingale Residuals vs. Karnofsky Score"
@@ -730,7 +729,7 @@ hodg2 |>
 The line is almost straight. It could be some modest transformation of
 the Karnofsky score would help, but it might not make much difference.
 
-### Waiting time {.unnumbered}
+#### Waiting time {.unnumbered}
 
 ```{r}
 #| fig-cap: "Martingale Residuals vs. Waiting Time"
@@ -759,7 +758,7 @@ residual.
 The martingale residuals are all negative for `wtime` \>83 and positive
 for the next smallest value. A reasonable cut-point is 80 days.
 
-### Updating the model {.unnumbered}
+#### Updating the model {.unnumbered}
 
 Let's reformulate the model with dichotomized `wtime`.
 
@@ -791,7 +790,7 @@ hodg.cox2 |> drop1(test="Chisq")
 
 The new model has better (lower) AIC.
 
-# Checking for Outliers and Influential Observations
+## Checking for Outliers and Influential Observations
 
 We will check for outliers using the deviance residuals. The martingale
 residuals show excess events or the opposite, but highly skewed, with
@@ -801,7 +800,7 @@ patients, but patients who die unexpectedly early show up only in the
 deviance residual. Influence will be examined using dfbeta in a similar
 way to linear regression, logistic regression, or Poisson regression.
 
-## Deviance Residuals
+### Deviance Residuals
 
 $$
 \begin{aligned}
@@ -812,7 +811,7 @@ $$
 
 Roughly centered on 0 with approximate standard deviation 1.
 
-## 
+### 
 
 ```{r}
 hodg.mart = residuals(hodg.cox2,type="martingale")
@@ -843,7 +842,7 @@ plot(hodg.preds,hodg.dev,xlab="Linear Predictor",ylab="Deviance Residual")
 The two largest deviance residuals are observations 1 and 29. Worth
 examining.
 
-## dfbeta
+### dfbeta
 
 -   dfbeta is the approximate change in the coefficient vector if that
     observation were dropped
@@ -851,7 +850,7 @@ examining.
 -   dfbetas is the approximate change in the coefficients, scaled by the
     standard error for the coefficients.
 
-### Graft type
+#### Graft type
 
 ```{r}
 #| fig-cap: "dfbeta Values by Observation Order for Graft Type"
@@ -861,7 +860,7 @@ plot(hodg.dfb[,1],xlab="Observation Order",ylab="dfbeta for Graft Type")
 
 The smallest dfbeta for graft type is observation 1.
 
-### Disease type
+#### Disease type
 
 ```{r}
 #| fig-cap: "dfbeta Values by Observation Order for Disease Type"
@@ -874,7 +873,7 @@ plot(hodg.dfb[,2],
 The smallest two dfbeta values for disease type are observations 1 and
 16.
 
-### Karnofsky score
+#### Karnofsky score
 
 ```{r}
 #| fig-cap: "dfbeta Values by Observation Order for Karnofsky Score"
@@ -889,7 +888,7 @@ The two highest dfbeta values for score are observations 1 and 18. The
 next three are observations 17, 29, and 19. The smallest value is
 observation 2.
 
-### Waiting time (dichotomized)
+#### Waiting time (dichotomized)
 
 ```{r}
 #| fig-cap: "dfbeta Values by Observation Order for Waiting Time (dichotomized)"
@@ -905,7 +904,7 @@ The two large values of dfbeta for dichotomized waiting time are
 observations 15 and 16. This may have to do with the discretization of
 waiting time.
 
-### Interaction: graft type and disease type
+#### Interaction: graft type and disease type
 
 ```{r}
 #| fig-cap: "dfbeta Values by Observation Order for dtype:gtype"
@@ -933,7 +932,7 @@ The two largest values are observations 1 and 16. The smallest value is observat
 The most important observations to examine seem to be 1, 15, 16, 18, and
 29.
 
-## 
+### 
 
 ```{r}
 with(hodg,summary(time[delta==1]))
@@ -965,7 +964,7 @@ hodg2[c(1,15,16,18,29),] |>
       ))
 ```
 
-## Action Items
+### Action Items
 
 -   Unusual points may need checking, particularly if the data are not
     completely cleaned. In this case, observations 15 and 16 may show
@@ -998,9 +997,9 @@ hodg.cox2 |>
 For Non-Hodgkin's, the allogenic graft is better. For Hodgkin's, the
 autologous graft is much better.
 
-# Stratified survival models
+## Stratified survival models
 
-## Revisiting the leukemia dataset (`anderson`)
+### Revisiting the leukemia dataset (`anderson`)
 
 We will analyze remission survival times on 42 leukemia patients, half
 on new treatment, half on standard treatment.
@@ -1083,7 +1082,7 @@ anderson =
 print(anderson)
 ```
 
-## Cox semi-parametric proportional hazards model
+### Cox semi-parametric proportional hazards model
 
 ```{r}
 
@@ -1095,13 +1094,13 @@ summary(anderson.cox1)
 
 ```
 
-### Test the proportional hazards assumption
+#### Test the proportional hazards assumption
 
 ```{r}
 cox.zph(anderson.cox1)
 ```
 
-### Graph the K-M survival curves
+#### Graph the K-M survival curves
 
 ```{r}
 
@@ -1118,7 +1117,7 @@ anderson_km_model |>
 The survival curves cross, which indicates a problem in the
 proportionality assumption by sex.
 
-## Graph the Nelson-Aalen cumulative hazard
+### Graph the Nelson-Aalen cumulative hazard
 
 We can also look at the log-hazard ("cloglog survival") plots:
 
@@ -1149,7 +1148,7 @@ anderson_na_model |>
 This can be fixed by using strata or possibly by other model
 alterations.
 
-## The Stratified Cox Model
+### The Stratified Cox Model
 
 -   In a stratified Cox model, each stratum, defined by one or more
     factors, has its own base survival function $h_0(t)$.
@@ -1220,7 +1219,7 @@ anova(
 We don't have enough evidence to tell the difference between these two
 models.
 
-## Conclusions
+### Conclusions
 
 -   We chose to use a stratified model because of the apparent
     non-proportionality of the hazard for the sex variable.
@@ -1229,7 +1228,7 @@ models.
 -   So we use the stratifed model with coefficients that are the same
     across strata.
 
-## Another Modeling Approach
+### Another Modeling Approach
 
 -   We used an additive model without interactions and saw that we might
     need to stratify by sex.
@@ -1252,11 +1251,11 @@ anderson.coxph.intxn |> summary()
 cox.zph(anderson.coxph.intxn)
 ```
 
-# Time-varying covariates
+## Time-varying covariates
 
 (adapted from @klein2003survival, §9.2)
 
-## Motivating example: back to the leukemia dataset
+### Motivating example: back to the leukemia dataset
 
 ```{r}
 #| code-fold: false
@@ -1269,12 +1268,12 @@ This dataset comes from the Copelan et al. (1991) study of allogenic
 bone marrow transplant therapy for acute myeloid leukemia (AML) and
 acute lymphoblastic leukemia (ALL).
 
-#### Outcomes (endpoints)
+##### Outcomes (endpoints)
 
 -   The main endpoint is disease-free survival (`t2` and `d3`) for the
     three risk groups, "ALL", "AML Low Risk", and "AML High Risk".
 
-#### Possible intermediate events
+##### Possible intermediate events
 
 -   graft vs. host disease (**GVHD**), an immunological rejection
     response to the transplant (bad)
@@ -1285,7 +1284,7 @@ acute lymphoblastic leukemia (ALL).
 
 One or the other, both in either order, or neither may occur.
 
-#### Covariates
+##### Covariates
 
 -   We are interested in possibly using the covariates `z1`-`z10` to
     adjust for other factors.
@@ -1293,7 +1292,7 @@ One or the other, both in either order, or neither may occur.
 -   In addition, the time-varying covariates for acute GVHD, chronic
     GVHD, and platelet recovery may be useful.
 
-### Preprocessing
+#### Preprocessing
 
 We reformat the data before analysis:
 
@@ -1369,7 +1368,7 @@ We can do this with stepwise regression or hand examination of the
 results of adding or removing variables.
 :::
 
-## Time-Dependent Covariates
+### Time-Dependent Covariates
 
 -   A **time-dependent covariate** ("**TDC**") is a covariate whose
     value changes during the course of the study.
@@ -1379,7 +1378,7 @@ results of adding or removing variables.
     relapse or death increases, and when and if platelet recovery
     occurs, the risk decreases.
 
-## Analysis in R
+### Analysis in R
 
 -   We form a variable `precovery` which is = 0 before platelet recovery
     and is = 1 after platelet recovery, if it occurs.
@@ -1450,7 +1449,7 @@ relapse or death occurred; since it is false, the participant must have
 exited the study without experiencing relapse or death (i.e., they were
 censored).
 
-## Event sequences
+### Event sequences
 
 Let:
 
@@ -1480,7 +1479,7 @@ with P or not-P occurs in this data set.
 -   The function `tmerge` in the `survival` package eases the process of
     constructing the new long-format dataset.
 
-## Model with Time-Fixed Covariates
+### Model with Time-Fixed Covariates
 
 ```{r}
 bmt1 = 
@@ -1542,7 +1541,7 @@ bmt2 |> dplyr::filter(id == 15) |> dplyr::select(id, agvhd, cgvhd, precovery, su
 ```
 
 
-## Model with Time-Dependent Covariates
+### Model with Time-Dependent Covariates
 
 ```{r}
 bmt_coxph_TV = coxph(
@@ -1573,7 +1572,7 @@ bmt_coxph_TV2 = update(bmt_coxph_TV, . ~ . - agvhd -cgvhd)
 bmt_coxph_TV2 |> summary()
 ```
 
-# Recurrent Events
+## Recurrent Events
 
 (Adapted from Kleinbaum and Klein, Ch 8)
 
@@ -1586,7 +1585,7 @@ bmt_coxph_TV2 |> summary()
 -   We have to use a "robust" variance estimator to account for
     correlation of time-to-events within a patient.
 
-## Bladder Cancer Data Set
+### Bladder Cancer Data Set
 
 The bladder cancer dataset from Kleinbaum and Klein contains recurrent
 event outcome information for eighty-six cancer patients followed for
@@ -1600,7 +1599,7 @@ This drug is still a possible choice for some patients. Another
 therapeutic choice is Bacillus Calmette-Guerin (BCG), a live bacterium
 related to cow tuberculosis.
 
-### Data dictionary
+#### Data dictionary
 
 | Variable   | Definition                                         |
 |------------|----------------------------------------------------|
@@ -1625,7 +1624,7 @@ related to cow tuberculosis.
 -   Of the 190 intervals, 112 terminated with a recurrence and 78 were
     censored.
 
-### Different intervals for the same patient are correlated.
+#### Different intervals for the same patient are correlated.
 
 -   Is the effective sample size 47 or 112? This might narrow confidence
     intervals by as much as a factor of $\sqrt{112/47}=1.54$
@@ -1686,7 +1685,7 @@ The likelihood ratio and score tests assume independence of observations
 within a cluster. The Wald and robust score tests do not.
 :::
 
-### adding `cluster = id`
+#### adding `cluster = id`
 
 If we add `cluster= id` to the call to `coxph`, the coefficient
 estimates don't change, but we get an additional column in the
@@ -1734,6 +1733,6 @@ Ways to check PH assumption:
 -   interaction with time
 :::
 
-# Age as the time scale
+## Age as the time scale
 
 See @canchola2003cox.

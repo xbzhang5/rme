@@ -1,9 +1,8 @@
----
-title: "Introduction"
----
+# "Introduction"
+
 ::: {.content-hidden when-format="revealjs"}
 
-## Configuring R {.unnumbered}
+### Configuring R {.unnumbered}
 
 Functions from these packages will be used throughout this document:
 
@@ -38,15 +37,18 @@ conflicts_prefer(ggplot2::autoplot)
 
 :::
 
-# Introduction to Epi 204
+## Introduction to Epi 204
 
 Welcome to Epidemiology 204: Quantitative Epidemiology III (Statistical Models).
 
 In this course, we will start where Epi 203 left off: with linear regression models.
 
-If you haven't taken Epi 203 or a similar introduction to mathematical statistical inference, please talk to me after class.
+::: callout-note
+Epi 203/STA 130B/STA 131B is a prerequisite for this course. If you haven't passed one of these courses, please talk to me after class.
 
-## What you should know
+:::
+
+### What you should know
 
 Epi 202: probability models for different data types
 
@@ -85,7 +87,7 @@ Stat 108: linear regression models
 * RMarkdown or Quarto for formatting homework
 * LaTeX for writing math in RMarkdown/Quarto
 
-## What we will cover in this course
+### What we will cover in this course
 
 * Linear (Gaussian) regression models (review and more details)
 
@@ -96,7 +98,7 @@ Stat 108: linear regression models
 
 * Statistical analysis using R
 
-# Regression models
+## Regression models
 
 Why do we need them?
 
@@ -104,7 +106,7 @@ Why do we need them?
 
 *   not enough data to analyze some subgroups individually
 
-## Example: Adelie penguins
+### Example: Adelie penguins
 
 ```{r}
 
@@ -141,7 +143,7 @@ ggpenguins |> print()
 
 :::
 
-## Linear regression
+### Linear regression
 
 ```{r}
 ggpenguins2 = 
@@ -173,7 +175,7 @@ ggpenguins2 |> print()
 
 :::
 
-## Curved regression lines
+### Curved regression lines
 
 ```{r}
 
@@ -206,7 +208,7 @@ ggpenguins2 |> print()
 
 :::
 
-## Multiple regression
+### Multiple regression
 
 ```{r}
 
@@ -246,7 +248,7 @@ ggpenguins |> print()
 
 :::
 
-## Modeling non-Gaussian outcomes
+### Modeling non-Gaussian outcomes
 
 ```{r}
 library(glmx)
@@ -285,7 +287,7 @@ print(plot1)
 ```
 :::
 
-## Why don't we use linear regression?
+### Why don't we use linear regression?
 
 ```{r}
 
@@ -331,7 +333,7 @@ print(plot2)
 ```
 :::
 
-## Zoom out
+### Zoom out
 
 
 ::: {.content-visible when-format="html"}
@@ -349,7 +351,7 @@ print(plot2 + expand_limits(x = c(1.6, 2)))
 ```
 :::
 
-## log transformation of dose?
+### log transformation of dose?
 
 ```{r}
 
@@ -382,7 +384,7 @@ print(plot3 + expand_limits(x = c(1.6, 2)))
 ```
 :::
 
-## Logistic regression
+### Logistic regression
 
 ```{r}
 
@@ -412,7 +414,7 @@ print(plot4)
 :::
 
 
-## Three parts to regression models
+### Three parts to regression models
 
 -   What distribution does the outcome have for a specific subpopulation defined by covariates? (outcome model)
 

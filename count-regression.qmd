@@ -1,11 +1,9 @@
----
-title: "Models for Count Outcomes"
-subtitle: "Poisson regression and variations"
+# Models for Count Outcomes (Poisson regression and variations)
 ---
 
 {{< include shared-config.qmd >}}
 
-## Acknowledgements{.unnumbered}
+### Acknowledgements{.unnumbered}
 
 This content is adapted from:
 
@@ -13,7 +11,7 @@ This content is adapted from:
 -   @vittinghoff2012regression, Chapter 8
 
 ::: {.content-hidden when-format="revealjs"}
-## Configuring R{.unnumbered}
+### Configuring R{.unnumbered}
 
 Functions from these packages will be used throughout this document:
 
@@ -40,9 +38,9 @@ options('digits' = 4)
 ```
 :::
 
-# Introduction
+## Introduction
 
-## Examples of count outcomes
+### Examples of count outcomes
 
 * Cyclones per season
 * Seconds of tooth-brushing per session (if rounded)
@@ -56,16 +54,16 @@ In many count outcomes, there is some sense of "exposure magnitude" or "duration
 
 :::
 
-## Poisson distribution
+### Poisson distribution
 
 $$P(Y=y) = \frac{\mu^y e^{-\mu}}{y!}$$
 
-### Properties
+#### Properties
 
 * $\mathbb{E}[Y] = \mu$
 * $\text{Var}[Y] = \mu$
 
-## Accounting for exposure
+### Accounting for exposure
 
 If the exposures/observation durations, denoted $T=t$, are not all equal, we model $$\mu = \lambda t$$
 
@@ -79,7 +77,7 @@ The exposure magnitude, $T$, is *similar* to a covariate in linear or logistic r
 
 :::
 
-## Adding covariates
+### Adding covariates
 
 With covariates, $\lambda$ becomes a function of the covariates $\tilde X = (X_1, \dots,X_n)$, with a $\log{}$ link function (and thus an $\exp{}$ inverse-link). That is:
 
@@ -116,7 +114,7 @@ In contrast with the $X$s, $T$ enters this expression with a $\log{}$ transforma
 Terms that enter the linear component of a model without a coefficient, such as $\log{t}$ here, are called **offsets**.
 :::
 
-## Rate ratios {.smaller}
+### Rate ratios {.smaller}
 
 Differences on the log-rate scale become ratios on the rate scale.
 
@@ -163,9 +161,9 @@ $$
 \end{aligned}
 $$
 
-# Inference for count regression models
+## Inference for count regression models
 
-## Confidence intervals for regression coefficients and rate ratios
+### Confidence intervals for regression coefficients and rate ratios
 
 As usual:
 
@@ -179,7 +177,7 @@ $$
 \exp{\beta} \in \left[\exp{\ci} \right]
 $$
 
-## Hypothesis tests for regression coefficients
+### Hypothesis tests for regression coefficients
 
 $$
 t = \frac{\hat \beta - \beta_0}{\hse{\hb}}
@@ -187,11 +185,11 @@ $$
 
 Compare $t$ or $|t|$ to the tails of the standard Gaussian distribution, according to the null hypothesis.
 
-## Comparing nested models
+### Comparing nested models
 
 log(likelihood ratio) tests, as usual.
 
-# Prediction
+## Prediction
 
 $$
 \begin{aligned}
@@ -204,24 +202,24 @@ $$
 \end{aligned}
 $$
 
-# Diagnostics
+## Diagnostics
 
-## Residuals
+### Residuals
 
-### Observation residuals
+#### Observation residuals
 
 $$e \eqdef y - \hat y$$
 
-### Pearson residuals
+#### Pearson residuals
 
 $$r = \frac{e}{\hse{e}} \approx \frac{e}{\sqrt{\hat y}}$$
 
-### Standardized Pearson residuals
+#### Standardized Pearson residuals
 
 $$r_p = \frac{r}{\sqrt{1-h}}$$
 where $h$ is the "leverage" (which we will continue to leave undefined).
 
-### Deviance residuals
+#### Deviance residuals
 
 $$
 d_k = \text{sign}(y - \hat y)\left\{\sqrt{2[\ell_{\text{full}}(y) - \ell(\hat\beta; y)]}\right\}
@@ -247,9 +245,9 @@ plot(sign,xlim = c(-1,1), xlab = "x", ylab = "sign(x)")
 :::
 
 
-# Zero-inflation
+## Zero-inflation
 
-## Models for zero-inflated counts
+### Models for zero-inflated counts
 
 We assume a latent (unobserved) binary variable, $Z$, which we model using logistic regression:
 
@@ -278,17 +276,17 @@ P(Y=y,Z=z|...)
 \end{aligned}
 $$
 
-### Exercise
+#### Exercise
 
 Expand $P(Y=0|X=x,T=t)$, $P(Y=1|X=x,T=t)$ and $P(Y=y|X=x,T=t)$ into expressions involving $P(Z=1|X=x,T=t)$ and $P(Y=y|Z=0,X=x,T=t)$.
 
-### Exercise
+#### Exercise
 
 Derive the expected value and variance of $Y$, conditional on $X$ and $T$, as functions of $P(Z=1|X=x,T=t)$ and $\mathbb E[Y|Z=0,X=x,T=t]$.
 
-# Over-dispersion
+## Over-dispersion
 
-## Negative binomial models
+### Negative binomial models
 
 The Poisson distribution model **forces** the variance to equal the mean. In practice, many count distributions will have a variance substantially larger than the mean (or occasionally smaller).
 
@@ -306,7 +304,7 @@ For this distribution, $\mathbb E[Y] = \mu$ and $\text{Var}(Y) = \mu + \frac{\mu
 
 We can still model $\mu$ as a function of $X$ and $T$ as before, and we can combine this model with zero-inflation by using it in place of the Poisson distribution for $P(Y=y|Z=0,X=x,T=t)$.
 
-## Quasipoisson
+### Quasipoisson
 
 An alternative to Negative binomial is the "quasipoisson" distribution. I've never used it, but it seems to be a method-of-moments type approach rather than maximum likelihood. It models the variance as $\text{Var}(Y) = \mu\theta$, and estimates $\theta$ accordingly.
 

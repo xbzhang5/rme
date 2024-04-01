@@ -1,8 +1,4 @@
----
-title: "Linear (Gaussian) Models"
-editor_options: 
-  chunk_output_type: console
----
+# Linear (Gaussian) Models
 
 {{< include shared-config.qmd >}}
 
@@ -33,9 +29,9 @@ library(parameters) # format model output tables for markdown
 library(conflicted) # check for conflicting function definitions
 ```
 
-# Understanding Gaussian Linear Regression Models
+## Understanding Gaussian Linear Regression Models
 
-## Motivating example: birthweights and gestational age
+### Motivating example: birthweights and gestational age
 
 Suppose we want to learn about the distributions of birthweights for (human) babies born at different gestational ages and with different chromosomal sexes (Dobson and Barnett, Example 2.2.2):
 
@@ -89,11 +85,11 @@ print(plot1 + facet_wrap(~ sex))
 ```
 :::
 
-## Parallel lines regression
+### Parallel lines regression
 
 We don't have enough data to model the distribution of birth weight separately for each combination of gestational age and sex, so let's instead consider a (relatively) simple model for how that distribution varies with gestational age and sex.
 
-### Notation
+#### Notation
 
 Let:
 
@@ -113,7 +109,7 @@ $$Y \sim N(\mu(X_1,X_2), \sigma^2)$$
 
 $$\mu(X_1,X_2)\eqdef E[Y|X_1, X_2] = \beta_0 + \beta_1 X_1+ \beta_2 X_2$$
 
-### Implementing the Model in R
+#### Implementing the Model in R
 
 Here's how we can implement this model in R:
 
@@ -156,7 +152,7 @@ ggplotly(plot2)
 ```
 :::
 
-### Model assumptions and predictions
+#### Model assumptions and predictions
 
 To learn what this model is assuming, let's plug in a few values.
 
@@ -166,7 +162,7 @@ According to this model, what's the mean birthweight for a female born at 36 wee
 pred_female = coef(bw_lm1)["(Intercept)"] + coef(bw_lm1)["age"]*36
 
 # print(pred_female)
-## built-in prediction: 
+### built-in prediction: 
 # predict(bw_lm1, newdata = tibble(sex = "female", age = 36))
 ```
 
@@ -215,7 +211,7 @@ That's an assumption of the model; it's built-in to the parametric structure, ev
 
 That's why the lines are parallel.
 
-## Interactions
+### Interactions
 
 What if we don't like that parallel lines assumption?
 
@@ -325,7 +321,7 @@ Note that age now does show up in the difference: in other words, according to t
 
 That's how the lines in the graph ended up non-parallel.
 
-## Stratified regression
+### Stratified regression
 
 We could re-write the interaction model as a stratified model, with a slope and intercept for each sex:
 
@@ -341,7 +337,7 @@ bw_lm_strat |>
   print_md()
 ```
 
-## Curved-line regression
+### Curved-line regression
 
 If we transform some of our covariates ($X$s) and plot the resulting model on the original covariate scale, we end up with curved regression lines:
 
@@ -383,9 +379,9 @@ ggpenguins2 |>  ggplotly()
 ```
 :::
 
-# Estimating Linear Models via Maximum Likelihood
+## Estimating Linear Models via Maximum Likelihood
 
-## Review of one-sample inference
+### Review of one-sample inference
 
 Previously, we learned how to fit outcome-only models of the form $p(X=x|\theta)$ to iid data $\mathbf x = (x_1,…,x_n)$ using maximum likelihood estimation:
 
@@ -409,7 +405,7 @@ $$\hat \theta_{ML} \pm z_{0.975} \times \left[\left(\hat{\mathcal I}(\hat \theta
 
 where $z_\beta$ the $\beta$ quantile of the standard Gaussian distribution.
 
-## MLEs for Linear Regression
+### MLEs for Linear Regression
 
 Let's use maximum likelihood again:
 
@@ -616,7 +612,7 @@ bw_lm2 |> summary() |> coef() |> pander()
 
 So we can do confidence intervals, hypothesis tests, and p-values exactly as in the one-variable case we looked at previously.
 
-# Inference about Gaussian Linear Regression Models
+## Inference about Gaussian Linear Regression Models
 
 Research question: is there really an interaction between sex and age?
 
@@ -626,7 +622,7 @@ $H_A: \beta_3 \neq 0$
 
 $P(|\hat\beta_3| > |`r coef(bw_lm2)["sexmale:age"]`| \mid H_0)$ = ?
 
-## Wald tests and CIs
+### Wald tests and CIs
 
 R can give you Wald tests for single coefficients and corresponding CIs:
 
@@ -637,11 +633,11 @@ bw_lm2 |>
   print_md()
 ```
 
-## One-parameter inference by hand
+### One-parameter inference by hand
 
 To understand what's happening, let's replicate these results by hand for the interaction term.
 
-### P-value
+#### P-value
 
 ```{r}
 beta_hat = coef(summary(bw_lm2))["sexmale:age", "Estimate"]
@@ -669,7 +665,7 @@ $$
 \end{aligned}
 $$ This matches the result in the table above.
 
-### Confidence interval
+#### Confidence interval
 
 ```{r}
 confint_radius_t = se_hat * qt(p = 0.975, df = dfresid, lower = TRUE)
@@ -679,11 +675,11 @@ print(confint_t)
 
 This also matches.
 
-## Gaussian approximations
+### Gaussian approximations
 
 Here are the asymptotic (Gaussian approximation) equivalents:
 
-### P-value
+#### P-value
 
 ```{r}
 pval_z = pnorm(abs(t_stat), lower = FALSE) * 2
@@ -691,7 +687,7 @@ pval_z = pnorm(abs(t_stat), lower = FALSE) * 2
 print(pval_z)
 ```
 
-### Confidence interval
+#### Confidence interval
 
 ```{r}
 confint_radius_z = se_hat * qnorm(0.975, lower = TRUE)
@@ -700,7 +696,7 @@ confint_z =
 print(confint_z)
 ```
 
-## Likelihood ratio statistics
+### Likelihood ratio statistics
 
 ```{r}
 
@@ -753,7 +749,7 @@ pchisq(2*lLR, df = delta_df, lower = FALSE)
 
 ```
 
-## 
+### 
 
 In practice you don't have to do this by hand; there are functions to do it for you:
 
@@ -765,9 +761,9 @@ lrtest(bw_lm2, bw_lm1)
 
 ```
 
-# Goodness of fit
+## Goodness of fit
 
-## AIC and BIC
+### AIC and BIC
 
 When we use likelihood ratio tests, we are comparing how well different models fit the data.
 
@@ -783,7 +779,7 @@ where $\ell$ is the log-likelihood of the data evaluated using the parameter est
 
 You can calculate these criteria using the `logLik()` function, or use the built-in R functions:
 
-### AIC in R
+#### AIC in R
 
 ```{r}
 
@@ -794,7 +790,7 @@ AIC(bw_lm2)
 
 ```
 
-### BIC in R
+#### BIC in R
 
 ```{r}
 
@@ -807,7 +803,7 @@ BIC(bw_lm2)
 
 Large values of AIC and BIC are worse than small values. There are no hypothesis tests or p-values associated with these criteria.
 
-## (Residual) Deviance
+### (Residual) Deviance
 
 Let $q$ be the number of distinct covariate combinations in a data set.
 
@@ -872,7 +868,7 @@ This statistic is called the **deviance** or **residual deviance** for our two-s
 
 The corresponding p-value tells us whether there we have enough evidence to detect that our two-slopes, two-intercepts model is a worse fit for the data than the maximal model; in other words, it tells us if there's evidence that we missed any important patterns. (Remember, a nonsignificant p-value could mean that we didn't miss anything and a more complicated model is unnecessary, or it could mean we just don't have enough data to tell the difference between these models.)
 
-## Null Deviance
+### Null Deviance
 
 Similarly, the *least* complicated model we could fit would have only one mean parameter, an intercept:
 
@@ -912,9 +908,9 @@ lrtest(lm_max, lm0)
 
 This log-likelihood ratio statistic is called the **null deviance**. It tells us whether we have enough data to detect a difference between the null and full models.
 
-# Rescaling
+## Rescaling
 
-## Rescale age {.smaller}
+### Rescale age {.smaller}
 
 ```{r}
 
@@ -939,9 +935,9 @@ Compare with what we got without rescaling:
 parameters(bw_lm2, ci_method = "wald") |> print_md()
 ```
 
-# Prediction
+## Prediction
 
-## Prediction for linear models
+### Prediction for linear models
 
 $$
 \begin{aligned}
@@ -951,7 +947,7 @@ $$
 \end{aligned}
 $$
 
-## prediction in R
+### prediction in R
 
 ```{r}
 
@@ -980,11 +976,11 @@ predict(bw_lm1, se.fit = TRUE, interval = "predict")$fit |> as_tibble()
 
 The warning from the last command is: "predictions on current data refer to *future* responses" (since you already know what happened to the current data, and thus don't need to predict it). You could also supply `newdata` to get predictions for new combinations of predictors that you didn't see in your original dataset. See `?predict.lm` for more.
 
-# Diagnostics
+## Diagnostics
 
-## Residuals
+### Residuals
 
-### Definitions of residuals
+#### Definitions of residuals
 
 -   Residuals: $$e_i = y_i - \hat E[Y|X=x]$$
 
@@ -994,7 +990,7 @@ The warning from the last command is: "predictions on current data refer to *fut
 
 -   For Gaussian models: $$\hat{SD}(e_i) \approx \frac{e_i}{\hat{\sigma}}$$
 
-### Characteristics of residuals
+#### Characteristics of residuals
 
 With enough data and a correct model, the residuals will be approximately Guassian distributed, with variance $\sigma^2$, which we can estimate using $\hat\sigma^2$: that is:
 
@@ -1008,13 +1004,13 @@ $$
 r_i\ \dot \sim_{iid}\ N(0,1)
 $$
 
-## Marginal distributions of residuals
+### Marginal distributions of residuals
 
 To look for problems with our model, we can check whether the residuals $e_i$ and standardized residuals $r_i$ look like they have the distributions that they are supposed to have, according to the model.
 
 First, we need to compute the residuals. R makes this easy:
 
-### (non-standardized) residuals in R
+#### (non-standardized) residuals in R
 
 ```{r}
 resid(bw_lm2)
@@ -1024,7 +1020,7 @@ bw$weight - fitted(bw_lm2)
 
 Success!
 
-### Standardized residuals in R
+#### Standardized residuals in R
 
 ```{r}
 
@@ -1098,7 +1094,7 @@ bw |>
 
 Now let's build histograms:
 
-### Marginal distribution of (nonstandardized) residuals
+#### Marginal distribution of (nonstandardized) residuals
 
 ```{r}
 
@@ -1123,7 +1119,7 @@ print(resid_marginal_hist)
 
 Hard to tell with this small amount of data, but I'm a bit concerned that the histogram doesn't show a bell-curve shape.
 
-#### Marginal distribution of standardized residuals
+##### Marginal distribution of standardized residuals
 
 ```{r}
 
@@ -1150,7 +1146,7 @@ This looks similar, although the scale of the x-axis got narrower, because we di
 
 Still hard to tell if the distribution is Gaussian.
 
-## QQ plot of standardized residuals
+### QQ plot of standardized residuals
 
 Another way to assess normality is the QQ plot of the standardized residuals versus normal quantiles:
 
@@ -1186,7 +1182,7 @@ If the Gaussian model were correct, these points should follow the dotted line.
 Fig 2.4 panel (c) in Dobson is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
 :::
 
-### QQ plot - how it's built
+#### QQ plot - how it's built
 
 Let's construct it by hand:
 
@@ -1243,7 +1239,7 @@ print(qqplot_lm2)
 ```
 :::
 
-## Conditional distributions of residuals
+### Conditional distributions of residuals
 
 If our Gaussian linear regression model is correct, the residuals $e_i$ and standardized residuals $r_i$ should have:
 
@@ -1257,7 +1253,7 @@ But if we didn't correctly guess the functional form of linear component of the 
 
 Then the the residuals might have nonzero mean or nonconstant variance for some values of $x$.
 
-### Residuals versus fitted values
+#### Residuals versus fitted values
 
 To look for these issues, we can plot the residuals $e_i$ against the fitted values $\hat y_i$:
 
@@ -1269,7 +1265,7 @@ If the model is correct, the blue line should stay flat and close to 0, and the 
 
 If not, we probably need to change the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
 
-### Scale-location plot
+#### Scale-location plot
 
 We can also plot the square roots of the absolute values of the standardized residuals against the fitted values:
 
@@ -1287,7 +1283,7 @@ autoplot(bw_lm2, which = 3, ncol = 1) |> print()
 
 Here, the blue line doesn't need to be near 0, but it should be flat. If not, the residual variance $\sigma^2$ might not be constant, and we might need to transform our outcome $Y$ (or use a model that allows non-constant variance).
 
-### Residuals versus leverage
+#### Residuals versus leverage
 
 We can also plot our standardized residuals against "leverage", which roughly speaking is a measure of how unusual each $x_i$ value is. Very unusual $x_i$ values can have extreme effects on the model fit, so we might want ot remove those observations as outliers, particularly if they have large residuals.
 
@@ -1305,7 +1301,7 @@ autoplot(bw_lm2, which = 5, ncol = 1) |> print()
 
 The blue line should be relatively flat and close to 0 here.
 
-## Diagnostics constructed by hand
+### Diagnostics constructed by hand
 
 ```{r}
 
@@ -1322,7 +1318,7 @@ bw =
 
 ```
 
-#### Residuals vs fitted
+##### Residuals vs fitted
 
 ```{r}
 
@@ -1348,7 +1344,7 @@ print(resid_vs_fit)
 ```
 :::
 
-#### Standardized residuals vs fitted
+##### Standardized residuals vs fitted
 
 ```{r}
 bw |> 
@@ -1361,7 +1357,7 @@ bw |>
 
 ```
 
-#### Standardized residuals vs gestational age
+##### Standardized residuals vs gestational age
 
 ```{r}
 
@@ -1375,7 +1371,7 @@ bw |>
 
 ```
 
-#### `sqrt(abs(rstandard()))` vs fitted
+##### `sqrt(abs(rstandard()))` vs fitted
 
 Compare with `autoplot(bw_lm2, 3)`
 
@@ -1393,19 +1389,19 @@ bw |>
 
 ```
 
-# Model selection
+## Model selection
 
 If we have a lot of covariates in our dataset, we might want to choose a small subset to use in our model.
 
 There are a few possible metrics to consider for choosing a "best" model.
 
-## Mean squared error
+### Mean squared error
 
 We might want to minimize the **mean squared error**, $\text E[(y-\hat y)^2]$, for new observations that weren't in our data set when we fit the model.
 
 Unfortunately, $$\frac{1}{n}\sum_{i=1}^n (y_i-\hat y_i)^2$$ gives a biased estimate of $\text E[(y-\hat y)^2]$ for new data. If we want an unbiased estimate, we will have to be clever.
 
-## Cross-validation
+### Cross-validation
 
 ```{r}
 data("carbohydrate", package = "dobson")
@@ -1416,9 +1412,9 @@ temp =
 y = carbohydrate$carbohydrate)
 ```
 
-# Categorical covariates with more than two levels
+## Categorical covariates with more than two levels
 
-## 
+### Example: `birthweight`
 
 In the birthweight example, the variable `sex` had only two observed values:
 
@@ -1428,7 +1424,7 @@ unique(bw$sex)
 
 If there are more than two observed values, we can't just use a single variable with 0s and 1s.
 
-## 
+### 
 
 For example, here's the (in)famous `iris` data:
 
@@ -1440,7 +1436,7 @@ summary(iris)
 
 ```
 
-## 
+### 
 
 There are three species:
 
@@ -1450,7 +1446,7 @@ iris$Species |> unique()
 
 ```
 
-## 
+### 
 
 If we want to model `Sepal.Length` by species, we could create a variable $X$ that represents "setosa" as $X=1$, "virginica" as $X=2$, and "versicolor" as $X=3$.
 
@@ -1484,7 +1480,7 @@ iris_lm1 |> parameters() |> print_md()
 
 ```
 
-## Let's see how that model looks:
+### Let's see how that model looks:
 
 ```{r}
 
@@ -1517,7 +1513,7 @@ ggplotly(iris_plot1)
 
 We have forced the model to use a straight line for the three estimated means. Maybe not a good idea?
 
-## Let's see what R does with categorical variables by default:
+### Let's see what R does with categorical variables by default:
 
 ```{r}
 iris_lm2 = lm(Sepal.Length ~ Species, data = iris)
@@ -1525,7 +1521,7 @@ iris_lm2 |> parameters() |> print_md()
 
 ```
 
-## Re-parametrize with no intercept
+### Re-parametrize with no intercept
 
 If you don't want the default and offset option, you can use "-1" like we've seen previously:
 
@@ -1535,7 +1531,7 @@ iris.lm2b |> parameters() |> print_md()
 
 ```
 
-## Let's see what these new models look like:
+### Let's see what these new models look like:
 
 ```{r}
 iris_plot2 = 
@@ -1566,7 +1562,7 @@ ggplotly(iris_plot2)
 ```
 :::
 
-## Let's see how R did that:
+### Let's see how R did that:
 
 ```{r}
 

@@ -1,13 +1,12 @@
----
-title: "Introduction to Maximum Likelihood Inference"
----
+# Introduction to Maximum Likelihood Inference
+
 {{< include shared-config.qmd >}}
 
 These notes are derived primarily from @dobson2018introduction (mostly chapters 3-5).
 
 Some material was also taken from @mclachlan2007algorithm and @CaseBerg01.
 
-# Maximum likelihood inference for univariate Gaussian models
+## Maximum likelihood inference for univariate Gaussian models
 
 Suppose $X_{1},\ldots,X_{n} \sim_{iid}N\left( \mu,\ \sigma^{2} \right)$.
 Let $X = \left( X_{1},\ldots,X_{n} \right)^{\top}$ be these random
@@ -28,7 +27,7 @@ $$
 \end{aligned}
 $$
 
-## MLE of $\mu$
+### MLE of $\mu$
 
 Then:
 
@@ -43,10 +42,10 @@ $$\frac{d^{2}\ell}{(d\mu)^{2}} = \frac{- n}{\sigma^{2}} < 0$$
 
 So ${\widehat{\mu}}_{ML} = \overline{x}$.
 
-## MLE of $\sigma^{2}$
+### MLE of $\sigma^{2}$
 
 :::{.callout-tip}
-## Reparametrizing the Gaussian distribution
+### Reparametrizing the Gaussian distribution
 When solving for ${\widehat{\sigma}}_{ML}$, you can treat
 $\sigma^{2}$ as an atomic variable (don’t differentiate with respect to
 $\sigma$ or things get messy). In fact, you can replace $\sigma^{2}$
@@ -114,9 +113,9 @@ we have:
 
 $$\frac{d^{2}\ell}{d\mu\ d\sigma^{2}} = - \left( {\widehat{\sigma}}^{2} \right)^{- 2}\left( n\overline{x} - n\overline{x} \right) = 0$$
 
-## Covariance matrix of MLEs
+### Covariance matrix of MLEs
 
-### The score function
+#### The score function
 
 Let $\theta$ be the vector of all parameters; here,
 $\theta = \left( \mu,\sigma^{2} \right)^{\top}$.
@@ -142,7 +141,7 @@ $\ell^{'} \eqdef \ell^{'}(x,\theta)$.[^1] Some statisticians
 use $U$ or $S$ instead of $\ell^{'}$. I prefer $\ell^{'}$.
 Why use up extra letters?
 
-### The (Fisher) (expected) information matrix
+#### The (Fisher) (expected) information matrix
 
 The variance of $\ell^{'}(x,\theta)$,
 ${Cov}\left\{ \ell^{'}(x,\theta) \right\}$, is also very
@@ -150,9 +149,9 @@ important; we call it the "expected information matrix", "Fisher
 information matrix", or just "information matrix", and we represent it
 using the symbol $\mathfrak{I}$ (`\frakturI` in Unicode, `\mathfrak{I}` in LaTeX).
 
-#### Review of variances and covariances
+##### Review of variances and covariances
 
-##### Variances and covariances of one-dimensional random variables
+###### Variances and covariances of one-dimensional random variables
 
 For a one-dimensional random variables $X$,
 
@@ -169,7 +168,7 @@ $$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = Ε\
 
 Sometimes we write ${Cov}{(X)} \eqdef {Cov}(X,X) = {Var}(X)$.
 
-##### Variances and covariances of $p \times 1$ random vectors
+###### Variances and covariances of $p \times 1$ random vectors
 
 Now, for a $p \times 1$ dimensional random vector $X$,
 
@@ -244,7 +243,7 @@ standard-font "I" here). $I(\theta;x)$ is the observed information
 matrix (Negative Hessian).
 
 :::{.callout-important}
-## Key point
+### Key point
  The asymptotics of MLEs gives us
 ${\widehat{\theta}}_{ML} \sim N\left( \theta,\mathfrak{I}^{- 1}(\theta) \right)$,
 approximately, for large sample sizes.
@@ -330,11 +329,11 @@ To prove it’s a maximum, need:
 
 - Determinant of $\mathcal{l''}$ is positive.
 
-## Confidence intervals for MLEs
+### Confidence intervals for MLEs
 
-## p-values and hypothesis tests for MLEs
+### p-values and hypothesis tests for MLEs
 
-## Likelihood ratio tests for MLEs
+### Likelihood ratio tests for MLEs
 
 \[We haven’t gone over this yet\]
 
@@ -342,7 +341,7 @@ log(likelihood ratio) tests [c.f. @dobson2018introduction §5.7]:
 
 $$2\left( \mathcal{l -}\ell_{0} \right) \sim \chi^{2}(p - q)$$
 
-## Prediction intervals for MLEs
+### Prediction intervals for MLEs
 
 $$\overline{X} \in \left\lbrack \widehat{\mu} \pm z_{1 - \alpha\text{/}2}\frac{\sigma}{m} \right\rbrack$$
 

@@ -1,11 +1,9 @@
----
-title: "Proportional Hazards Models"
----
+# Proportional Hazards Models
 
 {{< include shared-config.qmd >}}
 
 ::: {.content-hidden when-format="revealjs"}
-## Configuring R {.unnumbered}
+### Configuring R {.unnumbered}
 
 Functions from these packages will be used throughout this document:
 
@@ -36,7 +34,7 @@ options('digits' = 4)
 
 # The proportional hazards model
 
-## Background on the Proportional Hazards Model
+### Background on the Proportional Hazards Model
 
 The exponential distribution has constant hazard:
 
@@ -55,7 +53,7 @@ $$h(t|\boldsymbol x) \eqdef p(T=t|T\ge t, \boldsymbol X = \boldsymbol x)$$
 
 Second, we let the base hazard depend on $t$, but not on the covariates (for now). We can do this using either parametric or semi-parametric approaches.
 
-## Cox's Proportional Hazards Model
+### Cox's Proportional Hazards Model
 
 The generalization is that the hazard function is 
 
@@ -89,7 +87,7 @@ $$
 Under the proportional hazards model, this ratio (a.k.a. proportion) does not depend on $t$. This property is a structural limitation of the model; it is called the **proportional hazards assumption**.
 
 ::: {#def-pha}
-## proportional hazards
+### proportional hazards
 
 A conditional probability distribution $p(T|X)$ has **proportional hazards** if the hazard ratio $h(t|\boldsymbol x_1)/h(t|\boldsymbol x_2)$ does not depend on $t$. Mathematically, it can be written as:
 
@@ -159,11 +157,11 @@ See also:
 
 <https://en.wikipedia.org/wiki/Proportional_hazards_model#Why_it_is_called_%22proportional%22>
 
-## Additional properties of the proportional hazards model
+### Additional properties of the proportional hazards model
 
 If $h(t|x)= h_0(t)\theta(x)$, then:
 
-### Cumulative hazards are also proportional to $H_0(t)$
+#### Cumulative hazards are also proportional to $H_0(t)$
 
 $$
 \begin{aligned}
@@ -177,7 +175,7 @@ $$
 
 where $H_0(t) \eqdef H(t|0) = \int_{u=0}^t h_0(u)du$.
 
-### Survival functions are exponential multiples of $S_0(t)$
+#### Survival functions are exponential multiples of $S_0(t)$
 
 $$
 \begin{aligned}
@@ -191,7 +189,7 @@ $$
 
 where $S_0(t) \eqdef P(T\ge t | \boldsymbol X = 0)$ is the survival function for an individual whose covariates are all equal to their default values.
 
-## Testing the proportional hazards assumption
+### Testing the proportional hazards assumption
 
 The Nelson-Aalen estimate of the cumulative hazard is usually used for estimates of the hazard and often the cumulative hazard.
 
@@ -261,7 +259,7 @@ We can zoom in on 30-300 days to take a closer look:
 bmt_rel_hazard_plot + xlim(c(30,300))
 ```
 
-## Smoothed hazard functions
+### Smoothed hazard functions
 
 The Nelson-Aalen estimate of the cumulative hazard is usually used for
 estimates of the hazard. Since the hazard is the derivative of the
@@ -300,7 +298,7 @@ We will see that except for an initial blip in the high risk AML group,
 the hazards look roughly proportional . They are all strongly
 decreasing.
 
-## Fitting the Proportional Hazards Model
+### Fitting the Proportional Hazards Model
 
 How do we fit a proportional hazards regression model? We need to
 estimate the coefficients of the covariates, and we need to estimate the
@@ -365,7 +363,7 @@ are numerous other estimates that have been proposed as well.
 
 # Cox Model for the `bmt` data
 
-## Fit the model
+### Fit the model
 
 ```{r}
 
@@ -405,7 +403,7 @@ covariate is better than the one without
 The likelihood ratio test is probably best in smaller samples, followed
 by the Wald test.
 
-## Survival Curves from the Cox Model
+### Survival Curves from the Cox Model
 
 We can take a look at the resulting group-specific curves:
 
@@ -448,7 +446,7 @@ option shown by some users and by other packages.
 Two particularly egregious examples are factor variables and
 interactions. Suppose one were studying interspecies transmission of a virus, and the data set has a factor variable with levels ("pig", "chicken") and about equal numbers of observations for each. The "mean" covariate level will be 0.5 -- is this a flying pig?
 
-## Examining `survfit`
+### Examining `survfit`
 
 ```{r}
 survfit(Surv(t2, d3)~group,data=bmt)
@@ -494,7 +492,7 @@ $$
 \end{aligned}
 $$
 
-### Breslow's method for ties
+#### Breslow's method for ties
 
 Breslow's method estimates the partial likelihood as
 
@@ -510,7 +508,7 @@ This method is equivalent to treating each event as distinct and using the non-t
 It works best when the number of ties is small. 
 It is the default in many statistical packages, including PROC PHREG in SAS.
 
-### Efron's method for ties
+#### Efron's method for ties
 
 The other common method is Efron's, which is the default in R.
 
@@ -523,7 +521,7 @@ The third option in R (and an option also in SAS as `discrete`) is the
 "exact" method, which is the same one used for matched logistic
 regression.
 
-### Example: Breslow's method
+#### Example: Breslow's method
 
 Suppose as an example we have a time $t$ where there are 20 individuals
 at risk and three failures. Let the three individuals have risk
@@ -553,7 +551,7 @@ $$
 as the risk set got smaller with each failure. The exact method roughly
 averages the results for the six possible orderings of the failures.
 
-### Example: Efron's method
+#### Example: Efron's method
 
 But we don't know the order they failed in, so instead of reducing the
 denominator by one risk coefficient each time, we reduce it by the same

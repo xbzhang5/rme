@@ -1,12 +1,10 @@
----
-title: "Introduction to Survival Analysis"
----
+# Introduction to Survival Analysis
 
 {{< include shared-config.qmd >}}
 
 
 ::: {.content-hidden when-format="revealjs"}
-## Configuring R {.unnumbered}
+### Configuring R {.unnumbered}
 
 Functions from these packages will be used throughout this document:
 
@@ -39,7 +37,7 @@ options('digits' = 4)
 
 # Overview
 
-## Time-to-event outcomes
+### Time-to-event outcomes
 
 **Survival analysis** is a framework for modeling *time-to-event* outcomes. It is used in:
 
@@ -56,7 +54,7 @@ The term *Survival analysis* is a bit misleading. Survival outcomes can sometime
 
 # Time-to-event outcome distributions
 
-## Distributions of Time-to-Event Data
+### Distributions of Time-to-Event Data
 
 -   The distribution of event times is asymmetric and can be
     long-tailed, and starts at 0 (that is, $P(T<0) = 0$).
@@ -73,7 +71,7 @@ The term *Survival analysis* is a bit misleading. Survival outcomes can sometime
     $t_1$ and $t_2$.
 -   Analysis is difficult if censoring is associated with treatment.
 
-## Right Censoring
+### Right Censoring
 
 -   Patients are in a clinical trial for cancer, some on a new treatment
     and some on standard of care.
@@ -84,7 +82,7 @@ The term *Survival analysis* is a bit misleading. Survival outcomes can sometime
 -   Patients who are lost to follow-up or withdraw from the study may be
     right-censored.
 
-## Left and Interval Censoring
+### Left and Interval Censoring
 
 -   An individual tests positive for HIV.
 -   If the event is infection with HIV, then we only know that it has
@@ -95,7 +93,7 @@ The term *Survival analysis* is a bit misleading. Survival outcomes can sometime
 
 # Distribution functions for time-to-event variables
 
-## The Probability Density Function (PDF)
+### The Probability Density Function (PDF)
 
 For a time-to-event variable $T$ with a continuous distribution, the
 **probability density function** is defined as usual:
@@ -107,7 +105,7 @@ $f(t) = 0, \forall t<0$. In other words, the range of $T$ is typically
 $[0,\infty)$.
 
 :::{#exm-exp-pdf}
-### exponential distribution
+#### exponential distribution
 
 Recall from Epi 202: the pdf of the exponential distribution family of
 models is:
@@ -153,7 +151,7 @@ ggplot() +
 
 :::
 
-## The Cumulative Distribution Function (CDF)
+### The Cumulative Distribution Function (CDF)
 
 The **cumulative distribution function** is defined as:
 
@@ -165,7 +163,7 @@ F(t) &\eqdef \Pr(T \le t)\\
 $$
 
 :::{#exm-exp-cdf}
-#### exponential distribution
+##### exponential distribution
 
 Recall from Epi 202: the cdf of the exponential distribution family of
 models is:
@@ -211,7 +209,7 @@ ggplot() +
 
 :::
 
-## The Survival Function
+### The Survival Function
 
 For survival data, a more important quantity is the **survival
 function**:
@@ -231,7 +229,7 @@ the expected fraction of the original population at time 0 who have survived up 
 $$S(t) = \E{X_t}$$
 
 :::{#exm-exp-survfn}
-#### exponential distribution
+##### exponential distribution
 
 Since $S(t) = 1 - F(t)$, the survival function of the exponential
 distribution family of models is:
@@ -277,7 +275,7 @@ ggplot() +
 
 :::
 
-## The Hazard Function
+### The Hazard Function
 
 Another important quantity is the **hazard function**:
 
@@ -298,7 +296,7 @@ $$h(t)=\frac{f(t)}{S(t)}$$
 
 :::::{#lem-joint-prob-same-var}
 
-### Joint probability of a variable with itself
+#### Joint probability of a variable with itself
 
 $$p(T=t, T\ge t) = p(T=t)$$
 
@@ -322,7 +320,7 @@ $$
 :::
 
 :::{#exm-exp-haz}
-#### exponential distribution
+##### exponential distribution
 
 The hazard function of the exponential distribution family of models is:
 
@@ -391,7 +389,7 @@ $$
 ::::
 :::
 
-## The Cumulative Hazard Function
+### The Cumulative Hazard Function
 
 Since $h(t) = \frac{d}{dt}\cb{-\log{S(t)}}$ (see @thm-h-logS), we also have:
 
@@ -403,7 +401,7 @@ The integral in @eq-surv-int-haz is important enough to have its own name: **cum
 
 :::{#def-cumhaz}
 
-#### cumulative hazard
+##### cumulative hazard
 
 The **cumulative hazard function** $H(t)$ is defined as:
 
@@ -458,7 +456,7 @@ ggplot() +
 
 :::
 
-## Some Key Mathematical Relationships among Survival Concepts
+### Some Key Mathematical Relationships among Survival Concepts
 
 Diagram:
 
@@ -529,9 +527,9 @@ Equivalently:
 $$S(t) = \text{exp}\left\{-H(t)\right\}$$
 :::
 
-### Example: Time to death the US in 2004
+#### Example: Time to death the US in 2004
 
-#### Daily hazard rates for US Females in 2004
+##### Daily hazard rates for US Females in 2004
 
 The first day is the most dangerous:
 
@@ -575,7 +573,7 @@ text(18,.00030,"Rest of First Week",col=3)
 text(18,.00015,"Rest of First month",col=4)
 ```
 
-#### Daily hazard rates for US Males and Females in 2004
+##### Daily hazard rates for US Males and Females in 2004
 
 Exercise: hypothesize why these curves differ where they do?
 
@@ -594,7 +592,7 @@ legend(5,5e-6,c("Males","Females"),col=1:2,lwd=2)
 
 ```
 
-#### Survival curve for US females
+##### Survival curve for US females
 
 Exercise: compare and contrast this curve with the corresponding hazard
 curve.
@@ -613,7 +611,7 @@ plot(age2,exp(-cs2),type="l",lwd=2,xlab="Age",ylab="Survival")
 
 ```
 
-### Likelihood with censoring \*
+#### Likelihood with censoring \*
 
 ::: callout-note
 This subsection was not presented in class in 2023; it is not necessary
@@ -837,14 +835,14 @@ End of extra section.
 
 # Parametric Models for Time-to-Event Outcomes
 
-## Exponential Distribution
+### Exponential Distribution
 
 -   The exponential distribution is the base distribution for survival
     analysis.
 -   The distribution has a constant hazard $\lambda$
 -   The mean survival time is $\lambda^{-1}$
 
-### Mathematical details of exponential distribution
+#### Mathematical details of exponential distribution
 
 $$
 \begin{aligned}
@@ -858,7 +856,7 @@ h(t) &= -\frac{f(t)}{S(t)} = -\frac{\lambda \text{e}^{-\lambda t}}{\text{e}^{-\l
 \end{aligned}
 $$
 
-### Estimation of $\lambda$
+#### Estimation of $\lambda$
 
 -   Suppose we have $m$ exponential survival times of
     $t_1, t_2,\ldots,t_m$ and $k$ right-censored values at
@@ -898,7 +896,7 @@ $$
 \end{aligned}
 $$
 
-### Fisher Information and Standard Error
+#### Fisher Information and Standard Error
 
 $$
 \begin{aligned}
@@ -918,7 +916,7 @@ observations, but $\text{Var}\left(\hat\lambda\right)$ only depends on
 the number of uncensored observations, $m$, and not on the number of
 censored observations ($k$).
 
-### Other Parametric Survival Distributions
+#### Other Parametric Survival Distributions
 
 -   Any density on $[0,\infty)$ can be a survival distribution, but the
     most useful ones are all skew right.
@@ -929,7 +927,7 @@ censored observations ($k$).
     semi-parametric, but sometimes these parametric distributions
     provide a useful approach.
 
-## Weibull Distribution
+### Weibull Distribution
 
 $$
 \begin{aligned}
@@ -948,7 +946,7 @@ We will see more of this distribution later.
 
 # Nonparametric Survival Analysis
 
-## Basic ideas
+### Basic ideas
 
 -   Mostly, we work without a parametric model.
 
@@ -965,7 +963,7 @@ We will see more of this distribution later.
 
 # Example: clinical trial for pediatric acute leukemia
 
-## Overview of study
+### Overview of study
 
 This is from a clinical trial in 1963 for 6-MP treatment vs. placebo for
 Acute Leukemia in 42 children.
@@ -988,7 +986,7 @@ Acute Leukemia in 42 children.
     for Acute lymphoblastic leukemia (ALL). It is classified as an
     antimetabolite.
 
-## Study design {.smaller}
+### Study design {.smaller}
 
 Clinical trial in 1963 for 6-MP treatment vs. placebo for Acute Leukemia
 in 42 children. Pairs of children matched by remission status at the
@@ -1002,7 +1000,7 @@ data(drug6mp)
 drug6mp |> tibble() |> print()
 ```
 
-## Data documentation for `drug6mp`
+### Data documentation for `drug6mp`
 
 ```{r, printr.help.sections = c("description", "format")}
 library(printr) # inserts help-file output into markdown output
@@ -1010,7 +1008,7 @@ library(KMsurv)
 ?drug6mp
 ```
 
-## Descriptive Statistics
+### Descriptive Statistics
 
 -   The average time in each group is not useful. Some of the 6-MP
     patients have not relapsed at the time recorded, while all of the
@@ -1076,7 +1074,7 @@ $$
 
 where $\hat F(t)$ is the usual empirical CDF estimate.
 
-## Kaplan-Meier curve for `drug6mp` data
+### Kaplan-Meier curve for `drug6mp` data
 
 Here is the Kaplan-Meier estimated survival curve for the patients who
 received 6-MP in the `drug6mp` dataset (we will see code to produce
@@ -1105,7 +1103,7 @@ drug6mp_km_model1 |>
 
 ```
 
-## Kaplan-Meier calculations {.smaller}
+### Kaplan-Meier calculations {.smaller}
 
 Let's compute these estimates and build the chart by hand:
 
@@ -1161,7 +1159,7 @@ library(pander)
 pander(km.6mp)
 ```
 
-### Summary
+#### Summary
 
 For the 6-MP patients at time 6 months, there are 21 patients at risk.
 At $t=6$ there are 3 relapses and 1 censored observations.
@@ -1197,13 +1195,13 @@ We don't have to do these calculations by hand every time; the
 automate many of these tasks (full list:
 <https://cran.r-project.org/web/views/Survival.html>).
 
-## The `Surv` function
+### The `Surv` function
 
 To use the `survival` package, the first step is telling R how to
 combine the exit time and exit reason (censoring versus event) columns.
 The `Surv()` function accomplishes this task.
 
-### Example: `Surv()` with `drug6mp` data
+#### Example: `Surv()` with `drug6mp` data
 
 ```{r}
 #| code-fold: show
@@ -1230,7 +1228,7 @@ print this vector:
     censoring time with a plus sign (`+`; for example, `surv2 = 32+` on
     line 3).
 
-## The `survfit` function
+### The `survfit` function
 
 Once we have constructed our `Surv` variable, we can calculate the
 Kaplan-Meier estimate of the survival curve using the `survfit()`
@@ -1246,7 +1244,7 @@ The documentation for `?survfit` isn't too helpful; the
 ```
 :::
 
-### Example: `survfit()` with `drug6mp` data
+#### Example: `survfit()` with `drug6mp` data
 
 Here we use `survfit()` to create a `survfit` object, which contains the
 Kaplan-Meier estimate:
@@ -1294,7 +1292,7 @@ summary(
 ?summary.survfit
 ```
 
-## Plotting estimated survival functions
+### Plotting estimated survival functions
 
 We can plot `survfit` objects with `plot()`, `autoplot()`, or
 `ggsurvplot()`:
@@ -1314,7 +1312,7 @@ autoplot(drug6mp.km_model)
 
 ```
 
-### quantiles of survival curve
+#### quantiles of survival curve
 
 We can extract quantiles with `quantile()`:
 
@@ -1327,15 +1325,15 @@ drug6mp.km_model |>
   relocate(p, .before = everything())
 ```
 
-## Two-sample tests
+### Two-sample tests
 
-### The `survdiff` function
+#### The `survdiff` function
 
 ```{r, printr.help.sections = c("description", "usage")}
 ?survdiff
 ```
 
-### Example: `survdiff()` with `drug6mp` data
+#### Example: `survdiff()` with `drug6mp` data
 
 Now we are going to compare the placebo and 6-MP data. We need to
 reshape the data to make it usable with the standard `survival`
@@ -1411,16 +1409,16 @@ difference.
 
 (Copelan et al., 1991)
 
-#### Treatment {.unnumbered}
+##### Treatment {.unnumbered}
 
 -   **allogeneic** (from a donor) **bone marrow transplant therapy**
 
-#### Inclusion criteria {.unnumbered}
+##### Inclusion criteria {.unnumbered}
 
 -   **acute myeloid leukemia (AML)**
 -   **acute lymphoblastic leukemia (ALL).**
 
-#### Possible intermediate events {.unnumbered}
+##### Possible intermediate events {.unnumbered}
 
 -   **graft vs. host disease (GVHD)**: an immunological rejection
     response to the transplant
@@ -1428,14 +1426,14 @@ difference.
 
 One or the other, both in either order, or neither may occur.
 
-#### End point events
+##### End point events
 
 -   relapse of the disease
 -   death
 
 Any or all of these events may be censored.
 
-## `KMsurv::bmt` data in R
+### `KMsurv::bmt` data in R
 
 ```{r}
 library(printr) # inserts help-file output into markdown output
@@ -1443,7 +1441,7 @@ library(KMsurv)
 ?bmt
 ```
 
-## Analysis plan
+### Analysis plan
 
 -   We concentrate for now on disease-free survival (`t2` and `d3`) for
     the three risk groups, ALL, AML Low Risk, and AML High Risk.
@@ -1452,7 +1450,7 @@ library(KMsurv)
 -   We will construct the cumulative hazard curves and compare them.
 -   We will estimate the hazard functions, interpret, and compare them.
 
-## Survival Function Estimate and Variance
+### Survival Function Estimate and Variance
 
 $$\hat S(t) = \prod_{t_i < t}\left[1-\frac{d_i}{Y_i}\right]$$ where
 $Y_i$ is the group at risk at time $t_i$.
@@ -1462,7 +1460,7 @@ $$\hat{\text{Var}}\left(\hat S (t)\right) = \hat S(t)^2\sum_{t_i <t}\frac{d_i}{Y
 which we can use for confidence intervals for a survival function or a
 difference of survival functions.
 
-#### Kaplan-Meier survival curves
+##### Kaplan-Meier survival curves
 
 ```{r}
 #| code-summary: "code to preprocess and model bmt data"
@@ -1499,7 +1497,7 @@ autoplot(
 
 ```
 
-### Understanding Greenwood's formula (optional)
+#### Understanding Greenwood's formula (optional)
 
 To see where Greenwood's formula comes from, let $x_i=Y_i-d_i$. We
 approximate the solution treating each time as independent, with $Y_i$
@@ -1536,7 +1534,7 @@ $$
 \end{aligned}
 $$
 
-## Test for differences among the disease groups
+### Test for differences among the disease groups
 
 Here we compute a chi-square test for assocation between disease group
 (`group`) and disease-free survival:
@@ -1545,7 +1543,7 @@ Here we compute a chi-square test for assocation between disease group
 survdiff(surv ~ group, data = bmt)
 ```
 
-## Cumulative Hazard
+### Cumulative Hazard
 
 $$
 \begin{aligned}
@@ -1580,7 +1578,7 @@ $$
 This is the **Kaplan-Meier (product-limit) estimate of cumulative
 hazard**.
 
-### Example: Cumulative Hazard Curves for Bone-Marrow Transplant (`bmt`) data
+#### Example: Cumulative Hazard Curves for Bone-Marrow Transplant (`bmt`) data
 
 ```{r}
 #| fig-cap: "Disease-Free Cumulative Hazard by Disease Group"
@@ -1639,7 +1637,7 @@ and also directly estimates the cumulative hazard. The
 when the data are unweighted. We can also estimate the cumulative hazard
 as the negative log of the KM survival function estimate.
 
-## Application to `bmt` dataset
+### Application to `bmt` dataset
 
 ```{r}
 

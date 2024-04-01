@@ -1,4 +1,4 @@
-## Hazard function
+### Hazard function
 
 The hazard function for a random variable $T$ at value $t$ is the conditional density of $T$ at $t$, given $T\ge t$; that is:
 

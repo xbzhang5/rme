@@ -1,8 +1,4 @@
----
-title: "notation"
-format: html
-editor: visual
----
+# notation
 
 | symbol | meaning | latex
 |--------|---------|-----------

@@ -10,7 +10,7 @@ I have drawn these materials from many sources, including but not limited to:
 
 - *An Introduction to Generalized Linear Models*, 4th edition [@dobson2018introduction]
 
-## License {.unnumbered}
+### License {.unnumbered}
 
 This book is licensed to you under [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
 
