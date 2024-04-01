@@ -32,7 +32,7 @@ options('digits' = 4)
 ```
 :::
 
-# The proportional hazards model
+## The proportional hazards model
 
 ### Background on the Proportional Hazards Model
 
@@ -361,7 +361,7 @@ cumulative hazard function is $$\hat H(t)=
 reduces to the Nelson-Aalen estimate when there are no covariates. There
 are numerous other estimates that have been proposed as well.
 
-# Cox Model for the `bmt` data
+## Cox Model for the `bmt` data
 
 ### Fit the model
 
@@ -467,9 +467,9 @@ bmt.cox |>
   summary()
 ```
 
-# Adjustment for Ties (optional)
+## Adjustment for Ties (optional)
 
-##
+###
 
 At each time $t_i$ at which more than one of the subjects has an event,
 let $d_i$ be the number of events at that time, $D_i$ the set of

@@ -37,6 +37,7 @@ book:
     - probability.qmd
     - estimation.qmd
     - intro-MLEs.qmd
+    - common-mistakes.qmd
   back-to-top-navigation: true
   page-navigation: true
 

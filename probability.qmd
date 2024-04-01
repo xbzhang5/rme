@@ -2,7 +2,7 @@
 
 {{< include macros.qmd >}}
 
-# Random variables
+## Random variables
 
 ### Types of random variables
 
@@ -13,9 +13,9 @@ A **binary variable** is a random variable which has only two possible values in
 
 :::
 
-{{< include binary-outcome-examples.qmd >>}}
+{{< include binary-outcome-examples.qmd >}}
 
-# Characteristics of probability distributions
+## Characteristics of probability distributions
 
 :::{#def-density}
 ### Density function
@@ -75,7 +75,7 @@ the inverse of that random variable's variance; that is:
 $$\tau(X) \eqdef \inv{\Var{X}}$$
 :::
 
-# Key probability distributions
+## Key probability distributions
 
 :::::{#def-bernoulli}
 #### Bernoulli distribution
