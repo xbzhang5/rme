@@ -1,5 +1,7 @@
 # Generalized Linear Models
 
+{{< include shared-config.qmd >}}
+
 This section is primarily adapted starting from the textbook "An Introduction to Generalized Linear Models" (4th edition, 2018)
 by Annette J. Dobson and Adrian G. Barnett:
 
@@ -49,10 +51,10 @@ Name | Domain | Range | Link Function | Inverse Link Function
 identity | $(-\infty, \infty)$ | $(-\infty, \infty)$ | $\eta = \mu$ | $\mu = \eta$
 log | $(0,\infty)$ | $(-\infty, \infty)$ | $\eta = \log{\mu}$ | $\mu = \exp{\eta}$
 inverse | $(0, \infty)$ | $(0,\infty)$ | $\eta = 1/\mu$ | $\mu = 1/\eta$
-logit | $(0,1)$ | $(-\infty, \infty)$ | $\eta = \log{\mu/(1-\mu)}$ | $\mu = exp{\eta}/(1+exp{\eta})$
-probit | $(0,1)$ | $(-\infty, \infty)$ | $\eta = \Phi^-1{\mu}$ | $\mu = \Phi(\eta)$
+logit | $(0,1)$ | $(-\infty, \infty)$ | $\eta = \log{\mu/(1-\mu)}$ | $\mu = \exp{\eta}/(1+\exp{\eta})$
+probit | $(0,1)$ | $(-\infty, \infty)$ | $\eta = \Phi^{-1}(\mu)$ | $\mu = \Phi(\eta)$
 cloglog | $(0,1)$ | $(-\infty, \infty)$ | $\eta = \log{-\log{1-\mu}}$ | $\mu = {1-\exp{-\exp{\eta}}}$
-1/mu^2 | $(0,\infty)$ | $(0, \infty)$ | $\eta = 1/\mu^2$ | $\mu = 1/\sqrt(\eta)$
+1/mu^2 | $(0,\infty)$ | $(0, \infty)$ | $\eta = 1/\mu^2$ | $\mu = 1/\sqrt{\eta}$
 sqrt | $(0,\infty)$ | $(0,\infty)$ | $\eta = \sqrt{\mu}$ | $\mu = \eta^2$
 
 
