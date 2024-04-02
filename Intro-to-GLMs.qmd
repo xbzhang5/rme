@@ -421,3 +421,9 @@ print(plot4)
 -   How does the combination of covariates relate to the mean? (link function)
 
 -   How do the covariates combine? (linear predictor, interactions)
+
+## Other resources
+
+These notes represent my still-developing perspective on regression models in epidemiology. Many other statisticians and epidemiologists have published their own perspectives, and you are encouraged to explore your many options and find ones that resonate with you. I have attempted to cite my sources throughout these notes. Here are some additional resources:
+
+{{< include other-resources.qmd >}}
