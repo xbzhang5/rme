@@ -356,7 +356,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2024-04-01: 14:13:57 (PM)</p>
+      <p class="date">Last modified: 2024-04-02: 17:04:40 (PM)</p>
     </div>
   </div>
   
@@ -423,11 +423,15 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Definition A.5 (Precision)</strong></span> The <strong>precision</strong> of a random variable <span class="math inline">\(X\)</span>, often denoted <span class="math inline">\(\tau(X)\)</span>, <span class="math inline">\(\tau_X\)</span>, or shorthanded as <span class="math inline">\(\tau\)</span>, is the inverse of that random variable’s variance; that is:</p>
 <p><span class="math display">\[\tau(X) \stackrel{\text{def}}{=}\left(\text{Var}\left(X\right)\right)^{-1}\]</span></p>
 </div>
+<div id="def-sd" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition A.6 (Standard deviation)</strong></span> The standard deviation of a random variable <span class="math inline">\(X\)</span> is the square-root of the variance of <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[\text{sd}\left(X\right) \stackrel{\text{def}}{=}\sqrt{\text{Var}\left(X\right)}\]</span></p>
+</div>
 </section>
 <section id="key-probability-distributions" class="level2" data-number="A.3">
 <h2 data-number="A.3" class="anchored" data-anchor-id="key-probability-distributions"><span class="header-section-number">A.3</span> Key probability distributions</h2>
 <div id="def-bernoulli" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition A.6 (Bernoulli distribution)</strong></span> The <strong>Bernoulli distribution</strong> family for a random variable <span class="math inline">\(X\)</span> is defined as:</p>
+<p><span class="theorem-title"><strong>Definition A.7 (Bernoulli distribution)</strong></span> The <strong>Bernoulli distribution</strong> family for a random variable <span class="math inline">\(X\)</span> is defined as:</p>
 <p><span class="math display">\[\Pr(X=x) = \left\{{\pi, x=1}\atop{1-\pi, x=0}\right.\]</span></p>
 </div>
 
@@ -1130,15 +1134,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>$$\tau(X) \eqdef \inv{\Var{X}}$$</span>
 <span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key probability distributions</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>::: {#def-sd}</span>
 <span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>:::::{#def-bernoulli}</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Bernoulli distribution</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>The **Bernoulli distribution** family for a random variable $X$ is defined as:</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard deviation</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>The standard deviation of a random variable $X$ is the square-root of the variance of $X$:</span>
 <span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>$$\Pr(X=x) = \cbl{{\pi, x=1}\atop{1-\pi, x=0}}$$</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>$$\sd{X} \eqdef \sqrt{\Var{X}}$$</span>
 <span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>:::::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key probability distributions</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>:::::{#def-bernoulli}</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Bernoulli distribution</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>The **Bernoulli distribution** family for a random variable $X$ is defined as:</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>$$\Pr(X=x) = \cbl{{\pi, x=1}\atop{1-\pi, x=0}}$$</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>:::::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

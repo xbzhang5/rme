@@ -353,7 +353,10 @@ window.Quarto = {
   <ul>
   <li><a href="#probabilitistic-models" id="toc-probabilitistic-models" class="nav-link active" data-scroll-target="#probabilitistic-models"><span class="header-section-number">B.1</span> Probabilitistic models</a></li>
   <li><a href="#estimands-estimates-and-estimators" id="toc-estimands-estimates-and-estimators" class="nav-link" data-scroll-target="#estimands-estimates-and-estimators"><span class="header-section-number">B.2</span> Estimands, estimates, and estimators</a></li>
-  <li><a href="#sec-est-accuracy" id="toc-sec-est-accuracy" class="nav-link" data-scroll-target="#sec-est-accuracy"><span class="header-section-number">B.3</span> Accuracy of estimators</a></li>
+  <li><a href="#sec-est-accuracy" id="toc-sec-est-accuracy" class="nav-link" data-scroll-target="#sec-est-accuracy"><span class="header-section-number">B.3</span> Accuracy of estimators</a>
+  <ul class="collapse">
+  <li><a href="#standard-error" id="toc-standard-error" class="nav-link" data-scroll-target="#standard-error"><span class="header-section-number">B.3.1</span> Standard error</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rme/edit/main/estimation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rme/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -373,7 +376,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2024-04-01: 14:19:18 (PM)</p>
+      <p class="date">Last modified: 2024-04-02: 17:48:54 (PM)</p>
     </div>
   </div>
   
@@ -536,7 +539,7 @@ Contrasting estimands, estimates, and estimators
 <p><span class="math display">\[
 \begin{aligned}
 \text{MSE}\left(\hat\theta\right)
-&amp;= \mathbb{E}\left[(\epsilon(\hat\theta))^2\right]\\
+&amp;= \mathbb{E}\left[(\text{e}^{(}\hat\theta))^2\right]\\
 &amp;= \mathbb{E}\left[(\hat\theta- \theta)^2\right]\\
 &amp;= \mathbb{E}\left[\hat\theta^2 - 2\hat\theta\theta- \theta^2\right]\\
 &amp;=\mathbb{E}\left[\hat\theta^2\right] - \mathbb{E}\left[2\hat\theta\theta\right]+\mathbb{E}\left[\theta^2\right]\\
@@ -573,7 +576,7 @@ Contrasting estimands, estimates, and estimators
 <p><span class="math display">\[
 \begin{aligned}
 \text{MSE}\left(\hat\theta\right)
-&amp;= \mathbb{E}\left[\left(\epsilon(\hat\theta)\right)^2\right]\\
+&amp;= \mathbb{E}\left[\left(\text{e}^{(}\hat\theta)\right)^2\right]\\
 &amp;= \mathbb{E}\left[\left(\hat\theta- \theta\right)^2\right]\\
 &amp;= \mathbb{E}\left[\left(\hat\theta- \mathbb{E}\left[\hat\theta\right]\right)^2\right]\\
 &amp;\stackrel{\text{def}}{=}\text{Var}\left(\hat\theta\right)
@@ -591,6 +594,26 @@ Contrasting estimands, estimates, and estimators
 \]</span></p>
 </div>
 </div>
+</section>
+<section id="standard-error" class="level3" data-number="B.3.1">
+<h3 data-number="B.3.1" class="anchored" data-anchor-id="standard-error"><span class="header-section-number">B.3.1</span> Standard error</h3>
+<div id="def-SE" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition B.11 (Standard error)</strong></span> The <strong>standard error</strong> of an estimator <span class="math inline">\(\hat\theta\)</span> is just the <a href="./probability.html#def-sd">standard deviation</a> of <span class="math inline">\(\hat\theta\)</span>; that is:</p>
+<p><span class="math display">\[\text{se}\left(\hat\theta\right) \stackrel{\text{def}}{=}\text{sd}\left(\hat\theta\right)\]</span></p>
+</div>
+<p>“Standard error” is a confusing name in a few ways. First of all, it isn’t even a characteristic of the error <span class="math inline">\(\epsilon(\hat\theta)\)</span> (<a href="#def-error" class="quarto-xref">Definition&nbsp;<span>B.5</span></a>)! Moreover, it is just a synonym for standard deviation, so it seems like a redundant concept. However, standard errors help us construct p-values and confidence intervals, so they come up a lot - often enough to give them their own name.</p>
+<p>We can relate standard error to actual error, by rearranging the result from <a href="#thm-mse-bias-variance" class="quarto-xref">Theorem&nbsp;<span>B.2</span></a>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{MSE}\left(\hat\theta\right) &amp;= \left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)\\
+\therefore\text{Var}\left(\hat\theta\right) &amp;= \text{MSE}\left(\hat\theta\right) - \left(\text{Bias}\left(\hat\theta\right)\right)^2\\
+\therefore\sqrt{\text{Var}\left(\hat\theta\right)} &amp;= \sqrt{\text{MSE}\left(\hat\theta\right) - \left(\text{Bias}\left(\hat\theta\right)\right)^2}\\
+\therefore\text{sd}\left(\hat\theta\right) &amp;= \sqrt{\text{MSE}\left(\hat\theta\right) - \left(\text{Bias}\left(\hat\theta\right)\right)^2}\\
+\therefore\text{se}\left(\hat\theta\right) &amp;= \sqrt{\text{MSE}\left(\hat\theta\right) - \left(\text{Bias}\left(\hat\theta\right)\right)^2}\\
+\therefore\text{se}\left(\hat\theta\right) &amp;= \sqrt{\mathbb{E}\left[\left(\epsilon(\hat\theta)\right)^2\right] - \left(\mathbb{E}\left[\epsilon(\hat\theta)\right]\right)^2}
+\end{aligned}
+\]</span></p>
+<p>Essentially, standard error is what is left of MSE after bias is removed. For unbiased estimators, SE = RMSE.</p>
 
 
 <!-- -->
@@ -1381,10 +1404,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>::: {#def-error}</span>
 <span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error</span></span>
 <span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>The **error** of an estimate $\hth$, often denoted $\e(\hth)$, is the</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>The **error** of an estimate $\hth$, often denoted $\eps(\hth)$, is the</span>
 <span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>difference between the estimate and its estimand $\theta$; that is:</span>
 <span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>$$\e(\hth) \eqdef \hth - \th$$</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>$$\eps(\hth) \eqdef \hth - \th$$</span>
 <span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>Some frequently-used measures of accuracy include:</span>
@@ -1504,7 +1527,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard error</span></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>:::{#def-SE}</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Standard error</span></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>The **standard error** of an estimator $\hth$ is just the <span class="co">[</span><span class="ot">standard deviation</span><span class="co">](probability.qmd#def-sd)</span> of $\hth$; that is:</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>$$\se{\hth} \eqdef \sd{\hth}$$</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>"Standard error" is a confusing name in a few ways. First of all, it isn't even a characteristic of the error $\eps(\hth)$ (@def-error)! Moreover, it is just a synonym for standard deviation, so it seems like a redundant concept. However, standard errors help us construct p-values and confidence intervals, so they come up a lot - often enough to give them their own name.</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>We can relate standard error to actual error, by rearranging the result from @thm-mse-bias-variance:</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} &amp;= \sqf{\bias{\hth}} + \Var{\hth}<span class="sc">\\</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>\tf \Var{\hth} &amp;= \mselr{\hth} - \sqf{\bias{\hth}}<span class="sc">\\</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>\tf \sqrt{\Var{\hth}} &amp;= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}<span class="sc">\\</span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>\tf \sd{\hth} &amp;= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}<span class="sc">\\</span></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>\tf \se{\hth} &amp;= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}<span class="sc">\\</span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>\tf \se{\hth} &amp;= \sqrt{\E{\sqf{\eps(\hth)}} - \sqf{\E{\eps(\hth)}}}</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>Essentially, standard error is what is left of MSE after bias is removed. For unbiased estimators, SE = RMSE.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
