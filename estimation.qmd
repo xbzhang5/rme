@@ -282,7 +282,7 @@ $$\se{\hth} \eqdef \sd{\hth}$$
 
 :::
 
-"Standard error" is a confusing name in a few ways. First of all, it isn't even a characteristic of the error $\eps(\hth)$ (@def-error)! Moreover, it is just a synonym for standard deviation, so it seems like a redundant concept. However, standard errors help us construct p-values and confidence intervals, so they come up a lot - often enough to give them their own name.
+"Standard error" is a confusing name in a few ways. First of all, it isn't even a characteristic of the [error](@def-error) $\eps(\hth)$! Moreover, it is just a synonym for standard deviation, so it seems like a redundant concept. However, standard errors help us construct p-values and confidence intervals, so they come up a lot - often enough to give them their own name.
 
 We can relate standard error to actual error, by rearranging the result from @thm-mse-bias-variance:
 
