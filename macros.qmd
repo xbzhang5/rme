@@ -9,8 +9,9 @@
 \def\hth{\hat\theta}
 \def\ba{\begin{aligned}}
 \def\ea{\end{aligned}}
-\def\e{\epsilon}
+\def\eps{\epsilon}
 \def\om{\omega}
+\def\tf{\therefore}
 \providecommand{\red}[1]{{\color{red}#1}}
 \providecommand{\blue}[1]{{\color{blue}#1}}
 \providecommand{\green}[1]{{\color{green}#1}}
@@ -24,6 +25,8 @@
 \providecommand{\Var}[1]{\text{Var}\left(#1\right)}
 \providecommand{\varh}[1]{\hat{\text{Var}}\left(#1\right)}
 \providecommand{\vc}[1]{\boldsymbol{#1}}
+\providecommand{\sd}[1]{\text{sd}\left(#1\right)}
+\providecommand{\SD}[1]{\text{SD}\left(#1\right)}
 \providecommand{\se}[1]{\text{se}\left(#1\right)}
 \providecommand{\hse}[1]{\hat{\text{se}}\left(#1\right)}
 \providecommand{\SE}[1]{\text{SE}\left(#1\right)}

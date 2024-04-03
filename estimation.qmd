@@ -145,10 +145,10 @@ to the distributions of the *errors* made by the resulting estimates.
 ::: {#def-error}
 ### Error
 
-The **error** of an estimate $\hth$, often denoted $\e(\hth)$, is the
+The **error** of an estimate $\hth$, often denoted $\eps(\hth)$, is the
 difference between the estimate and its estimand $\theta$; that is:
 
-$$\e(\hth) \eqdef \hth - \th$$
+$$\eps(\hth) \eqdef \hth - \th$$
 :::
 
 Some frequently-used measures of accuracy include:
@@ -270,3 +270,31 @@ $$
 ::::
 :::
 
+### Standard error
+
+:::{#def-SE}
+
+#### Standard error
+
+The **standard error** of an estimator $\hth$ is just the [standard deviation](probability.qmd#def-sd) of $\hth$; that is:
+
+$$\se{\hth} \eqdef \sd{\hth}$$
+
+:::
+
+"Standard error" is a confusing name in a few ways. First of all, it isn't even a characteristic of the error $\eps(\hth)$ (@def-error)! Moreover, it is just a synonym for standard deviation, so it seems like a redundant concept. However, standard errors help us construct p-values and confidence intervals, so they come up a lot - often enough to give them their own name.
+
+We can relate standard error to actual error, by rearranging the result from @thm-mse-bias-variance:
+
+$$
+\ba
+\mselr{\hth} &= \sqf{\bias{\hth}} + \Var{\hth}\\
+\tf \Var{\hth} &= \mselr{\hth} - \sqf{\bias{\hth}}\\
+\tf \sqrt{\Var{\hth}} &= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}\\
+\tf \sd{\hth} &= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}\\
+\tf \se{\hth} &= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}\\
+\tf \se{\hth} &= \sqrt{\E{\sqf{\eps(\hth)}} - \sqf{\E{\eps(\hth)}}}
+\ea
+$$
+
+Essentially, standard error is what is left of MSE after bias is removed. For unbiased estimators, SE = RMSE.

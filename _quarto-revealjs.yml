@@ -27,13 +27,13 @@ format:
     slide-number: true
     shift-heading-level-by: -1
     slide-level: 2
-    scrollable: true
-    echo: true
-    code-fold: true
+    scrollable: false
+    echo: false
+    code-fold: false
     code-link: true
     code-summary: "[R code]"
     # code-overflow: scroll
-    auto-stretch: false
+    auto-stretch: true
     # out-width: "50%"
     fig-height: 3
     fig-width: 7

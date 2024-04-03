@@ -75,6 +75,16 @@ the inverse of that random variable's variance; that is:
 $$\tau(X) \eqdef \inv{\Var{X}}$$
 :::
 
+::: {#def-sd}
+
+### Standard deviation
+
+The standard deviation of a random variable $X$ is the square-root of the variance of $X$:
+
+$$\sd{X} \eqdef \sqrt{\Var{X}}$$
+
+:::
+
 ## Key probability distributions
 
 :::::{#def-bernoulli}
