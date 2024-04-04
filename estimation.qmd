@@ -86,9 +86,14 @@ the population mean.
 ::: {#def-estimator}
 ##### Estimator
 
-An **estimator** is a function $\hth(X_1,...X_n)$, whose input is a set
-of random variables $X_1,...,X_n$, and whose corresponding observed
-value $\hth(x_1,...x_n)$ is used as an estimate.
+An **estimator** is a function $\hth(x_1,...x_n)$ that transforms data $x_1,...x_n$ into an estimate. 
+
+:::
+
+::: callout-note
+#### Estimators are random variables
+
+When estimators are applied to random variables, the estimators are also random variables.
 :::
 
 ::: callout-note
@@ -96,6 +101,11 @@ value $\hth(x_1,...x_n)$ is used as an estimate.
 
 Estimators are often symbolized by placing a \^ ("hat") symbol on top of
 the corresponding estimand; for example, $\hth$.
+
+Usually, their dependence on the data is implicit:
+
+$$\hth \eqdef \hth(x_1,...x_n)$$
+
 :::
 
 ::: {#exm-estimator}
@@ -262,7 +272,9 @@ $$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}
 
 :::: proof  
   
-(@eq-unbiased-exp) If $\hth$ is unbiased, then:
+If $\hth$ is unbiased, then:
+
+@eq-unbiased-exp: 
 
 $$
 \ba
@@ -272,7 +284,7 @@ $$
 \ea
 $$
 
-(@eq-unbiased-mse) If $\hth$ is unbiased, then:
+@eq-unbiased-mse:
 
 $$
 \ba
@@ -321,15 +333,21 @@ We can relate standard error to actual error, by rearranging the result from @th
 
 $$
 \ba
-\mselr{\hth} &= \sqf{\bias{\hth}} + \Var{\hth}\\
-\tf \Var{\hth} &= \mselr{\hth} - \sqf{\bias{\hth}}\\
-\tf \sqrt{\Var{\hth}} &= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}\\
-\tf \sd{\hth} &= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}\\
-\tf \se{\hth} &= \sqrt{\mselr{\hth} - \sqf{\bias{\hth}}}\\
-\tf \se{\hth} &= \sqrt{\E{\sqf{\eps(\hth)}} - \sqf{\E{\eps(\hth)}}}
+\Var{\hth} &= \Var{\hth - \th}\\
+&= \Var{\eps(\hth)}\\
 \ea
 $$
+So the variance of the estimator is equal to the variance of the error, and the standard error is equal to the standard deviation of the error.
 
+Another result:
+
+
+$$
+\ba
+\mselr{\hth} &= \sqf{\bias{\hth}} + \Var{\hth}\\
+\tf \Var{\hth} &= \mselr{\hth} - \sqf{\bias{\hth}}\\
+\ea
+$$
 Essentially, standard error is what is left of MSE after bias is removed. For unbiased estimators, SE = RMSE (this is an equivalent result to @eq-unbiased-mse).
 
 ---
