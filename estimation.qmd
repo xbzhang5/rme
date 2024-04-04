@@ -6,7 +6,7 @@
 
 :::{#def-model}
 
-#### Scientific models
+##### Scientific models
 
 **Scientific models** are attempts to describe *physical conditions or changes* that occur in the world and universe around us. 
 
@@ -14,7 +14,7 @@
 
 :::{#exm-model}
 
-#### Scientific models in epidemiology {.scrollable}
+##### Scientific models in epidemiology {.scrollable}
 
 Epidemiologists typically study *biological conditions and changes*, such as the spread of infectious diseases through populations, or the effects of environmental factors on individuals.
 
@@ -30,18 +30,20 @@ In order to learn about the physical processes we are ultimately interested in, 
 
 These kinds of *missing data* issues are outside of the scope of this course; see @van2018flexible for more details.
 
-## Estimands, estimates, and estimators {.scrollable}
+## Estimands, estimates, and estimators 
+
+### Estimands
 
 \index{estimand}
 
 ::: {#def-estimand}
-#### Estimand
+##### Estimand
 
-An **estimand** is an unknown quantity whose value we want to know [@pohl2021estimands, @lawrance2020estimand].
+An **estimand** is an unknown quantity whose value we want to know [@pohl2021estimands; @lawrance2020estimand].
 :::
 
 ::: {#exm-estimand}
-#### Mean height of students
+##### Mean height of students
 
 If we are trying to determine the mean height of students at our school,
 then the population mean is our estimand.
@@ -51,23 +53,25 @@ In statistical contexts, most estimands are parameters of probabilistic
 models, or functions of model parameters.
 
 ::: callout-note
-#### Notation for estimands
+##### Notation for estimands
 
 Model paramaters and other estimands are often symbolized using
 lower-case Greek letters: $\alpha, \beta, \gamma, \delta$, etc.
 :::
 
+### Estimates
+
 \index{estimate} \index{estimated value}
 
 ::: {#def-estimate}
-#### Estimate/estimated value
+##### Estimate/estimated value
 
 In statistics, an **estimate** or **estimated value** is an informed
 guess of an estimand's value, based on observed data.
 :::
 
 ::: {#exm-estimate}
-#### Mean height of students
+##### Mean height of students
 
 Suppose we measure the heights of 50 random students from our school,
 and the sample mean was 175cm. We might use 175cm as an *estimate* of
@@ -75,10 +79,12 @@ the population mean.
 :::
 
 
+### Estimators
+
 \index{estimator}
 
 ::: {#def-estimator}
-#### Estimator
+##### Estimator
 
 An **estimator** is a function $\hth(X_1,...X_n)$, whose input is a set
 of random variables $X_1,...,X_n$, and whose corresponding observed
@@ -86,14 +92,14 @@ value $\hth(x_1,...x_n)$ is used as an estimate.
 :::
 
 ::: callout-note
-#### Notation for estimators
+##### Notation for estimators
 
 Estimators are often symbolized by placing a \^ ("hat") symbol on top of
 the corresponding estimand; for example, $\hth$.
 :::
 
 ::: {#exm-estimator}
-#### Mean height of students
+##### Mean height of students
 
 If we want to estimate the mean height of students at our university,
 which we will represent as $\mu$, we might measure the heights of
@@ -120,26 +126,26 @@ Which of these estimators is best? It depends on how we evaluate them
 (see @sec-est-accuracy below).
 :::
 
-::: callout-note
-#### Contrasting estimands, estimates, and estimators
+### Contrasting estimands, estimates, and estimators
 
 It's helpful to keep in mind the mathematical type of each estimation
 concept:
 
 -   estimands are numbers (or vector of numbers)
 -   estimates are also numbers (or vectors)
--   estimators are functions of random variables, so they are also
-    random variables
-:::
+-   estimators are functions of random variables, so they are also random variables
 
-## Accuracy of estimators {#sec-est-accuracy .scrollable}
+
+## Accuracy of estimators {#sec-est-accuracy}
+
+### Accuracy
 
 To determine which estimator is best, we need to define *best*.
 "Accuracy" is usually most important; easy computation is usually
 secondary.
 
 ::: {#def-accuracy}
-#### Accuracy
+##### Accuracy
 
 The **accuracy** of an estimator for a given estimand does not have a
 consensus formal definition, but all of the usual candidates are related
@@ -147,8 +153,10 @@ to the distributions of the *errors* made by the resulting estimates.
 
 :::
 
+### Error
+
 ::: {#def-error}
-#### Error
+##### Error
 
 The **error** of an estimate $\hth$, often denoted $\eps(\hth)$, is the
 difference between the estimate and its estimand $\theta$; that is:
@@ -158,8 +166,10 @@ $$\eps(\hth) \eqdef \hth - \th$$
 
 Some frequently-used measures of accuracy include:
 
+### Mean squared error
+
 ::: {#def-mse}
-#### Mean squared error
+##### Mean squared error
 
 The **mean squared error** of an estimator $\hth$, denoted
 $\mselr{\hth}$, is the expectation of the square of the error[^1]:
@@ -167,8 +177,10 @@ $\mselr{\hth}$, is the expectation of the square of the error[^1]:
 $$\mselr{\hth} \eqdef \E{(\epsilon(\hth))^2}$$
 :::
 
+### Mean absolute error
+
 ::: {#def-mae}
-#### Mean absolute error
+##### Mean absolute error
 
 The **mean absolute error** of an estimator is the expectation of the
 absolute value of the error:
@@ -178,8 +190,10 @@ $$
 $$
 :::
 
+### Bias
+
 ::: {#def-bias}
-#### Bias
+##### Bias
 
 The **bias** of an estimator $\hth$ for an estimand $\theta$ is the
 expected value of the error:
@@ -187,8 +201,10 @@ expected value of the error:
 $$\bias{\hth} \eqdef \E{\epsilon(\hth)}$$ {#eq-bias-def}
 :::
 
+---
+
 ::: {#thm-bias-exprs}
-#### Expressions for bias
+##### Expressions for bias
 
 The following expressions are equivalent to the definition of bias:
 
@@ -207,8 +223,10 @@ The third equality is by the linearity of expectation.
 
 [^1]: <https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>
 
+---
+
 ::: {#thm-mse-bias-variance}
-#### MSE = Bias^2^ + Variance
+##### MSE = Bias^2^ + Variance
 
 For any one-dimensional estimator $\hth$:
 
@@ -219,6 +237,8 @@ $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
 ::::
 :::
 
+----
+
 #### Unbiased estimators
 
 ::: {#def-unbiased}
@@ -226,6 +246,8 @@ $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
 
 An estimator $\hth$ is **unbiased** if $\bias{\hth} = 0$.
 :::
+
+---
 
 ::: {#thm-unbiased-props}
 ##### properties of unbiased estimators
@@ -237,7 +259,7 @@ $$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}
 
 :::: proof
 
-(@eq-unbiased-exp) If $\hth$ is unbiased, then:
+If $\hth$ is unbiased, then:
 
 $$
 \ba
@@ -246,8 +268,7 @@ $$
 \E{\hth} &= \theta
 \ea
 $$
-
-(@eq-unbiased-mse) If $\hth$ is unbiased, then:
+If $\hth$ is unbiased, then:
 
 $$
 \ba
@@ -280,7 +301,7 @@ $$
 
 :::{#def-SE}
 
-#### Standard error
+##### Standard error
 
 The **standard error** of an estimator $\hth$ is just the [standard deviation](probability.qmd#def-sd) of $\hth$; that is:
 
@@ -304,3 +325,5 @@ $$
 $$
 
 Essentially, standard error is what is left of MSE after bias is removed. For unbiased estimators, SE = RMSE (this is an equivalent result to @eq-unbiased-mse).
+
+---
