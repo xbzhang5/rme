@@ -1,5 +1,7 @@
 ## Example: Maximum likelihood for Tropical Cyclones in Australia
 
+{{< include macros.qmd >}}
+
 Consider the `cyclone` dataset from §1.6.5 and Table 1.2 of @dobson2018introduction:
 
 ```{r}
@@ -28,6 +30,10 @@ cyclones |>
   theme_bw()
 ```
 
+There's no obvious correlation between adjacent seasons, so let's assume that each season is independent of the others.
+
+Let's also assume that they are identically distributed, with a shared  distribution. We can visualize the distribution using a bar plot:
+
 Here is a bar plot of the data:
 
 ```{r}
@@ -51,5 +57,127 @@ cyclones |>
     data = _
   )
   
+```
+
+What probability distribution family might we use to model this empirical distribution?
+
+How about the Poisson:
+
+$$P(Y=y) = \frac{\lambda^{y} e^{-\lambda}}{y!}$$
+
+Now, we can estimate the parameter $\lambda$ for this distribution using maximum likelihood estimation.
+
+What is the likelihood?
+
+Write down the likelihood (probability mass function or probability density function) of a single observation $x$, according to your model.
+
+:::{.content-visible}
+
+**Solution:**
+
+$$\mathcal{L}(\lambda; x) = p(X=x) = \frac{\lambda^x e^{-\lambda}}{x!}$$
+
+:::
+
+####
+
+Write down the vector of parameters in your model.
+
+:::{.content-visible}
+
+**Solution:**
+
+$$\theta = (\lambda)$$
+
+:::
+
+####
+
+Write down the population mean and variance of a single observation from your chosen probability model, as a function of the parameters (you do **not** need to derive these characteristics if you have memorized them).
+
+:::{.content-visible}
+
+**Solution:**
+
+* Population mean: $\text{E}[X]=\lambda$ 
+* Population variance: $\text{Var}(X)=\lambda$
+:::
+
+```{r}
+lik = function(lambda, y = cyclones$number, n = length(y)) 
+{
+  lambda^sum(y) * exp(-n*lambda) / prod(factorial(y))
+}
+
+loglik = function(lambda, y = cyclones$number, n = length(y))
+{
+  sum(y) * log(lambda) - n*lambda - sum(log(factorial(y)))
+}
+
+score = function(lambda, y = cyclones$number, n = length(y))
+{
+  sum(y)/lambda - n
+}
+
+hessian = function(lambda, y = cyclones$number, n = length(y))
+{
+  -sum(y)/lambda^2
+}
+
+obs_inf = function(lambda, y = cyclones$number, n = length(y))
+{
+  sum(y)/lambda^2
+}
+```
+
+
+```{r}
+#| label: fig-cyclone-lik
+#| fig-cap: "Likelihood of Dobson cyclone data"
+library(ggplot2)
+ggplot() +
+  geom_function(fun = lik, n = 1001) +
+  xlim(min(cyclones$number), max(cyclones$number)) +
+  theme_bw() +
+  ylab("likelihood") +
+  xlab('lambda')
+
+```
+
+```{r}
+#| label: fig-cyclone-llik
+#| fig-cap: "log-likelihood of Dobson cyclone data"
+library(ggplot2)
+ll_plot = ggplot() +
+  geom_function(fun = loglik, n = 1001) +
+  xlim(min(cyclones$number), max(cyclones$number)) +
+  theme_bw() +
+  ylab("log-likelihood") +
+  xlab('lambda')
+ll_plot
+
+```
+
+```{r}
+#| label: fig-cyclone-score
+#| fig-cap: "score function of Dobson cyclone data"
+library(ggplot2)
+ggplot() +
+  geom_function(fun = score, n = 1001) +
+  xlim(min(cyclones$number), max(cyclones$number)) +
+  theme_bw() +
+  ylab("log-likelihood") +
+  xlab('lambda') +
+  geom_hline(yintercept = 0, col = 'red')
+
+```
+
+```{r}
+#| label: fig-cyclone-llik-mle
+#| fig-cap: "log-likelihood of Dobson cyclone data with MLE"
+library(dplyr)
+mle = mean(cyclones$number)
+mle_data = tibble(x = mle, y = loglik(mle))
+ll_plot + geom_point(data = mle_data, aes(x = x, y = y), col = 'red')
 ```
 
