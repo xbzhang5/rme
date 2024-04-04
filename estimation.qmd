@@ -1,44 +1,47 @@
 # Estimation
 
-## Probabilitistic models
+## Probabilitistic models {.scrollable}
+
+{{< include macros.qmd >}}
 
 :::{#def-model}
 
-### Models
+#### Scientific models
 
-**Scientific models** are attempts to describe *physical processes* that occur in the world and universe around us. 
+**Scientific models** are attempts to describe *physical conditions or changes* that occur in the world and universe around us. 
 
 :::
 
 :::{#exm-model}
 
-### Models in epidemiology
+#### Scientific models in epidemiology {.scrollable}
 
-Epidemiologists typically study *biological processes*, such as the spread of infectious diseases through populations, or the effects of environmental factors on individuals.
+Epidemiologists typically study *biological conditions and changes*, such as the spread of infectious diseases through populations, or the effects of environmental factors on individuals.
 
 :::
 
+### Statistical analysis of scientific models
+
 When we perform statistical analyses, we use data to help us choose between models - specifically, to determine which models best explain that data.
 
-However, physical processes do not produce data on their own. Data is only produced when scientists implement an *observation process* (i.e., a *scientific study*), which is distinct from the underlying *physical process*^[in many cases, the observation process and the physical process interact with each other.].
+However, physical processes do not produce data on their own. Data is only produced when scientists implement an *observation process* (i.e., a *scientific study*), which is distinct from the underlying *physical process*. In some cases, the observation process and the physical process interact with each other. This phenomenon is called the ["observer effect"](https://en.wikipedia.org/wiki/Observer_effect).
 
 In order to learn about the physical processes we are ultimately interested in, we often need to make special considerations for the observation process that produced the data which we are analyzing. In particular, if some of the planned observations in the study design were not completed, we will likely need to account for the incompleteness of the resulting data set in our analysis. If we are not sure why some observations are incomplete, we may need to model the observation process in addition to the physical process we were originally interested in. For example, if some participants in a study dropped out part-way through the study, we may need investigate why those participants dropped out, as opposed to other participants who completed the study.
 
 These kinds of *missing data* issues are outside of the scope of this course; see @van2018flexible for more details.
 
-## Estimands, estimates, and estimators
-
-{{< include macros.qmd >}}
+## Estimands, estimates, and estimators {.scrollable}
 
 \index{estimand}
 
 ::: {#def-estimand}
-### Estimand
+#### Estimand
 
-An **estimand** is an unknown quantity whose value we want to know.^[c.f., @pohl2021estimands, @lawrance2020estimand]
+An **estimand** is an unknown quantity whose value we want to know [@pohl2021estimands, @lawrance2020estimand].
+:::
 
 ::: {#exm-estimand}
-### Mean height of students
+#### Mean height of students
 
 If we are trying to determine the mean height of students at our school,
 then the population mean is our estimand.
@@ -48,34 +51,34 @@ In statistical contexts, most estimands are parameters of probabilistic
 models, or functions of model parameters.
 
 ::: callout-note
-### Notation for estimands
+#### Notation for estimands
 
 Model paramaters and other estimands are often symbolized using
 lower-case Greek letters: $\alpha, \beta, \gamma, \delta$, etc.
-:::
 :::
 
 \index{estimate} \index{estimated value}
 
 ::: {#def-estimate}
-### Estimate/estimated value
+#### Estimate/estimated value
 
 In statistics, an **estimate** or **estimated value** is an informed
 guess of an estimand's value, based on observed data.
+:::
 
 ::: {#exm-estimate}
-### Mean height of students
+#### Mean height of students
 
 Suppose we measure the heights of 50 random students from our school,
 and the sample mean was 175cm. We might use 175cm as an *estimate* of
 the population mean.
 :::
-:::
+
 
 \index{estimator}
 
 ::: {#def-estimator}
-### Estimator
+#### Estimator
 
 An **estimator** is a function $\hth(X_1,...X_n)$, whose input is a set
 of random variables $X_1,...,X_n$, and whose corresponding observed
@@ -90,7 +93,7 @@ the corresponding estimand; for example, $\hth$.
 :::
 
 ::: {#exm-estimator}
-### Mean height of students
+#### Mean height of students
 
 If we want to estimate the mean height of students at our university,
 which we will represent as $\mu$, we might measure the heights of
@@ -118,7 +121,7 @@ Which of these estimators is best? It depends on how we evaluate them
 :::
 
 ::: callout-note
-### Contrasting estimands, estimates, and estimators
+#### Contrasting estimands, estimates, and estimators
 
 It's helpful to keep in mind the mathematical type of each estimation
 concept:
@@ -129,21 +132,23 @@ concept:
     random variables
 :::
 
-## Accuracy of estimators {#sec-est-accuracy}
+## Accuracy of estimators {#sec-est-accuracy .scrollable}
 
 To determine which estimator is best, we need to define *best*.
 "Accuracy" is usually most important; easy computation is usually
 secondary.
 
 ::: {#def-accuracy}
-### Accuracy
+#### Accuracy
 
 The **accuracy** of an estimator for a given estimand does not have a
 consensus formal definition, but all of the usual candidates are related
 to the distributions of the *errors* made by the resulting estimates.
 
+:::
+
 ::: {#def-error}
-### Error
+#### Error
 
 The **error** of an estimate $\hth$, often denoted $\eps(\hth)$, is the
 difference between the estimate and its estimand $\theta$; that is:
@@ -154,7 +159,7 @@ $$\eps(\hth) \eqdef \hth - \th$$
 Some frequently-used measures of accuracy include:
 
 ::: {#def-mse}
-### Mean squared error
+#### Mean squared error
 
 The **mean squared error** of an estimator $\hth$, denoted
 $\mselr{\hth}$, is the expectation of the square of the error[^1]:
@@ -163,17 +168,18 @@ $$\mselr{\hth} \eqdef \E{(\epsilon(\hth))^2}$$
 :::
 
 ::: {#def-mae}
-### Mean absolute error
+#### Mean absolute error
 
 The **mean absolute error** of an estimator is the expectation of the
 absolute value of the error:
 
 $$
-\maelr{\hth} \eqdef \E{\abs{\epsilon(\hth)}}$$
+\maelr{\hth} \eqdef \E{\abs{\epsilon(\hth)}}
+$$
 :::
 
 ::: {#def-bias}
-### Bias
+#### Bias
 
 The **bias** of an estimator $\hth$ for an estimand $\theta$ is the
 expected value of the error:
@@ -198,7 +204,6 @@ $$
 
 The third equality is by the linearity of expectation.
 :::
-:::
 
 [^1]: <https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>
 
@@ -217,13 +222,13 @@ $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
 #### Unbiased estimators
 
 ::: {#def-unbiased}
-### unbiased estimator
+##### unbiased estimator
 
 An estimator $\hth$ is **unbiased** if $\bias{\hth} = 0$.
 :::
 
 ::: {#thm-unbiased-props}
-#### properties of unbiased estimators
+##### properties of unbiased estimators
 
 If $\hth$ is unbiased, then:
 
@@ -268,6 +273,7 @@ $$
 $$
 
 ::::
+
 :::
 
 ### Standard error

@@ -38,6 +38,7 @@ book:
     - estimation.qmd
     - intro-MLEs.qmd
     - common-mistakes.qmd
+    - notation.qmd
   back-to-top-navigation: true
   page-navigation: true
 

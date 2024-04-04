@@ -10,12 +10,13 @@ Authors@R:
 Description: Lecture notes for Epi 204 @ UC Davis
 Encoding: UTF-8
 Imports: 
-    fs
+    dobson,
+    fs,
+    pander
 Suggests: 
     tidyverse,
     conflicted,
     cvTools,
-    dobson,
     dplyr,
     eha,
     ggeasy,
@@ -27,7 +28,6 @@ Suggests:
     KMsurv,
     muhaz,
     palmerpenguins,
-    pander,
     parameters,
     plotly,
     printr,

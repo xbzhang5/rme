@@ -1,0 +1,53 @@
+
+Consider the `cyclone` dataset from §1.6.5 and Table 1.2 of @dobson2018introduction:
+
+```{r}
+library(dobson)
+data(cyclones)
+library(pander)
+pander(cyclones)
+```
+
+## Visualization{.unnumbered}
+
+```{r}
+#| label: fig-dobson-cyclone-time-series
+#| fig-cap: "Number of tropical cyclones per year in northeastern Australia, 1956-1969"
+library(ggplot2)
+library(dplyr)
+cyclones |> 
+  mutate(years = years |> factor(level = years)) |> 
+  ggplot(aes(x = years, 
+             y = number,
+             group = 1)) +
+  geom_point() +
+  geom_line() +
+  xlab("Season") +
+  ylab("Number of cyclones") +
+  theme_bw()
+```
+
+Here is a bar plot of the data:
+
+```{r}
+cyclones |> 
+  ggplot() +
+  geom_histogram(aes(x = number)) +
+  expand_limits(x = 0) +
+  theme_bw() +
+  xlab("Number of cyclones") +
+  ylab("Count (number of seasons)")
+```
+
+## Summary statistics{.unnumbered}
+
+```{r}
+#| label: tbl-dobson-cyclones-sumstat
+#| tbl-cap: "Summary statistics for `cyclones` data"
+cyclones |>
+  table1::table1( 
+    ~ number, 
+    data = _
+  )
+  
+```

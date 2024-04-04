@@ -1,6 +1,8 @@
-# notation
+# Notation
 
-| symbol | meaning | latex
+{{< include macros.qmd >}}
+
+| symbol | meaning | LaTeX
 |--------|---------|-----------
 | $\neg$ | not     | `\neg`
 | $\forall$ | all     | `\forall`
@@ -10,3 +12,7 @@
 | $\mid$ | given, conditional on | `\mid`, `|`
 | $\sum$ | sum | `\sum`
 | $\prod$ | product | `\prod`
+| $\mu$ | mean | `\mu`
+| $\E{X}$ | [expectation](#probability.qmd#def-expectation) of $X$ | `\text{E}[X]`
+
+: Notation used in this book {#tbl-notation-collected}
