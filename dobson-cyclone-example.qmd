@@ -1,3 +1,4 @@
+## Example: Maximum likelihood for Tropical Cyclones in Australia
 
 Consider the `cyclone` dataset from §1.6.5 and Table 1.2 of @dobson2018introduction:
 
@@ -8,7 +9,7 @@ library(pander)
 pander(cyclones)
 ```
 
-## Visualization{.unnumbered}
+### Visualization{.unnumbered}
 
 ```{r}
 #| label: fig-dobson-cyclone-time-series
@@ -51,3 +52,4 @@ cyclones |>
   )
   
 ```
+

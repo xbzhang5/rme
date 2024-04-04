@@ -5,3 +5,5 @@ editor_options:
 editor:
   markdown:
     wrap: 72
+
+bibliography: references.bib

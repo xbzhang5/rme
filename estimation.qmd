@@ -204,9 +204,11 @@ $$\bias{\hth} \eqdef \E{\epsilon(\hth)}$$ {#eq-bias-def}
 ---
 
 ::: {#thm-bias-exprs}
-##### Expressions for bias
+##### Bias equals Expectation minus Truth
 
-The following expressions are equivalent to the definition of bias:
+$$\bias{\hth} =\E{\hth} - \theta$$
+
+:::: proof
 
 $$
 \begin{aligned}
@@ -219,6 +221,9 @@ $$
 $$
 
 The third equality is by the linearity of expectation.
+
+::::
+
 :::
 
 [^1]: <https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>
@@ -226,7 +231,7 @@ The third equality is by the linearity of expectation.
 ---
 
 ::: {#thm-mse-bias-variance}
-##### MSE = Bias^2^ + Variance
+##### Mean Squared Error equals Bias Squared plus Variance
 
 For any one-dimensional estimator $\hth$:
 
@@ -247,8 +252,6 @@ $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
 An estimator $\hth$ is **unbiased** if $\bias{\hth} = 0$.
 :::
 
----
-
 ::: {#thm-unbiased-props}
 ##### properties of unbiased estimators
 
@@ -257,9 +260,9 @@ If $\hth$ is unbiased, then:
 $$\E{\hth} = \th$$ {#eq-unbiased-exp}
 $$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}
 
-:::: proof
-
-If $\hth$ is unbiased, then:
+:::: proof  
+  
+(@eq-unbiased-exp) If $\hth$ is unbiased, then:
 
 $$
 \ba
@@ -268,12 +271,13 @@ $$
 \E{\hth} &= \theta
 \ea
 $$
-If $\hth$ is unbiased, then:
+
+(@eq-unbiased-mse) If $\hth$ is unbiased, then:
 
 $$
 \ba
 \mselr{\hth} 
-&= \E{\sqf{\e(\hth)}}\\
+&\eqdef \E{\sqf{\eps(\hth)}}\\
 &= \E{\sqf{\hth - \th}}\\
 &= \E{\sqf{\hth - \E{\hth}}}\\
 &\eqdef \Var{\hth}
@@ -296,6 +300,8 @@ $$
 ::::
 
 :::
+
+---
 
 ### Standard error
 

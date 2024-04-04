@@ -42,8 +42,6 @@ book:
   back-to-top-navigation: true
   page-navigation: true
 
-bibliography: references.bib
-
 format:
   html:
     shift-heading-level-by: 0
@@ -99,4 +97,3 @@ execute:
   freeze: auto  # re-render only when source changes
 
 editor: source
-
