@@ -218,6 +218,8 @@ $$\bias{\hth} \eqdef \E{\epsilon(\hth)}$$ {#eq-bias-def}
 
 $$\bias{\hth} =\E{\hth} - \theta$$
 
+:::
+
 :::: proof
 
 $$
@@ -234,7 +236,6 @@ The third equality is by the linearity of expectation.
 
 ::::
 
-:::
 
 [^1]: <https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>
 
@@ -245,12 +246,13 @@ The third equality is by the linearity of expectation.
 
 For any one-dimensional estimator $\hth$:
 
-$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$
+$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$ {#eq-mse}
+
+:::
 
 :::: proof
 {{< include proof-mse-bias-variance.qmd >}}
 ::::
-:::
 
 ----
 
@@ -269,6 +271,8 @@ If $\hth$ is unbiased, then:
 
 $$\E{\hth} = \th$$ {#eq-unbiased-exp}
 $$\mselr{\hth} = \var{\hth}$$ {#eq-unbiased-mse}
+
+:::
 
 :::: proof  
   
@@ -311,8 +315,6 @@ $$
 
 ::::
 
-:::
-
 ---
 
 ### Standard error
@@ -323,7 +325,7 @@ $$
 
 The **standard error** of an estimator $\hth$ is just the [standard deviation](probability.qmd#def-sd) of $\hth$; that is:
 
-$$\se{\hth} \eqdef \sd{\hth}$$
+$$\SE{\hth} \eqdef \SD{\hth}$$
 
 :::
 
@@ -337,17 +339,43 @@ $$
 &= \Var{\eps(\hth)}\\
 \ea
 $$
-So the variance of the estimator is equal to the variance of the error, and the standard error is equal to the standard deviation of the error.
+So the variance of the estimator is equal to the variance of the error, and the standard error is equal to the standard deviation of the error:
 
-Another result:
+$$\SE{\hth} = \SD{\eps(\hth)}$$
 
+---
+
+:::{#cor-var-mse-bias}
+
+##### Standard error squared equals MSE minus squared bias
+  
+standard error is what is left over of MSE after bias is removed:
+
+$$\sqf{\SE{\hth}} = \mselr{\hth} - \sqf{\bias{\hth}}$$
+
+:::
+
+::::{.proof}
 
 $$
 \ba
 \mselr{\hth} &= \sqf{\bias{\hth}} + \Var{\hth}\\
 \tf \Var{\hth} &= \mselr{\hth} - \sqf{\bias{\hth}}\\
+\tf \sqf{\SE{\hth}} &= \mselr{\hth} - \sqf{\bias{\hth}}\\
 \ea
 $$
-Essentially, standard error is what is left of MSE after bias is removed. For unbiased estimators, SE = RMSE (this is an equivalent result to @eq-unbiased-mse).
+
+::::
+
+
+:::{#cor-se-rmse-unbiased}
+##### For unbiased estimators, SE = RMSE
+
+If $\E{\erf{\hth}} = 0$, then:
+
+$$\SE{\hth} = \sqrt{\mselr{\hth}}$$
+
+(this result is equivalent to @eq-unbiased-mse)
+:::
 
 ---
