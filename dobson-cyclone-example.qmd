@@ -2,9 +2,9 @@
 
 {{< include macros.qmd >}}
 
-The `cyclones` dataset in the `dobson` package (@tbl-cyclones-data) records "the number of tropical cyclones during a season from November to April in Northeastern Australia" (c.f. @dobson2018introduction §1.6.5 and `help(cyclones, package = "dobson")`). @fig-dobson-cyclone-time-series graphs the number of cyclones (y-axis) by season (x-axis). Let's use $Y_i$ to represent these counts, where $i$ is an indexing variable for the seasons and $Y_i$ is the number of cyclones in season $i$.
+The `cyclones` dataset in the `dobson` package (@tbl-cyclones-data) records the number of tropical cyclones in Northeastern Australia during 13 November-to-April cyclone seasons (more details in @dobson2018introduction §1.6.5 and `help(cyclones, package = "dobson")`). @fig-dobson-cyclone-time-series graphs the number of cyclones (y-axis) by season (x-axis). Let's use $Y_i$ to represent these counts, where $i$ is an indexing variable for the seasons and $Y_i$ is the number of cyclones in season $i$.
 
-Suppose we want to learn about how many cyclones to expect per year.
+Suppose we want to learn about how many cyclones to expect per season.
 
 ```{r}
 #| tbl-cap: "Number of tropical cyclones during a season from November to April in Northeastern Australia"
@@ -18,7 +18,7 @@ pander(cyclones |> relocate(season, .before = everything()))
 
 ```{r}
 #| label: fig-dobson-cyclone-time-series
-#| fig-cap: "Number of tropical cyclones per year in northeastern Australia, 1956-1969"
+#| fig-cap: "Number of tropical cyclones per season in northeastern Australia, 1956-1969"
 library(ggplot2)
 library(dplyr)
 cyclones |> 
