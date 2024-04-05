@@ -32,7 +32,8 @@ cyclones |>
   xlab("Season") +
   ylab("Number of cyclones") +
   theme_bw() +
-  expand_limits(y = 0)
+  expand_limits(y = 0) +
+  theme(axis.text.x = element_text(vjust = .5, angle = 45))
 ```
 
 There's no obvious correlation between adjacent seasons, so let's assume that each season is independent of the others.
