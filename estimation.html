@@ -396,7 +396,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2024-04-04: 13:41:35 (PM)</p>
+      <p class="date">Last modified: 2024-04-05: 14:42:29 (PM)</p>
     </div>
   </div>
   
@@ -573,7 +573,7 @@ Notation for estimators
 <hr>
 <div id="thm-mse-bias-variance" class="theorem">
 <p><span class="theorem-title"><strong>Theorem B.2 (Mean Squared Error equals Bias Squared plus Variance)</strong></span> For any one-dimensional estimator <span class="math inline">\(\hat\theta\)</span>:</p>
-<p><span class="math display">\[\text{MSE}\left(\hat\theta\right) = \left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)\]</span></p>
+<p><span id="eq-mse"><span class="math display">\[\text{MSE}\left(\hat\theta\right) = \left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right) \tag{B.2}\]</span></span></p>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Let’s start by expanding each term of the right-hand side:</p>
 <p><span class="math display">\[
@@ -615,10 +615,10 @@ Notation for estimators
 </div>
 <div id="thm-unbiased-props" class="theorem">
 <p><span class="theorem-title"><strong>Theorem B.3 (properties of unbiased estimators)</strong></span> If <span class="math inline">\(\hat\theta\)</span> is unbiased, then:</p>
-<p><span id="eq-unbiased-exp"><span class="math display">\[\mathbb{E}\left[\hat\theta\right] = \theta \tag{B.2}\]</span></span> <span id="eq-unbiased-mse"><span class="math display">\[\text{MSE}\left(\hat\theta\right) = \text{Var}\left(\hat\theta\right) \tag{B.3}\]</span></span></p>
+<p><span id="eq-unbiased-exp"><span class="math display">\[\mathbb{E}\left[\hat\theta\right] = \theta \tag{B.3}\]</span></span> <span id="eq-unbiased-mse"><span class="math display">\[\text{MSE}\left(\hat\theta\right) = \text{Var}\left(\hat\theta\right) \tag{B.4}\]</span></span></p>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>If <span class="math inline">\(\hat\theta\)</span> is unbiased, then:</p>
-<p><a href="#eq-unbiased-exp" class="quarto-xref">Equation&nbsp;<span>B.2</span></a>:</p>
+<p><a href="#eq-unbiased-exp" class="quarto-xref">Equation&nbsp;<span>B.3</span></a>:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \text{Bias}\left(\hat\theta\right) &amp;= 0\\
@@ -626,7 +626,7 @@ Notation for estimators
 \mathbb{E}\left[\hat\theta\right] &amp;= \theta
 \end{aligned}
 \]</span></p>
-<p><a href="#eq-unbiased-mse" class="quarto-xref">Equation&nbsp;<span>B.3</span></a>:</p>
+<p><a href="#eq-unbiased-mse" class="quarto-xref">Equation&nbsp;<span>B.4</span></a>:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \text{MSE}\left(\hat\theta\right)
@@ -636,7 +636,7 @@ Notation for estimators
 &amp;\stackrel{\text{def}}{=}\text{Var}\left(\hat\theta\right)
 \end{aligned}
 \]</span></p>
-<p>(<em>Alternative proof of <a href="#eq-unbiased-mse" class="quarto-xref">Equation&nbsp;<span>B.3</span></a></em>) We could have started from <a href="#thm-mse-bias-variance" class="quarto-xref">Theorem&nbsp;<span>B.2</span></a> instead:</p>
+<p>(<em>Alternative proof of <a href="#eq-unbiased-mse" class="quarto-xref">Equation&nbsp;<span>B.4</span></a></em>) We could have started from <a href="#thm-mse-bias-variance" class="quarto-xref">Theorem&nbsp;<span>B.2</span></a> instead:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \text{MSE}\left(\hat\theta\right)
@@ -655,7 +655,7 @@ Notation for estimators
 <h3 data-number="B.3.6" class="anchored" data-anchor-id="standard-error"><span class="header-section-number">B.3.6</span> Standard error</h3>
 <div id="def-SE" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition B.11 (Standard error)</strong></span> The <strong>standard error</strong> of an estimator <span class="math inline">\(\hat\theta\)</span> is just the <a href="./probability.html#def-sd">standard deviation</a> of <span class="math inline">\(\hat\theta\)</span>; that is:</p>
-<p><span class="math display">\[\text{se}\left(\hat\theta\right) \stackrel{\text{def}}{=}\text{sd}\left(\hat\theta\right)\]</span></p>
+<p><span class="math display">\[\text{SE}\left(\hat\theta\right) \stackrel{\text{def}}{=}\text{SD}\left(\hat\theta\right)\]</span></p>
 </div>
 <p>“Standard error” is a confusing concept in a few ways. First of all, it isn’t even defined as a characteristic of the <a href="#def-error">error</a>, <span class="math inline">\(\epsilon(\hat\theta)\)</span>! Moreover, it is just a synonym for standard deviation, so it seems like a redundant concept. However, standard errors help us construct p-values and confidence intervals, so they come up a lot - often enough to give them their own name.</p>
 <p>We can relate standard error to actual error, by rearranging the result from <a href="#thm-mse-bias-variance" class="quarto-xref">Theorem&nbsp;<span>B.2</span></a>:</p>
@@ -664,14 +664,28 @@ Notation for estimators
 \text{Var}\left(\hat\theta\right) &amp;= \text{Var}\left(\hat\theta- \theta\right)\\
 &amp;= \text{Var}\left(\epsilon(\hat\theta)\right)\\
 \end{aligned}
-\]</span> So the variance of the estimator is equal to the variance of the error, and the standard error is equal to the standard deviation of the error.</p>
-<p>Another result:</p>
-<p><span class="math display">\[
+\]</span> So the variance of the estimator is equal to the variance of the error, and the standard error is equal to the standard deviation of the error:</p>
+<p><span class="math display">\[\text{SE}\left(\hat\theta\right) = \text{SD}\left(\epsilon(\hat\theta)\right)\]</span></p>
+<hr>
+<div id="cor-var-mse-bias" class="theorem corollary">
+<p><span class="theorem-title"><strong>Corollary B.1 (Standard error squared equals MSE minus squared bias)</strong></span> Here’s another way to interpret standard error:</p>
+<p><span class="math display">\[\left(\text{SE}\left(\hat\theta\right)\right)^2 = \text{MSE}\left(\hat\theta\right) - \left(\text{Bias}\left(\hat\theta\right)\right)^2\]</span></p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[
 \begin{aligned}
 \text{MSE}\left(\hat\theta\right) &amp;= \left(\text{Bias}\left(\hat\theta\right)\right)^2 + \text{Var}\left(\hat\theta\right)\\
 \therefore\text{Var}\left(\hat\theta\right) &amp;= \text{MSE}\left(\hat\theta\right) - \left(\text{Bias}\left(\hat\theta\right)\right)^2\\
+\therefore\left(\text{SE}\left(\hat\theta\right)\right)^2 &amp;= \text{MSE}\left(\hat\theta\right) - \left(\text{Bias}\left(\hat\theta\right)\right)^2\\
 \end{aligned}
-\]</span> Essentially, standard error is what is left of MSE after bias is removed. For unbiased estimators, SE = RMSE (this is an equivalent result to <a href="#eq-unbiased-mse" class="quarto-xref">Equation&nbsp;<span>B.3</span></a>).</p>
+\]</span></p>
+</div>
+<p>Essentially, standard error is what is left of MSE after bias is removed.</p>
+</div>
+<div id="cor-se-rmse-unbiased" class="theorem corollary">
+<p><span class="theorem-title"><strong>Corollary B.2 (For unbiased estimators, SE = RMSE)</strong></span> If <span class="math inline">\(\mathbb{E}\left[\epsilon\left(\hat\theta\right)\right] = 0\)</span>, then:</p>
+<p><span class="math display">\[\text{SE}\left(\hat\theta\right) = \sqrt{\text{MSE}\left(\hat\theta\right)}\]</span></p>
+<p>(this result is equivalent to <a href="#eq-unbiased-mse" class="quarto-xref">Equation&nbsp;<span>B.4</span></a>)</p>
+</div>
 <hr>
 
 
@@ -1561,7 +1575,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>For any one-dimensional estimator $\hth$:</span>
 <span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>$$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$ {#eq-mse}</span>
 <span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>:::: proof</span>
 <span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>{{&lt; include proof-mse-bias-variance.qmd &gt;}}</span>
@@ -1639,7 +1653,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>The **standard error** of an estimator $\hth$ is just the <span class="co">[</span><span class="ot">standard deviation</span><span class="co">](probability.qmd#def-sd)</span> of $\hth$; that is:</span>
 <span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>$$\se{\hth} \eqdef \sd{\hth}$$</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>$$\SE{\hth} \eqdef \SD{\hth}$$</span>
 <span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
@@ -1653,20 +1667,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>&amp;= \Var{\eps(\hth)}<span class="sc">\\</span></span>
 <span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>\ea</span>
 <span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>So the variance of the estimator is equal to the variance of the error, and the standard error is equal to the standard deviation of the error.</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>So the variance of the estimator is equal to the variance of the error, and the standard error is equal to the standard deviation of the error:</span>
 <span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>Another result:</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>$$\SE{\hth} = \SD{\eps(\hth)}$$</span>
 <span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>\ba</span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} &amp;= \sqf{\bias{\hth}} + \Var{\hth}<span class="sc">\\</span></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>\tf \Var{\hth} &amp;= \mselr{\hth} - \sqf{\bias{\hth}}<span class="sc">\\</span></span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>\ea</span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>Essentially, standard error is what is left of MSE after bias is removed. For unbiased estimators, SE = RMSE (this is an equivalent result to @eq-unbiased-mse).</span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>:::{#cor-var-mse-bias}</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Standard error squared equals MSE minus squared bias</span></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>Here's another way to interpret standard error:</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>$$\sqf{\SE{\hth}} = \mselr{\hth} - \sqf{\bias{\hth}}$$</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>::::{.proof}</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>\mselr{\hth} &amp;= \sqf{\bias{\hth}} + \Var{\hth}<span class="sc">\\</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>\tf \Var{\hth} &amp;= \mselr{\hth} - \sqf{\bias{\hth}}<span class="sc">\\</span></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>\tf \sqf{\SE{\hth}} &amp;= \mselr{\hth} - \sqf{\bias{\hth}}<span class="sc">\\</span></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>Essentially, standard error is what is left of MSE after bias is removed. </span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>:::{#cor-se-rmse-unbiased}</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a><span class="fu">##### For unbiased estimators, SE = RMSE</span></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>If $\E{\erf{\hth}} = 0$, then:</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>$$\SE{\hth} = \sqrt{\mselr{\hth}}$$</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>(this result is equivalent to @eq-unbiased-mse)</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
