@@ -2,9 +2,11 @@
 
 {{< include shared-config.qmd >}}
 
-These notes are derived primarily from @dobson2018introduction (mostly chapters 3-5).
+These notes are derived primarily from @dobson2018introduction (mostly chapters 1-5).
 
 Some material was also taken from @mclachlan2007algorithm and @CaseBerg01.
+
+{{< include dobson-cyclone-example.qmd >}}
 
 ## Maximum likelihood inference for univariate Gaussian models
 

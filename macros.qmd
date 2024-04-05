@@ -44,4 +44,4 @@
 \providecommand{\abs}[1]{\left|#1\right|}
 \providecommand{\sqf}[1]{\left(#1\right)^2}
 \providecommand{\sq}{^2}
-
+\renewcommand{\vec}[1]{\tilde{#1}}

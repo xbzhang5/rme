@@ -2,16 +2,19 @@
 
 {{< include macros.qmd >}}
 
-Consider the `cyclone` dataset from §1.6.5 and Table 1.2 of @dobson2018introduction:
+The `cyclones` dataset in the `dobson` package (@tbl-cyclones-data) records "the number of tropical cyclones during a season from November to April in Northeastern Australia" (c.f. @dobson2018introduction §1.6.5 and `help(cyclones, package = "dobson")`). @fig-dobson-cyclone-time-series graphs the number of cyclones (y-axis) by season (x-axis). Let's use $Y_i$ to represent these counts, where $i$ is an indexing variable for the seasons and $Y_i$ is the number of cyclones in season $i$.
+
+Suppose we want to learn about how many cyclones to expect per year.
 
 ```{r}
+#| tbl-cap: "Number of tropical cyclones during a season from November to April in Northeastern Australia"
+#| label: tbl-cyclones-data
 library(dobson)
+library(dplyr)
 data(cyclones)
 library(pander)
-pander(cyclones)
+pander(cyclones |> relocate(season, .before = everything()))
 ```
-
-### Visualization{.unnumbered}
 
 ```{r}
 #| label: fig-dobson-cyclone-time-series
@@ -20,23 +23,25 @@ library(ggplot2)
 library(dplyr)
 cyclones |> 
   mutate(years = years |> factor(level = years)) |> 
-  ggplot(aes(x = years, 
-             y = number,
-             group = 1)) +
+  ggplot(
+    aes(x = years, 
+        y = number,
+        group = 1)) +
   geom_point() +
   geom_line() +
   xlab("Season") +
   ylab("Number of cyclones") +
-  theme_bw()
+  theme_bw() +
+  expand_limits(y = 0)
 ```
 
 There's no obvious correlation between adjacent seasons, so let's assume that each season is independent of the others.
 
-Let's also assume that they are identically distributed, with a shared  distribution. We can visualize the distribution using a bar plot:
-
-Here is a bar plot of the data:
+Let's also assume that they are identically distributed; let's denote this distribution as $P(Y=y)$ (note that there's no index $i$ in this expression, since we are assuming the $Y_i$s are identically distributed). We can visualize the distribution using a bar plot (@fig-cyclones-bar-plot). @tbl-dobson-cyclones-sumstat provides summary statistics.
 
 ```{r}
+#| label: fig-cyclones-bar-plot
+#| fig-cap: "Bar plot of cyclones per season"
 cyclones |> 
   ggplot() +
   geom_histogram(aes(x = number)) +
@@ -46,94 +51,118 @@ cyclones |>
   ylab("Count (number of seasons)")
 ```
 
-## Summary statistics{.unnumbered}
 
 ```{r}
 #| label: tbl-dobson-cyclones-sumstat
 #| tbl-cap: "Summary statistics for `cyclones` data"
-cyclones |>
-  table1::table1( 
-    ~ number, 
-    data = _
-  )
-  
+
+cyclones |> table1::table1(x = ~ number)
+
 ```
 
-What probability distribution family might we use to model this empirical distribution?
+We want to estimate $P(Y=y)$; that is, $P(Y=y)$ is our [estimand](#estimation.qmd#def-estimand).
 
-How about the Poisson:
+We could estimate $P(Y=y)$ for each value of $y$ in $0:\infty$ separately ("nonparametrically") using the fraction of our data with $Y_i=y$, but then we would be estimating an infinitely large set of parameters, and we would have low precision. We will probably do better with a parametric model.
+
+:::{#exr-cyclone-choose-dist}
+What parametric probability distribution family might we use to model this empirical distribution?
+
+::::{.solution}
+Let's use the Poisson. The Poisson distribution is appropriate for this data , because the data are counts that could theoretically take any integer value (discrete) in the range $0:\infty$. Visually, the plot of our data closely resembles a Poisson or binomial distribution. Since cyclones do not have an "upper limit" on the number of events we could potentially observe in one season, the Poisson distribution is more appropriate than the binomial.
+::::
+
+:::
+
+:::{#exr-def-poisson}
+
+Write down the Poisson distribution's probability mass function.
+
+::::{.solution}
 
 $$P(Y=y) = \frac{\lambda^{y} e^{-\lambda}}{y!}$$
+::::
+
+:::
 
 Now, we can estimate the parameter $\lambda$ for this distribution using maximum likelihood estimation.
 
 What is the likelihood?
 
+:::{#exr-poisson-likelihood}
 Write down the likelihood (probability mass function or probability density function) of a single observation $x$, according to your model.
 
-:::{.content-visible}
+::::{.solution}
 
-**Solution:**
+$$
+\ba
+\mathcal{L}(\lambda; x) 
+&= p(X=x|\Lambda = \lambda)\\
+&= \frac{\lambda^x e^{-\lambda}}{x!}\\
+\ea
+$$
 
-$$\mathcal{L}(\lambda; x) = p(X=x) = \frac{\lambda^x e^{-\lambda}}{x!}$$
+::::
 
 :::
 
-####
+::: {#exr-poisson-parameters}
 
 Write down the vector of parameters in your model.
 
-:::{.content-visible}
+::::{.solution}
 
-**Solution:**
+There is only one parameter, $\lambda$:
 
 $$\theta = (\lambda)$$
-
+::::
 :::
 
-####
+::: {#exr-poisson-mean-and-variance}
+Write down the population mean and variance of a single observation from your chosen probability model, as a function of the parameters (extra credit - derive them).
 
-Write down the population mean and variance of a single observation from your chosen probability model, as a function of the parameters (you do **not** need to derive these characteristics if you have memorized them).
-
-:::{.content-visible}
-
-**Solution:**
-
+::::{.solution}
 * Population mean: $\text{E}[X]=\lambda$ 
 * Population variance: $\text{Var}(X)=\lambda$
+
+::::
+
 :::
 
+::: {#exr-sample-likelihood}
+
+Write down the likelihood of the full dataset.
+
+::::{.solution}
+
+$$
+\ba
+\mathcal{L}(\lambda; \tilde x) 
+&= P(\tilde X = \tilde x) \\
+&= P(X_1 = x_1, X_2 = x_2, ..., X_{13} = x_{13}) \\
+&= \prod_{i=1}^{13} P(X_i = x_i) \\
+&= \prod_{i=1}^{13} \frac{\lambda^{x_i} e^{-\lambda}}{x_i!}
+\ea
+$$
+
+::::
+
+:::
+
+::: {#exr-graph-likelihood}
+
+Graph the likelihood as a function of $\lambda$.
+
+:::: {.solution}
+
 ```{r}
+#| label: fig-cyclone-lik
+#| fig-cap: "Likelihood of Dobson cyclone data"
+
 lik = function(lambda, y = cyclones$number, n = length(y)) 
 {
   lambda^sum(y) * exp(-n*lambda) / prod(factorial(y))
 }
 
-loglik = function(lambda, y = cyclones$number, n = length(y))
-{
-  sum(y) * log(lambda) - n*lambda - sum(log(factorial(y)))
-}
-
-score = function(lambda, y = cyclones$number, n = length(y))
-{
-  sum(y)/lambda - n
-}
-
-hessian = function(lambda, y = cyclones$number, n = length(y))
-{
-  -sum(y)/lambda^2
-}
-
-obs_inf = function(lambda, y = cyclones$number, n = length(y))
-{
-  sum(y)/lambda^2
-}
-```
-
-
-```{r}
-#| label: fig-cyclone-lik
-#| fig-cap: "Likelihood of Dobson cyclone data"
 library(ggplot2)
 ggplot() +
   geom_function(fun = lik, n = 1001) +
@@ -144,10 +173,48 @@ ggplot() +
 
 ```
 
+::::
+
+:::
+
+::: {#exr-sample-llik}
+
+Write down the log-likelihood of the full dataset.
+
+::::{.solution}
+
+$$
+\begin{aligned}
+\ell(\lambda; \vec x) &= \log{\mathcal{L}(\lambda;\vec{x})}\\
+&= \log{\prod_{i = 1}^n\frac{\lambda^{x_i}\text{e}^{-\lambda}}{x_i!}}\\
+&= \sum_{i = 1}^n\log{\frac{\lambda^{x_i}\text{e}^{-\lambda}}{x_i!}}\\
+&= \sum_{i = 1}^n{\log{\lambda^{x_i}} +\log{\text{e}^{-\lambda}} - \log{x_i!}}\\
+&= \sum_{i = 1}^n{x_i\log{\lambda} -\lambda - \log{x_i!}}\\
+&= \sum_{i = 1}^nx_i\log{\lambda} - \sum_{i = 1}^n\lambda - \sum_{i = 1}^n\log{x_i!}\\
+&= \sum_{i = 1}^nx_i\log{\lambda} - n\lambda - \sum_{i = 1}^n\log{x_i!}\\
+\end{aligned}
+$$
+
+::::
+
+:::
+
+::: {#exr-graph-loglikelihood}
+
+Graph the log-likelihood as a function of $\lambda$.
+
+:::: {.solution}
+
 ```{r}
 #| label: fig-cyclone-llik
 #| fig-cap: "log-likelihood of Dobson cyclone data"
-library(ggplot2)
+
+
+loglik = function(lambda, y = cyclones$number, n = length(y))
+{
+  sum(y) * log(lambda) - n*lambda - sum(log(factorial(y)))
+}
+
 ll_plot = ggplot() +
   geom_function(fun = loglik, n = 1001) +
   xlim(min(cyclones$number), max(cyclones$number)) +
@@ -158,10 +225,50 @@ ll_plot
 
 ```
 
+::::
+
+:::
+
+::: {#exr-cyclone-score-fn}
+
+Derive the score function for the dataset.
+
+::::{.solution}
+
+The score function is the first derivative(s) of the log-likelihood:
+
+$$
+\begin{aligned}
+\ell'( \lambda; \vec x ) &= 
+\frac{\partial}{\partial\lambda}{\sum_{i = 1}^nx_i\log{\lambda} - n\lambda - \sum_{i = 1}^n\log{x_i!}}\\
+&= \frac{\partial}{\partial\lambda}\sum_{i = 1}^nx_i\log{\lambda} - \frac{\partial}{\partial\lambda}n\lambda - \frac{\partial}{\partial\lambda}\sum_{i = 1}^n\log{x_i!}\\
+&= \sum_{i = 1}^nx_i\frac{\partial}{\partial\lambda}\log{\lambda} - n\frac{\partial}{\partial\lambda}\lambda - \sum_{i = 1}^n\frac{\partial}{\partial\lambda}\log{x_i!}\\
+&= \sum_{i = 1}^nx_i\frac{1}{\lambda} - n - 0\\
+&= \frac{1}{\lambda} \sum_{i = 1}^nx_i- n
+\end{aligned}
+$$
+
+::::
+
+:::
+
+:::{#exr-graph-score-function}
+
+Graph the score function.
+
+
+::::{.solution}
+
 ```{r}
 #| label: fig-cyclone-score
 #| fig-cap: "score function of Dobson cyclone data"
-library(ggplot2)
+
+
+score = function(lambda, y = cyclones$number, n = length(y))
+{
+  sum(y)/lambda - n
+}
+
 ggplot() +
   geom_function(fun = score, n = 1001) +
   xlim(min(cyclones$number), max(cyclones$number)) +
@@ -172,12 +279,151 @@ ggplot() +
 
 ```
 
+::::
+
+:::
+
+:::{#exr-hessian}
+
+Derive the Hessian matrix.
+
+::::{.solution}
+
+The Hessian function for an iid sample is the 2nd derivative(s) of the log-likelihood:
+
+$$
+\begin{aligned}
+\ell''( \lambda; \vec x ) &= \frac{\partial}{\partial\lambda}\left(\frac{1}{\lambda} \sum_{i = 1}^nx_i- n\right)\\
+&= \frac{\partial}{\partial\lambda}\frac{1}{\lambda} \sum_{i = 1}^nx_i- \frac{\partial}{\partial\lambda}n\\
+&= -\frac{1}{\lambda^2} \sum_{i = 1}^nx_i\\
+&= -\frac{1}{\lambda^2} n \bar x
+\end{aligned}
+$$
+::::
+
+:::
+
+:::{#exr-graph-hession}
+
+Graph the Hessian.
+
+::::{.solution}
+
+```{r}
+#| label: fig-cyclone-hessian
+#| fig-cap: "Hessian function of Dobson cyclone data"
+
+
+hessian = function(lambda, y = cyclones$number, n = length(y))
+{
+  -sum(y)/lambda^2
+}
+
+ggplot() +
+  geom_function(fun = hessian, n = 1001) +
+  xlim(min(cyclones$number), max(cyclones$number)) +
+  theme_bw() +
+  ylab("log-likelihood") +
+  xlab('lambda') +
+  geom_hline(yintercept = 0, col = 'red')
+
+
+```
+
+::::
+
+:::
+
+:::{#exr-score-equation}
+Write the score equation (estimating equation).
+
+::::{.solution}
+
+$$\ell'( \lambda; \vec x ) = 0$$
+
+::::
+
+:::
+
+:::{#exr-solve-score-equation}
+Solve the estimating equation for $\lambda$:
+
+::::{.solution}
+$$
+\begin{aligned}
+0 &= \frac{1}{\lambda}\sum_{i = 1}^nx_i - n\\
+n &= \frac{1}{\lambda}\sum_{i = 1}^nx_i\\
+n\lambda &= \sum_{i = 1}^nx_i\\
+\lambda &= 
+\frac{1}{n}\sum_{i = 1}^nx_i\\
+&=\bar x
+\end{aligned}
+$$
+::::
+:::
+
+Let's call this solution of the estimating equation $\tilde \lambda$ for now:
+
+$$\tilde \lambda \eqdef \bar x$$
+
+:::{#exr-check-hessian}
+
+Confirm that the Hessian $\ell''(\lambda; \vec x)$ is negative when evaluated at $\tilde \lambda$.
+
+::::{.solution}
+$$
+\begin{aligned}
+\ell''( \tilde\lambda; \vec x ) &= 
+-\frac{1}{\tilde\lambda^2} n \bar x\\
+&= -\frac{1}{\bar x^2} n\bar x\\
+&= -\frac{n}{\bar x}\\
+&<0\\
+\end{aligned}
+$$
+::::
+
+:::
+
+::: {#exr-find-mle}
+
+Find the MLE of $\lambda$.
+
+:::: {.solution}
+
+Since $\ell''(\tilde \lambda; \vec x)<0$, $\tilde \lambda$ is at least a local maximizer of the likelihood function $\mathcal L(\lambda)$. Since there is only one solution to the estimating equation and the Hessian is negative definite everywhere, $\tilde \lambda$ must also be the global maximizer of $\mathcal L(\lambda; \vec x)$:
+
+```{r}
+#| label: calc-mle
+mle = mean(cyclones$number)
+```
+
+$$\hat{\lambda}_{\text{ML}} = \bar x = `r mle`$$
+::::
+:::
+
+:::{#exr-graph-mle}
+
+Graph the log-likelihood with the MLE superimposed.
+
+::::{.solution}
+
 ```{r}
 #| label: fig-cyclone-llik-mle
 #| fig-cap: "log-likelihood of Dobson cyclone data with MLE"
 library(dplyr)
-mle = mean(cyclones$number)
+
 mle_data = tibble(x = mle, y = loglik(mle))
 ll_plot + geom_point(data = mle_data, aes(x = x, y = y), col = 'red')
+```
+
+::::
+:::
+
+```{r}
+#| label: obs-inf-matrix
+obs_inf = function(lambda, y = cyclones$number, n = length(y))
+{
+  sum(y)/lambda^2
+}
 ```
 
