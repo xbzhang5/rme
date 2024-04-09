@@ -6,11 +6,14 @@
 \def\cirad{\za \cd \hse{\hb}}
 \def\ci{\hb {\color{red}\pm} \cirad}
 \def\th{\theta}
+\def\xbar{\bar{x}}
 \def\hth{\hat\theta}
 \def\ba{\begin{aligned}}
 \def\ea{\end{aligned}}
 \def\eps{\epsilon}
 \def\om{\omega}
+\def\ind{⫫}
+\def\iid{\sim_{\text{iid}}}
 \def\tf{\therefore}
 \def\range{\mathcal{R}}
 \providecommand{\red}[1]{{\color{red}#1}}
@@ -34,7 +37,7 @@
 \renewcommand{\exp}[1]{\text{exp}\cb{#1}}
 \providecommand{\e}[1]{\text{e}^{#1}}
 \providecommand{\inv}[1]{\left(#1\right)^{-1}}
-\providecommand{\ind}[1]{\mathbb{1}_{#1}}
+\providecommand{\1}[1]{\mathbb{1}_{#1}}
 \providecommand{\pr}{\text{p}}
 \providecommand{\Bias}[1]{\text{Bias}\left(#1\right)}
 \providecommand{\bias}[1]{\text{Bias}\left(#1\right)}
