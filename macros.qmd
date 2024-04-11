@@ -24,6 +24,7 @@
 \providecommand{\paren}[1]{\left(#1\right)}
 \providecommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
 \providecommand{\E}[1]{\mathbb{E}\left[#1\right]}
+\providecommand{\Exp}[1]{\mathbb{E}\left[#1\right]}
 \providecommand{\var}[1]{\text{Var}\left(#1\right)}
 \providecommand{\Var}[1]{\text{Var}\left(#1\right)}
 \providecommand{\varh}[1]{\hat{\text{Var}}\left(#1\right)}

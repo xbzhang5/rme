@@ -28,14 +28,15 @@ format:
     smaller: false
     number-sections: true
     progress: true
-    incremental: true
+    incremental: false
+    df-print: paged
     number-depth: 2
     slide-number: true
     shift-heading-level-by: -1
     slide-level: 2
     scrollable: true
-    echo: false
-    code-fold: false
+    echo: true
+    code-fold: true
     code-link: true
     code-summary: "[R code]"
     # code-overflow: scroll

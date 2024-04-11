@@ -3,12 +3,14 @@
 {{< include shared-config.qmd >}}
 
 :::{.callout-note}
-This content is adapted from Dobson & Barnett, An Introduction to Generalized Linear Models, 4th edition, Chapters 2-6\]
+This content is adapted from:
+
+- @dobson2018introduction, Chapters 2-6
+- @dunn2018generalized, Chapters 2-3 
 :::
 
 ```{r setup, include = FALSE}
 options('digits' = 4)
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 pander::panderOptions("table.emphasize.rownames", FALSE)
 
 ```
@@ -16,12 +18,14 @@ pander::panderOptions("table.emphasize.rownames", FALSE)
 Functions from these packages will be used throughout this document:
 
 ```{r}
+#| code-fold: false
+library(knitr) # compiling .qmd files
 library(pander) # format tables for markdown
 library(ggplot2) # graphics
-library(ggeasy) # help with graphics
+library(ggeasy) # help with graphics: 
+# - `ggeasy::easy_labs()` applies same logic as `ggplot2::labs()` but uses as default the "label" attribute, if present, as the variable label in the plot."
 library(dplyr) # manipulate data
 library(haven) # import Stata files
-library(knitr) # format R output for markdown
 library(tidyr) # Tools to help to create tidy data
 library(plotly) # interactive graphics
 library(dobson) # datasets from Dobson and Barnett 2018
@@ -29,16 +33,45 @@ library(parameters) # format model output tables for markdown
 library(conflicted) # check for conflicting function definitions
 ```
 
-## Understanding Gaussian Linear Regression Models
+## Overview
+
+### Why this course includes linear regression {.smaller}
+
+:::{.fragment .fade-in-then-semi-out}
+* This course is about *generalized linear models* (for non-Gaussian outcomes)
+:::
+
+:::{.fragment .fade-in-then-semi-out}
+* UC Davis STA 108 ("Applied Statistical Methods: Regression Analysis") is a prerequisite for this course, so everyone here should have some understanding of linear regression already.
+:::
+
+:::{.fragment .fade-in}
+* We will review linear regression to:
+  - make sure everyone is caught up
+  - to provide an epidemiological perspective on model intepretation.
+:::
+
+### Chapter overview
+
+* @sec-understand-LMs: how to interpret linear regression models
+
+* @sec-est-LMs: how to estimate linear regression models
+
+* @sec-infer-LMs: how to quantify uncertainty about our estimates
+
+* @sec-diagnose-LMs: how to tell if your model is insufficiently complex
+ 
+
+## Understanding Gaussian Linear Regression Models {#sec-understand-LMs}
 
 ### Motivating example: birthweights and gestational age
 
-Suppose we want to learn about the distributions of birthweights for (human) babies born at different gestational ages and with different chromosomal sexes (Dobson and Barnett, Example 2.2.2):
+Suppose we want to learn about the distributions of birthweights (*outcome* $Y$) for (human) babies born at different gestational ages (*covariate* $X_1$) and with different chromosomal sexes (*covariate* $X_2$) (@dobson2018introduction Example 2.2.2).
 
 ```{r}
-
+#| include: false
+library(dobson)
 data("birthweight", package = "dobson")
-
 bw = 
   birthweight |> 
   pivot_longer(
@@ -52,8 +85,32 @@ bw =
   rename(age = `gestational age`)
 ```
 
-```{r}
 
+::::: {.panel-tabset}
+
+#### Data as table
+
+```{r}
+#| label: tbl-birthweight-data-1
+#| tbl-cap: "`birthweight` data (@dobson2018introduction Example 2.2.2)"
+library(dobson)
+data("birthweight", package = "dobson")
+knitr::kable(birthweight)
+```
+
+#### Reshape data for graphing
+```{r}
+#| label: tbl-birthweight-data-2
+#| tbl-cap: "`birthweight` data reshaped"
+
+knitr::kable(bw)
+```
+
+#### Data as graph
+
+```{r}
+#| label: fig-plot-birthweight-1
+#| fig-cap: "`birthweight` data (@dobson2018introduction Example 2.2.2)"
 plot1 = bw |> 
   ggplot(aes(
     x = age, 
@@ -85,35 +142,46 @@ print(plot1 + facet_wrap(~ sex))
 ```
 :::
 
-### Parallel lines regression
+:::::
 
-We don't have enough data to model the distribution of birth weight separately for each combination of gestational age and sex, so let's instead consider a (relatively) simple model for how that distribution varies with gestational age and sex.
+---
 
-#### Notation
+#### Data notation
 
-Let:
+Let's define some notation to represent this data.
 
--   $Y$ represent birthweight (measured in grams)
--   $X_1$ represent chromosomal sex:
+-   $Y$: birthweight (measured in grams)
+-   $X_1$: chromosomal sex:
     -   $X_1 = 0$ if female (XX)
     -   $X_1 = 1$ if male (XY)
--   $X_2$ represent gestational age at birth (measured in weeks).
+-   $X_2$: gestational age at birth (measured in weeks).
 
 ::: callout-note
 Female is the **reference level** for the categorical variable $X_1$ (chromosomal sex). The choice of a reference level is arbitrary and does not limit what we can do with the resulting model; it only makes it more computationally convenient to make inferences about comparisons involving that reference group.
 :::
 
-Now, consider the following model:
+### Parallel lines regression
 
-$$Y \sim N(\mu(X_1,X_2), \sigma^2)$$
+We don't have enough data to model the distribution of birth weight separately for each combination of gestational age and sex, so let's instead consider a (relatively) simple model for how that distribution varies with gestational age and sex:
 
-$$\mu(X_1,X_2)\eqdef E[Y|X_1, X_2] = \beta_0 + \beta_1 X_1+ \beta_2 X_2$$
+$$p(y|x_1,x_2) \iid N(\mu(x_1,x_2), \sigma^2)$$
+
+$$
+\ba
+\mu(x_1,x_2)
+&\eqdef \Exp{Y|X_1=x_1, X_2=x_2} \\
+&= \beta_0 + \beta_1 x_1+ \beta_2 x_2
+\ea
+$$ {#eq-lm-parallel}
 
 #### Implementing the Model in R
 
-Here's how we can implement this model in R:
+Here's how we can estimate this model in R:
 
 ```{r}
+#| label: tbl-lm-parallel
+#| tbl-cap: "Estimate of @eq-lm-parallel for `birthweight` data"
+
 bw_lm1 = lm(
   formula = weight ~ sex + age, 
   data = bw)
@@ -121,6 +189,7 @@ bw_lm1 = lm(
 bw_lm1 |> 
   parameters(show_sigma = TRUE) |> 
   print_md()
+
 ```
 
 Here's how this model looks, superimposed on the data:
@@ -156,8 +225,13 @@ ggplotly(plot2)
 
 To learn what this model is assuming, let's plug in a few values.
 
+:::{#exr-pred-fem-parallel}
 According to this model, what's the mean birthweight for a female born at 36 weeks?
+:::
 
+---
+
+:::{.solution}
 ```{r}
 pred_female = coef(bw_lm1)["(Intercept)"] + coef(bw_lm1)["age"]*36
 
@@ -167,9 +241,18 @@ pred_female = coef(bw_lm1)["(Intercept)"] + coef(bw_lm1)["age"]*36
 ```
 
 $$E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 =  `r pred_female`$$
+:::
 
+---
+
+{#exr-pred-male-parallel}
 What's the mean birthweight for a male born at 36 weeks?
 
+:::
+
+---
+
+:::{.solution}
 ```{r}
 pred_male = 
   coef(bw_lm1)["(Intercept)"] + 
@@ -180,9 +263,15 @@ pred_male =
 $$
 E[Y|X_1 = 1, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 =  `r pred_male`
 $$
+:::
 
+---
+
+:::{#exr-diff-sex-parallel-1}
 What's the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?
-
+:::
+---
+:::{.solution}
 $$
 \begin{aligned}
 & E[Y|X_1 = 1, X_2 = 36] - E[Y|X_1 = 0, X_2 = 36]\\
@@ -192,7 +281,7 @@ $$
 `r pred_male - pred_female`
 \end{aligned}
 $$
-
+---
 Shortcut:
 
 $$
@@ -204,6 +293,7 @@ E[Y|X_1 = 0, X_2 = 36]\\
 &=  `r coef(bw_lm1)["sexmale"]`
 \end{aligned}
 $$
+:::
 
 Note that age doesn't show up in this difference: in other words, according to this model, the difference between females and males with the same gestational age is the same for every age.
 
@@ -287,7 +377,11 @@ Now we can see that the lines aren't parallel.
 
 To learn what this model is assuming, let's plug in a few values.
 
+:::{#exr-pred-fem-interact}
 According to this model, what's the mean birthweight for a female born at 36 weeks?
+:::
+
+---
 
 ```{r}
 pred_female = coef(bw_lm2)["(Intercept)"] + coef(bw_lm2)["age"]*36
@@ -305,8 +399,14 @@ pred_male =
 
 $$E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 + \beta_3 \cdot 1 \cdot 36 =  `r pred_male`$$
 
-What's the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?
 
+:::{#exr-diff-gender-interact}
+What's the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?
+:::
+
+---
+
+:::{.solution}
 $$
 \begin{aligned}
 & E[Y|X_1 = 1, X_2 = 36] - E[Y|X_1 = 0, X_2 = 36]\\ 
@@ -316,6 +416,7 @@ $$
 &=  `r pred_male - pred_female`
 \end{aligned}
 $$
+:::
 
 Note that age now does show up in the difference: in other words, according to this model, the difference in mean birthweights between females and males with the same gestational age can vary by gestational age.
 
@@ -379,7 +480,7 @@ ggpenguins2 |>  ggplotly()
 ```
 :::
 
-## Estimating Linear Models via Maximum Likelihood
+## Estimating Linear Models via Maximum Likelihood {#sec-est-LMs}
 
 ### Review of one-sample inference
 
@@ -612,7 +713,7 @@ bw_lm2 |> summary() |> coef() |> pander()
 
 So we can do confidence intervals, hypothesis tests, and p-values exactly as in the one-variable case we looked at previously.
 
-## Inference about Gaussian Linear Regression Models
+## Inference about Gaussian Linear Regression Models {#sec-infer-LMs}
 
 Research question: is there really an interaction between sex and age?
 
@@ -976,7 +1077,7 @@ predict(bw_lm1, se.fit = TRUE, interval = "predict")$fit |> as_tibble()
 
 The warning from the last command is: "predictions on current data refer to *future* responses" (since you already know what happened to the current data, and thus don't need to predict it). You could also supply `newdata` to get predictions for new combinations of predictors that you didn't see in your original dataset. See `?predict.lm` for more.
 
-## Diagnostics
+## Diagnostics {#sec-diagnose-LMs}
 
 ### Residuals
 
