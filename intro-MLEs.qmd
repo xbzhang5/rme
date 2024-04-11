@@ -196,11 +196,11 @@ In our motivating example, $i,j \in \left\{ \mu,\sigma^{2} \right\}$. Here,
 $$
 \begin{aligned}
 Ε[\ell']
-&\eqdef \int_{x \in \mathcal R(x)}{\ell'(x,\theta) p(X = x | \theta)dx}\\
-&= \int_{x\in \mathcal R(x)}{\left( \frac{d}{d\theta}\log{p\left( X = x \mid \theta \right)} \right)\ p\left( X = x \mid \theta \right)\ dx}\\
-&= \int_{x \in \mathcal R(x)}{\frac{\frac{d}{d\theta}p\left( X = x \mid \theta \right)}{p\left( X = x \mid \theta \right)}p\left( X = x \mid \theta \right)\ dx
+&\eqdef \int_{x \in \mathfrak R(x)}{\ell'(x,\theta) p(X = x | \theta)dx}\\
+&= \int_{x\in \mathfrak R(x)}{\left( \frac{d}{d\theta}\log{p\left( X = x \mid \theta \right)} \right)\ p\left( X = x \mid \theta \right)\ dx}\\
+&= \int_{x \in \mathfrak R(x)}{\frac{\frac{d}{d\theta}p\left( X = x \mid \theta \right)}{p\left( X = x \mid \theta \right)}p\left( X = x \mid \theta \right)\ dx
 }\\
-&= \int_{x \in \mathcal R(x)}{\frac{d}{d\theta}p\left( X = x \mid \theta \right)\ dx}
+&= \int_{x \in \mathfrak R(x)}{\frac{d}{d\theta}p\left( X = x \mid \theta \right)\ dx}
 \end{aligned}
 $$
 
@@ -235,13 +235,13 @@ $$\ell^{''} \eqdef \frac{d}{d\theta}\ell^{'(x,\theta)^{\top}} = \frac{d}{d\theta
 
 is the $p \times p$ matrix whose elements are:
 
-$$\ell_{ij}^{''} \eqdef \frac{d}{d\theta_{i}}\frac{d}{d\theta_{j}}\log{ p\left( X = x \mid \theta \right)}$$
+$$\ell_{ij}'' \eqdef \frac{d}{d\theta_{i}}\frac{d}{d\theta_{j}}\log{ p\left( X = x \mid \theta \right)}$$
 
-$\ell^{''}$ could be called the "Hessian" of the log-likelihood
+$\ell''$ could be called the "Hessian" of the log-likelihood
 function.
 
 Sometimes, we use $I(\theta;x) \eqdef - \ell^{''}$ (note the
-standard-font "I" here). $I(\theta;x)$ is the observed information
+standard-font "I" here). $I(\theta;x)$ is the observed information, precision, or concentration
 matrix (Negative Hessian).
 
 :::{.callout-important}
@@ -327,9 +327,9 @@ To prove it’s a maximum, need:
 
 - $\ell^{'} = 0$
 
-- At least one diagonal element of $\mathcal{l''}$ is negative.
+- At least one diagonal element of $\mathfrak{l''}$ is negative.
 
-- Determinant of $\mathcal{l''}$ is positive.
+- Determinant of $\mathfrak{l''}$ is positive.
 
 ### Confidence intervals for MLEs
 
@@ -341,7 +341,7 @@ To prove it’s a maximum, need:
 
 log(likelihood ratio) tests [c.f. @dobson2018introduction §5.7]:
 
-$$2\left( \mathcal{l -}\ell_{0} \right) \sim \chi^{2}(p - q)$$
+$$2\left( \mathfrak{l -}\ell_{0} \right) \sim \chi^{2}(p - q)$$
 
 ### Prediction intervals for MLEs
 
