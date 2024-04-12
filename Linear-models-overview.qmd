@@ -216,6 +216,11 @@ To learn what this model is assuming, let's plug in a few values.
 
 :::{#exr-pred-fem-parallel}
 According to this model, what's the mean birthweight for a female born at 36 weeks?
+
+```{r}
+coef(bw_lm1)
+```
+
 :::
 
 ---
@@ -242,6 +247,10 @@ $$
 
 :::{#exr-pred-male-parallel}
 What's the mean birthweight for a male born at 36 weeks?
+
+```{r}
+coef(bw_lm1)
+```
 
 :::
 
@@ -271,6 +280,10 @@ $$
 :::{#exr-diff-sex-parallel-1}
 What's the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?
 :::
+
+```{r}
+coef(bw_lm1)
+```
 
 ---
 
@@ -384,6 +397,7 @@ In this case, the coefficient $X_2$ is interacting with $X_1$. So the slope of $
 According to this model, there is no such thing as "*the* slope of birthweight with respect to age". There are two slopes, one for each sex.^[using the definite article "the" would mean there is only one slope.] We can only talk about "the slope of birthweight with respect to age among males" and "the slope of birthweight with respect to age among females".
 
 Then: that coefficient is the difference in means per unit change in its corresponding coefficient, when the other collected variables are set to 0.
+:::
 
 ---
 
