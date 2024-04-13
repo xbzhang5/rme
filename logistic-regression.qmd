@@ -1,4 +1,8 @@
-# Models for Binary Outcomes (Logistic regression and variations)
+---
+subtitle: "Logistic regression and variations"
+---
+
+# Models for Binary Outcomes
 
 {{< include shared-config.qmd >}}
 

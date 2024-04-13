@@ -343,6 +343,8 @@ log(likelihood ratio) tests [c.f. @dobson2018introduction §5.7]:
 
 $$2\left( \mathfrak{l -}\ell_{0} \right) \sim \chi^{2}(p - q)$$
 
+See also https://online.stat.psu.edu/stat504/book/export/html/657
+
 ### Prediction intervals for MLEs
 
 $$\overline{X} \in \left\lbrack \widehat{\mu} \pm z_{1 - \alpha\text{/}2}\frac{\sigma}{m} \right\rbrack$$
