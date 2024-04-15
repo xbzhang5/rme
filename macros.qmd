@@ -39,6 +39,7 @@
 \providecommand{\e}[1]{\text{e}^{#1}}
 \providecommand{\inv}[1]{\left(#1\right)^{-1}}
 \providecommand{\1}[1]{\mathbb{1}_{#1}}
+\providecommand{\set}[1]{\left\{#1\right\}}
 \providecommand{\pr}{\text{p}}
 \providecommand{\Bias}[1]{\text{Bias}\left(#1\right)}
 \providecommand{\bias}[1]{\text{Bias}\left(#1\right)}
