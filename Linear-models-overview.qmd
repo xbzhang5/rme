@@ -333,6 +333,8 @@ $$
 E[Y|A, S] = \beta_0 + \beta_1 A+ \beta_2 S + \beta_3 (A \cdot S)
 $$
 
+In this case, the coefficient $X_2$ is interacting with $X_1$. So the slope of $Y$ with respect to $X_2$ depends on the value of $X_1$.
+
 ::: {.column width=40%}
 
 ```{r}
