@@ -8,6 +8,7 @@
 \def\th{\theta}
 \def\xbar{\bar{x}}
 \def\hth{\hat\theta}
+\def\hthml{\hth_{\text{ML}}}
 \def\ba{\begin{aligned}}
 \def\ea{\end{aligned}}
 \def\eps{\epsilon}
@@ -22,6 +23,7 @@
 \providecommand{\cbl}[1]{\left\{#1\right.}
 \providecommand{\cb}[1]{\left\{#1\right\}}
 \providecommand{\paren}[1]{\left(#1\right)}
+\providecommand{\sb}[1]{\left[#1\right]}
 \providecommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
 \providecommand{\E}[1]{\mathbb{E}\left[#1\right]}
 \providecommand{\Exp}[1]{\mathbb{E}\left[#1\right]}
@@ -32,12 +34,16 @@
 \providecommand{\sd}[1]{\text{sd}\left(#1\right)}
 \providecommand{\SD}[1]{\text{SD}\left(#1\right)}
 \providecommand{\se}[1]{\text{se}\left(#1\right)}
-\providecommand{\hse}[1]{\hat{\text{se}}\left(#1\right)}
-\providecommand{\SE}[1]{\text{SE}\left(#1\right)}
+\providecommand{\hse}[1]{\hat{\text{se}}\paren{#1}}
+\providecommand{\SE}[1]{\text{SE}\paren{#1}}
+\providecommand{\HSE}[1]{\widehat{\text{SE}}\paren{#1}}
 \renewcommand{\log}[1]{\text{log}\cb{#1}}
 \renewcommand{\exp}[1]{\text{exp}\cb{#1}}
 \providecommand{\e}[1]{\text{e}^{#1}}
 \providecommand{\inv}[1]{\left(#1\right)^{-1}}
+\providecommand{\oinf}[1]{I\left(#1\right)}
+\providecommand{\einf}[1]{\mathcal{I}\paren{#1}}
+\providecommand{\heinf}[1]{\hat{\mathcal{I}}\paren{#1}}
 \providecommand{\1}[1]{\mathbb{1}_{#1}}
 \providecommand{\set}[1]{\left\{#1\right\}}
 \providecommand{\pr}{\text{p}}
