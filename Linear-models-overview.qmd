@@ -591,7 +591,12 @@ $$
 \hat\theta_{ML} \dot \sim N(\theta,\mathcal I(\theta)^{-1})
 $$
 
-For models in the "exponential family" of distributions, which includes the Gaussian, Poisson, Bernoulli, Binomial, Exponential, and Gamma distributions, $\einf{\theta} = \E{-\ell''(X|\theta)}$, so we estimated $\mathcal I(\theta)$ using either $\mathcal I(\theta)|_{\theta = \hthml}$ or $-\ell''(\vec x |\theta)|_{\theta = \hthml}$.
+Recall:
+
+- $\einf{\theta} \eqdef \E{\oinf(\vec X;\theta)}$
+- $\oinf{\vec X;\theta} \eqdef -\ell''(\vec X;\theta)$
+
+We can estimate $\einf{\theta}$ using either $\einf{\hthml}$ or $\oinf{\vec x; \hthml}$.
 
 So we can estimate the standard error of $\hth_k$ as:
 
@@ -801,7 +806,7 @@ In the Gaussian linear regression case, we also have exact results:
 $$
 \hat\beta \dot \sim t_{n-p}(\beta, \einf{\beta}^{-1})
 $$ 
-
+---
 
 In our model 2 above, $\heinf{\beta}$ is:
 
@@ -818,7 +823,9 @@ bw_lm2 |> vcov() |> diag() |> sqrt()
 ```
 
 ```{r}
-bw_lm2 |> summary() |> coef() |> pander()
+#| label: tbl-mod-intx
+#| tbl-cap: "Estimated model for `birthweight` data with interaction term"
+bw_lm2 |> parameters() |> print_md()
 ```
 
 So we can do confidence intervals, hypothesis tests, and p-values exactly as in the one-variable case we looked at previously.
