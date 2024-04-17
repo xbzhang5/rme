@@ -726,7 +726,7 @@ $$
 \frac{d}{d\beta} \beta'S\beta = 2S\beta
 $$
 
-Again, this is like taking the derivative of $cx^2$ with respect to $c$ in non-vector calculus.
+Again, this is like taking the derivative of $cx^2$ with respect to $x$ in non-vector calculus.
 
 Thus:
 
