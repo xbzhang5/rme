@@ -593,7 +593,7 @@ $$
 
 Recall:
 
-- $\einf{\theta} \eqdef \E{\oinf(\vec X;\theta)}$
+- $\einf{\theta} \eqdef \E{\oinf{\vec X;\theta}}$
 - $\oinf{\vec X;\theta} \eqdef -\ell''(\vec X;\theta)$
 
 We can estimate $\einf{\theta}$ using either $\einf{\hthml}$ or $\oinf{\vec x; \hthml}$.
