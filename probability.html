@@ -362,7 +362,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Last modified: 2024-04-05: 14:42:20 (PM)</p>
+      <p class="date">Last modified: 2024-04-14: 23:40:45 (PM)</p>
     </div>
   </div>
   
@@ -443,7 +443,12 @@ window.Quarto = {
 <h2 data-number="A.3" class="anchored" data-anchor-id="key-probability-distributions"><span class="header-section-number">A.3</span> Key probability distributions</h2>
 <div id="def-bernoulli" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition A.8 (Bernoulli distribution)</strong></span> The <strong>Bernoulli distribution</strong> family for a random variable <span class="math inline">\(X\)</span> is defined as:</p>
-<p><span class="math display">\[\Pr(X=x) = \left\{{\pi, x=1}\atop{1-\pi, x=0}\right.\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\Pr(X=x) &amp;= \mathbb{1}_{x\in \left\{1\right\}}\pi^x(1-\pi)^{1-x}\\
+&amp;= \left\{{\pi, x=1}\atop{1-\pi, x=0}\right.
+\end{aligned}
+\]</span></p>
 </div>
 
 
@@ -1172,9 +1177,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Bernoulli distribution</span></span>
 <span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>The **Bernoulli distribution** family for a random variable $X$ is defined as:</span>
 <span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>$$\Pr(X=x) = \cbl{{\pi, x=1}\atop{1-\pi, x=0}}$$</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>:::::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>\ba</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>\Pr(X=x) &amp;= \1{x\in \set{0,1}}\pi^x(1-\pi)^{1-x}<span class="sc">\\</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>&amp;= \cbl{{\pi, x=1}\atop{1-\pi, x=0}}</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>\ea</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>:::::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
