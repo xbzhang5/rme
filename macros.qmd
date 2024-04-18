@@ -2,8 +2,13 @@
 \def\eqdef{\stackrel{\text{def}}{=}}
 \def\defeq{\stackrel{\text{def}}{=}}
 \def\hb{\hat\beta}
+\def\hy{\hat y}
+\def\yh{\hat y}
+\def\V{{\text{Var}}}
 \def\hs{\hat\sigma}
 \def\dist{\ \sim \ }
+\def\ddist{\ \dot{\sim} \ }
+\def\dsim{\ \dot{\sim} \ }
 \def\za{z_{1 - \frac{\alpha}{2}}}
 \def\cirad{\za \cd \hse{\hb}}
 \def\ci{\hb {\color{red}\pm} \cirad}
@@ -16,11 +21,15 @@
 \def\eps{\epsilon}
 \def\om{\omega}
 \def\ind{⫫}
-\def\iid{\sim_{\text{iid}}}
+\def\iid{\ \sim_{\text{iid}}\ }
+\def\siid{\ \sim_{\text{iid}}\ }
+\def\siid{\ \sim_{\text{iid}}\ }
 \def\tf{\therefore}
 \def\Lik{\mathcal{L}}
 \def\llik{\ell}
 \def\range{\mathcal{R}}
+\def\~{\approx}
+\def\dapp{\dot\approx}
 \providecommand{\red}[1]{{\color{red}#1}}
 \providecommand{\blue}[1]{{\color{blue}#1}}
 \providecommand{\green}[1]{{\color{green}#1}}
@@ -40,6 +49,7 @@
 \providecommand{\vc}[1]{\boldsymbol{#1}}
 \providecommand{\sd}[1]{\text{sd}\paren{#1}}
 \providecommand{\SD}[1]{\text{SD}\paren{#1}}
+\providecommand{\hSD}[1]{\widehat{\text{SD}}\paren{#1}}
 \providecommand{\se}[1]{\text{se}\paren{#1}}
 \providecommand{\hse}[1]{\hat{\text{se}}\paren{#1}}
 \providecommand{\SE}[1]{\text{SE}\paren{#1}}
