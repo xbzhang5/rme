@@ -2,6 +2,8 @@
 \def\eqdef{\stackrel{\text{def}}{=}}
 \def\defeq{\stackrel{\text{def}}{=}}
 \def\hb{\hat\beta}
+\def\hs{\hat\sigma}
+\def\dist{\ \sim \ }
 \def\za{z_{1 - \frac{\alpha}{2}}}
 \def\cirad{\za \cd \hse{\hb}}
 \def\ci{\hb {\color{red}\pm} \cirad}
@@ -16,6 +18,8 @@
 \def\ind{⫫}
 \def\iid{\sim_{\text{iid}}}
 \def\tf{\therefore}
+\def\Lik{\mathcal{L}}
+\def\llik{\ell}
 \def\range{\mathcal{R}}
 \providecommand{\red}[1]{{\color{red}#1}}
 \providecommand{\blue}[1]{{\color{blue}#1}}
@@ -58,3 +62,4 @@
 \providecommand{\sq}{^2}
 \providecommand{\erf}[1]{\eps\paren{#1}}
 \renewcommand{\vec}[1]{\tilde{#1}}
+

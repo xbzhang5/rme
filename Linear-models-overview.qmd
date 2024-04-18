@@ -6,7 +6,14 @@
 This content is adapted from:
 
 - @dobson2018introduction, Chapters 2-6
-- @dunn2018generalized, Chapters 2-3 
+- @dunn2018generalized, Chapters 2-3
+- @vittinghoff2012regression, Chapter 4
+
+There are numerous textbooks specifically for linear regression, including:
+
+- @kutner2005applied
+- @chatterjee2015regression
+
 :::
 
 ```{r setup, include = FALSE}
@@ -804,7 +811,7 @@ These are all results you have hopefully seen before.
 In the Gaussian linear regression case, we also have exact results:
 
 $$
-\hat\beta \dot \sim t_{n-p}(\beta, \einf{\beta}^{-1})
+\frac{\hat\beta_j}{\heinf{\beta}}_j \dist t_{n-p}
 $$ 
 ---
 
@@ -1206,15 +1213,33 @@ The warning from the last command is: "predictions on current data refer to *fut
 
 ### Residuals
 
-#### Definitions of residuals
+:::{#def-resid-noise}
+#### Residual noise in linear models
 
--   Residuals: $$e_i = y_i - \hat E[Y|X=x]$$
+The **residual noise** in a regression model $p(Y|X)$ is the difference between an observed value $y$ and its distributional mean:
 
--   For Gaussian models, $e_i$ can be seen as an estimate of $$\epsilon_i = Y_i - \text{E}[Y|X=x_i]$$
+$$\epsilon(y) \eqdef y - \Exp{Y|X}$$
+:::
+
+:::{#def-resid-fitted}
+#### Residual of a fitted value
+
+The **residual of a fitted value $\hat y$** (shorthand: "residual") is its [error](#estimation.qmd#def-error):
+$$
+\ba
+e(\hat y) &\eqdef \err{\hat y}
+\\&= y - \hat y
+\ea
+$$
+:::
+
+For Gaussian models, $e(\hat_i)$ can be seen as the maximum likelihood estimate of the residual noise:
+
+$$e(\hat y) = \hat\epsilon(y)_{ML}$$
 
 -   Standardized residuals: $$r_i = \frac{e_i}{\hat{SD}(e_i)}$$
 
--   For Gaussian models: $$\hat{SD}(e_i) \approx \frac{e_i}{\hat{\sigma}}$$
+-   For Gaussian models: $$\widehat{SD}(e_i) \approx \hs$$
 
 #### Characteristics of residuals
 
@@ -1240,11 +1265,21 @@ First, we need to compute the residuals. R makes this easy:
 
 ```{r}
 resid(bw_lm2)
-# check by hand
+```
+
+:::{#exr-calc-resids}
+Check R's output by computing the residuals directly.
+:::
+
+:::{.solution}
+
+```{r}
 bw$weight - fitted(bw_lm2)
 ```
 
-Success!
+This matches R's output!
+:::
+
 
 #### Standardized residuals in R
 
@@ -1495,23 +1530,17 @@ If not, we probably need to change the functional form of linear component of th
 
 We can also plot the square roots of the absolute values of the standardized residuals against the fitted values:
 
-::: {.content-visible when-format="html"}
 ```{r}
+#| label: fig-bw-scale-loc
+#| fig-cap: "Scale-location plot of `birthweight` data"
 autoplot(bw_lm2, which = 3, ncol = 1) |> print()
 ```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-autoplot(bw_lm2, which = 3, ncol = 1) |> print()
-```
-:::
 
 Here, the blue line doesn't need to be near 0, but it should be flat. If not, the residual variance $\sigma^2$ might not be constant, and we might need to transform our outcome $Y$ (or use a model that allows non-constant variance).
 
 #### Residuals versus leverage
 
-We can also plot our standardized residuals against "leverage", which roughly speaking is a measure of how unusual each $x_i$ value is. Very unusual $x_i$ values can have extreme effects on the model fit, so we might want ot remove those observations as outliers, particularly if they have large residuals.
+We can also plot our standardized residuals against "leverage", which roughly speaking is a measure of how unusual each $x_i$ value is. Very unusual $x_i$ values can have extreme effects on the model fit, so we might want to remove those observations as outliers, particularly if they have large residuals.
 
 ::: {.content-visible when-format="html"}
 ```{r}

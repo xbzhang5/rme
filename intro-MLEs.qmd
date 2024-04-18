@@ -6,6 +6,38 @@ These notes are derived primarily from @dobson2018introduction (mostly chapters 
 
 Some material was also taken from @mclachlan2007algorithm and @CaseBerg01.
 
+## Introduction
+
+:::{#def-lik}
+#### Likelihood
+
+Let $\vec x$ be a dataset with corresponding random variable $\vec X$.
+Let $p_\Theta(\vec X)$ be a probability model for the distribution of $\vec X$ with parameter vector $\Theta$.
+
+Then the **likelihood** of parameter value $\theta$ (for model $p_\Theta(\vec X)$) is the *joint probability* of $\vec x$ given $\Theta = \theta$:
+ 
+$$
+\ba
+\Lik(\theta) &\eqdef p_{\theta}(\vec X)
+\\&=p_{\theta}(X_1=x_1, ..., X_n = x_n)
+\ea
+$$
+:::
+
+The likelihood is a function that takes $\theta$ (and implicitly, $\vec X$) as inputs and outputs a single number, the joint probability of $\vec X$ for model $p_\Theta(\vec X)$ with $\Theta = \theta$.
+
+:::{#def-mle}
+
+#### Maximum likelihood estimate
+
+The **maximum likelihood estimate** of a parameter vector $\theta$ is the value of $\theta$ that maximizes the likelihood:
+
+$$
+\hthml = \arg \max_\theta \Lik(\theta)
+$$
+
+:::
+
 {{< include dobson-cyclone-example.qmd >}}
 
 ## Maximum likelihood inference for univariate Gaussian models
