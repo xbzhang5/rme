@@ -592,7 +592,7 @@ $$
 \hat\beta \dot \sim N(\beta, \mathcal I_{\beta}^{-1})
 $$ These are all results you have hopefully seen before, and in the Gaussian linear regression case they are exact, not just approximate.
 
-In our model 2 above, this matrix is:
+In our model 2 above, the inverse of this matrix is:
 
 ```{r}
 bw_lm2 |> vcov()
