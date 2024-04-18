@@ -39,6 +39,7 @@ library(plotly) # interactive graphics
 library(dobson) # datasets from Dobson and Barnett 2018
 library(parameters) # format model output tables for markdown
 library(conflicted) # check for conflicting function definitions
+library(magrittr) # `%>%` and other additional piping tools
 ```
 
 ## Overview
@@ -1172,6 +1173,16 @@ parameters(bw_lm2, ci_method = "wald") |> print_md()
 
 ### Prediction for linear models
 
+:::{#def-predicted-value}
+#### Predicted value
+
+In a regression model $\p(y|x)$, the **predicted value** of $y$ given $x$ is the estimated mean of $Y$ given $X$:
+
+$$\hat y \eqdef \hE{Y|X=x}$$
+:::
+
+For linear models, the predicted value can be straightforwardly calculated by multiplying each predictor value $x_j$ by its corresponding coefficient $\beta_j$ and adding up the results:
+
 $$
 \begin{aligned}
 \hat Y &= \hat E[Y|X=x] \\
@@ -1180,34 +1191,78 @@ $$
 \end{aligned}
 $$
 
-### prediction in R
+### Example: prediction for the `birthweight` data
 
 ```{r}
 
-X = model.matrix(bw_lm1)
-X |> as_tibble() |> print()
+X = c(1,1,40)
+sum(X * coef(bw_lm1))
+```
 
-print(X[1,])
-print(coef(bw_lm1))
-print(X[1,] * coef(bw_lm1))
-{X[1,] * coef(bw_lm1)} |> sum() |> print()
+R has built-in functions for prediction:
+```{r}
+x = tibble(age = 40, sex = "male")
+bw_lm1 |> predict(newdata = x)
+```
 
-X %*% coef(bw_lm1) |> as.vector()
+If you don't provide `newdata`, R will use the covariate values from the original dataset:
 
+```{r}
 predict(bw_lm1)
+```
 
-predict(bw_lm1, se.fit = TRUE)
+These special predictions are called the *fitted values* of the dataset:
 
-predict(bw_lm1, se.fit = TRUE)$fit
-predict(bw_lm1, se.fit = TRUE)$se.fit
+:::{#def-fitted-value}
 
-predict(bw_lm1, se.fit = TRUE, interval = "confidence")$fit |> as_tibble()
+For a given dataset $(\vec Y, \vec X)$ and corresponding fitted model $\p_{\hb}(y|x)$, the **fitted value** of $y_i$ is the predicted value of $y$ when $X=x_i$ using the estimate parameters $\hb$.
 
-predict(bw_lm1, se.fit = TRUE, interval = "predict")$fit |> as_tibble()
+:::
+
+R has an extra function to get these values:
+
+```{r}
+fitted(bw_lm1)
+```
+
+### Quantifying uncertainty in predictions
+
+```{r}
+bw_lm1 |> 
+  predict(
+    newdata = x,
+    se.fit = TRUE)
+```
+
+This is a `list()`; you can extract the elements with `$` or `magrittr::use_series()`:
+
+```{r}
+bw_lm1 |> 
+  predict(
+    newdata = x,
+    se.fit = TRUE) |> 
+  use_series(se.fit)
+```
+
+You can get **confidence intervals** for $\E{Y|X=x}$:
+
+```{R}
+bw_lm1 |> predict(
+  newdata = x,
+  interval = "confidence")
+```
+
+You can also get **prediction intervals** for the value of an individual outcome $Y$:
+
+```{r}
+bw_lm1 |> 
+  predict(newdata = x, interval = "predict")
 
 ```
 
-The warning from the last command is: "predictions on current data refer to *future* responses" (since you already know what happened to the current data, and thus don't need to predict it). You could also supply `newdata` to get predictions for new combinations of predictors that you didn't see in your original dataset. See `?predict.lm` for more.
+The warning from the last command is: "predictions on current data refer to *future* responses" (since you already know what happened to the current data, and thus don't need to predict it).
+
+See `?predict.lm` for more.
 
 ## Diagnostics {#sec-diagnose-LMs}
 
@@ -1221,21 +1276,28 @@ The **residual noise** in a regression model $p(Y|X)$ is the difference between 
 $$\epsilon(y) \eqdef y - \Exp{Y|X}$$
 :::
 
+Note that this is the same notation that we used for [errors](#estimation.qmd#def-error). Each observation $y$ can be viewed as an estimate of $\Exp{Y|X}$ (albeit an imprecise one, individually, since $n=1$).
+
 :::{#def-resid-fitted}
 #### Residual of a fitted value
 
 The **residual of a fitted value $\hat y$** (shorthand: "residual") is its [error](#estimation.qmd#def-error):
 $$
 \ba
-e(\hat y) &\eqdef \err{\hat y}
+e(\hat y) &\eqdef \erf{\hat y}
 \\&= y - \hat y
 \ea
 $$
 :::
 
-For Gaussian models, $e(\hat_i)$ can be seen as the maximum likelihood estimate of the residual noise:
+For Gaussian models, $e(\hat y)$ can be seen as the maximum likelihood estimate of the residual noise:
 
-$$e(\hat y) = \hat\epsilon(y)_{ML}$$
+$$
+\ba
+e(\hat y) &= y - \hat y
+\\ &= \hat\epsilon_{ML}
+\ea
+$$
 
 -   Standardized residuals: $$r_i = \frac{e_i}{\hat{SD}(e_i)}$$
 

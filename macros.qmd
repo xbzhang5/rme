@@ -29,6 +29,8 @@
 \providecommand{\paren}[1]{\left(#1\right)}
 \providecommand{\sb}[1]{\left[#1\right]}
 \providecommand{\hE}[1]{\hat{\text{E}}\sb{#1}}
+\providecommand{\hExp}[1]{\hat{\text{E}}\sb{#1}}
+\providecommand{\hmu}[1]{\hat{\mu}\sb{#1}}
 \providecommand{\E}[1]{\mathbb{E}\sb{#1}}
 \providecommand{\Exp}[1]{\mathbb{E}\sb{#1}}
 \providecommand{\var}[1]{\text{Var}\paren{#1}}
@@ -51,6 +53,7 @@
 \providecommand{\heinf}[1]{\hat{\mathcal{I}}\paren{#1}}
 \providecommand{\1}[1]{\mathbb{1}_{#1}}
 \providecommand{\set}[1]{\cb{1}}
+\providecommand{\p}{\text{p}}
 \providecommand{\pr}{\text{p}}
 \providecommand{\Bias}[1]{\text{Bias}\paren{#1}}
 \providecommand{\bias}[1]{\text{Bias}\paren{#1}}
