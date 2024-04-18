@@ -465,9 +465,12 @@ $$
 $$
 :::
 
+:::{.notes}
 Note that age now does show up in the difference: in other words, according to this model, the difference in mean birthweights between females and males with the same gestational age can vary by gestational age.
 
 That's how the lines in the graph ended up non-parallel.
+
+:::
 
 ### Stratified regression
 
@@ -825,7 +828,7 @@ In our model 2 above, $\heinf{\beta}$ is:
 bw_lm2 |> vcov()
 ```
 
-Note that if we take the square roots of the diagonals, we get the standard errors listed in the model output:
+If we take the square roots of the diagonals, we get the standard errors listed in the model output:
 
 ```{r}
 
@@ -1172,3 +1175,791 @@ Compare with what we got without rescaling:
 parameters(bw_lm2, ci_method = "wald") |> print_md()
 ```
 
+## Prediction
+
+### Prediction for linear models
+
+:::{#def-predicted-value}
+#### Predicted value
+
+In a regression model $\p(y|x)$, the **predicted value** of $y$ given $x$ is the estimated mean of $Y$ given $X$:
+
+$$\hat y \eqdef \hE{Y|X=x}$$
+:::
+
+For linear models, the predicted value can be straightforwardly calculated by multiplying each predictor value $x_j$ by its corresponding coefficient $\beta_j$ and adding up the results:
+
+$$
+\begin{aligned}
+\hat Y &= \hat E[Y|X=x] \\
+&= x'\hat\beta \\
+&= \hat\beta_0\cdot 1 + \hat\beta_1 x_1 + ... + \hat\beta_p x_p
+\end{aligned}
+$$
+
+### Example: prediction for the `birthweight` data
+
+```{r}
+
+X = c(1,1,40)
+sum(X * coef(bw_lm1))
+```
+
+R has built-in functions for prediction:
+```{r}
+x = tibble(age = 40, sex = "male")
+bw_lm1 |> predict(newdata = x)
+```
+
+If you don't provide `newdata`, R will use the covariate values from the original dataset:
+
+```{r}
+predict(bw_lm1)
+```
+
+These special predictions are called the *fitted values* of the dataset:
+
+:::{#def-fitted-value}
+
+For a given dataset $(\vec Y, \vec X)$ and corresponding fitted model $\p_{\hb}(y|x)$, the **fitted value** of $y_i$ is the predicted value of $y$ when $X=x_i$ using the estimate parameters $\hb$.
+
+:::
+
+R has an extra function to get these values:
+
+```{r}
+fitted(bw_lm1)
+```
+
+### Quantifying uncertainty in predictions
+
+```{r}
+bw_lm1 |> 
+  predict(
+    newdata = x,
+    se.fit = TRUE)
+```
+
+This is a `list()`; you can extract the elements with `$` or `magrittr::use_series()`:
+
+```{r}
+bw_lm1 |> 
+  predict(
+    newdata = x,
+    se.fit = TRUE) |> 
+  use_series(se.fit)
+```
+
+You can get **confidence intervals** for $\E{Y|X=x}$:
+
+```{R}
+bw_lm1 |> predict(
+  newdata = x,
+  interval = "confidence")
+```
+
+You can also get **prediction intervals** for the value of an individual outcome $Y$:
+
+```{r}
+bw_lm1 |> 
+  predict(newdata = x, interval = "predict")
+
+```
+
+The warning from the last command is: "predictions on current data refer to *future* responses" (since you already know what happened to the current data, and thus don't need to predict it).
+
+See `?predict.lm` for more.
+
+## Diagnostics {#sec-diagnose-LMs}
+
+### Residuals
+
+:::{#def-resid-noise}
+#### Residual noise
+
+The **residual noise** in a probability model $p(Y)$ is the difference between an observed value $y$ and its distributional mean:
+
+$$\erf{y} \eqdef y - \Exp{Y}$$ {#eq-def-resid}
+:::
+
+:::{.notes}
+This is the same notation that we used for [errors](estimation.qmd#def-error). Each observation $y$ can be viewed as an estimate of $\Exp{Y}$ (albeit an imprecise one, individually, since $n=1$). Likewise, $\Exp{Y}$ can be viewed as an estimate of $Y$, before $y$ is observed.
+:::
+
+We can rearrange @eq-def-resid to view $y$ as the sum of its mean plus the residual noise:
+
+$$y = \Exp{Y|X} + \erf{y}$$
+
+---
+
+:::{#thm-gaussian-resid-noise}
+#### Residuals in Gaussian models
+
+If $Y$ has a Gaussian distribution, then $\erf{Y}$ also has a Gaussian distribution, and vice versa.
+:::
+
+:::{.proof}
+Left to the reader.
+:::
+
+---
+
+:::{#def-resid-fitted}
+#### Residual errors of a fitted model value
+
+The **residual of a fitted value $\hat y$** (shorthand: "residual") is its [error](estimation.qmd#def-error):
+$$
+\ba
+e(\hat y) &\eqdef \erf{\hat y}
+\\&= y - \hat y
+\ea
+$$
+:::
+
+$e(\hat y)$ can be seen as the maximum likelihood estimate of the residual noise:
+
+$$
+\ba
+e(\hy) &= y - \hat y
+\\ &= \hat\epsilon_{ML}
+\ea
+$$
+
+---
+
+:::{#exm-resid-bw}
+#### residuals in `birthweight` data
+
+R provides a function for residuals:
+
+```{r}
+resid(bw_lm2)
+```
+
+:::
+
+:::{#exr-calc-resids}
+Check R's output by computing the residuals directly.
+:::
+
+:::{.solution}
+\ 
+```{r}
+bw$weight - fitted(bw_lm2)
+```
+
+This matches R's output!
+:::
+
+---
+
+#### General characteristics of residuals
+
+For unbiased estimators $\hth$:
+
+$$\E{e(y)} = 0$$
+
+:::{.proof}
+\ 
+$$
+\ba
+\E{e(y)} &= \E{y - \hat y}
+\\ &= \E{y} - \E{\hat y}
+\\ &= \E{y} - \E{\hat y}
+\\ &= \E{y} - \E{\hE{y}}
+\\ &= \E{y} - \E{E{y}}
+\\ &= \E{y} - \E{y}
+\\ &= 0
+\ea
+$$
+
+:::
+
+$$\hSD(e(y)) \approx \hs$$
+
+:::{.proof}
+\ 
+$$
+\ba
+\Var{e(y)} &= \Var{y - \hy}
+\\ &= \Var{y} + \Var{\hy} - 2 \Cov{y, \hy}
+\\ &{\dot{\approx}} \Var{y} + 0 - 2 \cd 0
+\\ &= \Var{y}
+\ea
+$$
+:::
+
+#### Characteristics of residuals in Gaussian models
+
+With enough data and a correct model, the residuals will be approximately Guassian distributed, with variance $\sigma^2$, which we can estimate using $\hat\sigma^2$: that is:
+
+$$
+e_i \siid N(0, \hat\sigma^2)
+$$
+
+---
+
+:::{#def-stred}
+
+#### Standardized residuals
+
+$$r_i = \frac{e_i}{\widehat{SD}(e_i)}$$
+
+:::
+
+Hence, with enough data and a correct model, the standardized residuals will be approximately standard Gaussian; that is,
+
+$$
+r_i \siid N(0,1)
+$$
+
+### Marginal distributions of residuals
+
+To look for problems with our model, we can check whether the residuals $e_i$ and standardized residuals $r_i$ look like they have the distributions that they are supposed to have, according to the model.
+
+#### Standardized residuals in R
+
+```{r}
+
+rstandard(bw_lm2)
+resid(bw_lm2)/sigma(bw_lm2)
+
+```
+
+These are not quite the same, because R is doing something more complicated and precise to get the standard errors. Let's not worry about those details for now; the difference is pretty small in this case:
+
+```{r}
+
+rstandard_compare_plot = 
+  tibble(
+    x = resid(bw_lm2)/sigma(bw_lm2), 
+    y = rstandard(bw_lm2)) |> 
+  ggplot(aes(x = x, y = y)) +
+  geom_point() + 
+  theme_bw() +
+  coord_equal() + 
+  xlab("resid(bw_lm2)/sigma(bw_lm2)") +
+  ylab("rstandard(bw_lm2)") +
+  geom_abline(
+    aes(
+    intercept = 0,
+    slope = 1, 
+    col = "x=y")) +
+  labs(colour="") +
+  scale_colour_manual(values="red")
+
+```
+
+::: {.content-visible when-format="html"}
+```{r}
+ggplotly(rstandard_compare_plot)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+print(rstandard_compare_plot)
+```
+:::
+
+Let's add these residuals to the `tibble` of our dataset:
+
+```{r}
+
+bw = 
+  bw |> 
+  mutate(
+    fitted_lm2 = fitted(bw_lm2),
+    
+    resid_lm2 = resid(bw_lm2),
+    # resid_lm2 = weight - fitted_lm2,
+    
+    std_resid_lm2 = rstandard(bw_lm2),
+    # std_resid_lm2 = resid_lm2 / sigma(bw_lm2)
+  )
+
+bw |> 
+  select(
+    sex,
+    age,
+    weight,
+    fitted_lm2,
+    resid_lm2,
+    std_resid_lm2
+  )
+```
+
+Now let's build histograms:
+
+#### Marginal distribution of (nonstandardized) residuals
+
+```{r}
+
+resid_marginal_hist = 
+  bw |> 
+  ggplot(aes(x = resid_lm2)) +
+  geom_histogram()
+
+```
+
+::: {.content-visible when-format="html"}
+```{r}
+ggplotly(resid_marginal_hist)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+print(resid_marginal_hist)
+```
+:::
+
+Hard to tell with this small amount of data, but I'm a bit concerned that the histogram doesn't show a bell-curve shape.
+
+##### Marginal distribution of standardized residuals
+
+```{r}
+
+std_resid_marginal_hist = 
+  bw |> 
+  ggplot(aes(x = std_resid_lm2)) +
+  geom_histogram()
+
+```
+
+::: {.content-visible when-format="html"}
+```{r}
+ggplotly(std_resid_marginal_hist)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+print(std_resid_marginal_hist)
+```
+:::
+
+This looks similar, although the scale of the x-axis got narrower, because we divided by $\hat\sigma$ (roughly speaking).
+
+Still hard to tell if the distribution is Gaussian.
+
+### QQ plot of standardized residuals
+
+Another way to assess normality is the QQ plot of the standardized residuals versus normal quantiles:
+
+```{r}
+
+library(ggfortify) 
+# needed to make ggplot2::autoplot() work for `lm` objects
+
+qqplot_lm2_auto = 
+  bw_lm2 |> 
+  autoplot(
+    which = 2, # options are 1:6; can do multiple at once
+    ncol = 1) +
+  theme_classic()
+
+```
+
+::: {.content-visible when-format="html"}
+```{r}
+print(qqplot_lm2_auto)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+print(qqplot_lm2_auto)
+```
+:::
+
+If the Gaussian model were correct, these points should follow the dotted line.
+
+::: callout-note
+Fig 2.4 panel (c) in @dobson2018introduction is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
+:::
+
+#### QQ plot - how it's built
+
+Let's construct it by hand:
+
+```{r}
+
+bw = bw |> 
+  mutate(
+    p = (rank(std_resid_lm2) - 1/2)/n(), # "Blom's method"
+    expected_quantiles_lm2 = qnorm(p)
+  )
+
+qqplot_lm2 = 
+  bw |> 
+  ggplot(
+    aes(
+      x = expected_quantiles_lm2, 
+      y = std_resid_lm2, 
+      col = sex, 
+      shape = sex)
+  ) + 
+  geom_point() +
+  theme_classic() +
+  theme(legend.position='none') + # removing the plot legend
+  ggtitle("Normal Q-Q") +
+  xlab("Theoretical Quantiles") + 
+  ylab("Standardized residuals")
+```
+
+We find the expected line like so:
+
+```{r}
+ps <- c(.25, .75)                  # reference probabilities
+a <- quantile(rstandard(bw_lm2), ps)  # empirical quantiles
+b <- qnorm(ps)                     # theoretical quantiles
+
+qq_slope = diff(a)/diff(b)
+qq_intcpt = a[1] - b[1] * qq_slope
+
+qqplot_lm2 = 
+  qqplot_lm2 +
+  geom_abline(slope = qq_slope, intercept = qq_intcpt)
+
+print(qqplot_lm2)
+```
+
+### Conditional distributions of residuals
+
+If our Gaussian linear regression model is correct, the residuals $e_i$ and standardized residuals $r_i$ should have:
+
+-   an approximately Gaussian distribution, with:
+-   a mean of 0
+-   a constant variance
+
+This should be true **regardless** of the value of $X$.
+
+But if we didn't correctly guess the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
+
+Then the the residuals might have nonzero mean or nonconstant variance for some values of $x$.
+
+#### Residuals versus fitted values
+
+To look for these issues, we can plot the residuals $e_i$ against the fitted values $\hat y_i$:
+
+```{r}
+autoplot(bw_lm2, which = 1, ncol = 1) |> print()
+```
+
+If the model is correct, the blue line should stay flat and close to 0, and the cloud of dots should have the same vertical spread regardless of the fitted value.
+
+If not, we probably need to change the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
+
+#### Scale-location plot
+
+We can also plot the square roots of the absolute values of the standardized residuals against the fitted values:
+
+```{r}
+#| label: fig-bw-scale-loc
+#| fig-cap: "Scale-location plot of `birthweight` data"
+autoplot(bw_lm2, which = 3, ncol = 1) |> print()
+```
+
+Here, the blue line doesn't need to be near 0, but it should be flat. If not, the residual variance $\sigma^2$ might not be constant, and we might need to transform our outcome $Y$ (or use a model that allows non-constant variance).
+
+#### Residuals versus leverage
+
+We can also plot our standardized residuals against "leverage", which roughly speaking is a measure of how unusual each $x_i$ value is. Very unusual $x_i$ values can have extreme effects on the model fit, so we might want to remove those observations as outliers, particularly if they have large residuals.
+
+::: {.content-visible when-format="html"}
+```{r}
+autoplot(bw_lm2, which = 5, ncol = 1) |> print()
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+autoplot(bw_lm2, which = 5, ncol = 1) |> print()
+```
+:::
+
+The blue line should be relatively flat and close to 0 here.
+
+### Diagnostics constructed by hand
+
+```{r}
+
+bw = 
+  bw |> 
+  mutate(
+    predlm2 = predict(bw_lm2),
+    residlm2 = weight - predlm2,
+    std_resid = residlm2 / sigma(bw_lm2),
+    # std_resid_builtin = rstandard(bw_lm2), # uses leverage
+    sqrt_abs_std_resid = std_resid |> abs() |> sqrt()
+    
+  )
+
+```
+
+##### Residuals vs fitted
+
+```{r}
+
+resid_vs_fit = bw |> 
+  ggplot(
+    aes(x = predlm2, y = residlm2, col = sex, shape = sex)
+  ) + 
+  geom_point() +
+  theme_classic() +
+  geom_hline(yintercept = 0)
+
+```
+
+::: {.content-visible when-format="html"}
+```{r}
+print(resid_vs_fit)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+print(resid_vs_fit)
+```
+:::
+
+##### Standardized residuals vs fitted
+
+```{r}
+bw |> 
+  ggplot(
+    aes(x = predlm2, y = std_resid, col = sex, shape = sex)
+  ) + 
+  geom_point() +
+  theme_classic() +
+  geom_hline(yintercept = 0)
+
+```
+
+##### Standardized residuals vs gestational age
+
+```{r}
+
+bw |> 
+  ggplot(
+    aes(x = age, y = std_resid, col = sex, shape = sex)
+  ) + 
+  geom_point() +
+  theme_classic() +
+  geom_hline(yintercept = 0)
+
+```
+
+##### `sqrt(abs(rstandard()))` vs fitted
+
+Compare with `autoplot(bw_lm2, 3)`
+
+```{r}
+
+
+bw |> 
+  ggplot(
+    aes(x = predlm2, y = sqrt_abs_std_resid, col = sex, shape = sex)
+  ) + 
+  geom_point() +
+  theme_classic() +
+  geom_hline(yintercept = 0)
+
+
+```
+
+## Model selection
+
+If we have a lot of covariates in our dataset, we might want to choose a small subset to use in our model.
+
+There are a few possible metrics to consider for choosing a "best" model.
+
+### Mean squared error
+
+We might want to minimize the **mean squared error**, $\text E[(y-\hat y)^2]$, for new observations that weren't in our data set when we fit the model.
+
+Unfortunately, $$\frac{1}{n}\sum_{i=1}^n (y_i-\hat y_i)^2$$ gives a biased estimate of $\text E[(y-\hat y)^2]$ for new data. If we want an unbiased estimate, we will have to be clever.
+
+### Cross-validation
+
+```{r}
+data("carbohydrate", package = "dobson")
+library(cvTools)
+full.model <- lm(carbohydrate ~ ., data = carbohydrate)
+temp = 
+  cvFit(full.model, data = carbohydrate, K = 5, R = 10,
+y = carbohydrate$carbohydrate)
+```
+
+## Categorical covariates with more than two levels
+
+### Example: `birthweight`
+
+In the birthweight example, the variable `sex` had only two observed values:
+
+```{r}
+unique(bw$sex)
+```
+
+If there are more than two observed values, we can't just use a single variable with 0s and 1s.
+
+### 
+
+For example, here's the (in)famous `iris` data:
+
+```{r}
+
+iris |> tibble()
+
+summary(iris)
+
+```
+
+### 
+
+There are three species:
+
+```{r}
+
+iris$Species |> unique()
+
+```
+
+### 
+
+If we want to model `Sepal.Length` by species, we could create a variable $X$ that represents "setosa" as $X=1$, "virginica" as $X=2$, and "versicolor" as $X=3$.
+
+```{r}
+data(iris) # this step is not always necessary, but ensures you're starting  
+# from the original version of a dataset stored in a loaded package
+
+iris = 
+  iris |> 
+  tibble() |>
+  mutate(
+    X = case_when(
+      Species == "setosa" ~ 1,
+      Species == "virginica" ~ 2,
+      Species == "versicolor" ~ 3
+    )
+  )
+
+iris |> 
+  distinct(Species, X) |> 
+  print()
+
+```
+
+Then we could fit a model like:
+
+```{r}
+
+iris_lm1 = lm(Sepal.Length ~ X, data = iris)
+iris_lm1 |> parameters() |> print_md()
+
+```
+
+### Let's see how that model looks:
+
+```{r}
+
+iris_plot1 = iris |> 
+  ggplot(
+    aes(
+      x = X, 
+      y = Sepal.Length)
+  ) +
+  geom_point(alpha = .1) +
+  geom_abline(
+    intercept = coef(iris_lm1)[1], 
+    slope = coef(iris_lm1)[2]) +
+  theme_bw(base_size = 18)
+```
+
+::: {.content-visible when-format="pdf"}
+```{r}
+print(iris_plot1)
+
+```
+:::
+
+::: {.content-visible when-format="html"}
+```{r}
+ggplotly(iris_plot1)
+
+```
+:::
+
+We have forced the model to use a straight line for the three estimated means. Maybe not a good idea?
+
+### Let's see what R does with categorical variables by default:
+
+```{r}
+iris_lm2 = lm(Sepal.Length ~ Species, data = iris)
+iris_lm2 |> parameters() |> print_md()
+
+```
+
+### Re-parametrize with no intercept
+
+If you don't want the default and offset option, you can use "-1" like we've seen previously:
+
+```{r}
+iris.lm2b = lm(Sepal.Length ~ Species - 1, data = iris)
+iris.lm2b |> parameters() |> print_md()
+
+```
+
+### Let's see what these new models look like:
+
+```{r}
+iris_plot2 = 
+  iris |> 
+  mutate(
+    predlm2 = predict(iris_lm2)) |> 
+  arrange(X) |> 
+  ggplot(aes(x = X, y = Sepal.Length)) +
+  geom_point(alpha = .1) +
+  geom_line(aes(y = predlm2), col = "red") +
+  geom_abline(
+    intercept = coef(iris_lm1)[1], 
+    slope = coef(iris_lm1)[2]) + 
+  theme_bw(base_size = 18)
+```
+
+::: {.content-visible when-format="pdf"}
+```{r}
+print(iris_plot2)
+
+```
+:::
+
+::: {.content-visible when-format="html"}
+```{r}
+ggplotly(iris_plot2)
+
+```
+:::
+
+### Let's see how R did that:
+
+```{r}
+
+formula(iris_lm2)
+model.matrix(iris_lm2) |> as_tibble() |> unique()
+
+```
+
+This is called a "corner point parametrization".
+
+```{r}
+
+formula(iris.lm2b)
+model.matrix(iris.lm2b) |> as_tibble() |> unique()
+
+```
+
+This can be called a "group point parametrization".
+
+There are more options; see Dobson & Barnett §6.4.1.
