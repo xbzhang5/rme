@@ -3,12 +3,21 @@
 {{< include shared-config.qmd >}}
 
 :::{.callout-note}
-This content is adapted from Dobson & Barnett, An Introduction to Generalized Linear Models, 4th edition, Chapters 2-6\]
+This content is adapted from:
+
+- @dobson2018introduction, Chapters 2-6
+- @dunn2018generalized, Chapters 2-3
+- @vittinghoff2012regression, Chapter 4
+
+There are numerous textbooks specifically for linear regression, including:
+
+- @kutner2005applied
+- @chatterjee2015regression
+
 :::
 
 ```{r setup, include = FALSE}
 options('digits' = 4)
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 pander::panderOptions("table.emphasize.rownames", FALSE)
 
 ```
@@ -16,29 +25,75 @@ pander::panderOptions("table.emphasize.rownames", FALSE)
 Functions from these packages will be used throughout this document:
 
 ```{r}
+#| label: library-calls
+#| code-fold: false
+library(knitr) # compiling .qmd files
 library(pander) # format tables for markdown
 library(ggplot2) # graphics
-library(ggeasy) # help with graphics
+library(ggeasy) # help with graphics: 
+# - `ggeasy::easy_labs()` applies same logic as `ggplot2::labs()` but uses as default the "label" attribute, if present, as the variable label in the plot."
 library(dplyr) # manipulate data
 library(haven) # import Stata files
-library(knitr) # format R output for markdown
 library(tidyr) # Tools to help to create tidy data
 library(plotly) # interactive graphics
 library(dobson) # datasets from Dobson and Barnett 2018
 library(parameters) # format model output tables for markdown
 library(conflicted) # check for conflicting function definitions
+library(magrittr) # `%>%` and other additional piping tools
 ```
 
-## Understanding Gaussian Linear Regression Models
+## Overview
 
-### Motivating example: birthweights and gestational age
+### Why this course includes linear regression {.smaller}
 
-Suppose we want to learn about the distributions of birthweights for (human) babies born at different gestational ages and with different chromosomal sexes (Dobson and Barnett, Example 2.2.2):
+:::{.fragment .fade-in-then-semi-out}
+* This course is about *generalized linear models* (for non-Gaussian outcomes)
+:::
+
+:::{.fragment .fade-in-then-semi-out}
+* UC Davis STA 108 ("Applied Statistical Methods: Regression Analysis") is a prerequisite for this course, so everyone here should have some understanding of linear regression already.
+:::
+
+:::{.fragment .fade-in}
+* We will review linear regression to:
+  - make sure everyone is caught up
+  - to provide an epidemiological perspective on model intepretation.
+:::
+
+### Chapter overview
+
+* @sec-understand-LMs: how to interpret linear regression models
+
+* @sec-est-LMs: how to estimate linear regression models
+
+* @sec-infer-LMs: how to quantify uncertainty about our estimates
+
+* @sec-diagnose-LMs: how to tell if your model is insufficiently complex
+ 
+
+## Understanding Gaussian Linear Regression Models {#sec-understand-LMs}
+
+### Motivating example: birthweights and gestational age {.smaller}
+
+Suppose we want to learn about the distributions of birthweights (*outcome* $Y$) for (human) babies born at different gestational ages (*covariate* $A$) and with different chromosomal sexes (*covariate* $S$) (@dobson2018introduction Example 2.2.2).
+
+::::: {.panel-tabset}
+
+#### Data as table
 
 ```{r}
-
+#| label: tbl-birthweight-data1
+#| tbl-cap: "`birthweight` data (@dobson2018introduction Example 2.2.2)"
+library(dobson)
 data("birthweight", package = "dobson")
+birthweight |> knitr::kable()
+```
 
+#### Reshape data for graphing
+
+```{r}
+#| label: tbl-birthweight-data2
+#| tbl-cap: "`birthweight` data reshaped"
 bw = 
   birthweight |> 
   pivot_longer(
@@ -46,14 +101,24 @@ bw =
     names_to = c("sex", ".value"),
     names_sep = "s "
   ) |> 
+  rename(age = `gestational age`) |> 
   mutate(
-    sex = ifelse(sex == "boy", "male", "female"),
-    male = (sex == "male") |> as.integer())  |> 
-  rename(age = `gestational age`)
+    sex = sex |> 
+      case_match(
+        "boy" ~ "male",
+        "girl" ~ "female") |> 
+      factor(levels = c("female", "male")))
+
+bw
 ```
 
-```{r}
+#### Data as graph
 
+```{r}
+#| label: fig-plot-birthweight1
+#| fig-cap: "`birthweight` data (@dobson2018introduction Example 2.2.2)"
+#| fig-height: 5
+#| fig-width: 7
 plot1 = bw |> 
   ggplot(aes(
     x = age, 
@@ -64,68 +129,78 @@ plot1 = bw |>
   theme_bw() +
   xlab("Gestational age (weeks)") +
   ylab("Birthweight (grams)") +
+  theme(legend.position = "bottom") +
   # expand_limits(y = 0, x = 0) +
   geom_point(alpha = .7)
-
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-
-ggplotly(plot1 + facet_wrap(~ sex))
-
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-
 print(plot1 + facet_wrap(~ sex))
-
 ```
+
+:::::
+
+---
+
+#### Data notation
+
+Let's define some notation to represent this data.
+
+-   $Y$: birthweight (measured in grams)
+-   $A$: chromosomal sex:
+    -   $A = 0$ if female (XX)
+    -   $A = 1$ if male (XY)
+-   $S$: gestational age at birth (measured in weeks).
+
+::: callout-note
+Female is the **reference level** for the categorical variable $A$ (chromosomal sex). The choice of a reference level is arbitrary and does not limit what we can do with the resulting model; it only makes it more computationally convenient to make inferences about comparisons involving that reference group.
 :::
 
 ### Parallel lines regression
 
-We don't have enough data to model the distribution of birth weight separately for each combination of gestational age and sex, so let's instead consider a (relatively) simple model for how that distribution varies with gestational age and sex.
+We don't have enough data to model the distribution of birth weight separately for each combination of gestational age and sex, so let's instead consider a (relatively) simple model for how that distribution varies with gestational age and sex:
 
-#### Notation
+$$p(Y=y|A=a,S=s) \iid N(\mu(a,s), \sigma^2)$$
 
-Let:
+$$
+\ba
+\mu(a,s)
+&\eqdef \Exp{Y|A=a, S=s} \\
+&= \beta_0 + \beta_A a+ \beta_S s
+\ea
+$$ {#eq-lm-parallel}
 
--   $Y$ represent birthweight (measured in grams)
--   $X_1$ represent chromosomal sex:
-    -   $X_1 = 0$ if female (XX)
-    -   $X_1 = 1$ if male (XY)
--   $X_2$ represent gestational age at birth (measured in weeks).
-
-::: callout-note
-Female is the **reference level** for the categorical variable $X_1$ (chromosomal sex). The choice of a reference level is arbitrary and does not limit what we can do with the resulting model; it only makes it more computationally convenient to make inferences about comparisons involving that reference group.
+:::{.notes}
+@tbl-lm-parallel shows the parameter estimates from R.
+@fig-parallel-fit1 shows the estimated model, superimposed on the data.
 :::
 
-Now, consider the following model:
-
-$$Y \sim N(\mu(X_1,X_2), \sigma^2)$$
-
-$$\mu(X_1,X_2)\eqdef E[Y|X_1, X_2] = \beta_0 + \beta_1 X_1+ \beta_2 X_2$$
-
-#### Implementing the Model in R
-
-Here's how we can implement this model in R:
+::: {.column width=40%}
 
 ```{r}
+#| label: tbl-lm-parallel
+#| tbl-cap: "Estimate of @eq-lm-parallel for `birthweight` data"
+
 bw_lm1 = lm(
   formula = weight ~ sex + age, 
   data = bw)
 
 bw_lm1 |> 
-  parameters(show_sigma = TRUE) |> 
-  print_md()
+  parameters() |>
+  print_md(
+    include_reference = TRUE,
+    # show_sigma = TRUE,
+    select = "{estimate}")
+
 ```
 
-Here's how this model looks, superimposed on the data:
+:::
+
+:::{.column width=10%}
+:::
+
+:::{.column width=50%}
 
 ```{r}
+#| label: fig-parallel-fit1
+#| fig-cap: "Parallel-slopes model of birthweight"
 bw = 
   bw |> 
   mutate(`E[Y|X=x]` = fitted(bw_lm1)) |> 
@@ -134,30 +209,32 @@ bw =
 plot2 = 
   plot1 %+% bw +
   geom_line(aes(y = `E[Y|X=x]`))
-```
 
-::: {.content-visible when-format="pdf"}
-```{r}
-#| fig-cap: "Parallel-slopes model of birthweight"
 print(plot2)
 
 ```
+
 :::
 
-::: {.content-visible when-format="html"}
-```{r}
-#| fig-cap: "Parallel-slopes model of birthweight"
-ggplotly(plot2)
-
-```
-:::
+---
 
 #### Model assumptions and predictions
 
 To learn what this model is assuming, let's plug in a few values.
 
+:::{#exr-pred-fem-parallel}
 According to this model, what's the mean birthweight for a female born at 36 weeks?
 
+```{r}
+coef(bw_lm1)
+```
+
+:::
+
+---
+
+:::{.solution}
+\ 
 ```{r}
 pred_female = coef(bw_lm1)["(Intercept)"] + coef(bw_lm1)["age"]*36
 
@@ -166,9 +243,30 @@ pred_female = coef(bw_lm1)["(Intercept)"] + coef(bw_lm1)["age"]*36
 # predict(bw_lm1, newdata = tibble(sex = "female", age = 36))
 ```
 
-$$E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 =  `r pred_female`$$
+$$
+\ba
+E[Y|A = 0, S = 36] 
+&= \beta_0 + \beta_S \cdot 0+ \beta_A \cdot 36 \\
+&=  `r pred_female`
+\ea
+$$
+:::
 
+---
+
+:::{#exr-pred-male-parallel}
 What's the mean birthweight for a male born at 36 weeks?
+
+```{r}
+coef(bw_lm1)
+```
+
+:::
+
+---
+
+:::{.solution}
+\ 
 
 ```{r}
 pred_male = 
@@ -178,32 +276,53 @@ pred_male =
 ```
 
 $$
-E[Y|X_1 = 1, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 =  `r pred_male`
+\ba
+E[Y|A = 1, S = 36] 
+&= \beta_0 + \beta_S \cdot 1+ \beta_A \cdot 36 \\
+&=  `r pred_male`
+\ea
 $$
 
+:::
+
+---
+
+:::{#exr-diff-sex-parallel-1}
 What's the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?
+:::
+
+```{r}
+coef(bw_lm1)
+```
+
+---
+
+:::{.solution}
 
 $$
 \begin{aligned}
-& E[Y|X_1 = 1, X_2 = 36] - E[Y|X_1 = 0, X_2 = 36]\\
+& E[Y|A = 1, S = 36] - E[Y|A = 0, S = 36]\\
 &= 
 `r pred_male` - `r pred_female`\\
 &=
 `r pred_male - pred_female`
 \end{aligned}
 $$
-
 Shortcut:
 
 $$
 \begin{aligned}
-& E[Y|X_1 = 1, X_2 = 36] - 
-E[Y|X_1 = 0, X_2 = 36]\\
-&= (\beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36) - (\beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36) \\
-&= \beta_1 \\ 
+& E[Y|A = 1, S = 36] - 
+E[Y|A = 0, S = 36]\\
+&= (\beta_0 + \beta_S \cdot 1+ \beta_A \cdot 36) - (\beta_0 + \beta_S \cdot 0+ \beta_A \cdot 36) \\
+&= \beta_S \\ 
 &=  `r coef(bw_lm1)["sexmale"]`
 \end{aligned}
 $$
+
+:::
+
+:::{.notes}
 
 Note that age doesn't show up in this difference: in other words, according to this model, the difference between females and males with the same gestational age is the same for every age.
 
@@ -211,52 +330,50 @@ That's an assumption of the model; it's built-in to the parametric structure, ev
 
 That's why the lines are parallel.
 
-### Interactions
-
-What if we don't like that parallel lines assumption?
-
-Then we need to allow an "interaction" between age and sex:
-
-$$
-E[Y|X_1, X_2] = \beta_0 + \beta_1 X_1+ \beta_2 X_2 + \beta_3 (X_1 \cdot X_2)
-$$
-
-```{r}
-
-bw_lm2 = lm(weight ~ sex + age + sex:age, data = bw)
-
-```
-
-Here are the estimated parameters ($\beta$s):
-
-```{r}
-
-bw_lm2 |> 
-  parameters() |> 
-  print_md()
-
-```
-
-Here's another way we could rewrite this model (by collecting terms involving $X_2$):
-
-$$
-E[Y|X_1, X_2] = \beta_0 + \beta_1 X_1+ (\beta_2 + \beta_3 X_1) X_2
-$$
-
-::: callout-note
-If you want to understand a coefficient in a model with interactions, collect terms for the corresponding variable, and you will see what other variables are interacting with the variable you are interested in.
 :::
 
-In this case, the coefficient $X_2$ is interacting with $X_1$. So the slope of $Y$ with respect to $X_2$ depends on the value of $X_1$.
+### Interactions
 
-According to this model, there is no such thing as "*the* slope of birthweight with respect to age". There are two slopes, one for each sex.^[using the definite article "the" would mean there is only one slope.] We can only talk about "the slope of birthweight with respect to age among males" and "the slope of birthweight with respect to age among females".
+:::{.notes}
+What if we don't like that parallel lines assumption?
 
-Then: that coefficient is the difference in means per unit change in its corresponding coefficient, when the other collected variables are set to 0.
+Then we need to allow an "interaction" between  age $A$ and sex $S$:
+:::
 
-Here's how this model looks, superimposed on the data:
+$$
+E[Y|A=a, S=s] = \beta_0 + \beta_A a+ \beta_S s + \beta_{AS} (a \cdot s)
+$$ {#eq-model-interact}
+
+::: notes
+Now, the slope of mean birthweight $E[Y|A,S]$ with respect to gestational age $A$ depends on the value of sex $S$.
+:::
+
+::: {.column width=40%}
 
 ```{r}
+#| label: tbl-bw-model-coefs-interact
+#| tbl-cap: "Birthweight model with interaction term"
 
+bw_lm2 = lm(weight ~ sex + age + sex:age, data = bw)
+bw_lm2 |> 
+  parameters() |>
+  print_md(
+    include_reference = TRUE,
+    # show_sigma = TRUE,
+    select = "{estimate}")
+
+```
+
+:::
+
+:::{.column width=10%}
+:::
+
+:::{.column width=50%}
+
+```{r}
+#| label: fig-bw-interaction
+#| fig-cap: "Birthweight model with interaction term"
 bw = 
   bw |> 
   mutate(
@@ -268,32 +385,50 @@ plot1_interact =
   plot1 %+% bw +
   geom_line(aes(y = predlm2))
 
-```
-
-::: {.content-visible when-format="pdf"}
-```{r}
 print(plot1_interact)
 ```
+
 :::
 
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(plot1_interact)
-
-```
-:::
-
+::: {.notes}
 Now we can see that the lines aren't parallel.
+:::
+
+---
+
+Here's another way we could rewrite this model (by collecting terms involving $S$):
+
+$$
+E[Y|A, S] = \beta_0 + \beta_A A+ (\beta_S + \beta_{AS} A) S
+$$
+
+::: callout-note
+If you want to understand a coefficient in a model with interactions, collect terms for the corresponding variable, and you will see what other variables are interacting with the variable you are interested in.
+:::
+
+:::{.notes}
+In this case, the coefficient $S$ is interacting with $A$. So the slope of $Y$ with respect to $X_2$ depends on the value of $X_2$.
+
+According to this model, there is no such thing as "*the* slope of birthweight with respect to age". There are two slopes, one for each sex.^[using the definite article "the" would mean there is only one slope.] We can only talk about "the slope of birthweight with respect to age among males" and "the slope of birthweight with respect to age among females".
+
+Then: that coefficient is the difference in means per unit change in its corresponding coefficient, when the other collected variables are set to 0.
+:::
+
+---
 
 To learn what this model is assuming, let's plug in a few values.
 
+:::{#exr-pred-fem-interact}
 According to this model, what's the mean birthweight for a female born at 36 weeks?
+:::
+
+---
 
 ```{r}
 pred_female = coef(bw_lm2)["(Intercept)"] + coef(bw_lm2)["age"]*36
 ```
 
-$$E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 + \beta_3 \cdot (0 * 36) =  `r pred_female`$$ What's the mean birthweight for a male born at 36 weeks?
+$$E[Y|A = 0, X_2 = 36] = \beta_0 + \beta_S \cdot 0+ \beta_A \cdot 36 + \beta_{AS} \cdot (0 * 36) =  `r pred_female`$$ What's the mean birthweight for a male born at 36 weeks?
 
 ```{r}
 pred_male = 
@@ -303,19 +438,32 @@ pred_male =
   coef(bw_lm2)["sexmale:age"] * 36
 ```
 
-$$E[Y|X_1 = 0, X_2 = 36] = \beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 + \beta_3 \cdot 1 \cdot 36 =  `r pred_male`$$
+$$
+\ba
+E[Y|A = 0, X_2 = 36]
+&= \beta_0 + \beta_S \cdot 1+ \beta_A \cdot 36 + \beta_{AS} \cdot 1 \cdot 36\\
+&= `r pred_male`
+\ea
+$$
 
+
+:::{#exr-diff-gender-interact}
 What's the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?
+:::
 
+---
+
+:::{.solution}
 $$
 \begin{aligned}
-& E[Y|X_1 = 1, X_2 = 36] - E[Y|X_1 = 0, X_2 = 36]\\ 
-&= (\beta_0 + \beta_1 \cdot 1+ \beta_2 \cdot 36 + \beta_3 \cdot 1 \cdot 36)\\ 
-&\ \ \ \ \  -(\beta_0 + \beta_1 \cdot 0+ \beta_2 \cdot 36 + \beta_3 \cdot 0 \cdot 36) \\
-&= \beta_2 + \beta_3\cdot 36\\
+& E[Y|S = 1, A = 36] - E[Y|S = 0, A = 36]\\ 
+&= (\beta_0 + \beta_S \cdot 1+ \beta_A \cdot 36 + \beta_{AS} \cdot 1 \cdot 36)\\ 
+&\ \ \ \ \  -(\beta_0 + \beta_S \cdot 0+ \beta_A \cdot 36 + \beta_{AS} \cdot 0 \cdot 36) \\
+&= \beta_{S} + \beta_{AS}\cdot 36\\
 &=  `r pred_male - pred_female`
 \end{aligned}
 $$
+:::
 
 Note that age now does show up in the difference: in other words, according to this model, the difference in mean birthweights between females and males with the same gestational age can vary by gestational age.
 
@@ -323,9 +471,56 @@ That's how the lines in the graph ended up non-parallel.
 
 ### Stratified regression
 
+:::{.notes}
 We could re-write the interaction model as a stratified model, with a slope and intercept for each sex:
+:::
+
+Let:
+
+$$
+\E{Y|A=a, S=s} = 
+\beta_M s + \beta_{AM} (a \cdot s) + 
+\beta_F (1-s) + \beta_{AF} (a \cdot (1-s))
+$$ {#eq-model-strat}
+
+Compare this stratified model with our interaction model, @eq-model-interact:
+
+$$
+\E{Y|A=a, S=s} = \beta_0 + \beta_A a+ \beta_S s + \beta_{AS} (a \cdot s)
+$$
+
+::: notes
+
+In the stratified model, the intercept term $\beta_0$ has been relabeled as $\beta_F$.
+
+:::
+
+::: {.column width=45%}
+```{r}
+#| label: tbl-bw-model-coefs-interact2
+#| tbl-cap: "Birthweight model with interaction term"
+
+bw_lm2 = lm(weight ~ sex + age + sex:age, data = bw)
+bw_lm2 |> 
+  parameters() |>
+  print_md(
+    include_reference = TRUE,
+    # show_sigma = TRUE,
+    select = "{estimate}")
+
+```
+
+:::
+
+:::{.column width=10%}
+:::
+
+:::{.column width=45%}
 
 ```{r}
+#| label: tbl-bw-model-coefs-strat
+#| tbl-cap: "Birthweight model - stratified betas"
+
 bw_lm_strat = 
   bw |> 
   lm(
@@ -333,16 +528,23 @@ bw_lm_strat =
     data = _)
 
 bw_lm_strat |> 
-  parameters() |> 
-  print_md()
+  parameters() |>
+  print_md(
+    # show_sigma = TRUE,
+    select = "{estimate}")
 ```
+
+:::
 
 ### Curved-line regression
 
 If we transform some of our covariates ($X$s) and plot the resulting model on the original covariate scale, we end up with curved regression lines:
 
 ```{r}
-
+#| label: fig-penguins-log-x
+#| fig-cap: "`palmerpenguins` model with bill_length entering on log scale"
+#| fig-width: 7
+#| fig-height: 5
 bw_lm3 = lm(weight ~ sex:log(age) - 1, data = bw)
 library(palmerpenguins)
 
@@ -364,44 +566,60 @@ ggpenguins2 = ggpenguins +
   ylab("Body mass (g)")
 
 
-```
-
-::: {.content-visible when-format="pdf"}
-```{r}
 ggpenguins2 |> print()
 ```
-:::
 
-::: {.content-visible when-format="html"}
-```{r}
-ggpenguins2 |>  ggplotly()
-
-```
-:::
-
-## Estimating Linear Models via Maximum Likelihood
+## Estimating Linear Models via Maximum Likelihood {#sec-est-LMs}
 
 ### Review of one-sample inference
 
 Previously, we learned how to fit outcome-only models of the form $p(X=x|\theta)$ to iid data $\mathbf x = (x_1,…,x_n)$ using maximum likelihood estimation:
 
-$$\mathcal L(\mathbf x|\theta) = p(X_1 = x_1, …,X_n =x_n|\theta) = \prod_{i=1}^n p(X=x_i|\theta)$$
+$$
+\ba
+\mathcal L(\mathbf x|\theta) 
+&\eqdef p(X_1 = x_1, …,X_n =x_n|\theta) 
+\\&= \prod_{i=1}^n p(X=x_i|\theta)
+\ea
+$$ {#eq-lik}
 
-$$\ell(x|\theta) = \log{\mathcal L(x|\theta)}$$
+$$
+\ba
+\ell(x|\theta) 
+&\eqdef \log{\mathcal L(x|\theta)}
+\\&= \sum_{i=1}^n \log{p(X=x_i|\theta)}
+\ea$$ {#eq-loglik}
 
-$$\hat \theta_{ML} = \arg \max_\theta \ell(x|\theta)$$
+$$\hthml \eqdef \arg \max_\theta \ell(x|\theta)$$ {#eq-mle}
 
-We learned how to quantify our uncertainty about these maximum likelihood estimates; with sufficient sample size, $\hat \theta_{ML}$ has the approximate distribution:
+::: note
+Recall: the second equality in @eq-lik relies on the assumption that the $X_i$s are mutually independent.
+:::
+
+We learned how to quantify our uncertainty about these maximum likelihood estimates; with sufficient sample size, $\hthml$ has the approximate distribution:
 
 $$
 \hat\theta_{ML} \dot \sim N(\theta,\mathcal I(\theta)^{-1})
 $$
 
-For models in the "exponential family" of distributions, which includes the Gaussian, Poisson, Bernoulli, Binomial, Exponential, and Gamma distributions, $\mathcal I(\theta) = \text -E[\mathcal{l}''(X|\theta)]$, so we estimated $\mathcal I(\theta)$ using either $\mathcal I(\theta)|_{\theta = \hat \theta_{ML}}$ or $\mathcal{l}''(\mathbf x |\theta)|_{\theta = \hat \theta_{ML}}$.
+Recall:
+
+- $\einf{\theta} \eqdef \E{\oinf{\vec X;\theta}}$
+- $\oinf{\vec X;\theta} \eqdef -\ell''(\vec X;\theta)$
+
+We can estimate $\einf{\theta}$ using either $\einf{\hthml}$ or $\oinf{\vec x; \hthml}$.
+
+So we can estimate the standard error of $\hth_k$ as:
+
+$$
+\HSE{\hth_k} = \sqrt{\inv{\paren{\heinf{\hthml}}}_{kk}}
+$$
 
 Then an asymptotic approximation of a 95% confidence interval for $\theta_k$ is
 
-$$\hat \theta_{ML} \pm z_{0.975} \times \left[\left(\hat{\mathcal I}(\hat \theta_{ML})\right)^{-1}\right]_{kk}$$
+$$
+\hthml \pm z_{0.975} \times \HSE{\hth_k}
+$$
 
 where $z_\beta$ the $\beta$ quantile of the standard Gaussian distribution.
 
@@ -519,7 +737,7 @@ $$
 \frac{d}{d\beta} \beta'S\beta = 2S\beta
 $$
 
-Again, this is like taking the derivative of $cx^2$ with respect to $c$ in non-vector calculus.
+Again, this is like taking the derivative of $cx^2$ with respect to $x$ in non-vector calculus.
 
 Thus:
 
@@ -590,9 +808,18 @@ and
 
 $$
 \hat\beta \dot \sim N(\beta, \mathcal I_{\beta}^{-1})
-$$ These are all results you have hopefully seen before, and in the Gaussian linear regression case they are exact, not just approximate.
+$$ 
 
-In our model 2 above, this matrix is:
+These are all results you have hopefully seen before.
+
+In the Gaussian linear regression case, we also have exact results:
+
+$$
+\frac{\hat\beta_j}{\heinf{\beta}}_j \dist t_{n-p}
+$$ 
+---
+
+In our model 2 above, $\heinf{\beta}$ is:
 
 ```{r}
 bw_lm2 |> vcov()
@@ -607,20 +834,22 @@ bw_lm2 |> vcov() |> diag() |> sqrt()
 ```
 
 ```{r}
-bw_lm2 |> summary() |> coef() |> pander()
+#| label: tbl-mod-intx
+#| tbl-cap: "Estimated model for `birthweight` data with interaction term"
+bw_lm2 |> parameters() |> print_md()
 ```
 
 So we can do confidence intervals, hypothesis tests, and p-values exactly as in the one-variable case we looked at previously.
 
-## Inference about Gaussian Linear Regression Models
+## Inference about Gaussian Linear Regression Models {#sec-infer-LMs}
 
 Research question: is there really an interaction between sex and age?
 
-$H_0: \beta_3 = 0$
+$H_0: \beta_{AS} = 0$
 
-$H_A: \beta_3 \neq 0$
+$H_A: \beta_{AS} \neq 0$
 
-$P(|\hat\beta_3| > |`r coef(bw_lm2)["sexmale:age"]`| \mid H_0)$ = ?
+$P(|\hat\beta_{AS}| > |`r coef(bw_lm2)["sexmale:age"]`| \mid H_0)$ = ?
 
 ### Wald tests and CIs
 
@@ -629,8 +858,11 @@ R can give you Wald tests for single coefficients and corresponding CIs:
 ```{r "wald tests bw_lm2"}
 
 bw_lm2 |> 
-  parameters(ci_method = "wald") |> 
-  print_md()
+  parameters() |>
+  print_md(
+    include_reference = TRUE,
+    # show_sigma = TRUE,
+    select = "{estimate}")
 ```
 
 ### One-parameter inference by hand
@@ -651,11 +883,11 @@ pval_t = pt(abs(t_stat), df = dfresid, lower = FALSE) * 2
 $$
 \begin{aligned}
 &P\left(
-| \hat \beta_3  | > 
+| \hat \beta_{AS}  | > 
 | `r coef(bw_lm2)["sexmale:age"]`| \middle| H_0
 \right) 
 &= P\left(
-\left| \frac{\hat\beta_3}{\hat{SE}(\hat\beta_3)} \right| > 
+\left| \frac{\hat\beta_{AS}}{\hat{SE}(\hat\beta_{AS})} \right| > 
 \left| \frac{`r beta_hat`}{`r se_hat`} \right| \middle| H_0
 \right)\\ 
 &= P\left(
@@ -663,17 +895,32 @@ $$
 \right)\\
 &= `r pval_t`
 \end{aligned}
-$$ This matches the result in the table above.
+$$ 
+
+::: notes
+This matches the result in the table above.
+:::
 
 #### Confidence interval
 
 ```{r}
-confint_radius_t = se_hat * qt(p = 0.975, df = dfresid, lower = TRUE)
+#| label: confint-t
+q_t = qt(
+  p = 0.975, 
+  df = dfresid, 
+  lower.tail = TRUE)
+
+confint_radius_t = 
+  se_hat * q_t
+
 confint_t = beta_hat + c(-1,1) * confint_radius_t
+
 print(confint_t)
 ```
 
+::: notes
 This also matches.
+:::
 
 ### Gaussian approximations
 
@@ -710,6 +957,11 @@ d_lLR = function(x, df = delta_df) dchisq(x, df = df)
 
 x_max = 1
 
+```
+
+```{r}
+#| label: fig-chisq-plot
+#| fig-cap: "Chi-square distribution"
 chisq_plot = 
   ggplot() + 
   geom_function(fun = d_lLR) +
@@ -722,34 +974,19 @@ chisq_plot =
   theme_classic()
 ```
 
-```{r}
-pchisq(
-  q = 2*lLR, 
-  df = delta_df, 
-  lower = FALSE)
-```
-
-::: {.content-visible when-format="pdf"}
-```{r}
-chisq_plot |> print()
-```
-:::
-
-::: {.content-visible when-format="html"}
-```{r}
-chisq_plot |>  ggplotly()
-
-```
-:::
-
 Now we can get the p-value:
 
 ```{r}
-pchisq(2*lLR, df = delta_df, lower = FALSE)
-
+#| label: LRT-pval
+pchisq(
+  q = 2*lLR, 
+  df = delta_df, 
+  lower = FALSE) |> 
+  print()
 ```
 
-### 
+
+---
 
 In practice you don't have to do this by hand; there are functions to do it for you:
 
@@ -935,651 +1172,3 @@ Compare with what we got without rescaling:
 parameters(bw_lm2, ci_method = "wald") |> print_md()
 ```
 
-## Prediction
-
-### Prediction for linear models
-
-$$
-\begin{aligned}
-\hat Y &= \hat E[Y|X=x] \\
-&= x'\hat\beta \\
-&= \hat\beta_0\cdot 1 + \hat\beta_1 x_1 + ... + \hat\beta_p x_p
-\end{aligned}
-$$
-
-### prediction in R
-
-```{r}
-
-X = model.matrix(bw_lm1)
-X |> as_tibble() |> print()
-
-print(X[1,])
-print(coef(bw_lm1))
-print(X[1,] * coef(bw_lm1))
-{X[1,] * coef(bw_lm1)} |> sum() |> print()
-
-X %*% coef(bw_lm1) |> as.vector()
-
-predict(bw_lm1)
-
-predict(bw_lm1, se.fit = TRUE)
-
-predict(bw_lm1, se.fit = TRUE)$fit
-predict(bw_lm1, se.fit = TRUE)$se.fit
-
-predict(bw_lm1, se.fit = TRUE, interval = "confidence")$fit |> as_tibble()
-
-predict(bw_lm1, se.fit = TRUE, interval = "predict")$fit |> as_tibble()
-
-```
-
-The warning from the last command is: "predictions on current data refer to *future* responses" (since you already know what happened to the current data, and thus don't need to predict it). You could also supply `newdata` to get predictions for new combinations of predictors that you didn't see in your original dataset. See `?predict.lm` for more.
-
-## Diagnostics
-
-### Residuals
-
-#### Definitions of residuals
-
--   Residuals: $$e_i = y_i - \hat E[Y|X=x]$$
-
--   For Gaussian models, $e_i$ can be seen as an estimate of $$\epsilon_i = Y_i - \text{E}[Y|X=x_i]$$
-
--   Standardized residuals: $$r_i = \frac{e_i}{\hat{SD}(e_i)}$$
-
--   For Gaussian models: $$\hat{SD}(e_i) \approx \frac{e_i}{\hat{\sigma}}$$
-
-#### Characteristics of residuals
-
-With enough data and a correct model, the residuals will be approximately Guassian distributed, with variance $\sigma^2$, which we can estimate using $\hat\sigma^2$: that is:
-
-$$
-e_i\ \dot \sim_{iid}\ N(0, \hat\sigma^2)
-$$
-
-Hence, with enough data and a correct model, the standardized residuals will be approximately standard Gaussian; that is,
-
-$$
-r_i\ \dot \sim_{iid}\ N(0,1)
-$$
-
-### Marginal distributions of residuals
-
-To look for problems with our model, we can check whether the residuals $e_i$ and standardized residuals $r_i$ look like they have the distributions that they are supposed to have, according to the model.
-
-First, we need to compute the residuals. R makes this easy:
-
-#### (non-standardized) residuals in R
-
-```{r}
-resid(bw_lm2)
-# check by hand
-bw$weight - fitted(bw_lm2)
-```
-
-Success!
-
-#### Standardized residuals in R
-
-```{r}
-
-rstandard(bw_lm2)
-resid(bw_lm2)/sigma(bw_lm2)
-
-```
-
-These are not quite the same, because R is doing something more complicated and precise to get the standard errors. Let's not worry about those details for now; the difference is pretty small in this case:
-
-```{r}
-
-rstandard_compare_plot = 
-  tibble(
-    x = resid(bw_lm2)/sigma(bw_lm2), 
-    y = rstandard(bw_lm2)) |> 
-  ggplot(aes(x = x, y = y)) +
-  geom_point() + 
-  theme_bw() +
-  coord_equal() + 
-  xlab("resid(bw_lm2)/sigma(bw_lm2)") +
-  ylab("rstandard(bw_lm2)") +
-  geom_abline(
-    aes(
-    intercept = 0,
-    slope = 1, 
-    col = "x=y")) +
-  labs(colour="") +
-  scale_colour_manual(values="red")
-
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(rstandard_compare_plot)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-print(rstandard_compare_plot)
-```
-:::
-
-Let's add these residuals to the `tibble` of our dataset:
-
-```{r}
-
-bw = 
-  bw |> 
-  mutate(
-    fitted_lm2 = fitted(bw_lm2),
-    
-    resid_lm2 = resid(bw_lm2),
-    # resid_lm2 = weight - fitted_lm2,
-    
-    std_resid_lm2 = rstandard(bw_lm2),
-    # std_resid_lm2 = resid_lm2 / sigma(bw_lm2)
-  )
-
-bw |> 
-  select(
-    sex,
-    age,
-    weight,
-    fitted_lm2,
-    resid_lm2,
-    std_resid_lm2
-  )
-```
-
-Now let's build histograms:
-
-#### Marginal distribution of (nonstandardized) residuals
-
-```{r}
-
-resid_marginal_hist = 
-  bw |> 
-  ggplot(aes(x = resid_lm2)) +
-  geom_histogram()
-
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(resid_marginal_hist)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-print(resid_marginal_hist)
-```
-:::
-
-Hard to tell with this small amount of data, but I'm a bit concerned that the histogram doesn't show a bell-curve shape.
-
-##### Marginal distribution of standardized residuals
-
-```{r}
-
-std_resid_marginal_hist = 
-  bw |> 
-  ggplot(aes(x = std_resid_lm2)) +
-  geom_histogram()
-
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(std_resid_marginal_hist)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-print(std_resid_marginal_hist)
-```
-:::
-
-This looks similar, although the scale of the x-axis got narrower, because we divided by $\hat\sigma$ (roughly speaking).
-
-Still hard to tell if the distribution is Gaussian.
-
-### QQ plot of standardized residuals
-
-Another way to assess normality is the QQ plot of the standardized residuals versus normal quantiles:
-
-```{r}
-
-library(ggfortify) 
-# needed to make ggplot2::autoplot() work for `lm` objects
-
-qqplot_lm2_auto = 
-  bw_lm2 |> 
-  autoplot(
-    which = 2, # options are 1:6; can do multiple at once
-    ncol = 1) +
-  theme_classic()
-
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-print(qqplot_lm2_auto)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-print(qqplot_lm2_auto)
-```
-:::
-
-If the Gaussian model were correct, these points should follow the dotted line.
-
-::: callout-note
-Fig 2.4 panel (c) in Dobson is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
-:::
-
-#### QQ plot - how it's built
-
-Let's construct it by hand:
-
-```{r}
-
-bw = bw |> 
-  mutate(
-    p = (rank(std_resid_lm2) - 1/2)/n(), # "Blom's method"
-    expected_quantiles_lm2 = qnorm(p)
-  )
-
-qqplot_lm2 = 
-  bw |> 
-  ggplot(
-    aes(
-      x = expected_quantiles_lm2, 
-      y = std_resid_lm2, 
-      col = sex, 
-      shape = sex)
-  ) + 
-  geom_point() +
-  theme_classic() +
-  theme(legend.position='none') + # removing the plot legend
-  ggtitle("Normal Q-Q") +
-  xlab("Theoretical Quantiles") + 
-  ylab("Standardized residuals")
-```
-
-We find the expected line like so:
-
-```{r}
-ps <- c(.25, .75)                  # reference probabilities
-a <- quantile(rstandard(bw_lm2), ps)  # empirical quantiles
-b <- qnorm(ps)                     # theoretical quantiles
-
-qq_slope = diff(a)/diff(b)
-qq_intcpt = a[1] - b[1] * qq_slope
-
-qqplot_lm2 = 
-  qqplot_lm2 +
-  geom_abline(slope = qq_slope, intercept = qq_intcpt)
-
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(qqplot_lm2)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-print(qqplot_lm2)
-```
-:::
-
-### Conditional distributions of residuals
-
-If our Gaussian linear regression model is correct, the residuals $e_i$ and standardized residuals $r_i$ should have:
-
--   an approximately Gaussian distribution, with:
--   a mean of 0
--   a constant variance
-
-This should be true **regardless** of the value of $X$.
-
-But if we didn't correctly guess the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
-
-Then the the residuals might have nonzero mean or nonconstant variance for some values of $x$.
-
-#### Residuals versus fitted values
-
-To look for these issues, we can plot the residuals $e_i$ against the fitted values $\hat y_i$:
-
-```{r}
-autoplot(bw_lm2, which = 1, ncol = 1) |> print()
-```
-
-If the model is correct, the blue line should stay flat and close to 0, and the cloud of dots should have the same vertical spread regardless of the fitted value.
-
-If not, we probably need to change the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
-
-#### Scale-location plot
-
-We can also plot the square roots of the absolute values of the standardized residuals against the fitted values:
-
-::: {.content-visible when-format="html"}
-```{r}
-autoplot(bw_lm2, which = 3, ncol = 1) |> print()
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-autoplot(bw_lm2, which = 3, ncol = 1) |> print()
-```
-:::
-
-Here, the blue line doesn't need to be near 0, but it should be flat. If not, the residual variance $\sigma^2$ might not be constant, and we might need to transform our outcome $Y$ (or use a model that allows non-constant variance).
-
-#### Residuals versus leverage
-
-We can also plot our standardized residuals against "leverage", which roughly speaking is a measure of how unusual each $x_i$ value is. Very unusual $x_i$ values can have extreme effects on the model fit, so we might want ot remove those observations as outliers, particularly if they have large residuals.
-
-::: {.content-visible when-format="html"}
-```{r}
-autoplot(bw_lm2, which = 5, ncol = 1) |> print()
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-autoplot(bw_lm2, which = 5, ncol = 1) |> print()
-```
-:::
-
-The blue line should be relatively flat and close to 0 here.
-
-### Diagnostics constructed by hand
-
-```{r}
-
-bw = 
-  bw |> 
-  mutate(
-    predlm2 = predict(bw_lm2),
-    residlm2 = weight - predlm2,
-    std_resid = residlm2 / sigma(bw_lm2),
-    # std_resid_builtin = rstandard(bw_lm2), # uses leverage
-    sqrt_abs_std_resid = std_resid |> abs() |> sqrt()
-    
-  )
-
-```
-
-##### Residuals vs fitted
-
-```{r}
-
-resid_vs_fit = bw |> 
-  ggplot(
-    aes(x = predlm2, y = residlm2, col = sex, shape = sex)
-  ) + 
-  geom_point() +
-  theme_classic() +
-  geom_hline(yintercept = 0)
-
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-print(resid_vs_fit)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-print(resid_vs_fit)
-```
-:::
-
-##### Standardized residuals vs fitted
-
-```{r}
-bw |> 
-  ggplot(
-    aes(x = predlm2, y = std_resid, col = sex, shape = sex)
-  ) + 
-  geom_point() +
-  theme_classic() +
-  geom_hline(yintercept = 0)
-
-```
-
-##### Standardized residuals vs gestational age
-
-```{r}
-
-bw |> 
-  ggplot(
-    aes(x = age, y = std_resid, col = sex, shape = sex)
-  ) + 
-  geom_point() +
-  theme_classic() +
-  geom_hline(yintercept = 0)
-
-```
-
-##### `sqrt(abs(rstandard()))` vs fitted
-
-Compare with `autoplot(bw_lm2, 3)`
-
-```{r}
-
-
-bw |> 
-  ggplot(
-    aes(x = predlm2, y = sqrt_abs_std_resid, col = sex, shape = sex)
-  ) + 
-  geom_point() +
-  theme_classic() +
-  geom_hline(yintercept = 0)
-
-
-```
-
-## Model selection
-
-If we have a lot of covariates in our dataset, we might want to choose a small subset to use in our model.
-
-There are a few possible metrics to consider for choosing a "best" model.
-
-### Mean squared error
-
-We might want to minimize the **mean squared error**, $\text E[(y-\hat y)^2]$, for new observations that weren't in our data set when we fit the model.
-
-Unfortunately, $$\frac{1}{n}\sum_{i=1}^n (y_i-\hat y_i)^2$$ gives a biased estimate of $\text E[(y-\hat y)^2]$ for new data. If we want an unbiased estimate, we will have to be clever.
-
-### Cross-validation
-
-```{r}
-data("carbohydrate", package = "dobson")
-library(cvTools)
-full.model <- lm(carbohydrate ~ ., data = carbohydrate)
-temp = 
-  cvFit(full.model, data = carbohydrate, K = 5, R = 10,
-y = carbohydrate$carbohydrate)
-```
-
-## Categorical covariates with more than two levels
-
-### Example: `birthweight`
-
-In the birthweight example, the variable `sex` had only two observed values:
-
-```{r}
-unique(bw$sex)
-```
-
-If there are more than two observed values, we can't just use a single variable with 0s and 1s.
-
-### 
-
-For example, here's the (in)famous `iris` data:
-
-```{r}
-
-iris |> tibble()
-
-summary(iris)
-
-```
-
-### 
-
-There are three species:
-
-```{r}
-
-iris$Species |> unique()
-
-```
-
-### 
-
-If we want to model `Sepal.Length` by species, we could create a variable $X$ that represents "setosa" as $X=1$, "virginica" as $X=2$, and "versicolor" as $X=3$.
-
-```{r}
-data(iris) # this step is not always necessary, but ensures you're starting  
-# from the original version of a dataset stored in a loaded package
-
-iris = 
-  iris |> 
-  tibble() |>
-  mutate(
-    X = case_when(
-      Species == "setosa" ~ 1,
-      Species == "virginica" ~ 2,
-      Species == "versicolor" ~ 3
-    )
-  )
-
-iris |> 
-  distinct(Species, X) |> 
-  print()
-
-```
-
-Then we could fit a model like:
-
-```{r}
-
-iris_lm1 = lm(Sepal.Length ~ X, data = iris)
-iris_lm1 |> parameters() |> print_md()
-
-```
-
-### Let's see how that model looks:
-
-```{r}
-
-iris_plot1 = iris |> 
-  ggplot(
-    aes(
-      x = X, 
-      y = Sepal.Length)
-  ) +
-  geom_point(alpha = .1) +
-  geom_abline(
-    intercept = coef(iris_lm1)[1], 
-    slope = coef(iris_lm1)[2]) +
-  theme_bw(base_size = 18)
-```
-
-::: {.content-visible when-format="pdf"}
-```{r}
-print(iris_plot1)
-
-```
-:::
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(iris_plot1)
-
-```
-:::
-
-We have forced the model to use a straight line for the three estimated means. Maybe not a good idea?
-
-### Let's see what R does with categorical variables by default:
-
-```{r}
-iris_lm2 = lm(Sepal.Length ~ Species, data = iris)
-iris_lm2 |> parameters() |> print_md()
-
-```
-
-### Re-parametrize with no intercept
-
-If you don't want the default and offset option, you can use "-1" like we've seen previously:
-
-```{r}
-iris.lm2b = lm(Sepal.Length ~ Species - 1, data = iris)
-iris.lm2b |> parameters() |> print_md()
-
-```
-
-### Let's see what these new models look like:
-
-```{r}
-iris_plot2 = 
-  iris |> 
-  mutate(
-    predlm2 = predict(iris_lm2)) |> 
-  arrange(X) |> 
-  ggplot(aes(x = X, y = Sepal.Length)) +
-  geom_point(alpha = .1) +
-  geom_line(aes(y = predlm2), col = "red") +
-  geom_abline(
-    intercept = coef(iris_lm1)[1], 
-    slope = coef(iris_lm1)[2]) + 
-  theme_bw(base_size = 18)
-```
-
-::: {.content-visible when-format="pdf"}
-```{r}
-print(iris_plot2)
-
-```
-:::
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(iris_plot2)
-
-```
-:::
-
-### Let's see how R did that:
-
-```{r}
-
-formula(iris_lm2)
-model.matrix(iris_lm2) |> as_tibble() |> unique()
-
-```
-
-This is called a "corner point parametrization".
-
-```{r}
-
-formula(iris.lm2b)
-model.matrix(iris.lm2b) |> as_tibble() |> unique()
-
-```
-
-This can be called a "group point parametrization".
-
-There are more options; see Dobson & Barnett §6.4.1.

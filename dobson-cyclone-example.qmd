@@ -61,7 +61,7 @@ cyclones |> table1::table1(x = ~ number)
 
 ```
 
-We want to estimate $P(Y=y)$; that is, $P(Y=y)$ is our [estimand](#estimation.qmd#def-estimand).
+We want to estimate $P(Y=y)$; that is, $P(Y=y)$ is our [estimand](estimation.qmd#def-estimand).
 
 We could estimate $P(Y=y)$ for each value of $y$ in $0:\infty$ separately ("nonparametrically") using the fraction of our data with $Y_i=y$, but then we would be estimating an infinitely large set of parameters, and we would have low precision. We will probably do better with a parametric model.
 

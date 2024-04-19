@@ -2,50 +2,77 @@
 \def\eqdef{\stackrel{\text{def}}{=}}
 \def\defeq{\stackrel{\text{def}}{=}}
 \def\hb{\hat\beta}
+\def\hy{\hat y}
+\def\yh{\hat y}
+\def\V{{\text{Var}}}
+\def\hs{\hat\sigma}
+\def\dist{\ \sim \ }
+\def\ddist{\ \dot{\sim} \ }
+\def\dsim{\ \dot{\sim} \ }
 \def\za{z_{1 - \frac{\alpha}{2}}}
 \def\cirad{\za \cd \hse{\hb}}
 \def\ci{\hb {\color{red}\pm} \cirad}
 \def\th{\theta}
 \def\xbar{\bar{x}}
 \def\hth{\hat\theta}
+\def\hthml{\hth_{\text{ML}}}
 \def\ba{\begin{aligned}}
 \def\ea{\end{aligned}}
 \def\eps{\epsilon}
 \def\om{\omega}
 \def\ind{⫫}
-\def\iid{\sim_{\text{iid}}}
+\def\iid{\ \sim_{\text{iid}}\ }
+\def\siid{\ \sim_{\text{iid}}\ }
+\def\siid{\ \sim_{\text{iid}}\ }
 \def\tf{\therefore}
+\def\Lik{\mathcal{L}}
+\def\llik{\ell}
 \def\range{\mathcal{R}}
+\def\~{\approx}
+\def\dapp{\dot\approx}
 \providecommand{\red}[1]{{\color{red}#1}}
 \providecommand{\blue}[1]{{\color{blue}#1}}
 \providecommand{\green}[1]{{\color{green}#1}}
 \providecommand{\cbl}[1]{\left\{#1\right.}
 \providecommand{\cb}[1]{\left\{#1\right\}}
 \providecommand{\paren}[1]{\left(#1\right)}
-\providecommand{\hE}[1]{\hat{\text{E}}\left[#1\right]}
-\providecommand{\E}[1]{\mathbb{E}\left[#1\right]}
-\providecommand{\var}[1]{\text{Var}\left(#1\right)}
-\providecommand{\Var}[1]{\text{Var}\left(#1\right)}
-\providecommand{\varh}[1]{\hat{\text{Var}}\left(#1\right)}
+\providecommand{\sb}[1]{\left[#1\right]}
+\providecommand{\hE}[1]{\hat{\text{E}}\sb{#1}}
+\providecommand{\hExp}[1]{\hat{\text{E}}\sb{#1}}
+\providecommand{\hmu}[1]{\hat{\mu}\sb{#1}}
+\providecommand{\E}[1]{\mathbb{E}\sb{#1}}
+\providecommand{\Exp}[1]{\mathbb{E}\sb{#1}}
+\providecommand{\var}[1]{\text{Var}\paren{#1}}
+\providecommand{\Var}[1]{\text{Var}\paren{#1}}
+\providecommand{\Cov}[1]{\text{Cov}\paren{#1}}
+\providecommand{\varh}[1]{\hat{\text{Var}}\paren{#1}}
 \providecommand{\vc}[1]{\boldsymbol{#1}}
-\providecommand{\sd}[1]{\text{sd}\left(#1\right)}
-\providecommand{\SD}[1]{\text{SD}\left(#1\right)}
-\providecommand{\se}[1]{\text{se}\left(#1\right)}
-\providecommand{\hse}[1]{\hat{\text{se}}\left(#1\right)}
-\providecommand{\SE}[1]{\text{SE}\left(#1\right)}
+\providecommand{\sd}[1]{\text{sd}\paren{#1}}
+\providecommand{\SD}[1]{\text{SD}\paren{#1}}
+\providecommand{\hSD}[1]{\widehat{\text{SD}}\paren{#1}}
+\providecommand{\se}[1]{\text{se}\paren{#1}}
+\providecommand{\hse}[1]{\hat{\text{se}}\paren{#1}}
+\providecommand{\SE}[1]{\text{SE}\paren{#1}}
+\providecommand{\HSE}[1]{\widehat{\text{SE}}\paren{#1}}
 \renewcommand{\log}[1]{\text{log}\cb{#1}}
 \renewcommand{\exp}[1]{\text{exp}\cb{#1}}
 \providecommand{\e}[1]{\text{e}^{#1}}
-\providecommand{\inv}[1]{\left(#1\right)^{-1}}
+\providecommand{\inv}[1]{\paren{#1}^{-1}}
+\providecommand{\oinf}[1]{I\paren{#1}}
+\providecommand{\einf}[1]{\mathcal{I}\paren{#1}}
+\providecommand{\heinf}[1]{\hat{\mathcal{I}}\paren{#1}}
 \providecommand{\1}[1]{\mathbb{1}_{#1}}
+\providecommand{\set}[1]{\cb{1}}
+\providecommand{\p}{\text{p}}
 \providecommand{\pr}{\text{p}}
-\providecommand{\Bias}[1]{\text{Bias}\left(#1\right)}
-\providecommand{\bias}[1]{\text{Bias}\left(#1\right)}
-\providecommand{\ssqf}[1]{\sigma^2\left(#1\right)}
-\providecommand{\mselr}[1]{\text{MSE}\left(#1\right)}
-\providecommand{\maelr}[1]{\text{MAE}\left(#1\right)}
+\providecommand{\Bias}[1]{\text{Bias}\paren{#1}}
+\providecommand{\bias}[1]{\text{Bias}\paren{#1}}
+\providecommand{\ssqf}[1]{\sigma^2\paren{#1}}
+\providecommand{\mselr}[1]{\text{MSE}\paren{#1}}
+\providecommand{\maelr}[1]{\text{MAE}\paren{#1}}
 \providecommand{\abs}[1]{\left|#1\right|}
-\providecommand{\sqf}[1]{\left(#1\right)^2}
+\providecommand{\sqf}[1]{\paren{#1}^2}
 \providecommand{\sq}{^2}
-\providecommand{\erf}[1]{\eps\left(#1\right)}
+\providecommand{\erf}[1]{\eps\paren{#1}}
 \renewcommand{\vec}[1]{\tilde{#1}}
+

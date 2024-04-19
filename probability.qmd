@@ -102,6 +102,11 @@ $$\SD{X} \eqdef \sqrt{\Var{X}}$$
 #### Bernoulli distribution
 The **Bernoulli distribution** family for a random variable $X$ is defined as:
 
-$$\Pr(X=x) = \cbl{{\pi, x=1}\atop{1-\pi, x=0}}$$
+$$
+\ba
+\Pr(X=x) &= \1{x\in \set{0,1}}\pi^x(1-\pi)^{1-x}\\
+&= \cbl{{\pi, x=1}\atop{1-\pi, x=0}}
+\ea
+$$
 
 :::::

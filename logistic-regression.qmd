@@ -1,4 +1,8 @@
-# Models for Binary Outcomes (Logistic regression and variations)
+---
+subtitle: "Logistic regression and variations"
+---
+
+# Models for Binary Outcomes
 
 {{< include shared-config.qmd >}}
 
@@ -298,7 +302,7 @@ This function, which transforms probabilities into odds, is called the **odds fu
 
 ```{r}
 #| code-fold: true
-#| label: fig-odds-probs
+#| label: "fig-odds-probs"
 #| fig-cap: "Odds versus probability"
 
 odds = function(pi) pi/(1-pi)

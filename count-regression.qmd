@@ -1,4 +1,8 @@
-# Models for Count Outcomes (Poisson regression and variations)
+---
+subtitle: "Poisson regression and variations"
+---
+
+# Models for Count Outcomes
 ---
 
 {{< include shared-config.qmd >}}

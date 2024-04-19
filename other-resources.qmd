@@ -1,3 +1,7 @@
 - @dunn2018generalized is a recent textbook on GLMs. It doesn't cover time-to-event models, and it doesn't use the modern [`tidyverse`](https://tidyverse.org/) packages ([`ggplot2`](https://ggplot2.tidyverse.org/), [`dplyr`](https://dplyr.tidyverse.org/), etc.), but otherwise it seems great.
 
 - @moore2016applied is a recent textbook on survival analysis. It also doesn't use the `tidyverse`, but otherwise seems great.
+
+- https://online.stat.psu.edu/stat504/book/ provides course notes for 
+"STAT 504 - Analysis of Discrete Data" at Penn State University. 
+It includes logistic regression and Poisson regression, as well as 2-way tables and other related topics, and includes SAS code.

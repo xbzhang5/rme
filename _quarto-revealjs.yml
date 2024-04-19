@@ -19,7 +19,7 @@ project:
 format:
   revealjs:
     bibliography: references.bib
-    reference-location: margin
+    # reference-location: margin
     citations-hover: true
     theme: dark
     embed-resources: true
@@ -28,23 +28,31 @@ format:
     smaller: false
     number-sections: true
     progress: true
-    incremental: true
+    incremental: false
+    df-print: paged
     number-depth: 2
     slide-number: true
     shift-heading-level-by: -1
     slide-level: 2
     scrollable: true
-    echo: false
-    code-fold: false
+    echo: true
+    margin: 0
+    code-fold: true
     code-link: true
     code-summary: "[R code]"
     # code-overflow: scroll
     auto-stretch: true
     # out-width: "50%"
-    fig-height: 3
+    fig-height: 5
     fig-width: 7
     # chalkboard: true
-
+include-in-header:
+  text: |
+    <style>
+      .custom-small table {
+        font-size: .5em
+      }
+    </style>
 execute:
   warning: false
   message: false

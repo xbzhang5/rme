@@ -52,6 +52,7 @@ format:
        light: cosmo
        dark: darkly
     code-tools: true
+    df-print: paged
     code-fold: true
     code-link: true
     fig-cap-location: top
@@ -67,8 +68,9 @@ format:
     hyperrefoptions:
     - bookmarksnumbered=true
     toc-title: Contents
+    df-print: kable
+    # df-print: tibble
     links-as-notes: true
-    df-print: tibble
     documentclass: scrbook
     classoption: [twoside=off]
     shift-heading-level-by: 0
