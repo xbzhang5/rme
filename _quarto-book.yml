@@ -11,7 +11,7 @@ book:
       affiliation: Department of Public Health Sciences, School of Medicine, University of California, Davis
   page-footer:
     left:
-      - text: "Copyright 2023, Douglas Ezra Morrison"
+      - text: "Copyright 2024, Douglas Ezra Morrison"
   date: last-modified
   date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
   google-analytics: "G-W625DGE908"
@@ -99,3 +99,10 @@ execute:
   freeze: auto  # re-render only when source changes
 
 editor: source
+
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true

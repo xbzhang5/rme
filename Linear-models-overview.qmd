@@ -240,6 +240,8 @@ To learn what this model is assuming, let's plug in a few values.
 According to this model, what's the mean birthweight for a female born at 36 weeks?
 
 ```{r}
+#| tbl-cap: "Estimated coefficients for [model @eq-lm-parallel]"
+#| label: coef-tab-model1
 coef(bw_lm1)
 ```
 
@@ -1875,7 +1877,7 @@ If there are more than two observed values, we can't just use a single variable 
 ### 
 
 :::{.notes}
-For example, @tbl-iris-data shows the (in)famous `iris` data (@anderson1935irises), 
+For example, @tbl-iris-data shows the [(in)famous](https://www.meganstodel.com/posts/no-to-iris/) `iris` data (@anderson1935irises), 
 and @tbl-iris-summary provides summary statistics. 
 The data include three species: "setosa", "versicolor", and "virginica".
 :::
@@ -1889,7 +1891,13 @@ iris
 ```{r}
 #| tbl-cap: "Summary statistics for the `iris` data"
 #| label: tbl-iris-summary
-summary(iris)
+
+library(table1)
+table1(
+  x = ~ . | Species,
+  data = iris,
+  overall = FALSE
+)
 
 ```
 
