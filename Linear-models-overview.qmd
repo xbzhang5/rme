@@ -626,7 +626,7 @@ $$
 
 where $z_\beta$ the $\beta$ quantile of the standard Gaussian distribution.
 
-### MLEs for Linear Regression
+### MLEs for Linear Regression {.smaller}
 
 Let's use maximum likelihood again:
 
@@ -846,6 +846,8 @@ So we can do confidence intervals, hypothesis tests, and p-values exactly as in 
 
 ## Inference about Gaussian Linear Regression Models {#sec-infer-LMs}
 
+### Motivating example: `birthweight` data
+
 Research question: is there really an interaction between sex and age?
 
 $H_0: \beta_{AS} = 0$
@@ -854,7 +856,7 @@ $H_A: \beta_{AS} \neq 0$
 
 $P(|\hat\beta_{AS}| > |`r coef(bw_lm2)["sexmale:age"]`| \mid H_0)$ = ?
 
-### Wald tests and CIs
+### Wald tests and CIs {.smaller}
 
 R can give you Wald tests for single coefficients and corresponding CIs:
 
@@ -863,24 +865,30 @@ R can give you Wald tests for single coefficients and corresponding CIs:
 bw_lm2 |> 
   parameters() |>
   print_md(
-    include_reference = TRUE,
-    # show_sigma = TRUE,
-    select = "{estimate}")
+    include_reference = TRUE)
 ```
-
-### One-parameter inference by hand
 
 To understand what's happening, let's replicate these results by hand for the interaction term.
 
-#### P-value
+### P-values {.smaller}
+
+```{r}
+bw_lm2 |> 
+  parameters(keep = "sexmale:age") |>
+  print_md(
+    include_reference = TRUE)
+
+```
+
 
 ```{r}
 beta_hat = coef(summary(bw_lm2))["sexmale:age", "Estimate"]
 se_hat = coef(summary(bw_lm2))["sexmale:age", "Std. Error"]
 dfresid = bw_lm2$df.residual
 t_stat = abs(beta_hat)/se_hat
-pval_t = pt(abs(t_stat), df = dfresid, lower = FALSE) * 2
-
+pval_t = 
+  pt(-t_stat, df = dfresid, lower.tail = TRUE) +
+  pt(t_stat, df = dfresid, lower.tail = FALSE)
 ```
 
 $$
@@ -889,6 +897,7 @@ $$
 | \hat \beta_{AS}  | > 
 | `r coef(bw_lm2)["sexmale:age"]`| \middle| H_0
 \right) 
+\\
 &= P\left(
 \left| \frac{\hat\beta_{AS}}{\hat{SE}(\hat\beta_{AS})} \right| > 
 \left| \frac{`r beta_hat`}{`r se_hat`} \right| \middle| H_0
@@ -904,7 +913,15 @@ $$
 This matches the result in the table above.
 :::
 
-#### Confidence interval
+### Confidence intervals
+
+```{r}
+bw_lm2 |> 
+  parameters(keep = "sexmale:age") |>
+  print_md(
+    include_reference = TRUE)
+
+```
 
 ```{r}
 #| label: confint-t
@@ -912,6 +929,12 @@ q_t = qt(
   p = 0.975, 
   df = dfresid, 
   lower.tail = TRUE)
+
+q_t = qt(
+  p = 0.025, 
+  df = dfresid, 
+  lower.tail = TRUE)
+
 
 confint_radius_t = 
   se_hat * q_t
@@ -929,7 +952,15 @@ This also matches.
 
 Here are the asymptotic (Gaussian approximation) equivalents:
 
-#### P-value
+### P-values {.smaller}
+
+```{r}
+bw_lm2 |> 
+  parameters(keep = "sexmale:age") |>
+  print_md(
+    include_reference = TRUE)
+
+```
 
 ```{r}
 pval_z = pnorm(abs(t_stat), lower = FALSE) * 2
@@ -937,7 +968,15 @@ pval_z = pnorm(abs(t_stat), lower = FALSE) * 2
 print(pval_z)
 ```
 
-#### Confidence interval
+### Confidence intervals  {.smaller}
+
+```{r}
+bw_lm2 |> 
+  parameters(keep = "sexmale:age") |>
+  print_md(
+    include_reference = TRUE)
+
+```
 
 ```{r}
 confint_radius_z = se_hat * qnorm(0.975, lower = TRUE)
@@ -956,15 +995,19 @@ logLik(bw_lm1)
 lLR = (logLik(bw_lm2) - logLik(bw_lm1)) |> as.numeric()
 delta_df = (bw_lm1$df.residual - df.residual(bw_lm2))
 
-d_lLR = function(x, df = delta_df) dchisq(x, df = df)
 
 x_max = 1
 
 ```
 
+---
+
 ```{r}
 #| label: fig-chisq-plot
 #| fig-cap: "Chi-square distribution"
+
+d_lLR = function(x, df = delta_df) dchisq(x, df = df)
+
 chisq_plot = 
   ggplot() + 
   geom_function(fun = d_lLR) +
@@ -975,7 +1018,10 @@ chisq_plot =
   ylab("p(X=x)") + 
   xlab("log(likelihood ratio) statistic [x]") +
   theme_classic()
+chisq_plot |> print()
 ```
+
+---
 
 Now we can get the p-value:
 
@@ -1375,7 +1421,7 @@ $$
 
 :::
 
-$$\hSD(e(y)) \approx \hs$$
+$$\hSD{e(y)} \approx \hs$$
 
 :::{.proof}
 \ 
