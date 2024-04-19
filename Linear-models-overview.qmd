@@ -153,6 +153,10 @@ Let's define some notation to represent this data.
 -   $M$: indicator variable for $S$ = "male"^[$M$ is implicitly a deterministic function of $S$]
     -   $M = 0$ if female (XX)
     -   $M = 1$ if male (XY)
+-   $F$: indicator variable for $S$ = "female"^[$F$ is implicitly a deterministic function of $S$]
+    -   $F = 1$ if female (XX)
+    -   $F = 0$ if male (XY)
+
 -   $A$: estimated gestational age at birth (measured in weeks).
 
 ::: callout-note
@@ -505,13 +509,14 @@ Let:
 $$
 \E{Y|A=a, S=s} = 
 \beta_M m + \beta_{AM} (a \cdot s) + 
-\beta_F (1-s) + \beta_{AF} (a \cdot (1-s))
+\beta_F f + \beta_{AF} (a \cdot f)
 $$ {#eq-model-strat}
 
 Compare this stratified model with our interaction model, @eq-model-interact:
 
 $$
-\E{Y|A=a, S=s} = \beta_0 + \beta_A a+ \beta_M m + \beta_{AM} (a \cdot s)
+\E{Y|A=a, S=s} = 
+\beta_0 + \beta_A a + \beta_M m + \beta_{AM} (a \cdot s)
 $$
 
 ::: notes
