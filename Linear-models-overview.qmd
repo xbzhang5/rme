@@ -9,7 +9,7 @@ df-print: paged
 :::{.callout-note}
 This content is adapted from:
 
-- @dobson18, Chapters 2-6
+- @dobson4e, Chapters 2-6
 - @dunn2018generalized, Chapters 2-3
 - @vittinghoff2012regression, Chapter 4
 
@@ -80,7 +80,7 @@ library(magrittr) # `%>%` and other additional piping tools
 
 ### Motivating example: birthweights and gestational age {.smaller}
 
-Suppose we want to learn about the distributions of birthweights (*outcome* $Y$) for (human) babies born at different gestational ages (*covariate* $A$) and with different chromosomal sexes (*covariate* $S$) (@dobson18 Example 2.2.2).
+Suppose we want to learn about the distributions of birthweights (*outcome* $Y$) for (human) babies born at different gestational ages (*covariate* $A$) and with different chromosomal sexes (*covariate* $S$) (@dobson4e Example 2.2.2).
 
 ::::: {.panel-tabset}
 
@@ -88,7 +88,7 @@ Suppose we want to learn about the distributions of birthweights (*outcome* $Y$)
 
 ```{r}
 #| label: tbl-birthweight-data1
-#| tbl-cap: "`birthweight` data (@dobson18 Example 2.2.2)"
+#| tbl-cap: "`birthweight` data (@dobson4e Example 2.2.2)"
 library(dobson)
 data("birthweight", package = "dobson")
 birthweight |> knitr::kable()
@@ -121,7 +121,7 @@ bw
 
 ```{r}
 #| label: fig-plot-birthweight1
-#| fig-cap: "`birthweight` data (@dobson18 Example 2.2.2)"
+#| fig-cap: "`birthweight` data (@dobson4e Example 2.2.2)"
 #| fig-height: 5
 #| fig-width: 7
 plot1 = bw |> 
@@ -1644,7 +1644,7 @@ print(qqplot_lm2_auto)
 If the Gaussian model were correct, these points should follow the dotted line.
 
 ::: callout-note
-Fig 2.4 panel (c) in @dobson18 is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
+Fig 2.4 panel (c) in @dobson4e is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
 :::
 
 #### QQ plot - how it's built
@@ -2029,4 +2029,4 @@ model.matrix(iris.lm2b) |> as_tibble() |> unique()
 
 This can be called a "group point parametrization".
 
-There are more options; see @dobson18 §6.4.1 and the [`codingMatrices` package](https://CRAN.R-project.org/package=codingMatrices)  [vignette](https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf) (@venablescodingMatrices).
+There are more options; see @dobson4e §6.4.1 and the [`codingMatrices` package](https://CRAN.R-project.org/package=codingMatrices)  [vignette](https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf) (@venablescodingMatrices).

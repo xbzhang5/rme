@@ -8,7 +8,7 @@ I have drawn these materials from many sources, including but not limited to:
 
 - *Regression methods in biostatistics: linear, logistic, survival, and repeated measures models*, 2nd edition [@vittinghoff2012regression]
 
-- *An Introduction to Generalized Linear Models*, 4th edition [@dobson18]
+- *An Introduction to Generalized Linear Models*, 4th edition [@dobson4e]
 
 ### License {.unnumbered}
 
