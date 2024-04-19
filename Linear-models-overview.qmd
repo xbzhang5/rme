@@ -1,3 +1,7 @@
+---
+df-print: paged
+---
+
 # Linear (Gaussian) Models
 
 {{< include shared-config.qmd >}}
@@ -5,15 +9,16 @@
 :::{.callout-note}
 This content is adapted from:
 
-- @dobson2018introduction, Chapters 2-6
+- @dobson18, Chapters 2-6
 - @dunn2018generalized, Chapters 2-3
 - @vittinghoff2012regression, Chapter 4
 
 There are numerous textbooks specifically for linear regression, including:
 
-- @kutner2005applied
-- @chatterjee2015regression
-
+- @kutner2005applied: used for UCLA Biostatistics MS level linear models class
+- @chatterjee2015regression: used for Stanford MS-level linear models class
+- @seber2012linear: used for UCLA Biostatistics PhD level linear models class
+- @kleinbaum2014applied: same first author as @kleinbaum2010logistic and @kleinbaum2012survival
 :::
 
 ```{r setup, include = FALSE}
@@ -75,7 +80,7 @@ library(magrittr) # `%>%` and other additional piping tools
 
 ### Motivating example: birthweights and gestational age {.smaller}
 
-Suppose we want to learn about the distributions of birthweights (*outcome* $Y$) for (human) babies born at different gestational ages (*covariate* $A$) and with different chromosomal sexes (*covariate* $S$) (@dobson2018introduction Example 2.2.2).
+Suppose we want to learn about the distributions of birthweights (*outcome* $Y$) for (human) babies born at different gestational ages (*covariate* $A$) and with different chromosomal sexes (*covariate* $S$) (@dobson18 Example 2.2.2).
 
 ::::: {.panel-tabset}
 
@@ -83,7 +88,7 @@ Suppose we want to learn about the distributions of birthweights (*outcome* $Y$)
 
 ```{r}
 #| label: tbl-birthweight-data1
-#| tbl-cap: "`birthweight` data (@dobson2018introduction Example 2.2.2)"
+#| tbl-cap: "`birthweight` data (@dobson18 Example 2.2.2)"
 library(dobson)
 data("birthweight", package = "dobson")
 birthweight |> knitr::kable()
@@ -116,7 +121,7 @@ bw
 
 ```{r}
 #| label: fig-plot-birthweight1
-#| fig-cap: "`birthweight` data (@dobson2018introduction Example 2.2.2)"
+#| fig-cap: "`birthweight` data (@dobson18 Example 2.2.2)"
 #| fig-height: 5
 #| fig-width: 7
 plot1 = bw |> 
@@ -144,18 +149,27 @@ print(plot1 + facet_wrap(~ sex))
 Let's define some notation to represent this data.
 
 -   $Y$: birthweight (measured in grams)
--   $A$: chromosomal sex:
-    -   $A = 0$ if female (XX)
-    -   $A = 1$ if male (XY)
--   $S$: gestational age at birth (measured in weeks).
+-   $S$: chromosomal sex: "male" (XY) or "female" (XX)
+-   $M$: indicator variable for $S$ = "male"^[$M$ is implicitly a deterministic function of $S$]
+    -   $M = 0$ if female (XX)
+    -   $M = 1$ if male (XY)
+-   $A$: estimated gestational age at birth (measured in weeks).
 
 ::: callout-note
-Female is the **reference level** for the categorical variable $A$ (chromosomal sex). The choice of a reference level is arbitrary and does not limit what we can do with the resulting model; it only makes it more computationally convenient to make inferences about comparisons involving that reference group.
+Female is the **reference level** for the categorical variable $S$ 
+(chromosomal sex) and corresponding indicator variable $M$ . 
+The choice of a reference level is arbitrary and does not limit what 
+we can do with the resulting model; 
+it only makes it more computationally convenient to make inferences 
+about comparisons involving that reference group.
 :::
 
 ### Parallel lines regression
 
-We don't have enough data to model the distribution of birth weight separately for each combination of gestational age and sex, so let's instead consider a (relatively) simple model for how that distribution varies with gestational age and sex:
+We don't have enough data to model the distribution of birth weight 
+separately for each combination of gestational age and sex, 
+so let's instead consider a (relatively) simple model for how that 
+distribution varies with gestational age and sex:
 
 $$p(Y=y|A=a,S=s) \iid N(\mu(a,s), \sigma^2)$$
 
@@ -163,7 +177,7 @@ $$
 \ba
 \mu(a,s)
 &\eqdef \Exp{Y|A=a, S=s} \\
-&= \beta_0 + \beta_A a+ \beta_S s
+&= \beta_0 + \beta_A a+ \beta_M m
 \ea
 $$ {#eq-lm-parallel}
 
@@ -245,8 +259,8 @@ pred_female = coef(bw_lm1)["(Intercept)"] + coef(bw_lm1)["age"]*36
 
 $$
 \ba
-E[Y|A = 0, S = 36] 
-&= \beta_0 + \beta_S \cdot 0+ \beta_A \cdot 36 \\
+E[Y|A = 0, A = 36] 
+&= \beta_0 + \beta_M \cdot 0+ \beta_A \cdot 36 \\
 &=  `r pred_female`
 \ea
 $$
@@ -277,8 +291,8 @@ pred_male =
 
 $$
 \ba
-E[Y|A = 1, S = 36] 
-&= \beta_0 + \beta_S \cdot 1+ \beta_A \cdot 36 \\
+E[Y|A = 1, A = 36] 
+&= \beta_0 + \beta_M \cdot 1+ \beta_A \cdot 36 \\
 &=  `r pred_male`
 \ea
 $$
@@ -301,7 +315,7 @@ coef(bw_lm1)
 
 $$
 \begin{aligned}
-& E[Y|A = 1, S = 36] - E[Y|A = 0, S = 36]\\
+& E[Y|M = 1, A = 36] - E[Y|M = 0, A = 36]\\
 &= 
 `r pred_male` - `r pred_female`\\
 &=
@@ -312,10 +326,10 @@ Shortcut:
 
 $$
 \begin{aligned}
-& E[Y|A = 1, S = 36] - 
-E[Y|A = 0, S = 36]\\
-&= (\beta_0 + \beta_S \cdot 1+ \beta_A \cdot 36) - (\beta_0 + \beta_S \cdot 0+ \beta_A \cdot 36) \\
-&= \beta_S \\ 
+& E[Y|A = 1, A = 36] - E[Y|A = 0, A = 36]\\
+&= (\beta_0 + \beta_M \cdot 1+ \beta_A \cdot 36) - 
+   (\beta_0 + \beta_M \cdot 0+ \beta_A \cdot 36) \\
+&= \beta_M \\ 
 &=  `r coef(bw_lm1)["sexmale"]`
 \end{aligned}
 $$
@@ -341,7 +355,7 @@ Then we need to allow an "interaction" between  age $A$ and sex $S$:
 :::
 
 $$
-E[Y|A=a, S=s] = \beta_0 + \beta_A a+ \beta_S s + \beta_{AS} (a \cdot s)
+E[Y|A=a, S=s] = \beta_0 + \beta_A a+ \beta_M m + \beta_{AM} (a \cdot m)
 $$ {#eq-model-interact}
 
 ::: notes
@@ -399,7 +413,7 @@ Now we can see that the lines aren't parallel.
 Here's another way we could rewrite this model (by collecting terms involving $S$):
 
 $$
-E[Y|A, S] = \beta_0 + \beta_A A+ (\beta_S + \beta_{AS} A) S
+E[Y|A, S] = \beta_0 + \beta_A A+ (\beta_M + \beta_{AM} A) M
 $$
 
 ::: callout-note
@@ -428,7 +442,13 @@ According to this model, what's the mean birthweight for a female born at 36 wee
 pred_female = coef(bw_lm2)["(Intercept)"] + coef(bw_lm2)["age"]*36
 ```
 
-$$E[Y|A = 0, X_2 = 36] = \beta_0 + \beta_S \cdot 0+ \beta_A \cdot 36 + \beta_{AS} \cdot (0 * 36) =  `r pred_female`$$ What's the mean birthweight for a male born at 36 weeks?
+$$
+E[Y|A = 0, X_2 = 36] = 
+\beta_0 + \beta_M \cdot 0+ \beta_A \cdot 36 + \beta_{AM} \cdot (0 * 36) 
+=  `r pred_female`
+$$ 
+
+What's the mean birthweight for a male born at 36 weeks?
 
 ```{r}
 pred_male = 
@@ -441,7 +461,7 @@ pred_male =
 $$
 \ba
 E[Y|A = 0, X_2 = 36]
-&= \beta_0 + \beta_S \cdot 1+ \beta_A \cdot 36 + \beta_{AS} \cdot 1 \cdot 36\\
+&= \beta_0 + \beta_M \cdot 1+ \beta_A \cdot 36 + \beta_{AM} \cdot 1 \cdot 36\\
 &= `r pred_male`
 \ea
 $$
@@ -456,10 +476,10 @@ What's the difference in mean birthweights between males born at 36 weeks and fe
 :::{.solution}
 $$
 \begin{aligned}
-& E[Y|S = 1, A = 36] - E[Y|S = 0, A = 36]\\ 
-&= (\beta_0 + \beta_S \cdot 1+ \beta_A \cdot 36 + \beta_{AS} \cdot 1 \cdot 36)\\ 
-&\ \ \ \ \  -(\beta_0 + \beta_S \cdot 0+ \beta_A \cdot 36 + \beta_{AS} \cdot 0 \cdot 36) \\
-&= \beta_{S} + \beta_{AS}\cdot 36\\
+& E[Y|M = 1, A = 36] - E[Y|M = 0, A = 36]\\ 
+&= (\beta_0 + \beta_M \cdot 1+ \beta_A \cdot 36 + \beta_{AM} \cdot 1 \cdot 36)\\ 
+&\ \ \ \ \  -(\beta_0 + \beta_M \cdot 0+ \beta_A \cdot 36 + \beta_{AM} \cdot 0 \cdot 36) \\
+&= \beta_{S} + \beta_{AM}\cdot 36\\
 &=  `r pred_male - pred_female`
 \end{aligned}
 $$
@@ -482,14 +502,14 @@ Let:
 
 $$
 \E{Y|A=a, S=s} = 
-\beta_M s + \beta_{AM} (a \cdot s) + 
+\beta_M m + \beta_{AM} (a \cdot s) + 
 \beta_F (1-s) + \beta_{AF} (a \cdot (1-s))
 $$ {#eq-model-strat}
 
 Compare this stratified model with our interaction model, @eq-model-interact:
 
 $$
-\E{Y|A=a, S=s} = \beta_0 + \beta_A a+ \beta_S s + \beta_{AS} (a \cdot s)
+\E{Y|A=a, S=s} = \beta_0 + \beta_A a+ \beta_M m + \beta_{AM} (a \cdot s)
 $$
 
 ::: notes
@@ -818,7 +838,7 @@ These are all results you have hopefully seen before.
 In the Gaussian linear regression case, we also have exact results:
 
 $$
-\frac{\hat\beta_j}{\heinf{\beta}}_j \dist t_{n-p}
+\frac{\hat\beta_j}{\hse{\hat\beta_j}} \dist t_{n-p}
 $$ 
 ---
 
@@ -850,11 +870,11 @@ So we can do confidence intervals, hypothesis tests, and p-values exactly as in 
 
 Research question: is there really an interaction between sex and age?
 
-$H_0: \beta_{AS} = 0$
+$H_0: \beta_{AM} = 0$
 
-$H_A: \beta_{AS} \neq 0$
+$H_A: \beta_{AM} \neq 0$
 
-$P(|\hat\beta_{AS}| > |`r coef(bw_lm2)["sexmale:age"]`| \mid H_0)$ = ?
+$P(|\hat\beta_{AM}| > |`r coef(bw_lm2)["sexmale:age"]`| \mid H_0)$ = ?
 
 ### Wald tests and CIs {.smaller}
 
@@ -894,12 +914,12 @@ pval_t =
 $$
 \begin{aligned}
 &P\left(
-| \hat \beta_{AS}  | > 
+| \hat \beta_{AM}  | > 
 | `r coef(bw_lm2)["sexmale:age"]`| \middle| H_0
 \right) 
 \\
 &= P\left(
-\left| \frac{\hat\beta_{AS}}{\hat{SE}(\hat\beta_{AS})} \right| > 
+\left| \frac{\hat\beta_{AM}}{\hat{SE}(\hat\beta_{AM})} \right| > 
 \left| \frac{`r beta_hat`}{`r se_hat`} \right| \middle| H_0
 \right)\\ 
 &= P\left(
@@ -1104,7 +1124,8 @@ n_unique.bw  = nrow(bw.X.unique)
 For example, in the `birthweight` data, there are $q = `r n_unique.bw`$ unique patterns:
 
 ```{r}
-
+#| tbl-cap: "Unique covariate combinations in the `birthweight` data, with replicate counts"
+#| label: tbl-bw-x-combos
 bw.X.unique |> 
   pander(
     row.names = rownames(bw.X.unique))
@@ -1117,7 +1138,8 @@ If a given covariate pattern has more than one observation in a dataset, those o
 Then the most complicated model we could fit would have one parameter (a mean) for each of these combinations, plus a variance parameter:
 
 ```{r}
-
+#| label: tbl-bw-model-sat
+#| tbl-cap: "Saturated model for the `birthweight` data"
 lm_max = 
   bw |> 
   mutate(age = factor(age)) |> 
@@ -1429,7 +1451,7 @@ $$
 \ba
 \Var{e(y)} &= \Var{y - \hy}
 \\ &= \Var{y} + \Var{\hy} - 2 \Cov{y, \hy}
-\\ &{\dot{\approx}} \Var{y} + 0 - 2 \cd 0
+\\ &{\dot{\approx}} \Var{y} + 0 - 2 \cdot 0
 \\ &= \Var{y}
 \ea
 $$
@@ -1622,7 +1644,7 @@ print(qqplot_lm2_auto)
 If the Gaussian model were correct, these points should follow the dotted line.
 
 ::: callout-note
-Fig 2.4 panel (c) in @dobson2018introduction is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
+Fig 2.4 panel (c) in @dobson18 is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
 :::
 
 #### QQ plot - how it's built
@@ -1852,27 +1874,26 @@ If there are more than two observed values, we can't just use a single variable 
 
 ### 
 
-For example, here's the (in)famous `iris` data:
+:::{.notes}
+For example, @tbl-iris-data shows the (in)famous `iris` data (@anderson1935irises), 
+and @tbl-iris-summary provides summary statistics. 
+The data include three species: "setosa", "versicolor", and "virginica".
+:::
 
 ```{r}
+#| tbl-cap: "The `iris` data"
+#| label: tbl-iris-data
+iris
+```
 
-iris |> tibble()
-
+```{r}
+#| tbl-cap: "Summary statistics for the `iris` data"
+#| label: tbl-iris-summary
 summary(iris)
 
 ```
 
-### 
-
-There are three species:
-
-```{r}
-
-iris$Species |> unique()
-
-```
-
-### 
+---
 
 If we want to model `Sepal.Length` by species, we could create a variable $X$ that represents "setosa" as $X=1$, "virginica" as $X=2$, and "versicolor" as $X=3$.
 
@@ -2008,4 +2029,4 @@ model.matrix(iris.lm2b) |> as_tibble() |> unique()
 
 This can be called a "group point parametrization".
 
-There are more options; see Dobson & Barnett §6.4.1.
+There are more options; see @dobson18 §6.4.1 and the [`codingMatrices` package](https://CRAN.R-project.org/package=codingMatrices)  [vignette](https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf) (@venablescodingMatrices).

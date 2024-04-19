@@ -11,7 +11,7 @@ subtitle: "Poisson regression and variations"
 
 This content is adapted from:
 
--   @dobson2018introduction, Chapter 9
+-   @dobson18, Chapter 9
 -   @vittinghoff2012regression, Chapter 8
 
 ::: {.content-hidden when-format="revealjs"}
@@ -90,7 +90,7 @@ $$
 \mathbb E[Y | \tilde X = \tilde x,T=t] 
 &= \mu(\tilde x,t)\\
 \mu(\tilde x,t) 
-&= \lambda(\tilde x)\cd t\\
+&= \lambda(\tilde x)\cdot t\\
 \lambda(\tilde x) 
 &= \exp{\eta(\tilde x)}\\
 \eta(\tilde x) 
@@ -103,7 +103,7 @@ $$
 \begin{aligned}
 \log{\{\mathbb E[Y | \tilde X = \tilde x,T=t] \}}
 &= \log{\{\mu(\tilde x)\}}\\
-&=\log{\{\lambda(\tilde x) \cd t \}}\\
+&=\log{\{\lambda(\tilde x) \cdot t \}}\\
 &=\log{\lambda(\tilde x)} + \log{t}\\
 &=\log{\exp{\eta(\tilde x)}} + \log{t}\\
 &=\eta(\tilde x) + \log{t}\\
@@ -127,7 +127,7 @@ Differences on the log-rate scale become ratios on the rate scale.
 $$\exp{a-b} = \frac{\exp{a}}{\exp{b}}$$
 :::
 
-Therefore, according to this model, **differences of $\delta$ in covariate $x_j$ correspond to rate ratios of $\exp{\beta_j \cd \delta}$**.
+Therefore, according to this model, **differences of $\delta$ in covariate $x_j$ correspond to rate ratios of $\exp{\beta_j \cdot \delta}$**.
 
 That is, letting $\tilde X_{-j}$ denote vector $\tilde X$ with element $j$ removed: 
 
@@ -200,9 +200,9 @@ $$
 \hat y 
 &\eqdef \hat{\mathbb E}[Y|\tilde X= \tilde x,T=t]\\
 &=\hat\mu(\tilde x, t)\\
-&=\hat\lambda(\tilde x) \cd t\\
-&=\exp{\hat\eta(\tilde x)} \cd t\\
-&=\exp{\tilde x'\hat{\boldsymbol{\beta}}} \cd t
+&=\hat\lambda(\tilde x) \cdot t\\
+&=\exp{\hat\eta(\tilde x)} \cdot t\\
+&=\exp{\tilde x'\hat{\boldsymbol{\beta}}} \cdot t
 \end{aligned}
 $$
 
