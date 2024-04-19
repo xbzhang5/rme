@@ -1,3 +1,10 @@
+\def\ga{\alpha}
+\def\b{\beta}
+\def\gb{\beta}
+\def\gg{\gamma}
+\def\gd{\delta}
+\def\eps{\epsilon}
+\def\om{\omega}
 \def\cd{\cdot}
 \def\eqdef{\stackrel{\text{def}}{=}}
 \def\defeq{\stackrel{\text{def}}{=}}
@@ -10,7 +17,7 @@
 \def\ddist{\ \dot{\sim} \ }
 \def\dsim{\ \dot{\sim} \ }
 \def\za{z_{1 - \frac{\alpha}{2}}}
-\def\cirad{\za \cd \hse{\hb}}
+\def\cirad{\za \cdot \hse{\hb}}
 \def\ci{\hb {\color{red}\pm} \cirad}
 \def\th{\theta}
 \def\xbar{\bar{x}}
@@ -18,8 +25,6 @@
 \def\hthml{\hth_{\text{ML}}}
 \def\ba{\begin{aligned}}
 \def\ea{\end{aligned}}
-\def\eps{\epsilon}
-\def\om{\omega}
 \def\ind{⫫}
 \def\iid{\ \sim_{\text{iid}}\ }
 \def\siid{\ \sim_{\text{iid}}\ }

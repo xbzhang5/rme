@@ -2,7 +2,7 @@
 
 {{< include shared-config.qmd >}}
 
-These notes are derived primarily from @dobson2018introduction (mostly chapters 1-5).
+These notes are derived primarily from @dobson4e (mostly chapters 1-5).
 
 Some material was also taken from @mclachlan2007algorithm and @CaseBerg01.
 
@@ -371,7 +371,7 @@ To prove it’s a maximum, need:
 
 \[We haven’t gone over this yet\]
 
-log(likelihood ratio) tests [c.f. @dobson2018introduction §5.7]:
+log(likelihood ratio) tests [c.f. @dobson4e §5.7]:
 
 $$2\left( \mathfrak{l -}\ell_{0} \right) \sim \chi^{2}(p - q)$$
 

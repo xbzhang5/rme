@@ -10,7 +10,7 @@ subtitle: "Logistic regression and variations"
 
 This content is adapted from:
 
--   @dobson2018introduction, Chapter 7
+-   @dobson4e, Chapter 7
 -   @vittinghoff2012regression, Chapter 5
 - <https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html>    
 
@@ -1507,7 +1507,7 @@ be solved analytically.
 
 Instead, we have to use a variant of the Newton-Raphson method, which
 was discussed briefly in Epi 203. We won't go over it in this class; if
-you need to learn it, see @dobson2018introduction, Chapter 4.
+you need to learn it, see @dobson4e, Chapter 4.
 
 For now, all you need to know is that we make an iterative series of
 guesses, and each guess helps us make the next guess better (higher

@@ -37,7 +37,7 @@ $$f(t) \eqdef \frac{d}{dt} \Pr(T\le t)$$
 
 The *expectation* or *expected value* of a random variable $X$, denoted $\E{X}$, $\mu(X)$, or $\mu_X$, is its mean:
 
-$$\E{X} = \int_{x\in \range(X)} x \cd p(X=x)dx$$
+$$\E{X} = \int_{x\in \range(X)} x \cdot p(X=x)dx$$
 
 (c.f. https://en.wikipedia.org/wiki/Expected_value)
 
