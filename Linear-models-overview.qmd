@@ -838,7 +838,7 @@ $$
 $$ 
 ---
 
-In our model 2 above, $\heinf{\beta}$ is:
+In our model 2 above, $\heinff{\beta}$ is:
 
 ```{r}
 bw_lm2 |> vcov()

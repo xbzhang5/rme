@@ -97,15 +97,15 @@ $$
 
 Recall:
 
-- $\einf{\theta} \eqdef \E{\oinf{\vec X;\theta}}$
-- $\oinf{\vec X;\theta} \eqdef -\ell''(\vec X;\theta)$
+- $\einff{\theta} \eqdef \E{\oinff{\vec X;\theta}}$
+- $\oinff{\vec X;\theta} \eqdef -\ell''(\vec X;\theta)$
 
-We can estimate $\einf{\theta}$ using either $\einf{\hthml}$ or $\oinf{\vec x; \hthml}$.
+We can estimate $\einff{\theta}$ using either $\einff{\hthml}$ or $\oinff{\vec x; \hthml}$.
 
 So we can estimate the standard error of $\hth_k$ as:
 
 $$
-\HSE{\hth_k} = \sqrt{\inv{\paren{\heinf{\hthml}}}_{kk}}
+\HSE{\hth_k} = \sqrt{\inv{\paren{\heinff{\hthml}}}_{kk}}
 $$
 
 #### Confidence intervals for MLEs
@@ -396,7 +396,7 @@ $$\Exp{\ell^{'}} = 0$$
 
 So
 
-$$\einf{\theta} = \Exp{\ell^{'}{\ell^{'}}^{\top} }$$
+$$\einff{\theta} = \Exp{\ell^{'}{\ell^{'}}^{\top} }$$
 
 Moreover, for those distributions (called the "exponential family"), we
 have:
@@ -428,11 +428,11 @@ ${\widehat{\theta}}_{ML} \sim N\left( \theta,\mathfrak{I}^{- 1}(\theta) \right)$
 approximately, for large sample sizes.
 :::
 
-We can estimate $\mathfrak{I}^{- 1}(\theta)$ by working out
+We can estimate $\einf^{- 1}(\theta)$ by working out
 $\E[-\ell'']$ or
 $\E[\ell^{'}{\ell^{'}}^{\top}]$
 and plugging in $\hthml$, but sometimes we instead use
-$\oinf{\hthml;\vx}$ for convenience; there are
+$\oinff{\hthml;\vx}$ for convenience; there are
 some cases where it’s provably better according to some criteria (@efron1978assessing).
 
 Note that later, when we are trying to find MLEs for likelihoods that we

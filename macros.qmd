@@ -69,9 +69,12 @@
 \renewcommand{\exp}[1]{\text{exp}\cb{#1}}
 \providecommand{\e}[1]{\text{e}^{#1}}
 \providecommand{\inv}[1]{\paren{#1}^{-1}}
-\providecommand{\oinf}[1]{I\paren{#1}}
-\providecommand{\einf}[1]{\mathcal{I}\paren{#1}}
-\providecommand{\heinf}[1]{\hat{\mathcal{I}}\paren{#1}}
+\def\oinf{I}
+\providecommand{\oinff}[1]{\oinf\paren{#1}}
+\def\einf}{\mathcal{I}}
+\providecommand{\einff}[1]{\einf\paren{#1}}
+\providecommand{\heinf}[1]{\hat{\einf}}
+\providecommand{\heinff}[1]{\heinf\paren{#1}}
 \providecommand{\1}[1]{\mathbb{1}_{#1}}
 \providecommand{\set}[1]{\cb{1}}
 \providecommand{\pf}[1]{\p \paren{#1}}
@@ -85,7 +88,7 @@
 \providecommand{\sq}{^2}
 \providecommand{\erf}[1]{\eps\paren{#1}}
 \renewcommand{\vec}[1]{\tilde{#1}}
-\renewcommand{\v}[1]{\vec{#1}}
+\newcommand{\v}[1]{\vec{#1}}
 \renewcommand{\vx}[1]{\v{x}}
 \renewcommand{\vX}[1]{\v{X}}
 \providecommand{\mat}[1]{\mathbf{#1}}
