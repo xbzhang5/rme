@@ -601,75 +601,35 @@ ggpenguins2 |> print()
 
 ## Estimating Linear Models via Maximum Likelihood {#sec-est-LMs}
 
-### Review of one-sample inference
+### Likelihood, log-likelihood, and score functions for linear regression
 
-Previously, we learned how to fit outcome-only models of the form $p(X=x|\theta)$ to iid data $\mathbf x = (x_1,…,x_n)$ using maximum likelihood estimation:
+:::{.notes}
 
-$$
-\ba
-\mathcal L(\mathbf x|\theta) 
-&\eqdef p(X_1 = x_1, …,X_n =x_n|\theta) 
-\\&= \prod_{i=1}^n p(X=x_i|\theta)
-\ea
-$$ {#eq-lik}
+In EPI 203 and @sec-intro-MLEs, we learned how to fit outcome-only models of the form $p(X=x|\theta)$ to iid data $\mathbf x = (x_1,…,x_n)$ using maximum likelihood estimation.
 
-$$
-\ba
-\ell(x|\theta) 
-&\eqdef \log{\mathcal L(x|\theta)}
-\\&= \sum_{i=1}^n \log{p(X=x_i|\theta)}
-\ea$$ {#eq-loglik}
+Now, we apply the same procedure to linear regression models:
 
-$$\hthml \eqdef \arg \max_\theta \ell(x|\theta)$$ {#eq-mle}
-
-::: note
-Recall: the second equality in @eq-lik relies on the assumption that the $X_i$s are mutually independent.
 :::
 
-We learned how to quantify our uncertainty about these maximum likelihood estimates; with sufficient sample size, $\hthml$ has the approximate distribution:
-
 $$
-\hat\theta_{ML} \dot \sim N(\theta,\mathcal I(\theta)^{-1})
-$$
-
-Recall:
-
-- $\einf{\theta} \eqdef \E{\oinf{\vec X;\theta}}$
-- $\oinf{\vec X;\theta} \eqdef -\ell''(\vec X;\theta)$
-
-We can estimate $\einf{\theta}$ using either $\einf{\hthml}$ or $\oinf{\vec x; \hthml}$.
-
-So we can estimate the standard error of $\hth_k$ as:
-
-$$
-\HSE{\hth_k} = \sqrt{\inv{\paren{\heinf{\hthml}}}_{kk}}
-$$
-
-Then an asymptotic approximation of a 95% confidence interval for $\theta_k$ is
-
-$$
-\hthml \pm z_{0.975} \times \HSE{\hth_k}
-$$
-
-where $z_\beta$ the $\beta$ quantile of the standard Gaussian distribution.
-
-### MLEs for Linear Regression {.smaller}
-
-Let's use maximum likelihood again:
-
-$$
-\mathcal L(\mathbf y|\mathbf x,\beta, \sigma^2) = 
+\mathcal L(\vec y|\mat x,\beta, \sigma^2) = 
 \prod_{i=1}^n (2\pi\sigma^2)^{-1/2} 
-\exp{-\frac{1}{2\sigma^2}(y_i - x_i'\beta)^2}
-$$
+\exp{-\frac{1}{2\sigma^2}(y_i - \vec{x_i}'\beta)^2}
+$$ {#eq-linreg-lik}
 
 $$
-\ell(\mathbf y|\mathbf x,\beta, \sigma^2) \propto -\frac{n}{2}\log{\sigma^2} - \frac{1}{2\sigma^2}\sum_{i=1}^n (y_i - x_i' \beta)^2
-$$
+\ell(\vec y|\mat x,\beta, \sigma^2) 
+= -\frac{n}{2}\log{\sigma^2} - 
+\frac{1}{2\sigma^2}\sum_{i=1}^n (y_i - \vec{x_i}' \beta)^2
+$$ {#eq-linreg-loglik}
 
 $$
-\ell'(\mathbf y|\mathbf x,\beta, \sigma^2) \propto -\frac{n}{2}\log{\sigma^2} - \frac{1}{2\sigma^2}\frac{d}{d\beta}\left(\sum_{i=1}^n (y_i - x_i' \beta)^2\right)
-$$
+\ell'_{\beta}(\vec y|\mat x,\beta, \sigma^2) 
+= - 
+\frac{1}{2\sigma^2}\frac{d}{d\beta}\paren{\sum_{i=1}^n (y_i - \vec{x_i}' \beta)^2}
+$$ {#eq-linreg-score}
+
+### Some tools from vector calculus
 
 A few tools from linear algebra will make this analysis go easier (see @fieller2018basics, Section 7.2 for details).
 
@@ -713,6 +673,8 @@ x'\beta = [x_1, x_2, ..., x_p]
 x_1\beta_1+x_2\beta_2 +...+x_p \beta_p 
 $$
 
+---
+
 If $f(\beta)$ is a function that takes $\beta$ as input and outputs a scalar, such as $f(\beta) = x'\beta$, then:
 
 $$
@@ -724,6 +686,8 @@ $$
 \frac{d}{d\beta_p}f(\beta)
 \end{bmatrix}
 $$
+
+---
 
 In particular, if $f(\beta) = x'\beta$, then:
 
@@ -745,6 +709,8 @@ x_{p}
 = \mathbf x
 $$
 
+---
+
 In general:
 
 $$
@@ -752,6 +718,8 @@ $$
 $$
 
 This looks a lot like non-vector calculus, except that you have to transpose the coefficient.
+
+---
 
 Similarly,
 
@@ -761,6 +729,8 @@ $$
 
 This is like taking the derivative of $x^2$.
 
+---
+
 And finally, if $S$ is a $p\times p$ matrix, then:
 
 $$
@@ -768,6 +738,8 @@ $$
 $$
 
 Again, this is like taking the derivative of $cx^2$ with respect to $x$ in non-vector calculus.
+
+---
 
 Thus:
 
@@ -779,6 +751,8 @@ $$
 (\mathbf y - X\beta)' = (\mathbf y' - (X\beta)') = (\mathbf y' - \beta'X')
 $$
 
+---
+
 So
 
 $$
@@ -789,7 +763,7 @@ $$
 \end{aligned}
 $$
 
-So
+### Analyzing the linear regression score function
 
 $$
 \begin{aligned}
@@ -799,6 +773,8 @@ $$
 &= (- 2X'y +2X'X\beta)
 \end{aligned}
 $$
+
+---
 
 So if $\ell(\beta,\sigma^2) =0$, then
 
@@ -811,7 +787,11 @@ X'y &= X'X\beta\\
 \end{aligned}
 $$
 
+---
+
 The second derivative matrix $\ell_{\beta, \beta'} ''(\beta, \sigma^2;\mathbf X,\mathbf y)$ is negative definite at $\beta = (X'X)^{-1}X'y$, so $\hat \beta_{ML} = (X'X)^{-1}X'y$ is the MLE for $\beta$.
+
+---
 
 Similarly (not shown):
 
@@ -828,6 +808,8 @@ $$
 \end{aligned}
 $$
 
+---
+
 So:
 
 $$
@@ -840,7 +822,13 @@ $$
 \hat\beta \dot \sim N(\beta, \mathcal I_{\beta}^{-1})
 $$ 
 
+:::{.notes}
+
 These are all results you have hopefully seen before.
+
+:::
+
+---
 
 In the Gaussian linear regression case, we also have exact results:
 

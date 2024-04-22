@@ -1,0 +1,87 @@
+# Statistical computing in R
+
+There are an overwhelming number of great resources for learning R; here are some recommendations:
+
+- Introduction to modern R: @r4ds
+- Advanced R programming: @wickham2019advanced
+- Examples of graphics: @changRgraphicscookbook
+- Building R packages: @rpkgs
+
+## Functions
+
+- Read this ASAP: https://r4ds.hadley.nz/functions.html
+- Use this as a reference: https://adv-r.hadley.nz/functions.html
+
+## The `tidyverse`
+
+> The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.
+
+- https://www.tidyverse.org/
+
+These packages are being actively developed by [Hadley Wickham](https://hadley.nz/) and his colleagues at [posit](https://posit.co/)^[[the company formerly known as RStudio]( https://posit.co/blog/rstudio-is-becoming-posit/)].
+
+Details: 
+
+- @welcometidyverse
+- @r4ds
+
+## Piping
+
+See [@r4ds](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe) for details.
+
+There are currently (2024) two commonly-used pipe operators in R:
+
+- `%>%`: the "`magrittr` pipe", from the `magrittr` package (re-exported by `dplyr` and others) 
+
+- `|>`: the "native pipe", from base R (≥4.1.0)
+
+### Which pipe should I use?
+
+@r4ds [recommends the native pipe](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe:~:text=So%20why%20do%20we%20recommend%20the%20base%20pipe%3F):
+
+> For simple cases, |> and %>% behave identically. So why do we recommend the base pipe? Firstly, because it’s part of base R, it’s always available for you to use, even when you’re not using the tidyverse. Secondly, |> is quite a bit simpler than %>%: in the time between the invention of %>% in 2014 and the inclusion of |> in R 4.1.0 in 2021, we gained a better understanding of the pipe. This allowed the base implementation to jettison infrequently used and less important features.
+
+## Why doesn't `ggplot2` use piping?
+
+Here's `tidyverse` creator Hadley Wickham's answer (from 2018):
+
+> I think it's worth unpacking this question into a few smaller pieces:
+>
+> - Should ggplot2 use the pipe? IMO, yes.
+> - Could ggplot2 support both the pipe and plus? No
+> - Would it be worth it to create a ggplot3 that uses the pipe? No.
+
+https://forum.posit.co/t/why-cant-ggplot2-use/4372/7
+
+## Quarto
+
+Quarto is a system for writing documents with embedded R code and/or results:
+
+- Read this ASAP: https://r4ds.hadley.nz/communicate
+- Then use this for reference: https://quarto.org/docs/reference/
+
+## Packages
+
+> This book espouses our philosophy of package development: anything that can be automated, should be automated. Do as little as possible by hand. Do as much as possible with functions. The goal is to spend your time thinking about what you want your package to do rather than thinking about the minutiae of package structure.
+
+- https://r-pkgs.org/introduction.html#:~:text=This%20book%20espouses,of%20package%20structure.
+
+- Read this ASAP: https://r-pkgs.org/whole-game.html
+- Use the rest of @rpkgs as a reference
+
+## Git
+
+94% of respondents to a 2022 Stack Overflow survey  reported using git for version control [link](https://survey.stackoverflow.co/2022/#section-version-control-version-control-systems)
+
+[More details](https://r-pkgs.org/software-development-practices.html#sec-sw-dev-practices-git-github)
+
+- https://happygitwithr.com/
+
+## Spatial data science
+
+- @spatialds
+
+## Shiny apps
+
+- Read this first: @masteringshiny
+- Use this as a reference: @golembook

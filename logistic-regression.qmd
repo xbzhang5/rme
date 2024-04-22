@@ -1278,6 +1278,8 @@ print(chd_plot_odds)
 #### Log-odds (logit) scale
 
 ```{r}
+#| label: fig-chd_plot_logit
+#| fig-cap: "CHD data (logit-scale)"
 chd_plot_logit = 
   chd_grouped_data |> 
   ggplot(
@@ -1292,19 +1294,9 @@ chd_plot_logit =
   theme_bw() +
   ylab("log{odds(CHD Event by 1969)}") +
   ggeasy::easy_labs()
-```
 
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(chd_plot_logit)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
 print(chd_plot_logit)
 ```
-:::
 
 ### Logistic regression models for CHD data {.smaller}
 
@@ -1326,6 +1318,8 @@ We can get the corresponding odds ratios ($e^{\beta}$s) by passing
 `exponentiate = TRUE` to `parameters()`:
 
 ```{r}
+#| tbl-cap: "Odds ratio estimates for CHD model"
+#| label: tbl-chd-glm-strat-OR
 chd_glm_strat |> 
   parameters(exponentiate = TRUE) |> 
   print_md()

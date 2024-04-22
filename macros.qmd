@@ -80,4 +80,4 @@
 \providecommand{\sq}{^2}
 \providecommand{\erf}[1]{\eps\paren{#1}}
 \renewcommand{\vec}[1]{\tilde{#1}}
-
+\providecommand{\mat}[1]{\mathbf{#1}}

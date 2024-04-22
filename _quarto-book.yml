@@ -39,6 +39,7 @@ book:
     - intro-MLEs.qmd
     - common-mistakes.qmd
     - notation.qmd
+    - intro-to-R.qmd
   back-to-top-navigation: true
   page-navigation: true
 

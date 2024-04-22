@@ -1,8 +1,12 @@
-## Example: Maximum likelihood for Tropical Cyclones in Australia
+(Adapted from @dobson4e §1.6.5)
+
+### Data
 
 {{< include macros.qmd >}}
 
 The `cyclones` dataset in the `dobson` package (@tbl-cyclones-data) records the number of tropical cyclones in Northeastern Australia during 13 November-to-April cyclone seasons (more details in @dobson4e §1.6.5 and `help(cyclones, package = "dobson")`). @fig-dobson-cyclone-time-series graphs the number of cyclones (y-axis) by season (x-axis). Let's use $Y_i$ to represent these counts, where $i$ is an indexing variable for the seasons and $Y_i$ is the number of cyclones in season $i$.
+
+### Exploratory analysis
 
 Suppose we want to learn about how many cyclones to expect per season.
 
@@ -61,6 +65,8 @@ cyclones |> table1::table1(x = ~ number)
 
 ```
 
+### Model
+
 We want to estimate $P(Y=y)$; that is, $P(Y=y)$ is our [estimand](estimation.qmd#def-estimand).
 
 We could estimate $P(Y=y)$ for each value of $y$ in $0:\infty$ separately ("nonparametrically") using the fraction of our data with $Y_i=y$, but then we would be estimating an infinitely large set of parameters, and we would have low precision. We will probably do better with a parametric model.
@@ -84,6 +90,8 @@ $$P(Y=y) = \frac{\lambda^{y} e^{-\lambda}}{y!}$$
 ::::
 
 :::
+
+### Estimating the model parameters using maximum likelihood
 
 Now, we can estimate the parameter $\lambda$ for this distribution using maximum likelihood estimation.
 

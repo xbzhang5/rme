@@ -1,4 +1,4 @@
-# Introduction to Maximum Likelihood Inference
+# Introduction to Maximum Likelihood Inference {#sec-intro-MLEs}
 
 {{< include shared-config.qmd >}}
 
@@ -6,7 +6,7 @@ These notes are derived primarily from @dobson4e (mostly chapters 1-5).
 
 Some material was also taken from @mclachlan2007algorithm and @CaseBerg01.
 
-## Introduction
+## Definitions
 
 :::{#def-lik}
 #### Likelihood
@@ -37,6 +37,58 @@ $$
 $$
 
 :::
+
+## Overview of maximum likelihood estimation
+
+$$
+\ba
+\Lik(\vec x|\theta) 
+&\eqdef p(X_1 = x_1, …,X_n =x_n|\theta) 
+\\&= \prod_{i=1}^n p(X=x_i|\theta)
+\ea
+$$ {#eq-lik}
+
+$$
+\ba
+\ell(x|\theta) 
+&\eqdef \log{\mathcal L(x|\theta)}
+\\&= \sum_{i=1}^n \log{p(X=x_i|\theta)}
+\ea$$ {#eq-loglik}
+
+$$\hthml \eqdef \arg \max_\theta \ell(x|\theta)$$ {#eq-mle}
+
+::: note
+Recall: the second equality in @eq-lik relies on the assumption that the $X_i$s are mutually independent.
+:::
+
+We learned how to quantify our uncertainty about these maximum likelihood estimates; with sufficient sample size, $\hthml$ has the approximate distribution:
+
+$$
+\hat\theta_{ML} \dot \sim N(\theta,\mathcal I(\theta)^{-1})
+$$
+
+Recall:
+
+- $\einf{\theta} \eqdef \E{\oinf{\vec X;\theta}}$
+- $\oinf{\vec X;\theta} \eqdef -\ell''(\vec X;\theta)$
+
+We can estimate $\einf{\theta}$ using either $\einf{\hthml}$ or $\oinf{\vec x; \hthml}$.
+
+So we can estimate the standard error of $\hth_k$ as:
+
+$$
+\HSE{\hth_k} = \sqrt{\inv{\paren{\heinf{\hthml}}}_{kk}}
+$$
+
+Then an asymptotic approximation of a 95% confidence interval for $\theta_k$ is
+
+$$
+\hthml \pm z_{0.975} \times \HSE{\hth_k}
+$$
+
+where $z_\beta$ the $\beta$ quantile of the standard Gaussian distribution.
+
+## Example: Maximum likelihood for Tropical Cyclones in Australia
 
 {{< include dobson-cyclone-example.qmd >}}
 
