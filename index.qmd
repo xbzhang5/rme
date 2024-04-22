@@ -4,7 +4,7 @@ This web-book is derived from my lecture slides for the Spring 2023 session of E
 
 I have drawn these materials from many sources, including but not limited to:
 
-- David Rocke's materials from the [2021 edition of Epi 204](https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html)
+- [David Rocke](https://dmrocke.ucdavis.edu/)'s materials from the [2021 edition of Epi 204](https://dmrocke.ucdavis.edu/Class/EPI204-Spring-2021/EPI204-Spring-2021.html)
 
 - *Regression methods in biostatistics: linear, logistic, survival, and repeated measures models*, 2nd edition [@vittinghoff2012regression]
 

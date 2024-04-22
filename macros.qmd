@@ -1,3 +1,9 @@
+\providecommand{\cbl}[1]{\left\{#1\right.}
+\providecommand{\cb}[1]{\left\{#1\right\}}
+\providecommand{\paren}[1]{\left(#1\right)}
+\providecommand{\sb}[1]{\left[#1\right]}
+\def\pr{\text{p}}
+\def\p{\text{p}}
 \def\ga{\alpha}
 \def\b{\beta}
 \def\gb{\beta}
@@ -6,6 +12,8 @@
 \def\eps{\epsilon}
 \def\om{\omega}
 \def\cd{\cdot}
+\def\cds{\cdots}
+\def\lds{\ldots}
 \def\eqdef{\stackrel{\text{def}}{=}}
 \def\defeq{\stackrel{\text{def}}{=}}
 \def\hb{\hat\beta}
@@ -28,25 +36,23 @@
 \def\ind{⫫}
 \def\iid{\ \sim_{\text{iid}}\ }
 \def\siid{\ \sim_{\text{iid}}\ }
-\def\siid{\ \sim_{\text{iid}}\ }
 \def\tf{\therefore}
 \def\Lik{\mathcal{L}}
 \def\llik{\ell}
-\def\range{\mathcal{R}}
+\def\cR{\mathcal{R}}
+\providecommand{\range}[1]{\cR\paren{#1}}
 \def\~{\approx}
 \def\dapp{\dot\approx}
 \providecommand{\red}[1]{{\color{red}#1}}
 \providecommand{\blue}[1]{{\color{blue}#1}}
 \providecommand{\green}[1]{{\color{green}#1}}
-\providecommand{\cbl}[1]{\left\{#1\right.}
-\providecommand{\cb}[1]{\left\{#1\right\}}
-\providecommand{\paren}[1]{\left(#1\right)}
-\providecommand{\sb}[1]{\left[#1\right]}
 \providecommand{\hE}[1]{\hat{\text{E}}\sb{#1}}
 \providecommand{\hExp}[1]{\hat{\text{E}}\sb{#1}}
 \providecommand{\hmu}[1]{\hat{\mu}\sb{#1}}
 \providecommand{\E}[1]{\mathbb{E}\sb{#1}}
+\providecommand{\Ef}[1]{\mathbb{E}\sb{#1}}
 \providecommand{\Exp}[1]{\mathbb{E}\sb{#1}}
+\providecommand{\Expf}[1]{\mathbb{E}\sb{#1}}
 \providecommand{\var}[1]{\text{Var}\paren{#1}}
 \providecommand{\Var}[1]{\text{Var}\paren{#1}}
 \providecommand{\Cov}[1]{\text{Cov}\paren{#1}}
@@ -68,8 +74,7 @@
 \providecommand{\heinf}[1]{\hat{\mathcal{I}}\paren{#1}}
 \providecommand{\1}[1]{\mathbb{1}_{#1}}
 \providecommand{\set}[1]{\cb{1}}
-\providecommand{\p}{\text{p}}
-\providecommand{\pr}{\text{p}}
+\providecommand{\pf}[1]{\p \paren{#1}}
 \providecommand{\Bias}[1]{\text{Bias}\paren{#1}}
 \providecommand{\bias}[1]{\text{Bias}\paren{#1}}
 \providecommand{\ssqf}[1]{\sigma^2\paren{#1}}
@@ -80,4 +85,7 @@
 \providecommand{\sq}{^2}
 \providecommand{\erf}[1]{\eps\paren{#1}}
 \renewcommand{\vec}[1]{\tilde{#1}}
+\renewcommand{\v}[1]{\vec{#1}}
+\renewcommand{\vx}[1]{\v{x}}
+\renewcommand{\vX}[1]{\v{X}}
 \providecommand{\mat}[1]{\mathbf{#1}}

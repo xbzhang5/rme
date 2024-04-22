@@ -31,7 +31,7 @@ See [@r4ds](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe) for details
 
 There are currently (2024) two commonly-used pipe operators in R:
 
-- `%>%`: the "`magrittr` pipe", from the `magrittr` package (re-exported by `dplyr` and others) 
+- `%>%`: the "`magrittr` pipe", from the [`magrittr`](https://cran.r-project.org/web/packages/magrittr/index.html) package (@magrittr; [re-exported](https://r-pkgs.org/dependencies-in-practice.html#re-exporting) by [`dplyr`](https://cran.r-project.org/web/packages/dplyr/index.html) and others) .
 
 - `|>`: the "native pipe", from base R (≥4.1.0)
 
@@ -41,7 +41,7 @@ There are currently (2024) two commonly-used pipe operators in R:
 
 > For simple cases, |> and %>% behave identically. So why do we recommend the base pipe? Firstly, because it’s part of base R, it’s always available for you to use, even when you’re not using the tidyverse. Secondly, |> is quite a bit simpler than %>%: in the time between the invention of %>% in 2014 and the inclusion of |> in R 4.1.0 in 2021, we gained a better understanding of the pipe. This allowed the base implementation to jettison infrequently used and less important features.
 
-## Why doesn't `ggplot2` use piping?
+### Why doesn't `ggplot2` use piping?
 
 Here's `tidyverse` creator Hadley Wickham's answer (from 2018):
 

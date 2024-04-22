@@ -626,7 +626,8 @@ $$ {#eq-linreg-loglik}
 $$
 \ell'_{\beta}(\vec y|\mat x,\beta, \sigma^2) 
 = - 
-\frac{1}{2\sigma^2}\frac{d}{d\beta}\paren{\sum_{i=1}^n (y_i - \vec{x_i}' \beta)^2}
+\frac{1}{2\sigma^2}\frac{d}{d\beta}
+\paren{\sum_{i=1}^n (y_i - \vec{x_i}' \beta)^2}
 $$ {#eq-linreg-score}
 
 ### Some tools from vector calculus

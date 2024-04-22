@@ -6,7 +6,7 @@ These notes are derived primarily from @dobson4e (mostly chapters 1-5).
 
 Some material was also taken from @mclachlan2007algorithm and @CaseBerg01.
 
-## Definitions
+### The likelihood function
 
 :::{#def-lik}
 #### Likelihood
@@ -24,7 +24,35 @@ $$
 $$
 :::
 
+::: notes
 The likelihood is a function that takes $\theta$ (and implicitly, $\vec X$) as inputs and outputs a single number, the joint probability of $\vec X$ for model $p_\Theta(\vec X)$ with $\Theta = \theta$.
+:::
+
+---
+
+:::{#thm-lik-iid}
+
+#### Likelihood of an iid sample
+
+For iid data,
+
+$$
+\ba
+\Lik(\vec x|\theta) 
+&\eqdef p(X_1 = x_1, …,X_n =x_n|\theta) 
+\\&= \prod_{i=1}^n p(X=x_i|\theta)
+\ea
+$$ {#eq-lik}
+
+:::
+
+:::{.proof}
+By definition of statistical independence.
+:::
+
+---
+
+### The maximum likelihood estimate
 
 :::{#def-mle}
 
@@ -38,16 +66,6 @@ $$
 
 :::
 
-## Overview of maximum likelihood estimation
-
-$$
-\ba
-\Lik(\vec x|\theta) 
-&\eqdef p(X_1 = x_1, …,X_n =x_n|\theta) 
-\\&= \prod_{i=1}^n p(X=x_i|\theta)
-\ea
-$$ {#eq-lik}
-
 $$
 \ba
 \ell(x|\theta) 
@@ -60,6 +78,16 @@ $$\hthml \eqdef \arg \max_\theta \ell(x|\theta)$$ {#eq-mle}
 ::: note
 Recall: the second equality in @eq-lik relies on the assumption that the $X_i$s are mutually independent.
 :::
+
+### The log-likelihood function
+
+It is typically easier to work with the log of the likelihood function:
+
+:::{#def-loglik}
+$$\ell \eqdef \ell(\vec x;\theta) \eqdef \p(\vec X = \vec x \mid \Theta = \theta)$$
+:::
+
+### Asymptotic distribution of the maximum likelihood estimate
 
 We learned how to quantify our uncertainty about these maximum likelihood estimates; with sufficient sample size, $\hthml$ has the approximate distribution:
 
@@ -80,7 +108,9 @@ $$
 \HSE{\hth_k} = \sqrt{\inv{\paren{\heinf{\hthml}}}_{kk}}
 $$
 
-Then an asymptotic approximation of a 95% confidence interval for $\theta_k$ is
+#### Confidence intervals for MLEs
+
+An asymptotic approximation of a 95% confidence interval for $\theta_k$ is
 
 $$
 \hthml \pm z_{0.975} \times \HSE{\hth_k}
@@ -88,27 +118,47 @@ $$
 
 where $z_\beta$ the $\beta$ quantile of the standard Gaussian distribution.
 
+#### p-values and hypothesis tests for MLEs
+
+#### Likelihood ratio tests for MLEs
+
+log(likelihood ratio) tests [c.f. @dobson4e §5.7]:
+
+$$-2\ell_{0} \sim \chi^{2}(p - q)$$
+
+See also https://online.stat.psu.edu/stat504/book/export/html/657
+
+#### Prediction intervals for MLEs
+
+$$\overline{X} \in \left\lbrack \widehat{\mu} \pm z_{1 - \alpha\text{/}2}\frac{\sigma}{m} \right\rbrack$$
+
+Where $m$ is the sample size of the new data to be predicted (typically
+1, except for binary outcomes, where it needs to be bigger for
+prediction intervals to make sense)
+
+[^1]: I might sometimes switch the order of $x,$ $\theta$; this is
+    unintentional and not meaningful.
+
 ## Example: Maximum likelihood for Tropical Cyclones in Australia
 
 {{< include dobson-cyclone-example.qmd >}}
 
 ## Maximum likelihood inference for univariate Gaussian models
 
-Suppose $X_{1},\ldots,X_{n} \sim_{iid}N\left( \mu,\ \sigma^{2} \right)$.
-Let $X = \left( X_{1},\ldots,X_{n} \right)^{\top}$ be these random
+Suppose $X_{1}, ..., X_{n} \siid N(\mu, \sigma^{2})$.
+Let $X = (X_{1},\ldots,X_{n})^{\top}$ be these random
 variables in vector format. Let $x_{i}$ and $x$ denote the corresponding
-observed data. Let $\theta = \left( \mu,\sigma^{2} \right)^{\top}$ be
-the vector of parameters. Let $\Theta$ denote the parameters as a random
+observed data. Then $\theta = (\mu,\sigma^{2})$ is
+the vector of true parameters, and $\Theta = (M, \Sigma^2)$ is the vector of parameters as a random
 vector.
 
 Then the log-likelihood
-$\ell \eqdef \ell(X;\theta) \eqdef p\left( X = x \mid \Theta = \theta \right)$
 is:
 
 $$
 \begin{aligned}
 \ell 
-&\propto - \frac{n}{2}\log{\sigma^{2}} - \frac{1}{2}\sum_{i = 1}^{n}\frac{\left( x_{i} - \mu \right)^{2}}{\sigma^{2}}\\
+&\propto - \frac{n}{2}\log{\sigma^{2}} - \frac{1}{2}\sum_{i = 1}^{n}\frac{( x_{i} - \mu)^{2}}{\sigma^{2}}\\
 &= - \frac{n}{2}\log{\sigma^{2}} - \frac{1}{2\sigma^{2}}\sum_{i = 1}^{n}{x_{i}^{2} - 2x_{i}\mu + \mu^{2}}
 \end{aligned}
 $$
@@ -117,9 +167,20 @@ $$
 
 Then:
 
-$$\frac{d\ell}{d\mu} = - \frac{1}{2}\sum_{i = 1}^{n}\frac{- 2\left( x_{i} - \mu \right)}{\sigma^{2}}$$
-
-$$= \frac{1}{\sigma^{2}}\left\lbrack \left( \sum_{i = 1}^{n}x_{i} \right) - n\mu \right\rbrack$$
+$$
+\ba
+\frac{d\ell}{d\mu} 
+&= - \frac{1}{2}\sum_{i = 1}^{n}
+\frac{- 2(x_{i} - \mu)}{\sigma^{2}}
+\\ &= \frac{1}{\sigma^{2}}
+\sb{
+    \paren{
+        \sum_{i = 1}^{n}x_{i}
+    } 
+    - n\mu
+}
+\ea
+$$
 
 If $\frac{d\ell}{d\mu} = 0$, then
 $\mu = \overline{x} \eqdef \frac{1}{n}\sum_{i = 1}^{n}x_{i}$.
@@ -203,7 +264,7 @@ $$\frac{d^{2}\ell}{d\mu\ d\sigma^{2}} = - \left( {\widehat{\sigma}}^{2} \right)^
 
 #### The score function
 
-Let $\theta$ be the vector of all parameters; here,
+Here,
 $\theta = \left( \mu,\sigma^{2} \right)^{\top}$.
 
 Let
@@ -241,16 +302,16 @@ using the symbol $\mathfrak{I}$ (`\frakturI` in Unicode, `\mathfrak{I}` in LaTeX
 
 For a one-dimensional random variables $X$,
 
-$${Var}(X) \eqdef Ε\left\lbrack \left( X - Ε\lbrack X\rbrack \right)^{2} \right\rbrack = Ε\left\lbrack X^{2} \right\rbrack - \left( Ε\lbrack X\rbrack \right)^{2}$$
+$${Var}(X) \eqdef E\left\lbrack \left( X - E\lbrack X\rbrack \right)^{2} \right\rbrack = E\left\lbrack X^{2} \right\rbrack - \left( E\lbrack X\rbrack \right)^{2}$$
 
 For any two-dimensional random variables, $X,Y$:
 
-$${Cov}(X,Y) = E\left\lbrack (X - ΕX)(Y - ΕY) \right\rbrack = Ε\lbrack XY\rbrack - E\lbrack X\rbrack E\lbrack Y\rbrack$$
+$${Cov}(X,Y) = E\left\lbrack (X - EX)(Y - EY) \right\rbrack = E\lbrack XY\rbrack - E\lbrack X\rbrack E\lbrack Y\rbrack$$
 
 Therefore,
-${Var}{(X)} = {Cov}(X,X) = Ε\lbrack XX\rbrack - E\lbrack X\rbrack E\lbrack X\rbrack = Ε\left\lbrack X^{2} \right\rbrack - \left( E\lbrack X\rbrack \right)^{2}$
+${Var}{(X)} = {Cov}(X,X) = E\lbrack XX\rbrack - E\lbrack X\rbrack E\lbrack X\rbrack = E\left\lbrack X^{2} \right\rbrack - \left( E\lbrack X\rbrack \right)^{2}$
 
-$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - Ε\left\lbrack \ell^{'} \right\rbrack\ Ε\left\lbrack \ell^{'} \right\rbrack^{\top}$$
+$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = E\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - E\left\lbrack \ell^{'} \right\rbrack\ E\left\lbrack \ell^{'} \right\rbrack^{\top}$$
 
 Sometimes we write ${Cov}{(X)} \eqdef {Cov}(X,X) = {Var}(X)$.
 
@@ -273,47 +334,79 @@ $$
 
 The elements of $\mathfrak{I}$ are:
 
-$$\left\{ \mathfrak{I}_{ij} \eqdef {Cov}\left( {\ell^{'}}_{i},{\ell^{'}}_{j} \right) = Ε\left\lbrack \ell_{i}^{'}\ell_{j}^{'} \right\rbrack - Ε\left\lbrack {\ell^{'}}_{i} \right\rbrack Ε\left\lbrack {\ell^{'}}_{j} \right\rbrack \right\}$$
+$$\left\{ \mathfrak{I}_{ij} \eqdef {Cov}\left( {\ell^{'}}_{i},{\ell^{'}}_{j} \right) = E\left\lbrack \ell_{i}^{'}\ell_{j}^{'} \right\rbrack - E\left\lbrack {\ell^{'}}_{i} \right\rbrack E\left\lbrack {\ell^{'}}_{j} \right\rbrack \right\}$$
 
-In our motivating example, $i,j \in \left\{ \mu,\sigma^{2} \right\}$. Here, 
+In the Gaussian case, $i,j \in \left\{ \mu,\sigma^{2} \right\}$. 
+
+Here, 
 
 $$
-\begin{aligned}
-Ε[\ell']
-&\eqdef \int_{x \in \mathfrak R(x)}{\ell'(x,\theta) p(X = x | \theta)dx}\\
-&= \int_{x\in \mathfrak R(x)}{\left( \frac{d}{d\theta}\log{p\left( X = x \mid \theta \right)} \right)\ p\left( X = x \mid \theta \right)\ dx}\\
-&= \int_{x \in \mathfrak R(x)}{\frac{\frac{d}{d\theta}p\left( X = x \mid \theta \right)}{p\left( X = x \mid \theta \right)}p\left( X = x \mid \theta \right)\ dx
-}\\
-&= \int_{x \in \mathfrak R(x)}{\frac{d}{d\theta}p\left( X = x \mid \theta \right)\ dx}
-\end{aligned}
+\ba
+\E{\ell'}
+&\eqdef \int_{x \in \range{x}}
+{
+\ell'(x,\th) \p(X = x | \th) dx
+}
+\\ &= \int_{x \in \range{X}}
+{
+\paren
+{
+\frac{d}{d\th}
+\log{\p(X = x | \th)}
+}
+\p(X = x | \theta) dx
+}
+\\ &= 
+\int_{x \in \range{X}}
+{
+\frac
+{\frac{d}{d\theta} \p(X = x | \th)}
+{\p(X = x | \theta)}
+\p(X = x | \theta) dx
+}
+\\ &= 
+\int_{x \in \range{X}}
+{
+\frac{d}{d\theta} \p(X = x | \th) dx
+}
+\ea
 $$
 
 
 
 And similarly
 
-$$Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack \eqdef \int_{x \in R(x)}^{}{\ell^{'}(x,\theta)\ell^{'}(x,\theta)^{\top}\ p\left( X = x \mid \theta \right)\ dx}$$
+$$
+\Exp{\ell' \ell'^{\top}} 
+\eqdef 
+\int_{x \in R(x)}
+{\ell'(x,\theta)\ell'(x,\theta)^{\top}\ 
+\pf{X = x | \th}\ dx}
+$$
 
-Note that $Ε\left\lbrack \ell^{'} \right\rbrack$ and
-$Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack$
-are functions of $\theta$ but not of $x$; the expectation operator
-removed $x$.
+Note that $\Exp{\ell'}$ and
+$\Exp{\ell'{\ell'}^{\top}}$
+are functions of $\theta$ but not of $x$; 
+the expectation operator removed $x$.
 
 Also note that for most of the distributions you are familiar with
-(including Gaussian, binomial, Poisson, exponential),
+(including Gaussian, binomial, Poisson, exponential):
 
-$$Ε\left\lbrack \ell^{'} \right\rbrack = 0$$
+$$\Exp{\ell^{'}} = 0$$
 
 So
 
-$$\mathfrak{I =}Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack$$
+$$\einf{\theta} = \Exp{\ell^{'}{\ell^{'}}^{\top} }$$
 
 Moreover, for those distributions (called the "exponential family"), we
 have:
 
-$$\mathfrak{I = -}Ε\left\lbrack \ell^{''} \right\rbrack = Ε\left\lbrack - \ell^{''} \right\rbrack$$
+$$
+\mathfrak{I} = -\Exp{\ell''}
+= \Exp{- \ell''}
+$$
 
-(see Dobson and Barnett 4e, §3.17), where
+(see @dobson4e, §3.17), where
 
 $$\ell^{''} \eqdef \frac{d}{d\theta}\ell^{'(x,\theta)^{\top}} = \frac{d}{d\theta}\frac{d}{d\theta^{\top}}\ell(x,\theta)$$
 
@@ -336,12 +429,11 @@ approximately, for large sample sizes.
 :::
 
 We can estimate $\mathfrak{I}^{- 1}(\theta)$ by working out
-$- Ε\left\lbrack \ell^{''} \right\rbrack$ or
-$Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack$
-and plugging in ${\widehat{\theta}}_{ML}$, but sometimes we instead use
-$I\left( {\widehat{\theta}}_{ML};x \right)$ for convenience; there are
-some cases where it’s provably better according to some criteria (Efron
-& Hinkley 1978).
+$\E[-\ell'']$ or
+$\E[\ell^{'}{\ell^{'}}^{\top}]$
+and plugging in $\hthml$, but sometimes we instead use
+$\oinf{\hthml;\vx}$ for convenience; there are
+some cases where it’s provably better according to some criteria (@efron1978assessing).
 
 Note that later, when we are trying to find MLEs for likelihoods that we
 can’t easily differentiate, we will "hill-climb" using the
@@ -373,9 +465,9 @@ Note that $\ell^{'} = \sum_{i = 1}^{n}\ell_{i}^{'}$.
 
 $\frac{1}{n}I_{e}(\theta,y)$ is the sample equivalent of
 
-$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = Ε\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - Ε\left\lbrack \ell^{'} \right\rbrack\ Ε\left\lbrack \ell^{'} \right\rbrack^{\top}$$
+$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = E\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - E\left\lbrack \ell^{'} \right\rbrack\ E\left\lbrack \ell^{'} \right\rbrack^{\top}$$
 
-$$\left\{ \mathfrak{I}_{jk} \eqdef {Cov}\left( {\ell^{'}}_{j},{\ell^{'}}_{k} \right) = Ε\left\lbrack \ell_{j}^{'}\ell_{k}^{'} \right\rbrack - Ε\left\lbrack {\ell^{'}}_{j} \right\rbrack Ε\left\lbrack {\ell^{'}}_{k} \right\rbrack \right\}$$
+$$\left\{ \mathfrak{I}_{jk} \eqdef {Cov}\left( {\ell^{'}}_{j},{\ell^{'}}_{k} \right) = E\left\lbrack \ell_{j}^{'}\ell_{k}^{'} \right\rbrack - E\left\lbrack {\ell^{'}}_{j} \right\rbrack E\left\lbrack {\ell^{'}}_{k} \right\rbrack \right\}$$
 
 $I_{e}(\theta,y)$ is sometimes computationally easier to compute for
 Newton-Raphson-type maximization algorithms.
@@ -411,32 +503,8 @@ To prove it’s a maximum, need:
 
 - $\ell^{'} = 0$
 
-- At least one diagonal element of $\mathfrak{l''}$ is negative.
+- At least one diagonal element of $\ell''$ is negative.
 
-- Determinant of $\mathfrak{l''}$ is positive.
+- Determinant of $\ell''$ is positive.
 
-### Confidence intervals for MLEs
-
-### p-values and hypothesis tests for MLEs
-
-### Likelihood ratio tests for MLEs
-
-\[We haven’t gone over this yet\]
-
-log(likelihood ratio) tests [c.f. @dobson4e §5.7]:
-
-$$2\left( \mathfrak{l -}\ell_{0} \right) \sim \chi^{2}(p - q)$$
-
-See also https://online.stat.psu.edu/stat504/book/export/html/657
-
-### Prediction intervals for MLEs
-
-$$\overline{X} \in \left\lbrack \widehat{\mu} \pm z_{1 - \alpha\text{/}2}\frac{\sigma}{m} \right\rbrack$$
-
-Where $m$ is the sample size of the new data to be predicted (typically
-1, except for binary outcomes, where it needs to be bigger for
-prediction intervals to make sense)
-
-[^1]: I might sometimes switch the order of $x,$ $\theta$; this is
-    unintentional and not meaningful.
 

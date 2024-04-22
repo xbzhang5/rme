@@ -1,8 +1,10 @@
 # Estimation
 
-## Probabilitistic models {.scrollable}
+## Probabilistic models {.scrollable}
 
 {{< include macros.qmd >}}
+
+---
 
 :::{#def-model}
 
@@ -46,7 +48,7 @@ An **estimand** is an unknown quantity whose value we want to know [@pohl2021est
 ##### Mean height of students
 
 If we are trying to determine the mean height of students at our school,
-then the population mean is our estimand.
+then the *population mean* is our **estimand**.
 :::
 
 In statistical contexts, most estimands are parameters of probabilistic

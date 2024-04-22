@@ -13,6 +13,6 @@
 | $\sum$ | sum | `\sum`
 | $\prod$ | product | `\prod`
 | $\mu$ | mean | `\mu`
-| $\E{X}$ | [expectation](probability.qmd#def-expectation) of $X$ | `\text{E}[X]`
+| $\mathbb{E}[X]$ | [expectation](probability.qmd#def-expectation) of $X$ | `\mathbb{E}[X]`
 
 : Notation used in this book {#tbl-notation-collected}
