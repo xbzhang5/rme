@@ -291,13 +291,25 @@ In logistic regression, we will make use of a transformation (rescaling) of prob
 
 :::{#def-odds}
 #### Odds
-The **odds** of an outcome, denoted $\omega$ ("omega"), is the probability that the outcome occurs, divided by the probability that it doesn't occur. 
+The **odds** of an outcome $A$, denoted $\omega(A)$ ("omega"), is the probability that the outcome occurs, divided by the probability that it doesn't occur:
 
-That is, if the probability of an outcome is $\pi$, then the corresponding odds of that outcome is 
+$$\omega(A) = \frac{\Pr(A)}{\Pr(\neg A)}$$
+:::
 
-$$\omega(\pi) \eqdef \frac{\pi}{1-\pi}$${#eq-odds-probs}
+:::{#thm-prob-to-odds}
+If the probability of an outcome $A$ is $\Pr(A)=\pi$, then the corresponding odds of $A$ is 
 
-[Function #eq-odds-probs], which transforms probabilities into odds, is called the **odds function**. @fig-odds-probs graphs the shape of this function.
+$$\omega(\pi) \eqdef \frac{\pi}{1-\pi}$$ {#eq-odds-probs}
+
+:::
+
+:::{.proof}
+$$\Pr(\neg A) = 1 - \Pr(A) = 1 - \pi$$
+$$\tf \omega(A) \eqdef \frac{\Pr(A)}{\Pr(\neg A)} = \frac{\pi}{1-\pi}$$
+
+:::
+
+[Function #eq-odds-probs], which transforms probabilities into odds, can be called the **odds function**. @fig-odds-probs graphs the shape of this function.
 
 :::
 
@@ -306,9 +318,9 @@ $$\omega(\pi) \eqdef \frac{\pi}{1-\pi}$${#eq-odds-probs}
 #| label: fig-odds-probs
 #| fig-cap: "Odds versus probability"
 
-odds = function(pi) pi/(1-pi)
+odds = function(pi) pi / (1 - pi)
 library(ggplot2)
-odds_plot = ggplot() + 
+ggplot() + 
   geom_function(fun = odds, aes(col = "odds function")) +
   xlim(0, .5) +
   xlab("Probability") +
@@ -317,23 +329,14 @@ odds_plot = ggplot() +
   theme_bw() +
   labs(colour = "") +
   theme(legend.position = "bottom")
+
 ```
 
-::: {.content-visible when-format="pdf"}
-```{r}
-print(odds_plot)
-```
-:::
-
-::: {.content-visible when-format="html"}
-```{r}
-plotly::ggplotly(odds_plot) |>  
-  plotly::layout(legend = list(orientation = 'h'))
-```
-:::
 
 :::{#exm-odds}
+
 ### Calculating odds
+
 In @exr-probs, we estimated that the probability of MI, given OC use, is $\pi(OC) \eqdef \Pr(MI|OC) = `r 13/5000`$. If this estimate is correct, then the odds of MI, given OC use, is:
 
 ```{r}

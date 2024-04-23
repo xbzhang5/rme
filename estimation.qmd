@@ -170,7 +170,7 @@ to the distributions of the *errors* made by the resulting estimates.
 ::: {#def-error}
 ##### Error
 
-The **error** of an estimate $\hth$, often denoted $\eps(\hth)$, is the
+The **error** of an estimate $\hth$ of a true value $\th$, often denoted $\eps(\hth)$, or more completely $\eps(\hth, \th)$, is the
 difference between the estimate and its estimand $\theta$; that is:
 
 $$\eps(\hth) \eqdef \hth - \th$$

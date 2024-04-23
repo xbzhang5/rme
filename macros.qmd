@@ -43,6 +43,7 @@
 \def\ea{\end{aligned}}
 \def\ind{⫫}
 \def\iid{\text{iid}}
+\def\simind{\ \sim_{\ind}\ }
 \def\siid{\ \sim_{\iid}\ }
 \def\simiid{\siid}
 \def\distiid{\siid}
@@ -61,12 +62,16 @@
 \providecommand{\hE}[1]{\hat{\text{E}}\sb{#1}}
 \providecommand{\hExp}[1]{\hat{\text{E}}\sb{#1}}
 \providecommand{\hmu}[1]{\hat{\mu}\sb{#1}}
+\def\Expp{\mathbb{E}}
 \providecommand{\E}[1]{\mathbb{E}\sb{#1}}
 \providecommand{\Ef}[1]{\mathbb{E}\sb{#1}}
 \providecommand{\Exp}[1]{\mathbb{E}\sb{#1}}
 \providecommand{\Expf}[1]{\mathbb{E}\sb{#1}}
+\def\Varr{\text{Var}}
 \providecommand{\var}[1]{\text{Var}\paren{#1}}
+\providecommand{\varf}[1]{\text{Var}\paren{#1}}
 \providecommand{\Var}[1]{\text{Var}\paren{#1}}
+\providecommand{\Varf}[1]{\text{Var}\paren{#1}}
 \providecommand{\Cov}[1]{\text{Cov}\paren{#1}}
 \providecommand{\varh}[1]{\hat{\text{Var}}\paren{#1}}
 \providecommand{\vc}[1]{\boldsymbol{#1}}
@@ -93,6 +98,7 @@
 \providecommand{\pf}[1]{\p \paren{#1}}
 \providecommand{\Bias}[1]{\text{Bias}\paren{#1}}
 \providecommand{\bias}[1]{\text{Bias}\paren{#1}}
+\def\ss{\sigma^2}
 \providecommand{\ssqf}[1]{\sigma^2\paren{#1}}
 \providecommand{\mselr}[1]{\text{MSE}\paren{#1}}
 \providecommand{\maelr}[1]{\text{MAE}\paren{#1}}

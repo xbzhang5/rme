@@ -368,7 +368,7 @@ $$ {#eq-model-interact}
 Now, the slope of mean birthweight $E[Y|A,S]$ with respect to gestational age $A$ depends on the value of sex $S$.
 :::
 
-::: {.column width=40%}
+::: {.column width=30% .smaller}
 
 ```{r}
 #| label: tbl-bw-model-coefs-interact
@@ -389,7 +389,7 @@ bw_lm2 |>
 :::{.column width=10%}
 :::
 
-:::{.column width=50%}
+:::{.column width=60%}
 
 ```{r}
 #| label: fig-bw-interaction
@@ -768,7 +768,8 @@ $$
 
 $$
 \begin{aligned}
-\frac{d}{d\beta}\left(\sum_{i=1}^n (y_i - x_i' \beta)^2\right) &= 
+\frac{d}{d\beta}\paren{
+\sum_{i=1}^n (y_i - x_i' \beta)^2} &= 
 \frac{d}{d\beta}(\mathbf y - X\beta)'(\mathbf y - X\beta)\\
 &= \frac{d}{d\beta} (y'y - 2y'X\beta +\beta'X'X\beta)\\
 &= (- 2X'y +2X'X\beta)
@@ -909,18 +910,18 @@ pval_t =
 
 $$
 \begin{aligned}
-&P\left(
+&P\paren{
 | \hat \beta_{AM}  | > 
 | `r coef(bw_lm2)["sexmale:age"]`| \middle| H_0
-\right) 
+} 
 \\
-&= P\left(
-\left| \frac{\hat\beta_{AM}}{\hat{SE}(\hat\beta_{AM})} \right| > 
-\left| \frac{`r beta_hat`}{`r se_hat`} \right| \middle| H_0
-\right)\\ 
-&= P\left(
-| T_{`r dfresid`} | >  `r t_stat` \middle| H_0
-\right)\\
+&= \Pr \paren{
+\abs{ \frac{\hat\beta_{AM}}{\hat{SE}(\hat\beta_{AM})} } > 
+\abs{ \frac{`r beta_hat`}{`r se_hat`} } \middle| H_0
+}\\ 
+&= \Pr \paren{
+\abs{ T_{`r dfresid`} }  >  `r t_stat` | H_0
+}\\
 &= `r pval_t`
 \end{aligned}
 $$ 
@@ -1336,30 +1337,79 @@ See `?predict.lm` for more.
 
 ## Diagnostics {#sec-diagnose-LMs}
 
+### Assumptions in linear regression models
+
+$$Y|X \simind N(\X'\b,\ss)$$
+
+1. Normality: The distribution conditional on a given $X$ value is normal
+2. Correct Functional Form: The conditional means have the structure $\Expp[Y|\vX=\vx} = \vx'\b$
+3. Homoskedasticity: The variance $\ss$ is constant 
+4. Independence: The observations are statistically independent
+
+:::{#def-homosked}
+#### homoskedastic
+A random variable $Y$ is **homoskedastic** (with respect to covariates $X$) if the variance of $Y$ does not vary with $X$: 
+
+$$\Varr(Y|X=x) = \ss, \forall x$$
+
+### Direct visualization
+
+::: notes
+The most direct way to examine the fit of a model is to compare it to the raw observed data.
+:::
+
+```{r}
+#| label: fig-bw-interaction2
+#| fig-cap: "Birthweight model with interaction term"
+bw = 
+  bw |> 
+  mutate(
+    predlm2 = predict(bw_lm2)
+  ) |> 
+  arrange(sex, age)
+
+plot1_interact = 
+  plot1 %+% bw +
+  geom_line(aes(y = predlm2))
+
+print(plot1_interact)
+```
+
+::: notes
+It's not easy to assess these assumptions from this model.
+If there are multiple continuous covariates, it becomes even harder to visualize the raw data.
+:::
+
 ### Residuals
 
+::: notes
+Maybe we can transform the data and model in some way to make it easier to inspect.
+:::
 :::{#def-resid-noise}
 #### Residual noise
 
-The **residual noise** in a probability model $p(Y)$ is the difference between an observed value $y$ and its distributional mean:
+The **residual noise** in a probabilistic model $p(Y)$ is the difference between an observed value $y$ and its distributional mean:
 
-$$\erf{y} \eqdef y - \Exp{Y}$$ {#eq-def-resid}
+$$\eps{y} \eqdef y - \Exp{Y}$$ {#eq-def-resid}
 :::
 
 :::{.notes}
-This is the same notation that we used for [errors](estimation.qmd#def-error). Each observation $y$ can be viewed as an estimate of $\Exp{Y}$ (albeit an imprecise one, individually, since $n=1$). Likewise, $\Exp{Y}$ can be viewed as an estimate of $Y$, before $y$ is observed.
+We use the same notation for residual noise that we used for [errors](estimation.qmd#def-error). 
+$\Exp{Y}$ can be viewed as an estimate of $Y$, before $y$ is observed.
+Conversely, each observation $y$ can be viewed as an estimate of $\Exp{Y}$ (albeit an imprecise one, individually, since $n=1$). 
+
 :::
 
 We can rearrange @eq-def-resid to view $y$ as the sum of its mean plus the residual noise:
 
-$$y = \Exp{Y|X} + \erf{y}$$
+$$y = \Exp{Y} + \eps{y}$$
 
 ---
 
 :::{#thm-gaussian-resid-noise}
 #### Residuals in Gaussian models
 
-If $Y$ has a Gaussian distribution, then $\erf{Y}$ also has a Gaussian distribution, and vice versa.
+If $Y$ has a Gaussian distribution, then $\eps{Y}$ also has a Gaussian distribution, and vice versa.
 :::
 
 :::{.proof}
