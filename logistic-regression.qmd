@@ -295,14 +295,15 @@ The **odds** of an outcome, denoted $\omega$ ("omega"), is the probability that 
 
 That is, if the probability of an outcome is $\pi$, then the corresponding odds of that outcome is 
 
-$$\omega(\pi) \eqdef \frac{\pi}{1-\pi}$$
+$$\omega(\pi) \eqdef \frac{\pi}{1-\pi}$${#eq-odds-probs}
 
-This function, which transforms probabilities into odds, is called the **odds function** (see @fig-odds-probs).
+[Function #eq-odds-probs], which transforms probabilities into odds, is called the **odds function**. @fig-odds-probs graphs the shape of this function.
+
 :::
 
 ```{r}
 #| code-fold: true
-#| label: "fig-odds-probs"
+#| label: fig-odds-probs
 #| fig-cap: "Odds versus probability"
 
 odds = function(pi) pi/(1-pi)

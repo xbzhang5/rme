@@ -110,3 +110,11 @@ $$
 $$
 
 :::::
+
+:::{#def-indpt}
+
+#### Independence
+
+A set of random variables $\X1n$ are **mutually independent** if their joint probability is equal to the product of their marginal probabilities:
+
+$$\Pr(\Xx1n) = \prodi1n{\Pr(X_i=x_i)}$$

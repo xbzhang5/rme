@@ -6,51 +6,70 @@ These notes are derived primarily from @dobson4e (mostly chapters 1-5).
 
 Some material was also taken from @mclachlan2007algorithm and @CaseBerg01.
 
+## Overview of maximum likelihood estimation
+
 ### The likelihood function
 
 :::{#def-lik}
 #### Likelihood
 
 Let $\vec x$ be a dataset with corresponding random variable $\vec X$.
-Let $p_\Theta(\vec X)$ be a probability model for the distribution of $\vec X$ with parameter vector $\Theta$.
+Let $\p_{\Th}(\vec X)$ be a probability model for the distribution of $\vX$ with parameter vector $\Th$.
 
-Then the **likelihood** of parameter value $\theta$ (for model $p_\Theta(\vec X)$) is the *joint probability* of $\vec x$ given $\Theta = \theta$:
+Then the **likelihood** of parameter value $\th$, for model $\p_{\Th}(X)$ and data $\vX = \vx$, is the *joint probability* of $\vx$ given $\Th = \th$:
  
 $$
 \ba
-\Lik(\theta) &\eqdef p_{\theta}(\vec X)
+\Lik(\theta) &\eqdef p_{\theta}(\vX = \vx)
 \\&=p_{\theta}(X_1=x_1, ..., X_n = x_n)
 \ea
 $$
 :::
 
+::: callout-note
+
+#### Notation for the likelihood function
+
+The likelihood function can be written as:
+
+- $\Lik(\theta)$
+- $\Lik(\vec x;\theta)$
+- $\Lik(\theta; \vec x)$
+- $\Lik_{\vec x}(\theta)$
+- $\Lik_{\theta}(\vec x)$
+- $\Lik(\vec x | \theta)$
+
+All of these notations mean the same thing.
+:::
+
 ::: notes
-The likelihood is a function that takes $\theta$ (and implicitly, $\vec X$) as inputs and outputs a single number, the joint probability of $\vec X$ for model $p_\Theta(\vec X)$ with $\Theta = \theta$.
+The likelihood is a function that takes $\theta$ (and implicitly, $\vec X$) as inputs and outputs a single number, the joint probability of $\vec x$ for model $p_\Theta(\vX=\vx)$ with $\Theta = \theta$.
 :::
 
 ---
 
 :::{#thm-lik-iid}
 
-#### Likelihood of an iid sample
+#### Likelihood of an independent sample
 
-For iid data,
+For [mutually independent](probability.qmd#def-indpt) data $X_1, ..., X_n$:
 
-$$
-\ba
-\Lik(\vec x|\theta) 
-&\eqdef p(X_1 = x_1, …,X_n =x_n|\theta) 
-\\&= \prod_{i=1}^n p(X=x_i|\theta)
-\ea
-$$ {#eq-lik}
+$$\Lik(\vec x|\theta) = \prod_{i=1}^n \p(X_i=x_i|\theta)$$ {#eq-Lik}
 
 :::
 
 :::{.proof}
-By definition of statistical independence.
-:::
 
----
+$$
+\ba
+\Lik(\vec x|\theta) 
+&\eqdef \p(X_1 = x_1, …,X_n =x_n|\theta) 
+\\&= \prod_{i=1}^n \p(X_i=x_i|\theta)
+\ea
+$$
+The second equality is by the definition of statistical independence.
+
+:::
 
 ### The maximum likelihood estimate
 
@@ -58,33 +77,101 @@ By definition of statistical independence.
 
 #### Maximum likelihood estimate
 
-The **maximum likelihood estimate** of a parameter vector $\theta$ is the value of $\theta$ that maximizes the likelihood:
+The **maximum likelihood estimate** of a parameter vector $\Theta$, denoted $\hthml$, is the value of $\Theta$ that maximizes the likelihood:
 
 $$
-\hthml = \arg \max_\theta \Lik(\theta)
-$$
-
+\hthml \eqdef \arg \max_\Th \Lik(\Th)
+$$ {#eq-mle}
 :::
+
+### Finding the maximum of a function
+
+Recall from calculus: the maxima of a continuous function $f(x)$ over a range of input values $\range{x}$ can be found either:
+
+- at the edges of the range of input values, *OR*:
+- where the function is flat (i.e. where the gradient function $f'(x) = 0$) *AND* the second derivative is negative definite ($f''(x) < 0$).
+
+### Directly maximizing the likelihood function for *iid* data
+
+To find the maximizer(s) of the likelihood function, we need to solve $\Lik'(\th) = 0$ for $\theta$. However, even for mutually independent data, we quickly run into a problem:
 
 $$
 \ba
-\ell(x|\theta) 
-&\eqdef \log{\mathcal L(x|\theta)}
-\\&= \sum_{i=1}^n \log{p(X=x_i|\theta)}
-\ea$$ {#eq-loglik}
+\Lik'(\th) 
+&= \deriv{\th} \Lik(\th)
+\\ &= \deriv{\th} \prod_{i=1}^n p(X_i=x_i|\theta)
+\ea
+$$ {#eq-deriv-Lik}
 
-$$\hthml \eqdef \arg \max_\theta \ell(x|\theta)$$ {#eq-mle}
-
-::: note
-Recall: the second equality in @eq-lik relies on the assumption that the $X_i$s are mutually independent.
-:::
+The derivative of the likelihood of independent data is the derivative of a product. 
+We will have to perform a massive application of the product rule to evaluate this derivative.
 
 ### The log-likelihood function
 
 It is typically easier to work with the log of the likelihood function:
 
 :::{#def-loglik}
+
+#### Log-likelihood
+
+The **log-likelihood** of parameter value $\theta$, for model $\p_{\Theta}(\vX)$ and data $\vX = \vx$, is the natural logarithm of the likelihood^[ <https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>]:
+
 $$\ell \eqdef \ell(\vec x;\theta) \eqdef \p(\vec X = \vec x \mid \Theta = \theta)$$
+:::
+
+:::{#thm-mle-use-log}
+####
+
+The likelihood and log-likelihood have the same maximizer:
+
+$$
+\am_\th \Lik(\th) = \am_\th \lik(\th)
+$$
+::: 
+
+::: proof
+Left to the reader.
+:::
+
+---
+
+:::{#thm-llik-iid}
+
+#### Log-likelihood of an iid sample
+
+For iid data $X_1, ..., X_n$ with shared distribution $\p(X=x)$:
+$$
+\ba
+\ell(x|\theta) 
+&\eqdef \log{\mathcal L(x|\theta)}
+\\&= \sum_{i=1}^n \log{p(X=x_i|\theta)}
+\ea
+$$ {#eq-loglik}
+:::
+
+#### Derivative of the log-likelihood function for *iid* data
+
+For iid data, we will have a much easier time taking the derivative of the log-likelihood:
+
+$$
+\ba
+\lik'(\th) 
+&= \deriv{\th} \lik(\th)
+\\ &= \deriv{\th} \sum_{i=1}^n \log{\p(X=x_i|\theta)}
+\\ &= \sum_{i=1}^n \deriv{\th} \log{\p(X=x_i|\theta)}
+\ea
+$$ {#eq-deriv-llik}
+
+### The score function
+
+The first derivative of the log-likelihood, $\lik'(\th)$, is important enough to have its own name and symbol: the *score function*, $U(\theta)$.
+
+:::{#def-score}
+#### Score function
+
+The **score function** of a statistical model $\pr(\vec X=\vec x)$ is the gradient (i.e., first derivative) of the log-likelihood of that model:
+
+$$U(\theta) \eqdef \lik'(\th)$$
 :::
 
 ### Asymptotic distribution of the maximum likelihood estimate
@@ -97,15 +184,15 @@ $$
 
 Recall:
 
-- $\einff{\theta} \eqdef \E{\oinff{\vec X;\theta}}$
-- $\oinff{\vec X;\theta} \eqdef -\ell''(\vec X;\theta)$
+- $\einf(\theta) \eqdef \E{\oinf(\vX;\theta)}$
+- $\oinf(\vX,\theta) \eqdef -\ell''(\vX;\theta)$
 
-We can estimate $\einff{\theta}$ using either $\einff{\hthml}$ or $\oinff{\vec x; \hthml}$.
+We can estimate $\einf(\th)$ using either $\einf(\hthml)$ or $\oinf(\vec x; \hthml)$.
 
 So we can estimate the standard error of $\hth_k$ as:
 
 $$
-\HSE{\hth_k} = \sqrt{\inv{\paren{\heinff{\hthml}}}_{kk}}
+\HSE{\hth_k} = \sqrt{\sb{\inv{\heinff{\hthml}}}_{kk}}
 $$
 
 #### Confidence intervals for MLEs
@@ -126,7 +213,7 @@ log(likelihood ratio) tests [c.f. @dobson4e §5.7]:
 
 $$-2\ell_{0} \sim \chi^{2}(p - q)$$
 
-See also https://online.stat.psu.edu/stat504/book/export/html/657
+See also <https://online.stat.psu.edu/stat504/book/export/html/657>
 
 #### Prediction intervals for MLEs
 
@@ -149,7 +236,7 @@ Suppose $X_{1}, ..., X_{n} \siid N(\mu, \sigma^{2})$.
 Let $X = (X_{1},\ldots,X_{n})^{\top}$ be these random
 variables in vector format. Let $x_{i}$ and $x$ denote the corresponding
 observed data. Then $\theta = (\mu,\sigma^{2})$ is
-the vector of true parameters, and $\Theta = (M, \Sigma^2)$ is the vector of parameters as a random
+the vector of true parameters, and $\Theta = (\Mu, \Sigma^2)$ is the vector of parameters as a random
 vector.
 
 Then the log-likelihood
@@ -429,10 +516,10 @@ approximately, for large sample sizes.
 :::
 
 We can estimate $\einf^{- 1}(\theta)$ by working out
-$\E[-\ell'']$ or
-$\E[\ell^{'}{\ell^{'}}^{\top}]$
+$\Ef{-\ell''}$ or
+$\Ef{\ell^{'}{\ell^{'}}^{\top}}$
 and plugging in $\hthml$, but sometimes we instead use
-$\oinff{\hthml;\vx}$ for convenience; there are
+$\oinf(\hthml,\vx)$ for convenience; there are
 some cases where it’s provably better according to some criteria (@efron1978assessing).
 
 Note that later, when we are trying to find MLEs for likelihoods that we

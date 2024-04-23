@@ -3,6 +3,8 @@
 \providecommand{\paren}[1]{\left(#1\right)}
 \providecommand{\sb}[1]{\left[#1\right]}
 \def\pr{\text{p}}
+\def\am{\arg \max}
+\def\argmax{\arg \max}
 \def\p{\text{p}}
 \def\ga{\alpha}
 \def\b{\beta}
@@ -11,6 +13,11 @@
 \def\gd{\delta}
 \def\eps{\epsilon}
 \def\om{\omega}
+\def\m{\mu}
+\def\gm{\mu}
+\def\M{\text{M}}
+\def\gM{\text{M}}
+\def\Mu{\text{M}}
 \def\cd{\cdot}
 \def\cds{\cdots}
 \def\lds{\ldots}
@@ -28,6 +35,7 @@
 \def\cirad{\za \cdot \hse{\hb}}
 \def\ci{\hb {\color{red}\pm} \cirad}
 \def\th{\theta}
+\def\Th{\Theta}
 \def\xbar{\bar{x}}
 \def\hth{\hat\theta}
 \def\hthml{\hth_{\text{ML}}}
@@ -39,11 +47,13 @@
 \def\tf{\therefore}
 \def\Lik{\mathcal{L}}
 \def\llik{\ell}
+\def\lik{\ell}
 \def\cR{\mathcal{R}}
 \providecommand{\range}[1]{\cR\paren{#1}}
 \def\~{\approx}
 \def\dapp{\dot\approx}
 \providecommand{\red}[1]{{\color{red}#1}}
+\providecommand{\deriv}[1]{\frac{d}{d#1}}
 \providecommand{\blue}[1]{{\color{blue}#1}}
 \providecommand{\green}[1]{{\color{green}#1}}
 \providecommand{\hE}[1]{\hat{\text{E}}\sb{#1}}
@@ -71,10 +81,10 @@
 \providecommand{\inv}[1]{\paren{#1}^{-1}}
 \def\oinf{I}
 \providecommand{\oinff}[1]{\oinf\paren{#1}}
-\def\einf}{\mathcal{I}}
+\def\einf{\mathcal{I}}
 \providecommand{\einff}[1]{\einf\paren{#1}}
-\providecommand{\heinf}[1]{\hat{\einf}}
-\providecommand{\heinff}[1]{\heinf\paren{#1}}
+\def\heinf{\hat{\einf}}
+\providecommand{\heinff}[1]{\heinf \paren{#1}}
 \providecommand{\1}[1]{\mathbb{1}_{#1}}
 \providecommand{\set}[1]{\cb{1}}
 \providecommand{\pf}[1]{\p \paren{#1}}
@@ -88,7 +98,13 @@
 \providecommand{\sq}{^2}
 \providecommand{\erf}[1]{\eps\paren{#1}}
 \renewcommand{\vec}[1]{\tilde{#1}}
-\newcommand{\v}[1]{\vec{#1}}
-\renewcommand{\vx}[1]{\v{x}}
-\renewcommand{\vX}[1]{\v{X}}
+\providecommand{\v}[1]{\vec{#1}}
+\def\vx{\vec{x}}
+\def\vX{\vec{X}}
 \providecommand{\mat}[1]{\mathbf{#1}}
+\providecommand{\dsn}[1]{#1_1, \ldots, #1_n}
+\def\Xx1n{X_1=x_1, \ldots, X_n = x_n}
+\def\X1n{\dsn{X}}
+\def\x1n{\dsn{x}}
+\def\sumi1n{\sum_{i=1}^n}
+\def\prodi1n{\prod_{i=1}^n}
