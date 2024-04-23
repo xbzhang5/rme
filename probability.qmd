@@ -155,7 +155,7 @@ $$
 \begin{aligned}
 \text{Var}(X) 
 &\eqdef \text{Cov}(X)\\
-&\eqdef E\left\lbrack \left( X - E\lbrack X\rbrack \right)^{\top}\left( X - E\lbrack X\rbrack \right) \right\rbrack\\
+&\eqdef E[ \left( X - E\lbrack X\rbrack \right)^{\top}\left( X - E\lbrack X\rbrack \right) ]\\
 \ea
 $$
 
@@ -167,7 +167,7 @@ $$
 $$
 \ba
 \Var{X} 
-&= E\left\lbrack X^{\top}X \right\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack
+&= E[ X^{\top}X ] - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack
 \end{aligned}
 $$
 :::
@@ -176,11 +176,11 @@ $$
 $$
 \ba
 \Var{X} 
-&= E\left\lbrack \left( X^{\top} - E\lbrack X\rbrack^{\top} \right)\left( X - E\lbrack X\rbrack \right) \right\rbrack\\
-&= E\left\lbrack X^{\top}X - E\lbrack X\rbrack^{\top}X - X^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack \right\rbrack\\
-&= E\left\lbrack X^{\top}X \right\rbrack - E\lbrack X\rbrack^{\top}E\lbrack X\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack\\
-&= E\left\lbrack X^{\top}X \right\rbrack - 2{E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack\\
-&= E\left\lbrack X^{\top}X \right\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack
+&= E[ \left( X^{\top} - E\lbrack X\rbrack^{\top} \right)\left( X - E\lbrack X\rbrack \right) ]\\
+&= E[ X^{\top}X - E\lbrack X\rbrack^{\top}X - X^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack ]\\
+&= E[ X^{\top}X ] - E\lbrack X\rbrack^{\top}E\lbrack X\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack\\
+&= E[ X^{\top}X ] - 2{E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack\\
+&= E[ X^{\top}X ] - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack
 \end{aligned}
 $$
 :::

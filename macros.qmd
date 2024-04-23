@@ -42,8 +42,10 @@
 \def\ba{\begin{aligned}}
 \def\ea{\end{aligned}}
 \def\ind{⫫}
-\def\iid{\ \sim_{\text{iid}}\ }
-\def\siid{\ \sim_{\text{iid}}\ }
+\def\iid{\text{iid}}
+\def\siid{\ \sim_{\iid}\ }
+\def\simiid{\siid}
+\def\distiid{\siid}
 \def\tf{\therefore}
 \def\Lik{\mathcal{L}}
 \def\llik{\ell}
@@ -76,6 +78,7 @@
 \providecommand{\SE}[1]{\text{SE}\paren{#1}}
 \providecommand{\HSE}[1]{\widehat{\text{SE}}\paren{#1}}
 \renewcommand{\log}[1]{\text{log}\cb{#1}}
+\providecommand{\logf}[1]{\text{log}\cb{#1}}
 \renewcommand{\exp}[1]{\text{exp}\cb{#1}}
 \providecommand{\e}[1]{\text{e}^{#1}}
 \providecommand{\inv}[1]{\paren{#1}^{-1}}
@@ -106,5 +109,7 @@
 \def\X1n{\dsn{X}}
 \def\x1n{\dsn{x}}
 \def\Xx1n{X_1=x_1, \ldots, X_n = x_n}
+\def\sumin{\sum_{i=1}^n}
 \def\sumi1n{\sum_{i=1}^n}
+\def\prodin{\prod_{i=1}^n}
 \def\prodi1n{\prod_{i=1}^n}

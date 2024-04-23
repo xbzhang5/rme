@@ -4,7 +4,7 @@
 
 \usepackage{MnSymbol}
 
-Suppose $X_1,...,X_n \iid N(M,1)$
+Suppose $X_1,...,X_n \siid N(M,1)$
 
 Suppose $M \sim N(0, 1)$.
 

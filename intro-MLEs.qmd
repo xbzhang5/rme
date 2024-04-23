@@ -116,8 +116,10 @@ It is typically easier to work with the log of the likelihood function:
 
 The **log-likelihood** of parameter value $\theta$, for model $\p_{\Theta}(\vX)$ and data $\vX = \vx$, is the natural logarithm of the likelihood^[ <https://en.wikipedia.org/wiki/Does_exactly_what_it_says_on_the_tin>]:
 
-$$\ell \eqdef \ell(\vec x;\theta) \eqdef \p(\vec X = \vec x \mid \Theta = \theta)$$
+$$\lik(\th) \eqdef \logf{\Lik(\th)}$$
 :::
+
+---
 
 :::{#thm-mle-use-log}
 ####
@@ -137,22 +139,42 @@ Left to the reader.
 
 :::{#thm-llik-iid}
 
-#### Log-likelihood of an iid sample
+#### Log-likelihood of an $\iid$ sample
 
-For iid data $X_1, ..., X_n$ with shared distribution $\p(X=x)$:
+For $\iid$ data $X_1, ..., X_n$ with shared distribution $\p(X=x)$:
+
+$$\ell(x|\theta) = \sum_{i=1}^n \log{p(X=x_i|\theta)}$$ {#eq-loglik}
+:::
+
+:::{.proof}
 $$
 \ba
 \ell(x|\theta) 
-&\eqdef \log{\mathcal L(x|\theta)}
+&\eqdef \log{\Lik(\vec x|\theta)}
+\\&= \log{\prod_{i=1}^n \p(X_i=x_i|\theta)}
 \\&= \sum_{i=1}^n \log{p(X=x_i|\theta)}
 \ea
-$$ {#eq-loglik}
+$$
 :::
 
-#### Derivative of the log-likelihood function for *iid* data
+---
 
-For iid data, we will have a much easier time taking the derivative of the log-likelihood:
+::: notes
 
+For $\iid$ data, we will have a much easier time taking the derivative of the log-likelihood:
+
+:::
+
+:::{#thm-deriv-llik-iid}
+#### Derivative of the log-likelihood function for $\iid$ data
+
+For $\iid$ data:
+
+$$\ell'(\theta) = \sumin \deriv{\theta} \log{\p(X=x_i|\theta)}$$ {#eq-deriv-llik}
+
+:::
+
+:::{.proof}
 $$
 \ba
 \lik'(\th) 
@@ -160,11 +182,13 @@ $$
 \\ &= \deriv{\th} \sum_{i=1}^n \log{\p(X=x_i|\theta)}
 \\ &= \sum_{i=1}^n \deriv{\th} \log{\p(X=x_i|\theta)}
 \ea
-$$ {#eq-deriv-llik}
+$$
+:::
+---
 
 ### The score function
 
-The first derivative of the log-likelihood, $\lik'(\th)$, is important enough to have its own name and symbol: the *score function*, $U(\theta)$.
+The first derivative of the log-likelihood, $\lik'(\th)$, is important enough to have its own name: the *score function*.
 
 :::{#def-score}
 #### Score function
@@ -177,8 +201,8 @@ $$\lik'(\th) \eqdef \deriv{\th} \lik(\th)$$
 ::: notes
 We often
 skip writing the arguments $x$ and/or $\theta)$, so
-$\ell^{'} \eqdef \ell^{'}(\vec x;\theta) \ell^{'}(\theta)$.[^1] Some statisticians
-use $U$ or $S$ instead of $\ell^{'}$. I prefer $\ell^{'}$.
+$\ell' \eqdef \ell'(\vec x;\theta) \eqdef \ell'(\theta)$.[^1] Some statisticians
+use $U$ or $S$ instead of $\ell'$. I prefer $\ell'$.
 Why use up extra letters?
 :::
 
@@ -206,18 +230,18 @@ $$
 
 ### The (Fisher) (expected) information matrix
 
-The variance of $\ell^{'}(x,\theta)$,
-${Cov}\left\{ \ell^{'}(x,\theta) \right\}$, is also very
+The variance of $\ell'(x,\theta)$,
+${Cov}\left\{ \ell'(x,\theta) \right\}$, is also very
 important; we call it the "expected information matrix", "Fisher
 information matrix", or just "information matrix", and we represent it
 using the symbol $\mathfrak{I}$ (`\frakturI` in Unicode, `\mathfrak{I}` in LaTeX).
 
-$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = E\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - E\left\lbrack \ell^{'} \right\rbrack\ E\left\lbrack \ell^{'} \right\rbrack^{\top}
+$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell'|\theta \right) = E[ \ell'{\ell'}^{\top} ] - E[ \ell' ]\ E[ \ell' ]^{\top}
 $$
 
 The elements of $\mathfrak{I}$ are:
 
-$$\left\{ \mathfrak{I}_{ij} \eqdef {Cov}\left( {\ell^{'}}_{i},{\ell^{'}}_{j} \right) = E\left\lbrack \ell_{i}^{'}\ell_{j}^{'} \right\rbrack - E\left\lbrack {\ell^{'}}_{i} \right\rbrack E\left\lbrack {\ell^{'}}_{j} \right\rbrack \right\}$$
+$$\left\{ \mathfrak{I}_{ij} \eqdef {Cov}\left( {\ell'}_{i},{\ell'}_{j} \right) = E[ \ell_{i}'\ell_{j}' ] - E[ {\ell'}_{i} ] E[ {\ell'}_{j} ] \right\}$$
 
 Here, 
 
@@ -273,11 +297,11 @@ the expectation operator removed $x$.
 Also note that for most of the distributions you are familiar with
 (including Gaussian, binomial, Poisson, exponential):
 
-$$\Exp{\ell^{'}} = 0$$
+$$\Exp{\ell'} = 0$$
 
 So
 
-$$\einff{\theta} = \Exp{\ell^{'}{\ell^{'}}^{\top} }$$
+$$\einff{\theta} = \Exp{\ell'{\ell'}^{\top} }$$
 
 Moreover, for those distributions (called the "exponential family"), we
 have:
@@ -289,7 +313,7 @@ $$
 
 (see @dobson4e, §3.17), where
 
-$$\ell^{''} \eqdef \frac{d}{d\theta}\ell^{'(x,\theta)^{\top}} = \frac{d}{d\theta}\frac{d}{d\theta^{\top}}\ell(x,\theta)$$
+$$\ell'' \eqdef \frac{d}{d\theta}\ell^{'(x,\theta)^{\top}} = \frac{d}{d\theta}\frac{d}{d\theta^{\top}}\ell(x,\theta)$$
 
 is the $p \times p$ matrix whose elements are:
 
@@ -298,7 +322,7 @@ $$\ell_{ij}'' \eqdef \frac{d}{d\theta_{i}}\frac{d}{d\theta_{j}}\log{ p\left( X =
 $\ell''$ could be called the "Hessian" of the log-likelihood
 function.
 
-Sometimes, we use $I(\theta;x) \eqdef - \ell^{''}$ (note the
+Sometimes, we use $I(\theta;x) \eqdef - \ell''$ (note the
 standard-font "I" here). $I(\theta;x)$ is the observed information, precision, or concentration
 matrix (Negative Hessian).
 
@@ -311,7 +335,7 @@ approximately, for large sample sizes.
 
 We can estimate $\einf^{- 1}(\theta)$ by working out
 $\Ef{-\ell''}$ or
-$\Ef{\ell^{'}{\ell^{'}}^{\top}}$
+$\Ef{\ell'{\ell'}^{\top}}$
 and plugging in $\hthml$, but sometimes we instead use
 $\oinf(\hthml,\vx)$ for convenience; there are
 some cases where it’s provably better according to some criteria (@efron1978assessing).
@@ -325,8 +349,8 @@ Newton-Raphson algorithm:
 $$
 \begin{aligned}
 \widehat{\theta} 
-&\leftarrow \widehat{\theta} + \left\lbrack I\left( \widehat{\theta},y \right) \right\rbrack^{- 1}\ell^{'}\left( y,\widehat{\theta} \right)\\
-&= \widehat{\theta} - \left\lbrack \ell^{''}\left( y,\widehat{\theta} \right) \right\rbrack^{- 1}\ell^{'}\left( y,\widehat{\theta} \right)
+&\leftarrow \widehat{\theta} + [ I\left( \widehat{\theta},y \right) ]^{- 1}\ell'\left( y,\widehat{\theta} \right)\\
+&= \widehat{\theta} - [ \ell''\left( y,\widehat{\theta} \right) ]^{- 1}\ell'\left( y,\widehat{\theta} \right)
 \end{aligned}
 $$
 
@@ -341,16 +365,16 @@ use the expected information instead.
 There’s also an "empirical information matrix" (see McLachlan and
 Krishnan 2007).
 
-$$I_{e}(\theta,y) = \sum_{i = 1}^{n}{\ell_{i}^{'}\ {\ell_{i}^{'}}^{\top}} - \frac{1}{n}\ell^{'}{\ell^{'}}^{\top}$$
+$$I_{e}(\theta,y) = \sum_{i = 1}^{n}{\ell_{i}'\ {\ell_{i}'}^{\top}} - \frac{1}{n}\ell'{\ell'}^{\top}$$
 
 where $\ell_{i}$ is the log-likelihood of the ith observation.
-Note that $\ell^{'} = \sum_{i = 1}^{n}\ell_{i}^{'}$.
+Note that $\ell' = \sum_{i = 1}^{n}\ell_{i}'$.
 
 $\frac{1}{n}I_{e}(\theta,y)$ is the sample equivalent of
 
-$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell^{'}|\theta \right) = E\left\lbrack \ell^{'}{\ell^{'}}^{\top} \right\rbrack - E\left\lbrack \ell^{'} \right\rbrack\ E\left\lbrack \ell^{'} \right\rbrack^{\top}$$
+$$\mathfrak{I \eqdef I(}\theta) \eqdef {Cov}\left( \ell'|\theta \right) = E[ \ell'{\ell'}^{\top} ] - E[ \ell' ]\ E[ \ell' ]^{\top}$$
 
-$$\left\{ \mathfrak{I}_{jk} \eqdef {Cov}\left( {\ell^{'}}_{j},{\ell^{'}}_{k} \right) = E\left\lbrack \ell_{j}^{'}\ell_{k}^{'} \right\rbrack - E\left\lbrack {\ell^{'}}_{j} \right\rbrack E\left\lbrack {\ell^{'}}_{k} \right\rbrack \right\}$$
+$$\left\{ \mathfrak{I}_{jk} \eqdef {Cov}\left( {\ell'}_{j},{\ell'}_{k} \right) = E[ \ell_{j}'\ell_{k}' ] - E[ {\ell'}_{j} ] E[ {\ell'}_{k} ] \right\}$$
 
 $I_{e}(\theta,y)$ is sometimes computationally easier to compute for
 Newton-Raphson-type maximization algorithms.
@@ -380,7 +404,7 @@ See also <https://online.stat.psu.edu/stat504/book/export/html/657>
 
 #### Prediction intervals for MLEs
 
-$$\overline{X} \in \left\lbrack \widehat{\mu} \pm z_{1 - \alpha\text{/}2}\frac{\sigma}{m} \right\rbrack$$
+$$\overline{X} \in [ \widehat{\mu} \pm z_{1 - \alpha\text{/}2}\frac{\sigma}{m} ]$$
 
 Where $m$ is the sample size of the new data to be predicted (typically
 1, except for binary outcomes, where it needs to be bigger for
@@ -416,18 +440,18 @@ $$
 
 ### The score function
 
-$$\ell^{'}(x,\theta) \eqdef \frac{d}{d\theta}\ell(x,\theta) = \left( \begin{array}{r}
+$$\ell'(x,\theta) \eqdef \frac{d}{d\theta}\ell(x,\theta) = \left( \begin{array}{r}
 \frac{d}{d\mu}\ell(\theta;x) \\
 \frac{d}{d\sigma^{2}}\ell(\theta;x)
 \end{array} \right) = \left( \begin{array}{r}
-\ell_{\mu}^{'}(\theta;x) \\
-\ell_{\sigma^{2}}^{'}(\theta;x)
+\ell_{\mu}'(\theta;x) \\
+\ell_{\sigma^{2}}'(\theta;x)
 \end{array} \right)$$.
 
-$\ell^{'}(x,\theta)$ is the function we set equal to 0 and solve
+$\ell'(x,\theta)$ is the function we set equal to 0 and solve
 to find the MLE:
 
-$${\widehat{\theta}}_{ML} = \left\{ \theta:\ell^{'}(x,\theta) = 0 \right\}$$
+$${\widehat{\theta}}_{ML} = \left\{ \theta:\ell'(x,\theta) = 0 \right\}$$
 
 ### MLE of $\mu$
 
@@ -554,7 +578,7 @@ See @CaseBerg01 p322, example 7.2.12.
 
 To prove it’s a maximum, need:
 
-- $\ell^{'} = 0$
+- $\ell' = 0$
 
 - At least one diagonal element of $\ell''$ is negative.
 

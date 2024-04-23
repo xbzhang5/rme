@@ -175,7 +175,7 @@ separately for each combination of gestational age and sex,
 so let's instead consider a (relatively) simple model for how that 
 distribution varies with gestational age and sex:
 
-$$p(Y=y|A=a,S=s) \iid N(\mu(a,s), \sigma^2)$$
+$$p(Y=y|A=a,S=s) \siid N(\mu(a,s), \sigma^2)$$
 
 $$
 \ba
