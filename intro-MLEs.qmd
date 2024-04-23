@@ -171,13 +171,13 @@ The first derivative of the log-likelihood, $\lik'(\th)$, is important enough to
 
 The **score function** of a statistical model $\pr(\vec X=\vec x)$ is the gradient (i.e., first derivative) of the log-likelihood of that model:
 
-$$U(\theta) \eqdef \lik'(\th)$$
+$$\lik'(\th) \eqdef \deriv{\th} \lik(\th)$$
 :::
 
 ::: notes
 We often
-skip writing the arguments $(x,\theta)$, so
-$\ell^{'} \eqdef \ell^{'}(\vec x;\theta)$.[^1] Some statisticians
+skip writing the arguments $x$ and/or $\theta)$, so
+$\ell^{'} \eqdef \ell^{'}(\vec x;\theta) \ell^{'}(\theta)$.[^1] Some statisticians
 use $U$ or $S$ instead of $\ell^{'}$. I prefer $\ell^{'}$.
 Why use up extra letters?
 :::
