@@ -15,6 +15,23 @@ A **binary variable** is a random variable which has only two possible values in
 
 {{< include binary-outcome-examples.qmd >}}
 
+
+## Key probability distributions
+
+:::::{#def-bernoulli}
+#### Bernoulli distribution
+The **Bernoulli distribution** family for a random variable $X$ is defined as:
+
+$$
+\ba
+\Pr(X=x) &= \1{x\in \set{0,1}}\pi^x(1-\pi)^{1-x}\\
+&= \cbl{{\pi, x=1}\atop{1-\pi, x=0}}
+\ea
+$$
+
+:::::
+
+
 ## Characteristics of probability distributions
 
 :::{#def-density}
@@ -96,25 +113,86 @@ $$\SD{X} \eqdef \sqrt{\Var{X}}$$
 
 :::
 
-## Key probability distributions
+:::{#def-cov}
+### Covariance
 
-:::::{#def-bernoulli}
-#### Bernoulli distribution
-The **Bernoulli distribution** family for a random variable $X$ is defined as:
+For any two one-dimensional random variables, $X,Y$:
 
+$$\Cov{X,Y} \eqdef \Expf{(X - EX)(Y - EY)}$$
+
+:::
+
+:::{#thm-alt-cov}
+$${Cov}(X,Y)= E[XY] - E[X] E[Y]$$
+:::
+
+
+:::{.proof}
+Left to the reader.
+:::
+
+:::{#lem-cov-xx}
+$$\Cov{X,X} = \Var{X}$$
+:::
+
+:::{.proof}
 $$
 \ba
-\Pr(X=x) &= \1{x\in \set{0,1}}\pi^x(1-\pi)^{1-x}\\
-&= \cbl{{\pi, x=1}\atop{1-\pi, x=0}}
+\Cov{X,X} &= E[XX] - E[X]E[X] 
+\\ &= E[X^2]-(E[X])^2
+\\ &= \Var{X}
+\ea
+$$
+:::
+
+:::{#def-cov-vec-x}
+
+### Variance/covariance of a $p \times 1$ random vector
+
+For a $p \times 1$ dimensional random vector $X$,
+
+$$
+\begin{aligned}
+\text{Var}(X) 
+&\eqdef \text{Cov}(X)\\
+&\eqdef E\left\lbrack \left( X - E\lbrack X\rbrack \right)^{\top}\left( X - E\lbrack X\rbrack \right) \right\rbrack\\
 \ea
 $$
 
-:::::
+:::
+
+:::{#thm-vcov-vec}
+
+### Alternate expression for variance of a random vector
+$$
+\ba
+\Var{X} 
+&= E\left\lbrack X^{\top}X \right\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack
+\end{aligned}
+$$
+:::
+
+:::{.proof}
+$$
+\ba
+\Var{X} 
+&= E\left\lbrack \left( X^{\top} - E\lbrack X\rbrack^{\top} \right)\left( X - E\lbrack X\rbrack \right) \right\rbrack\\
+&= E\left\lbrack X^{\top}X - E\lbrack X\rbrack^{\top}X - X^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack \right\rbrack\\
+&= E\left\lbrack X^{\top}X \right\rbrack - E\lbrack X\rbrack^{\top}E\lbrack X\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack\\
+&= E\left\lbrack X^{\top}X \right\rbrack - 2{E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack + E\lbrack X\rbrack^{\top}E\lbrack X\rbrack\\
+&= E\left\lbrack X^{\top}X \right\rbrack - {E\lbrack X\rbrack}^{\top}E\lbrack X\rbrack
+\end{aligned}
+$$
+:::
 
 :::{#def-indpt}
 
-#### Independence
+#### Statistical independence
 
-A set of random variables $\X1n$ are **mutually independent** if their joint probability is equal to the product of their marginal probabilities:
+A set of random variables $\X1n$ are **statistically independent** if their joint probability is equal to the product of their marginal probabilities:
 
 $$\Pr(\Xx1n) = \prodi1n{\Pr(X_i=x_i)}$$
+
+:::
+
+

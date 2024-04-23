@@ -103,8 +103,8 @@
 \def\vX{\vec{X}}
 \providecommand{\mat}[1]{\mathbf{#1}}
 \providecommand{\dsn}[1]{#1_1, \ldots, #1_n}
-\def\Xx1n{X_1=x_1, \ldots, X_n = x_n}
 \def\X1n{\dsn{X}}
 \def\x1n{\dsn{x}}
+\def\Xx1n{X_1=x_1, \ldots, X_n = x_n}
 \def\sumi1n{\sum_{i=1}^n}
 \def\prodi1n{\prod_{i=1}^n}
