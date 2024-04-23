@@ -282,7 +282,7 @@ ggplot() +
   geom_function(fun = score, n = 1001) +
   xlim(min(cyclones$number), max(cyclones$number)) +
   theme_bw() +
-  ylab("log-likelihood") +
+  ylab("l'(lambda)") +
   xlab('lambda') +
   geom_hline(yintercept = 0, col = 'red')
 
@@ -332,7 +332,7 @@ ggplot() +
   geom_function(fun = hessian, n = 1001) +
   xlim(min(cyclones$number), max(cyclones$number)) +
   theme_bw() +
-  ylab("log-likelihood") +
+  ylab("l''(lambda)") +
   xlab('lambda') +
   geom_hline(yintercept = 0, col = 'red')
 
