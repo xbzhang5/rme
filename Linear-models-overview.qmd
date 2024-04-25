@@ -1521,7 +1521,7 @@ $$\Var{e(y)} \approx \ss$$ {#eq-var-resid-unbiased}
 :::{.proof}
 \ 
 
-@eq-var-resid-unbiased:
+@eq-mean-resid-unbiased:
 
 $$
 \ba
@@ -1861,6 +1861,10 @@ If the model is correct, the blue line should stay flat and close to 0, and the 
 If not, we probably need to change the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
 
 :::
+
+---
+
+{{< include exm-plot-fits.qmd >}}
 ---
 
 #### Scale-location plot
@@ -1902,6 +1906,7 @@ autoplot(bw_lm2, which = 5, ncol = 1) |> print()
 ::: notes
 The blue line should be relatively flat and close to 0 here.
 :::
+
 ---
 
 ### Diagnostics constructed by hand
