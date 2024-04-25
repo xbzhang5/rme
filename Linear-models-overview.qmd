@@ -1068,11 +1068,13 @@ lrtest(bw_lm2, bw_lm1)
 
 ### AIC and BIC
 
+::: notes
 When we use likelihood ratio tests, we are comparing how well different models fit the data.
 
 Likelihood ratio tests require "nested" models: one must be a special case of the other.
 
 If we have non-nested models, we can instead use the Akaike Information Criterion (AIC) or Bayesian Information Criterion (BIC):
+:::
 
 -   AIC = $-2 * \ell(\hat\theta) + 2 * p$
 
@@ -1337,20 +1339,18 @@ See `?predict.lm` for more.
 
 ## Diagnostics {#sec-diagnose-LMs}
 
-### Assumptions in linear regression models
+### Assumptions in linear regression models {.smaller .scrollable}
 
-$$Y|X \simind N(\X'\b,\ss)$$
+$$Y|\vX \simind N(\vX'\b,\ss)$$
 
 1. Normality: The distribution conditional on a given $X$ value is normal
-2. Correct Functional Form: The conditional means have the structure $\Expp[Y|\vX=\vx} = \vx'\b$
-3. Homoskedasticity: The variance $\ss$ is constant 
+
+2. Correct Functional Form: The conditional means have the structure 
+
+$$E[Y|\vec X = \vec x] = \vec x'\beta$$
+3. Homoskedasticity: The variance $\ss$ is constant (with respect to $\vx$)
+
 4. Independence: The observations are statistically independent
-
-:::{#def-homosked}
-#### homoskedastic
-A random variable $Y$ is **homoskedastic** (with respect to covariates $X$) if the variance of $Y$ does not vary with $X$: 
-
-$$\Varr(Y|X=x) = \ss, \forall x$$
 
 ### Direct visualization
 
@@ -1390,7 +1390,7 @@ Maybe we can transform the data and model in some way to make it easier to inspe
 
 The **residual noise** in a probabilistic model $p(Y)$ is the difference between an observed value $y$ and its distributional mean:
 
-$$\eps{y} \eqdef y - \Exp{Y}$$ {#eq-def-resid}
+$$\eps(y) \eqdef y - \Exp{Y}$$ {#eq-def-resid}
 :::
 
 :::{.notes}
@@ -1441,6 +1441,55 @@ $$
 
 ---
 
+#### General characteristics of residuals
+
+:::{#thm-resid-unbiased}
+For [unbiased](estimation.qmd#sec-unbiased-estimators) estimators $\hth$:
+
+$$\E{e(y)} = 0$$ {#eq-mean-resid-unbiased}
+$$\Var{e(y)} \approx \ss$$ {#eq-var-resid-unbiased}
+
+:::
+
+:::{.proof}
+\ 
+
+@eq-var-resid-unbiased:
+
+$$
+\ba
+\Ef{e(y)} &= \Ef{y - \hat y}
+\\ &= \Ef{y} - \Ef{\hat y}
+\\ &= \Ef{y} - \Ef{y}
+\\ &= 0
+\ea
+$$
+
+@eq-var-resid-unbiased:
+
+$$
+\ba
+\Var{e(y)} &= \Var{y - \hy}
+\\ &= \Var{y} + \Var{\hy} - 2 \Cov{y, \hy}
+\\ &{\dot{\approx}} \Var{y} + 0 - 2 \cdot 0
+\\ &= \Var{y}
+\\ &= \ss
+\ea
+$$
+:::
+
+---
+
+#### Characteristics of residuals in Gaussian models
+
+With enough data and a correct model, the residuals will be approximately Guassian distributed, with variance $\sigma^2$, which we can estimate using $\hat\sigma^2$: that is:
+
+$$
+e_i \siid N(0, \hat\sigma^2)
+$$
+
+---
+
 :::{#exm-resid-bw}
 #### residuals in `birthweight` data
 
@@ -1467,49 +1516,31 @@ This matches R's output!
 
 ---
 
-#### General characteristics of residuals
+#### Graph the residuals
 
-For unbiased estimators $\hth$:
+```{r}
+#| label: fig-resids-intxn
+#| fig-cap: "Residuals of interaction model for `birthweight` data"
+bw = bw |> 
+  mutate(resids_intxn = 
+           weight - fitted(bw_lm2))
 
-$$\E{e(y)} = 0$$
-
-:::{.proof}
-\ 
-$$
-\ba
-\E{e(y)} &= \E{y - \hat y}
-\\ &= \E{y} - \E{\hat y}
-\\ &= \E{y} - \E{\hat y}
-\\ &= \E{y} - \E{\hE{y}}
-\\ &= \E{y} - \E{E{y}}
-\\ &= \E{y} - \E{y}
-\\ &= 0
-\ea
-$$
-
-:::
-
-$$\hSD{e(y)} \approx \hs$$
-
-:::{.proof}
-\ 
-$$
-\ba
-\Var{e(y)} &= \Var{y - \hy}
-\\ &= \Var{y} + \Var{\hy} - 2 \Cov{y, \hy}
-\\ &{\dot{\approx}} \Var{y} + 0 - 2 \cdot 0
-\\ &= \Var{y}
-\ea
-$$
-:::
-
-#### Characteristics of residuals in Gaussian models
-
-With enough data and a correct model, the residuals will be approximately Guassian distributed, with variance $\sigma^2$, which we can estimate using $\hat\sigma^2$: that is:
-
-$$
-e_i \siid N(0, \hat\sigma^2)
-$$
+plot_bw_resid =
+  bw |> 
+  ggplot(aes(
+    x = age, 
+    y = resids_intxn,
+    linetype = sex,
+    shape = sex,
+    col = sex))  +
+  theme_bw() +
+  xlab("Gestational age (weeks)") +
+  ylab("residuals (grams)") +
+  theme(legend.position = "bottom") +
+  # expand_limits(y = 0, x = 0) +
+  geom_point(alpha = .7)
+print(plot_bw_resid + facet_wrap(~ sex))
+```
 
 ---
 
@@ -1531,6 +1562,8 @@ $$
 
 To look for problems with our model, we can check whether the residuals $e_i$ and standardized residuals $r_i$ look like they have the distributions that they are supposed to have, according to the model.
 
+---
+
 #### Standardized residuals in R
 
 ```{r}
@@ -1540,7 +1573,12 @@ resid(bw_lm2)/sigma(bw_lm2)
 
 ```
 
+::: notes
 These are not quite the same, because R is doing something more complicated and precise to get the standard errors. Let's not worry about those details for now; the difference is pretty small in this case:
+
+:::
+
+---
 
 ```{r}
 
@@ -1562,19 +1600,10 @@ rstandard_compare_plot =
   labs(colour="") +
   scale_colour_manual(values="red")
 
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(rstandard_compare_plot)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
 print(rstandard_compare_plot)
 ```
-:::
+
+---
 
 Let's add these residuals to the `tibble` of our dataset:
 
@@ -1603,63 +1632,59 @@ bw |>
   )
 ```
 
+---
+
+::: notes
+
 Now let's build histograms:
 
-#### Marginal distribution of (nonstandardized) residuals
+:::
 
 ```{r}
-
+#| fig-cap: "Marginal distribution of (nonstandardized) residuals"
+#| label: fig-marg-dist-resid
 resid_marginal_hist = 
   bw |> 
   ggplot(aes(x = resid_lm2)) +
   geom_histogram()
 
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(resid_marginal_hist)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
 print(resid_marginal_hist)
 ```
-:::
 
+::: notes
 Hard to tell with this small amount of data, but I'm a bit concerned that the histogram doesn't show a bell-curve shape.
 
-##### Marginal distribution of standardized residuals
+:::
+
+---
+
 
 ```{r}
-
+#| fig-cap: "Marginal distribution of standardized residuals"
+#| label: fig-marg-stresd
 std_resid_marginal_hist = 
   bw |> 
   ggplot(aes(x = std_resid_lm2)) +
   geom_histogram()
 
-```
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(std_resid_marginal_hist)
-```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
 print(std_resid_marginal_hist)
 ```
-:::
 
+::: notes
 This looks similar, although the scale of the x-axis got narrower, because we divided by $\hat\sigma$ (roughly speaking).
 
 Still hard to tell if the distribution is Gaussian.
 
+:::
+
+---
+
 ### QQ plot of standardized residuals
 
+::: notes
 Another way to assess normality is the QQ plot of the standardized residuals versus normal quantiles:
+
+:::
 
 ```{r}
 
@@ -1673,29 +1698,22 @@ qqplot_lm2_auto =
     ncol = 1) +
   theme_classic()
 
-```
-
-::: {.content-visible when-format="html"}
-```{r}
 print(qqplot_lm2_auto)
 ```
-:::
 
-::: {.content-visible when-format="pdf"}
-```{r}
-print(qqplot_lm2_auto)
-```
-:::
-
+::: notes
 If the Gaussian model were correct, these points should follow the dotted line.
 
-::: callout-note
 Fig 2.4 panel (c) in @dobson4e is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
 :::
 
+---
+
 #### QQ plot - how it's built
 
+::: notes
 Let's construct it by hand:
+:::
 
 ```{r}
 
@@ -1720,11 +1738,9 @@ qqplot_lm2 =
   ggtitle("Normal Q-Q") +
   xlab("Theoretical Quantiles") + 
   ylab("Standardized residuals")
-```
 
-We find the expected line like so:
+# find the expected line:
 
-```{r}
 ps <- c(.25, .75)                  # reference probabilities
 a <- quantile(rstandard(bw_lm2), ps)  # empirical quantiles
 b <- qnorm(ps)                     # theoretical quantiles
@@ -1738,6 +1754,8 @@ qqplot_lm2 =
 
 print(qqplot_lm2)
 ```
+
+---
 
 ### Conditional distributions of residuals
 

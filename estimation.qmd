@@ -258,7 +258,7 @@ $$\mselr{\hth} = \sqf{\bias{\hth}} + \var{\hth}$$ {#eq-mse}
 
 ----
 
-#### Unbiased estimators
+#### Unbiased estimators {#sec-unbiased-estimators}
 
 ::: {#def-unbiased}
 ##### unbiased estimator
