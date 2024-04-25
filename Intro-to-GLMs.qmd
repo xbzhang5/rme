@@ -82,10 +82,10 @@ Stat 108: linear regression models
     + interactions
 * regression diagnostics
 * fundamentals of R programming; e.g.:     
-    + [R for Data Science (Wickham, Cetinkaya-Rundel, Grolemund 2023)](https://r4ds.hadley.nz/)
-    + [Introductory Statistics with R (Dalgaard 2008)](https://link.springer.com/book/10.1007/978-0-387-79054-1)
-* RMarkdown or Quarto for formatting homework
-* LaTeX for writing math in RMarkdown/Quarto
+    + @r4ds
+    + @dalgaardintroductory
+* [RMarkdown or Quarto for formatting homework](https://r4ds.hadley.nz/quarto)
+    + LaTeX for writing math in RMarkdown/Quarto
 
 ### What we will cover in this course
 

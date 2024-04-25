@@ -22,3 +22,22 @@ $$\hat{\lambda}_{ML} \rightarrow_D N(\lambda, \lambda/n)$$
 
 Expectations are means, not sums, despite the similarity of $\Sigma$ and $\text{E}$.
 Really, we should use $\mu$ instead of $\text{E}$.
+
+## Quarto
+
+Make sure not to put a div `:::` on the next line after a slide break `---`:
+
+```
+---
+::: notes
+:::
+```
+
+There needs to be an empty line between them:
+
+```
+---
+
+::: notes
+:::
+```

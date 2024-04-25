@@ -238,9 +238,12 @@ print(plot2)
 
 #### Model assumptions and predictions
 
+::: notes
 To learn what this model is assuming, let's plug in a few values.
+:::
 
-:::{#exr-pred-fem-parallel}
+::: {#exr-pred-fem-parallel}
+
 According to this model, what's the mean birthweight for a female born at 36 weeks?
 
 ```{r}
@@ -257,7 +260,7 @@ coef(bw_lm1)
 \ 
 ```{r}
 pred_female = coef(bw_lm1)["(Intercept)"] + coef(bw_lm1)["age"]*36
-
+coef(bw_lm1)
 # print(pred_female)
 ### built-in prediction: 
 # predict(bw_lm1, newdata = tibble(sex = "female", age = 36))
@@ -275,6 +278,7 @@ $$
 ---
 
 :::{#exr-pred-male-parallel}
+
 What's the mean birthweight for a male born at 36 weeks?
 
 ```{r}
@@ -293,6 +297,7 @@ pred_male =
   coef(bw_lm1)["(Intercept)"] + 
   coef(bw_lm1)["sexmale"] + 
   coef(bw_lm1)["age"]*36
+coef(bw_lm1)
 ```
 
 $$
@@ -328,6 +333,7 @@ $$
 `r pred_male - pred_female`
 \end{aligned}
 $$
+
 Shortcut:
 
 $$
@@ -352,7 +358,7 @@ That's why the lines are parallel.
 
 :::
 
-### Interactions
+### Interactions {.smaller}
 
 :::{.notes}
 What if we don't like that parallel lines assumption?
@@ -362,13 +368,13 @@ Then we need to allow an "interaction" between  age $A$ and sex $S$:
 
 $$
 E[Y|A=a, S=s] = \beta_0 + \beta_A a+ \beta_M m + \beta_{AM} (a \cdot m)
-$$ {#eq-model-interact}
+$$ {#eq-BW-lm-interact}
 
 ::: notes
 Now, the slope of mean birthweight $E[Y|A,S]$ with respect to gestational age $A$ depends on the value of sex $S$.
 :::
 
-::: {.column width=30% .smaller}
+::: {.column width=40% .smaller}
 
 ```{r}
 #| label: tbl-bw-model-coefs-interact
@@ -386,10 +392,10 @@ bw_lm2 |>
 
 :::
 
-:::{.column width=10%}
+:::{.column width=5%}
 :::
 
-:::{.column width=60%}
+:::{.column width=55%}
 
 ```{r}
 #| label: fig-bw-interaction
@@ -436,13 +442,18 @@ Then: that coefficient is the difference in means per unit change in its corresp
 
 ---
 
+::: notes
 To learn what this model is assuming, let's plug in a few values.
+:::
 
 :::{#exr-pred-fem-interact}
 According to this model, what's the mean birthweight for a female born at 36 weeks?
 :::
 
 ---
+
+::: {.solution}
+\ 
 
 ```{r}
 pred_female = coef(bw_lm2)["(Intercept)"] + coef(bw_lm2)["age"]*36
@@ -454,7 +465,19 @@ E[Y|A = 0, X_2 = 36] =
 =  `r pred_female`
 $$ 
 
+:::
+
+---
+
+:::{#exr-pred-interact-male_36}
 What's the mean birthweight for a male born at 36 weeks?
+
+:::
+
+---
+
+::: solution
+\ 
 
 ```{r}
 pred_male = 
@@ -472,6 +495,9 @@ E[Y|A = 0, X_2 = 36]
 \ea
 $$
 
+:::
+
+---
 
 :::{#exr-diff-gender-interact}
 What's the difference in mean birthweights between males born at 36 weeks and females born at 36 weeks?
@@ -480,6 +506,7 @@ What's the difference in mean birthweights between males born at 36 weeks and fe
 ---
 
 :::{.solution}
+
 $$
 \begin{aligned}
 & E[Y|M = 1, A = 36] - E[Y|M = 0, A = 36]\\ 
@@ -498,25 +525,23 @@ That's how the lines in the graph ended up non-parallel.
 
 :::
 
-### Stratified regression
+### Stratified regression {.smaller}
 
 :::{.notes}
 We could re-write the interaction model as a stratified model, with a slope and intercept for each sex:
 :::
 
-Let:
-
 $$
 \E{Y|A=a, S=s} = 
-\beta_M m + \beta_{AM} (a \cdot s) + 
+\beta_M m + \beta_{AM} (a \cdot m) + 
 \beta_F f + \beta_{AF} (a \cdot f)
 $$ {#eq-model-strat}
 
-Compare this stratified model with our interaction model, @eq-model-interact:
+Compare this stratified model with our interaction model, @eq-BW-lm-interact:
 
 $$
 \E{Y|A=a, S=s} = 
-\beta_0 + \beta_A a + \beta_M m + \beta_{AM} (a \cdot s)
+\beta_0 + \beta_A a + \beta_M m + \beta_{AM} (a \cdot m)
 $$
 
 ::: notes
@@ -568,13 +593,13 @@ bw_lm_strat |>
 
 ### Curved-line regression
 
+::: notes
 If we transform some of our covariates ($X$s) and plot the resulting model on the original covariate scale, we end up with curved regression lines:
+:::
 
 ```{r}
 #| label: fig-penguins-log-x
-#| fig-cap: "`palmerpenguins` model with bill_length entering on log scale"
-#| fig-width: 7
-#| fig-height: 5
+#| fig-cap: "`palmerpenguins` model with `bill_length` entering on log scale"
 bw_lm3 = lm(weight ~ sex:log(age) - 1, data = bw)
 library(palmerpenguins)
 
@@ -601,11 +626,11 @@ ggpenguins2 |> print()
 
 ## Estimating Linear Models via Maximum Likelihood {#sec-est-LMs}
 
-### Likelihood, log-likelihood, and score functions for linear regression
+### Likelihood, log-likelihood, and score functions for linear regression {.smaller}
 
 :::{.notes}
 
-In EPI 203 and @sec-intro-MLEs, we learned how to fit outcome-only models of the form $p(X=x|\theta)$ to iid data $\mathbf x = (x_1,…,x_n)$ using maximum likelihood estimation.
+In EPI 203 and [intro-MLEs.qmd#sec-intro-MLEs], we learned how to fit outcome-only models of the form $p(X=x|\theta)$ to iid data $\mathbf x = (x_1,…,x_n)$ using maximum likelihood estimation.
 
 Now, we apply the same procedure to linear regression models:
 
@@ -837,6 +862,7 @@ In the Gaussian linear regression case, we also have exact results:
 $$
 \frac{\hat\beta_j}{\hse{\hat\beta_j}} \dist t_{n-p}
 $$ 
+
 ---
 
 In our model 2 above, $\heinf(\beta)$ is:
@@ -860,6 +886,43 @@ bw_lm2 |> parameters() |> print_md()
 ```
 
 So we can do confidence intervals, hypothesis tests, and p-values exactly as in the one-variable case we looked at previously.
+
+### Residual Standard Deviation
+
+::: notes
+$\hs$ represents an *estimate* of the *Residual Standard Deviation* parameter, $\s$. 
+We can extract $\hs$ from the fitted model, using the `sigma()` function:
+:::
+
+```{r}
+#| code-fold: show
+sigma(bw_lm2)
+```
+
+---
+
+#### $\s$ is NOT "Residual standard error"
+
+::: notes
+In the `summary.lm()` output, this estimate is labeled as `"Residual standard error"`:
+:::
+
+```{r}
+#| code-fold: show
+summary(bw_lm2)
+```
+
+---
+
+::: notes
+However, this is a misnomer:
+:::
+
+```{r, printr.help.sections = c("description", "note")}
+#| code-fold: show
+library(printr) # captures ? documentation
+?stats::sigma
+```
 
 ## Inference about Gaussian Linear Regression Models {#sec-infer-LMs}
 
@@ -1254,6 +1317,8 @@ In a regression model $\p(y|x)$, the **predicted value** of $y$ given $x$ is the
 $$\hat y \eqdef \hE{Y|X=x}$$
 :::
 
+---
+
 For linear models, the predicted value can be straightforwardly calculated by multiplying each predictor value $x_j$ by its corresponding coefficient $\beta_j$ and adding up the results:
 
 $$
@@ -1263,6 +1328,8 @@ $$
 &= \hat\beta_0\cdot 1 + \hat\beta_1 x_1 + ... + \hat\beta_p x_p
 \end{aligned}
 $$
+
+---
 
 ### Example: prediction for the `birthweight` data
 
@@ -1762,30 +1829,45 @@ print(qqplot_lm2)
 If our Gaussian linear regression model is correct, the residuals $e_i$ and standardized residuals $r_i$ should have:
 
 -   an approximately Gaussian distribution, with:
--   a mean of 0
--   a constant variance
+    -   a mean of 0
+    -   a constant variance
 
-This should be true **regardless** of the value of $X$.
+This should be true **for every** value of $x$.
 
-But if we didn't correctly guess the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
+---
 
-Then the the residuals might have nonzero mean or nonconstant variance for some values of $x$.
+If we didn't correctly guess the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
+
+Then the the residuals might have nonzero mean.
+
+Regardless of whether we guessed the mean function correctly, ther the variance of the residuals might differ between values of $x$.
+
+---
 
 #### Residuals versus fitted values
 
-To look for these issues, we can plot the residuals $e_i$ against the fitted values $\hat y_i$:
-
+::: notes
+To look for these issues, we can plot the residuals $e_i$ against the fitted values $\hat y_i$ (@fig-bw_lm2-resid-vs-fitted).
+:::
 ```{r}
+#| label: fig-bw_lm2-resid-vs-fitted
+#| fig-cap: "`birthweight` model  (@eq-BW-lm-interact): residuals versus fitted values"
 autoplot(bw_lm2, which = 1, ncol = 1) |> print()
 ```
 
+::: notes
 If the model is correct, the blue line should stay flat and close to 0, and the cloud of dots should have the same vertical spread regardless of the fitted value.
 
 If not, we probably need to change the functional form of linear component of the mean, $$\text{E}[Y|X=x] = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p$$
 
+:::
+---
+
 #### Scale-location plot
 
-We can also plot the square roots of the absolute values of the standardized residuals against the fitted values:
+::: notes
+We can also plot the square roots of the absolute values of the standardized residuals against the fitted values (@fig-bw-scale-loc).
+:::
 
 ```{r}
 #| label: fig-bw-scale-loc
@@ -1793,25 +1875,34 @@ We can also plot the square roots of the absolute values of the standardized res
 autoplot(bw_lm2, which = 3, ncol = 1) |> print()
 ```
 
-Here, the blue line doesn't need to be near 0, but it should be flat. If not, the residual variance $\sigma^2$ might not be constant, and we might need to transform our outcome $Y$ (or use a model that allows non-constant variance).
+::: notes
+Here, the blue line doesn't need to be near 0, 
+but it should be flat. 
+If not, the residual variance $\sigma^2$ might not be constant, 
+and we might need to transform our outcome $Y$ 
+(or use a model that allows non-constant variance).
+:::
+
+---
 
 #### Residuals versus leverage
 
+::: notes
+
 We can also plot our standardized residuals against "leverage", which roughly speaking is a measure of how unusual each $x_i$ value is. Very unusual $x_i$ values can have extreme effects on the model fit, so we might want to remove those observations as outliers, particularly if they have large residuals.
 
-::: {.content-visible when-format="html"}
-```{r}
-autoplot(bw_lm2, which = 5, ncol = 1) |> print()
-```
 :::
 
-::: {.content-visible when-format="pdf"}
 ```{r}
+#| labels: fig-bw_lm2_resid-vs-leverage
+#| fig-cap: "`birthweight` model with interactions (@eq-BW-lm-interact): residuals versus leverage"
 autoplot(bw_lm2, which = 5, ncol = 1) |> print()
 ```
-:::
 
+::: notes
 The blue line should be relatively flat and close to 0 here.
+:::
+---
 
 ### Diagnostics constructed by hand
 

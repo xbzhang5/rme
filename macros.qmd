@@ -14,6 +14,8 @@
 \def\eps{\epsilon}
 \def\om{\omega}
 \def\m{\mu}
+\def\s{\sigma}
+\def\gs{\sigma}
 \def\gm{\mu}
 \def\M{\text{M}}
 \def\gM{\text{M}}

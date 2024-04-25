@@ -85,3 +85,7 @@ Quarto is a system for writing documents with embedded R code and/or results:
 
 - Read this first: @masteringshiny
 - Use this as a reference: @golembook
+
+## Methods versus functions
+
+See <https://adv-r.hadley.nz/oo.html#oop-systems>
