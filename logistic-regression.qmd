@@ -311,8 +311,6 @@ $$\tf \omega(A) \eqdef \frac{\Pr(A)}{\Pr(\neg A)} = \frac{\pi}{1-\pi}$$
 
 [Function #eq-odds-probs], which transforms probabilities into odds, can be called the **odds function**. @fig-odds-probs graphs the shape of this function.
 
-:::
-
 ```{r}
 #| code-fold: true
 #| label: fig-odds-probs
@@ -332,6 +330,7 @@ ggplot() +
 
 ```
 
+---
 
 :::{#exm-odds}
 
@@ -353,7 +352,7 @@ $$
 &=\frac{\Pr(MI|OC)}{1-\Pr(MI|OC)}\\
 &=\frac{\pi(OC)}{1-\pi(OC)}\\
 &=\frac{`r 13/5000`}{1-`r 13/5000`}\\
-&=`r (13/5000)/(1- (13/5000))`
+&= `r odds_OC |> round(digits = 6) |> as.character()`
 \end{aligned}
 $$
 
