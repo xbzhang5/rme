@@ -425,7 +425,7 @@ Now we can see that the lines aren't parallel.
 Here's another way we could rewrite this model (by collecting terms involving $S$):
 
 $$
-E[Y|A, S] = \beta_0 + \beta_A A+ (\beta_M + \beta_{AM} A) M
+E[Y|A, M] = \beta_0 + \beta_M M+ (\beta_A + \beta_{AM} M) A
 $$
 
 ::: callout-note
@@ -433,7 +433,7 @@ If you want to understand a coefficient in a model with interactions, collect te
 :::
 
 :::{.notes}
-In this case, the coefficient $S$ is interacting with $A$. So the slope of $Y$ with respect to $X_2$ depends on the value of $X_2$.
+In this case, the coefficient $S$ is interacting with $A$. So the slope of $Y$ with respect to $A$ depends on the value of $M$.
 
 According to this model, there is no such thing as "*the* slope of birthweight with respect to age". There are two slopes, one for each sex.^[using the definite article "the" would mean there is only one slope.] We can only talk about "the slope of birthweight with respect to age among males" and "the slope of birthweight with respect to age among females".
 
