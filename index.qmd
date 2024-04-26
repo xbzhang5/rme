@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This web-book is derived from my lecture slides for the Spring 2023 session of Epidemiology 204: "Quantitative Epidemiology III: Statistical Models", at UC Davis.
+This web-book is derived from my lecture slides for Epidemiology 204: "Quantitative Epidemiology III: Statistical Models", at UC Davis.
 
 I have drawn these materials from many sources, including but not limited to:
 
