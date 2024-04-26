@@ -1772,6 +1772,9 @@ print(qqplot_lm2_auto)
 If the Gaussian model were correct, these points should follow the dotted line.
 
 Fig 2.4 panel (c) in @dobson4e is a little different; they didn't specify how they produced it, but other statistical analysis systems do things differently from R.
+
+See also @dunn2018generalized [Section 3.5.4](https://link.springer.com/chapter/10.1007/978-1-4419-0118-7_3#Sec14:~:text=3.5.4%20Q%E2%80%93Q%20Plots%20and%20Normality).
+
 :::
 
 ---
