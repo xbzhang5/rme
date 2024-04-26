@@ -1999,7 +1999,7 @@ bw |>
 
 ## Model selection
 
-(adapted from @dobson4e §6.3.3)
+(adapted from @dobson4e §6.3.3; for more information on prediction, see @james2013introduction).
 
 ::: notes
 If we have a lot of covariates in our dataset, we might want to choose a small subset to use in our model.
