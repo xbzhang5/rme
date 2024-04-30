@@ -186,15 +186,17 @@ $$
 $$ {#eq-lm-parallel}
 
 :::{.notes}
+
 @tbl-lm-parallel shows the parameter estimates from R.
 @fig-parallel-fit1 shows the estimated model, superimposed on the data.
+
 :::
 
 ::: {.column width=40%}
 
 ```{r}
 #| label: tbl-lm-parallel
-#| tbl-cap: "Estimate of @eq-lm-parallel for `birthweight` data"
+#| tbl-cap: "Estimate of [Model @eq-lm-parallel] for `birthweight` data"
 
 bw_lm1 = lm(
   formula = weight ~ sex + age, 

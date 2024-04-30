@@ -51,11 +51,17 @@ library(pander)
 
 **Logistic regression** is a framework for modeling [binary](probability.qmd#def-binary) outcomes, conditional on one or more *predictors* (a.k.a. *covariates*).
 
+---
+
 ::: {#exr-binary-examples}
+
 
 #### Examples of binary outcomes
 
 What are some examples of binary outcomes in the health sciences?
+:::
+
+----
 
 :::: {.solution}
 
@@ -64,20 +70,24 @@ What are some examples of binary outcomes in the health sciences?
 
 ::::
 
-:::
+---
 
 Logistic regression uses the [Bernoulli](probability.qmd#def-bernoulli) distribution to model the outcome variable, conditional on one or more covariates. 
 
 ::: {#exr-def-bernoulli}
 
 Write down a mathematical definition of the Bernoulli distribution.
+:::
+
+---
 
 ::::{.solution}
 
-See @def-bernoulli.
+{{< include def-bernoulli.qmd >}}
 
 ::::
-:::
+
+---
 
 ### Logistic regression versus linear regression
 
@@ -86,6 +96,9 @@ Logistic regression differs from linear regression, which uses the Gaussian ("no
 :::: {#exr-linear}
 
 Recall: what kinds of outcomes is linear regression used for?
+::::
+
+---
 
 ::: {.solution}
 
@@ -93,19 +106,21 @@ Linear regression is typically used for numerical outcomes that aren't event cou
 
 :::
 
-::::
-
 ## Risk Estimation and Prediction
 
+::: notes
 In Epi 203, you have already seen methods for modeling binary outcomes using one covariate that is also binary (such as exposure/non-exposure).
 In this section, we review one-covariate analyses, with a special focus on risk ratios and odds ratios, which are important concepts for interpreting logistic regression.
+:::
+
+---
 
 :::::{#exm-oc-mi}
 ### Oral Contraceptive Use and Heart Attack
 
 * Research question: how does oral contraceptive (OC) use affect the risk of myocardial infarction (MI; a.k.a. heart attack)?
 
-:::{.note}
+:::{.notes}
 This was an issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
 :::
 
@@ -138,9 +153,13 @@ pander(oc_mi)
 
 :::::
 
+---
+
 ::::{#exr-probs}
 
 Review: estimate the probabilities of MI for OC users and non-OC users in @exm-oc-mi.
+::::
+----
 
 :::{.solution}
 
@@ -155,25 +174,27 @@ $$\hat{p}(MI|\neg OC) = \frac{7}{10000} = `r p_MI_nOC`$$
 
 :::
 
-::::
+---
+
+#### Controls
 
 ::::{.callout-note}
-### Two meanings of "controls"
+##### Two meanings of "controls"
 
 Depending on context, "controls" can mean either individuals who don't experience an *exposure* of interest, or individuals who don't experience an *outcome* of interest.
 
+::::
+
 :::{#def-cases-retrospective}
-#### cases and controls in retrospective studies
+##### cases and controls in retrospective studies
 In *retrospective studies*, participants who experience the outcome of interest are called **cases**, while participants who don't experience that outcome are called **controls**. 
 :::
 
 :::{#def-cases-prospective}
-#### treatment groups and control groups in prospective studies
+##### treatment groups and control groups in prospective studies
 In *prospective studies*, the group of participants who experience the treatment or exposure of interest is called the **treatment group**, while the participants who receive the baseline or comparison treatment  (for example, clinical trial participants who receive a placebo or a standard-of-care treatment rather than an experimental treatment) are called **controls**.
 
 :::
-
-::::
 
 ### Comparing probabilities
 
@@ -181,13 +202,13 @@ In *prospective studies*, the group of participants who experience the treatment
 
 The simplest comparison of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values:
 
-:::::{.columns}
-
 :::{#def-RD}
 #### Risk difference
 The **risk difference** of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values: 
 $$\delta(\pi_1,\pi_2) \eqdef \pi_1 - \pi_2$$
 :::
+
+---
 
 :::{#exm-RD}
 
@@ -205,13 +226,12 @@ $$
 &= `r rd_OC`
 \end{aligned}
 $$
+
 :::
 
-:::::
+---
 
 #### Risk ratios
-
-:::::{.columns}
 
 :::{#def-RR}
 ### Relative risk ratios
@@ -248,7 +268,7 @@ We might summarize this result by saying that "the estimated probability of MI a
 
 :::
 
-:::::
+---
 
 Sometimes, we divide the risk difference by the comparison probability, or equivalently, subtract 1 from the risk ratio; the result is called the **relative risk difference**:
 
@@ -257,9 +277,12 @@ $$
 \xi(\pi_1,\pi_2) 
 &= \frac{\pi_1-\pi_2}{\pi_2}\\
 &= \frac{\pi_1}{\pi_2} - 1
-\end{aligned}$$
+\end{aligned}
+$$
 
 Risk differences, risk ratios, and relative risk differences are defined by two probabilities, plus a choice of which probability is the **baseline** or **reference** probability (i.e., which probability is the subtrahend of the risk difference or the denominator of the risk ratio). To switch which one is the reference probability, invert the ratio and multiply the difference by -1.
+
+---
 
 :::{#exm-ref}
 Above, we estimated that the risk ratio of OC versus non-OC is:
@@ -287,29 +310,49 @@ $$
 
 ### Odds and probabilities
 
+::: notes
 In logistic regression, we will make use of a transformation (rescaling) of probability, called *odds*.
+:::
 
 :::{#def-odds}
 #### Odds
 The **odds** of an outcome $A$, denoted $\omega(A)$ ("omega"), is the probability that the outcome occurs, divided by the probability that it doesn't occur:
 
-$$\omega(A) = \frac{\Pr(A)}{\Pr(\neg A)}$$
+$$\omega(A) \eqdef \frac{\Pr(A)}{\Pr(\neg A)}$$
 :::
+
+---
 
 :::{#thm-prob-to-odds}
-If the probability of an outcome $A$ is $\Pr(A)=\pi$, then the corresponding odds of $A$ is 
+If the probability of an outcome $A$ is $\Pr(A)=\pi$, then the corresponding odds of $A$ is:
 
-$$\omega(\pi) \eqdef \frac{\pi}{1-\pi}$$ {#eq-odds-probs}
+$$\omega(\pi) = \frac{\pi}{1-\pi}$$ {#eq-odds-probs}
 
 :::
+
+---
 
 :::{.proof}
-$$\Pr(\neg A) = 1 - \Pr(A) = 1 - \pi$$
-$$\tf \omega(A) \eqdef \frac{\Pr(A)}{\Pr(\neg A)} = \frac{\pi}{1-\pi}$$
+$$
+\ba
+\Pr(\neg A) &= 1 - \Pr(A)
+\\ &= 1 - \pi
+\ea
+$$
+
+$$
+\ba
+\tf \omega(A) &\eqdef \frac{\Pr(A)}{\Pr(\neg A)} 
+\\ &= \frac{\pi}{1-\pi}
+\ea
+$$
 
 :::
+---
 
-[Function #eq-odds-probs], which transforms probabilities into odds, can be called the **odds function**. @fig-odds-probs graphs the shape of this function.
+::: notes
+[Function @eq-odds-probs], which transforms probabilities into odds, can be called the **odds function**. @fig-odds-probs graphs the shape of this function.
+:::
 
 ```{r}
 #| code-fold: true
@@ -364,22 +407,36 @@ Estimate the odds of MI, for non-OC users.
 
 ::::{.solution}
 ```{r, include = FALSE}
-pi_nOC = 7/10000
-odds_nOC = pi_nOC/(1-pi_nOC)
+pi_nOC = 7 / 10000
+odds_nOC = pi_nOC / (1 - pi_nOC)
 ```
 
 $$
-\omega_(\neg OC) = `r odds_nOC`
+\omega(\neg OC) = `r odds_nOC`
 $$
 
 ::::
 
 :::
 
-#### A shortcut for calculating odds
+---
 
-The usual estimate for a probability of an event is "# events/# observations". We often denote # events as $x$ and # observations as $n$. So: $$\hat\pi = \frac{x}{n}$$ 
-Thus, the usual estimate for the probability of a nonevent is:
+:::{#thm-est-odds}
+#### One-sample MLE for odds
+
+Let $X_1,...X_n$ be a set of $n$ $\iid$ Bernoulli trials, and let $X = \sumin X_i$ be their sum. 
+
+Then the maximum likelihood estimate of the odds of $X=1$, $\omega$, is:
+
+$$
+\hat{\omega}= \frac{x}{n-x}
+$$
+
+:::
+
+---
+
+::: proof
 
 $$
 \begin{aligned}
@@ -391,6 +448,7 @@ $$
 $$
 
 Thus, the estimated odds is:
+
 $$
 \begin{aligned}
 \frac{\hat\pi}{1-\hat\pi}
@@ -398,7 +456,13 @@ $$
 &= \frac{x}{n-x}
 \end{aligned}
 $$
+
+:::: notes
 That is, odds can be calculated directly as "# events" divided by "# nonevents" (without needing to calculate $\hat\pi$ and $1-\hat\pi$ first).
+::::
+
+:::
+---
 
 ::::{#exm-odds-shortcut}
 
@@ -410,6 +474,7 @@ $$
 &=`r (13/5000)/(1- (13/5000))`
 \end{aligned}
 $$
+
 Let's recalculate this result using our shortcut:
 
 $$
@@ -420,9 +485,11 @@ $$
 \end{aligned}
 $$
 
-Same answer!
+Same answer as in @exm-odds!
+
 ::::
 
+---
 
 #### Odds of rare events
 
@@ -443,6 +510,7 @@ $$
 ::::
 
 :::
+---
 
 ### The inverse odds function
 

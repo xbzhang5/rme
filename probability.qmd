@@ -20,15 +20,7 @@ A **binary variable** is a random variable which has only two possible values in
 
 :::::{#def-bernoulli}
 #### Bernoulli distribution
-The **Bernoulli distribution** family for a random variable $X$ is defined as:
-
-$$
-\ba
-\Pr(X=x) &= \1{x\in \set{0,1}}\pi^x(1-\pi)^{1-x}\\
-&= \cbl{{\pi, x=1}\atop{1-\pi, x=0}}
-\ea
-$$
-
+{{< include def-bernoulli.qmd >}}
 :::::
 
 
@@ -37,7 +29,7 @@ $$
 :::{#def-density}
 ### Density function
 
-The density function $f(t)$ for a random variable $T$ at value $t$ can be defined as the derivative of the cumulative probability function $P(T\le t)$; that is:
+The density function $f(t)$ or $\p(T=t)$ for a random variable $T$ at value $t$ can be defined as the derivative of the cumulative probability function $P(T\le t)$; that is:
 
 $$f(t) \eqdef \frac{d}{dt} \Pr(T\le t)$$
 

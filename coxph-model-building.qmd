@@ -53,17 +53,17 @@ legend_text_size = 9
 
 -   `dtype`: Disease type (Hodgkin's or non-Hodgkins lymphoma)
 -   `gtype`: Bone marrow graft type:
--   allogeneic: from HLA-matched sibling
--   autologous: from self (prior to chemo)
+   -   allogeneic: from HLA-matched sibling
+   -   autologous: from self (prior to chemo)
 -   `time`: time to study exit
 -   `delta`: study exit reason (death/relapse vs censored)
 -   `wtime`: waiting time to transplant (in months)
 -   `score`: Karnofsky score:
--   80--100: Able to carry on normal activity and to work; no special
+   -   80--100: Able to carry on normal activity and to work; no special
     care needed.
--   50--70: Unable to work; able to live at home and care for most
+   -   50--70: Unable to work; able to live at home and care for most
     personal needs; varying amount of assistance needed.
--   10--60: Unable to care for self; requires equivalent of
+   -   10--60: Unable to care for self; requires equivalent of
     institutional or hospital care; disease may be progressing rapidly.
 
 #### Data

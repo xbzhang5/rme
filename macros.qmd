@@ -96,7 +96,7 @@
 \def\heinf{\hat{\einf}}
 \providecommand{\heinff}[1]{\heinf \paren{#1}}
 \providecommand{\1}[1]{\mathbb{1}_{#1}}
-\providecommand{\set}[1]{\cb{1}}
+\providecommand{\set}[1]{\cb{#1}}
 \providecommand{\pf}[1]{\p \paren{#1}}
 \providecommand{\Bias}[1]{\text{Bias}\paren{#1}}
 \providecommand{\bias}[1]{\text{Bias}\paren{#1}}
