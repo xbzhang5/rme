@@ -6,6 +6,8 @@
 \def\am{\arg \max}
 \def\argmax{\arg \max}
 \def\p{\text{p}}
+\def\ph{\hat{\text{p}}}
+\def\hp{\hat{\text{p}}}
 \def\ga{\alpha}
 \def\b{\beta}
 \def\gb{\beta}
@@ -25,11 +27,11 @@
 \def\lds{\ldots}
 \def\eqdef{\stackrel{\text{def}}{=}}
 \def\defeq{\stackrel{\text{def}}{=}}
-\def\hb{\hat\beta}
+\def\hb{\hat \beta}
 \def\hy{\hat y}
 \def\yh{\hat y}
 \def\V{{\text{Var}}}
-\def\hs{\hat\sigma}
+\def\hs{\hat \sigma}
 \def\dist{\ \sim \ }
 \def\ddist{\ \dot{\sim} \ }
 \def\dsim{\ \dot{\sim} \ }

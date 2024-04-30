@@ -1,9 +1,16 @@
+<!-- Here are some R settings I use in this document: -->
+
 ```{r}
 #| label: r-config
-#| include: FALSE
-# library(pander)
+#| include: false
+rm(list = ls()) # delete any data that's already loaded into R
+library(pander)
 # library(printr)
-# panderOptions("big.mark", ",")
-# library(conflicted)
-# conflicts_prefer(plotly::filter)
+panderOptions("big.mark", ",")
+library(conflicted)
+conflicts_prefer(dplyr::filter)
+library(ggplot2)
+ggplot2::theme_set(ggplot2::theme_bw())
+knitr::opts_chunk$set(message = FALSE)
+options('digits' = 4)
 ```

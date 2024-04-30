@@ -69,8 +69,8 @@ format:
     hyperrefoptions:
     - bookmarksnumbered=true
     toc-title: Contents
-    df-print: kable
-    # df-print: tibble
+    # df-print: kable
+    df-print: tibble
     links-as-notes: true
     documentclass: scrbook
     classoption: [twoside=off]

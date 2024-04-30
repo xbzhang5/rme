@@ -27,6 +27,8 @@ pander::panderOptions("table.emphasize.rownames", FALSE)
 
 ```
 
+---
+
 Functions from these packages will be used throughout this document:
 
 ```{r}
@@ -1185,21 +1187,62 @@ bw.X.unique =
 n_unique.bw  = nrow(bw.X.unique)
 ```
 
-For example, in the `birthweight` data, there are $q = `r n_unique.bw`$ unique patterns:
+For example, in the `birthweight` data, there are $q = `r n_unique.bw`$ unique patterns (@tbl-bw-x-combos).
 
 ```{r}
 #| tbl-cap: "Unique covariate combinations in the `birthweight` data, with replicate counts"
 #| label: tbl-bw-x-combos
-bw.X.unique |> 
-  pander(
-    row.names = rownames(bw.X.unique))
+bw.X.unique
 ```
 
-::: callout-note
+---
+
+::: {#def-replicates}
+#### Replicates
 If a given covariate pattern has more than one observation in a dataset, those observations are called **replicates**.
 :::
 
-Then the most complicated model we could fit would have one parameter (a mean) for each of these combinations, plus a variance parameter:
+---
+
+::: {#exm-replicate-bw}
+
+#### Replicates in the `birthweight` data
+
+In the `birthweight` dataset, there are 2 replicates of the combination "female, age 36" (@tbl-bw-x-combos).
+
+:::
+
+---
+
+::: {#exr-replicate-bw}
+
+#### Replicates in the `birthweight` data
+
+Which covariate pattern(s) in the `birthweight` data has the most replicates?
+
+:::
+
+---
+
+::: {#sol-replicate-bw}
+
+#### Replicates in the `birthweight` data
+
+Two covariate patterns are tied for most replicates: males at age 40 weeks 
+and females at age 40 weeks.
+40 weeks is the usual length for human pregnancy (@polin2011fetal), so this result makes sense.
+
+```{r}
+bw.X.unique |> dplyr::filter(n == max(n))
+```
+
+:::
+
+---
+
+#### Saturated models {.smaller}
+
+The most complicated model we could fit would have one parameter (a mean) for each covariate pattern, plus a variance parameter:
 
 ```{r}
 #| label: tbl-bw-model-sat
@@ -2175,6 +2218,8 @@ table1(
 If we want to model `Sepal.Length` by species, we could create a variable $X$ that represents "setosa" as $X=1$, "virginica" as $X=2$, and "versicolor" as $X=3$.
 
 ```{r}
+#| label: tbl-numeric-coding
+#| tbl-cap: "`iris` data with numeric coding of species"
 data(iris) # this step is not always necessary, but ensures you're starting  
 # from the original version of a dataset stored in a loaded package
 
@@ -2190,15 +2235,15 @@ iris =
   )
 
 iris |> 
-  distinct(Species, X) |> 
-  print()
+  distinct(Species, X)
 
 ```
 
 Then we could fit a model like:
 
 ```{r}
-
+#| label: tbl-iris-numeric-species
+#| tbl-cap: "Model of `iris` data with numeric coding of `Species`"
 iris_lm1 = lm(Sepal.Length ~ X, data = iris)
 iris_lm1 |> parameters() |> print_md()
 
@@ -2207,7 +2252,8 @@ iris_lm1 |> parameters() |> print_md()
 ### Let's see how that model looks:
 
 ```{r}
-
+#| label: fig-iris-numeric-species-model
+#| fig-cap: "Model of `iris` data with numeric coding of `Species`"
 iris_plot1 = iris |> 
   ggplot(
     aes(
@@ -2219,27 +2265,17 @@ iris_plot1 = iris |>
     intercept = coef(iris_lm1)[1], 
     slope = coef(iris_lm1)[2]) +
   theme_bw(base_size = 18)
-```
-
-::: {.content-visible when-format="pdf"}
-```{r}
 print(iris_plot1)
 
 ```
-:::
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(iris_plot1)
-
-```
-:::
 
 We have forced the model to use a straight line for the three estimated means. Maybe not a good idea?
 
 ### Let's see what R does with categorical variables by default:
 
 ```{r}
+#| label: tbl-iris-model-factor1
+#| tbl-cap: "Model of `iris` data with `Species` as a categorical variable"
 iris_lm2 = lm(Sepal.Length ~ Species, data = iris)
 iris_lm2 |> parameters() |> print_md()
 
@@ -2250,6 +2286,7 @@ iris_lm2 |> parameters() |> print_md()
 If you don't want the default and offset option, you can use "-1" like we've seen previously:
 
 ```{r}
+#| label: tbl-iris-no-intcpt
 iris.lm2b = lm(Sepal.Length ~ Species - 1, data = iris)
 iris.lm2b |> parameters() |> print_md()
 
@@ -2258,6 +2295,7 @@ iris.lm2b |> parameters() |> print_md()
 ### Let's see what these new models look like:
 
 ```{r}
+#| label: fig-iris-no-intcpt
 iris_plot2 = 
   iris |> 
   mutate(
@@ -2270,26 +2308,15 @@ iris_plot2 =
     intercept = coef(iris_lm1)[1], 
     slope = coef(iris_lm1)[2]) + 
   theme_bw(base_size = 18)
-```
 
-::: {.content-visible when-format="pdf"}
-```{r}
 print(iris_plot2)
 
 ```
-:::
-
-::: {.content-visible when-format="html"}
-```{r}
-ggplotly(iris_plot2)
-
-```
-:::
 
 ### Let's see how R did that:
 
 ```{r}
-
+#| label: tbl-iris-model-matrix-factor
 formula(iris_lm2)
 model.matrix(iris_lm2) |> as_tibble() |> unique()
 
@@ -2298,7 +2325,7 @@ model.matrix(iris_lm2) |> as_tibble() |> unique()
 This is called a "corner point parametrization".
 
 ```{r}
-
+#| label: tbl-iris-group-point-parameterization
 formula(iris.lm2b)
 model.matrix(iris.lm2b) |> as_tibble() |> unique()
 
@@ -2306,4 +2333,7 @@ model.matrix(iris.lm2b) |> as_tibble() |> unique()
 
 This can be called a "group point parametrization".
 
-There are more options; see @dobson4e §6.4.1 and the [`codingMatrices` package](https://CRAN.R-project.org/package=codingMatrices)  [vignette](https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf) (@venablescodingMatrices).
+There are more options; see @dobson4e §6.4.1 and the 
+[`codingMatrices` package](https://CRAN.R-project.org/package=codingMatrices) 
+[vignette](https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf) 
+(@venablescodingMatrices).

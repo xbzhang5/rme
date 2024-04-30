@@ -32,29 +32,15 @@ library(parameters) # format model output tables for markdown
 library(conflicted) # check for conflicting function definitions
 ```
 
-Here are some R settings I use in this document:
-
-```{r options, message=FALSE}
-rm(list = ls()) # delete any data that's already loaded into R
-knitr::opts_chunk$set(message = FALSE)
-options('digits' = 4)
-```
-
 ## Introduction
 
 ### What is logistic regression?
-
-```{r}
-#| include: false
-library(pander)
-```
 
 **Logistic regression** is a framework for modeling [binary](probability.qmd#def-binary) outcomes, conditional on one or more *predictors* (a.k.a. *covariates*).
 
 ---
 
 ::: {#exr-binary-examples}
-
 
 #### Examples of binary outcomes
 
@@ -74,6 +60,8 @@ What are some examples of binary outcomes in the health sciences?
 
 Logistic regression uses the [Bernoulli](probability.qmd#def-bernoulli) distribution to model the outcome variable, conditional on one or more covariates. 
 
+---
+
 ::: {#exr-def-bernoulli}
 
 Write down a mathematical definition of the Bernoulli distribution.
@@ -92,6 +80,8 @@ Write down a mathematical definition of the Bernoulli distribution.
 ### Logistic regression versus linear regression
 
 Logistic regression differs from linear regression, which uses the Gaussian ("normal") distribution to model the outcome variable, conditional on the covariates.
+
+---
 
 :::: {#exr-linear}
 
@@ -122,9 +112,10 @@ In this section, we review one-covariate analyses, with a special focus on risk 
 
 :::{.notes}
 This was an issue when oral contraceptives were first developed, because the original formulations used higher concentrations of hormones. Modern OCs don't have this issue.
-:::
 
 @tbl-oc-mi contains simulated data for an imaginary follow-up (a.k.a. *prospective*) study in which two groups are identified, one using OCs and another not using OCs, and both groups are tracked for three years to determine how many in each groups have MIs.
+
+:::
 
 ```{r}
 #| message: false
@@ -146,9 +137,8 @@ totals =
   summarize(across(c(MI, `No MI`, Total), sum)) |> 
   mutate(OC = "Total")
 
-oc_mi = bind_rows(oc_mi, totals)
+bind_rows(oc_mi, totals)
 
-pander(oc_mi)
 ```
 
 :::::
@@ -159,18 +149,20 @@ pander(oc_mi)
 
 Review: estimate the probabilities of MI for OC users and non-OC users in @exm-oc-mi.
 ::::
+
 ----
 
 :::{.solution}
 
 ```{r, include = FALSE}
+#| label: calc-prs
 p_MI_OC = 13/5000
 p_MI_nOC = 7/10000
 ```
 
-$$\hat{p}(MI|OC) = \frac{13}{5000} = `r p_MI_OC`$$
+$$\ph(MI|OC) = \frac{13}{5000} = `r p_MI_OC`$$
 
-$$\hat{p}(MI|\neg OC) = \frac{7}{10000} = `r p_MI_nOC`$$
+$$\ph(MI|\neg OC) = \frac{7}{10000} = `r p_MI_nOC`$$
 
 :::
 
@@ -185,10 +177,14 @@ Depending on context, "controls" can mean either individuals who don't experienc
 
 ::::
 
+---
+
 :::{#def-cases-retrospective}
 ##### cases and controls in retrospective studies
 In *retrospective studies*, participants who experience the outcome of interest are called **cases**, while participants who don't experience that outcome are called **controls**. 
 :::
+
+---
 
 :::{#def-cases-prospective}
 ##### treatment groups and control groups in prospective studies
@@ -196,11 +192,13 @@ In *prospective studies*, the group of participants who experience the treatment
 
 :::
 
-### Comparing probabilities
+## Comparing probabilities
 
-#### Risk differences
+### Risk differences
 
+::: notes
 The simplest comparison of two probabilities, $\pi_1$, and $\pi_2$, is the difference of their values:
+:::
 
 :::{#def-RD}
 #### Risk difference
@@ -212,7 +210,9 @@ $$\delta(\pi_1,\pi_2) \eqdef \pi_1 - \pi_2$$
 
 :::{#exm-RD}
 
-In @exm-oc-mi, the estimated risk difference in MI risk between OC users and OC non-users is:
+#### Difference in MI risk
+
+In @exm-oc-mi, the maximum likelihood estimate of the difference in MI risk between OC users and OC non-users is:
 ```{r, include = FALSE}
 rd_OC = p_MI_OC - p_MI_nOC
 ```
@@ -231,26 +231,35 @@ $$
 
 ---
 
-#### Risk ratios
+### Risk ratios
 
 :::{#def-RR}
 ### Relative risk ratios
 
+:::: notes
 The **relative risk** of probability $\pi_1$ compared to another probability $\pi_2$, also called the **risk ratio**, **relative risk ratio**, **probability ratio**, or **rate ratio**, is the ratio of those probabilities:
+::::
 
 $$\rho(\pi_1,\pi_2) = \frac{\pi_1}{\pi_2}$$
 :::
 
+---
+
 :::{#exm-RR}
 
+:::: notes
 Above, we estimated that:
-$$\hat{p}(MI|OC) = `r 13/5000`$$
+::::
 
-$$\hat{p}(MI|\neg OC) = `r 7/10000`$$
+$$\ph(MI|OC) = `r 13/5000`$$
 
+$$\ph(MI|\neg OC) = `r 7/10000`$$
+
+:::: notes
 So we might estimate that the *relative risk* of MI for OC versus non-OC is:
-
+::::
 ```{r}
+#| label: compute-rr
 rr = (13/5000)/(7/10000)
 ```
 
@@ -258,14 +267,14 @@ rr = (13/5000)/(7/10000)
 $$
 \begin{aligned}
 \hat\rho(OC, \neg OC)
-&=\frac{\hat{p}(MI|OC)}{\hat{p}(MI|\neg OC)}\\
+&=\frac{\ph(MI|OC)}{\ph(MI|\neg OC)}\\
 &= \frac{`r 13/5000`}{`r 7/10000`}\\
 &= `r rr`
 \end{aligned}
 $$
-
+:::: notes
 We might summarize this result by saying that "the estimated probability of MI among OC users was `r rr` as high as the estimated probability among OC non-users. 
-
+::::
 :::
 
 ---
@@ -275,7 +284,7 @@ Sometimes, we divide the risk difference by the comparison probability, or equiv
 $$
 \begin{aligned}
 \xi(\pi_1,\pi_2) 
-&= \frac{\pi_1-\pi_2}{\pi_2}\\
+&\eqdef \frac{\pi_1-\pi_2}{\pi_2}\\
 &= \frac{\pi_1}{\pi_2} - 1
 \end{aligned}
 $$
@@ -285,6 +294,9 @@ Risk differences, risk ratios, and relative risk differences are defined by two 
 ---
 
 :::{#exm-ref}
+
+#### Switching the reference group in a risk ratio
+
 Above, we estimated that the risk ratio of OC versus non-OC is:
 
 $$
@@ -299,7 +311,7 @@ In comparison, the risk ratio for non-OC versus OC is:
 $$
 \begin{aligned}
 \rho(\neg OC, OC)
-&=\frac{\hat{p}(MI|\neg OC)}{\hat{p}(MI|OC)}\\
+&=\frac{\ph(MI|\neg OC)}{\ph(MI|OC)}\\
 &= \frac{`r 7/10000`}{`r 13/5000`}\\
 &= `r (7/10000)/(13/5000)`\\
 &= \frac{1}{\rho(OC, \neg OC)}
@@ -348,6 +360,7 @@ $$
 $$
 
 :::
+
 ---
 
 ::: notes
@@ -362,7 +375,8 @@ $$
 odds = function(pi) pi / (1 - pi)
 library(ggplot2)
 ggplot() + 
-  geom_function(fun = odds, aes(col = "odds function")) +
+  geom_function(fun = odds, 
+                mapping = aes(col = "odds function")) +
   xlim(0, .5) +
   xlab("Probability") +
   ylab("Odds") +
@@ -462,6 +476,7 @@ That is, odds can be calculated directly as "# events" divided by "# nonevents" 
 ::::
 
 :::
+
 ---
 
 ::::{#exm-odds-shortcut}
@@ -510,6 +525,7 @@ $$
 ::::
 
 :::
+
 ---
 
 ### The inverse odds function
