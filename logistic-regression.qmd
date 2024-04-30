@@ -648,28 +648,28 @@ In @exm-oc-mi, we have:
 
 $$
 \begin{aligned}
-\theta(MI; OC) 
+\theta(M; O) 
 &\eqdef
-\frac{\omega(MI|OC)}{\omega(MI|\neg OC)}\\
+\frac{\omega(M|O)}{\omega(M|\neg O)}\\
 &\eqdef \frac
-{\left(\frac{\Pr(MI|OC)}{\Pr(\neg MI|OC)}\right)}
-{\left(\frac{\Pr(MI|\neg OC)}{\Pr(\neg MI|\neg OC)}\right)}\\
+{\left(\frac{\Pr(M|O)}{\Pr(\neg M|O)}\right)}
+{\left(\frac{\Pr(M|\neg O)}{\Pr(\neg M|\neg O)}\right)}\\
 &= \frac
-{\left(\frac{\Pr(MI,OC)}{\Pr(\neg MI,OC)}\right)}
-{\left(\frac{\Pr(MI,\neg OC)}{\Pr(\neg MI,\neg OC)}\right)}\\
-&= \left(\frac{\Pr(MI,OC)}{\Pr(\neg MI,OC)}\right)
-\left(\frac{\Pr(\neg MI,\neg OC)}{\Pr(MI,\neg OC)}\right)\\
-&= \left(\frac{\Pr(MI,OC)}{\Pr(MI,\neg OC)}\right)
-\left(\frac{\Pr(\neg MI,\neg OC)}{\Pr(\neg MI,OC)}\right)\\
-&= \left(\frac{\Pr(OC,MI)}{\Pr(\neg OC,MI)}\right)
-\left(\frac{\Pr(\neg OC,\neg MI)}{\Pr(OC,\neg MI)}\right)\\
-&= \left(\frac{\Pr(OC|MI)}{\Pr(\neg OC|MI)}\right)
-\left(\frac{\Pr(\neg OC|\neg MI)}{\Pr(OC|\neg MI)}\right)\\
-&= \frac{\left(\frac{\Pr(OC|MI)}{\Pr(\neg OC|MI)}\right)}
-{\left(\frac{\Pr(OC|\neg MI)}{\Pr(\neg OC|\neg MI)}\right)}\\
-&\eqdef \frac{\omega(OC|MI)}
-{\omega(OC|\neg MI)}\\
-&\eqdef \theta(OC; MI)
+{\left(\frac{\Pr(M,O)}{\Pr(\neg M,O)}\right)}
+{\left(\frac{\Pr(M,\neg O)}{\Pr(\neg M,\neg O)}\right)}\\
+&= \left(\frac{\Pr(M,O)}{\Pr(\neg M,O)}\right)
+\left(\frac{\Pr(\neg M,\neg O)}{\Pr(M,\neg O)}\right)\\
+&= \left(\frac{\Pr(M,O)}{\Pr(M,\neg O)}\right)
+\left(\frac{\Pr(\neg M,\neg O)}{\Pr(\neg M,O)}\right)\\
+&= \left(\frac{\Pr(O,M)}{\Pr(\neg O,M)}\right)
+\left(\frac{\Pr(\neg O,\neg M)}{\Pr(O,\neg M)}\right)\\
+&= \left(\frac{\Pr(O|M)}{\Pr(\neg O|M)}\right)
+\left(\frac{\Pr(\neg O|\neg M)}{\Pr(O|\neg M)}\right)\\
+&= \frac{\left(\frac{\Pr(O|M)}{\Pr(\neg O|M)}\right)}
+{\left(\frac{\Pr(O|\neg M)}{\Pr(\neg O|\neg M)}\right)}\\
+&\eqdef \frac{\omega(O|M)}
+{\omega(O|\neg M)}\\
+&\eqdef \theta(O; M)
 \end{aligned}
 $$
 :::
